@@ -1,8 +1,34 @@
-# DuVay
+<h1 align="center">
+  DuVay
+</h1>
 
-A zero-dependency CSS framework with design tokens, theming, and accessible
-web components. Use utility classes for full control, drop-in `<w-*>` web
-components for speed — both share the same design system.
+<p align="center">
+  A zero-dependency CSS framework with design tokens, theming, and accessible web components.
+</p>
+
+<p align="center">
+  <a href="https://duvay.del.ma">Website</a>
+  ·
+  <a href="https://duvay.del.ma/docs/getting-started">Docs</a>
+  ·
+  <a href="https://github.com/d31ma/DUVAY/issues">Issues</a>
+  ·
+  <a href="https://github.com/d31ma/DUVAY/releases">Releases</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/d31ma/DUVAY/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  </a>
+  <img src="https://img.shields.io/badge/bun-%3E%3D1.0.0-black?logo=bun" alt="Bun >= 1.0.0">
+  <img src="https://img.shields.io/badge/zero--dependencies-yes-success" alt="Zero dependencies">
+</p>
+
+---
+
+<p align="center">
+  Use utility classes for full control, drop-in <code>&lt;w-*&gt;</code> web components for speed — both share the same design system.
+</p>
 
 ```html
 <link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css">
@@ -14,28 +40,16 @@ components for speed — both share the same design system.
 
 ## What you get
 
-- **Design tokens** — colors, spacing (numeric + t-shirt scales), shape,
-  elevation, motion. Every paint value is a CSS custom property.
-- **Themes** — light, dark, auto (follows `prefers-color-scheme`), and
-  high-contrast. Switch with `data-w-theme` on `<html>`.
-- **Utility classes** — Tailwind-style helpers for layout, spacing, type,
-  border, radius, position.
-- **Component classes** — buttons, inputs, command palettes, menus,
-  overlays, layout primitives, cards, lists, tables, tabs, feedback,
-  typography, and workflow patterns, all token-driven.
-- **Web components** — Light-DOM `<w-*>` elements that render the same
-  DuVay classes. Progressive-enhancement-friendly.
-- **Accessibility** — focus rings, keyboard nav, ARIA, reduced-motion
-  respect, WCAG-AA contrast in default themes.
+- **Design tokens** — colors, spacing (numeric + t-shirt scales), shape, elevation, motion. Every paint value is a CSS custom property.
+- **Themes** — light, dark, auto (follows `prefers-color-scheme`), and high-contrast. Switch with `data-w-theme` on `<html>`.
+- **Utility classes** — Tailwind-style helpers for layout, spacing, type, border, radius, position.
+- **Component classes** — buttons, inputs, command palettes, menus, overlays, layout primitives, cards, lists, tables, tabs, feedback, typography, and workflow patterns, all token-driven.
+- **Web components** — Light-DOM `<w-*>` elements that render the same DuVay classes. Progressive-enhancement-friendly.
+- **Accessibility** — focus rings, keyboard nav, ARIA, reduced-motion respect, WCAG-AA contrast in default themes.
 
-Zero dependencies. Zero build step. Ships as a single CSS file
-(~307 KB readable / ~231 KB minified), a ~6.8 KB minified behavior layer,
-and an optional ~10 KB motion add-on. The web-component bundle is
-~417 KB readable / ~291 KB minified.
+Zero dependencies. Zero build step. Ships as a single CSS file (~307 KB readable / ~231 KB minified), a ~6.8 KB minified behavior layer, and an optional ~10 KB motion add-on. The web-component bundle is ~417 KB readable / ~291 KB minified.
 
-DuVay also ships component-level CSS entrypoints. Import the full framework
-when you want everything, or import only the core layer and the components
-your app uses.
+DuVay also ships component-level CSS entrypoints. Import the full framework when you want everything, or import only the core layer and the components your app uses.
 
 ## Install
 
@@ -61,8 +75,7 @@ your app uses.
 @import "duvay-css/components/tooltips.css";
 ```
 
-Component CSS files import their required core layer, so this also works when
-you want a single component in a small page:
+Component CSS files import their required core layer, so this also works when you want a single component in a small page:
 
 ```css
 @import "duvay-css/components/buttons.css";
@@ -70,8 +83,7 @@ you want a single component in a small page:
 
 ### Pin to a CalVer release
 
-Every release is permanently available under `/shared/assets/duvay/versions/<VERSION>/dist/`.
-Replace `VERSION` with the CalVer release you want to lock to:
+Every release is permanently available under `/shared/assets/duvay/versions/<VERSION>/dist/`. Replace `VERSION` with the CalVer release you want to lock to:
 
 ```html
 <link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.css">
@@ -118,9 +130,8 @@ bun run docs:dev    # docs site at http://localhost:3000
 bun run docs:build  # static export to website/dist/
 ```
 
-After any change to `src/`, run `bun run build` so the docs site picks
-it up.
+After any change to `src/`, run `bun run build` so the docs site picks it up.
 
 ## License
 
-MIT
+[MIT](LICENSE) © DELMA
