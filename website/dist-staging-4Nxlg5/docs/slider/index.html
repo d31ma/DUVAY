@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-92bf3dda-0">Slider</h1><p id="ty-ca213123-0">A control for choosing a value along a track. Use the <code id="ty-2022c26c-0">.w-slider</code> class on a native <code id="ty-4bd967f3-0">&lt;input type="range"&gt;</code> for the minimal version, or the <code id="ty-ff43fff8-0">&lt;w-slider&gt;</code> web component for labels, ticks, value bubbles, theming, and vertical orientation. For two thumbs, see the <a href="/docs/range-sliders" id="ty-3beb2cf8-0">range slider</a>.</p><h2 id="ty-f432aaf5-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-d5699cd2-0">
+    <input class="w-slider" type="range" min="0" max="100" value="40" style="--w-slider-pct:40%" id="ty-4311e7ed-0" />
+  </div>
+  <div slot="wc" id="ty-ec2c6eba-0">
+    <w-slider min="0" max="100" value="40" id="ty-c98cf020-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-2341a2b4-0">Label</h2><p id="ty-cebf8820-0">Add a <code id="ty-c2d11f90-0">label</code>; the current value shows below the track.</p><demo-compare >
+  <div slot="css" id="ty-c0939850-0">
+    <label class="w-field w-slider-field" id="ty-e4465fcc-0">
+      <span class="w-label" id="ty-641e1f74-0">Volume</span>
+      <span class="w-slider-control" style="--value:60%" id="ty-56e31666-0">
+        <span class="w-slider-rail" aria-hidden="true" id="ty-66a2ef9e-0"><span class="w-slider-fill" id="ty-eafbb001-0"></span></span>
+        <input class="w-slider-input" type="range" value="60" aria-label="Volume" id="ty-5170857a-0" />
+      </span>
+      <span class="w-messages" id="ty-2179ad44-0">60</span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-19c79e41-0">
+    <w-slider label="Volume" value="60" id="ty-d45ccedb-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-5ab3faa9-0">Sizes</h2><p id="ty-0805e4f7-0">Five sizes from <code id="ty-dddb0c75-0">xs</code> to <code id="ty-c59a3b97-0">xl</code>; omit for the default.</p><demo-compare >
+  <div slot="css" id="ty-6ea2e5c3-0">
+    <div class="w-stack" id="ty-c1e4dc35-0">
+      <input class="w-slider w-slider--xs" type="range" value="20" style="--w-slider-pct:20%" id="ty-2abf0f43-0" />
+      <input class="w-slider w-slider--sm" type="range" value="30" style="--w-slider-pct:30%" id="ty-e6fb519b-0" />
+      <input class="w-slider" type="range" value="50" style="--w-slider-pct:50%" id="ty-0bf13643-0" />
+      <input class="w-slider w-slider--lg" type="range" value="70" style="--w-slider-pct:70%" id="ty-d4ea974f-0" />
+      <input class="w-slider w-slider--xl" type="range" value="80" style="--w-slider-pct:80%" id="ty-36214a8b-0" />
+    </div>
+  </div>
+  <div slot="wc" id="ty-0a4bd4b6-0">
+    <div class="w-stack" id="ty-2a2e46f4-0">
+      <w-slider size="xs" value="20" id="ty-6d3f5c9a-0"></w-slider>
+      <w-slider size="sm" value="30" id="ty-2a52ed4b-0"></w-slider>
+      <w-slider value="50" id="ty-4add88fc-0"></w-slider>
+      <w-slider size="lg" value="70" id="ty-785ad08d-0"></w-slider>
+      <w-slider size="xl" value="80" id="ty-c19bf4ce-0"></w-slider>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-6ec089d1-0">Steps</h2><p id="ty-e9864d0c-0">Set <code id="ty-6ca76e58-0">min</code>, <code id="ty-cea7b6ed-0">max</code>, and <code id="ty-c00733c9-0">step</code> to constrain the values.</p><demo-compare >
+  <div slot="css" id="ty-083fd88e-0">
+    <input class="w-slider" type="range" min="0" max="10" step="2" value="6" style="--w-slider-pct:60%" id="ty-1ac7dbd1-0" />
+  </div>
+  <div slot="wc" id="ty-82e02cd8-0">
+    <w-slider min="0" max="10" step="2" value="6" id="ty-ab329672-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-b770f984-0">Thumb label</h2><p id="ty-dec5feb4-0">Add <code id="ty-20c62665-0">thumb-label</code> to show the value on hover or focus, or <code id="ty-0b38d3e7-0">thumb-label="always"</code> to keep the bubble visible.</p><demo-compare >
+  <div slot="css" id="ty-6aa2ec7f-0">
+    <label class="w-field w-slider-field w-slider-field--thumb-label w-slider-field--thumb-label-always" id="ty-1fb7235f-0">
+      <span class="w-label" id="ty-d52bd5ef-0">Brightness</span>
+      <span class="w-slider-control" style="--value:65%" id="ty-25f7b981-0">
+        <span class="w-slider-rail" aria-hidden="true" id="ty-bcef13d6-0"><span class="w-slider-fill" id="ty-108cf2c4-0"></span></span>
+        <input class="w-slider-input" type="range" value="65" aria-label="Brightness" id="ty-c9aba3bc-0" />
+        <span class="w-slider-thumb-label" style="--pos:65%" id="ty-e00c7896-0">65</span>
+      </span>
+      <span class="w-messages" id="ty-6d539705-0">65</span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-04a8cf78-0">
+    <w-slider label="Brightness" value="65" thumb-label="always" id="ty-dc78d8a9-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-b0d526ae-0">Ticks</h2><p id="ty-ec854a97-0">Add <code id="ty-229523a1-0">ticks</code> to mark every <code id="ty-06ed2663-0">step</code>, or <code id="ty-ad583dc1-0">tick-labels</code> (pipe-separated) to label each one.</p><demo-compare >
+  <div slot="css" id="ty-c4e7825a-0">
+    <label class="w-field w-slider-field" id="ty-d605bdcf-0">
+      <span class="w-label" id="ty-f41b4e45-0">Rating</span>
+      <span class="w-slider-control" style="--value:50%" id="ty-907e4104-0">
+        <span class="w-slider-rail" aria-hidden="true" id="ty-9103db62-0"><span class="w-slider-fill" id="ty-aed2cdff-0"></span></span>
+        <span class="w-slider-ticks w-slider-ticks--labelled" aria-hidden="true" id="ty-9aed8440-0">
+          <span class="w-slider-tick" style="--pos:0%" id="ty-bc302bce-0"><span class="w-slider-tick-label" id="ty-e6fe80bb-0">None</span></span>
+          <span class="w-slider-tick" style="--pos:25%" id="ty-0cd40567-0"><span class="w-slider-tick-label" id="ty-c8c2af62-0">Low</span></span>
+          <span class="w-slider-tick" style="--pos:50%" id="ty-e7d12808-0"><span class="w-slider-tick-label" id="ty-90e2535a-0">Mid</span></span>
+          <span class="w-slider-tick" style="--pos:75%" id="ty-bf5230ff-0"><span class="w-slider-tick-label" id="ty-8fbafc01-0">High</span></span>
+          <span class="w-slider-tick" style="--pos:100%" id="ty-366bc597-0"><span class="w-slider-tick-label" id="ty-d5307855-0">Max</span></span>
+        </span>
+        <input class="w-slider-input" type="range" min="0" max="4" step="1" value="2" aria-label="Rating" id="ty-c7569fa3-0" />
+      </span>
+      <span class="w-messages" id="ty-7b0601e9-0">2</span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-583b86fd-0">
+    <w-slider label="Rating" min="0" max="4" step="1" value="2" tick-labels="None|Low|Mid|High|Max" id="ty-dc9733ab-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-aad75d6d-0">Color</h2><p id="ty-71a7a855-0">Theme the fill and thumb with <code id="ty-1b935988-0">color</code>, and the rail with <code id="ty-fe40c018-0">track-color</code>, using any token color name.</p><demo-compare >
+  <div slot="css" id="ty-69d80139-0">
+    <div class="w-stack" id="ty-44bed8a6-0">
+      <label class="w-field w-slider-field" id="ty-f22688ef-0">
+        <span class="w-slider-control" style="--value:60%;--w-slider-color:var(--w-success)" id="ty-6debcb2f-0">
+          <span class="w-slider-rail" aria-hidden="true" id="ty-5c89c864-0"><span class="w-slider-fill" id="ty-149871c3-0"></span></span>
+          <input class="w-slider-input" type="range" value="60" aria-label="Success" id="ty-b54f50e3-0" />
+        </span>
+      </label>
+      <label class="w-field w-slider-field" id="ty-80505032-0">
+        <span class="w-slider-control" style="--value:40%;--w-slider-color:var(--w-error)" id="ty-4bb9ca2a-0">
+          <span class="w-slider-rail" aria-hidden="true" id="ty-7bde17c6-0"><span class="w-slider-fill" id="ty-8d2e5c2e-0"></span></span>
+          <input class="w-slider-input" type="range" value="40" aria-label="Error" id="ty-536ed462-0" />
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-7bd98ca4-0">
+    <div class="w-stack" id="ty-18272084-0">
+      <w-slider value="60" color="success" id="ty-bef44812-0"></w-slider>
+      <w-slider value="40" color="error" id="ty-e2cee15d-0"></w-slider>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-bc69bdc7-0">Disabled &amp; readonly</h2><p id="ty-d977964a-0"><code id="ty-dc6ef601-0">disabled</code> dims and freezes the slider; <code id="ty-7a51b4b9-0">readonly</code> freezes it without dimming.</p><demo-compare >
+  <div slot="css" id="ty-8f78bc45-0">
+    <div class="w-stack" id="ty-f0bf220f-0">
+      <label class="w-field w-slider-field w-slider-field--disabled" id="ty-7d011f00-0">
+        <span class="w-slider-control" style="--value:50%" id="ty-1989258f-0">
+          <span class="w-slider-rail" aria-hidden="true" id="ty-bf5befdf-0"><span class="w-slider-fill" id="ty-6a9e9a7b-0"></span></span>
+          <input class="w-slider-input" type="range" value="50" aria-label="Disabled" disabled="" id="ty-f4f8636c-0" />
+        </span>
+      </label>
+      <label class="w-field w-slider-field w-slider-field--readonly" id="ty-6c32230f-0">
+        <span class="w-slider-control" style="--value:50%" id="ty-39fea952-0">
+          <span class="w-slider-rail" aria-hidden="true" id="ty-bac53853-0"><span class="w-slider-fill" id="ty-58c5ddfb-0"></span></span>
+          <input class="w-slider-input" type="range" value="50" aria-label="Readonly" disabled="" id="ty-d983c369-0" />
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3c9714ae-0">
+    <div class="w-stack" id="ty-04ecf604-0">
+      <w-slider value="50" disabled="" id="ty-f990705a-0"></w-slider>
+      <w-slider value="50" readonly="" id="ty-7d5bdde7-0"></w-slider>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-ed1bb1f5-0">Vertical</h2><p id="ty-286daf32-0">Set <code id="ty-1850b1da-0">direction="vertical"</code> to orient the slider vertically.</p><demo-compare >
+  <div slot="css" id="ty-28a5b254-0">
+    <label class="w-field w-slider-field w-slider-field--vertical w-slider-field--thumb-label w-slider-field--thumb-label-always" id="ty-e826edf9-0">
+      <span class="w-slider-control" style="--value:40%" id="ty-9483c113-0">
+        <span class="w-slider-rail" aria-hidden="true" id="ty-dcceacea-0"><span class="w-slider-fill" id="ty-933a84e3-0"></span></span>
+        <input class="w-slider-input" type="range" value="40" aria-label="Level" id="ty-da44b8ce-0" />
+        <span class="w-slider-thumb-label" style="--pos:40%" id="ty-90689e03-0">40</span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-bdc55737-0">
+    <w-slider value="40" direction="vertical" thumb-label="always" id="ty-e59e2dda-0"></w-slider>
+  </div>
+</demo-compare><h2 id="ty-c3bae0ba-0">Attributes</h2><table class="w-table api-table" id="ty-72ef0ae3-0">
+  <thead id="ty-e1da666b-0">
+    <tr id="ty-e86346fa-0"><th id="ty-8fa72f38-0">Attribute</th><th id="ty-0d060987-0">Type</th><th id="ty-cf36b6d1-0">Default</th><th id="ty-399d409b-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-82518dd7-0">
+    <tr id="ty-47a7adc0-0"><td id="ty-391e0736-0"><code id="ty-95c385a0-0">min</code>, <code id="ty-ed15f461-0">max</code></td><td id="ty-45cc95e4-0">number</td><td id="ty-1a88e853-0"><code id="ty-7af573c5-0">0</code> / <code id="ty-0dbab713-0">100</code></td><td id="ty-3485811e-0">Track bounds.</td></tr>
+    <tr id="ty-1634217f-0"><td id="ty-49cdc604-0"><code id="ty-d33a7caa-0">value</code></td><td id="ty-f70bd37f-0">number</td><td id="ty-411deab2-0"><code id="ty-218b166f-0">min</code></td><td id="ty-47af0747-0">Current value (reflected; also a property).</td></tr>
+    <tr id="ty-e1613d29-0"><td id="ty-836d2417-0"><code id="ty-d760a659-0">step</code></td><td id="ty-a8cd010f-0">number</td><td id="ty-fbdf3eff-0"><code id="ty-e32a9fcc-0">1</code></td><td id="ty-318ff3ac-0">Increment between values.</td></tr>
+    <tr id="ty-28caf332-0"><td id="ty-0e1941bd-0"><code id="ty-cb46fad1-0">label</code></td><td id="ty-8342b80f-0">string</td><td id="ty-461b6c6b-0">&#8212;</td><td id="ty-93f440be-0">Field label.</td></tr>
+    <tr id="ty-682dbe27-0"><td id="ty-505d153b-0"><code id="ty-1057015c-0">hint</code></td><td id="ty-9b2f8f05-0">string</td><td id="ty-60409462-0">value</td><td id="ty-5c34223d-0">Helper text below the track; defaults to the current value.</td></tr>
+    <tr id="ty-95e303b2-0"><td id="ty-ca4fa50c-0"><code id="ty-38b6b71b-0">hide-details</code></td><td id="ty-8222667a-0">boolean</td><td id="ty-5573310f-0"><code id="ty-e60917e4-0">false</code></td><td id="ty-026f9bd5-0">Hide the message/value row.</td></tr>
+    <tr id="ty-2ebe5529-0"><td id="ty-85284905-0"><code id="ty-faba5da8-0">thumb-label</code></td><td id="ty-5a07f5a4-0">boolean | <code id="ty-b9c48c44-0">always</code></td><td id="ty-a1bee0c6-0"><code id="ty-3b98fb34-0">false</code></td><td id="ty-db43edf4-0">Show a value bubble over the thumb (<code id="ty-7fcd6206-0">always</code> keeps it visible).</td></tr>
+    <tr id="ty-0b110413-0"><td id="ty-4f7dac59-0"><code id="ty-ee575730-0">ticks</code></td><td id="ty-15b2e763-0">boolean</td><td id="ty-755ae934-0"><code id="ty-e764ae6b-0">false</code></td><td id="ty-090b0afa-0">Draw a tick at every <code id="ty-7af88a39-0">step</code>.</td></tr>
+    <tr id="ty-297713b6-0"><td id="ty-74939208-0"><code id="ty-426fb261-0">tick-labels</code></td><td id="ty-d9c834f1-0">string</td><td id="ty-b5dcb0c4-0">&#8212;</td><td id="ty-824b2ceb-0">Pipe-separated labels placed at each step (implies <code id="ty-08c4384d-0">ticks</code>).</td></tr>
+    <tr id="ty-91d18c6d-0"><td id="ty-6867c988-0"><code id="ty-ca9126b6-0">color</code></td><td id="ty-41d1008a-0">string</td><td id="ty-f195cc3c-0"><code id="ty-24c2c9c0-0">primary</code></td><td id="ty-cab3f917-0">Token color for the fill and thumb.</td></tr>
+    <tr id="ty-59075ae2-0"><td id="ty-91ed96f1-0"><code id="ty-28e086f1-0">track-color</code></td><td id="ty-9600bfb1-0">string</td><td id="ty-3dfe9acd-0">&#8212;</td><td id="ty-a80dafcf-0">Token color for the unfilled rail.</td></tr>
+    <tr id="ty-bd4a3a25-0"><td id="ty-947b03c4-0"><code id="ty-47e15266-0">direction</code></td><td id="ty-dd9fbeb8-0">string</td><td id="ty-a0a4dc57-0"><code id="ty-f3e73b28-0">horizontal</code></td><td id="ty-aae9afb5-0"><code id="ty-dd7098e6-0">horizontal</code> or <code id="ty-ebda5a0c-0">vertical</code>.</td></tr>
+    <tr id="ty-73b0df98-0"><td id="ty-c01d3d2f-0"><code id="ty-5e3a0483-0">reverse</code></td><td id="ty-edee15e2-0">boolean</td><td id="ty-2468fe4c-0"><code id="ty-e203c3de-0">false</code></td><td id="ty-06beb471-0">Flip the track so the max is at the start.</td></tr>
+    <tr id="ty-d8bf7751-0"><td id="ty-38d1b1d9-0"><code id="ty-6a9896c7-0">size</code></td><td id="ty-4eb11084-0">string</td><td id="ty-a6b8afed-0">&#8212;</td><td id="ty-79a753fb-0"><code id="ty-a7ca9ee4-0">xs</code>, <code id="ty-0b6d4b91-0">sm</code>, <code id="ty-f5fc96ea-0">lg</code>, or <code id="ty-0005b3c0-0">xl</code>.</td></tr>
+    <tr id="ty-1cbee6dd-0"><td id="ty-c5b67b75-0"><code id="ty-261ab570-0">disabled</code></td><td id="ty-5fffcd8e-0">boolean</td><td id="ty-44ef5d3f-0"><code id="ty-9e8bf637-0">false</code></td><td id="ty-560da31b-0">Non-interactive and dimmed.</td></tr>
+    <tr id="ty-a3ad4cf9-0"><td id="ty-148eb414-0"><code id="ty-6649f088-0">readonly</code></td><td id="ty-787c168a-0">boolean</td><td id="ty-fd31a428-0"><code id="ty-677eafe6-0">false</code></td><td id="ty-bac760bc-0">Non-interactive without dimming.</td></tr>
+    <tr id="ty-cfa1d433-0"><td id="ty-3a7c09d3-0"><code id="ty-0361df7b-0">name</code></td><td id="ty-97894629-0">string</td><td id="ty-bacfbd7b-0">&#8212;</td><td id="ty-7d313de2-0">Form field name.</td></tr>
+  </tbody>
+</table><h2 id="ty-c16f8d2b-0">Events</h2><table class="w-table api-table" id="ty-40a5b2fb-0">
+  <thead id="ty-56c31928-0">
+    <tr id="ty-b587ee7b-0"><th id="ty-b9ca2744-0">Event</th><th id="ty-1130efda-0">Detail</th><th id="ty-480f478b-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-4fa66f3d-0">
+    <tr id="ty-ea1b3b0f-0"><td id="ty-29379993-0"><code id="ty-c442bfcd-0">input</code></td><td id="ty-5cb83c1e-0"><code id="ty-f96e89b1-0">&#123; value, name &#125;</code></td><td id="ty-603ece9e-0">Fired while dragging.</td></tr>
+    <tr id="ty-7d7960c5-0"><td id="ty-dc89aa84-0"><code id="ty-e16e276c-0">change</code></td><td id="ty-3f3bfc72-0"><code id="ty-43006af7-0">&#123; value, name &#125;</code></td><td id="ty-e130ee98-0">Fired when the thumb is released.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,335 @@
+<h1>Tables</h1>
+<p>Structured data grids for compact comparison and scanning workflows. DuVay tables use the same row and column primitives as the layout grid.</p>
+
+<h2>Basic Table</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-container w-container--fluid">
+      <div class="w-grid-row">
+        <div class="w-grid-col-12">
+          <div class="w-table-wrap w-table-wrap--responsive-auto">
+            <div class="w-table-grid w-table-grid--responsive-auto">
+              <div class="w-grid-row w-table-header">
+                <div class="w-grid-col-6">Dessert</div>
+                <div class="w-grid-col-3">Calories</div>
+                <div class="w-grid-col-3">Fat</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-6" data-label="Dessert">Frozen yogurt</div>
+                <div class="w-grid-col-3" data-label="Calories">159</div>
+                <div class="w-grid-col-3" data-label="Fat">6 g</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-6" data-label="Dessert">Ice cream sandwich</div>
+                <div class="w-grid-col-3" data-label="Calories">237</div>
+                <div class="w-grid-col-3" data-label="Fat">9 g</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-6" data-label="Dessert">Eclair</div>
+                <div class="w-grid-col-3" data-label="Calories">262</div>
+                <div class="w-grid-col-3" data-label="Fat">16 g</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12">
+          <w-table grid hover>
+            <w-row header gutter="0">
+              <w-col cols="6">Dessert</w-col>
+              <w-col cols="3">Calories</w-col>
+              <w-col cols="3">Fat</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="6">Frozen yogurt</w-col>
+              <w-col cols="3">159</w-col>
+              <w-col cols="3">6 g</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="6">Ice cream sandwich</w-col>
+              <w-col cols="3">237</w-col>
+              <w-col cols="3">9 g</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="6">Eclair</w-col>
+              <w-col cols="3">262</w-col>
+              <w-col cols="3">16 g</w-col>
+            </w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Responsive Modes</h2>
+<p><code>responsive="auto"</code> uses container queries to preserve the table on wide surfaces and stack labeled cells on narrow ones. Use <code>stack</code> to force records or <code>scroll</code> when horizontal comparison is essential. CSS-class tables use <code>w-table-wrap--responsive-auto</code>, a matching grid modifier, and <code>data-label</code> on each data cell.</p>
+
+<h2>Gridlines</h2>
+<p>Native <code>&lt;table&gt;</code> children accept <code>gridlines="horizontal"</code> (default), <code>vertical</code>, <code>all</code>, or <code>none</code> — matching Vuetify's <code>v-table</code>. CSS-class tables add <code>w-table--gridlines-*</code> to the <code>&lt;table&gt;</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap w-table-wrap--responsive-scroll">
+      <table class="w-table w-table--gridlines-all">
+        <thead><tr><th>Dessert</th><th>Calories</th><th>Fat</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td><td>6 g</td></tr>
+          <tr><td>Ice cream sandwich</td><td>237</td><td>9 g</td></tr>
+          <tr><td>Eclair</td><td>262</td><td>16 g</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-table gridlines="all" responsive="scroll">
+      <table>
+        <thead><tr><th>Dessert</th><th>Calories</th><th>Fat</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td><td>6 g</td></tr>
+          <tr><td>Ice cream sandwich</td><td>237</td><td>9 g</td></tr>
+          <tr><td>Eclair</td><td>262</td><td>16 g</td></tr>
+        </tbody>
+      </table>
+    </w-table>
+  </div>
+</demo-compare>
+
+<h2>Striped Rows</h2>
+<p>Use <code>striped="odd"</code> or <code>striped="even"</code> (a bare <code>striped</code> attribute defaults to even).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap w-table-wrap--responsive-scroll">
+      <table class="w-table w-table--striped-odd">
+        <thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td></tr>
+          <tr><td>Ice cream sandwich</td><td>237</td></tr>
+          <tr><td>Eclair</td><td>262</td></tr>
+          <tr><td>Cupcake</td><td>305</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-table striped="odd" responsive="scroll">
+      <table>
+        <thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td></tr>
+          <tr><td>Ice cream sandwich</td><td>237</td></tr>
+          <tr><td>Eclair</td><td>262</td></tr>
+          <tr><td>Cupcake</td><td>305</td></tr>
+        </tbody>
+      </table>
+    </w-table>
+  </div>
+</demo-compare>
+
+<h2>Top and Bottom Slots</h2>
+<p>The <code>top</code> and <code>bottom</code> slots render toolbars, filters, or footers attached to the table — DuVay's equivalent of Vuetify's <code>top</code> / <code>bottom</code> slots.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-top">Nutrition</div>
+    <div class="w-table-wrap w-table-wrap--responsive-scroll">
+      <table class="w-table">
+        <thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td></tr>
+          <tr><td>Eclair</td><td>262</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="w-table-bottom">2 desserts</div>
+  </div>
+  <div slot="wc">
+    <w-table responsive="scroll">
+      <div slot="top">Nutrition</div>
+      <table>
+        <thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td></tr>
+          <tr><td>Eclair</td><td>262</td></tr>
+        </tbody>
+      </table>
+      <div slot="bottom">2 desserts</div>
+    </w-table>
+  </div>
+</demo-compare>
+
+<h2>Fixed Footer</h2>
+<p>Pair <code>fixed-footer</code> with <code>height</code> to keep a <code>&lt;tfoot&gt;</code> pinned while the body scrolls. Combine with <code>fixed-header</code> for both ends.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap w-table-wrap--fixed-header w-table-wrap--fixed-footer" style="max-height:180px">
+      <table class="w-table">
+        <thead><tr><th>Component</th><th>Area</th></tr></thead>
+        <tbody>
+          <tr><td>Buttons</td><td>Forms</td></tr>
+          <tr><td>Inputs</td><td>Forms</td></tr>
+          <tr><td>Lists</td><td>Content</td></tr>
+          <tr><td>Tables</td><td>Content</td></tr>
+          <tr><td>Dialogs</td><td>Overlay</td></tr>
+          <tr><td>Snackbars</td><td>Feedback</td></tr>
+        </tbody>
+        <tfoot><tr><td>6 components</td><td></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-table fixed-header fixed-footer height="180px">
+      <table>
+        <thead><tr><th>Component</th><th>Area</th></tr></thead>
+        <tbody>
+          <tr><td>Buttons</td><td>Forms</td></tr>
+          <tr><td>Inputs</td><td>Forms</td></tr>
+          <tr><td>Lists</td><td>Content</td></tr>
+          <tr><td>Tables</td><td>Content</td></tr>
+          <tr><td>Dialogs</td><td>Overlay</td></tr>
+          <tr><td>Snackbars</td><td>Feedback</td></tr>
+        </tbody>
+        <tfoot><tr><td>6 components</td><td></td></tr></tfoot>
+      </table>
+    </w-table>
+  </div>
+</demo-compare>
+
+<h2>Data Table Subcomponents</h2>
+<p><code>w-data-table-headers</code>, <code>w-data-table-rows</code>, and <code>w-data-table-row</code> expose Vuetify-named table internals while still rendering with DuVay row and column primitives.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <div class="w-table-grid">
+        <div class="w-grid-row w-table-header"><div class="w-grid-col-4">Name</div><div class="w-grid-col-4">Status</div><div class="w-grid-col-4">Owner</div></div>
+        <div class="w-grid-row"><div class="w-grid-col-4">Design system</div><div class="w-grid-col-4">Live</div><div class="w-grid-col-4">Avery</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-table-wrap">
+      <div class="w-table-grid">
+        <w-data-table-headers headers="[Name,Status,Owner]"></w-data-table-headers>
+        <w-data-table-rows headers="[Name,Status,Owner]" items="[Design system|Live|Avery; Billing flow|Review|Nora]"></w-data-table-rows>
+      </div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Density and Stripes</h2>
+<p>Use <code>w-data-table-footer</code> for a Vuetify-named footer subcomponent.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-container w-container--fluid">
+      <div class="w-grid-row">
+        <div class="w-grid-col-12">
+          <div class="w-table-wrap">
+            <div class="w-table-grid w-table-grid--dense w-table-grid--striped">
+              <div class="w-grid-row w-table-header">
+                <div class="w-grid-col-5">Name</div>
+                <div class="w-grid-col-4">Status</div>
+                <div class="w-grid-col-3">Owner</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-5">Design system</div>
+                <div class="w-grid-col-4"><span class="w-badge w-badge-success">Live</span></div>
+                <div class="w-grid-col-3">Avery</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-5">Billing flow</div>
+                <div class="w-grid-col-4"><span class="w-badge w-badge-warning">Review</span></div>
+                <div class="w-grid-col-3">Nora</div>
+              </div>
+              <div class="w-grid-row">
+                <div class="w-grid-col-5">Mobile shell</div>
+                <div class="w-grid-col-4"><span class="w-badge w-badge-info">Draft</span></div>
+                <div class="w-grid-col-3">Mika</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12">
+          <w-table grid density="compact" striped hover>
+            <w-row header gutter="0">
+              <w-col cols="5">Name</w-col>
+              <w-col cols="4">Status</w-col>
+              <w-col cols="3">Owner</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="5">Design system</w-col>
+              <w-col cols="4"><w-badge inline content="Live" color="success"></w-badge></w-col>
+              <w-col cols="3">Avery</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="5">Billing flow</w-col>
+              <w-col cols="4"><w-badge inline content="Review" color="warning"></w-badge></w-col>
+              <w-col cols="3">Nora</w-col>
+            </w-row>
+            <w-row gutter="0">
+              <w-col cols="5">Mobile shell</w-col>
+              <w-col cols="4"><w-badge inline content="Draft" color="info"></w-badge></w-col>
+              <w-col cols="3">Mika</w-col>
+            </w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Fixed Header</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-container w-container--fluid">
+      <div class="w-grid-row">
+        <div class="w-grid-col-12">
+          <div class="w-table-wrap w-table-wrap--fixed-header" style="max-height:180px">
+            <div class="w-table-grid w-table-grid--dense">
+              <div class="w-grid-row w-table-header">
+                <div class="w-grid-col-5">Component</div>
+                <div class="w-grid-col-4">Area</div>
+                <div class="w-grid-col-3">State</div>
+              </div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Buttons</div><div class="w-grid-col-4">Forms</div><div class="w-grid-col-3">Stable</div></div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Inputs</div><div class="w-grid-col-4">Forms</div><div class="w-grid-col-3">Stable</div></div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Lists</div><div class="w-grid-col-4">Content</div><div class="w-grid-col-3">New</div></div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Tables</div><div class="w-grid-col-4">Content</div><div class="w-grid-col-3">New</div></div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Dialogs</div><div class="w-grid-col-4">Overlay</div><div class="w-grid-col-3">Stable</div></div>
+              <div class="w-grid-row"><div class="w-grid-col-5">Snackbars</div><div class="w-grid-col-4">Feedback</div><div class="w-grid-col-3">Stable</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12">
+          <w-table grid density="compact" fixed-header height="180px" hover>
+            <w-row header gutter="0">
+              <w-col cols="5">Component</w-col>
+              <w-col cols="4">Area</w-col>
+              <w-col cols="3">State</w-col>
+            </w-row>
+            <w-row gutter="0"><w-col cols="5">Buttons</w-col><w-col cols="4">Forms</w-col><w-col cols="3">Stable</w-col></w-row>
+            <w-row gutter="0"><w-col cols="5">Inputs</w-col><w-col cols="4">Forms</w-col><w-col cols="3">Stable</w-col></w-row>
+            <w-row gutter="0"><w-col cols="5">Lists</w-col><w-col cols="4">Content</w-col><w-col cols="3">New</w-col></w-row>
+            <w-row gutter="0"><w-col cols="5">Tables</w-col><w-col cols="4">Content</w-col><w-col cols="3">New</w-col></w-row>
+            <w-row gutter="0"><w-col cols="5">Dialogs</w-col><w-col cols="4">Overlay</w-col><w-col cols="3">Stable</w-col></w-row>
+            <w-row gutter="0"><w-col cols="5">Snackbars</w-col><w-col cols="4">Feedback</w-col><w-col cols="3">Stable</w-col></w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>

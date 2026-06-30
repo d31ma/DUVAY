@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-7be4fe64-0">Steppers</h1><p id="ty-8ff1534e-0"><code id="ty-21582298-0">w-stepper</code> guides a user through an ordered sequence of steps. It tracks an active step (<code id="ty-3463b005-0">value</code>), marks earlier steps complete, optionally drives a <code id="ty-465893df-0">w-stepper-window</code>'s panels, and wires <code id="ty-59013b96-0">w-stepper-actions</code> (Back / Next).</p><h2 id="ty-dbe3eae7-0">Basic</h2><p id="ty-81877533-0">Headers go in a <code id="ty-c98fe2fa-0">w-stepper-header</code>, panels in a <code id="ty-13e23b30-0">w-stepper-window</code>, and navigation in <code id="ty-bdc084c3-0">w-stepper-actions</code>. The <code id="ty-7a259f27-0">Next</code> / <code id="ty-6a090167-0">Back</code> buttons move the active step.</p><demo-compare >
+  <div slot="css" id="ty-7e26071d-0">
+    <div class="w-stepper" id="ty-0befdefb-0">
+      <div class="w-stepper-header" id="ty-20ae0af0-0">
+        <div class="w-step active" id="ty-30e8792c-0"><div class="w-step-indicator" id="ty-3b7ec5c4-0">1</div><div class="w-step-connector" id="ty-8d448b63-0"></div><div class="w-step-content" id="ty-344d12c9-0"><div class="w-step-label" id="ty-a1ac03ac-0">Account</div></div></div>
+        <div class="w-step" id="ty-da4f2905-0"><div class="w-step-indicator" id="ty-9dd90497-0">2</div><div class="w-step-connector" id="ty-e86342ba-0"></div><div class="w-step-content" id="ty-21f88929-0"><div class="w-step-label" id="ty-06684022-0">Billing</div></div></div>
+        <div class="w-step" id="ty-f5d3ddaf-0"><div class="w-step-indicator" id="ty-20a19859-0">3</div><div class="w-step-connector" id="ty-0966bc27-0"></div><div class="w-step-content" id="ty-2f9689c7-0"><div class="w-step-label" id="ty-fb68ca52-0">Confirm</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-180e4079-0">
+    <w-stepper value="1" id="ty-930ca518-0">
+      <w-stepper-header id="ty-0aa5e1cf-0">
+        <w-step value="1" label="Account" id="ty-7115027c-0"></w-step>
+        <w-step value="2" label="Billing" id="ty-740b203b-0"></w-step>
+        <w-step value="3" label="Confirm" id="ty-717f7946-0"></w-step>
+      </w-stepper-header>
+      <w-stepper-window id="ty-b9598842-0">
+        <w-stepper-window-item value="1" id="ty-b59a7955-0"><div class="w-pa-4" id="ty-e3ba6ed8-0">Create your account.</div></w-stepper-window-item>
+        <w-stepper-window-item value="2" id="ty-d2f9549f-0"><div class="w-pa-4" id="ty-d369f201-0">Enter billing details.</div></w-stepper-window-item>
+        <w-stepper-window-item value="3" id="ty-af837a57-0"><div class="w-pa-4" id="ty-9edf7961-0">Review and confirm.</div></w-stepper-window-item>
+      </w-stepper-window>
+      <w-stepper-actions id="ty-b171ce5c-0"></w-stepper-actions>
+    </w-stepper>
+  </div>
+</demo-compare><h2 id="ty-cea4c6c3-0">Editable</h2><p id="ty-92d2b9e6-0">Add <code id="ty-8d9c06d4-0">editable</code> so any step header can be clicked to jump to it; <code id="ty-b018be45-0">non-linear</code> allows visiting steps in any order.</p><demo-compare >
+  <div slot="css" id="ty-9c150555-0">
+    <div class="w-stepper w-stepper--clickable" id="ty-86789d01-0">
+      <div class="w-stepper-header" id="ty-78246dd8-0">
+        <div class="w-step done editable" id="ty-a9520301-0"><div class="w-step-indicator" id="ty-22ced809-0">✓</div><div class="w-step-connector" id="ty-19b6cf9d-0"></div><div class="w-step-content" id="ty-0354e711-0"><div class="w-step-label" id="ty-7fd8e315-0">Cart</div></div></div>
+        <div class="w-step active editable" id="ty-a8745b3a-0"><div class="w-step-indicator" id="ty-69874200-0">2</div><div class="w-step-connector" id="ty-547823fc-0"></div><div class="w-step-content" id="ty-df3c79f2-0"><div class="w-step-label" id="ty-98d95b4f-0">Shipping</div></div></div>
+        <div class="w-step editable" id="ty-abb5a2e0-0"><div class="w-step-indicator" id="ty-77b0c8c6-0">3</div><div class="w-step-connector" id="ty-545caa3c-0"></div><div class="w-step-content" id="ty-c4d7fbc5-0"><div class="w-step-label" id="ty-729c0f51-0">Payment</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ccae59fc-0">
+    <w-stepper editable="" value="2" id="ty-9eb74fbb-0">
+      <w-stepper-header id="ty-a2e2ea94-0">
+        <w-step value="1" label="Cart" id="ty-4d7abb5d-0"></w-step>
+        <w-step value="2" label="Shipping" id="ty-6bcab281-0"></w-step>
+        <w-step value="3" label="Payment" id="ty-4f2fc688-0"></w-step>
+      </w-stepper-header>
+      <w-stepper-window id="ty-44e61866-0">
+        <w-stepper-window-item value="1" id="ty-94c07798-0"><div class="w-pa-4" id="ty-8a118e41-0">Your cart.</div></w-stepper-window-item>
+        <w-stepper-window-item value="2" id="ty-89ada237-0"><div class="w-pa-4" id="ty-bd3e7f20-0">Shipping address.</div></w-stepper-window-item>
+        <w-stepper-window-item value="3" id="ty-dd816a94-0"><div class="w-pa-4" id="ty-2964b349-0">Payment method.</div></w-stepper-window-item>
+      </w-stepper-window>
+      <w-stepper-actions id="ty-4001eea0-0"></w-stepper-actions>
+    </w-stepper>
+  </div>
+</demo-compare><h2 id="ty-1eede32d-0">Complete &amp; error states</h2><p id="ty-c5102142-0">Steps before the active one are marked complete (✓) automatically. Mark a step with <code id="ty-14eabecd-0">error</code> to flag a problem.</p><demo-compare >
+  <div slot="css" id="ty-9bc150b0-0">
+    <div class="w-stepper" id="ty-85991434-0">
+      <div class="w-stepper-header" id="ty-0a155a98-0">
+        <div class="w-step done" id="ty-62633d41-0"><div class="w-step-indicator" id="ty-de467434-0">✓</div><div class="w-step-connector" id="ty-892d6e22-0"></div><div class="w-step-content" id="ty-a8bd7af3-0"><div class="w-step-label" id="ty-370cc112-0">Details</div></div></div>
+        <div class="w-step error" id="ty-d1c70717-0"><div class="w-step-indicator" id="ty-9dca128c-0">!</div><div class="w-step-connector" id="ty-af594550-0"></div><div class="w-step-content" id="ty-150a5363-0"><div class="w-step-label" id="ty-82ea20cc-0">Payment</div></div></div>
+        <div class="w-step" id="ty-2f0dc403-0"><div class="w-step-indicator" id="ty-e9bf759b-0">3</div><div class="w-step-connector" id="ty-5d784bad-0"></div><div class="w-step-content" id="ty-1369cb2e-0"><div class="w-step-label" id="ty-1c72ffb0-0">Done</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-86eae626-0">
+    <w-stepper value="2" id="ty-a5ddd60e-0">
+      <w-stepper-header id="ty-e80eda38-0">
+        <w-step value="1" label="Details" id="ty-194b205e-0"></w-step>
+        <w-step value="2" label="Payment" error="" id="ty-5c0c6aa7-0"></w-step>
+        <w-step value="3" label="Done" id="ty-87278019-0"></w-step>
+      </w-stepper-header>
+    </w-stepper>
+  </div>
+</demo-compare><h2 id="ty-d1fd1335-0">Alt labels &amp; captions</h2><p id="ty-2ed8915f-0"><code id="ty-fe0b9969-0">alt-labels</code> spaces the labels beneath the indicators; <code id="ty-2ee03abe-0">caption</code> adds secondary helper text.</p><demo-compare >
+  <div slot="css" id="ty-f2edadd5-0">
+    <div class="w-stepper w-stepper--alt-labels" id="ty-5276499a-0">
+      <div class="w-stepper-header" id="ty-80ebfd8c-0">
+        <div class="w-step active" id="ty-d1c42b03-0"><div class="w-step-indicator" id="ty-42ac8d8c-0">1</div><div class="w-step-connector" id="ty-61dda61b-0"></div><div class="w-step-content" id="ty-dc4b2fae-0"><div class="w-step-label" id="ty-ef333194-0">Plan</div><div class="w-step-caption" id="ty-57c4257c-0">Choose a tier</div></div></div>
+        <div class="w-step" id="ty-6098d5f7-0"><div class="w-step-indicator" id="ty-78bd513f-0">2</div><div class="w-step-connector" id="ty-9f456121-0"></div><div class="w-step-content" id="ty-0c9a49f9-0"><div class="w-step-label" id="ty-4a67a4eb-0">Team</div><div class="w-step-caption" id="ty-37d18664-0">Invite people</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d2bc6dad-0">
+    <w-stepper alt-labels="" value="1" id="ty-e3e8dd8b-0">
+      <w-stepper-header id="ty-c9337e02-0">
+        <w-step value="1" label="Plan" caption="Choose a tier" id="ty-cdf0b2f7-0"></w-step>
+        <w-step value="2" label="Team" caption="Invite people" id="ty-c67a0704-0"></w-step>
+      </w-stepper-header>
+    </w-stepper>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

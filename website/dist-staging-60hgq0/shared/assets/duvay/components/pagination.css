@@ -1,0 +1,48 @@
+/* DuVay — Pagination component styles. */
+@import "../core.css";
+
+/* ── Pagination ──────────────────────────────────────────────────────────── */
+.w-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: var(--w-space-lg);
+}
+
+.w-page-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0 0.375rem;
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  text-decoration: none;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+
+.w-page-item:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-page-item.active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-color: color-mix(in srgb, var(--w-primary) 24%, transparent);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-page-item:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}

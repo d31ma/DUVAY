@@ -1,0 +1,315 @@
+/* DuVay — Base reset */
+
+*, :before, :after { box-sizing: border-box; }
+
+/* Honor the `hidden` attribute everywhere. DuVay sets many custom elements to
+ * display:block (below), which would otherwise win over the UA [hidden] rule;
+ * !important also covers elements whose display comes from a class. */
+[hidden] { display: none !important; }
+
+/* Framework baseline: only `html` and `body` are reset globally because DuVay
+ * sets their typography, color, and background. Headings, lists, and other
+ * content elements are reset only when they live inside a DuVay application
+ * shell (.w-body, .w-app) or an explicit .w-reset wrapper. */
+html, body { margin: 0; padding: 0; }
+
+:where(.w-body, .w-app, .w-reset) :where(
+  h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd,
+  blockquote, figure, fieldset, legend, hr,
+  form, table, th, td
+) {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--w-font-family);
+  font-size: var(--w-font-base);
+  line-height: 1.6;
+  font-weight: var(--w-font-weight-normal);
+  color: var(--w-text);
+  background: var(--w-surface);
+  overscroll-behavior: none;
+  min-height: 100dvh;
+}
+
+a { color: inherit; text-decoration: none; }
+img, svg, video { max-width: 100%; display: block; }
+
+w-banner,
+w-breadcrumbs,
+w-app,
+w-app-bar,
+w-alert-dialog,
+w-aspect-ratio,
+w-bottom-navigation,
+w-bottom-sheet,
+w-btn-group,
+w-btn-toggle,
+w-calendar,
+w-carousel,
+w-chip-group,
+w-chart,
+w-collapsible,
+w-command,
+w-command-item,
+w-container,
+w-context-menu,
+w-data-table,
+w-data-iterator,
+w-date-picker,
+w-defaults-provider,
+w-direction,
+w-divider,
+w-dropdown-menu,
+w-footer,
+w-form,
+w-field,
+w-img,
+w-infinite-scroll,
+w-item-group,
+w-layout,
+w-lazy,
+w-locale-provider,
+w-main,
+w-menu,
+w-menubar,
+w-menubar-item,
+w-messages,
+w-native-select,
+w-navigation-drawer,
+w-navigation-menu,
+w-navigation-menu-item,
+w-no-ssr,
+w-otp,
+w-overlay,
+w-pagination,
+w-parallax,
+w-picker,
+w-pie-chart,
+w-popover,
+w-pull-to-refresh,
+w-resizable,
+w-resizable-panel,
+w-responsive,
+w-row,
+w-col,
+w-radio-group,
+w-scroll-area,
+w-selection-control-group,
+w-sidebar,
+w-slide-group,
+w-sonner,
+w-snackbar-queue,
+w-stepper,
+w-system-bar,
+w-table,
+w-timeline,
+w-toolbar,
+w-treeview,
+w-video,
+w-virtual-scroll,
+w-window {
+  display: block;
+}
+
+w-badge,
+w-avatar-group,
+w-bottom-nav-item,
+w-checkbox,
+w-code,
+w-color-input,
+w-color-picker,
+w-combobox,
+w-confirm-edit,
+w-counter,
+w-date-range-picker,
+w-date-input,
+w-fab,
+w-file-input,
+w-file-upload,
+w-hover-card,
+w-hotkey,
+w-hover,
+w-heatmap,
+w-highlight,
+w-icon,
+w-icon-btn,
+w-input-group,
+w-item,
+w-kbd,
+w-label,
+w-mask-input,
+w-month-picker,
+w-number-input,
+w-rating,
+w-selection-control,
+w-switch,
+w-toggle-group,
+w-toggle-item {
+  display: inline-block;
+}
+
+w-autocomplete,
+w-range-slider,
+w-sparkline,
+w-speed-dial {
+  display: inline-block;
+}
+
+w-time-picker,
+w-theme-provider,
+w-validation {
+  display: block;
+}
+
+w-typography,
+w-carousel-item,
+w-slide-group-item,
+w-window-item,
+w-tabs-window-item,
+w-stepper-window-item,
+w-breadcrumb,
+w-breadcrumbs-item {
+  display: contents;
+}
+
+w-alert-title,
+w-app-bar-title,
+w-banner-actions,
+w-banner-text,
+w-calendar-category,
+w-calendar-daily,
+w-calendar-monthly,
+w-calendar-weekly,
+w-card-actions,
+w-card-item,
+w-card-subtitle,
+w-card-text,
+w-card-title,
+w-color-picker-canvas,
+w-color-picker-edit,
+w-color-picker-preview,
+w-color-picker-swatches,
+w-data-table-column,
+w-data-table-footer,
+w-data-table-group-header-row,
+w-data-table-headers,
+w-data-table-row,
+w-data-table-rows,
+w-data-table-server,
+w-data-table-virtual,
+w-date-picker-controls,
+w-date-picker-header,
+w-date-picker-month,
+w-date-picker-months,
+w-date-picker-years,
+w-expansion-panel,
+w-expansion-panel-text,
+w-expansion-panel-title,
+w-expansion-panels,
+w-file-upload-dropzone,
+w-file-upload-item,
+w-file-upload-list,
+w-infinite-scroll-intersect,
+w-layout-item,
+w-list-children,
+w-list-group,
+w-list-group-activator,
+w-list-img,
+w-list-item-action,
+w-list-item-media,
+w-list-item-subtitle,
+w-list-item-title,
+w-list-subheader,
+w-otp-field,
+w-otp-group,
+w-otp-input,
+w-otp-separator,
+w-picker-title,
+w-progress-circular,
+w-progress-linear,
+w-stepper-actions,
+w-stepper-header,
+w-stepper-item,
+w-stepper-vertical,
+w-stepper-vertical-actions,
+w-stepper-vertical-item,
+w-stepper-window,
+w-tabs-window,
+w-time-picker-clock,
+w-time-picker-controls,
+w-time-picker-field,
+w-timeline-divider,
+w-timeline-item,
+w-toolbar-items,
+w-toolbar-title,
+w-treeview-children,
+w-treeview-group,
+w-treeview-item,
+w-virtual-scroll-item {
+  display: block;
+}
+
+w-app-bar-nav-icon,
+w-barline,
+w-breadcrumbs-divider,
+w-checkbox-btn,
+w-class-icon,
+w-component-icon,
+w-field-label,
+w-ligature-icon,
+w-slider-thumb,
+w-slider-track,
+w-sparkline-tooltip,
+w-svg-icon,
+w-trendline {
+  display: inline-block;
+}
+
+w-dialog-bottom-transition,
+w-dialog-top-transition,
+w-dialog-transition,
+w-expand-both-transition,
+w-expand-transition,
+w-expand-x-transition,
+w-fab-transition,
+w-fade-transition,
+w-scale-transition,
+w-scroll-x-reverse-transition,
+w-scroll-x-transition,
+w-scroll-y-reverse-transition,
+w-scroll-y-transition,
+w-slide-x-reverse-transition,
+w-slide-x-transition,
+w-slide-y-reverse-transition,
+w-slide-y-transition {
+  display: contents;
+}
+
+:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+  border-radius: var(--w-radius);
+}
+
+/* Honour reduced-motion globally: shorten or disable every transition and
+ * animation unless an individual component opts back in. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

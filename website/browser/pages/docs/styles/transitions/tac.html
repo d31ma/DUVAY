@@ -1,0 +1,58 @@
+<h1>Transitions</h1>
+<p>DuVay's motion is centralized in three transition tokens. Components reference them for hover, focus, and state changes, keeping animation timing consistent across the framework. Use the same tokens in your own CSS so custom elements match built-in components. All motion is suppressed automatically under <code>prefers-reduced-motion</code>.</p>
+
+<h2>Usage</h2>
+
+<h3>Transition tokens</h3>
+<p>Reference the tokens directly when writing custom transitions. This keeps timing consistent with the rest of DuVay.</p>
+<style>
+  .token-demo { transition: box-shadow var(--w-transition-normal); }
+  .token-demo:hover { box-shadow: var(--w-shadow-md); }
+</style>
+<div class="w-mb-md">
+  <div class="token-demo w-bg-surface pa-4 rounded cursor-pointer d-inline-block">Hover to transition shadow</div>
+</div>
+<div class="code-block"><code>.my-card &#123;
+  transition: box-shadow var(--w-transition-normal),
+              transform var(--w-transition-fast);
+&#125;
+.my-card:hover &#123;
+  box-shadow: var(--w-shadow-md);
+&#125;</code></div>
+
+<h3>Built-in named transitions</h3>
+<p>DuVay ships a set of named transition classes for common component animations. These are used internally by components such as expanders, dialogs, and snackbars.</p>
+<div class="code-block"><code>&lt;div class="w-fade-transition"&gt;...fade in/out...&lt;/div&gt;
+&lt;div class="w-expand-transition"&gt;...height expand...&lt;/div&gt;
+&lt;div class="w-slide-y-transition"&gt;...slide vertically...&lt;/div&gt;</code></div>
+
+<h3>Reduced motion</h3>
+<p>Wrap non-essential motion in a <code>prefers-reduced-motion</code> guard, or rely on DuVay's components which already disable transitions and animations when the user requests reduced motion.</p>
+<div class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
+  * &#123; transition-duration: 0.01ms !important; &#125;
+&#125;</code></div>
+
+<h2>Tokens</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+  <tbody>
+    <tr><td><code>--w-transition-fast</code></td><td>120ms ease</td><td>Small, immediate feedback (hover tints, icon swaps).</td></tr>
+    <tr><td><code>--w-transition-normal</code></td><td>140ms ease</td><td>Default for most interactive state changes.</td></tr>
+    <tr><td><code>--w-transition-slow</code></td><td>160ms ease</td><td>Larger movements such as panels and overlays.</td></tr>
+  </tbody>
+</table>
+
+<h2>Named transition classes</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>w-fade-transition</code></td><td>Opacity fade in/out.</td></tr>
+    <tr><td><code>w-scale-transition</code></td><td>Scale up/down fade.</td></tr>
+    <tr><td><code>w-expand-transition</code></td><td>Height expand/collapse.</td></tr>
+    <tr><td><code>w-expand-x-transition</code></td><td>Width expand/collapse.</td></tr>
+    <tr><td><code>w-scroll-x-transition</code> / <code>w-scroll-x-reverse-transition</code></td><td>Horizontal scroll slide.</td></tr>
+    <tr><td><code>w-scroll-y-transition</code> / <code>w-scroll-y-reverse-transition</code></td><td>Vertical scroll slide.</td></tr>
+    <tr><td><code>w-slide-x-transition</code> / <code>w-slide-x-reverse-transition</code></td><td>Horizontal slide.</td></tr>
+    <tr><td><code>w-slide-y-transition</code> / <code>w-slide-y-reverse-transition</code></td><td>Vertical slide.</td></tr>
+  </tbody>
+</table>

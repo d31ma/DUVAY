@@ -1,0 +1,53 @@
+<h1>Icons</h1>
+<p>DuVay does not bundle an icon font. Use any icon set you prefer — Material Symbols, Material Design Icons, Font Awesome, Phosphor — by loading its font or SVG set and telling DuVay how to render it. The default adapter renders the icon name as text (ligatures), which matches Material Symbols and keeps everything zero-dependency.</p>
+
+<h2>Default ligature rendering</h2>
+<p>With no configuration, <code>w-icon</code> and component <code>icon</code> attributes render the name as text. This works out of the box with ligature-based fonts such as Material Symbols.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled">
+      <span class="w-icon" aria-hidden="true">&#xE88A;</span>
+      Home
+    </button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" icon="&#xE88A;">Home</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Icon sets</h2>
+<p>Register an icon set with <code>WIcons.set()</code>, then reference icons by name. DuVay ships adapters for font classes, ligatures, inline SVG paths, and custom elements. This mirrors Vuetify's <code>icons</code> configuration and <code>VIcon</code> resolution, but stays Light-DOM and zero-dependency.</p>
+
+<h3>Class-based icons (MDI, Font Awesome)</h3>
+<pre class="code-block"><code>WIcons.set('mdi', &#123; type: 'class', prefix: 'mdi' &#125;);
+WIcons.defaultSet = 'mdi';
+
+&lt;w-icon name="home"&gt;&lt;/w-icon&gt;
+&lt;w-btn icon="home" variant="filled"&gt;Home&lt;/w-btn&gt;
+&lt;!-- renders &lt;span class="w-icon mdi mdi-home"&gt;&lt;/span&gt; --&gt;</code></pre>
+
+<h3>Set-scoped icons without changing the default</h3>
+<p>Use the <code>icon-set</code> attribute to pick an adapter for a single component without affecting the global default.</p>
+<pre class="code-block"><code>&lt;w-icon name="search" icon-set="mdi"&gt;&lt;/w-icon&gt;
+&lt;w-btn icon="search" icon-set="mdi" variant="outlined"&gt;Search&lt;/w-btn&gt;</code></pre>
+
+<h3>SVG paths</h3>
+<pre class="code-block"><code>WIcons.set('w-svg', &#123;
+  type: 'svg',
+  paths: &#123;
+    home: '&lt;path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/&gt;'
+  &#125;
+&#125;);
+
+&lt;w-icon name="home" icon-set="w-svg"&gt;&lt;/w-icon&gt;</code></pre>
+
+<h3>Aliases</h3>
+<p>Define aliases and reference them with a <code>$</code> prefix.</p>
+<pre class="code-block"><code>WIcons.alias('close', 'mdi:windoclose');
+WIcons.alias('menu', 'mdi:menu');
+
+&lt;w-icon name="$close"&gt;&lt;/w-icon&gt;
+&lt;w-icon-btn icon="$menu" aria-label="Menu"&gt;&lt;/w-icon-btn&gt;</code></pre>
+
+<h2>Icon buttons</h2>
+<p>Always provide an <code>aria-label</code> for icon-only controls. See the <a href="/docs/buttons">Buttons</a> page for variants.</p>

@@ -1,0 +1,54 @@
+<h1>Aspect Ratios</h1>
+<p><code>w-aspect-ratio</code> reserves a fixed width-to-height ratio for any media or content, so layouts stay stable before images load. It mirrors Vuetify&#8217;s <code>VResponsive</code> / <code>VAspectRatio</code>: set <code>ratio</code> (or <code>aspect-ratio</code>), plus optional dimension and <code>content-class</code> props.</p>
+
+<h2>Default (16 / 9)</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-aspect-ratio" style="--w-aspect-ratio: 16 / 9; max-width: 480px">
+      <div class="w-aspect-ratio__content">
+        <img src="https://picsum.photos/id/1015/800/450" alt="River" />
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-aspect-ratio ratio="16 / 9" max-width="480">
+      <img src="https://picsum.photos/id/1015/800/450" alt="River" />
+    </w-aspect-ratio>
+  </div>
+</demo-compare>
+
+<h2>Common ratios</h2>
+<p>Pass any ratio as <code>"w / h"</code> or a number. Dimension props (<code>width</code>, <code>height</code>, <code>max-width</code>, …) accept a number (px) or any CSS length.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap">
+      <div class="w-aspect-ratio" style="--w-aspect-ratio: 1 / 1; max-width: 160px"><div class="w-aspect-ratio__content"><img src="https://picsum.photos/id/1025/300/300" alt="" /></div></div>
+      <div class="w-aspect-ratio" style="--w-aspect-ratio: 4 / 3; max-width: 200px"><div class="w-aspect-ratio__content"><img src="https://picsum.photos/id/1016/400/300" alt="" /></div></div>
+      <div class="w-aspect-ratio" style="--w-aspect-ratio: 21 / 9; max-width: 320px"><div class="w-aspect-ratio__content"><img src="https://picsum.photos/id/1018/640/274" alt="" /></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap">
+      <w-aspect-ratio ratio="1 / 1" max-width="160"><img src="https://picsum.photos/id/1025/300/300" alt="" /></w-aspect-ratio>
+      <w-aspect-ratio ratio="4 / 3" max-width="200"><img src="https://picsum.photos/id/1016/400/300" alt="" /></w-aspect-ratio>
+      <w-aspect-ratio ratio="21 / 9" max-width="320"><img src="https://picsum.photos/id/1018/640/274" alt="" /></w-aspect-ratio>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Embeds</h2>
+<p>Any media works — video, iframes, canvas. Content stretches to fill the ratio box.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-aspect-ratio" style="--w-aspect-ratio: 16 / 9; max-width: 480px">
+      <div class="w-aspect-ratio__content">
+        <iframe src="https://www.openstreetmap.org/export/embed.html" title="Map" style="border:0"></iframe>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-aspect-ratio ratio="16 / 9" max-width="480">
+      <iframe src="https://www.openstreetmap.org/export/embed.html" title="Map" style="border:0"></iframe>
+    </w-aspect-ratio>
+  </div>
+</demo-compare>

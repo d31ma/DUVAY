@@ -1,0 +1,89 @@
+<h1>Data Tables: Data and Display</h1>
+<p>Shaping the data and how it&#8217;s shown in <a href="/docs/components/data-tables/introduction"><code>w-data-table</code></a>: rich column definitions, row selection, expandable detail rows, density, and loading / empty states. See <a href="/docs/components/data-tables/basics">Basics</a> for sorting, search, and pagination.</p>
+
+<h2>Rich headers</h2>
+<p>For control over each column, set the <code>headers</code> (and <code>items</code>) <em>property</em> to JSON objects with <code>title</code>, <code>key</code>, <code>align</code>, <code>sortable</code>, and <code>width</code>. Objects are matched to columns by <code>key</code>. (Set these in JS rather than as attributes, since JSON in markup is awkward to escape.)</p>
+<pre class="code-block"><code>const table = document.querySelector('w-data-table');
+table.headers = [
+  &#123; title: 'Dessert', key: 'name' &#125;,
+  &#123; title: 'Calories', key: 'calories', align: 'end' &#125;,
+  &#123; title: 'Type', key: 'type', sortable: false &#125;,
+];
+table.items = [
+  &#123; name: 'Frozen yogurt', calories: 159, type: 'Frozen' &#125;,
+  &#123; name: 'Eclair', calories: 262, type: 'Pastry' &#125;,
+];</code></pre>
+
+<h2>Selectable rows</h2>
+<p>Add <code>show-select</code> for a checkbox column with a select-all header. Use <code>item-value</code> to identify rows and <code>select-strategy="single"</code> for single selection. Listen for <code>update:selected</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th class="w-table-select"><input type="checkbox" aria-label="Select all" /></th><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr class="selected"><td class="w-table-select"><input type="checkbox" checked aria-label="Select row" /></td><td>Frozen yogurt</td><td>159</td></tr>
+          <tr><td class="w-table-select"><input type="checkbox" aria-label="Select row" /></td><td>Eclair</td><td>262</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table show-select item-value="Dessert" headers="[Dessert,Calories]"
+      items="[Frozen yogurt|159; Eclair|262; Cupcake|305]" items-per-page="10"></w-data-table>
+  </div>
+</demo-compare>
+
+<h2>Expandable rows</h2>
+<p>Add <code>show-expand</code> for a toggle that reveals a detail row listing every field. Listen for <code>update:expanded</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th class="w-table-expand"></th><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody>
+          <tr><td class="w-table-expand"><button class="w-table-expand-btn" type="button">▾</button></td><td>Frozen yogurt</td><td>159</td></tr>
+          <tr class="w-data-table-expanded"><td colspan="3"><div class="w-data-table-detail"><div><strong>Dessert:</strong> Frozen yogurt</div><div><strong>Calories:</strong> 159</div></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table show-expand item-value="Dessert" headers="[Dessert,Calories]"
+      items="[Frozen yogurt|159; Eclair|262]" items-per-page="10"></w-data-table>
+  </div>
+</demo-compare>
+
+<h2>Density &amp; styling</h2>
+<p>Set <code>density</code> to <code>comfortable</code> or <code>compact</code>; add <code>striped</code> and <code>hover</code> for row styling.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table w-table--dense w-table--striped">
+        <thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+        <tbody><tr><td>Frozen yogurt</td><td>159</td></tr><tr><td>Eclair</td><td>262</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table density="compact" striped hover headers="[Dessert,Calories]" items-per-page="10"
+      items="[Frozen yogurt|159; Ice cream sandwich|237; Eclair|262; Cupcake|305]"></w-data-table>
+  </div>
+</demo-compare>
+
+<h2>Loading &amp; no data</h2>
+<p>Toggle <code>loading</code> for the progress bar; set <code>no-data-text</code> for the empty message.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table"><thead><tr><th>Dessert</th><th>Calories</th></tr></thead>
+      <tbody><tr><td colspan="2" class="w-table-message">No data available</td></tr></tbody></table>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-data-table loading headers="[Dessert,Calories]" items="[Frozen yogurt|159; Eclair|262]" items-per-page="10"></w-data-table>
+      <w-data-table headers="[Dessert,Calories]" items="[]" no-data-text="No desserts found"></w-data-table>
+    </div>
+  </div>
+</demo-compare>

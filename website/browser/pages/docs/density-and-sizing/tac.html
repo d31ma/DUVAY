@@ -1,0 +1,84 @@
+<h1>Density and sizing</h1>
+<p>DuVay uses two levers to control how compact or prominent a component feels: <strong>density</strong> adjusts internal padding and height, while <strong>size</strong> scales the whole control. Both work on CSS classes and web components.</p>
+
+<h2>Density</h2>
+<p>Density is applied through the <code>density</code> attribute or the matching <code>w-density-*</code> utility class. Not every component implements every density.</p>
+
+<table class="w-table api-table">
+  <thead><tr><th>Value</th><th>Class</th><th>Effect</th></tr></thead>
+  <tbody>
+    <tr><td><code>compact</code></td><td><code>w-density-compact</code></td><td>Reduces height and vertical padding (buttons, inputs, chips, list items).</td></tr>
+    <tr><td><code>comfortable</code></td><td><code>w-density-comfortable</code></td><td>Default-ish spacing with a 44 px minimum touch target.</td></tr>
+    <tr><td><code>prominent</code></td><td><code>w-density-prominent</code></td><td>Enlarges app bars and toolbars (typically 72 px).</td></tr>
+  </tbody>
+</table>
+
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn--filled w-density-compact">Compact</button>
+    <button class="w-btn w-btn--filled w-density-comfortable">Comfortable</button>
+    <button class="w-btn w-btn--filled">Default</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" density="compact">Compact</w-btn>
+    <w-btn variant="filled" density="comfortable">Comfortable</w-btn>
+    <w-btn variant="filled">Default</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Sizing</h2>
+<p>Components that support a <code>size</code> attribute accept a t-shirt scale. Buttons map them to <code>w-btn--xs</code>, <code>w-btn--sm</code>, <code>w-btn--lg</code>, and <code>w-btn--xl</code>. Other components (icons, avatars, inputs) may use the same tokens with their own class names.</p>
+
+<table class="w-table api-table">
+  <thead><tr><th>Attribute value</th><th>Button class</th><th>Typical use</th></tr></thead>
+  <tbody>
+    <tr><td><code>xs</code> / <code>x-small</code></td><td><code>w-btn--xs</code></td><td>Dense toolbars, chips, icon-only actions.</td></tr>
+    <tr><td><code>sm</code> / <code>small</code></td><td><code>w-btn--sm</code></td><td>Secondary actions, compact forms.</td></tr>
+    <tr><td><code>default</code> (omit)</td><td><code>w-btn--md</code></td><td>Primary actions, default forms.</td></tr>
+    <tr><td><code>lg</code> / <code>large</code></td><td><code>w-btn--lg</code></td><td>Calls to action, empty states.</td></tr>
+    <tr><td><code>xl</code> / <code>x-large</code></td><td><code>w-btn--xl</code></td><td>Hero actions, marketing surfaces.</td></tr>
+  </tbody>
+</table>
+
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn--filled w-btn--xs">Extra small</button>
+    <button class="w-btn w-btn--filled w-btn--sm">Small</button>
+    <button class="w-btn w-btn--filled">Default</button>
+    <button class="w-btn w-btn--filled w-btn--lg">Large</button>
+    <button class="w-btn w-btn--filled w-btn--xl">Extra large</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" size="xs">Extra small</w-btn>
+    <w-btn variant="filled" size="sm">Small</w-btn>
+    <w-btn variant="filled">Default</w-btn>
+    <w-btn variant="filled" size="lg">Large</w-btn>
+    <w-btn variant="filled" size="xl">Extra large</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Combining density and size</h2>
+<p>Density and size are independent. A button can be large <em>and</em> compact, or small <em>and</em> comfortable. Use the combination that fits your layout and touch-target requirements.</p>
+
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn--filled w-btn--lg w-density-compact">Large compact</button>
+    <button class="w-btn w-btn--filled w-btn--sm w-density-comfortable">Small comfortable</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" size="lg" density="compact">Large compact</w-btn>
+    <w-btn variant="filled" size="sm" density="comfortable">Small comfortable</w-btn>
+  </div>
+</demo-compare>
+
+<h2>CSS utility reference</h2>
+<p>If you are styling plain HTML, use the utility classes directly. The web-component layer simply maps attributes to these classes.</p>
+
+<div class="code-block"><code>&lt;!-- Density --&gt;
+&lt;button class="w-btn w-btn--filled w-density-compact"&gt;Compact&lt;/button&gt;
+
+&lt;!-- Size --&gt;
+&lt;button class="w-btn w-btn--filled w-btn--lg"&gt;Large&lt;/button&gt;
+
+&lt;!-- Both --&gt;
+&lt;button class="w-btn w-btn--filled w-btn--lg w-density-compact"&gt;Large compact&lt;/button&gt;</code></div>

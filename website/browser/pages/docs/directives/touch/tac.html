@@ -1,0 +1,122 @@
+<h1>Touch</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-touch</code> directive. Add <code>w-touch</code> to any element to capture swipe gestures and react to direction. DuVay uses native <a href="https://developer.mozilla.org/docs/Web/API/Pointer_events">Pointer Events</a> under the hood, so the same handler covers mouse, touch, and pen with one consistent API. Requires <code>duvay-directives.js</code>.</p>
+
+<h2>Interactive demo</h2>
+<p>Swipe (or click-drag) across the pad, then release; the readout shows the direction from the <code>w-swipe</code> event. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div id="tc-pad" w-touch class="w-card w-card-body" style="height: 120px; display: flex; align-items: center; justify-content: center; touch-action: none; user-select: none; cursor: grab;">
+      Swipe in any direction
+    </div>
+    <p>Last swipe: <code><span id="tc-out">none</span></code></p>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Mark the gesture surface with <code>w-touch</code>, then listen for the bubbling <code>w-swipe</code> event. On a touch device, try swiping the element in various directions; with a mouse, press and drag.</p>
+<div class="code-block"><code>&lt;div class="w-card" w-touch&gt;Swipe me&lt;/div&gt;
+
+&lt;script&gt;
+const surface = document.querySelector('[w-touch]');
+surface.addEventListener('w-swipe', (e) =&gt; &#123;
+  console.log(e.detail.direction); // 'left' | 'right' | 'up' | 'down'
+&#125;);
+&lt;/script&gt;</code></div>
+
+<h2>Options</h2>
+<p>Tune the gesture with a data attribute on the same element.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Attribute</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>w-touch-threshold</code></td>
+      <td><code>16</code></td>
+      <td>Minimum distance in pixels the pointer must travel before a swipe is registered. Movement shorter than this is treated as a tap and emits no <code>w-swipe</code>.</td>
+    </tr>
+  </tbody>
+</table>
+<div class="code-block"><code>&lt;div class="w-card" w-touch w-touch-threshold="48"&gt;
+  Needs a longer swipe
+&lt;/div&gt;</code></div>
+
+<h2>Events</h2>
+<p>Where Vuetify's <code>v-touch</code> takes an object of directional callbacks (<code>left</code>, <code>right</code>, <code>up</code>, <code>down</code>) plus lifecycle callbacks (<code>start</code>, <code>move</code>, <code>end</code>), DuVay emits native bubbling <code>CustomEvent</code>s. The four directional callbacks are consolidated into a single <code>w-swipe</code> event that carries the resolved <code>direction</code> in its <code>detail</code>, and the lifecycle callbacks map one-to-one onto <code>w-touchstart</code> / <code>w-touchmove</code> / <code>w-touchend</code>.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Event</th><th>Mirrors</th><th><code>detail</code> fields</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>w-swipe</code></td>
+      <td><code>left</code> / <code>right</code> / <code>up</code> / <code>down</code></td>
+      <td><code>direction</code> (<code>'left' | 'right' | 'up' | 'down'</code>), <code>offsetX</code>, <code>offsetY</code></td>
+    </tr>
+    <tr>
+      <td><code>w-touchstart</code></td>
+      <td><code>start</code></td>
+      <td><code>offsetX</code>, <code>offsetY</code></td>
+    </tr>
+    <tr>
+      <td><code>w-touchmove</code></td>
+      <td><code>move</code></td>
+      <td><code>offsetX</code>, <code>offsetY</code></td>
+    </tr>
+    <tr>
+      <td><code>w-touchend</code></td>
+      <td><code>end</code></td>
+      <td><code>offsetX</code>, <code>offsetY</code></td>
+    </tr>
+  </tbody>
+</table>
+<p><code>offsetX</code> and <code>offsetY</code> are the signed distances from the gesture's start point: positive <code>offsetX</code> means rightward, positive <code>offsetY</code> means downward.</p>
+<p>Vuetify's four directional callbacks become one <code>w-swipe</code> listener that branches on <code>detail.direction</code>:</p>
+<pre class="code-block"><code>const surface = document.querySelector('[w-touch]');
+
+surface.addEventListener('w-swipe', (e) =&gt; &#123;
+  switch (e.detail.direction) &#123;
+    case 'left':  next();      break; // v-touch: &#123; left:  () =&gt; next() &#125;
+    case 'right': previous();  break; // v-touch: &#123; right: () =&gt; previous() &#125;
+    case 'up':    collapse();  break; // v-touch: &#123; up:    () =&gt; collapse() &#125;
+    case 'down':  expand();    break; // v-touch: &#123; down:  () =&gt; expand() &#125;
+  &#125;
+&#125;);
+
+// Lifecycle, mirroring v-touch start / move / end:
+surface.addEventListener('w-touchstart', (e) =&gt; &#123; /* e.detail.offsetX/Y */ &#125;);
+surface.addEventListener('w-touchmove',  (e) =&gt; &#123; /* e.detail.offsetX/Y */ &#125;);
+surface.addEventListener('w-touchend',   (e) =&gt; &#123; /* e.detail.offsetX/Y */ &#125;);</code></pre>
+
+<h2>Example</h2>
+<p>Swipe to move between panels of a window. <code>w-swipe</code> advances or rewinds the active index, and the lifecycle events let you follow the pointer for a live drag offset.</p>
+<div class="code-block"><code>&lt;div class="w-window" w-touch&gt;
+  &lt;div class="w-window-item" data-active&gt;Panel 1&lt;/div&gt;
+  &lt;div class="w-window-item"&gt;Panel 2&lt;/div&gt;
+  &lt;div class="w-window-item"&gt;Panel 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const win = document.querySelector('.w-window');
+const items = [...win.querySelectorAll('.w-window-item')];
+let index = 0;
+
+function show(i) &#123;
+  index = Math.max(0, Math.min(items.length - 1, i));
+  items.forEach((el, n) =&gt; el.toggleAttribute('data-active', n === index));
+&#125;
+
+win.addEventListener('w-swipe', (e) =&gt; &#123;
+  if (e.detail.direction === 'left')  show(index + 1);
+  if (e.detail.direction === 'right') show(index - 1);
+&#125;);
+
+// Optional: track the in-progress drag for a parallax effect.
+win.addEventListener('w-touchmove', (e) =&gt; &#123;
+  win.style.setProperty('--drag-x', e.detail.offsetX + 'px');
+&#125;);
+win.addEventListener('w-touchend', () =&gt; &#123;
+  win.style.removeProperty('--drag-x');
+&#125;);
+&lt;/script&gt;</code></div>
+<p>Note the compromise: Vuetify exposes four independent directional callbacks, whereas DuVay raises a single <code>w-swipe</code> event and you branch on <code>detail.direction</code>. This keeps the API to one listener and plays naturally with event delegation.</p>

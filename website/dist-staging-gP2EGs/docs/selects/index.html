@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-6713e056-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-628d8344-6713e056-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-13d81bd6-6713e056-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-e456bada-6713e056-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-91fd6339-6713e056-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-9706ea80-6713e056-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-6dfc74f4-6713e056-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-ea1a80b6-6713e056-0" />
+        </svg>
+      </span>
+      <span id="ty-7624904a-6713e056-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-29b414e9-6713e056-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-d6f9f872-6713e056-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a3a6bdf8-6713e056-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-a4410c79-6713e056-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-1819ab96-6713e056-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-236d7cb6-6713e056-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-feed8ba5-6713e056-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-1e5e828e-6713e056-0">
+        <span data-w-theme-icon="" id="ty-d717c0c4-6713e056-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-6623802b-6713e056-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-aa787ad5-6713e056-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-01fe9eed-6713e056-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-b00c2522-0">
+  <div id="ty-dc4360ed-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-8dd275ee-dc4360ed-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-7ecee31a-dc4360ed-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-562b2010-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-9ff88ec0-dc4360ed-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-1c49f3aa-dc4360ed-0">
+        <li id="ty-d6e59b18-dc4360ed-0"><a href="/docs/introduction" id="ty-70bf461d-dc4360ed-0">Introduction</a></li>
+        <li id="ty-d2f235b9-dc4360ed-0"><a href="/docs/install" id="ty-5c444bd6-dc4360ed-0">Install</a></li>
+        <li id="ty-8926a03b-dc4360ed-0"><a href="/docs/getting-started" id="ty-9d0cc913-dc4360ed-0">Getting started</a></li>
+        <li id="ty-951cf5bc-dc4360ed-0"><a href="/docs/download" id="ty-88dd649c-dc4360ed-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fa907599-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-926792a5-dc4360ed-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-319d4f94-dc4360ed-0">
+        <li id="ty-aa64781e-dc4360ed-0"><a href="/docs/common-concepts" id="ty-e4707084-dc4360ed-0">Common concepts</a></li>
+        <li id="ty-4bce4ad2-dc4360ed-0"><a href="/docs/features" id="ty-ee7eb778-dc4360ed-0">Features</a></li>
+        <li id="ty-667435c9-dc4360ed-0"><a href="/docs/features/icon-fonts" id="ty-6751e5ad-dc4360ed-0">Icons</a></li>
+        <li id="ty-369c816b-dc4360ed-0"><a href="/docs/grid" id="ty-46b3bbc5-dc4360ed-0">Grid</a></li>
+        <li id="ty-0cb8bc10-dc4360ed-0"><a href="/docs/navigation" id="ty-b032562d-dc4360ed-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1ac4d322-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f0fd9cd0-dc4360ed-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-b14a2ce2-dc4360ed-0">
+        <li id="ty-272d54f8-dc4360ed-0"><a href="/docs/components" id="ty-f9cfedc9-dc4360ed-0">Components overview</a></li>
+        <li id="ty-12551f4c-dc4360ed-0"><a href="/docs/alerts" id="ty-c0cf9bca-dc4360ed-0">Alerts</a></li>
+        <li id="ty-d69bf29f-dc4360ed-0"><a href="/docs/avatars" id="ty-3bcbcf4f-dc4360ed-0">Avatars</a></li>
+        <li id="ty-7838b9e9-dc4360ed-0"><a href="/docs/badges" id="ty-468f1386-dc4360ed-0">Badges</a></li>
+        <li id="ty-5e3231dc-dc4360ed-0"><a href="/docs/breadcrumbs" id="ty-9ece91e6-dc4360ed-0">Breadcrumbs</a></li>
+        <li id="ty-fba5e810-dc4360ed-0"><a href="/docs/buttons" id="ty-4fd40b34-dc4360ed-0">Buttons</a></li>
+        <li id="ty-04f1a00b-dc4360ed-0"><a href="/docs/cards" id="ty-7fa63777-dc4360ed-0">Cards</a></li>
+        <li id="ty-b5ca386a-dc4360ed-0"><a href="/docs/chips" id="ty-4d80b3cc-dc4360ed-0">Chips</a></li>
+        <li id="ty-8df0d545-dc4360ed-0"><a href="/docs/command" id="ty-39ae8bfa-dc4360ed-0">Command palette</a></li>
+        <li id="ty-73660605-dc4360ed-0"><a href="/docs/dialog" id="ty-103b0f64-dc4360ed-0">Dialog</a></li>
+        <li id="ty-88f9c40f-dc4360ed-0"><a href="/docs/expand" id="ty-50ff222d-dc4360ed-0">Expand</a></li>
+        <li id="ty-a95c72f0-dc4360ed-0"><a href="/docs/feedback" id="ty-aedaea22-dc4360ed-0">Feedback</a></li>
+        <li id="ty-9d1520a0-dc4360ed-0"><a href="/docs/inputs" id="ty-653ad017-dc4360ed-0">Inputs</a></li>
+        <li id="ty-8d80146c-dc4360ed-0"><a href="/docs/layout-primitives" id="ty-50b1e149-dc4360ed-0">Layout primitives</a></li>
+        <li id="ty-2d7f6fde-dc4360ed-0"><a href="/docs/lists" id="ty-02286895-dc4360ed-0">Lists</a></li>
+        <li id="ty-5490c418-dc4360ed-0"><a href="/docs/menus" id="ty-e0724c17-dc4360ed-0">Menus</a></li>
+        <li id="ty-e966f3db-dc4360ed-0"><a href="/docs/overlays" id="ty-283a909c-dc4360ed-0">Overlays</a></li>
+        <li id="ty-d9391628-dc4360ed-0"><a href="/docs/color-pickers" id="ty-4f11eebf-dc4360ed-0">Color Pickers</a></li>
+        <li id="ty-89f6677a-dc4360ed-0"><a href="/docs/date-pickers" id="ty-444b6bfc-dc4360ed-0">Date Pickers</a></li>
+        <li id="ty-b35a167e-dc4360ed-0"><a href="/docs/time-pickers" id="ty-a24ba0ca-dc4360ed-0">Time Pickers</a></li>
+        <li id="ty-c53dfda4-dc4360ed-0"><a href="/docs/slider" id="ty-eecddc38-dc4360ed-0">Slider</a></li>
+        <li id="ty-4063aca6-dc4360ed-0"><a href="/docs/snackbar" id="ty-2c394c8d-dc4360ed-0">Snackbar</a></li>
+        <li id="ty-f025ae78-dc4360ed-0"><a href="/docs/surfaces" id="ty-3974f99b-dc4360ed-0">Surfaces</a></li>
+        <li id="ty-c8e1c1fd-dc4360ed-0"><a href="/docs/tables" id="ty-5e30b5a9-dc4360ed-0">Tables</a></li>
+        <li id="ty-a29c1cde-dc4360ed-0"><a href="/docs/tabs" id="ty-ada4458e-dc4360ed-0">Tabs</a></li>
+        <li id="ty-408dc100-dc4360ed-0"><a href="/docs/tooltips" id="ty-dc097be4-dc4360ed-0">Tooltips</a></li>
+        <li id="ty-799590e2-dc4360ed-0"><a href="/docs/workflows" id="ty-c8299208-dc4360ed-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ab848550-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-629f195f-dc4360ed-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-7800264e-dc4360ed-0">
+        <li id="ty-dd69446b-dc4360ed-0"><a href="/docs/themes" id="ty-31b16c38-dc4360ed-0">Themes</a></li>
+        <li id="ty-758b007b-dc4360ed-0"><a href="/docs/utilities" id="ty-9581b67a-dc4360ed-0">Utilities</a></li>
+        <li id="ty-0d797f1d-dc4360ed-0"><a href="/docs/styles-and-animations" id="ty-36f92405-dc4360ed-0">Styles and animations</a></li>
+        <li id="ty-351a4a4e-dc4360ed-0"><a href="/docs/animations" id="ty-da706df4-dc4360ed-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ae1239b0-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7a95dd38-dc4360ed-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-79b1f469-dc4360ed-0">
+        <li id="ty-dd38f503-dc4360ed-0"><a href="/docs/api" id="ty-fc42ab8b-dc4360ed-0">API</a></li>
+        <li id="ty-538daca0-dc4360ed-0"><a href="/docs/directives" id="ty-2b15a390-dc4360ed-0">Directives</a></li>
+        <li id="ty-3f949783-dc4360ed-0"><a href="/docs/labs" id="ty-2ae678f3-dc4360ed-0">Labs</a></li>
+        <li id="ty-fddaf8f5-dc4360ed-0"><a href="/docs/resources" id="ty-d8ca39ee-dc4360ed-0">Resources</a></li>
+        <li id="ty-7bd4be57-dc4360ed-0"><a href="/docs/roadmap" id="ty-fc933cfa-dc4360ed-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-e32d0df3-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-702fe864-dc4360ed-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-a73a5156-dc4360ed-0">
+        <li id="ty-dc1e8c5c-dc4360ed-0"><a href="/docs/about" id="ty-58cb06f4-dc4360ed-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-4167c80d-0"></button>
+  <main class="docs-main" id="ty-d520551e-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-bf80f072-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-eae99aa2-0">
+      <div id="ty-layout-slot"><h1 id="ty-27de78f5-0">Selects</h1><p id="ty-0682dd9f-0"><code id="ty-2d2f2cc2-0">w-select</code> is a custom dropdown that opens an overlay listbox of <code id="ty-30dbd8fd-0">w-option</code> children, mirroring Vuetify&#8217;s <code id="ty-5e646334-0">v-select</code>. It supports single and multiple selection (shown as chips), a clear button, and keyboard navigation. For a plain, zero-JS native control, use <code id="ty-ef6c8b66-0">w-native-select</code>.</p><h2 id="ty-37c296bc-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-6d20cbd4-0">
+    <div class="w-field" style="max-width:320px" id="ty-eb94339d-0">
+      <label class="w-field-label" id="ty-778babfa-0">Plan</label>
+      <div class="w-select-wrap" id="ty-080c2624-0">
+        <div class="w-select w-select-field" role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false" id="ty-919978f3-0">
+          <span class="w-select-selection" id="ty-2e02e2aa-0"><span class="w-select-value" id="ty-b5779efa-0">Pro</span></span>
+          <span class="w-select-chevron" aria-hidden="true" id="ty-f3370e1e-0">
+            <svg viewbox="0 0 24 24" width="20" height="20" id="ty-e9c220bd-0"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="ty-ce64462b-0" /></svg>
+          </span>
+        </div>
+      </div>
+      <span class="w-field-hint" id="ty-0f91e383-0">Click to open the option list.</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2d8133d9-0">
+    <w-select label="Plan" value="pro" hint="Click to open the option list." id="ty-2598e028-0">
+      <w-option value="starter" id="ty-28612223-0">Starter</w-option>
+      <w-option value="pro" id="ty-159610b1-0">Pro</w-option>
+      <w-option value="enterprise" id="ty-8c0ad47d-0">Enterprise</w-option>
+    </w-select>
+  </div>
+</demo-compare><h2 id="ty-6c62f8d1-0">Multiple with chips</h2><p id="ty-766ea83b-0">Add <code id="ty-4dc9c0c5-0">multiple</code> to select several values; they render as chips in the field. Combine with <code id="ty-78904d28-0">closable-chips</code> to remove them inline.</p><demo-compare >
+  <div slot="wc" id="ty-3971cca4-0">
+    <w-select label="Regions" multiple="" closable-chips="" value="us,eu" id="ty-3d1498bd-0">
+      <w-option value="us" id="ty-1b40d5b9-0">United States</w-option>
+      <w-option value="eu" id="ty-cea35bed-0">Europe</w-option>
+      <w-option value="apac" id="ty-786a6307-0">Asia Pacific</w-option>
+      <w-option value="latam" id="ty-bc2e0406-0">Latin America</w-option>
+    </w-select>
+  </div>
+</demo-compare><h2 id="ty-4cb6dbbf-0">Clearable</h2><p id="ty-d3179582-0">Add <code id="ty-25b28443-0">clearable</code> for a clear (&#215;) button that resets the selection.</p><demo-compare >
+  <div slot="wc" id="ty-242b663a-0">
+    <w-select label="Priority" clearable="" value="high" placeholder="Select a priority" id="ty-5c2c85b2-0">
+      <w-option value="low" id="ty-4e91b953-0">Low</w-option>
+      <w-option value="medium" id="ty-eec83f3e-0">Medium</w-option>
+      <w-option value="high" id="ty-65c6ce72-0">High</w-option>
+    </w-select>
+  </div>
+</demo-compare><h2 id="ty-cbb8fe65-0">Placeholder</h2><demo-compare >
+  <div slot="wc" id="ty-27e16653-0">
+    <w-select label="Country" placeholder="Choose a country" id="ty-2db6e915-0">
+      <w-option value="ca" id="ty-3272084f-0">Canada</w-option>
+      <w-option value="mx" id="ty-8e3422c7-0">Mexico</w-option>
+      <w-option value="us" id="ty-583d2369-0">United States</w-option>
+    </w-select>
+  </div>
+</demo-compare><h2 id="ty-299157bd-0">Disabled</h2><demo-compare >
+  <div slot="wc" id="ty-0c39209c-0">
+    <w-select label="Plan" value="pro" disabled="" id="ty-20668f74-0">
+      <w-option value="starter" id="ty-98550451-0">Starter</w-option>
+      <w-option value="pro" id="ty-e37b3bbb-0">Pro</w-option>
+    </w-select>
+  </div>
+</demo-compare><h2 id="ty-27b3a22e-0">Native select</h2><p id="ty-ee7ebdb7-0"><code id="ty-6f8b52d4-0">w-native-select</code> renders a real <code id="ty-721ebac0-0">&lt;select&gt;</code> with plain <code id="ty-ad259231-0">&lt;option&gt;</code> children — accessible and zero-JavaScript.</p><demo-compare >
+  <div slot="css" id="ty-5f078677-0">
+    <label class="w-field" id="ty-0cc6a92f-0">
+      <span class="w-field-label" id="ty-d0bb9871-0">Density</span>
+      <select class="w-select" id="ty-f1419fe1-0">
+        <option id="ty-49a08dab-0">Compact</option>
+        <option selected="" id="ty-c3bcf078-0">Comfortable</option>
+        <option id="ty-1413e0fe-0">Spacious</option>
+      </select>
+    </label>
+  </div>
+  <div slot="wc" id="ty-578e86ae-0">
+    <w-native-select label="Density" value="comfortable" id="ty-7bbe3a11-0">
+      <option value="compact" id="ty-bd007d62-0">Compact</option>
+      <option value="comfortable" id="ty-431c386c-0">Comfortable</option>
+      <option value="spacious" id="ty-d39ac1a4-0">Spacious</option>
+    </w-native-select>
+  </div>
+</demo-compare><h2 id="ty-4955fd0e-0">Attributes</h2><table class="w-table api-table" id="ty-38807a2a-0">
+  <thead id="ty-a984b2e4-0">
+    <tr id="ty-a727ab2a-0"><th id="ty-840fd450-0">Attribute</th><th id="ty-10c34662-0">Type</th><th id="ty-5089b0e1-0">Default</th><th id="ty-75aea602-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-8b605fc6-0">
+    <tr id="ty-9a83707d-0"><td id="ty-653fc609-0"><code id="ty-8dec9b2c-0">value</code></td><td id="ty-2ea2ad46-0">string</td><td id="ty-0ed68ca6-0">&#8212;</td><td id="ty-fe040a95-0">Selected value (comma-joined when <code id="ty-0840b495-0">multiple</code>).</td></tr>
+    <tr id="ty-d718497b-0"><td id="ty-6c574cca-0"><code id="ty-36c1ca36-0">multiple</code></td><td id="ty-cd45b791-0">boolean</td><td id="ty-deabe0de-0"><code id="ty-a5f760b9-0">false</code></td><td id="ty-b02417aa-0">Allow multiple selections, shown as chips.</td></tr>
+    <tr id="ty-a4064928-0"><td id="ty-d6564af3-0"><code id="ty-611a3fb0-0">chips</code></td><td id="ty-78d8393b-0">boolean</td><td id="ty-b092832c-0"><code id="ty-ccba32de-0">false</code></td><td id="ty-a71de4fc-0">Render selections as chips (implied by <code id="ty-10b916cb-0">multiple</code>).</td></tr>
+    <tr id="ty-a2cee99f-0"><td id="ty-3ffe1281-0"><code id="ty-dc3006c4-0">closable-chips</code></td><td id="ty-244c7d5a-0">boolean</td><td id="ty-a4064205-0"><code id="ty-10b844b3-0">false</code></td><td id="ty-a6cd38c4-0">Chips show a remove button.</td></tr>
+    <tr id="ty-77214503-0"><td id="ty-e96586fc-0"><code id="ty-44d9cbef-0">clearable</code></td><td id="ty-829bf418-0">boolean</td><td id="ty-64e75edb-0"><code id="ty-3830dad7-0">false</code></td><td id="ty-59226f9e-0">Show a clear (&#215;) button.</td></tr>
+    <tr id="ty-b576d673-0"><td id="ty-e768a16d-0"><code id="ty-21494104-0">placeholder</code></td><td id="ty-2649f4c2-0">string</td><td id="ty-b8dbd6c3-0">&#8212;</td><td id="ty-569dd6d2-0">Text shown when nothing is selected.</td></tr>
+    <tr id="ty-363c7da8-0"><td id="ty-d4f13ebf-0"><code id="ty-d9ef0e8e-0">label</code>, <code id="ty-bf2a940d-0">hint</code>, <code id="ty-249d5997-0">error</code></td><td id="ty-c43ef8cc-0">string</td><td id="ty-8fa9c510-0">&#8212;</td><td id="ty-b723879d-0">Field label / helper / error text.</td></tr>
+    <tr id="ty-57fe057c-0"><td id="ty-893d8952-0"><code id="ty-d8f7e4a3-0">name</code></td><td id="ty-288c13fb-0">string</td><td id="ty-3b7ee48c-0">&#8212;</td><td id="ty-01f74941-0">Form field name (renders a hidden input).</td></tr>
+    <tr id="ty-18c29d49-0"><td id="ty-c100ceca-0"><code id="ty-3f222e05-0">size</code></td><td id="ty-9357cfdc-0">string</td><td id="ty-40a9d4c8-0">&#8212;</td><td id="ty-73da7db9-0"><code id="ty-7eedac39-0">xs</code>, <code id="ty-58e82b3f-0">sm</code>, <code id="ty-15670cf4-0">lg</code>, or <code id="ty-b2168f8e-0">xl</code>.</td></tr>
+    <tr id="ty-46b44a3e-0"><td id="ty-46426efd-0"><code id="ty-8d326215-0">disabled</code>, <code id="ty-8bb727e2-0">readonly</code></td><td id="ty-5566daa7-0">boolean</td><td id="ty-f8978742-0"><code id="ty-78575d61-0">false</code></td><td id="ty-1a28957a-0">Non-interactive states.</td></tr>
+  </tbody>
+</table><h2 id="ty-1421a27e-0">Events</h2><table class="w-table api-table" id="ty-3e339bc3-0">
+  <thead id="ty-372970da-0">
+    <tr id="ty-130b6b4b-0"><th id="ty-a9c6678a-0">Event</th><th id="ty-002f0d59-0">Detail</th><th id="ty-f2ecd85a-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-df5369da-0">
+    <tr id="ty-74d95f1a-0"><td id="ty-fc5b17a5-0"><code id="ty-cbe71d44-0">change</code></td><td id="ty-e732e68a-0"><code id="ty-fb257924-0">&#123; value, name &#125;</code></td><td id="ty-276b9200-0">Fired when the selection changes.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-1087479d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-88a1f264-0"></aside>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+/* DuVay — Textareas component styles. */
+@import "../core.css";
+
+/* ── Textarea ────────────────────────────────────────────────────────────── */
+.w-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  line-height: 1.6;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--w-transition-fast);
+}
+
+.w-textarea:focus {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}

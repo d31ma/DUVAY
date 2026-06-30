@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-b001ff9a-0">Number inputs</h1><p id="ty-dd07127f-0"><code id="ty-d3ff05c2-0">w-number-input</code> is a numeric field with stepper controls, mirroring Vuetify&#8217;s <code id="ty-90fe8bb8-0">v-number-input</code>. Use <code id="ty-b0718d86-0">min</code>, <code id="ty-c95d65fb-0">max</code>, and <code id="ty-a8680721-0">step</code> to constrain the value, <code id="ty-10cc4e86-0">precision</code> and <code id="ty-6f30958b-0">grouping</code> to format it, and <code id="ty-668a1d45-0">control-variant</code> to change the stepper layout. It emits native-named <code id="ty-f211fd59-0">input</code> and <code id="ty-2da5e7cb-0">change</code> events as the number updates.</p><h2 id="ty-795f774f-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-5f8a80ba-0">
+    <label class="w-field w-number-input w-number-input--default" id="ty-dd611884-0">
+      <span class="w-label" id="ty-929304a8-0">Quantity</span>
+      <span class="w-number-input-field" id="ty-0b9183b5-0">
+        <input class="w-input" type="text" inputmode="decimal" value="4" id="ty-759db197-0" />
+        <span class="w-number-input-control" id="ty-2badf6c6-0">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="ty-253eca87-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-25aaa258-0"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="ty-63b34d4e-0" /></svg></button>
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="ty-0939bf6e-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-0c992bad-0"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="ty-eea4d079-0" /></svg></button>
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-0495ea9c-0">
+    <w-number-input label="Quantity" value="4" min="0" max="99" id="ty-f0495dc0-0"></w-number-input>
+  </div>
+</demo-compare><h2 id="ty-3f584828-0">Control variants</h2><p id="ty-d0b65327-0">The <code id="ty-1fa9ae96-0">control-variant</code> attribute sets the stepper layout: <code id="ty-ac361254-0">default</code> (buttons grouped at the end), <code id="ty-6081cf35-0">stacked</code> (vertical spinner), <code id="ty-110c0b0f-0">split</code> (− and + on opposite ends), or <code id="ty-b012bf26-0">hidden</code> (no buttons).</p><demo-compare >
+  <div slot="css" id="ty-e90bef9b-0">
+    <div class="w-stack" id="ty-f07222cc-0">
+      <label class="w-field w-number-input w-number-input--stacked" id="ty-e9af9d77-0">
+        <span class="w-label" id="ty-febe2099-0">Stacked</span>
+        <span class="w-number-input-field" id="ty-3df07624-0">
+          <input class="w-input" type="text" inputmode="decimal" value="1" id="ty-d0e71b5d-0" />
+          <span class="w-number-input-control" id="ty-3edc60c9-0">
+            <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="ty-0e6bbd75-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-7e36726f-0"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="ty-db082a7c-0" /></svg></button>
+            <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="ty-a10456af-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-adb988cd-0"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="ty-b83f73d6-0" /></svg></button>
+          </span>
+        </span>
+      </label>
+      <label class="w-field w-number-input w-number-input--split" id="ty-64805c86-0">
+        <span class="w-label" id="ty-0d2f5300-0">Split</span>
+        <span class="w-number-input-field" id="ty-f2c02a6b-0">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="ty-19de5517-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-9ed696fe-0"><path fill="currentColor" d="M19 13H5v-2h14v2z" id="ty-7f8bd5e9-0" /></svg></button>
+          <input class="w-input" type="text" inputmode="decimal" value="1" id="ty-6bffec98-0" />
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="ty-2e8ec636-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-20fee6dc-0"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" id="ty-cf1aa6ed-0" /></svg></button>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-c32e3fca-0">
+    <div class="w-stack" id="ty-7192f62e-0">
+      <w-number-input label="Stacked" value="1" control-variant="stacked" id="ty-af9d58e1-0"></w-number-input>
+      <w-number-input label="Split" value="1" control-variant="split" id="ty-6393b09b-0"></w-number-input>
+      <w-number-input label="Hidden" value="1" control-variant="hidden" id="ty-260fd3da-0"></w-number-input>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-f4cd475e-0">Formatting</h2><p id="ty-5a093b0c-0">Set <code id="ty-9df55464-0">precision</code> for a fixed number of decimal places, <code id="ty-0fcb2f5b-0">grouping</code> for thousands separators, and <code id="ty-05218753-0">decimal-separator</code> / <code id="ty-ff9c406d-0">group-separator</code> to localize them. The <code id="ty-4b524097-0">value</code> attribute always stays canonical (plain number); formatting applies only to what is shown.</p><demo-compare >
+  <div slot="css" id="ty-cbade9a2-0">
+    <label class="w-field w-number-input w-number-input--default" id="ty-7e19f8df-0">
+      <span class="w-label" id="ty-4c9a1218-0">Price</span>
+      <span class="w-number-input-field" id="ty-653f8b2a-0">
+        <input class="w-input" type="text" inputmode="decimal" value="1,234.50" id="ty-786e9467-0" />
+        <span class="w-number-input-control" id="ty-8b70411d-0">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="ty-52ec7fd5-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-bbb8f103-0"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="ty-491e238d-0" /></svg></button>
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="ty-0f409485-0"><svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="ty-6539821a-0"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="ty-d5568dbc-0" /></svg></button>
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-55d499cc-0">
+    <w-number-input label="Price" value="1234.5" precision="2" grouping="" step="0.5" id="ty-55c56745-0"></w-number-input>
+  </div>
+</demo-compare><h2 id="ty-11309484-0">Attributes</h2><table class="w-table api-table" id="ty-624c1fb3-0">
+  <thead id="ty-83d145df-0">
+    <tr id="ty-dc3b7dfa-0"><th id="ty-688d0193-0">Attribute</th><th id="ty-ac776882-0">Type</th><th id="ty-42994a83-0">Default</th><th id="ty-971cce91-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-bcd348a1-0">
+    <tr id="ty-d2d2896f-0"><td id="ty-498c9b4e-0"><code id="ty-fa45ea74-0">value</code></td><td id="ty-08e00b63-0">number</td><td id="ty-de160423-0">&#8212;</td><td id="ty-8bc26075-0">Current value, clamped to <code id="ty-d9061125-0">min</code>/<code id="ty-665931d1-0">max</code>.</td></tr>
+    <tr id="ty-9677fba8-0"><td id="ty-672b4d8d-0"><code id="ty-eada9759-0">min</code>, <code id="ty-72c1da8f-0">max</code></td><td id="ty-62c84a36-0">number</td><td id="ty-31c7f55e-0">safe-int range</td><td id="ty-53bdbada-0">Value bounds.</td></tr>
+    <tr id="ty-03a07f60-0"><td id="ty-dcd61ae5-0"><code id="ty-ccebc076-0">step</code></td><td id="ty-e74816d8-0">number</td><td id="ty-422da01a-0"><code id="ty-b572f607-0">1</code></td><td id="ty-65633724-0">Increment / decrement amount.</td></tr>
+    <tr id="ty-bb890161-0"><td id="ty-fb98f0e1-0"><code id="ty-c4845a63-0">control-variant</code></td><td id="ty-90ceb1db-0">string</td><td id="ty-20397fdd-0"><code id="ty-bbe2c622-0">default</code></td><td id="ty-aa0194fd-0"><code id="ty-021fece5-0">default</code>, <code id="ty-7a1f5b17-0">stacked</code>, <code id="ty-fe2bf380-0">split</code>, or <code id="ty-61817ed9-0">hidden</code>.</td></tr>
+    <tr id="ty-39f1f7fa-0"><td id="ty-e36ccdcf-0"><code id="ty-03e3bb30-0">inset</code></td><td id="ty-5e67ca61-0">boolean</td><td id="ty-0dc8dd17-0"><code id="ty-d9815fee-0">false</code></td><td id="ty-9daa8be2-0">Tuck the controls inside the field with no divider.</td></tr>
+    <tr id="ty-b6052a94-0"><td id="ty-96e2995b-0"><code id="ty-a6b2adae-0">hide-input</code></td><td id="ty-ecec9adb-0">boolean</td><td id="ty-34595ef2-0"><code id="ty-e763810a-0">false</code></td><td id="ty-a0001308-0">Show only the stepper (implies <code id="ty-d9c801ec-0">stacked</code>).</td></tr>
+    <tr id="ty-a09fa4d2-0"><td id="ty-b4191d62-0"><code id="ty-e05065b5-0">reverse</code></td><td id="ty-f6ba6771-0">boolean</td><td id="ty-91dbcbb6-0"><code id="ty-da2ad2a5-0">false</code></td><td id="ty-a4732f21-0">Place the controls before the input.</td></tr>
+    <tr id="ty-6657c587-0"><td id="ty-5e069d1f-0"><code id="ty-192d980c-0">precision</code></td><td id="ty-be1cf2ab-0">number</td><td id="ty-ecbd8d6f-0"><code id="ty-e72f5a79-0">0</code></td><td id="ty-24437712-0">Decimal places to display; <code id="ty-08e803be-0">null</code> disables rounding.</td></tr>
+    <tr id="ty-019fa6da-0"><td id="ty-03854804-0"><code id="ty-4fcee544-0">min-fraction-digits</code></td><td id="ty-77650a1e-0">number</td><td id="ty-20192994-0">&#8212;</td><td id="ty-36bab32a-0">Minimum decimals to keep.</td></tr>
+    <tr id="ty-2c80b6e2-0"><td id="ty-a788a060-0"><code id="ty-1a8e1f3a-0">grouping</code></td><td id="ty-f5322e3d-0">boolean | string</td><td id="ty-f631ed82-0"><code id="ty-c5df857f-0">false</code></td><td id="ty-d67b45e7-0">Thousands separators: <code id="ty-33669ff7-0">true</code>, <code id="ty-ae446dba-0">always</code>, <code id="ty-e2ad3214-0">auto</code>, <code id="ty-c899d199-0">min2</code>.</td></tr>
+    <tr id="ty-7b8b3fa1-0"><td id="ty-da295bdc-0"><code id="ty-2882c03b-0">decimal-separator</code>, <code id="ty-077c0478-0">group-separator</code></td><td id="ty-c9be878f-0">string</td><td id="ty-61dfb735-0"><code id="ty-fe858dce-0">.</code> / <code id="ty-4729710b-0">,</code></td><td id="ty-0e4b8d11-0">Single-character separator overrides.</td></tr>
+    <tr id="ty-3ba5e10a-0"><td id="ty-fea8895b-0"><code id="ty-359f9404-0">label</code>, <code id="ty-cb8cfe7a-0">placeholder</code>, <code id="ty-525924ad-0">hint</code>, <code id="ty-151ce5fd-0">error</code>, <code id="ty-783c5244-0">name</code>, <code id="ty-e6fe2d0a-0">size</code></td><td id="ty-7151e565-0">string</td><td id="ty-fc0124c9-0">&#8212;</td><td id="ty-f927fbcf-0">Text-field props forwarded to the input.</td></tr>
+    <tr id="ty-32577767-0"><td id="ty-dbfbf00a-0"><code id="ty-43bb3226-0">disabled</code>, <code id="ty-d897462c-0">readonly</code></td><td id="ty-b663a565-0">boolean</td><td id="ty-a32f6363-0"><code id="ty-9bcdd8ff-0">false</code></td><td id="ty-47fcfac8-0">Disable the field and its controls.</td></tr>
+  </tbody>
+</table><h2 id="ty-0228eb6c-0">Events</h2><table class="w-table api-table" id="ty-78c9d630-0">
+  <thead id="ty-1eef367a-0">
+    <tr id="ty-116618d3-0"><th id="ty-d8090dff-0">Event</th><th id="ty-dd729548-0">Detail</th><th id="ty-6cfc42cd-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-536a751d-0">
+    <tr id="ty-4114d43c-0"><td id="ty-e8c449ed-0"><code id="ty-ea251938-0">input</code></td><td id="ty-a57af386-0"><code id="ty-8f8ca262-0">&#123; value &#125;</code></td><td id="ty-df48f4df-0">Fired on each keystroke with the parsed number.</td></tr>
+    <tr id="ty-c9f109c2-0"><td id="ty-56f9a390-0"><code id="ty-987f15fa-0">change</code></td><td id="ty-a19f93d9-0"><code id="ty-eba86d08-0">&#123; value &#125;</code></td><td id="ty-5a1aeb08-0">Fired on commit or step with the clamped number (or <code id="ty-e3c588fd-0">null</code>).</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

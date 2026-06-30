@@ -1,0 +1,287 @@
+<h1>Calendars</h1>
+<p><code>w-calendar</code> is a responsive scheduling surface for month, week, day, four-day, custom, and category views. It accepts event and category arrays, renders all-day and timed events, and exposes a vanilla JavaScript API with native event names.</p>
+
+<h2>Month</h2>
+<p>The month view displays all-day and timed events across a complete calendar grid. Select a date, use the header controls, or call <code>next()</code>, <code>prev()</code>, and <code>today()</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <section class="w-calendar w-calendar--month">
+      <header class="w-calendar-header">
+        <div class="w-calendar-header__nav">
+          <button class="w-calendar-nav" type="button" aria-label="Previous period">‹</button>
+          <button class="w-calendar-today" type="button">Today</button>
+          <button class="w-calendar-nav" type="button" aria-label="Next period">›</button>
+        </div>
+        <strong class="w-calendar-title">June 2026</strong>
+      </header>
+      <div class="w-calendar-month" role="grid">
+        <div class="w-calendar-weekdays" role="row">
+          <div class="w-calendar-weekday">Sun</div><div class="w-calendar-weekday">Mon</div><div class="w-calendar-weekday">Tue</div><div class="w-calendar-weekday">Wed</div><div class="w-calendar-weekday">Thu</div><div class="w-calendar-weekday">Fri</div><div class="w-calendar-weekday">Sat</div>
+        </div>
+        <div class="w-calendar-week" role="row">
+          <div class="w-calendar-day outside"><button class="w-calendar-day-button" type="button">31</button></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">1</button></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">2</button></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">3</button></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">4</button><div class="w-calendar-day-events"><button class="w-calendar-event" style="--w-calendar-event-color:var(--w-primary);--w-calendar-event-text:var(--w-on-primary)">Design review</button></div></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">5</button></div>
+          <div class="w-calendar-day"><button class="w-calendar-day-button" type="button">6</button></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      value="2026-06-13"
+      now="2026-06-27 10:30"
+      event-color="color"
+      events="[{&quot;name&quot;:&quot;Design review&quot;,&quot;start&quot;:&quot;2026-06-04 09:00&quot;,&quot;end&quot;:&quot;2026-06-04 10:30&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Release window&quot;,&quot;start&quot;:&quot;2026-06-13&quot;,&quot;end&quot;:&quot;2026-06-13&quot;,&quot;color&quot;:&quot;success&quot;},{&quot;name&quot;:&quot;Conference&quot;,&quot;start&quot;:&quot;2026-06-18&quot;,&quot;end&quot;:&quot;2026-06-20&quot;,&quot;color&quot;:&quot;tertiary&quot;}]"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Week</h2>
+<p>Week views combine an all-day row with a scrollable interval grid. Timed events are positioned from their start and end values.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--week">
+      <div class="w-calendar-schedule" style="--w-calendar-days:3;--w-calendar-interval-height:3rem;--w-calendar-interval-width:3.75rem">
+        <div class="w-calendar-schedule-head"><div class="w-calendar-gutter-head"></div><div class="w-calendar-day-headers"><div class="w-calendar-day-header">Mon <button type="button">8</button></div><div class="w-calendar-day-header">Tue <button type="button">9</button></div><div class="w-calendar-day-header">Wed <button type="button">10</button></div></div></div>
+        <div class="w-calendar-schedule-scroll"><div class="w-calendar-time-axis"><div class="w-calendar-time-label">9 AM</div><div class="w-calendar-time-label">10 AM</div></div><div class="w-calendar-day-columns"><div class="w-calendar-day-column"><div class="w-calendar-intervals"><button class="w-calendar-interval"></button><button class="w-calendar-interval"></button></div></div><div class="w-calendar-day-column"></div><div class="w-calendar-day-column"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      type="week"
+      value="2026-06-10"
+      first-interval="8"
+      interval-count="11"
+      interval-highlight
+      event-color="color"
+      events="[{&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-06-08 09:00&quot;,&quot;end&quot;:&quot;2026-06-08 10:00&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Lunch&quot;,&quot;start&quot;:&quot;2026-06-10 12:00&quot;,&quot;end&quot;:&quot;2026-06-10 13:00&quot;,&quot;color&quot;:&quot;success&quot;},{&quot;name&quot;:&quot;Launch&quot;,&quot;start&quot;:&quot;2026-06-11&quot;,&quot;end&quot;:&quot;2026-06-11&quot;,&quot;color&quot;:&quot;tertiary&quot;}]"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Day and Four-day</h2>
+<p>Use <code>day</code> for a focused agenda or <code>4day</code> for a compact multi-day planner. The same interval and event attributes apply to both.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="d-grid">
+      <div class="w-grid-row">
+        <div class="w-grid-col-6"><div class="w-calendar w-calendar--day"><div class="w-calendar-header"><strong class="w-calendar-title">June 13, 2026</strong></div><div class="w-calendar-schedule"><div class="w-calendar-all-day"><div class="w-calendar-all-day-label">All day</div><div class="w-calendar-all-day-cells"><div class="w-calendar-all-day-cell"></div></div></div></div></div></div>
+        <div class="w-grid-col-6"><div class="w-calendar w-calendar--4day"><div class="w-calendar-header"><strong class="w-calendar-title">Jun 13–16, 2026</strong></div><div class="w-calendar-schedule"><div class="w-calendar-day-headers"><div class="w-calendar-day-header">Sat 13</div><div class="w-calendar-day-header">Sun 14</div><div class="w-calendar-day-header">Mon 15</div><div class="w-calendar-day-header">Tue 16</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-calendar type="day" value="2026-06-13" first-interval="8" interval-count="10" format="24hr" interval-highlight></w-calendar>
+      <w-calendar type="4day" value="2026-06-13" first-interval="8" interval-count="10" interval-height="40"></w-calendar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Weekdays, Locale, and Week Numbers</h2>
+<p>Choose visible days with a JSON <code>weekdays</code> array, rotate them with <code>first-day-of-week</code>, localize labels, and add ISO-style week numbers.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--month w-calendar--show-week">
+      <div class="w-calendar-weekdays" style="--w-calendar-columns:6"><div class="w-calendar-week-number">#</div><div class="w-calendar-weekday">Monday</div><div class="w-calendar-weekday">Tuesday</div><div class="w-calendar-weekday">Wednesday</div><div class="w-calendar-weekday">Thursday</div><div class="w-calendar-weekday">Friday</div></div>
+      <div class="w-calendar-week" style="--w-calendar-columns:6"><div class="w-calendar-week-number">24</div><div class="w-calendar-day"><button class="w-calendar-day-button">8</button></div><div class="w-calendar-day"><button class="w-calendar-day-button">9</button></div><div class="w-calendar-day"><button class="w-calendar-day-button">10</button></div><div class="w-calendar-day"><button class="w-calendar-day-button">11</button></div><div class="w-calendar-day"><button class="w-calendar-day-button">12</button></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      value="2026-06-13"
+      weekdays="[1,2,3,4,5]"
+      first-day-of-week="1"
+      first-day-of-year="4"
+      short-weekdays="false"
+      show-week
+      locale="en-CA"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Intervals and Clock Format</h2>
+<p>Control the visible schedule with <code>first-interval</code>, <code>first-time</code>, <code>interval-count</code>, <code>interval-minutes</code>, <code>interval-height</code>, and <code>format</code>. <code>first-time</code> overrides <code>first-interval</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--day">
+      <div class="w-calendar-schedule" style="--w-calendar-days:1;--w-calendar-interval-height:2.5rem;--w-calendar-interval-width:4.5rem">
+        <div class="w-calendar-schedule-scroll"><div class="w-calendar-time-axis"><div class="w-calendar-time-label">08:30</div><div class="w-calendar-time-label">09:00</div><div class="w-calendar-time-label">09:30</div></div><div class="w-calendar-day-columns"><div class="w-calendar-day-column"><div class="w-calendar-intervals"><button class="w-calendar-interval w-calendar-interval--highlight"></button><button class="w-calendar-interval w-calendar-interval--highlight"></button><button class="w-calendar-interval w-calendar-interval--highlight"></button></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      type="day"
+      value="2026-06-13"
+      first-time="08:30"
+      interval-count="12"
+      interval-minutes="30"
+      interval-height="40"
+      interval-width="72"
+      format="24hr"
+      interval-highlight
+      events="[{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 09:30&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;}]"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Categories</h2>
+<p>The category view compares schedules side by side. Categories accept a JSON string or a JavaScript array; events map through <code>event-category</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--category">
+      <div class="w-calendar-schedule w-calendar-category" style="--w-calendar-days:2">
+        <div class="w-calendar-schedule-head"><div class="w-calendar-gutter-head"></div><div class="w-calendar-category-headers"><div class="w-calendar-category-header"><strong>Design</strong></div><div class="w-calendar-category-header"><strong>Operations</strong></div></div></div>
+        <div class="w-calendar-category-columns"><div class="w-calendar-category-column" data-category="Design"></div><div class="w-calendar-category-column" data-category="Operations"></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      type="category"
+      value="2026-06-13"
+      categories="[&quot;Design&quot;,&quot;Operations&quot;]"
+      category-show-all
+      first-interval="8"
+      interval-count="11"
+      event-color="color"
+      events="[{&quot;name&quot;:&quot;Wireframes&quot;,&quot;start&quot;:&quot;2026-06-13 09:00&quot;,&quot;end&quot;:&quot;2026-06-13 10:30&quot;,&quot;category&quot;:&quot;Design&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Deploy&quot;,&quot;start&quot;:&quot;2026-06-13 10:00&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;,&quot;category&quot;:&quot;Operations&quot;,&quot;color&quot;:&quot;success&quot;}]"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Custom Ranges</h2>
+<p><code>custom-weekly</code> renders week rows between explicit dates; <code>custom-daily</code> renders interval columns. <code>max-days</code> caps open-ended daily ranges.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-calendar w-calendar--custom-weekly"><div class="w-calendar-header"><strong class="w-calendar-title">Jun 8 – Jun 19, 2026</strong></div><div class="w-calendar-week"></div><div class="w-calendar-week"></div></div>
+      <div class="w-calendar w-calendar--custom-daily"><div class="w-calendar-header"><strong class="w-calendar-title">Jun 8–10, 2026</strong></div><div class="w-calendar-day-columns" style="--w-calendar-days:3"><div class="w-calendar-day-column"></div><div class="w-calendar-day-column"></div><div class="w-calendar-day-column"></div></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-calendar type="custom-weekly" value="2026-06-08" start="2026-06-08" end="2026-06-19" first-day-of-week="1"></w-calendar>
+      <w-calendar type="custom-daily" value="2026-06-08" start="2026-06-08" end="2026-06-10" first-interval="8" interval-count="8"></w-calendar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Event Mapping and Overflow</h2>
+<p>Map alternative event fields with <code>event-name</code>, <code>event-start</code>, <code>event-end</code>, <code>event-timed</code>, and <code>event-color</code>. Month cells show three events before a configurable “more” action.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar-day selected">
+      <button class="w-calendar-day-button" type="button">13</button>
+      <div class="w-calendar-day-events">
+        <button class="w-calendar-event" style="--w-calendar-event-color:#155e75;--w-calendar-event-text:#fff">Design review</button>
+        <button class="w-calendar-event" style="--w-calendar-event-color:var(--w-success);--w-calendar-event-text:var(--w-on-primary)">Launch</button>
+        <button class="w-calendar-event" style="--w-calendar-event-color:var(--w-tertiary);--w-calendar-event-text:var(--w-on-primary)">Retrospective</button>
+        <button class="w-calendar-more" type="button">2 additional</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar
+      value="2026-06-13"
+      event-name="title"
+      event-start="begins"
+      event-end="finishes"
+      event-color="tone"
+      event-more-text="&#123;count&#125; additional"
+      events="[{&quot;title&quot;:&quot;Design review&quot;,&quot;begins&quot;:&quot;2026-06-13 09:00&quot;,&quot;finishes&quot;:&quot;2026-06-13 10:00&quot;,&quot;tone&quot;:&quot;#155e75&quot;},{&quot;title&quot;:&quot;Launch&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;success&quot;},{&quot;title&quot;:&quot;Retrospective&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;tertiary&quot;},{&quot;title&quot;:&quot;Planning&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;primary&quot;},{&quot;title&quot;:&quot;Handoff&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;secondary&quot;}]"
+    ></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Custom Content</h2>
+<p>Vue slots become framework-neutral rendering callbacks in DuVay. Use <code>dayContent</code>, <code>dayHeaderContent</code>, <code>dayBodyContent</code>, <code>intervalContent</code>, <code>intervalHeaderContent</code>, <code>eventContent</code>, and <code>categoryContent</code> to return application-owned markup.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--day">
+      <div class="w-calendar-header"><strong class="w-calendar-title">June 13, 2026</strong></div>
+      <div class="w-calendar-schedule" style="--w-calendar-days:1">
+        <div class="w-calendar-schedule-head"><div class="w-calendar-gutter-head">Time</div><div class="w-calendar-day-headers"><div class="w-calendar-day-header"><span>Sat</span><button type="button">13</button><div class="w-calendar-day-header-content"><strong>Focus day</strong></div></div></div></div>
+        <div class="w-calendar-schedule-scroll"><div class="w-calendar-time-axis"><div class="w-calendar-time-label">9 AM</div></div><div class="w-calendar-day-columns"><div class="w-calendar-day-column"><button class="w-calendar-interval"><span class="w-calendar-interval-content">9 o'clock</span></button><div class="w-calendar-day-body-content"><span class="w-calendar-current-time" style="top:24px"></span></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar data-calendar-custom-content type="day" value="2026-06-13" now="2026-06-13 09:30" first-interval="9" interval-count="4" events="[{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 10:00&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;}]"></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Native Drag and Drop</h2>
+<p><code>event-draggable</code> makes event controls draggable. Dropping a timed event onto an interval preserves its duration, updates the source event, and emits <code>change</code> with <code>reason: "event-drop"</code>. Native drag events continue to bubble for application-specific behavior.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-calendar w-calendar--day">
+      <div class="w-calendar-schedule" style="--w-calendar-days:1">
+        <div class="w-calendar-schedule-scroll"><div class="w-calendar-time-axis"><div class="w-calendar-time-label">9 AM</div><div class="w-calendar-time-label">10 AM</div></div><div class="w-calendar-day-columns"><div class="w-calendar-day-column"><div class="w-calendar-intervals"><button class="w-calendar-interval"></button><button class="w-calendar-interval"></button></div><div class="w-calendar-timed-events"><button class="w-calendar-event w-calendar-event--timed" draggable="true" style="top:0;height:48px">9 AM Planning</button></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-calendar type="day" value="2026-06-13" first-interval="9" interval-count="6" interval-highlight event-draggable events="[{&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-06-13 09:00&quot;,&quot;end&quot;:&quot;2026-06-13 10:00&quot;},{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 11:00&quot;,&quot;end&quot;:&quot;2026-06-13 12:30&quot;}]"></w-calendar>
+  </div>
+</demo-compare>
+
+<h2>Attributes</h2>
+<p>All attributes are reflected and reactive. JSON-valued attributes (<code>events</code>, <code>categories</code>, <code>weekdays</code>) also accept arrays via the matching JavaScript properties.</p>
+<table class="w-table">
+  <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>type</code></td><td><code>month | week | day | 4day | custom-weekly | custom-daily | category</code></td><td><code>month</code></td><td>Active calendar view.</td></tr>
+    <tr><td><code>value</code></td><td><code>String</code></td><td>—</td><td>Anchor date (ISO <code>YYYY-MM-DD</code>) the view is built around.</td></tr>
+    <tr><td><code>now</code></td><td><code>String</code></td><td>—</td><td>Overrides "today" for the current-time indicator and highlight.</td></tr>
+    <tr><td><code>min</code> / <code>max</code></td><td><code>String</code></td><td>—</td><td>Bounds for navigation and selection.</td></tr>
+    <tr><td><code>weekdays</code></td><td><code>Array | String</code></td><td><code>0,1,2,3,4,5,6</code></td><td>Which weekdays to display and their order.</td></tr>
+    <tr><td><code>first-day-of-week</code></td><td><code>Number</code></td><td><code>0</code></td><td>Starting weekday (0 = Sunday).</td></tr>
+    <tr><td><code>locale</code></td><td><code>String</code></td><td>document locale</td><td>Locale for day, month, and interval labels.</td></tr>
+    <tr><td><code>show-week</code></td><td><code>Boolean</code></td><td><code>false</code></td><td>Show ISO week numbers in month view.</td></tr>
+    <tr><td><code>hide-header</code></td><td><code>Boolean</code></td><td><code>false</code></td><td>Hide the built-in navigation header.</td></tr>
+    <tr><td><code>events</code></td><td><code>Array&lt;Object&gt; | JSON</code></td><td><code>[]</code></td><td>Event objects rendered on the calendar.</td></tr>
+    <tr><td><code>event-start</code> / <code>event-end</code></td><td><code>String</code></td><td><code>start</code> / <code>end</code></td><td>Property names mapping to each event's start/end.</td></tr>
+    <tr><td><code>event-name</code></td><td><code>String</code></td><td><code>name</code></td><td>Property name for the event label.</td></tr>
+    <tr><td><code>event-color</code></td><td><code>String</code></td><td>—</td><td>Property name (or token/color) for an event's color.</td></tr>
+    <tr><td><code>event-more</code> / <code>event-more-text</code></td><td><code>Boolean</code> / <code>String</code></td><td><code>true</code> / <code>&#123;count&#125; more</code></td><td>Show an overflow "more" affordance and its label template.</td></tr>
+    <tr><td><code>event-draggable</code></td><td><code>Boolean</code></td><td><code>false</code></td><td>Allow timed events to be dragged onto intervals.</td></tr>
+    <tr><td><code>first-interval</code> / <code>interval-count</code></td><td><code>Number</code></td><td>—</td><td>First interval and number of intervals in timed views.</td></tr>
+    <tr><td><code>interval-minutes</code> / <code>interval-height</code></td><td><code>Number</code></td><td><code>60</code> / —</td><td>Minutes per interval and the row height.</td></tr>
+    <tr><td><code>interval-highlight</code></td><td><code>Boolean</code></td><td><code>false</code></td><td>Highlight the current interval.</td></tr>
+    <tr><td><code>categories</code></td><td><code>Array | String | JSON</code></td><td><code>[]</code></td><td>Category columns for the <code>category</code> view.</td></tr>
+  </tbody>
+</table>
+
+<h2>Events</h2>
+<p>All events are native <code>CustomEvent</code>s (<code>bubbles: true, composed: true</code>) carrying a <code>detail</code> object.</p>
+<table class="w-table">
+  <thead><tr><th>Event</th><th>detail</th><th>Fires when</th></tr></thead>
+  <tbody>
+    <tr><td><code>change</code></td><td><code>&#123; reason, value, start, end &#125;</code></td><td>The visible range changes. <code>reason</code> is <code>select</code>, <code>move</code>, <code>today</code>, <code>check</code>, or <code>event-drop</code>.</td></tr>
+    <tr><td><code>input</code></td><td><code>&#123; value, ... &#125;</code></td><td>A date is selected (model value updates).</td></tr>
+    <tr><td><code>click</code></td><td><code>&#123; kind, date, event?, events?, hidden? &#125;</code></td><td>A day, interval, event, or "more" affordance is clicked. <code>kind</code> is <code>day</code>, <code>time</code>, <code>timeCategory</code>, <code>event</code>, or <code>more</code>.</td></tr>
+    <tr><td><code>moved</code></td><td><code>&#123; reason, value, start, end &#125;</code></td><td>Navigation moves the view via <code>next()</code>, <code>prev()</code>, or <code>today()</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2>Methods</h2>
+<p>Call these on the element instance (e.g. <code>document.querySelector('w-calendar').next()</code>).</p>
+<table class="w-table">
+  <thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>next</code></td><td><code>next(amount = 1)</code></td><td>Advance the view by <code>amount</code> periods.</td></tr>
+    <tr><td><code>prev</code></td><td><code>prev(amount = 1)</code></td><td>Move the view back by <code>amount</code> periods.</td></tr>
+    <tr><td><code>move</code></td><td><code>move(amount = 1)</code></td><td>Move by a signed number of periods (negative moves back).</td></tr>
+    <tr><td><code>today</code></td><td><code>today()</code></td><td>Jump the view to the current date.</td></tr>
+    <tr><td><code>scrollToTime</code></td><td><code>scrollToTime(value)</code></td><td>Scroll a timed view to the given time (e.g. <code>"09:00"</code>).</td></tr>
+    <tr><td><code>checkChange</code></td><td><code>checkChange()</code></td><td>Re-emit <code>change</code> for the current range (useful after async data loads).</td></tr>
+  </tbody>
+</table>
+

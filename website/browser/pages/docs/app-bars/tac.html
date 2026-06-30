@@ -1,0 +1,184 @@
+<h1>App Bars</h1>
+<p><code>w-app-bar</code> provides a top or bottom application bar with Vuetify parity: density, elevation, scroll behavior, image backgrounds, extension slots, and full theming support.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar">
+      <strong class="w-app-bar-title">DuVay</strong>
+      <button class="w-btn">Docs</button>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="DuVay">
+      <w-btn>Docs</w-btn>
+    </w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Sticky with scroll behavior</h2>
+<p>Add <code>sticky</code> to pin the bar. Combine with <code>scroll-behavior</code> for hide, elevate, collapse, or fade-image effects.</p>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar w-app-bar--sticky">
+      <strong class="w-app-bar-title">Sticky</strong>
+      <button class="w-btn">Action</button>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar sticky title="Sticky" scroll-behavior="elevate">
+      <w-btn>Action</w-btn>
+    </w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Density</h2>
+<p>Choose <code>prominent</code>, <code>comfortable</code>, or <code>compact</code> density.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack ga-2">
+      <header class="w-app-bar w-app-bar--prominent">
+        <strong class="w-app-bar-title">Prominent</strong>
+      </header>
+      <header class="w-app-bar w-app-bar--comfortable">
+        <strong class="w-app-bar-title">Comfortable</strong>
+      </header>
+      <header class="w-app-bar w-app-bar--compact">
+        <strong class="w-app-bar-title">Compact</strong>
+      </header>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack ga-2">
+      <w-app-bar density="prominent" title="Prominent"></w-app-bar>
+      <w-app-bar density="comfortable" title="Comfortable"></w-app-bar>
+      <w-app-bar density="compact" title="Compact"></w-app-bar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Color and background</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar" style="--w-app-bar-color:var(--w-primary);--w-app-bar-bg:var(--w-surface-container-low)">
+      <strong class="w-app-bar-title">Themed</strong>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Themed" color="primary" bg-color="surface-container-low"></w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Flat and elevation</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack ga-2">
+      <header class="w-app-bar w-app-bar--flat">
+        <strong class="w-app-bar-title">Flat</strong>
+      </header>
+      <header class="w-app-bar elevation-4">
+        <strong class="w-app-bar-title">Elevated</strong>
+      </header>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack ga-2">
+      <w-app-bar title="Flat" flat></w-app-bar>
+      <w-app-bar title="Elevated" elevation="4"></w-app-bar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Image background</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar w-app-bar--image" style="--w-app-bar-image:url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800)">
+      <strong class="w-app-bar-title">Image</strong>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Image" image="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800"></w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Extended with extension slot</h2>
+<demo-compare>
+  <div slot="css">
+    <div>
+      <header class="w-app-bar">
+        <strong class="w-app-bar-title">Extended</strong>
+      </header>
+      <div class="w-app-bar-extension" style="--w-app-bar-extension-height:48px">
+        <span>Extension content</span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Extended" extended>
+      <span slot="extension">Extension content</span>
+    </w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Bottom location</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar w-app-bar--bottom">
+      <strong class="w-app-bar-title">Bottom</strong>
+      <button class="w-btn">Action</button>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Bottom" location="bottom">
+      <w-btn>Action</w-btn>
+    </w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Border and rounded</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar w-app-bar--border rounded-lg">
+      <strong class="w-app-bar-title">Styled</strong>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Styled" border rounded="lg"></w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>Custom height</h2>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar" style="--w-app-bar-height:80px">
+      <strong class="w-app-bar-title">Tall</strong>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="Tall" height="80"></w-app-bar>
+  </div>
+</demo-compare>
+
+<h2>With nav icon</h2>
+<p><code>w-app-bar-nav-icon</code> toggles a target <code>w-navigation-drawer</code> and updates its own <code>aria-expanded</code> state.</p>
+<demo-compare>
+  <div slot="css">
+    <header class="w-app-bar">
+      <button class="w-app-bar-nav-icon w-btn w-btn-icon" type="button" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+      <strong class="w-app-bar-title">With Nav</strong>
+    </header>
+  </div>
+  <div slot="wc">
+    <w-app-bar title="With Nav">
+      <w-app-bar-nav-icon for="drawer-demo"></w-app-bar-nav-icon>
+    </w-app-bar>
+    <w-navigation-drawer id="drawer-demo" temporary>
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>

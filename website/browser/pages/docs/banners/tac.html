@@ -1,0 +1,41 @@
+<h1>Banners</h1>
+<p><code>w-banner</code> is a prominent message surface with an optional leading <code>icon</code> or <code>avatar</code>, text, and trailing actions. Use <code>lines</code> to clamp long copy, <code>bg-color</code> to tint the surface, <code>stacked</code> / <code>mobile</code> to drop the actions below the text, and <code>sticky</code> to pin it.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-banner">
+      <div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">✦</span></div>
+      <div class="w-banner__content"><div class="w-banner-text">A new software update is available.</div></div>
+      <div class="w-banner-actions">
+        <button class="w-btn w-btn--text">Dismiss</button>
+        <button class="w-btn w-btn--text">Update</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-banner icon="✦" text="A new software update is available.">
+      <div slot="actions">
+        <w-btn variant="text">Dismiss</w-btn>
+        <w-btn variant="text">Update</w-btn>
+      </div>
+    </w-banner>
+  </div>
+</demo-compare>
+
+<h2>Tinted, two-line, stacked</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-banner w-banner--stacked w-banner--lines-two" style="--w-banner-bg:var(--w-primary-container);--w-banner-fg:var(--w-on-primary-container)">
+      <div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">ℹ</span></div>
+      <div class="w-banner__content"><div class="w-banner-text">We&#8217;ve updated our terms of service. Review the changes to keep using your account without interruption.</div></div>
+      <div class="w-banner-actions"><button class="w-btn w-btn--text">Review</button></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-banner bg-color="primary" icon="ℹ" lines="two" stacked
+      text="We've updated our terms of service. Review the changes to keep using your account without interruption.">
+      <div slot="actions"><w-btn variant="text">Review</w-btn></div>
+    </w-banner>
+  </div>
+</demo-compare>

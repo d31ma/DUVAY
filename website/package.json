@@ -1,0 +1,14 @@
+{
+  "name": "duvay-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "yon.serve",
+    "bundle": "tac.bundle",
+    "preview": "tac.preview --watch"
+  },
+  "devDependencies": {
+    "@d31ma/tachyon": "^26.23.1",
+    "@playwright/test": "^1.60.0"
+  }
+}

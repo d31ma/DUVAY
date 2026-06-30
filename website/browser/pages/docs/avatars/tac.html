@@ -1,0 +1,128 @@
+<h1>Avatars</h1>
+<p>User profile images, icons, initials, and badge indicators.</p>
+
+<h2>Content</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-avatar"><img src="https://i.pravatar.cc/150?img=1" alt="Ari Lane" /></span>
+      <span class="w-avatar" data-w-initials="DUVAY"></span>
+      <span class="w-avatar"><span class="w-avatar-icon">person</span></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-avatar image="https://i.pravatar.cc/150?img=1" alt="Ari Lane"></w-avatar>
+      <w-avatar text="DUVAY" alt="DuVay initials"></w-avatar>
+      <w-avatar icon="person" alt="Person icon"></w-avatar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Use Vuetify-style sizes: <code>x-small</code>, <code>small</code>, <code>default</code>, <code>large</code>, and <code>x-large</code>. DuVay aliases like <code>sm</code> and <code>lg</code> still work.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-avatar w-avatar--x-small" data-w-initials="XS"></span>
+      <span class="w-avatar w-avatar--small" data-w-initials="SM"></span>
+      <span class="w-avatar" data-w-initials="MD"></span>
+      <span class="w-avatar w-avatar--large" data-w-initials="LG"></span>
+      <span class="w-avatar w-avatar--x-large" data-w-initials="XL"></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-avatar text="XS" size="x-small"></w-avatar>
+      <w-avatar text="SM" size="small"></w-avatar>
+      <w-avatar text="MD"></w-avatar>
+      <w-avatar text="LG" size="large"></w-avatar>
+      <w-avatar text="XL" size="x-large"></w-avatar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Variants and Color</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-avatar w-avatar--color-primary w-avatar--variant-flat" data-w-initials="FL"></span>
+      <span class="w-avatar w-avatar--color-success w-avatar--variant-tonal" data-w-initials="TO"></span>
+      <span class="w-avatar w-avatar--color-warning w-avatar--variant-outlined" data-w-initials="OU"></span>
+      <span class="w-avatar w-avatar--color-error w-avatar--variant-elevated" data-w-initials="EV"></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-avatar text="FL" color="primary" variant="flat"></w-avatar>
+      <w-avatar text="TO" color="success" variant="tonal"></w-avatar>
+      <w-avatar text="OU" color="warning" variant="outlined"></w-avatar>
+      <w-avatar text="EV" color="error" variant="elevated"></w-avatar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Rounded, Border, and Density</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-avatar w-avatar--rounded w-avatar--border" data-w-initials="RO"></span>
+      <span class="w-avatar w-avatar--tile w-avatar--color-secondary" data-w-initials="TI"></span>
+      <span class="w-avatar w-avatar--density-compact w-avatar--color-tertiary" data-w-initials="DE"></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-avatar text="RO" rounded border></w-avatar>
+      <w-avatar text="TI" tile color="secondary"></w-avatar>
+      <w-avatar text="DE" density="compact" color="tertiary"></w-avatar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Badges</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-5 flex-wrap align-center">
+      <span class="w-avatar-wrap">
+        <span class="w-avatar"><img src="https://i.pravatar.cc/150?img=2" alt="User" /></span>
+        <span class="w-avatar-badge w-avatar-badge--success w-avatar-badge--dot w-avatar-badge--top-end"></span>
+      </span>
+      <span class="w-avatar-wrap w-avatar-wrap--floating">
+        <span class="w-avatar" data-w-initials="DUVAY"></span>
+        <span class="w-avatar-badge w-avatar-badge--warning w-avatar-badge--bottom-start">4</span>
+      </span>
+      <span class="w-avatar-wrap">
+        <span class="w-avatar" data-w-initials="VIP"></span>
+        <span class="w-avatar-badge w-avatar-badge--primary w-avatar-badge--top-end">new</span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-5 flex-wrap align-center">
+      <w-avatar image="https://i.pravatar.cc/150?img=2" alt="User" badge="success"></w-avatar>
+      <w-avatar text="DUVAY" badge-color="warning" badge-content="4" badge-location="bottom start" badge-floating></w-avatar>
+      <w-avatar text="VIP" badge="primary">
+        <span slot="badge">new</span>
+      </w-avatar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Status Indicator</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-avatar w-avatar-status w-avatar-status-online"><img src="https://i.pravatar.cc/150?img=3" alt="User" /></span>
+      <span class="w-avatar w-avatar-status w-avatar-status-away"><img src="https://i.pravatar.cc/150?img=4" alt="User" /></span>
+      <span class="w-avatar w-avatar-status w-avatar-status-busy"><img src="https://i.pravatar.cc/150?img=5" alt="User" /></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-avatar image="https://i.pravatar.cc/150?img=3" status="online"></w-avatar>
+      <w-avatar image="https://i.pravatar.cc/150?img=4" status="away"></w-avatar>
+      <w-avatar image="https://i.pravatar.cc/150?img=5" status="busy"></w-avatar>
+    </div>
+  </div>
+</demo-compare>

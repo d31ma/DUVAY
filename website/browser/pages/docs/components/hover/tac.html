@@ -1,0 +1,27 @@
+<h1>Hover</h1>
+<p><code>w-hover</code> tracks hover and focus state and exposes it for styling, with optional <code>open-delay</code> / <code>close-delay</code>. While hovered it adds <code>is-hovering</code> (and <code>data-hovering="true"</code>) to its inner root and reflects an <code>active</code> attribute on the host, so plain CSS can react — no JavaScript needed in your markup.</p>
+
+<h2>Reacting to hover</h2>
+<p>Target the hovering state in CSS to raise elevation, shift color, or reveal actions.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-hover">
+      <div class="w-card w-card-body" style="transition: box-shadow .2s, transform .2s">Hover me — I lift on hover</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-hover open-delay="80" close-delay="120">
+      <div class="w-card w-card-body" style="transition: box-shadow .2s, transform .2s">Hover me — I lift on hover</div>
+    </w-hover>
+  </div>
+</demo-compare>
+<style>
+  .w-hover.is-hovering .w-card { box-shadow: var(--w-shadow-lg); transform: translateY(-2px); }
+</style>
+
+<h2>Disabled</h2>
+<p>Set <code>disabled</code> to stop tracking — the state never changes and no events fire.</p>
+<demo-compare>
+  <div slot="css"><div class="w-hover"><div class="w-card w-card-body">Static target</div></div></div>
+  <div slot="wc"><w-hover disabled><div class="w-card w-card-body">Static target</div></w-hover></div>
+</demo-compare>

@@ -1,0 +1,42 @@
+<h1>Opacity</h1>
+<p>Utilities for controlling the opacity of an element. Use a fixed opacity step for static transparency, or combine opacity with a hover state to fade elements on interaction.</p>
+
+<h2>Usage</h2>
+
+<h3>Opacity steps</h3>
+<p>Apply <code>w-opacity-*</code> to change an element's transparency. The DuVay scale uses 0, 50, 75, and 100.</p>
+<div class="w-row ga-3 w-mb-md">
+  <div class="w-bg-primary-container pa-4 w-opacity-100">100</div>
+  <div class="w-bg-primary-container pa-4 w-opacity-75">75</div>
+  <div class="w-bg-primary-container pa-4 w-opacity-50">50</div>
+  <div class="w-bg-primary-container pa-4 w-opacity-0">0</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-opacity-50"&gt;Half transparent&lt;/div&gt;</code></div>
+
+<h3>Hover opacity</h3>
+<p>Pair opacity with a custom hover rule to fade elements in or out when the user points at them.</p>
+<div class="w-mb-md">
+  <style>
+    .hover-fade { opacity: 1; transition: opacity var(--w-transition-fast); }
+    .hover-fade:hover { opacity: 0.5; }
+  </style>
+  <button class="hover-fade w-bg-primary-container pa-3 rounded">Hover to fade to 50%</button>
+</div>
+<div class="code-block"><code>.my-button &#123;
+  opacity: 1;
+  transition: opacity var(--w-transition-fast);
+&#125;
+.my-button:hover &#123;
+  opacity: 0.5;
+&#125;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>w-opacity-0</code></td><td><code>opacity: 0</code> (fully transparent).</td></tr>
+    <tr><td><code>w-opacity-50</code></td><td><code>opacity: 0.5</code></td></tr>
+    <tr><td><code>w-opacity-75</code></td><td><code>opacity: 0.75</code></td></tr>
+    <tr><td><code>w-opacity-100</code></td><td><code>opacity: 1</code> (fully opaque).</td></tr>
+  </tbody>
+</table>

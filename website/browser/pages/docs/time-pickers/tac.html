@@ -1,0 +1,170 @@
+<h1>Time Pickers</h1>
+<p><code>w-time-picker</code> is a standalone clock picker inspired by Vuetify's <code>v-time-picker</code>. It supports AM/PM and 24-hour display, seconds, allowed time windows, scroll-wheel editing, input fields, color, elevation, density, and compact headers while keeping the canonical value in 24-hour <code>HH:MM</code> or <code>HH:MM:SS</code> format.</p>
+
+<h2>Clock</h2>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-time-picker">
+      <div class="w-time-picker-title">Select time</div>
+      <div class="w-time-picker-label">Time</div>
+      <div class="w-time-picker-header">
+        <button class="w-time-picker-display active" type="button">09</button>
+        <span class="w-time-picker-separator">:</span>
+        <button class="w-time-picker-display" type="button">30</button>
+        <div class="w-time-picker-period"><button class="active">AM</button><button>PM</button></div>
+      </div>
+      <div class="w-time-picker-clock">
+        <button class="w-time-picker-clock-item" style="left:71%;top:14%">1</button>
+        <button class="w-time-picker-clock-item" style="left:86%;top:29%">2</button>
+        <button class="w-time-picker-clock-item selected" style="left:8%;top:50%">9</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:270deg"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-time-picker label="Time" value="09:30"></w-time-picker>
+  </div>
+</demo-compare>
+
+<h2>Allowed Times</h2>
+<p>Use <code>min</code>, <code>max</code>, and <code>allowed-hours</code>, <code>allowed-minutes</code>, or <code>allowed-seconds</code> to constrain choices. Pass allowed values as JSON arrays.</p>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-time-picker w-time-picker--format-24hr">
+      <div class="w-time-picker-title">Allowed window</div>
+      <div class="w-time-picker-header">
+        <button class="w-time-picker-display active" type="button">11</button><span class="w-time-picker-separator">:</span><button class="w-time-picker-display" type="button">15</button>
+      </div>
+      <div class="w-time-picker-clock">
+        <button class="w-time-picker-clock-item disabled" style="left:75%;top:7%" disabled>10</button>
+        <button class="w-time-picker-clock-item selected" style="left:63%;top:23%">11</button>
+        <button class="w-time-picker-clock-item" style="left:71%;top:86%">13</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:165deg"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-time-picker value="11:15" format="24hr" min="09:30" max="22:15" allowed-hours="[9,11,13,15,17,19,21]" allowed-minutes="10,15,20,25,30,35,40,45,50" scrollable></w-time-picker>
+  </div>
+</demo-compare>
+
+<h2>Color and Elevation</h2>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-time-picker w-time-picker--color-success w-time-picker--elevation-4" style="width:320px">
+      <div class="w-time-picker-title">Release window</div>
+      <div class="w-time-picker-label">Success color</div>
+      <div class="w-time-picker-header"><button class="w-time-picker-display active">02</button><span class="w-time-picker-separator">:</span><button class="w-time-picker-display">45</button><div class="w-time-picker-period"><button>AM</button><button class="active">PM</button></div></div>
+      <div class="w-time-picker-clock"><button class="w-time-picker-clock-item selected" style="left:86%;top:29%">2</button><span class="w-time-picker-hand" style="--w-time-picker-angle:60deg"></span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-time-picker value="14:45" color="success" elevation="4" width="320px" title="Release window" label="Success color"></w-time-picker>
+  </div>
+</demo-compare>
+
+<h2>24-hour and Seconds</h2>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-time-picker w-time-picker--format-24hr">
+      <div class="w-time-picker-title">Deployment window</div>
+      <div class="w-time-picker-label">Time</div>
+      <div class="w-time-picker-header">
+        <button class="w-time-picker-display" type="button">18</button>
+        <span class="w-time-picker-separator">:</span>
+        <button class="w-time-picker-display active" type="button">45</button>
+        <span class="w-time-picker-separator">:</span>
+        <button class="w-time-picker-display" type="button">00</button>
+      </div>
+      <div class="w-time-picker-clock">
+        <button class="w-time-picker-clock-item" style="left:50%;top:8%">00</button>
+        <button class="w-time-picker-clock-item selected" style="left:8%;top:50%">45</button>
+        <button class="w-time-picker-clock-item" style="left:29%;top:14%">55</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:270deg"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-time-picker label="Time" title="Deployment window" value="18:45:00" format="24hr" use-seconds view="minutes"></w-time-picker>
+  </div>
+</demo-compare>
+
+<h2>No Header, Readonly, and Disabled</h2>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-cluster">
+      <div class="w-time-picker w-time-picker--density-compact" style="width:260px">
+        <div class="w-time-picker-header"><button class="w-time-picker-display active">08</button><span class="w-time-picker-separator">:</span><button class="w-time-picker-display">00</button><div class="w-time-picker-period"><button class="active">AM</button><button>PM</button></div></div>
+        <div class="w-time-picker-clock"><button class="w-time-picker-clock-item selected" style="left:86%;top:71%">4</button><span class="w-time-picker-hand" style="--w-time-picker-angle:120deg"></span></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-time-picker-grid">
+      <w-time-picker value="08:00" hide-header density="compact" width="100%"></w-time-picker>
+      <w-time-picker value="09:15" readonly ampm-in-title title="Readonly" width="100%" density="compact"></w-time-picker>
+      <w-time-picker value="09:15" disabled title="Disabled" width="100%" density="compact"></w-time-picker>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Input Variant</h2>
+<p>The <code>variant="input"</code> mode exposes numeric fields for hour, minute, and optional seconds while retaining the clock face for quick selection.</p>
+<demo-compare class="docs-time-picker-demo">
+  <div slot="css">
+    <div class="w-time-picker w-time-picker--variant-input w-time-picker--format-24hr">
+      <div class="w-time-picker-title">Manual entry</div>
+      <div class="w-time-picker-header">
+        <label class="w-time-picker-field active"><input value="18" /></label>
+        <span class="w-time-picker-separator">:</span>
+        <label class="w-time-picker-field"><input value="45" /></label>
+        <span class="w-time-picker-separator">:</span>
+        <label class="w-time-picker-field"><input value="30" /></label>
+      </div>
+      <div class="w-time-picker-clock"><button class="w-time-picker-clock-item selected" style="left:8%;top:50%">45</button><span class="w-time-picker-hand" style="--w-time-picker-angle:270deg"></span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-time-picker value="18:45:30" format="24hr" use-seconds variant="input" title="Manual entry"></w-time-picker>
+  </div>
+</demo-compare>
+
+<h2>Range</h2>
+<p>Pair two pickers with <code>max</code> and <code>min</code> to keep a start/end range valid.</p>
+<demo-compare class="docs-time-picker-demo docs-time-picker-demo--range">
+  <div slot="css">
+    <div class="w-grid-row" style="--w-grid-gutter:var(--w-space-4)">
+      <div class="w-col-12 w-col-md-6"><div class="w-card w-card-body"><h3>Start</h3><p>Uses <code>max</code> from the end picker.</p></div></div>
+      <div class="w-col-12 w-col-md-6"><div class="w-card w-card-body"><h3>End</h3><p>Uses <code>min</code> from the start picker.</p></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-time-picker-grid">
+      <w-time-picker title="Start" value="09:30" max="17:00" width="100%" density="compact"></w-time-picker>
+      <w-time-picker title="End" value="17:00" min="09:30" width="100%" density="compact"></w-time-picker>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Dialog and Menu Composition</h2>
+<p>Time pickers are standalone, so they can sit inside menus, dialogs, cards, and custom popovers.</p>
+<demo-compare class="docs-time-picker-demo docs-time-picker-demo--composition">
+  <div slot="css">
+    <div class="w-card w-card-body" style="max-width:420px">
+      <h3>Picker in overlay</h3>
+      <p class="w-text-subtle">Use <code>w-menu</code> or <code>w-dialog</code> as the container.</p>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-time-picker-actions">
+      <w-menu location="bottom">
+        <w-btn slot="activator" variant="outlined">Picker in menu</w-btn>
+        <w-time-picker value="10:30" hide-header></w-time-picker>
+      </w-menu>
+      <w-dialog aria-label="Picker dialog">
+        <w-btn slot="activator" variant="filled">Open dialog picker</w-btn>
+        <w-time-picker value="14:45" hide-header></w-time-picker>
+      </w-dialog>
+    </div>
+  </div>
+</demo-compare>

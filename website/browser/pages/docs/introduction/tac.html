@@ -1,0 +1,38 @@
+<h1>Introduction</h1>
+<p>DuVay is a zero-dependency design system for building clean, accessible interfaces with plain CSS, optional behavior hooks, and Light DOM web components.</p>
+
+<h2>What DuVay provides</h2>
+<div class="w-grid-row">
+  <div class="w-grid-col-12 w-grid-col-md-4">
+    <div class="w-card w-card-body">
+      <h3>Design tokens</h3>
+      <p>Theme, spacing, shape, elevation, typography, and motion values are exposed as CSS custom properties.</p>
+    </div>
+  </div>
+  <div class="w-grid-col-12 w-grid-col-md-4">
+    <div class="w-card w-card-body">
+      <h3>Two authoring modes</h3>
+      <p>Use DuVay as CSS classes in static HTML, or import <code>duvay-wc.js</code> for Vuetify components.</p>
+    </div>
+  </div>
+  <div class="w-grid-col-12 w-grid-col-md-4">
+    <div class="w-card w-card-body">
+      <h3>Progressive behavior</h3>
+      <p>Dialogs, drawers, dropdowns, expansion panels, alerts, themes, and search use small <code>data-w-*</code> hooks.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Authoring model</h2>
+<p>Every component starts as semantic HTML and DuVay classes. Web components generate the same public structure, so teams can mix both approaches without changing the visual system.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled">Save changes</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled">Save changes</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Where to go next</h2>
+<p>Start with <a href="/docs/getting-started">Getting started</a>, then use <a href="/docs/components">Components</a> for UI coverage and the <a href="/docs/directives/click-outside">Directives</a> for progressive interactions.</p>

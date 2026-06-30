@@ -1,0 +1,86 @@
+<h1>Footers</h1>
+<p>App-level footers for copyright, links, actions, and secondary navigation.</p>
+
+<h2>Basic</h2>
+<p>Default footer with surface background and a top divider.</p>
+<demo-compare>
+  <div slot="css">
+    <footer class="w-footer">&copy; 2026 DuVay</footer>
+  </div>
+  <div slot="wc">
+    <w-footer>&copy; 2026 DuVay</w-footer>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p>Use semantic color tokens or any custom CSS color value.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-2">
+      <footer class="w-footer w-footer--color-primary">Primary footer</footer>
+      <footer class="w-footer w-footer--color-success">Success footer</footer>
+      <footer class="w-footer w-footer--color-warning">Warning footer</footer>
+      <footer class="w-footer w-footer--color-error">Error footer</footer>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-2">
+      <w-footer color="primary">Primary footer</w-footer>
+      <w-footer color="success">Success footer</w-footer>
+      <w-footer color="warning">Warning footer</w-footer>
+      <w-footer color="error">Error footer</w-footer>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Height</h2>
+<p>Set a custom height with a number (px) or CSS length.</p>
+<demo-compare>
+  <div slot="css">
+    <footer class="w-footer" style="--w-footer-height: 64px;">64px tall</footer>
+  </div>
+  <div slot="wc">
+    <w-footer height="64">64px tall</w-footer>
+  </div>
+</demo-compare>
+
+<h2>Border</h2>
+<p>Add a border on all sides with the <code>border</code> attribute.</p>
+<demo-compare>
+  <div slot="css">
+    <footer class="w-footer w-footer--border">Bordered footer</footer>
+  </div>
+  <div slot="wc">
+    <w-footer border>Bordered footer</w-footer>
+  </div>
+</demo-compare>
+
+<h2>Elevation and Rounded</h2>
+<p>Add shadow depth and border radius for floating or card-like footers.</p>
+<demo-compare>
+  <div slot="css">
+    <footer class="w-footer w-footer--elevation-2 w-footer--rounded-lg w-footer--color-surface" style="color: var(--w-text);">
+      Elevated and rounded
+    </footer>
+  </div>
+  <div slot="wc">
+    <w-footer elevation="2" rounded="lg" color="surface">Elevated and rounded</w-footer>
+  </div>
+</demo-compare>
+
+<h2>App Footer</h2>
+<p>Use <code>app</code> to fix the footer to the bottom of the viewport. Wrap in a relative container for the demo.</p>
+<demo-compare>
+  <div slot="css">
+    <div style="position: relative; height: 120px; background: var(--w-surface-container); overflow: hidden;">
+      <div style="padding: 16px;">Page content</div>
+      <footer class="w-footer w-footer--app w-footer--color-primary">App footer</footer>
+    </div>
+  </div>
+  <div slot="wc">
+    <div style="position: relative; height: 120px; background: var(--w-surface-container); overflow: hidden;">
+      <div style="padding: 16px;">Page content</div>
+      <w-footer app color="primary">App footer</w-footer>
+    </div>
+  </div>
+</demo-compare>

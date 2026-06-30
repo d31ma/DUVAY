@@ -1,0 +1,98 @@
+<h1>Textareas</h1>
+<p><code>w-textarea</code> is the multi-line counterpart to the <a href="/docs/text-fields">text field</a> &#8212; same variants, density, labels, counter, clearable, and inner content, plus <code>rows</code>, <code>auto-grow</code>, <code>max-rows</code>, and <code>no-resize</code>. For a bare styled control use the <code>.w-textarea</code> class on a native <code>&lt;textarea&gt;</code>.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <textarea class="w-textarea" rows="3" placeholder="Tell us about yourself…"></textarea>
+  </div>
+  <div slot="wc">
+    <w-textarea label="Bio" rows="3" placeholder="Tell us about yourself…"></w-textarea>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<p>Set <code>variant</code> to <code>outlined</code> (default), <code>filled</code>, <code>underlined</code>, <code>plain</code>, or <code>solo</code>.</p>
+<demo-compare>
+  <div slot="css">
+      <div class="w-stack">
+        <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2">Outlined</textarea><label class="w-text-field-label">Outlined</label></span></div></div>
+        <div class="w-text-field w-text-field--textarea w-text-field--filled w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2">Filled</textarea><label class="w-text-field-label">Filled</label></span></div></div>
+        <div class="w-text-field w-text-field--textarea w-text-field--underlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2">Underlined</textarea><label class="w-text-field-label">Underlined</label></span></div></div>
+        <div class="w-text-field w-text-field--textarea w-text-field--plain w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2">Plain</textarea><label class="w-text-field-label">Plain</label></span></div></div>
+        <div class="w-text-field w-text-field--textarea w-text-field--solo w-text-field--floating"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" placeholder=" "></textarea><label class="w-text-field-label">Solo</label></span></div></div>
+      </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-textarea variant="outlined" label="Outlined" rows="2" value="Outlined"></w-textarea>
+      <w-textarea variant="filled" label="Filled" rows="2" value="Filled"></w-textarea>
+      <w-textarea variant="underlined" label="Underlined" rows="2" value="Underlined"></w-textarea>
+      <w-textarea variant="plain" label="Plain" rows="2" value="Plain"></w-textarea>
+      <w-textarea variant="solo" label="Solo" rows="2"></w-textarea>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Auto-grow</h2>
+<p>Add <code>auto-grow</code> so the field expands with its content; cap it with <code>max-rows</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--no-resize"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" placeholder="Type several lines…" style="field-sizing: content"></textarea><label class="w-text-field-label">Auto-grow</label></span></div></div>
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--no-resize"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" placeholder="Scrolls after 4 rows…" style="field-sizing: content; max-height: calc(4lh + 1.2rem); overflow-y: auto"></textarea><label class="w-text-field-label">Auto-grow (max 4 rows)</label></span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-textarea label="Auto-grow" auto-grow rows="2" placeholder="Type several lines…"></w-textarea>
+      <w-textarea label="Auto-grow (max 4 rows)" auto-grow max-rows="4" rows="2" placeholder="Scrolls after 4 rows…"></w-textarea>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>No resize</h2>
+<p>Add <code>no-resize</code> to remove the drag handle (implied by <code>auto-grow</code>).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--no-resize"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="3" placeholder=" "></textarea><label class="w-text-field-label">Fixed size</label></span></div></div>
+  </div>
+  <div slot="wc">
+    <w-textarea label="Fixed size" no-resize rows="3"></w-textarea>
+  </div>
+</demo-compare>
+
+<h2>Counter &amp; clearable</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="3" maxlength="120">Hello there</textarea><label class="w-text-field-label">Message</label></span></div><div class="w-text-field-details"><span class="w-text-field-messages"></span><span class="w-text-field-counter">11 / 120</span></div></div>
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="3">Clear me</textarea><label class="w-text-field-label">Notes</label></span><button type="button" class="w-text-field-clear" aria-label="Clear" onclick="this.previousElementSibling.querySelector('textarea').value = ''">&times;</button></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-textarea label="Message" counter maxlength="120" rows="3" value="Hello there"></w-textarea>
+      <w-textarea label="Notes" clearable rows="3" value="Clear me"></w-textarea>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>States</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value w-text-field--disabled"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" disabled>Can't edit</textarea><label class="w-text-field-label">Disabled</label></span></div></div>
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value w-text-field--readonly"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" readonly>Locked</textarea><label class="w-text-field-label">Read-only</label></span></div></div>
+      <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--error"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="2" aria-invalid="true"></textarea><label class="w-text-field-label">Feedback</label></span></div><div class="w-text-field-details"><span class="w-text-field-messages">This field is required.</span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-textarea label="Disabled" rows="2" value="Can't edit" disabled></w-textarea>
+      <w-textarea label="Read-only" rows="2" value="Locked" readonly></w-textarea>
+      <w-textarea label="Feedback" rows="2" value="" error="This field is required."></w-textarea>
+    </div>
+  </div>
+</demo-compare>
+

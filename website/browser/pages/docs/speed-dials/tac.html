@@ -1,0 +1,177 @@
+<h1>Speed Dials</h1>
+<p>A floating action button that reveals related actions in a radial or linear menu. Supports hover, click, keyboard, and multiple transition and direction modes.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-haspopup="true" aria-label="Open actions">
+          <span class="w-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button" aria-label="Edit"><span class="w-icon" aria-hidden="true">✎</span></button>
+          <button class="w-fab" type="button" aria-label="Delete"><span class="w-icon" aria-hidden="true">🗑</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-speed-dial open icon="+" aria-label="Open actions">
+        <w-fab icon="✎" aria-label="Edit"></w-fab>
+        <w-fab icon="🗑" aria-label="Delete"></w-fab>
+      </w-speed-dial>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Directions</h2>
+<p>Use <code>location</code> to control the fan direction: <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> combined with <code>start</code>, <code>end</code>, or <code>center</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Up">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+      <div class="w-speed-dial w-speed-dial--bottom w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Down">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+      <div class="w-speed-dial w-speed-dial--left w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Left">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+      <div class="w-speed-dial w-speed-dial--right w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Right">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-speed-dial open location="top center" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+      <w-speed-dial open location="bottom center" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+      <w-speed-dial open location="left center" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+      <w-speed-dial open location="right center" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Transitions</h2>
+<p>Choose <code>scale</code> (default), <code>slide</code>, or <code>fade</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Scale">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+      <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-slide">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Slide">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+      <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-fade">
+        <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Fade">+</button>
+        <div class="w-speed-dial__actions">
+          <button class="w-fab" type="button">1</button>
+          <button class="w-fab" type="button">2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-speed-dial open location="top center" transition="scale" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+      <w-speed-dial open location="top center" transition="slide" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+      <w-speed-dial open location="top center" transition="fade" icon="+">
+        <w-fab icon="✎"></w-fab>
+        <w-fab icon="🗑"></w-fab>
+      </w-speed-dial>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Open on Hover</h2>
+<p>Add <code>open-on-hover</code> to reveal actions on mouseenter and hide on mouseleave.</p>
+<demo-compare>
+  <div slot="css">
+    <p>Hover over the FAB in the CSS column to see the effect (static example shown open).</p>
+    <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+      <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Hover">+</button>
+      <div class="w-speed-dial__actions">
+        <button class="w-fab" type="button">1</button>
+        <button class="w-fab" type="button">2</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-speed-dial open-on-hover location="top center" icon="+">
+      <w-fab icon="✎"></w-fab>
+      <w-fab icon="🗑"></w-fab>
+    </w-speed-dial>
+  </div>
+</demo-compare>
+
+<h2>Extended Actions</h2>
+<p>Child <code>w-fab</code> elements can use <code>label</code> for extended action buttons inside the speed dial.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-speed-dial w-speed-dial--top w-speed-dial--center w-speed-dial--open w-speed-dial--transition-scale">
+      <button class="w-fab w-speed-dial__trigger" type="button" aria-expanded="true" aria-label="Menu">+</button>
+      <div class="w-speed-dial__actions">
+        <button class="w-fab w-fab--extended" type="button">
+          <span class="w-icon" aria-hidden="true">✎</span>
+          <span class="w-fab__label">Edit</span>
+        </button>
+        <button class="w-fab w-fab--extended" type="button">
+          <span class="w-icon" aria-hidden="true">🗑</span>
+          <span class="w-fab__label">Delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-speed-dial open location="top center" icon="+">
+      <w-fab icon="✎" label="Edit"></w-fab>
+      <w-fab icon="🗑" label="Delete"></w-fab>
+    </w-speed-dial>
+  </div>
+</demo-compare>

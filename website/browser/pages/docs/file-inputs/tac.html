@@ -1,0 +1,86 @@
+<h1>File inputs</h1>
+<p><code>w-file-input</code> is a labelled file picker. Use <code>accept</code> to restrict file types, <code>multiple</code> to allow several files, and <code>disabled</code> to lock it.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-file-input">
+      <span class="w-file-input-label">Upload file</span>
+      <span class="w-file-input-name">No file chosen</span>
+      <input type="file" />
+    </label>
+  </div>
+  <div slot="wc">
+    <w-file-input label="Upload file"></w-file-input>
+  </div>
+</demo-compare>
+
+<h2>Multiple and accept</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-file-input">
+      <span class="w-file-input-label">Attach images</span>
+      <span class="w-file-input-name">No file chosen</span>
+      <input type="file" accept="image/*" multiple />
+    </label>
+  </div>
+  <div slot="wc">
+    <w-file-input label="Attach images" accept="image/*" multiple></w-file-input>
+  </div>
+</demo-compare>
+
+<h2>Chips and counter</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-field">
+      <label class="w-field-label">Attachments</label>
+      <div class="w-file-input w-file-input--field">
+        <label class="w-file-input-field">
+          <input type="file" multiple />
+          <span class="w-file-input-placeholder">Drop files here</span>
+        </label>
+      </div>
+      <span class="w-field-hint">Selected files appear as chips</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-file-input label="Attachments" chips counter show-size multiple placeholder="Drop files here" hint="Selected files appear as chips"></w-file-input>
+  </div>
+</demo-compare>
+
+<h2>Clearable and placeholder</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-field">
+      <label class="w-field-label">Resume</label>
+      <div class="w-file-input w-file-input--field">
+        <label class="w-file-input-field">
+          <input type="file" accept=".pdf,.doc,.docx" />
+          <span class="w-file-input-placeholder">Choose a PDF or Word document</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-file-input label="Resume" clearable placeholder="Choose a PDF or Word document" accept=".pdf,.doc,.docx"></w-file-input>
+  </div>
+</demo-compare>
+
+<h2>API</h2>
+<ul>
+  <li><code>label</code> — button or field label.</li>
+  <li><code>accept</code> — comma-separated accepted MIME types or extensions.</li>
+  <li><code>multiple</code> — allow selecting several files.</li>
+  <li><code>disabled</code>, <code>readonly</code> — lock the input; readonly also prevents the file dialog.</li>
+  <li><code>chips</code> / <code>small-chips</code> — show selected files as chips.</li>
+  <li><code>counter</code> — show the file count and total size.</li>
+  <li><code>show-size</code> — show each file size inside its chip.</li>
+  <li><code>clearable</code> — show a clear-all button when files are selected.</li>
+  <li><code>placeholder</code> — text shown when no files are selected.</li>
+  <li><code>hint</code> — helper text below the field.</li>
+  <li><code>error</code> — error message; also applies error styling.</li>
+  <li><code>truncate-length</code> — max characters for a file name before truncation (default 22).</li>
+  <li><code>density</code> — <code>compact</code> or <code>comfortable</code>.</li>
+  <li><code>name</code> — native form field name forwarded to the file input.</li>
+</ul>
+<p>Events: <code>input</code> on every selection and <code>change</code> when files change or clear.</p>

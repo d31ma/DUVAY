@@ -1,0 +1,32 @@
+/* DuVay — Bottom Sheets component styles. */
+@import "../core.css";
+
+/* ── Bottom Sheet ────────────────────────────────────────────────────────── */
+.w-sheet-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  max-height: 80dvh;
+  overflow-y: auto;
+  padding: var(--w-space-xl);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  border-top: 1px solid var(--w-border);
+  background: var(--w-surface);
+  box-shadow: 0 -8px 32px var(--w-shadow-color);
+  transform: translateY(100%);
+  transition: transform var(--w-transition-slow);
+}
+
+.w-sheet-bottom.open {
+  transform: translateY(0);
+}
+
+.w-sheet-handle {
+  width: 32px;
+  height: 4px;
+  margin: 0 auto var(--w-space-lg);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-divider);
+}

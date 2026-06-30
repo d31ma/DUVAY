@@ -1,0 +1,117 @@
+<h1>Animations</h1>
+<p>DuVay motion combines named transition helpers with Svelte-inspired FLIP, crossfade, tween, and spring helpers. Every helper respects <code>prefers-reduced-motion</code>.</p>
+
+<h2>Named Transitions</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled" type="button" data-w-transition-toggle="motion-css-card" data-w-transition-name="scale">Toggle scale</button>
+    <div id="motion-css-card" class="w-card w-card-body mt-3 w-scale-transition" data-w-transition="scale">
+      <strong>Scale transition</strong>
+      <p class="w-text-muted">Named helpers mirror Vuetify patterns such as fade, scale, slide, and scroll.</p>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" data-w-transition-toggle="motion-wc-card" data-w-transition-name="slide-y">Toggle slide</w-btn>
+    <w-card id="motion-wc-card" data-w-transition="slide-y">
+      <strong>Slide transition</strong>
+      <p class="w-text-muted">The same data hook works on web components and class-only markup.</p>
+    </w-card>
+  </div>
+</demo-compare>
+
+<h2>Expansion Height</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-expand">
+      <button class="w-expand-header" type="button" data-w-expand-toggle aria-expanded="false">
+        <span class="w-expand-title">Animated disclosure</span>
+        <svg class="w-expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="w-expand-body">
+        <p>Height now animates from measured content instead of snapping between hidden and visible states.</p>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels>
+      <w-expansion-panel header="Animated item">
+        Expansion panels use the same measured expansion helper internally.
+      </w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>
+
+<h2>FLIP Reorder</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined" type="button" data-w-flip-reorder="motion-css-flip" data-w-flip-mode="rotate">Rotate list</button>
+    <div id="motion-css-flip" class="w-list w-motion-flip mt-3" data-w-flip>
+      <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Design review</span><span class="w-list-item-subtitle">Motion polish</span></div></div>
+      <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Implementation</span><span class="w-list-item-subtitle">Runtime helpers</span></div></div>
+      <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">QA pass</span><span class="w-list-item-subtitle">Preview browser</span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn variant="outlined" data-w-flip-reorder="motion-wc-flip" data-w-flip-mode="rotate">Rotate list</w-btn>
+    <w-list id="motion-wc-flip" data-w-flip data-w-flip-items="w-list-item">
+      <w-list-item title="Design review" subtitle="Motion polish"></w-list-item>
+      <w-list-item title="Implementation" subtitle="Runtime helpers"></w-list-item>
+      <w-list-item title="QA pass" subtitle="Preview browser"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>Crossfade</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined" type="button" data-w-crossfade="motion-css-a motion-css-b" data-w-crossfade-toggle>Swap avatar</button>
+    <div class="w-row ga-4 align-center mt-3">
+      <div class="w-card w-card-body" data-w-crossfade-key="motion-css-a"><span class="w-avatar">DuVay</span></div>
+      <div class="w-card w-card-body w-transition-hidden" data-w-crossfade-key="motion-css-b" hidden><span class="w-avatar w-avatar-lg">UI</span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn variant="outlined" data-w-crossfade="motion-wc-a motion-wc-b" data-w-crossfade-toggle>Swap avatar</w-btn>
+    <div class="w-row ga-4 align-center mt-3">
+      <w-card data-w-crossfade-key="motion-wc-a"><w-avatar initials="DuVay"></w-avatar></w-card>
+      <w-card data-w-crossfade-key="motion-wc-b" hidden><w-avatar initials="UI" size="lg"></w-avatar></w-card>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Tweened Values</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined" type="button" data-w-tween-start="motion-css-count">Replay</button>
+    <div class="w-card w-card-body mt-3">
+      <strong id="motion-css-count" data-w-tween data-w-tween-from="0" data-w-tween-to="84" data-w-tween-suffix="%">0%</strong>
+      <div class="w-progress mt-3">
+        <div class="w-progress-bar" style="width:0" data-w-tween data-w-tween-property="width" data-w-tween-from="0" data-w-tween-to="84"></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-card w-card-body">
+      <w-counter value="84" max="100" tween></w-counter>
+      <w-progress-linear value="84" tween></w-progress-linear>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Spring Motion</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined" type="button" data-w-spring-start="motion-css-spring">Replay spring</button>
+    <div class="w-row align-center ga-3 mt-3">
+      <span id="motion-css-spring" class="w-avatar w-motion-spring" data-w-spring data-w-spring-auto="false" data-w-spring-from="0.72" data-w-spring-to="1" data-w-spring-property="scale">S</span>
+      <span class="w-text-muted">A small spring helper is useful for counters, chips, and state changes.</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn variant="outlined" data-w-spring-start="motion-wc-spring">Replay spring</w-btn>
+    <div class="w-row align-center ga-3 mt-3">
+      <w-avatar id="motion-wc-spring" initials="S" data-w-spring data-w-spring-auto="false" data-w-spring-from="0.72" data-w-spring-to="1" data-w-spring-property="scale"></w-avatar>
+      <span class="w-text-muted">The data hook can target any element.</span>
+    </div>
+  </div>
+</demo-compare>

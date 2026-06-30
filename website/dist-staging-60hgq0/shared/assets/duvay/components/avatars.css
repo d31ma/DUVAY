@@ -1,0 +1,429 @@
+/* DuVay — Avatars component styles. */
+@import "../core.css";
+
+/* ── Avatar ──────────────────────────────────────────────────────────────── */
+.w-avatar {
+  --w-avatar-size: var(--w-size-md);
+  --w-avatar-bg: var(--w-primary-container);
+  --w-avatar-fg: var(--w-on-primary-container);
+  --w-avatar-accent: var(--w-primary);
+  --w-avatar-border-color: color-mix(in srgb, var(--w-avatar-accent) 18%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: var(--w-avatar-size);
+  height: var(--w-avatar-size);
+  min-width: var(--w-avatar-size);
+  border: 1px solid var(--w-avatar-border-color);
+  border-radius: var(--w-radius-pill);
+  overflow: hidden;
+  background: var(--w-avatar-bg);
+  color: var(--w-avatar-fg);
+  flex-shrink: 0;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1;
+  text-align: center;
+  vertical-align: middle;
+  transition:
+    width var(--w-transition-fast),
+    height var(--w-transition-fast),
+    background var(--w-transition-fast),
+    border-color var(--w-transition-fast),
+    color var(--w-transition-fast),
+    box-shadow var(--w-transition-fast);
+}
+
+.w-avatar img,
+.w-avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.w-avatar-text,
+.w-avatar-icon,
+.w-avatar > slot {
+  position: relative;
+  z-index: 1;
+}
+
+.w-avatar-icon {
+  font-size: 1.25em;
+}
+
+.w-avatar-underlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: currentColor;
+  opacity: 0;
+}
+
+.w-avatar--x-small,
+.w-avatar-xs {
+  --w-avatar-size: var(--w-size-xs);
+  font-size: var(--w-font-xs);
+}
+
+.w-avatar--sm,
+.w-avatar-sm,
+.w-avatar--small {
+  --w-avatar-size: var(--w-size-sm);
+  font-size: var(--w-font-sm);
+}
+
+.w-avatar--lg,
+.w-avatar-lg,
+.w-avatar--large {
+  --w-avatar-size: var(--w-size-lg);
+  font-size: var(--w-font-lg);
+}
+
+.w-avatar--xl,
+.w-avatar-xl,
+.w-avatar--x-large {
+  --w-avatar-size: var(--w-size-xl);
+  font-size: var(--w-font-xl);
+}
+
+.w-avatar--color-primary {
+  --w-avatar-bg: var(--w-primary-container);
+  --w-avatar-fg: var(--w-on-primary-container);
+  --w-avatar-accent: var(--w-primary);
+}
+
+.w-avatar--color-secondary {
+  --w-avatar-bg: var(--w-secondary-container);
+  --w-avatar-fg: var(--w-on-secondary-container);
+  --w-avatar-accent: var(--w-text-subtle);
+}
+
+.w-avatar--color-tertiary {
+  --w-avatar-bg: var(--w-tertiary-container);
+  --w-avatar-fg: var(--w-on-tertiary-container);
+  --w-avatar-accent: var(--w-warning);
+}
+
+.w-avatar--color-success {
+  --w-avatar-bg: var(--w-success-container);
+  --w-avatar-fg: var(--w-on-success-container);
+  --w-avatar-accent: var(--w-success);
+}
+
+.w-avatar--color-warning {
+  --w-avatar-bg: var(--w-warning-container);
+  --w-avatar-fg: var(--w-on-warning-container);
+  --w-avatar-accent: var(--w-warning);
+}
+
+.w-avatar--color-error {
+  --w-avatar-bg: var(--w-error-container);
+  --w-avatar-fg: var(--w-error);
+  --w-avatar-accent: var(--w-error);
+}
+
+.w-avatar--variant-tonal {
+  background: color-mix(in srgb, var(--w-avatar-bg) 70%, transparent);
+}
+
+.w-avatar--variant-outlined {
+  background: transparent;
+  border-color: var(--w-avatar-accent);
+  color: var(--w-avatar-accent);
+}
+
+.w-avatar--variant-text,
+.w-avatar--variant-plain {
+  background: transparent;
+  border-color: transparent;
+  color: var(--w-avatar-accent);
+}
+
+.w-avatar--variant-text .w-avatar-underlay {
+  opacity: 0.08;
+}
+
+.w-avatar--variant-plain {
+  opacity: var(--w-text-medium-emphasis-opacity);
+}
+
+.w-avatar--variant-elevated {
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-avatar--elevation-0 { box-shadow: none; }
+.w-avatar--elevation-1 { box-shadow: var(--w-shadow-sm); }
+.w-avatar--elevation-2,
+.w-avatar--elevation-3 { box-shadow: var(--w-shadow-md); }
+.w-avatar--elevation-4,
+.w-avatar--elevation-5,
+.w-avatar--elevation-6 { box-shadow: var(--w-shadow-lg); }
+
+.w-avatar--border {
+  border-color: var(--w-avatar-accent);
+}
+
+.w-avatar--rounded {
+  border-radius: var(--w-radius-pill);
+}
+
+.w-avatar--rounded-0,
+.w-avatar--rounded-none,
+.w-avatar--tile {
+  border-radius: 0;
+}
+
+.w-avatar--rounded-sm { border-radius: var(--w-radius-sm); }
+.w-avatar--rounded-md { border-radius: var(--w-radius-md); }
+.w-avatar--rounded-lg { border-radius: var(--w-radius-lg); }
+.w-avatar--rounded-xl { border-radius: var(--w-radius-xl); }
+.w-avatar--rounded-pill,
+.w-avatar--rounded-circle { border-radius: var(--w-radius-pill); }
+
+.w-avatar--density-compact,
+.w-density-compact :where(.w-avatar) {
+  --w-avatar-size: var(--w-size-sm);
+}
+
+.w-avatar--density-comfortable,
+.w-density-comfortable :where(.w-avatar) {
+  --w-avatar-size: var(--w-size-md);
+}
+
+.w-avatar--start {
+  margin-inline-end: var(--w-space-2);
+}
+
+.w-avatar--end {
+  margin-inline-start: var(--w-space-2);
+}
+
+/* Avatar status indicator */
+.w-avatar-status {
+  position: relative;
+}
+.w-avatar-status::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--w-surface);
+  background: var(--w-text-very-subtle);
+}
+.w-avatar-status-online::after { background: var(--w-success); }
+.w-avatar-status-away::after   { background: var(--w-warning); }
+.w-avatar-status-busy::after   { background: var(--w-error); }
+
+.w-avatar-wrap {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.w-avatar-badge {
+  --w-avatar-badge-dot-size: 0.75rem;
+  --w-avatar-badge-size: 1.125rem;
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--w-avatar-badge-size);
+  height: var(--w-avatar-badge-size);
+  padding-inline: 0.3125rem;
+  border: 2px solid var(--w-surface);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  box-shadow: var(--w-shadow-sm);
+  font-size: 0.625rem;
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.w-avatar-badge--dot {
+  width: var(--w-avatar-badge-dot-size);
+  min-width: var(--w-avatar-badge-dot-size);
+  height: var(--w-avatar-badge-dot-size);
+  padding: 0;
+}
+
+.w-avatar-badge--top-end {
+  top: 0;
+  right: 0;
+  transform: translate(24%, -24%);
+}
+
+.w-avatar-badge--top-start {
+  top: 0;
+  left: 0;
+  transform: translate(-24%, -24%);
+}
+
+.w-avatar-badge--bottom-end {
+  right: 0;
+  bottom: 0;
+  transform: translate(24%, 24%);
+}
+
+.w-avatar-badge--bottom-start {
+  bottom: 0;
+  left: 0;
+  transform: translate(-24%, 24%);
+}
+
+.w-avatar-wrap:not(.w-avatar-wrap--floating) .w-avatar-badge {
+  transform: translate(12%, -12%);
+}
+
+.w-avatar-wrap:not(.w-avatar-wrap--floating) .w-avatar-badge--top-start {
+  transform: translate(-12%, -12%);
+}
+
+.w-avatar-wrap:not(.w-avatar-wrap--floating) .w-avatar-badge--bottom-end {
+  transform: translate(12%, 12%);
+}
+
+.w-avatar-wrap:not(.w-avatar-wrap--floating) .w-avatar-badge--bottom-start {
+  transform: translate(-12%, 12%);
+}
+
+.w-avatar-badge--primary { background: var(--w-primary); color: var(--w-on-primary); }
+.w-avatar-badge--secondary { background: var(--w-text-subtle); color: var(--w-surface); }
+.w-avatar-badge--tertiary,
+.w-avatar-badge--warning { background: var(--w-warning); color: var(--w-on-warning); }
+.w-avatar-badge--success { background: var(--w-success); color: var(--w-on-success); }
+.w-avatar-badge--error,
+.w-avatar-badge--danger { background: var(--w-error); color: var(--w-on-error); }
+
+/* Avatar initials fallback */
+.w-avatar[data-w-initials]::before {
+  content: attr(data-w-initials);
+}
+
+.w-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  isolation: isolate;
+  vertical-align: middle;
+}
+
+.w-avatar-group .w-avatar {
+  box-shadow: 0 0 0 2px var(--w-surface);
+}
+
+.w-avatar-group :where(w-avatar, .w-avatar) + :where(w-avatar, .w-avatar) {
+  margin-left: -0.625rem;
+}
+
+.w-avatar-group-more {
+  margin-left: -0.625rem;
+  background: var(--w-surface-container-high);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+/* Card helpers */
+.w-card-title {
+  display: block;
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1.4;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.w-card-subtitle {
+  display: block;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  line-height: 1.45;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.w-card-text {
+  display: block;
+  color: var(--w-text-subtle);
+  line-height: 1.5;
+  margin: 0;
+  padding: var(--w-space-lg) var(--w-space-xl);
+}
+.w-card-text + .w-card-actions,
+.w-card-item + .w-card-text,
+.w-card-title + .w-card-text {
+  padding-top: 0;
+}
+.w-card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--w-space-sm);
+  padding: var(--w-space-md) var(--w-space-xl);
+  border-top: 1px solid var(--w-border);
+}
+
+.w-card-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--w-space-md);
+  padding: var(--w-space-md) var(--w-space-xl);
+}
+
+.w-card-item__prepend,
+.w-card-item__append {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  flex-shrink: 0;
+}
+
+.w-card-item__content {
+  display: grid;
+  gap: var(--w-space-1);
+  align-self: center;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.w-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-icon-sm);
+  height: var(--w-size-icon-sm);
+  color: var(--w-card-accent);
+  font-size: var(--w-font-lg);
+  line-height: 1;
+}
+
+.w-card-item + .w-card-actions,
+.w-card-title + .w-card-actions,
+.w-card-subtitle + .w-card-actions {
+  padding-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-card__loader-bar {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,137 @@
+<h1>Command</h1>
+<p>Command, item, and collapsible primitives help build fast search surfaces and compact action lists.</p>
+
+<h2>Command palette</h2>
+<p>A search input over a list of <code>&lt;w-command-item&gt;</code>s. Type to filter; use <kbd class="w-kbd">↑</kbd> <kbd class="w-kbd">↓</kbd> to move, <kbd class="w-kbd">Enter</kbd> to select, and <kbd class="w-kbd">Home</kbd> / <kbd class="w-kbd">End</kbd> to jump. Items can carry a leading <code>icon</code>, a <code>subtitle</code>, and a <code>shortcut</code>; selecting one emits <code>change</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-command" role="combobox" aria-label="Command menu">
+      <div class="w-command-input-wrap">
+        <span class="w-command-icon" aria-hidden="true">⌕</span>
+        <input class="w-command-input" type="search" placeholder="Search commands..." />
+      </div>
+      <div class="w-command-list" role="listbox">
+        <button class="w-command-item active" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">📄</span>
+          <span class="w-command-item-content"><span class="w-command-item-title">New File</span></span>
+          <kbd class="w-kbd">⌘N</kbd>
+        </button>
+        <button class="w-command-item" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">📂</span>
+          <span class="w-command-item-content">
+            <span class="w-command-item-title">Open Project</span>
+            <span class="w-command-item-subtitle">Open an existing project</span>
+          </span>
+          <kbd class="w-kbd">⌘O</kbd>
+        </button>
+        <button class="w-command-item" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">💾</span>
+          <span class="w-command-item-content"><span class="w-command-item-title">Save</span></span>
+          <kbd class="w-kbd">⌘S</kbd>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-command placeholder="Search commands...">
+      <w-command-item value="new" icon="📄" shortcut="⌘N">New File</w-command-item>
+      <w-command-item value="open" icon="📂" subtitle="Open an existing project" shortcut="⌘O">Open Project</w-command-item>
+      <w-command-item value="save" icon="💾" shortcut="⌘S">Save</w-command-item>
+    </w-command>
+  </div>
+</demo-compare>
+
+<h2>Grouped items</h2>
+<p>Add <code>&lt;div class="w-command-subheader"&gt;</code> labels and <code>&lt;div class="w-command-divider"&gt;</code> rules between items to organize the list. The same structure can be produced declaratively with the <code>items</code> array — an array of item objects (title, subtitle, icon, shortcut, value, disabled) plus subheader and divider rows.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-command" role="combobox" aria-label="Command menu">
+      <div class="w-command-input-wrap">
+        <span class="w-command-icon" aria-hidden="true">⌕</span>
+        <input class="w-command-input" type="search" placeholder="Search..." />
+      </div>
+      <div class="w-command-list" role="listbox">
+        <div class="w-command-subheader">Files</div>
+        <button class="w-command-item active" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">🔎</span>
+          <span class="w-command-item-content">
+            <span class="w-command-item-title">Find File</span>
+            <span class="w-command-item-subtitle">Search by name</span>
+          </span>
+          <kbd class="w-kbd">⌘P</kbd>
+        </button>
+        <button class="w-command-item" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">📁</span>
+          <span class="w-command-item-content"><span class="w-command-item-title">New Folder</span></span>
+        </button>
+        <div class="w-command-divider" role="separator"></div>
+        <div class="w-command-subheader">Settings</div>
+        <button class="w-command-item" role="option">
+          <span class="w-command-item-icon" aria-hidden="true">🎨</span>
+          <span class="w-command-item-content"><span class="w-command-item-title">Appearance</span></span>
+        </button>
+        <button class="w-command-item" role="option" disabled aria-disabled="true">
+          <span class="w-command-item-icon" aria-hidden="true">⌨️</span>
+          <span class="w-command-item-content"><span class="w-command-item-title">Keyboard</span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-command placeholder="Search...">
+      <div class="w-command-subheader">Files</div>
+      <w-command-item value="find" icon="🔎" subtitle="Search by name" shortcut="⌘P">Find File</w-command-item>
+      <w-command-item value="newfolder" icon="📁">New Folder</w-command-item>
+      <div class="w-command-divider" role="separator"></div>
+      <div class="w-command-subheader">Settings</div>
+      <w-command-item value="appearance" icon="🎨">Appearance</w-command-item>
+      <w-command-item value="keyboard" icon="⌨️" disabled>Keyboard</w-command-item>
+    </w-command>
+  </div>
+</demo-compare>
+
+<h2>Overlay &amp; hotkey</h2>
+<p>Give <code>&lt;w-command&gt;</code> a <code>hotkey</code> (for example <code>mod+k</code> — ⌘ on macOS, Ctrl elsewhere) to open it as a centered overlay from anywhere. Press <kbd class="w-kbd">⌘K</kbd> / <kbd class="w-kbd">Ctrl K</kbd> now, or use the button. <kbd class="w-kbd">Esc</kbd> or a backdrop click closes it; open it programmatically with the <code>open</code> attribute or the <code>show()</code> / <code>hide()</code> methods.</p>
+<button class="w-btn w-btn-filled" type="button" data-open-command="demo-overlay-palette">Open command palette</button>
+<w-command id="demo-overlay-palette" hotkey="mod+k" placeholder="Search commands…">
+  <w-command-item value="profile" icon="👤">Go to Profile</w-command-item>
+  <w-command-item value="billing" icon="💳" subtitle="Manage your subscription">Billing</w-command-item>
+  <w-command-item value="logout" icon="🚪" shortcut="⌘⇧Q">Log out</w-command-item>
+</w-command>
+
+<h2>Item</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-item">
+      <span class="w-item-icon" aria-hidden="true">↗</span>
+      <span class="w-item-content">
+        <span class="w-item-title">Open deployment</span>
+        <span class="w-item-description">Production environment</span>
+      </span>
+      <kbd class="w-kbd">D</kbd>
+    </button>
+  </div>
+  <div slot="wc">
+    <w-item icon="↗" title="Open deployment" description="Production environment" shortcut="D"></w-item>
+  </div>
+</demo-compare>
+
+<h2>Collapsible</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-collapsible open">
+      <button class="w-collapsible-trigger" aria-expanded="true">
+        <span>Advanced filters</span>
+        <svg class="w-collapsible-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="w-collapsible-content">
+        <p>Saved views, owners, tags, and status filters.</p>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-collapsible header="Advanced filters" open>
+      <p>Saved views, owners, tags, and status filters.</p>
+    </w-collapsible>
+  </div>
+</demo-compare>

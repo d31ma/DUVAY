@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-508d77e7-0">Lists</h1><p id="ty-e61167d3-0">Vertical collections for navigation, settings rows, messages, and selectable options.</p><h2 id="ty-210da8dd-0">Basic List</h2><p id="ty-c343b546-0"><code id="ty-a18e0237-0">w-list-item-title</code>, <code id="ty-1318b534-0">w-list-item-subtitle</code>, <code id="ty-db0cb656-0">w-list-subheader</code>, <code id="ty-4d2cfd6f-0">w-list-children</code>, <code id="ty-7469f09a-0">w-list-img</code>, <code id="ty-d11311ab-0">w-list-item-action</code>, and <code id="ty-11970c89-0">w-list-item-media</code> are available as Vuetify-named subcomponents.</p><demo-compare >
+  <div slot="css" id="ty-ed49c41d-0">
+    <div class="w-list" id="ty-e7fff194-0">
+      <button class="w-list-item" id="ty-f21cf79f-0">
+        <span class="w-list-item-prepend" id="ty-5b3b446d-0">🏠</span>
+        <span class="w-list-item-content" id="ty-73008a10-0">
+          <span class="w-list-item-title" id="ty-33098867-0">Dashboard</span>
+        </span>
+        <span class="w-list-item-append" id="ty-4bb14146-0">›</span>
+      </button>
+      <button class="w-list-item active" id="ty-2cfec4d1-0">
+        <span class="w-list-item-prepend" id="ty-4a4ccd39-0">📥</span>
+        <span class="w-list-item-content" id="ty-8bf030a8-0">
+          <span class="w-list-item-title" id="ty-ba6067b5-0">Inbox</span>
+          <span class="w-list-item-subtitle" id="ty-c74dcd8a-0">12 unread messages</span>
+        </span>
+        <span class="w-list-item-append" id="ty-8463d955-0">12</span>
+      </button>
+      <button class="w-list-item" id="ty-604e6ef1-0">
+        <span class="w-list-item-prepend" id="ty-7f4281ca-0">⚙</span>
+        <span class="w-list-item-content" id="ty-4315dbfc-0">
+          <span class="w-list-item-title" id="ty-7b99ea17-0">Settings</span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-cf9a6a42-0">
+    <w-list selectable="" id="ty-20469e82-0">
+      <w-list-item title="Dashboard" value="dashboard" prepend-icon="🏠" append-icon="›" id="ty-7d64397d-0"></w-list-item>
+      <w-list-item title="Inbox" subtitle="12 unread messages" value="inbox" prepend-icon="📥" append-icon="12" active="" id="ty-855425c5-0"></w-list-item>
+      <w-list-item title="Settings" value="settings" prepend-icon="⚙" id="ty-bce092a6-0"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-49736082-0">Items API</h2><p id="ty-956d74c9-0"><code id="ty-f6519abd-0">items</code> accepts a JSON array with item, divider, subheader, and nested children entries. Selection attributes also accept JSON arrays for multi-value state.</p><demo-compare >
+  <div slot="css" id="ty-926db0f2-0">
+    <div class="w-list w-list--nav" id="ty-1c7c2d04-0">
+      <div class="w-list-subheader" id="ty-1c9ba852-0">Workspace</div>
+      <button class="w-list-item active" id="ty-f2e22964-0">
+        <span class="w-list-item-prepend" id="ty-d096b4bf-0">@</span>
+        <span class="w-list-item-content" id="ty-1b53ebad-0">
+          <span class="w-list-item-title" id="ty-272fcdc2-0">Inbox</span>
+          <span class="w-list-item-subtitle" id="ty-a48557b6-0">12 unread</span>
+        </span>
+      </button>
+      <div class="w-list-divider" id="ty-0da4be65-0"></div>
+      <div class="w-list-group open" id="ty-41f9beb6-0">
+        <button class="w-list-group-activator w-list-item" type="button" aria-expanded="true" id="ty-e64f5fc1-0">
+          <span class="w-list-item-content" id="ty-8edad163-0"><span class="w-list-item-title" id="ty-feffc3ee-0">Settings</span></span>
+          <span class="w-list-item-append" id="ty-9e72c4f5-0">⌃</span>
+        </button>
+        <div class="w-list-group-items" id="ty-6a69395e-0">
+          <button class="w-list-item" id="ty-42157e10-0">Profile</button>
+          <button class="w-list-item" id="ty-2de60f0f-0">Billing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-c6a87ad3-0">
+    <w-list nav="" selectable="" selected="[&#39;inbox&#39;]" opened="[&#39;settings&#39;]" items="[{&#39;type&#39;:&#39;subheader&#39;,&#39;title&#39;:&#39;Workspace&#39;},{&#39;title&#39;:&#39;Inbox&#39;,&#39;value&#39;:&#39;inbox&#39;,&#39;subtitle&#39;:&#39;12 unread&#39;,&#39;prependIcon&#39;:&#39;@&#39;},{&#39;type&#39;:&#39;divider&#39;},{&#39;title&#39;:&#39;Settings&#39;,&#39;value&#39;:&#39;settings&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Profile&#39;,&#39;value&#39;:&#39;profile&#39;},{&#39;title&#39;:&#39;Billing&#39;,&#39;value&#39;:&#39;billing&#39;}]}]" id="ty-2e64b6eb-0"></w-list>
+  </div>
+</demo-compare><h2 id="ty-252f0961-0">Media and Variants</h2><demo-compare >
+  <div slot="css" id="ty-0fefc457-0">
+    <div class="w-list w-list--two-line" id="ty-540b9fa2-0">
+      <button class="w-list-item w-list-item--variant-tonal active" id="ty-b0f59754-0">
+        <span class="w-list-item-prepend" id="ty-ef4cbc04-0"><span class="w-avatar w-avatar-sm" id="ty-73337826-0"><span class="w-avatar-text" id="ty-ce39bcfd-0">AM</span><span class="w-avatar-underlay" aria-hidden="true" id="ty-7fa56cc4-0"></span></span></span>
+        <span class="w-list-item-content" id="ty-dfd51af7-0">
+          <span class="w-list-item-title" id="ty-e6321233-0">Avery Morgan</span>
+          <span class="w-list-item-subtitle" id="ty-0c6c78d5-0">Shared the revised roadmap.</span>
+        </span>
+        <span class="w-list-item-append" id="ty-33aa2cf1-0">9:42</span>
+      </button>
+      <button class="w-list-item w-list-item--variant-outlined" id="ty-8a4ed6f0-0">
+        <span class="w-list-item-prepend" id="ty-fc35a0a5-0"><span class="w-avatar w-avatar-sm" id="ty-4f77b67b-0"><span class="w-avatar-text" id="ty-bc2429a4-0">NS</span><span class="w-avatar-underlay" aria-hidden="true" id="ty-862e8432-0"></span></span></span>
+        <span class="w-list-item-content" id="ty-6c9f96fc-0">
+          <span class="w-list-item-title" id="ty-71e8cb1e-0">Nora Singh</span>
+          <span class="w-list-item-subtitle" id="ty-e5392c66-0">Left a launch checklist note.</span>
+        </span>
+        <span class="w-list-item-append" id="ty-c4137d43-0">8:15</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-b2bc3322-0">
+    <w-list lines="two" selectable="" selected="avery" id="ty-1a35d3a5-0">
+      <w-list-item title="Avery Morgan" subtitle="Shared the revised roadmap." value="avery" prepend-avatar="AM" append-icon="9:42" variant="tonal" id="ty-8f595707-0"></w-list-item>
+      <w-list-item title="Nora Singh" subtitle="Left a launch checklist note." value="nora" prepend-avatar="NS" append-icon="8:15" variant="outlined" id="ty-69671f88-0"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-59747e8f-0">List Groups</h2><p id="ty-4ecfafa7-0"><code id="ty-9ce02f07-0">w-list-group</code> and <code id="ty-76a0cf38-0">w-list-group-activator</code> provide expandable nested list sections.</p><demo-compare >
+  <div slot="css" id="ty-0b949e6b-0">
+    <div class="w-list" id="ty-e91400e2-0">
+      <div class="w-list-group open" id="ty-e7bf87c3-0">
+        <button class="w-list-group-activator w-list-item" type="button" aria-expanded="true" id="ty-3011727d-0">
+          <span class="w-list-item-content" id="ty-6515e93f-0"><span class="w-list-item-title" id="ty-7a8f6425-0">Components</span></span>
+          <span class="w-list-item-append" id="ty-8647c969-0">⌃</span>
+        </button>
+        <div class="w-list-group-items" id="ty-7a74d538-0">
+          <button class="w-list-item" id="ty-a4b9fac1-0">Lists</button>
+          <button class="w-list-item" id="ty-673d79ef-0">Tables</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-21f6630a-0">
+    <w-list nav="" id="ty-a401e71f-0">
+      <w-list-group title="Components" open="" id="ty-fe3bd211-0">
+        <w-list-item title="Lists" id="ty-5acf026b-0"></w-list-item>
+        <w-list-item title="Tables" id="ty-2e202933-0"></w-list-item>
+      </w-list-group>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-7819eb8b-0">Navigation Density</h2><demo-compare >
+  <div slot="css" id="ty-7334eebf-0">
+    <div class="w-list w-list--nav w-list--compact" id="ty-a9d63327-0">
+      <div class="w-list-subheader" id="ty-8c6c15d6-0">Workspace</div>
+      <a class="w-list-item active" href="#" id="ty-2a483168-0">
+        <span class="w-list-item-prepend" id="ty-f0c38c20-0">📌</span>
+        <span class="w-list-item-content" id="ty-1edaa77b-0"><span class="w-list-item-title" id="ty-0c597a66-0">Pinned</span></span>
+      </a>
+      <a class="w-list-item" href="#" id="ty-9a84467e-0">
+        <span class="w-list-item-prepend" id="ty-bba6c3c6-0">🗂</span>
+        <span class="w-list-item-content" id="ty-b6db4447-0"><span class="w-list-item-title" id="ty-8b0abc76-0">Projects</span></span>
+      </a>
+      <div class="w-list-divider" id="ty-e0119221-0"></div>
+      <a class="w-list-item" href="#" id="ty-91105ae6-0">
+        <span class="w-list-item-prepend" id="ty-bfba5550-0">🕘</span>
+        <span class="w-list-item-content" id="ty-3d1e39ba-0"><span class="w-list-item-title" id="ty-702c009d-0">Recent</span></span>
+      </a>
+    </div>
+  </div>
+  <div slot="wc" id="ty-eff32a8b-0">
+    <w-list nav="" density="compact" selectable="" id="ty-7e530af5-0">
+      <div class="w-list-subheader" id="ty-932e5519-0">Workspace</div>
+      <w-list-item href="#" title="Pinned" value="pinned" prepend-icon="📌" active="" id="ty-ae4691a6-0"></w-list-item>
+      <w-list-item href="#" title="Projects" value="projects" prepend-icon="🗂" id="ty-8b00a058-0"></w-list-item>
+      <div class="w-list-divider" id="ty-efcacd12-0"></div>
+      <w-list-item href="#" title="Recent" value="recent" prepend-icon="🕘" id="ty-dd7d3bed-0"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-cd494643-0">Multi-line Items</h2><demo-compare >
+  <div slot="css" id="ty-152ab5fa-0">
+    <div class="w-list w-list--two-line" id="ty-ea525860-0">
+      <button class="w-list-item" id="ty-84f32c71-0">
+        <span class="w-list-item-prepend" id="ty-bad6c36b-0"><span class="w-avatar w-avatar-sm" data-w-initials="AM" id="ty-c035435a-0"></span></span>
+        <span class="w-list-item-content" id="ty-d7d5ff9c-0">
+          <span class="w-list-item-title" id="ty-efd84a25-0">Avery Morgan</span>
+          <span class="w-list-item-subtitle" id="ty-fa922653-0">Shared the revised roadmap.</span>
+        </span>
+        <span class="w-list-item-append" id="ty-989d8710-0">9:42</span>
+      </button>
+      <button class="w-list-item" id="ty-b62ba713-0">
+        <span class="w-list-item-prepend" id="ty-6315e0a5-0"><span class="w-avatar w-avatar-sm" data-w-initials="NS" id="ty-311b0317-0"></span></span>
+        <span class="w-list-item-content" id="ty-75fe6e95-0">
+          <span class="w-list-item-title" id="ty-05ff0156-0">Nora Singh</span>
+          <span class="w-list-item-subtitle" id="ty-8f86e70e-0">Left a comment on the launch checklist.</span>
+        </span>
+        <span class="w-list-item-append" id="ty-b459cb6b-0">8:15</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-6f8f6d36-0">
+    <w-list lines="two" id="ty-1af1d1ba-0">
+      <w-list-item title="Avery Morgan" subtitle="Shared the revised roadmap." append-icon="9:42" id="ty-785d6b19-0">
+        <span slot="prepend" class="w-avatar w-avatar-sm" data-w-initials="AM" id="ty-e6dcc6fd-0"></span>
+      </w-list-item>
+      <w-list-item title="Nora Singh" subtitle="Left a comment on the launch checklist." append-icon="8:15" id="ty-a1c5587c-0">
+        <span slot="prepend" class="w-avatar w-avatar-sm" data-w-initials="NS" id="ty-1adfae7c-0"></span>
+      </w-list-item>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-9f55d46d-0">Tree view</h2><p id="ty-45edde90-0"><code id="ty-a0a2a094-0">w-treeview</code> renders hierarchical, collapsible data. Pass a flat <code id="ty-5a031a74-0">items</code> array of <code id="ty-03069880-0">&gt;</code>-delimited paths and DuVay builds the tree, or compose <code id="ty-194890a4-0">w-treeview-item</code> children directly. Add <code id="ty-0e2a0905-0">open-all</code> to expand every branch; toggle buttons are keyboard-focusable and report <code id="ty-e06f551b-0">aria-expanded</code>.</p><demo-compare >
+  <div slot="css" id="ty-60321ebe-0">
+    <div class="w-treeview" role="tree" id="ty-fbb7edbe-0">
+      <ul id="ty-bbfcea65-0">
+        <li class="w-treeview-node open" role="treeitem" aria-expanded="true" id="ty-e15790a9-0">
+          <span class="w-treeview-row" id="ty-faa6533f-0">
+            <button class="w-treevietoggle" type="button" aria-expanded="true" aria-label="Toggle Components" id="ty-f6c94975-0">›</button>
+            <span id="ty-120f6626-0">Components</span>
+          </span>
+          <ul id="ty-31405e0c-0">
+            <li class="w-treeview-node open" role="treeitem" id="ty-9a7ac532-0"><span class="w-treeview-row" id="ty-bd403128-0"><span class="w-treeview-leaf" aria-hidden="true" id="ty-cd9b1555-0"></span><span id="ty-73126301-0">Buttons</span></span></li>
+            <li class="w-treeview-node open" role="treeitem" id="ty-072b8ff4-0"><span class="w-treeview-row" id="ty-ee068884-0"><span class="w-treeview-leaf" aria-hidden="true" id="ty-fc194a06-0"></span><span id="ty-93b09b35-0">Inputs</span></span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc" id="ty-0f19a4f9-0">
+    <w-treeview open-all="" items="[Components > Buttons; Components > Inputs > Text field; Components > Inputs > Select; Layout > Grid; Layout > Utilities]" id="ty-a84a82f7-0"></w-treeview>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

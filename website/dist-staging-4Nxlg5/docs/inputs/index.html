@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-e5ef7c3a-0">Custom inputs</h1><p id="ty-c1fac45b-0">The <code id="ty-a6e8693d-0">w-field</code> class and the <code id="ty-b34afac9-0">w-input-group</code> component are the foundation every DuVay form control is built on. They provide the label, hint, validation messages, prefix/suffix add-ons, and inline actions that wrap a raw <code id="ty-d5f84df1-0">w-input</code> &#8212; use them directly to compose a control that isn&#8217;t covered by a dedicated component.</p><h2 id="ty-22019dcc-0">Field anatomy</h2><p id="ty-8c543a94-0">A field is a label, a control, and an optional hint. Add <code id="ty-8eca2133-0">w-field-error</code> for the error state.</p><demo-compare >
+  <div slot="css" id="ty-45d662f9-0">
+    <div class="w-stack" id="ty-cc7f649c-0">
+      <div class="w-field" id="ty-79cc4e53-0">
+        <label class="w-field-label" for="demo-anatomy" id="ty-87d86773-0">Display name</label>
+        <input class="w-input" id="demo-anatomy" value="duvay.css" />
+        <span class="w-field-hint" id="ty-97680e0f-0">Shown on your public profile.</span>
+      </div>
+      <div class="w-field w-field-error" id="ty-ee85b9a2-0">
+        <label class="w-field-label" id="ty-e003cfdc-0">Email</label>
+        <input class="w-input" value="bad-email" id="ty-6266c3cd-0" />
+        <span class="w-field-hint" id="ty-d1723be3-0">Invalid email format.</span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-1ab9e6d9-0">
+    <div class="w-stack" id="ty-553aaf40-0">
+      <w-input label="Display name" value="duvay.css" hint="Shown on your public profile." id="ty-d02d9ff0-0"></w-input>
+      <w-input label="Email" value="bad-email" error="Invalid email format." id="ty-500d7484-0"></w-input>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-d05ea91a-0">Add-ons</h2><p id="ty-eccc6944-0"><code id="ty-d401d173-0">w-input-group</code> places prefixes, suffixes, and inline actions alongside the control with <code id="ty-c9a8ebce-0">w-input-group-addon</code>.</p><demo-compare >
+  <div slot="css" id="ty-7afb5ea2-0">
+    <label class="w-field" id="ty-07803a57-0">
+      <span class="w-field-label" id="ty-cc571f31-0">Website</span>
+      <span class="w-input-group" id="ty-6ed42082-0">
+        <span class="w-input-group-addon" id="ty-3edb7f56-0">https://</span>
+        <input class="w-input" value="duvay.css" id="ty-d778bef6-0" />
+        <button class="w-btn w-btn-text" type="button" id="ty-b19ca2ba-0">Copy</button>
+      </span>
+      <span class="w-field-hint" id="ty-7ad35f8e-0">Use add-ons for prefixes, suffixes, and inline actions.</span>
+    </label>
+  </div>
+  <div slot="wc" id="ty-b0bec160-0">
+    <w-input-group label="Website" hint="Use add-ons for prefixes, suffixes, and inline actions." id="ty-08272220-0">
+      <span class="w-input-group-addon" id="ty-77441acf-0">https://</span>
+      <input class="w-input" value="duvay.css" id="ty-da70e72d-0" />
+      <button class="w-btn w-btn-text" type="button" id="ty-3bb6e4a9-0">Copy</button>
+    </w-input-group>
+  </div>
+</demo-compare><h2 id="ty-45d2de20-0">Form input components</h2><p id="ty-6406b69b-0">For common controls, reach for the dedicated components rather than composing a field by hand.</p><div class="w-table-wrap" id="ty-57942459-0">
+  <div class="w-table-grid w-table-grid--dense" id="ty-8ea0bc66-0">
+    <div class="w-grid-row w-table-header" id="ty-058c9f20-0">
+      <div class="w-grid-col-4" id="ty-564eb7af-0">Control</div>
+      <div class="w-grid-col-4" id="ty-d0526116-0">DuVay component</div>
+      <div class="w-grid-col-4" id="ty-5356a20b-0">Docs</div>
+    </div>
+    <div class="w-grid-row" id="ty-b296c9c0-0"><div class="w-grid-col-4" id="ty-675a2296-0">Text field</div><div class="w-grid-col-4" id="ty-5d60ef9e-0"><code id="ty-e258c66b-0">w-text-field</code> / <code id="ty-69436b80-0">w-input</code></div><div class="w-grid-col-4" id="ty-e5d791c7-0"><a href="/docs/text-fields" id="ty-c7c67f3d-0">Text fields</a></div></div>
+    <div class="w-grid-row" id="ty-1ff5af76-0"><div class="w-grid-col-4" id="ty-9677c28f-0">Textarea</div><div class="w-grid-col-4" id="ty-2676d740-0"><code id="ty-4e08bc56-0">w-textarea</code></div><div class="w-grid-col-4" id="ty-73de0c4c-0"><a href="/docs/textareas" id="ty-cd1e670c-0">Textareas</a></div></div>
+    <div class="w-grid-row" id="ty-4d46bed3-0"><div class="w-grid-col-4" id="ty-28228747-0">Select</div><div class="w-grid-col-4" id="ty-b5b8381a-0"><code id="ty-539fa01b-0">w-select</code>, <code id="ty-7fa126a6-0">w-native-select</code></div><div class="w-grid-col-4" id="ty-501b0ed0-0"><a href="/docs/selects" id="ty-5511be8c-0">Selects</a></div></div>
+    <div class="w-grid-row" id="ty-2d99cab4-0"><div class="w-grid-col-4" id="ty-a51c5a8c-0">Autocomplete</div><div class="w-grid-col-4" id="ty-06c43f9b-0"><code id="ty-295d9922-0">w-autocomplete</code></div><div class="w-grid-col-4" id="ty-2032cac6-0"><a href="/docs/autocompletes" id="ty-668d59ff-0">Autocompletes</a></div></div>
+    <div class="w-grid-row" id="ty-e3a86384-0"><div class="w-grid-col-4" id="ty-5c1659ce-0">Combobox</div><div class="w-grid-col-4" id="ty-3edc7a3b-0"><code id="ty-0dc721d1-0">w-combobox</code></div><div class="w-grid-col-4" id="ty-7eb13253-0"><a href="/docs/combobox" id="ty-3287c02e-0">Combobox</a></div></div>
+    <div class="w-grid-row" id="ty-73f4c8a7-0"><div class="w-grid-col-4" id="ty-4a376d84-0">Checkbox</div><div class="w-grid-col-4" id="ty-d1a5247d-0"><code id="ty-9eb76359-0">w-checkbox</code></div><div class="w-grid-col-4" id="ty-586089e7-0"><a href="/docs/checkboxes" id="ty-478978fd-0">Checkboxes</a></div></div>
+    <div class="w-grid-row" id="ty-e62a5d6e-0"><div class="w-grid-col-4" id="ty-bcf7d507-0">Radio</div><div class="w-grid-col-4" id="ty-754d73e0-0"><code id="ty-f8419816-0">w-radio-group</code>, <code id="ty-6f7e3801-0">w-radio</code></div><div class="w-grid-col-4" id="ty-4603a756-0"><a href="/docs/radio-buttons" id="ty-f8f32455-0">Radio buttons</a></div></div>
+    <div class="w-grid-row" id="ty-3ccbdc2f-0"><div class="w-grid-col-4" id="ty-83145d76-0">Switch</div><div class="w-grid-col-4" id="ty-89250ec0-0"><code id="ty-dd96898f-0">w-switch</code></div><div class="w-grid-col-4" id="ty-7e5f1476-0"><a href="/docs/switches" id="ty-f278ce7c-0">Switches</a></div></div>
+    <div class="w-grid-row" id="ty-18d9d0d2-0"><div class="w-grid-col-4" id="ty-9539692d-0">Slider / range</div><div class="w-grid-col-4" id="ty-411a7704-0"><code id="ty-9f680c2f-0">w-slider</code>, <code id="ty-0b87b93f-0">w-range-slider</code></div><div class="w-grid-col-4" id="ty-c8c56ac3-0"><a href="/docs/slider" id="ty-6a2763ec-0">Sliders</a>, <a href="/docs/range-sliders" id="ty-34506c72-0">Range sliders</a></div></div>
+    <div class="w-grid-row" id="ty-c9d0df99-0"><div class="w-grid-col-4" id="ty-f4bbab46-0">Number</div><div class="w-grid-col-4" id="ty-730685ca-0"><code id="ty-67d68621-0">w-number-input</code></div><div class="w-grid-col-4" id="ty-5be95ce7-0"><a href="/docs/number-inputs" id="ty-b4ff1e76-0">Number inputs</a></div></div>
+    <div class="w-grid-row" id="ty-dd368945-0"><div class="w-grid-col-4" id="ty-4c02ce1c-0">File</div><div class="w-grid-col-4" id="ty-3faf59fa-0"><code id="ty-5426eca2-0">w-file-input</code>, <code id="ty-4258c1f2-0">w-file-upload</code></div><div class="w-grid-col-4" id="ty-f7a2d89d-0"><a href="/docs/file-inputs" id="ty-ee28f744-0">File inputs</a>, <a href="/docs/file-upload" id="ty-b7cd69c1-0">File upload</a></div></div>
+    <div class="w-grid-row" id="ty-02ff7a90-0"><div class="w-grid-col-4" id="ty-af8b685a-0">Date</div><div class="w-grid-col-4" id="ty-a1b21865-0"><code id="ty-2ef0094d-0">w-date-input</code></div><div class="w-grid-col-4" id="ty-3824cdf7-0"><a href="/docs/date-inputs" id="ty-f2ca16e2-0">Date inputs</a></div></div>
+    <div class="w-grid-row" id="ty-8cb261ed-0"><div class="w-grid-col-4" id="ty-9f3bbb62-0">Color</div><div class="w-grid-col-4" id="ty-0c2618f5-0"><code id="ty-5168688c-0">w-color-input</code></div><div class="w-grid-col-4" id="ty-af889a8c-0"><a href="/docs/color-inputs" id="ty-fa797859-0">Color inputs</a></div></div>
+    <div class="w-grid-row" id="ty-f69583d2-0"><div class="w-grid-col-4" id="ty-13af9146-0">OTP</div><div class="w-grid-col-4" id="ty-c0a9a90f-0"><code id="ty-d0c6af28-0">w-otp</code> / <code id="ty-837366af-0">w-otp-input</code></div><div class="w-grid-col-4" id="ty-1aefb9be-0"><a href="/docs/otp-input" id="ty-ac1b0bbf-0">OTP Input</a></div></div>
+  </div>
+</div></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

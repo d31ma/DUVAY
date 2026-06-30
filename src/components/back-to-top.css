@@ -1,0 +1,55 @@
+/* DuVay — Back To Top component styles. */
+@import "../core.css";
+
+/* ── Back-to-top ─────────────────────────────────────────────────────────── */
+.w-back-to-top {
+  position: fixed;
+  right: var(--w-space-5);
+  bottom: var(--w-space-5);
+  z-index: var(--w-z-fab);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-icon-lg);
+  height: var(--w-size-icon-lg);
+  border: 0;
+  border-radius: var(--w-radius-circle);
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  box-shadow: var(--w-shadow-lg);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity var(--w-transition-fast), visibility var(--w-transition-fast), transform var(--w-transition-fast), background var(--w-transition-fast);
+}
+
+.w-back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.w-back-to-top:hover,
+.w-back-to-top:focus-visible {
+  background: var(--w-primary-hover);
+}
+
+.w-back-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 760px) {
+  .w-back-to-top {
+    right: var(--w-space-4);
+    bottom: var(--w-space-4);
+    width: var(--w-size-icon-md);
+    height: var(--w-size-icon-md);
+  }
+
+  .w-back-to-top svg {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,0 +1,33 @@
+/* DuVay — Split Panels component styles. */
+@import "../core.css";
+
+/* ── Split panel ────────────────────────────────────────────────────────── */
+/* Master-detail: a list panel beside a detail/content panel. */
+.w-split {
+  display: grid;
+  grid-template-columns: minmax(320px, 390px) minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+}
+
+.w-split-list {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--w-divider);
+  background: var(--w-surface);
+}
+
+.w-split-detail {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--w-surface);
+}
+
+.w-split-detail-empty {
+  display: grid;
+  min-height: 100%;
+  place-items: center;
+  color: var(--w-text-very-subtle);
+}

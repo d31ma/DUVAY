@@ -1,0 +1,144 @@
+/* DuVay — Sidebars component styles. */
+@import "../core.css";
+
+/* ── Sidebar section ────────────────────────────────────────────────────── */
+.w-sidebar-section {
+  margin-bottom: 0.625rem;
+}
+
+.w-sidebar-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 28px;
+  padding: 0 0.625rem;
+  border-radius: var(--w-radius);
+  color: var(--w-text-very-subtle);
+  cursor: pointer;
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+  transition: background var(--w-transition-normal), color var(--w-transition-normal);
+}
+
+.w-sidebar-section-header:hover {
+  background: var(--w-hover);
+  color: var(--w-text-subtle);
+}
+
+.w-sidebar-section-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.w-sidebar-section-chevron {
+  flex-shrink: 0;
+  opacity: 0.68;
+  transition: transform var(--w-transition-slow);
+}
+
+.w-sidebar-section.collapsed .w-sidebar-section-chevron {
+  transform: rotate(-90deg);
+}
+
+.w-sidebar-section.collapsed .w-sidebar-section-body {
+  display: none;
+}
+
+/* Per-domain / uncollapsible header variant */
+.w-sidebar-section-header--static {
+  cursor: default;
+  font-weight: var(--w-font-weight-semibold);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--w-text-subtle);
+  padding-left: 0.5rem;
+  margin-top: 0.625rem;
+}
+
+.w-sidebar-section-header--static:hover {
+  background: transparent;
+  color: var(--w-text-subtle);
+}
+
+/* ── Sidebar folder / nav row ───────────────────────────────────────────── */
+.w-sidebar-folder {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--w-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  text-align: left;
+  text-decoration: none;
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal), color var(--w-transition-normal);
+}
+
+.w-sidebar-folder:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-sidebar-folder.active {
+  border-color: color-mix(in srgb, var(--w-primary) 32%, transparent);
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+  box-shadow: inset 3px 0 0 var(--w-primary);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-sidebar-folder.drag-over {
+  border-color: var(--w-primary);
+  background: var(--w-selected);
+}
+
+.w-sidebar-folder svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  opacity: 0.78;
+}
+
+.w-sidebar-folder-count {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 18px;
+  padding: 0 0.4rem;
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-high);
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.w-sidebar-folder-count:empty { display: none; }
+
+.w-sidebar-folder.active .w-sidebar-folder-count {
+  background: color-mix(in srgb, var(--w-primary) 14%, transparent);
+  color: var(--w-selected-text);
+}
+
+/* Nested sidebar items */
+.w-sidebar-folder--nested {
+  padding-left: 2.5rem;
+}
+
+.w-sidebar-folder--nested svg {
+  opacity: 0.6;
+}
+
+/* ── Sidebar divider ────────────────────────────────────────────────────── */
+.w-sidebar-divider {
+  border-top: 1px solid var(--w-divider);
+  margin: 0.75rem 0.5rem;
+}

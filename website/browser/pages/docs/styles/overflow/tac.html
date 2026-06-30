@@ -1,0 +1,48 @@
+<h1>Overflow</h1>
+<p>Utilities for configuring how content that exceeds its container is handled. DuVay also provides a styled thin scrollbar helper.</p>
+
+<h2>Usage</h2>
+
+<h3>Auto overflow</h3>
+<p>Use <code>overflow-auto</code> to add scrollbars only when content overflows the container.</p>
+<div class="overflow-auto w-border pa-3 w-mb-md" style="max-height: 5rem;">
+  <p>Scrollable region. Add enough content to exceed the fixed height and an overflow scrollbar appears.</p>
+  <p>More content. More content. More content. More content. More content.</p>
+  <p>Even more content so the vertical scroll is visible in this example block.</p>
+</div>
+<div class="code-block"><code>&lt;div class="overflow-auto" style="max-height: 5rem;"&gt;
+  ...scrollable content...
+&lt;/div&gt;</code></div>
+
+<h3>Clip overflowing content</h3>
+<p>Use <code>overflow-hidden</code> to clip any content that exceeds the container bounds.</p>
+<div class="overflow-hidden w-border pa-3 w-mb-md" style="max-height: 5rem;">
+  <p>This content is clipped when it exceeds the fixed height of the container.</p>
+  <p>More content. More content. More content. More content. More content.</p>
+  <p>Even more content that should be clipped rather than scrolled.</p>
+</div>
+<div class="code-block"><code>&lt;div class="overflow-hidden" style="max-height: 5rem;"&gt;
+  ...clipped content...
+&lt;/div&gt;</code></div>
+
+<h3>Vertical-only scrolling</h3>
+<p>Use <code>overflow-y-auto</code> when you want vertical scrolling only. Pair with <code>w-scrollbar</code> for a thin themed scrollbar.</p>
+<div class="overflow-y-auto w-scrollbar w-border pa-3 w-mb-md" style="max-height: 5rem;">
+  <p>Vertical-only scroll region with a themed thin scrollbar.</p>
+  <p>More content. More content. More content. More content. More content.</p>
+  <p>Even more content so the scrollbar becomes visible.</p>
+</div>
+<div class="code-block"><code>&lt;div class="overflow-y-auto w-scrollbar" style="max-height: 5rem;"&gt;
+  ...scrollable content...
+&lt;/div&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>overflow-auto</code></td><td><code>overflow: auto</code> — scrollbars appear when needed.</td></tr>
+    <tr><td><code>overflow-hidden</code></td><td><code>overflow: hidden</code> — clips overflowing content.</td></tr>
+    <tr><td><code>overflow-y-auto</code></td><td><code>overflow-y: auto</code> — vertical scrolling only.</td></tr>
+    <tr><td><code>w-scrollbar</code></td><td>Applies a thin (6px) themed scrollbar to a scrollable element.</td></tr>
+  </tbody>
+</table>

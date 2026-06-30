@@ -1,0 +1,96 @@
+<h1>Chip groups</h1>
+<p><code>w-chip-group</code> turns a set of <code>w-chip</code> elements into a single-select or multi-select control. Selected chips report through a <code>change</code> event and are marked with the <code>selected-class</code>.</p>
+
+<h2>Single selection</h2>
+<p>By default one chip is selected at a time. Bind it with <code>value</code>; add <code>mandatory</code> to always keep one chosen.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group">
+      <span class="w-chip w-chip--selected">Design</span>
+      <span class="w-chip">Code</span>
+      <span class="w-chip">Docs</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group value="design" mandatory>
+      <w-chip value="design">Design</w-chip>
+      <w-chip value="code">Code</w-chip>
+      <w-chip value="docs">Docs</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>
+
+<h2>Multiple selection</h2>
+<p>Add <code>multiple</code> for multi-select (value becomes a comma list) and <code>max</code> to cap how many chips can be active.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group">
+      <span class="w-chip w-chip--selected">React</span>
+      <span class="w-chip w-chip--selected">Vue</span>
+      <span class="w-chip">Svelte</span>
+      <span class="w-chip">Solid</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group multiple max="2" value="react,vue">
+      <w-chip value="react">React</w-chip>
+      <w-chip value="vue">Vue</w-chip>
+      <w-chip value="svelte">Svelte</w-chip>
+      <w-chip value="solid">Solid</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>
+
+<h2>Filter</h2>
+<p><code>filter</code> prefixes selected chips with a check mark — handy for filter bars.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group w-chip-group--filter">
+      <span class="w-chip w-chip--selected">✓ In stock</span>
+      <span class="w-chip">On sale</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group filter multiple value="stock">
+      <w-chip value="stock">In stock</w-chip>
+      <w-chip value="sale">On sale</w-chip>
+      <w-chip value="new">New</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>
+
+<h2>Column</h2>
+<p><code>column</code> stacks the chips vertically instead of in a row.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group w-chip-group--column">
+      <span class="w-chip w-chip--selected">Small</span>
+      <span class="w-chip">Medium</span>
+      <span class="w-chip">Large</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group column value="sm" mandatory>
+      <w-chip value="sm">Small</w-chip>
+      <w-chip value="md">Medium</w-chip>
+      <w-chip value="lg">Large</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>
+
+<h2>Color &amp; variant</h2>
+<p>Set <code>variant</code> or <code>color</code> on the group and they cascade to chips that don't set their own.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group">
+      <span class="w-chip w-chip-outlined w-chip--selected">Low</span>
+      <span class="w-chip w-chip-outlined">High</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group variant="outlined" color="primary" value="low" mandatory>
+      <w-chip value="low">Low</w-chip>
+      <w-chip value="high">High</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>

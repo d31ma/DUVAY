@@ -1,0 +1,48 @@
+<h1>Images</h1>
+<p><code>w-img</code> is a responsive image with Vuetify <code>VImg</code> parity: <code>cover</code> cropping, <code>aspect-ratio</code> reservation, <code>gradient</code> overlays, a blurred <code>lazy-src</code> placeholder, <code>srcset</code>/<code>sizes</code>, and overlaid slot content. It emits <code>load</code> and <code>error</code> events.</p>
+
+<h2>Cover and aspect ratio</h2>
+<p><code>cover</code> crops the image to fill its box; pair with <code>aspect-ratio</code> to reserve space and prevent layout shift.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-img w-img--rounded" style="aspect-ratio: 16 / 9; max-width: 480px; background-color: var(--w-surface-container-low)">
+      <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1003/800/450" alt="Deer" />
+      <div class="w-img__content"></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-img src="https://picsum.photos/id/1003/800/450" alt="Deer" cover aspect-ratio="16 / 9" max-width="480" rounded></w-img>
+  </div>
+</demo-compare>
+
+<h2>Gradient overlay</h2>
+<p>Overlay a CSS gradient — handy behind text on a hero image.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-img w-img--rounded" style="aspect-ratio: 16 / 9; max-width: 480px">
+      <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1011/800/450" alt="Lake" />
+      <div class="w-img__gradient" style="background-image: linear-gradient(to top, rgba(0,0,0,.7), transparent)"></div>
+      <div class="w-img__content" style="display:flex; align-items:flex-end; padding: var(--w-space-4); color:#fff; font-weight:600">Lakeside</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-img src="https://picsum.photos/id/1011/800/450" alt="Lake" cover aspect-ratio="16 / 9" max-width="480" rounded gradient="to top, rgba(0,0,0,.7), transparent">
+      <div style="display:flex; align-items:flex-end; height:100%; padding: var(--w-space-4); color:#fff; font-weight:600">Lakeside</div>
+    </w-img>
+  </div>
+</demo-compare>
+
+<h2>Lazy placeholder</h2>
+<p><code>lazy-src</code> shows a tiny blurred image while the full <code>src</code> loads, then fades it out. Images load lazily by default; add <code>eager</code> to load immediately.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-img w-img--rounded" style="aspect-ratio: 4 / 3; max-width: 320px">
+      <div class="w-img__placeholder w-img__placeholder--lazy" style="background-image: url('https://picsum.photos/id/1024/16/12')"></div>
+      <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1024/640/480" alt="Bear" />
+      <div class="w-img__content"></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-img src="https://picsum.photos/id/1024/640/480" lazy-src="https://picsum.photos/id/1024/16/12" alt="Bear" cover aspect-ratio="4 / 3" max-width="320" rounded></w-img>
+  </div>
+</demo-compare>

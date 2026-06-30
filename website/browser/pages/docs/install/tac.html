@@ -1,0 +1,33 @@
+<h1>Installation</h1>
+<p>DuVay has zero dependencies and no build step. Paste a hosted URL into your HTML and go.</p>
+
+<h2>Latest release</h2>
+<p>These URLs always serve the newest CalVer build from <code>https://duvay.del.ma</code>.</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.js" defer&gt;&lt;/script&gt;</code></div>
+
+<h2>Pin to a version</h2>
+<p>Replace <code>VERSION</code> with any CalVer release you want to lock to (for example <code>26.24.12</code>). Versioned URLs never change.</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.js" defer&gt;&lt;/script&gt;</code></div>
+
+<h2>Web Components</h2>
+<p>To use the DuVay web component library, import the module after the stylesheet:</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css"&gt;
+&lt;script type="module" src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js"&gt;&lt;/script&gt;
+
+&lt;w-btn variant="filled"&gt;Click me&lt;/w-btn&gt;</code></div>
+
+<h2>Selective CSS</h2>
+<p>For app bundles, import only the component CSS you use. Each component stylesheet imports the DuVay core layer.</p>
+<div class="code-block"><code>@import "duvay-css/components/buttons.css";
+@import "duvay-css/components/cards.css";
+@import "duvay-css/components/dialogs.css";</code></div>
+
+<p>If you prefer an explicit dependency chain, import core once and then component files.</p>
+<div class="code-block"><code>@import "duvay-css/core.css";
+@import "duvay-css/components/buttons.css";
+@import "duvay-css/components/cards.css";</code></div>
+
+<h2>Download</h2>
+<p>See <a href="/docs/download">Download</a> for full and minified files you can self-host, or grab the versioned URLs above.</p>

@@ -1,0 +1,94 @@
+<h1>Data Iterators</h1>
+<p><code>w-data-iterator</code> renders records as repeated cards and owns the data pipeline &#8212; filter (<code>search</code>) → sort (<code>sort-by</code>) → paginate (<code>items-per-page</code>) &#8212; with a footer showing the item range, an optional per-page select, and pagination. It also surfaces loading and empty states. Pass records as a JSON array or compact <code>title|subtitle|meta; …</code> rows.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator-grid">
+      <article class="w-data-iterator-item"><strong>Alpha</strong><span>Ready</span><small>Owner: Maya</small></article>
+      <article class="w-data-iterator-item"><strong>Beta</strong><span>Review</span><small>Owner: Iyor</small></article>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-iterator items="[Alpha|Ready|Owner: Maya; Beta|Review|Owner: Iyor; Gamma|Queued|Owner: Sora; Delta|Done|Owner: Kai]" items-per-page="2"></w-data-iterator>
+  </div>
+</demo-compare>
+
+<h2>Search</h2>
+<p>Set <code>search</code> to filter records across every field (case-insensitive).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator-grid">
+      <article class="w-data-iterator-item"><strong>Alpha</strong><span>Ready</span><small>Owner: Maya</small></article>
+      <article class="w-data-iterator-item"><strong>Echo</strong><span>Ready</span><small>Owner: Lee</small></article>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-iterator items="[Alpha|Ready|Owner: Maya; Beta|Review|Owner: Iyor; Gamma|Queued|Owner: Sora; Echo|Ready|Owner: Lee]" items-per-page="10" search="ready"></w-data-iterator>
+  </div>
+</demo-compare>
+
+<h2>Sorting</h2>
+<p>Set <code>sort-by</code> to a field and toggle <code>sort-desc</code> for descending order. Wire an external control to change them at runtime.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator-grid">
+      <article class="w-data-iterator-item"><strong>Alpha</strong><span>Ready</span></article>
+      <article class="w-data-iterator-item"><strong>Beta</strong><span>Review</span></article>
+      <article class="w-data-iterator-item"><strong>Gamma</strong><span>Queued</span></article>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-select label="Sort by" value="title"
+        onchange="document.getElementById('di-sorted').setAttribute('sort-by', event.detail.value)">
+        <w-option value="title">Title</w-option>
+        <w-option value="subtitle">Status</w-option>
+      </w-select>
+      <w-data-iterator id="di-sorted" sort-by="title" items="[Gamma|Queued; Alpha|Ready; Beta|Review]" items-per-page="10"></w-data-iterator>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Items per page</h2>
+<p>Provide <code>items-per-page-options</code> to render a per-page select in the footer.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator-footer">
+      <span class="w-data-iterator-range">1–2 of 5</span>
+      <div class="w-data-iterator-controls">
+        <label class="w-data-iterator-per-page">Per page
+          <select class="w-select"><option>2</option><option>4</option><option>10</option></select>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-iterator items="[Alpha|Ready; Beta|Review; Gamma|Queued; Delta|Done; Echo|Ready]" items-per-page="2" items-per-page-options="2,4,10"></w-data-iterator>
+  </div>
+</demo-compare>
+
+<h2>Loading</h2>
+<p>Add <code>loading</code> to show skeleton placeholders while data is in flight.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator-grid" aria-busy="true">
+      <article class="w-data-iterator-item" aria-hidden="true"><span class="w-skeleton w-skeleton-text"></span><span class="w-skeleton w-skeleton-text"></span></article>
+      <article class="w-data-iterator-item" aria-hidden="true"><span class="w-skeleton w-skeleton-text"></span><span class="w-skeleton w-skeleton-text"></span></article>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-iterator items="[Alpha|Ready; Beta|Review]" items-per-page="2" loading></w-data-iterator>
+  </div>
+</demo-compare>
+
+<h2>No data</h2>
+<p>When nothing matches, a message from <code>no-data-text</code> is shown.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-iterator"><div class="w-data-iterator-empty">No matching records</div></div>
+  </div>
+  <div slot="wc">
+    <w-data-iterator items="[Alpha|Ready; Beta|Review]" search="zzz" no-data-text="No matching records"></w-data-iterator>
+  </div>
+</demo-compare>

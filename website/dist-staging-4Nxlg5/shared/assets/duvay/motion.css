@@ -1,0 +1,181 @@
+/* DuVay — Motion utilities
+ *
+ * Named transitions follow the same vocabulary as Vuetify while staying
+ * framework-agnostic. Add a transition class, then toggle DuVay lifecycle
+ * classes with WMotion or your own router/framework:
+ *   w-enter-from → w-enter-active → visible
+ *   w-leave-active → w-leave-to → hidden
+ */
+
+.w-fade-transition,
+.w-scale-transition,
+.w-slide-x-transition,
+.w-slide-x-reverse-transition,
+.w-slide-y-transition,
+.w-slide-y-reverse-transition,
+.w-scroll-x-transition,
+.w-scroll-x-reverse-transition,
+.w-scroll-y-transition,
+.w-scroll-y-reverse-transition,
+.w-expand-transition,
+.w-expand-x-transition {
+  --w-motion-duration-local: var(--w-motion-duration);
+  --w-motion-easing-local: var(--w-motion-ease-standard);
+}
+
+.w-enter-active {
+  transition-duration: var(--w-motion-duration-local, var(--w-motion-duration));
+  transition-timing-function: var(--w-motion-ease-enter);
+}
+
+.w-leave-active {
+  transition-duration: var(--w-motion-duration-local, var(--w-motion-duration));
+  transition-timing-function: var(--w-motion-ease-exit);
+}
+
+.w-fade-transition.w-enter-active,
+.w-fade-transition.w-leave-active {
+  transition-property: opacity;
+}
+
+.w-fade-transition.w-enter-from,
+.w-fade-transition.w-leave-to {
+  opacity: 0;
+}
+
+.w-scale-transition.w-enter-active,
+.w-scale-transition.w-leave-active,
+.w-slide-x-transition.w-enter-active,
+.w-slide-x-transition.w-leave-active,
+.w-slide-x-reverse-transition.w-enter-active,
+.w-slide-x-reverse-transition.w-leave-active,
+.w-slide-y-transition.w-enter-active,
+.w-slide-y-transition.w-leave-active,
+.w-slide-y-reverse-transition.w-enter-active,
+.w-slide-y-reverse-transition.w-leave-active,
+.w-scroll-x-transition.w-enter-active,
+.w-scroll-x-transition.w-leave-active,
+.w-scroll-x-reverse-transition.w-enter-active,
+.w-scroll-x-reverse-transition.w-leave-active,
+.w-scroll-y-transition.w-enter-active,
+.w-scroll-y-transition.w-leave-active,
+.w-scroll-y-reverse-transition.w-enter-active,
+.w-scroll-y-reverse-transition.w-leave-active {
+  transition-property: opacity, transform;
+}
+
+.w-scale-transition.w-enter-from,
+.w-scale-transition.w-leave-to {
+  opacity: 0;
+  transform: scale(var(--w-motion-scale-start));
+}
+
+.w-slide-x-transition.w-enter-from,
+.w-slide-x-transition.w-leave-to,
+.w-scroll-x-transition.w-enter-from,
+.w-scroll-x-transition.w-leave-to {
+  opacity: 0;
+  transform: translateX(var(--w-motion-distance-x));
+}
+
+.w-slide-x-reverse-transition.w-enter-from,
+.w-slide-x-reverse-transition.w-leave-to,
+.w-scroll-x-reverse-transition.w-enter-from,
+.w-scroll-x-reverse-transition.w-leave-to {
+  opacity: 0;
+  transform: translateX(calc(-1 * var(--w-motion-distance-x)));
+}
+
+.w-slide-y-transition.w-enter-from,
+.w-slide-y-transition.w-leave-to,
+.w-scroll-y-transition.w-enter-from,
+.w-scroll-y-transition.w-leave-to {
+  opacity: 0;
+  transform: translateY(var(--w-motion-distance-y));
+}
+
+.w-slide-y-reverse-transition.w-enter-from,
+.w-slide-y-reverse-transition.w-leave-to,
+.w-scroll-y-reverse-transition.w-enter-from,
+.w-scroll-y-reverse-transition.w-leave-to {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--w-motion-distance-y)));
+}
+
+.w-transition-hidden {
+  display: none !important;
+}
+
+.w-animate-fade-in {
+  animation: w-fade-in var(--w-motion-duration) var(--w-motion-ease-enter) both;
+}
+
+.w-animate-scale-in {
+  animation: w-scale-in var(--w-motion-duration) var(--w-motion-ease-enter) both;
+}
+
+.w-animate-slide-y-in {
+  animation: w-slide-y-in var(--w-motion-duration) var(--w-motion-ease-enter) both;
+}
+
+.w-animate-slide-x-in {
+  animation: w-slide-x-in var(--w-motion-duration) var(--w-motion-ease-enter) both;
+}
+
+@keyframes w-fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes w-scale-in {
+  from { opacity: 0; transform: scale(var(--w-motion-scale-start)); }
+}
+
+@keyframes w-slide-y-in {
+  from { opacity: 0; transform: translateY(var(--w-motion-distance-y)); }
+}
+
+@keyframes w-slide-x-in {
+  from { opacity: 0; transform: translateX(var(--w-motion-distance-x)); }
+}
+
+.w-motion-flip > *,
+.w-flip > * {
+  will-change: transform;
+}
+
+.w-motion-crossfade-clone {
+  position: fixed;
+  z-index: calc(var(--w-z-modal) + 20);
+  margin: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+
+.w-motion-tween,
+.w-motion-spring {
+  will-change: transform, opacity;
+}
+
+.w-expand-body {
+  overflow: hidden;
+}
+
+.w-expand-body.w-motion-expanding {
+  display: block;
+  will-change: height, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-enter-active,
+  .w-leave-active,
+  .w-motion-flip > *,
+  .w-flip > *,
+  .w-motion-crossfade-clone,
+  .w-motion-tween,
+  .w-motion-spring,
+  .w-expand-body.w-motion-expanding {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,146 @@
+<h1>Cards</h1>
+<p>Versatile surfaces for media, headings, supporting text, actions, and links.</p>
+
+<h2>Generated Structure</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-card" style="max-width:360px">
+      <div class="w-card__image"><img src="https://picsum.photos/720/360?random=14" alt="" /></div>
+      <div class="w-card-item">
+        <span class="w-card-item__prepend"><span class="w-card-icon">H</span></span>
+        <span class="w-card-item__content">
+          <span class="w-card-title">Helium release</span>
+          <span class="w-card-subtitle">Design system update</span>
+        </span>
+        <span class="w-card-item__append"><span class="w-card-icon">...</span></span>
+      </div>
+      <div class="w-card-text">Review component parity, docs, and test coverage before publishing.</div>
+      <div class="w-card-actions">
+        <button class="w-btn w-btn-text">Details</button>
+        <button class="w-btn w-btn-filled">Publish</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-card
+      image="https://picsum.photos/720/360?random=14"
+      title="Helium release"
+      subtitle="Design system update"
+      text="Review component parity, docs, and test coverage before publishing."
+      prepend-icon="H"
+      append-icon="..."
+      style="max-width:360px"
+    >
+      <w-btn slot="actions" variant="text">Details</w-btn>
+      <w-btn slot="actions" variant="filled">Publish</w-btn>
+    </w-card>
+  </div>
+</demo-compare>
+
+<h2>Variants and Color</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap">
+      <div class="w-card w-card--variant-elevated w-card-body" style="width:180px">Elevated</div>
+      <div class="w-card w-card--variant-outlined w-card--color-success w-card-body" style="width:180px">Outlined</div>
+      <div class="w-card w-card--variant-tonal w-card--color-warning w-card-body" style="width:180px">Tonal</div>
+      <div class="w-card w-card--variant-flat w-card--color-error w-card-body" style="width:180px">Flat</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap">
+      <w-card title="Elevated" variant="elevated" width="180px"></w-card>
+      <w-card title="Outlined" variant="outlined" color="success" width="180px"></w-card>
+      <w-card title="Tonal" variant="tonal" color="warning" width="180px"></w-card>
+      <w-card title="Flat" variant="flat" color="error" width="180px"></w-card>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Link, Hover, and Loading</h2>
+<demo-compare>
+  <div slot="css">
+    <a class="w-card w-card--link w-card--hover w-card--loading" href="/docs/cards" style="max-width:360px">
+      <div class="w-card__loader"><span class="w-card__loader-bar w-card__loader-bar--success"></span></div>
+      <div class="w-card-item">
+        <span class="w-card-item__content">
+          <span class="w-card-title">Interactive card</span>
+          <span class="w-card-subtitle">Hover and link state</span>
+        </span>
+      </div>
+      <span class="w-card__overlay" aria-hidden="true"></span>
+    </a>
+  </div>
+  <div slot="wc">
+    <w-card
+      href="/docs/cards"
+      hover
+      loading="success"
+      title="Interactive card"
+      subtitle="Hover and link state"
+      style="max-width:360px"
+    ></w-card>
+  </div>
+</demo-compare>
+
+<h2>Slots</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-card" style="max-width:360px">
+      <div class="w-card-header">Legacy header slot</div>
+      <div class="w-card__image"><img src="https://picsum.photos/720/360?random=22" alt="" /></div>
+      <div class="w-card-text">Slotted text region.</div>
+      <div class="w-card-footer">Footer slot</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-card style="max-width:360px">
+      <span slot="header">Legacy header slot</span>
+      <img slot="image" src="https://picsum.photos/720/360?random=22" alt="" />
+      <span slot="text">Slotted text region.</span>
+      <span slot="footer">Footer slot</span>
+    </w-card>
+  </div>
+</demo-compare>
+
+<h2>Card Item</h2>
+<p>Use <code>w-card-item</code> when a card needs its own explicit header composition.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-card" style="max-width:360px">
+      <div class="w-card-item">
+        <span class="w-card-item__prepend"><span class="w-avatar w-avatar--small" data-w-initials="DUVAY"></span></span>
+        <span class="w-card-item__content">
+          <span class="w-card-title">Card item</span>
+          <span class="w-card-subtitle">Prepend and append media</span>
+        </span>
+        <span class="w-card-item__append"><span class="w-card-icon">...</span></span>
+      </div>
+      <div class="w-card-text">Card item mirrors Vuetify's prepend, content, and append grid.</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-card style="max-width:360px">
+      <w-card-item title="Card item" subtitle="Prepend and append media" prepend-icon="DUVAY" append-icon="..."></w-card-item>
+      <w-card-text>Card item mirrors Vuetify's prepend, content, and append grid.</w-card-text>
+    </w-card>
+  </div>
+</demo-compare>
+
+<h2>Rounded, Border, Density</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap">
+      <div class="w-card w-card--rounded-lg w-card--border w-card-body" style="width:220px">Rounded border</div>
+      <div class="w-card w-card--tile w-card-body" style="width:180px">Tile</div>
+      <div class="w-card w-card--density-compact w-card-body" style="width:220px">Compact density</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap">
+      <w-card title="Rounded border" rounded="lg" border width="220px"></w-card>
+      <w-card title="Tile" tile width="180px"></w-card>
+      <w-card title="Compact density" density="compact" width="220px"></w-card>
+    </div>
+  </div>
+</demo-compare>

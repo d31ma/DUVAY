@@ -1,0 +1,47 @@
+<h1>Border radius</h1>
+<p>Utilities for controlling the corner rounding of an element. By default DuVay's radius tokens resolve to 0 (sharp corners); only rounded-pill and rounded-circle produce visible rounding. The named radius classes still cascade to nested components (cards, buttons, inputs, chips, and more) and will show rounding whenever the theme tokens are customized.</p>
+
+<h2>Usage</h2>
+
+<h3>Named sizes</h3>
+<p>Use <code>rounded-sm</code> through <code>rounded-xl</code> to apply the theme radius tokens. These resolve to <code>0</code> in the default theme, so the boxes below stay square until you customize the radius tokens.</p>
+<div class="w-row ga-3 w-mb-md">
+  <div class="w-bg-primary-container pa-4 rounded-0">0</div>
+  <div class="w-bg-primary-container pa-4 rounded-sm">sm</div>
+  <div class="w-bg-primary-container pa-4 rounded-md">md</div>
+  <div class="w-bg-primary-container pa-4 rounded-lg">lg</div>
+  <div class="w-bg-primary-container pa-4 rounded-xl">xl</div>
+</div>
+<div class="code-block"><code>&lt;div class="rounded-sm"&gt;Small radius&lt;/div&gt;
+&lt;div class="rounded-lg"&gt;Large radius&lt;/div&gt;</code></div>
+
+<h3>Pill and circle</h3>
+<p>Use <code>rounded-pill</code> for fully rounded ends and <code>rounded-circle</code> to make an element circular.</p>
+<div class="w-row ga-3 w-mb-md align-center">
+  <div class="w-bg-primary-container px-5 py-3 rounded-pill">rounded-pill</div>
+  <div class="w-bg-primary-container pa-4 rounded-circle d-flex align-center justify-center" style="width: 5rem; height: 5rem;">circle</div>
+</div>
+<div class="code-block"><code>&lt;div class="rounded-pill px-5 py-3"&gt;Pill&lt;/div&gt;
+&lt;div class="rounded-circle" style="width: 5rem; height: 5rem;"&gt;Circle&lt;/div&gt;</code></div>
+
+<h3>No rounding</h3>
+<p>Use <code>rounded-0</code> to remove rounding from an element that would otherwise inherit it from a component style.</p>
+<div class="w-mb-md">
+  <div class="w-bg-primary-container pa-4 rounded-pill rounded-0 d-inline-block">rounded-0 overrides rounded-pill</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-card rounded-0"&gt;Sharp card&lt;/div&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>rounded</code></td><td>Applies <code>--w-radius</code>; cascades to nested components.</td></tr>
+    <tr><td><code>rounded-0</code></td><td>Removes rounding — forces sharp corners (radius 0) on the element and nested components.</td></tr>
+    <tr><td><code>rounded-sm</code></td><td>Applies <code>--w-radius-sm</code>.</td></tr>
+    <tr><td><code>rounded-md</code></td><td>Applies <code>--w-radius-md</code>.</td></tr>
+    <tr><td><code>rounded-lg</code></td><td>Applies <code>--w-radius-lg</code>.</td></tr>
+    <tr><td><code>rounded-xl</code></td><td>Applies <code>--w-radius-xl</code>.</td></tr>
+    <tr><td><code>rounded-pill</code></td><td>Fully rounded ends using <code>--w-radius-pill</code> (999px).</td></tr>
+    <tr><td><code>rounded-circle</code></td><td>Circular corners (<code>border-radius: 50%</code>).</td></tr>
+  </tbody>
+</table>

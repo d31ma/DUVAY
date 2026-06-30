@@ -1,0 +1,36 @@
+/* DuVay — Footers component styles. */
+@import "../core.css";
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.w-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: 48px;
+  padding: var(--w-space-md) var(--w-space-xl);
+  border-top: 1px solid var(--w-divider);
+  background: var(--w-surface);
+  font-size: var(--w-font-sm);
+  color: var(--w-text-very-subtle);
+}
+
+@media (max-width: 760px) {
+  .w-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--w-space-md);
+  }
+
+  .w-dialog-wrapper {
+    padding: var(--w-space-lg);
+  }
+
+  .w-dialog-header { padding: var(--w-space-lg) var(--w-space-lg) var(--w-space-sm); }
+  .w-dialog-body { padding: 0 var(--w-space-lg) var(--w-space-md); }
+  .w-dialog-footer { padding: var(--w-space-sm) var(--w-space-lg) var(--w-space-lg); }
+
+  .w-sheet-bottom {
+    padding: var(--w-space-lg);
+    max-height: 90dvh;
+  }
+}

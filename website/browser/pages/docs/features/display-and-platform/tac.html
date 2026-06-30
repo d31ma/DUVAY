@@ -1,0 +1,161 @@
+<h1>Display &amp; Platform</h1>
+<p>Vuetify exposes a reactive <code>useDisplay</code> composable in JavaScript that reports the current breakpoint, a <code>mobile</code> flag, viewport <code>height</code> / <code>width</code>, and a <code>platform</code> object. DuVay has no JavaScript display API &#8212; every one of these concerns is expressed in pure CSS through media queries, breakpoint-prefixed utilities, visibility helpers, and pointer / hover / feature queries. The sections below mirror the Vuetify page topic-for-topic and show the CSS equivalent for each.</p>
+
+<h2>Usage</h2>
+<p>Where Vuetify asks you to read <code>display.mdAndUp</code> in script and toggle behaviour reactively, DuVay lets the browser do it declaratively. Wrap markup in a visibility helper, or apply a breakpoint-prefixed sizing utility, and the layout responds to the viewport with zero script.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-hide-mobile">Hidden on phones, visible from tablet up</div>
+      <div class="w-show-mobile">Visible on phones only</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <div class="w-hide-mobile">Hidden on phones, visible from tablet up</div>
+      <div class="w-show-mobile">Visible on phones only</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>API</h2>
+<p>Vuetify documents a single <code>useDisplay</code> composable. DuVay&#8217;s &#8220;API&#8221; is the CSS surface itself &#8212; there is nothing to import or call. The pieces are:</p>
+<ul>
+  <li><strong>Breakpoint media queries</strong> &#8212; <code>min-width</code> queries at the breakpoint scale.</li>
+  <li><strong>Visibility helpers</strong> &#8212; <code>w-hide-mobile</code>, <code>w-show-mobile</code>, <code>w-hide-tablet</code>, <code>w-hide-desktop</code>.</li>
+  <li><strong>Responsive sizing</strong> &#8212; <code>w-&#123;bp&#125;-&#123;size&#125;</code> and <code>h-&#123;bp&#125;-&#123;size&#125;</code> (from that breakpoint up).</li>
+  <li><strong>Platform queries</strong> &#8212; <code>@media (pointer: coarse)</code>, <code>@media (hover: hover)</code>, <code>@supports</code>.</li>
+</ul>
+
+<h2>Breakpoints and Thresholds</h2>
+<p>Vuetify defines named thresholds that create &#8220;and up&#8221; ranges starting at <code>xs</code> (0px). DuVay uses the same Vuetify-parity scale as <code>min-width</code> media queries. Everything below a breakpoint is the implicit base (mobile-first); each query layers on from its threshold upward.</p>
+<div class="w-table-wrap">
+  <table class="w-table">
+    <thead>
+      <tr><th>Name</th><th>Device class</th><th>DuVay threshold (min-width)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>xs</code></td><td>Small to large phone</td><td>Base (0&#8211;599px, no prefix)</td></tr>
+      <tr><td><code>sm</code></td><td>Small to medium tablet</td><td>600px</td></tr>
+      <tr><td><code>md</code></td><td>Large tablet to laptop</td><td>960px</td></tr>
+      <tr><td><code>lg</code></td><td>Desktop</td><td>1280px</td></tr>
+      <tr><td><code>xl</code></td><td>4k and ultra-wide</td><td>1920px</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>The &#8220;and up&#8221; mentality is baked in: <code>w-md-50</code> applies at <code>md</code> and every larger breakpoint, exactly like Vuetify&#8217;s <code>mdAndUp</code>.</p>
+<pre class="code-block"><code>@media (min-width: 600px)  &#123; /* sm and up */ &#125;
+@media (min-width: 960px)  &#123; /* md and up */ &#125;
+@media (min-width: 1280px) &#123; /* lg and up */ &#125;
+@media (min-width: 1920px) &#123; /* xl and up */ &#125;</code></pre>
+
+<h2>Options</h2>
+<p>Vuetify lets you override <code>thresholds</code> and the <code>mobileBreakpoint</code> at runtime. In DuVay the thresholds are the media-query breakpoints above. To customise them, you change the <code>min-width</code> values in your own CSS rather than passing an options object &#8212; the breakpoints are configuration-as-CSS.</p>
+<pre class="code-block"><code>/* Your override: a tighter custom scale */
+@media (min-width: 540px) &#123; .app-cols &#123; columns: 2; &#125; &#125;
+@media (min-width: 800px) &#123; .app-cols &#123; columns: 3; &#125; &#125;</code></pre>
+
+<h2>Examples</h2>
+<p>Vuetify&#8217;s example uses a <code>switch</code> on the breakpoint name to set a card height. The CSS equivalent sets the property directly inside each breakpoint query &#8212; the same outcome without script.</p>
+<pre class="code-block"><code>.responsive-card &#123; height: 220px; &#125;            /* xs base */
+@media (min-width: 600px)  &#123; .responsive-card &#123; height: 300px; &#125; &#125;
+@media (min-width: 960px)  &#123; .responsive-card &#123; height: 400px; &#125; &#125;
+@media (min-width: 1280px) &#123; .responsive-card &#123; height: 500px; &#125; &#125;</code></pre>
+
+<h3>Interface</h3>
+<p>Vuetify&#8217;s TypeScript interface exposes <code>name</code>, <code>height</code>, <code>width</code>, the breakpoint booleans, <code>mobile</code>, and a <code>platform</code> object (<code>android</code>, <code>ios</code>, <code>cordova</code>, <code>electron</code>, <code>chrome</code>, <code>edge</code>, <code>firefox</code>, <code>opera</code>, <code>win</code>, <code>mac</code>, <code>linux</code>, <code>touch</code>, <code>ssr</code>). DuVay has no script interface; each field maps to a CSS construct instead:</p>
+<div class="w-table-wrap">
+  <table class="w-table">
+    <thead>
+      <tr><th>Vuetify field</th><th>DuVay CSS equivalent</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>width</code> / <code>height</code></td><td><code>100vw</code> / <code>100dvh</code> units; no readback needed</td></tr>
+      <tr><td><code>name</code>, <code>xs&#8230;xl</code></td><td><code>min-width</code> media queries on the breakpoint scale</td></tr>
+      <tr><td><code>mobile</code></td><td>Base styles + <code>w-hide-mobile</code> / <code>w-show-mobile</code></td></tr>
+      <tr><td><code>platform.touch</code></td><td><code>@media (pointer: coarse)</code></td></tr>
+      <tr><td><code>platform.ssr</code></td><td>Handled by static prerender; not a runtime flag</td></tr>
+      <tr><td>browser / OS flags</td><td><code>@supports</code> feature detection where it matters</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Using Setup</h2>
+<p>Vuetify pairs <code>useDisplay</code> with <code>setup()</code> to, for example, make a dialog fullscreen on mobile. DuVay does the same with a breakpoint rule on the dialog surface &#8212; no setup function, no reactive subscription.</p>
+<pre class="code-block"><code>/* Fullscreen dialog on phones, centered card from sm up */
+.w-dialog &#123; inset: 0; width: 100%; height: 100dvh; border-radius: 0; &#125;
+@media (min-width: 600px) &#123;
+  .w-dialog &#123; inset: auto; width: 32rem; height: auto; border-radius: var(--w-radius-lg); &#125;
+&#125;</code></pre>
+
+<h3>Breakpoint conditionals</h3>
+<p>Vuetify&#8217;s breakpoint booleans (<code>smAndUp</code>, <code>mdAndDown</code>, &#8230;) follow its grid naming. In DuVay the equivalent conditional is the media query plus, for the common show/hide cases, the visibility helpers. &#8220;And up&#8221; is <code>min-width</code>; &#8220;and down&#8221; is <code>max-width</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-hide-tablet">Hidden on tablet-width screens</div>
+      <div class="w-hide-desktop">Hidden on desktop and up</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <div class="w-hide-tablet">Hidden on tablet-width screens</div>
+      <div class="w-hide-desktop">Hidden on desktop and up</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Component Mobile Breakpoints</h2>
+<p>Some Vuetify components (<code>v-banner</code>, <code>v-navigation-drawer</code>, <code>v-slide-group</code>) accept a <code>mobile-breakpoint</code> prop that defaults to the global value (<code>lg</code> &#8212; mobile when narrower than 1280px). DuVay components carry the same responsive behaviour in their own CSS rather than a prop: the sidebar, for instance, collapses below its breakpoint automatically, and you adjust it by overriding the relevant <code>min-width</code> rule.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-show-mobile">Sidebar toggle (shown on phones)</div>
+      <div class="w-hide-mobile">Persistent sidebar (tablet and up)</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <div class="w-show-mobile">Sidebar toggle (shown on phones)</div>
+      <div class="w-hide-mobile">Persistent sidebar (tablet and up)</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h3>Display class overrides</h3>
+<p>Vuetify offers <code>displayClasses</code> that emit names like <code>v-component--mobile</code>, plus a custom <code>mobileBreakpoint</code> override. DuVay&#8217;s parallel is the responsive sizing utility set &#8212; <code>w-&#123;bp&#125;-&#123;size&#125;</code> and <code>h-&#123;bp&#125;-&#123;size&#125;</code> &#8212; which switch an element&#8217;s dimensions at a breakpoint without any JavaScript class toggling.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-100 w-md-50 w-lg-33" style="background: var(--w-surface-2); padding: var(--w-space-4);">
+      Full width on phones, 50% from md, 33% from lg
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-100 w-md-50 w-lg-33" style="background: var(--w-surface-2); padding: var(--w-space-4);">
+      Full width on phones, 50% from md, 33% from lg
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Platform detection</h2>
+<p>Vuetify&#8217;s <code>platform</code> object reports touch, SSR, browser, and OS at runtime. For input-specific behaviour, prefer CSS capability queries over user-agent sniffing &#8212; they describe what the device can actually do, and they cost nothing at runtime.</p>
+<pre class="code-block"><code>/* Touch devices: larger hit areas (Vuetify platform.touch) */
+@media (pointer: coarse) &#123;
+  .w-btn &#123; min-height: 2.75rem; &#125; /* 44px target */
+&#125;
+
+/* Devices with a real hover (mouse) */
+@media (hover: hover) &#123;
+  .w-card:hover &#123; box-shadow: var(--w-shadow-lg); &#125;
+&#125;
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) &#123;
+  * &#123; animation: none !important; transition: none !important; &#125;
+&#125;
+
+/* Feature detection in place of browser/OS flags */
+@supports (backdrop-filter: blur(8px)) &#123;
+  .w-dialog-backdrop &#123; backdrop-filter: blur(8px); &#125;
+&#125;</code></pre>
+<p>SSR is not a runtime flag in DuVay: the docs site prerenders statically, so there is no hydration-mismatch concern to guard against. Everything renders meaningfully without JavaScript and the breakpoints apply on first paint.</p>

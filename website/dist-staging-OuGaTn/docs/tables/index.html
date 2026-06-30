@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-d8804448-0">Tables</h1><p id="ty-25685cff-0">Structured data grids for compact comparison and scanning workflows. DuVay tables use the same row and column primitives as the layout grid.</p><h2 id="ty-af2e8b3f-0">Basic Table</h2><demo-compare >
+  <div slot="css" id="ty-ea0b6d86-0">
+    <div class="w-container w-container--fluid" id="ty-a23819d8-0">
+      <div class="w-grid-row" id="ty-b022767f-0">
+        <div class="w-grid-col-12" id="ty-12146c1c-0">
+          <div class="w-table-wrap w-table-wrap--responsive-auto" id="ty-61334a41-0">
+            <div class="w-table-grid w-table-grid--responsive-auto" id="ty-cf1d669e-0">
+              <div class="w-grid-row w-table-header" id="ty-356a9d2c-0">
+                <div class="w-grid-col-6" id="ty-22ba662c-0">Dessert</div>
+                <div class="w-grid-col-3" id="ty-43627a5e-0">Calories</div>
+                <div class="w-grid-col-3" id="ty-d92e8453-0">Fat</div>
+              </div>
+              <div class="w-grid-row" id="ty-a04c6f2e-0">
+                <div class="w-grid-col-6" data-label="Dessert" id="ty-61da6dde-0">Frozen yogurt</div>
+                <div class="w-grid-col-3" data-label="Calories" id="ty-5167c018-0">159</div>
+                <div class="w-grid-col-3" data-label="Fat" id="ty-1716c353-0">6 g</div>
+              </div>
+              <div class="w-grid-row" id="ty-b5c8accc-0">
+                <div class="w-grid-col-6" data-label="Dessert" id="ty-62f7ef9d-0">Ice cream sandwich</div>
+                <div class="w-grid-col-3" data-label="Calories" id="ty-d18934a8-0">237</div>
+                <div class="w-grid-col-3" data-label="Fat" id="ty-e82965e5-0">9 g</div>
+              </div>
+              <div class="w-grid-row" id="ty-eeb28c10-0">
+                <div class="w-grid-col-6" data-label="Dessert" id="ty-e79e4ad7-0">Eclair</div>
+                <div class="w-grid-col-3" data-label="Calories" id="ty-f4ae6090-0">262</div>
+                <div class="w-grid-col-3" data-label="Fat" id="ty-bd3c8cbc-0">16 g</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-5f3f6be7-0">
+    <w-container fluid="" id="ty-a3e269ff-0">
+      <w-row id="ty-8cb026fb-0">
+        <w-col cols="12" id="ty-cd28d513-0">
+          <w-table grid="" hover="" id="ty-b5af308d-0">
+            <w-row header="" gutter="0" id="ty-9e8d91d2-0">
+              <w-col cols="6" id="ty-c09d34ec-0">Dessert</w-col>
+              <w-col cols="3" id="ty-3548b033-0">Calories</w-col>
+              <w-col cols="3" id="ty-316a81a2-0">Fat</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-0451e7e6-0">
+              <w-col cols="6" id="ty-d3905f5d-0">Frozen yogurt</w-col>
+              <w-col cols="3" id="ty-6de5bec4-0">159</w-col>
+              <w-col cols="3" id="ty-3722992a-0">6 g</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-fe79318b-0">
+              <w-col cols="6" id="ty-1e8a1460-0">Ice cream sandwich</w-col>
+              <w-col cols="3" id="ty-471ac108-0">237</w-col>
+              <w-col cols="3" id="ty-0cf31ca9-0">9 g</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-917651f3-0">
+              <w-col cols="6" id="ty-bec770e2-0">Eclair</w-col>
+              <w-col cols="3" id="ty-5d67bab0-0">262</w-col>
+              <w-col cols="3" id="ty-359cbcb7-0">16 g</w-col>
+            </w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare><h2 id="ty-07a8d03c-0">Responsive Modes</h2><p id="ty-6febcc9c-0"><code id="ty-c141943f-0">responsive="auto"</code> uses container queries to preserve the table on wide surfaces and stack labeled cells on narrow ones. Use <code id="ty-171b3cc7-0">stack</code> to force records or <code id="ty-2de5cb4c-0">scroll</code> when horizontal comparison is essential. CSS-class tables use <code id="ty-7d47095d-0">w-table-wrap--responsive-auto</code>, a matching grid modifier, and <code id="ty-7fdca1d0-0">data-label</code> on each data cell.</p><h2 id="ty-a4bcab17-0">Gridlines</h2><p id="ty-d6a3b98c-0">Native <code id="ty-deda832b-0">&lt;table&gt;</code> children accept <code id="ty-a06cf0c6-0">gridlines="horizontal"</code> (default), <code id="ty-44f4fb58-0">vertical</code>, <code id="ty-c4f45d48-0">all</code>, or <code id="ty-017b6d38-0">none</code> — matching Vuetify's <code id="ty-d0fd84ae-0">v-table</code>. CSS-class tables add <code id="ty-2c299024-0">w-table--gridlines-*</code> to the <code id="ty-f4f0649c-0">&lt;table&gt;</code>.</p><demo-compare >
+  <div slot="css" id="ty-53f8c410-0">
+    <div class="w-table-wrap w-table-wrap--responsive-scroll" id="ty-cdc04bc3-0">
+      <table class="w-table w-table--gridlines-all" id="ty-bd86245e-0">
+        <thead id="ty-c2102735-0"><tr id="ty-0c2c6bd7-0"><th id="ty-24ca1701-0">Dessert</th><th id="ty-ef4488c1-0">Calories</th><th id="ty-fdfd40b4-0">Fat</th></tr></thead>
+        <tbody id="ty-c30309bc-0">
+          <tr id="ty-d692a2de-0"><td id="ty-184126d0-0">Frozen yogurt</td><td id="ty-6b146bb2-0">159</td><td id="ty-82d6e485-0">6 g</td></tr>
+          <tr id="ty-40004b2d-0"><td id="ty-4ff04ef4-0">Ice cream sandwich</td><td id="ty-86bef924-0">237</td><td id="ty-7fd22870-0">9 g</td></tr>
+          <tr id="ty-60936422-0"><td id="ty-692a80c1-0">Eclair</td><td id="ty-cd41d832-0">262</td><td id="ty-0e81cd28-0">16 g</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2c9ab787-0">
+    <w-table gridlines="all" responsive="scroll" id="ty-666c0633-0">
+      <table id="ty-13c51951-0">
+        <thead id="ty-66bf2af4-0"><tr id="ty-025e7f0b-0"><th id="ty-2312c789-0">Dessert</th><th id="ty-27a25ac2-0">Calories</th><th id="ty-7a53f5e8-0">Fat</th></tr></thead>
+        <tbody id="ty-b3c359a4-0">
+          <tr id="ty-2d1646b8-0"><td id="ty-8f94ae48-0">Frozen yogurt</td><td id="ty-d0c06bf7-0">159</td><td id="ty-9055f46f-0">6 g</td></tr>
+          <tr id="ty-d6fea4b5-0"><td id="ty-40d4a2c6-0">Ice cream sandwich</td><td id="ty-8e7e010d-0">237</td><td id="ty-7addc8e6-0">9 g</td></tr>
+          <tr id="ty-4bd7cbef-0"><td id="ty-62d7e600-0">Eclair</td><td id="ty-78b5062a-0">262</td><td id="ty-5b20f2ff-0">16 g</td></tr>
+        </tbody>
+      </table>
+    </w-table>
+  </div>
+</demo-compare><h2 id="ty-91012a08-0">Striped Rows</h2><p id="ty-07830f61-0">Use <code id="ty-a5ee5d37-0">striped="odd"</code> or <code id="ty-ed93ce99-0">striped="even"</code> (a bare <code id="ty-203a1021-0">striped</code> attribute defaults to even).</p><demo-compare >
+  <div slot="css" id="ty-81c1cb82-0">
+    <div class="w-table-wrap w-table-wrap--responsive-scroll" id="ty-48a84f03-0">
+      <table class="w-table w-table--striped-odd" id="ty-7d80ac42-0">
+        <thead id="ty-84b50904-0"><tr id="ty-37327de7-0"><th id="ty-99ce1107-0">Dessert</th><th id="ty-10c915dd-0">Calories</th></tr></thead>
+        <tbody id="ty-9034a095-0">
+          <tr id="ty-fe3a48e5-0"><td id="ty-4d6f4dd8-0">Frozen yogurt</td><td id="ty-afc56c6b-0">159</td></tr>
+          <tr id="ty-977fb311-0"><td id="ty-e088549c-0">Ice cream sandwich</td><td id="ty-6c89ecd2-0">237</td></tr>
+          <tr id="ty-bdf4e3bf-0"><td id="ty-c3642f4e-0">Eclair</td><td id="ty-8e0c6b26-0">262</td></tr>
+          <tr id="ty-1adb801c-0"><td id="ty-ed85ae25-0">Cupcake</td><td id="ty-eb27b179-0">305</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc" id="ty-21c7c83b-0">
+    <w-table striped="odd" responsive="scroll" id="ty-02c2787e-0">
+      <table id="ty-57a8be08-0">
+        <thead id="ty-6ce3d56c-0"><tr id="ty-844c9bcf-0"><th id="ty-7e9d482a-0">Dessert</th><th id="ty-bebd4198-0">Calories</th></tr></thead>
+        <tbody id="ty-fc59771b-0">
+          <tr id="ty-af5d27b9-0"><td id="ty-9aefa6f0-0">Frozen yogurt</td><td id="ty-59294c6e-0">159</td></tr>
+          <tr id="ty-c245aeb3-0"><td id="ty-3ae4015c-0">Ice cream sandwich</td><td id="ty-2c51ebee-0">237</td></tr>
+          <tr id="ty-ce5fbe25-0"><td id="ty-bbda16c1-0">Eclair</td><td id="ty-cdcaa069-0">262</td></tr>
+          <tr id="ty-894c0ec3-0"><td id="ty-4d211fc2-0">Cupcake</td><td id="ty-5ae4d2c0-0">305</td></tr>
+        </tbody>
+      </table>
+    </w-table>
+  </div>
+</demo-compare><h2 id="ty-c3b2d53b-0">Top and Bottom Slots</h2><p id="ty-86ddfa39-0">The <code id="ty-8d22aa2b-0">top</code> and <code id="ty-f4f130df-0">bottom</code> slots render toolbars, filters, or footers attached to the table — DuVay's equivalent of Vuetify's <code id="ty-7d1498ca-0">top</code> / <code id="ty-5e78c988-0">bottom</code> slots.</p><demo-compare >
+  <div slot="css" id="ty-0edb74b9-0">
+    <div class="w-table-top" id="ty-2eab2553-0">Nutrition</div>
+    <div class="w-table-wrap w-table-wrap--responsive-scroll" id="ty-7ff54102-0">
+      <table class="w-table" id="ty-c8b7ff37-0">
+        <thead id="ty-2db98a62-0"><tr id="ty-260763a7-0"><th id="ty-0ec62f75-0">Dessert</th><th id="ty-bbaee024-0">Calories</th></tr></thead>
+        <tbody id="ty-6542d245-0">
+          <tr id="ty-b91603d2-0"><td id="ty-6d323900-0">Frozen yogurt</td><td id="ty-42f7f18b-0">159</td></tr>
+          <tr id="ty-dd5a5a65-0"><td id="ty-76f92c8d-0">Eclair</td><td id="ty-a33269dd-0">262</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="w-table-bottom" id="ty-a2d3ed98-0">2 desserts</div>
+  </div>
+  <div slot="wc" id="ty-ab3d5a75-0">
+    <w-table responsive="scroll" id="ty-58117549-0">
+      <div slot="top" id="ty-c4ccb69c-0">Nutrition</div>
+      <table id="ty-08331036-0">
+        <thead id="ty-7020acd9-0"><tr id="ty-a8abd52e-0"><th id="ty-3d91cea8-0">Dessert</th><th id="ty-270d4c89-0">Calories</th></tr></thead>
+        <tbody id="ty-ab144a7e-0">
+          <tr id="ty-a93e4973-0"><td id="ty-ce410eee-0">Frozen yogurt</td><td id="ty-e7e71330-0">159</td></tr>
+          <tr id="ty-eb5efd4a-0"><td id="ty-982c9eda-0">Eclair</td><td id="ty-6729fe54-0">262</td></tr>
+        </tbody>
+      </table>
+      <div slot="bottom" id="ty-9cc787d7-0">2 desserts</div>
+    </w-table>
+  </div>
+</demo-compare><h2 id="ty-5b727e1e-0">Fixed Footer</h2><p id="ty-120b981d-0">Pair <code id="ty-a73e2956-0">fixed-footer</code> with <code id="ty-48bf7feb-0">height</code> to keep a <code id="ty-f9d2c453-0">&lt;tfoot&gt;</code> pinned while the body scrolls. Combine with <code id="ty-b24f1778-0">fixed-header</code> for both ends.</p><demo-compare >
+  <div slot="css" id="ty-c3e94b73-0">
+    <div class="w-table-wrap w-table-wrap--fixed-header w-table-wrap--fixed-footer" style="max-height:180px" id="ty-fbe2647e-0">
+      <table class="w-table" id="ty-71d54126-0">
+        <thead id="ty-bd70340b-0"><tr id="ty-cb617ecc-0"><th id="ty-eb44b58b-0">Component</th><th id="ty-b6951680-0">Area</th></tr></thead>
+        <tbody id="ty-c21c272c-0">
+          <tr id="ty-de4ea821-0"><td id="ty-7f57e973-0">Buttons</td><td id="ty-e91543da-0">Forms</td></tr>
+          <tr id="ty-e1c14fe8-0"><td id="ty-0cc12a4d-0">Inputs</td><td id="ty-7fca876e-0">Forms</td></tr>
+          <tr id="ty-a3cc0ef4-0"><td id="ty-1763b99b-0">Lists</td><td id="ty-da794b2a-0">Content</td></tr>
+          <tr id="ty-970dea8d-0"><td id="ty-5b0d4802-0">Tables</td><td id="ty-5cf1bf72-0">Content</td></tr>
+          <tr id="ty-18923fdf-0"><td id="ty-dba8376f-0">Dialogs</td><td id="ty-f8c26468-0">Overlay</td></tr>
+          <tr id="ty-8220218b-0"><td id="ty-adc65507-0">Snackbars</td><td id="ty-001f3fad-0">Feedback</td></tr>
+        </tbody>
+        <tfoot id="ty-183d39c6-0"><tr id="ty-dc81e778-0"><td id="ty-dd6d242e-0">6 components</td><td id="ty-8c7e9450-0"></td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+  <div slot="wc" id="ty-50fde287-0">
+    <w-table fixed-header="" fixed-footer="" height="180px" id="ty-73d51af5-0">
+      <table id="ty-cf5421d0-0">
+        <thead id="ty-51b14409-0"><tr id="ty-61d7d6ad-0"><th id="ty-6e04e598-0">Component</th><th id="ty-fbbfa202-0">Area</th></tr></thead>
+        <tbody id="ty-adc1328b-0">
+          <tr id="ty-0ee2ee1b-0"><td id="ty-f064bbb2-0">Buttons</td><td id="ty-f1d6319a-0">Forms</td></tr>
+          <tr id="ty-438be2ad-0"><td id="ty-1b0ebe7d-0">Inputs</td><td id="ty-231ebadb-0">Forms</td></tr>
+          <tr id="ty-db64686d-0"><td id="ty-e5e19a4a-0">Lists</td><td id="ty-d07c2afb-0">Content</td></tr>
+          <tr id="ty-838781ad-0"><td id="ty-6997a90b-0">Tables</td><td id="ty-572d53e7-0">Content</td></tr>
+          <tr id="ty-340b737a-0"><td id="ty-3115d9b9-0">Dialogs</td><td id="ty-3fef95ab-0">Overlay</td></tr>
+          <tr id="ty-599dce73-0"><td id="ty-6cfa3c85-0">Snackbars</td><td id="ty-9fa4079c-0">Feedback</td></tr>
+        </tbody>
+        <tfoot id="ty-84a0edd8-0"><tr id="ty-77d49271-0"><td id="ty-63493e80-0">6 components</td><td id="ty-0e01f2b2-0"></td></tr></tfoot>
+      </table>
+    </w-table>
+  </div>
+</demo-compare><h2 id="ty-6ca95c5c-0">Data Table Subcomponents</h2><p id="ty-5a13a73e-0"><code id="ty-0ea024f4-0">w-data-table-headers</code>, <code id="ty-de12b617-0">w-data-table-rows</code>, and <code id="ty-bbdf9e8c-0">w-data-table-row</code> expose Vuetify-named table internals while still rendering with DuVay row and column primitives.</p><demo-compare >
+  <div slot="css" id="ty-57a3ba76-0">
+    <div class="w-table-wrap" id="ty-366ed852-0">
+      <div class="w-table-grid" id="ty-fc431fbb-0">
+        <div class="w-grid-row w-table-header" id="ty-41a84fe5-0"><div class="w-grid-col-4" id="ty-868910ed-0">Name</div><div class="w-grid-col-4" id="ty-ce5cafed-0">Status</div><div class="w-grid-col-4" id="ty-62f360ff-0">Owner</div></div>
+        <div class="w-grid-row" id="ty-08ab2ecb-0"><div class="w-grid-col-4" id="ty-8b592335-0">Design system</div><div class="w-grid-col-4" id="ty-e84115d1-0">Live</div><div class="w-grid-col-4" id="ty-8d34820e-0">Avery</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-f06d3acc-0">
+    <div class="w-table-wrap" id="ty-c9242e9e-0">
+      <div class="w-table-grid" id="ty-62579c0b-0">
+        <w-data-table-headers headers="[Name,Status,Owner]" id="ty-029684dd-0"></w-data-table-headers>
+        <w-data-table-rows headers="[Name,Status,Owner]" items="[Design system|Live|Avery; Billing flow|Review|Nora]" id="ty-23779114-0"></w-data-table-rows>
+      </div>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-f5a394f1-0">Density and Stripes</h2><p id="ty-4713777a-0">Use <code id="ty-c7529f9c-0">w-data-table-footer</code> for a Vuetify-named footer subcomponent.</p><demo-compare >
+  <div slot="css" id="ty-9639ce34-0">
+    <div class="w-container w-container--fluid" id="ty-be4a187b-0">
+      <div class="w-grid-row" id="ty-c390b23a-0">
+        <div class="w-grid-col-12" id="ty-eb131a42-0">
+          <div class="w-table-wrap" id="ty-14d2ef97-0">
+            <div class="w-table-grid w-table-grid--dense w-table-grid--striped" id="ty-0a9ec313-0">
+              <div class="w-grid-row w-table-header" id="ty-08d5091e-0">
+                <div class="w-grid-col-5" id="ty-36fc0d49-0">Name</div>
+                <div class="w-grid-col-4" id="ty-5d9c2295-0">Status</div>
+                <div class="w-grid-col-3" id="ty-8e4fd325-0">Owner</div>
+              </div>
+              <div class="w-grid-row" id="ty-25f2ecba-0">
+                <div class="w-grid-col-5" id="ty-43e3e1d2-0">Design system</div>
+                <div class="w-grid-col-4" id="ty-c0ac2d0d-0"><span class="w-badge w-badge-success" id="ty-a4a1771d-0">Live</span></div>
+                <div class="w-grid-col-3" id="ty-321bc735-0">Avery</div>
+              </div>
+              <div class="w-grid-row" id="ty-3dd7abcd-0">
+                <div class="w-grid-col-5" id="ty-906851a8-0">Billing flow</div>
+                <div class="w-grid-col-4" id="ty-0aedcdfb-0"><span class="w-badge w-badge-warning" id="ty-f0706b45-0">Review</span></div>
+                <div class="w-grid-col-3" id="ty-431f6601-0">Nora</div>
+              </div>
+              <div class="w-grid-row" id="ty-6de9c40b-0">
+                <div class="w-grid-col-5" id="ty-feafc450-0">Mobile shell</div>
+                <div class="w-grid-col-4" id="ty-2ddd22a7-0"><span class="w-badge w-badge-info" id="ty-c5badb21-0">Draft</span></div>
+                <div class="w-grid-col-3" id="ty-80360544-0">Mika</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-6925bcd2-0">
+    <w-container fluid="" id="ty-dac30799-0">
+      <w-row id="ty-fa25eca6-0">
+        <w-col cols="12" id="ty-f1405583-0">
+          <w-table grid="" density="compact" striped="" hover="" id="ty-861ac72a-0">
+            <w-row header="" gutter="0" id="ty-74694893-0">
+              <w-col cols="5" id="ty-b8a8e8f0-0">Name</w-col>
+              <w-col cols="4" id="ty-30d9dd60-0">Status</w-col>
+              <w-col cols="3" id="ty-2c8d0ee7-0">Owner</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-8aabe154-0">
+              <w-col cols="5" id="ty-80f3e20a-0">Design system</w-col>
+              <w-col cols="4" id="ty-a33722e4-0"><w-badge inline="" content="Live" color="success" id="ty-89947356-0"></w-badge></w-col>
+              <w-col cols="3" id="ty-48e23f6b-0">Avery</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-cef0183a-0">
+              <w-col cols="5" id="ty-dbceb2a8-0">Billing flow</w-col>
+              <w-col cols="4" id="ty-4f7360ed-0"><w-badge inline="" content="Review" color="warning" id="ty-2bdff245-0"></w-badge></w-col>
+              <w-col cols="3" id="ty-be674c2e-0">Nora</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-31878c5f-0">
+              <w-col cols="5" id="ty-c807169f-0">Mobile shell</w-col>
+              <w-col cols="4" id="ty-d9cca186-0"><w-badge inline="" content="Draft" color="info" id="ty-9af1e412-0"></w-badge></w-col>
+              <w-col cols="3" id="ty-5d6fcee7-0">Mika</w-col>
+            </w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare><h2 id="ty-0ce5f0f6-0">Fixed Header</h2><demo-compare >
+  <div slot="css" id="ty-bb427fb3-0">
+    <div class="w-container w-container--fluid" id="ty-5869658b-0">
+      <div class="w-grid-row" id="ty-d7560f80-0">
+        <div class="w-grid-col-12" id="ty-59860d97-0">
+          <div class="w-table-wrap w-table-wrap--fixed-header" style="max-height:180px" id="ty-38f6aecf-0">
+            <div class="w-table-grid w-table-grid--dense" id="ty-e07c850e-0">
+              <div class="w-grid-row w-table-header" id="ty-8819e86f-0">
+                <div class="w-grid-col-5" id="ty-b17ce140-0">Component</div>
+                <div class="w-grid-col-4" id="ty-8e413e84-0">Area</div>
+                <div class="w-grid-col-3" id="ty-920180d3-0">State</div>
+              </div>
+              <div class="w-grid-row" id="ty-b5e6b01c-0"><div class="w-grid-col-5" id="ty-018aaa03-0">Buttons</div><div class="w-grid-col-4" id="ty-d7098e0d-0">Forms</div><div class="w-grid-col-3" id="ty-faf52116-0">Stable</div></div>
+              <div class="w-grid-row" id="ty-361a0dc0-0"><div class="w-grid-col-5" id="ty-db6783a2-0">Inputs</div><div class="w-grid-col-4" id="ty-b911a050-0">Forms</div><div class="w-grid-col-3" id="ty-a0e73fb8-0">Stable</div></div>
+              <div class="w-grid-row" id="ty-310d30af-0"><div class="w-grid-col-5" id="ty-9ce1b112-0">Lists</div><div class="w-grid-col-4" id="ty-f28857bb-0">Content</div><div class="w-grid-col-3" id="ty-82dd47f7-0">New</div></div>
+              <div class="w-grid-row" id="ty-2f3153c4-0"><div class="w-grid-col-5" id="ty-93307fbb-0">Tables</div><div class="w-grid-col-4" id="ty-72d427ab-0">Content</div><div class="w-grid-col-3" id="ty-8ff3e0df-0">New</div></div>
+              <div class="w-grid-row" id="ty-779e9000-0"><div class="w-grid-col-5" id="ty-37a38b28-0">Dialogs</div><div class="w-grid-col-4" id="ty-8cd99c5d-0">Overlay</div><div class="w-grid-col-3" id="ty-4a4508e4-0">Stable</div></div>
+              <div class="w-grid-row" id="ty-c44dadea-0"><div class="w-grid-col-5" id="ty-0fcc5dc9-0">Snackbars</div><div class="w-grid-col-4" id="ty-4f2110dd-0">Feedback</div><div class="w-grid-col-3" id="ty-e4129406-0">Stable</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ac885392-0">
+    <w-container fluid="" id="ty-17d2b7e1-0">
+      <w-row id="ty-cf2de737-0">
+        <w-col cols="12" id="ty-dea31b4e-0">
+          <w-table grid="" density="compact" fixed-header="" height="180px" hover="" id="ty-05c1beee-0">
+            <w-row header="" gutter="0" id="ty-93627d99-0">
+              <w-col cols="5" id="ty-23a1d737-0">Component</w-col>
+              <w-col cols="4" id="ty-55fb3ca4-0">Area</w-col>
+              <w-col cols="3" id="ty-deeed3a9-0">State</w-col>
+            </w-row>
+            <w-row gutter="0" id="ty-7693787e-0"><w-col cols="5" id="ty-31aa2a6f-0">Buttons</w-col><w-col cols="4" id="ty-6d5fc384-0">Forms</w-col><w-col cols="3" id="ty-9c842440-0">Stable</w-col></w-row>
+            <w-row gutter="0" id="ty-e8198b37-0"><w-col cols="5" id="ty-0dcb909f-0">Inputs</w-col><w-col cols="4" id="ty-9595a472-0">Forms</w-col><w-col cols="3" id="ty-5f1d9264-0">Stable</w-col></w-row>
+            <w-row gutter="0" id="ty-a8f0616b-0"><w-col cols="5" id="ty-791bc973-0">Lists</w-col><w-col cols="4" id="ty-edcec373-0">Content</w-col><w-col cols="3" id="ty-233bc695-0">New</w-col></w-row>
+            <w-row gutter="0" id="ty-9e662314-0"><w-col cols="5" id="ty-c65ba3c3-0">Tables</w-col><w-col cols="4" id="ty-f56520ae-0">Content</w-col><w-col cols="3" id="ty-09dc7b21-0">New</w-col></w-row>
+            <w-row gutter="0" id="ty-cc1f26db-0"><w-col cols="5" id="ty-767cdd52-0">Dialogs</w-col><w-col cols="4" id="ty-7fa7463d-0">Overlay</w-col><w-col cols="3" id="ty-6d685be4-0">Stable</w-col></w-row>
+            <w-row gutter="0" id="ty-f93a9e11-0"><w-col cols="5" id="ty-c42d40ab-0">Snackbars</w-col><w-col cols="4" id="ty-ed115fa4-0">Feedback</w-col><w-col cols="3" id="ty-835948ac-0">Stable</w-col></w-row>
+          </w-table>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

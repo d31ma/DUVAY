@@ -1,0 +1,145 @@
+<h1>Menus</h1>
+<p>Menu primitives cover dropdown actions, context menus, menubars, and horizontal navigation menus.</p>
+
+<h2>Menu</h2>
+<demo-compare class="docs-menu-demo">
+  <div slot="css">
+    <div class="docs-menu-stage">
+      <div class="w-menu open w-menu--bottom-start">
+        <button class="w-btn w-btn-outlined w-menu-activator" aria-haspopup="menu" aria-expanded="true">Workspace</button>
+        <div class="w-menu-content" role="menu">
+          <button class="w-menu-item" role="menuitem">Profile</button>
+          <button class="w-menu-item" role="menuitem">Settings</button>
+          <div class="w-menu-separator"></div>
+          <button class="w-menu-item" role="menuitem">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-menu-stage">
+      <w-menu label="Workspace" open location="bottom-start">
+        <button class="w-menu-item" role="menuitem">Profile</button>
+        <button class="w-menu-item" role="menuitem">Settings</button>
+        <div class="w-menu-separator"></div>
+        <button class="w-menu-item" role="menuitem">Sign out</button>
+      </w-menu>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Activator and Delays</h2>
+<demo-compare class="docs-menu-demo">
+  <div slot="css">
+    <div class="docs-menu-stage">
+      <div class="w-menu open w-menu--bottom-start">
+        <button class="w-btn w-btn-outlined w-menu-activator" aria-haspopup="menu" aria-expanded="true">Deploy</button>
+        <div class="w-menu-content" role="menu">
+          <button class="w-menu-item" role="menuitem">Preview build</button>
+          <button class="w-menu-item" role="menuitem">Production</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-menu-stage">
+      <w-menu label="Deploy" location="bottom-start" open open-delay="150" close-delay="120">
+        <button class="w-menu-item" role="menuitem">Preview build</button>
+        <button class="w-menu-item" role="menuitem">Production</button>
+      </w-menu>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Dropdown Menu Alias</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="docs-menu-stage">
+      <div class="w-dropdown-menu open">
+        <button class="w-btn w-btn-outlined w-dropdown-menu-trigger" aria-haspopup="menu" aria-expanded="true">More</button>
+        <div class="w-menu-content w-dropdown-menu-content" role="menu">
+          <button class="w-menu-item" role="menuitem">Archive</button>
+          <button class="w-menu-item" role="menuitem">Duplicate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-menu-stage">
+      <w-dropdown-menu label="More" open close-on-content-click="false">
+        <button class="w-menu-item" role="menuitem">Archive</button>
+        <button class="w-menu-item" role="menuitem">Duplicate</button>
+      </w-dropdown-menu>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Context Menu</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-context-menu">
+      <div class="w-card w-card-body">Right-click target</div>
+      <div class="w-menu-content w-context-menu-content open" role="menu" style="--w-menu-x: 0px; --w-menu-y: 0px;">
+        <button class="w-menu-item" role="menuitem">Back</button>
+        <button class="w-menu-item" role="menuitem">Reload</button>
+        <button class="w-menu-item" role="menuitem">Inspect</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-context-menu label="Page actions">
+      <div class="w-card w-card-body">Right-click this card</div>
+      <button slot="content" class="w-menu-item" role="menuitem">Back</button>
+      <button slot="content" class="w-menu-item" role="menuitem">Reload</button>
+      <button slot="content" class="w-menu-item" role="menuitem">Inspect</button>
+    </w-context-menu>
+  </div>
+</demo-compare>
+
+<h2>Menubar</h2>
+<demo-compare class="docs-menubar-demo">
+  <div slot="css">
+    <nav class="w-menubar" role="menubar">
+      <div class="w-menubar-item open">
+        <button class="w-menubar-trigger" role="menuitem" aria-haspopup="menu" aria-expanded="true">File</button>
+        <div class="w-menu-content w-menubar-content" role="menu">
+          <button class="w-menu-item" role="menuitem">New</button>
+          <button class="w-menu-item" role="menuitem">Save</button>
+        </div>
+      </div>
+      <button class="w-menubar-trigger" role="menuitem">Edit</button>
+      <button class="w-menubar-trigger" role="menuitem">View</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-menubar>
+      <w-menubar-item label="File" open>
+        <button class="w-menu-item" role="menuitem">New</button>
+        <button class="w-menu-item" role="menuitem">Save</button>
+      </w-menubar-item>
+      <w-menubar-item label="Edit">
+        <button class="w-menu-item" role="menuitem">Undo</button>
+        <button class="w-menu-item" role="menuitem">Redo</button>
+      </w-menubar-item>
+      <w-menubar-item label="View">
+        <button class="w-menu-item" role="menuitem">Command palette</button>
+      </w-menubar-item>
+    </w-menubar>
+  </div>
+</demo-compare>
+
+<h2>Navigation Menu</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-navigation-menu" aria-label="Primary">
+      <a class="w-navigation-menu-item active" href="/docs/menus" aria-current="page">Docs</a>
+      <a class="w-navigation-menu-item" href="/docs/components">Components</a>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-navigation-menu>
+      <w-navigation-menu-item href="/docs/menus" label="Docs" active></w-navigation-menu-item>
+      <w-navigation-menu-item href="/docs/components" label="Components"></w-navigation-menu-item>
+    </w-navigation-menu>
+  </div>
+</demo-compare>

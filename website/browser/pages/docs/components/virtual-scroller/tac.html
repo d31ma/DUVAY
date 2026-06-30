@@ -1,0 +1,64 @@
+<h1>Virtual Scroller</h1>
+<p>Virtual scrollers render only the items in (and near) the viewport, so a list of thousands stays smooth. Provide <code>items</code> and a <code>height</code>; set a uniform <code>item-height</code> for the fast path, or omit it for dynamically measured rows.</p>
+
+<h2>Basic</h2>
+<p>With a fixed <code>item-height</code>, only a small window of rows exists in the DOM at once. The CSS-class version shows the rendered window markup.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-virtual-scroll" style="height:240px">
+      <div class="w-virtual-scroll-container">
+        <div class="w-virtual-scroll-item" style="height:44px">Record 001</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Record 002</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Record 003</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Record 004</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Record 005</div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-virtual-scroll height="240px" item-height="44" items="[Record 001,Record 002,Record 003,Record 004,Record 005,Record 006,Record 007,Record 008,Record 009,Record 010,Record 011,Record 012,Record 013,Record 014,Record 015,Record 016,Record 017,Record 018,Record 019,Record 020,Record 021,Record 022,Record 023,Record 024,Record 025,Record 026,Record 027,Record 028,Record 029,Record 030,Record 031,Record 032,Record 033,Record 034,Record 035,Record 036,Record 037,Record 038,Record 039,Record 040,Record 041,Record 042,Record 043,Record 044,Record 045,Record 046,Record 047,Record 048,Record 049,Record 050]"></w-virtual-scroll>
+  </div>
+</demo-compare>
+
+<h2>Dynamic item height</h2>
+<p>Omit <code>item-height</code> and each row is measured individually — useful when content wraps to different heights. <code>scrollToIndex</code> still lands precisely because offsets come from the measured sizes.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-virtual-scroll" style="height:240px">
+      <div class="w-virtual-scroll-container">
+        <div class="w-virtual-scroll-item">Short</div>
+        <div class="w-virtual-scroll-item">A longer line of content that may wrap onto two rows depending on width</div>
+        <div class="w-virtual-scroll-item">Short again</div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-virtual-scroll height="240px" items="[Record 001,Record 002,Record 003,Record 004,Record 005,Record 006,Record 007,Record 008,Record 009,Record 010,Record 011,Record 012,Record 013,Record 014,Record 015,Record 016,Record 017,Record 018,Record 019,Record 020,Record 021,Record 022,Record 023,Record 024,Record 025,Record 026,Record 027,Record 028,Record 029,Record 030]"></w-virtual-scroll>
+  </div>
+</demo-compare>
+
+<h2>Object items</h2>
+<p>Items may be objects; <code>item-title</code> selects the key rendered as each row's text (defaults to <code>title</code>).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-virtual-scroll" style="height:160px">
+      <div class="w-virtual-scroll-container">
+        <div class="w-virtual-scroll-item" style="height:44px">Ada Lovelace</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Grace Hopper</div>
+        <div class="w-virtual-scroll-item" style="height:44px">Alan Turing</div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-virtual-scroll height="160px" item-height="44" item-title="name" items="[{&#39;name&#39;:&#39;Ada Lovelace&#39;},{&#39;name&#39;:&#39;Grace Hopper&#39;},{&#39;name&#39;:&#39;Alan Turing&#39;},{&#39;name&#39;:&#39;Linus Torvalds&#39;},{&#39;name&#39;:&#39;Margaret Hamilton&#39;},{&#39;name&#39;:&#39;Dennis Ritchie&#39;}]"></w-virtual-scroll>
+  </div>
+</demo-compare>
+
+<h2>Scroll to index</h2>
+<p>Call the <code>scrollToIndex(index)</code> method to jump to any item programmatically.</p>
+<div class="w-row ga-2 flex-wrap" style="margin-bottom: var(--w-space-3)">
+  <button class="w-btn w-btn-outlined" onclick="document.getElementById('vs-jump').scrollToIndex(0)">Top</button>
+  <button class="w-btn w-btn-outlined" onclick="document.getElementById('vs-jump').scrollToIndex(25)">Middle</button>
+  <button class="w-btn w-btn-outlined" onclick="document.getElementById('vs-jump').scrollToIndex(49)">Bottom</button>
+</div>
+<w-virtual-scroll id="vs-jump" height="240px" item-height="40" items="[Record 001,Record 002,Record 003,Record 004,Record 005,Record 006,Record 007,Record 008,Record 009,Record 010,Record 011,Record 012,Record 013,Record 014,Record 015,Record 016,Record 017,Record 018,Record 019,Record 020,Record 021,Record 022,Record 023,Record 024,Record 025,Record 026,Record 027,Record 028,Record 029,Record 030,Record 031,Record 032,Record 033,Record 034,Record 035,Record 036,Record 037,Record 038,Record 039,Record 040,Record 041,Record 042,Record 043,Record 044,Record 045,Record 046,Record 047,Record 048,Record 049,Record 050]"></w-virtual-scroll>

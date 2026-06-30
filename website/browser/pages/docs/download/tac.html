@@ -1,0 +1,71 @@
+<h1>Download</h1>
+<p>DuVay ships in two flavours that share one design system: <strong>CSS classes</strong> (style with utility and component classes) and optional <strong>web components</strong> (drop-in custom elements). Both are zero-dependency. Use the hosted URLs from <code>https://duvay.del.ma</code>, download the files, or pin to a specific CalVer release.</p>
+
+<h2>Quick start (hosted)</h2>
+<p>Paste into your <code>&lt;head&gt;</code>. The minified builds are served from this site and updated with every release.</p>
+
+<h3>CSS classes</h3>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.js" defer&gt;&lt;/script&gt;</code></div>
+
+<h3>Selective CSS</h3>
+<div class="code-block"><code>@import "duvay-css/core.css";
+@import "duvay-css/components/buttons.css";
+@import "duvay-css/components/tooltips.css";</code></div>
+
+<h3>Web components</h3>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css"&gt;
+&lt;script type="module" src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js"&gt;&lt;/script&gt;
+
+&lt;w-btn variant="filled"&gt;Click me&lt;/w-btn&gt;</code></div>
+
+<h2>Pin to a CalVer release</h2>
+<p>Every release is kept at a permanent URL. Swap <code>VERSION</code> for the CalVer you want (for example <code>26.24.12</code>).</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.js" defer&gt;&lt;/script&gt;
+
+&lt;!-- optional web components -->
+&lt;script type="module" src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay-wc.min.js"&gt;&lt;/script&gt;</code></div>
+<p class="w-text-subtle">Versioned URLs never change, so you can upgrade on your own schedule by updating the version segment.</p>
+
+<h2>Direct download</h2>
+<p>Self-hosted builds — full (readable) and minified (production). Right-click → Save, or click to download.</p>
+<div class="api-table-wrap"><table class="api-table">
+  <thead><tr><th>Asset</th><th>Full</th><th>Minified</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>CSS framework</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.css" download>duvay.css · ~307 KB</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css" download>duvay.min.css · ~231 KB</a></td>
+    </tr>
+    <tr>
+      <td>CSS core</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/core.css" download>core.css · ~70 KB</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/core.min.css" download>core.min.css · ~50 KB</a></td>
+    </tr>
+    <tr>
+      <td>Component CSS</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/components/buttons.css" download>components/buttons.css</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/components/tooltips.css" download>components/tooltips.css</a></td>
+    </tr>
+    <tr>
+      <td>Behaviour layer (duvay.js)</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.js" download>duvay.js · ~13 KB</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.js" download>duvay.min.js · ~6.8 KB</a></td>
+    </tr>
+    <tr>
+      <td>Motion add-on</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay-motion.js" download>duvay-motion.js · ~18 KB</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay-motion.min.js" download>duvay-motion.min.js · ~10 KB</a></td>
+    </tr>
+    <tr>
+      <td>Web components (bundled)</td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.js" download>duvay-wc.js · ~417 KB</a></td>
+      <td><a href="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js" download>duvay-wc.min.js · ~291 KB</a></td>
+    </tr>
+  </tbody>
+</table></div>
+<p class="w-text-subtle">The behaviour layer (<code>duvay.js</code>) wires CSS-class interactions — dialogs, dropdowns, toasts, theme cycling — through <code>data-w-*</code> attributes. The web-component bundle is self-contained and does not require it.</p>
+
+<h2>Versions</h2>
+<p>Releases follow CalVer (<code>YY.WW.DD</code>). Replace <code>VERSION</code> with the CalVer release you want; every release is permanently available at <code>/shared/assets/duvay/versions/VERSION/dist/</code>. Always test an upgrade against your app before moving the version pin.</p>

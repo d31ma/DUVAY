@@ -1,0 +1,26 @@
+/* DuVay — Spinners component styles. */
+@import "../core.css";
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+.w-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--w-divider);
+  border-top-color: var(--w-primary);
+  border-radius: 50%;
+  animation: w-spin 0.7s linear infinite;
+}
+
+@keyframes w-spin { to { transform: rotate(360deg); } }
+
+.w-spinner--sm {
+  width: 18px;
+  height: 18px;
+  border-width: 2px;
+}
+
+.w-spinner--lg {
+  width: 36px;
+  height: 36px;
+  border-width: 4px;
+}

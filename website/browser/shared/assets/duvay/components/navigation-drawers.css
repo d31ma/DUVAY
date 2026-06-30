@@ -1,0 +1,53 @@
+/* DuVay — Navigation Drawers component styles. */
+@import "../core.css";
+
+/* ── Navigation Drawer ────────────────────────────────────────────────────── */
+/* A panel that slides in from the left. Use .w-nav-drawer--right for right side. */
+.w-nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 55;
+  width: min(320px, 85vw);
+  overflow-y: auto;
+  background: var(--w-surface);
+  border-right: 1px solid var(--w-divider);
+  box-shadow: var(--w-shadow-lg);
+  transform: translateX(-100%);
+  transition: transform var(--w-transition-slow);
+}
+
+.w-nav-drawer.open {
+  transform: translateX(0);
+}
+
+.w-nav-drawer--right {
+  left: auto;
+  right: 0;
+  border-right: 0;
+  border-left: 1px solid var(--w-divider);
+  transform: translateX(100%);
+}
+
+.w-nav-drawer--right.open {
+  transform: translateX(0);
+}
+
+/* Temporary drawer: sits above content with overlay */
+.w-nav-drawer--temporary {
+  z-index: 60;
+}
+
+/* Persistent drawer: sits beside content, no overlay */
+.w-nav-drawer--persistent {
+  position: relative;
+  z-index: 1;
+  transform: none;
+  height: 100%;
+  box-shadow: none;
+}
+
+.w-nav-drawer--persistent.open {
+  transform: none;
+}

@@ -1,0 +1,62 @@
+/* DuVay — Scroll Areas component styles. */
+@import "../core.css";
+
+/* ── Scroll area and resizable panes ────────────────────────────────────── */
+.w-scroll-area {
+  max-height: var(--w-scroll-area-height, 16rem);
+  overflow: auto;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  scrollbar-color: var(--w-border) transparent;
+  scrollbar-width: thin;
+}
+
+.w-scroll-area--horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.w-scroll-area > slot {
+  display: contents;
+}
+
+.w-resizable {
+  display: grid;
+  gap: var(--w-space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.w-resizable--horizontal {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(var(--w-resizable-min, 10rem), var(--w-resizable-size, 1fr));
+  overflow-x: auto;
+}
+
+.w-resizable--vertical {
+  grid-auto-rows: minmax(var(--w-resizable-min, 10rem), var(--w-resizable-size, auto));
+}
+
+.w-resizable > slot {
+  display: contents;
+}
+
+.w-resizable-panel {
+  min-width: var(--w-resizable-min, 10rem);
+  min-height: var(--w-resizable-min, 10rem);
+  overflow: auto;
+  resize: both;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+}
+
+.w-resizable-panel > slot {
+  display: contents;
+}
+
+.w-resizable-panel-inner {
+  padding: var(--w-space-4);
+}

@@ -1,0 +1,89 @@
+<h1>Forms</h1>
+<p><code>w-form</code> wraps native form controls and DuVay inputs, mirroring Vuetify&#8217;s <code>v-form</code>. It aggregates the validity of every field, cascades <code>disabled</code> and <code>readonly</code> to its controls, and emits <code>submit</code> with the result. Validation is native HTML5 constraint validation (<code>required</code>, <code>type</code>, <code>pattern</code>, <code>min</code>/<code>max</code>, <code>minlength</code>/<code>maxlength</code>), so the browser does the checking with no extra JavaScript. DuVay inputs forward those constraint attributes to their underlying control, so they validate inside a form too.</p>
+
+<h2>Basic</h2>
+<p>Submitting validates every field. The native submit is always prevented; listen for <code>submit</code> and read <code>event.detail.valid</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <form class="w-form">
+      <div class="w-stack">
+        <div class="w-field">
+          <label class="w-field-label" for="form-name">Name</label>
+          <input class="w-input" id="form-name" type="text" required placeholder="Jane Doe" />
+        </div>
+        <div class="w-field">
+          <label class="w-field-label" for="form-email">Email</label>
+          <input class="w-input" id="form-email" type="email" required placeholder="you@example.com" />
+        </div>
+        <button class="w-btn w-btn-primary" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div slot="wc">
+    <w-form>
+      <div class="w-stack">
+        <w-input label="Name" type="text" required placeholder="Jane Doe"></w-input>
+        <w-input label="Email" type="email" required placeholder="you@example.com"></w-input>
+        <button class="w-btn w-btn-primary" type="submit">Submit</button>
+      </div>
+    </w-form>
+  </div>
+</demo-compare>
+
+<h2>Disabled and read-only</h2>
+<p>Set <code>disabled</code> or <code>readonly</code> on the form to apply it to every contained control at once. A control that is individually disabled stays disabled when the form is re-enabled.</p>
+<demo-compare>
+  <div slot="css">
+    <form class="w-form">
+      <fieldset class="w-stack" disabled>
+        <div class="w-field">
+          <label class="w-field-label" for="form-plan">Plan</label>
+          <input class="w-input" id="form-plan" type="text" value="Pro" />
+        </div>
+        <button class="w-btn w-btn-primary" type="submit">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div slot="wc">
+    <w-form disabled>
+      <div class="w-stack">
+        <w-input label="Plan" type="text" value="Pro"></w-input>
+        <button class="w-btn w-btn-primary" type="submit">Submit</button>
+      </div>
+    </w-form>
+  </div>
+</demo-compare>
+
+<h2>When fields validate</h2>
+<p>The <code>validate-on</code> attribute controls when fields re-validate as the user interacts: <code>input</code> (default), <code>blur</code>, or <code>submit</code>. Combine values with a space, e.g. <code>validate-on="blur submit"</code>. Use <code>fast-fail</code> to stop at the first failing field.</p>
+<demo-compare>
+  <div slot="css">
+    <form class="w-form">
+      <div class="w-field">
+        <label class="w-field-label" for="form-user">Username</label>
+        <input class="w-input" id="form-user" type="text" required minlength="3" />
+        <span class="w-field-hint">At least 3 characters.</span>
+      </div>
+    </form>
+  </div>
+  <div slot="wc">
+    <w-form validate-on="blur">
+      <w-input label="Username" type="text" required minlength="3" hint="At least 3 characters."></w-input>
+    </w-form>
+  </div>
+</demo-compare>
+
+<h2>Programmatic validation</h2>
+<p>Hold a reference to the element and call its methods directly &#8212; the same API <code>v-form</code> exposes through its ref.</p>
+<pre class="w-code"><code>const form = document.querySelector('w-form')
+
+const &#123; valid, errors &#125; = form.validate()
+// errors -&gt; [&#123; id: 'email', errorMessages: ['Please fill out this field.'] &#125;]
+
+form.resetValidation() // clear messages, keep values
+form.reset()           // clear values and validation
+
+form.isValid     // true | false | null (not yet validated)
+form.errors      // current FieldValidationResult[]
+form.items       // the validatable controls in the form</code></pre>
+

@@ -1,0 +1,36 @@
+/* DuVay — Images component styles. */
+@import "../core.css";
+
+/* ── Image ───────────────────────────────────────────────────────────────── */
+.w-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+w-img[fit] {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+w-img[fit] > .w-img {
+  width: 100%;
+  height: 100%;
+}
+
+.w-img--cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.w-img--contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.w-img--rounded {
+  border-radius: var(--w-radius);
+}

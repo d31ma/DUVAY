@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-10f42e6d-0">Pagination</h1><p id="ty-507adf81-0">Navigate large data sets with page controls, truncation, and accessible navigation.</p><h2 id="ty-0070c9a3-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-57fef1ed-0">
+    <nav class="w-pagination" aria-label="Pagination" id="ty-ecd0fb48-0">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" disabled="" id="ty-3a79221c-0">‹</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-054e672c-0">1</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 2" id="ty-5d106871-0">2</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 3" id="ty-df381b83-0">3</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 4" id="ty-0704a102-0">4</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 5" id="ty-aa41e42b-0">5</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-affea741-0">›</button>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-d49f9d13-0">
+    <w-pagination length="5" page="1" id="ty-65d944bf-0"></w-pagination>
+  </div>
+</demo-compare><h2 id="ty-5b106dd8-0">Truncation with total-visible</h2><p id="ty-b0f941fc-0">When <code id="ty-c543b509-0">length</code> exceeds <code id="ty-a60e244a-0">total-visible</code>, the middle is collapsed with an ellipsis.</p><demo-compare >
+  <div slot="css" id="ty-abe40f8e-0">
+    <nav class="w-pagination" aria-label="Pagination" id="ty-fb405fa7-0">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" id="ty-b9e8257f-0">‹</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 1" id="ty-7d38d3aa-0">1</button>
+      <span class="w-page-ellipsis" aria-hidden="true" id="ty-ffac1751-0">…</span>
+      <button class="w-page-item" type="button" aria-label="Go to page 9" id="ty-09faf684-0">9</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 10" id="ty-59ceedc1-0">10</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 11" id="ty-bb153261-0">11</button>
+      <span class="w-page-ellipsis" aria-hidden="true" id="ty-c13f4e9d-0">…</span>
+      <button class="w-page-item" type="button" aria-label="Go to page 20" id="ty-9f640446-0">20</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-037a36be-0">›</button>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-d50fc26b-0">
+    <w-pagination length="20" page="10" total-visible="5" id="ty-79c6e6ea-0"></w-pagination>
+  </div>
+</demo-compare><h2 id="ty-0c6e0e79-0">First and last buttons</h2><p id="ty-bee8794c-0">Add <code id="ty-d9d942fa-0">show-first-last-page</code> to render first («) and last (») navigation buttons.</p><demo-compare >
+  <div slot="css" id="ty-be9e9f9f-0">
+    <nav class="w-pagination" aria-label="Pagination" id="ty-f7ceda28-0">
+      <button class="w-page-item w-page-nav" type="button" aria-label="First page" disabled="" id="ty-9024c8d1-0">«</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" disabled="" id="ty-259fa0a8-0">‹</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-7208d7f7-0">1</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 2" id="ty-523c7392-0">2</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 3" id="ty-37546e69-0">3</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 4" id="ty-e2a3925f-0">4</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 5" id="ty-d20a1865-0">5</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-27d04216-0">›</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Last page" id="ty-7f2966a4-0">»</button>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-71ef1910-0">
+    <w-pagination length="5" page="1" show-first-last-page="" id="ty-7ed57bc6-0"></w-pagination>
+  </div>
+</demo-compare><h2 id="ty-42a3de7e-0">Variants</h2><p id="ty-ecbe52ae-0">Choose from <code id="ty-3e033a1a-0">text</code> (default), <code id="ty-a2cd2820-0">flat</code>, <code id="ty-5d2fcd6b-0">tonal</code>, <code id="ty-94d80d68-0">outlined</code>, and <code id="ty-679bbb79-0">elevated</code>.</p><demo-compare >
+  <div slot="css" id="ty-47d72719-0">
+    <div class="w-col w-gap-3" id="ty-805c021c-0">
+      <nav class="w-pagination" aria-label="Pagination" id="ty-8260fff6-0">
+        <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" id="ty-9e0090e8-0">‹</button>
+        <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-62d40d7b-0">1</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 2" id="ty-b031be06-0">2</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 3" id="ty-52e6d5ee-0">3</button>
+        <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-e99ae9cc-0">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination" id="ty-5a6188e4-0">
+        <button class="w-page-item w-page-item--flat w-page-nav" type="button" aria-label="Previous page" id="ty-5537d571-0">‹</button>
+        <button class="w-page-item w-page-item--flat active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-f7a66e42-0">1</button>
+        <button class="w-page-item w-page-item--flat" type="button" aria-label="Go to page 2" id="ty-9b906e4b-0">2</button>
+        <button class="w-page-item w-page-item--flat" type="button" aria-label="Go to page 3" id="ty-2ea1fa6e-0">3</button>
+        <button class="w-page-item w-page-item--flat w-page-nav" type="button" aria-label="Next page" id="ty-e883872d-0">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination" id="ty-a5b3a960-0">
+        <button class="w-page-item w-page-item--tonal w-page-nav" type="button" aria-label="Previous page" id="ty-4ea13dd2-0">‹</button>
+        <button class="w-page-item w-page-item--tonal active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-ed845dc1-0">1</button>
+        <button class="w-page-item w-page-item--tonal" type="button" aria-label="Go to page 2" id="ty-c75bf6c0-0">2</button>
+        <button class="w-page-item w-page-item--tonal" type="button" aria-label="Go to page 3" id="ty-99bd227d-0">3</button>
+        <button class="w-page-item w-page-item--tonal w-page-nav" type="button" aria-label="Next page" id="ty-4898f52a-0">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination" id="ty-5c680fa0-0">
+        <button class="w-page-item w-page-item--outlined w-page-nav" type="button" aria-label="Previous page" id="ty-83c4fedd-0">‹</button>
+        <button class="w-page-item w-page-item--outlined active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-730a1925-0">1</button>
+        <button class="w-page-item w-page-item--outlined" type="button" aria-label="Go to page 2" id="ty-f8475340-0">2</button>
+        <button class="w-page-item w-page-item--outlined" type="button" aria-label="Go to page 3" id="ty-14a352a5-0">3</button>
+        <button class="w-page-item w-page-item--outlined w-page-nav" type="button" aria-label="Next page" id="ty-7b271ba9-0">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination" id="ty-f3671e0f-0">
+        <button class="w-page-item w-page-item--elevated w-page-nav" type="button" aria-label="Previous page" id="ty-fdaca195-0">‹</button>
+        <button class="w-page-item w-page-item--elevated active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-b6ad4816-0">1</button>
+        <button class="w-page-item w-page-item--elevated" type="button" aria-label="Go to page 2" id="ty-6dce9ed3-0">2</button>
+        <button class="w-page-item w-page-item--elevated" type="button" aria-label="Go to page 3" id="ty-36b56a3c-0">3</button>
+        <button class="w-page-item w-page-item--elevated w-page-nav" type="button" aria-label="Next page" id="ty-d1fb5eca-0">›</button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d20f8b3a-0">
+    <div class="w-col w-gap-3" id="ty-0b3b5b73-0">
+      <w-pagination length="3" page="1" variant="text" id="ty-da8a6f25-0"></w-pagination>
+      <w-pagination length="3" page="1" variant="flat" id="ty-e345880c-0"></w-pagination>
+      <w-pagination length="3" page="1" variant="tonal" id="ty-510e0542-0"></w-pagination>
+      <w-pagination length="3" page="1" variant="outlined" id="ty-3d79a19f-0"></w-pagination>
+      <w-pagination length="3" page="1" variant="elevated" id="ty-826e4e80-0"></w-pagination>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-6aa55abb-0">Sizes</h2><p id="ty-5d4d90a9-0">Vuetify-style sizes: <code id="ty-f1fb4973-0">x-small</code>, <code id="ty-d4d97fda-0">small</code>, <code id="ty-4a1f2c90-0">default</code>, <code id="ty-b24a8a14-0">large</code>, <code id="ty-c723f26f-0">x-large</code>.</p><demo-compare >
+  <div slot="css" id="ty-ad0dda3f-0">
+    <div class="w-col w-gap-3" id="ty-e93e130b-0">
+      <nav class="w-pagination w-pagination--x-small" aria-label="Pagination" id="ty-3e4509e1-0">
+        <button class="w-page-item w-page-item--x-small w-page-nav" type="button" aria-label="Previous page" id="ty-8e59fe8c-0">‹</button>
+        <button class="w-page-item w-page-item--x-small active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-fe12e698-0">1</button>
+        <button class="w-page-item w-page-item--x-small" type="button" aria-label="Go to page 2" id="ty-a03b7e03-0">2</button>
+        <button class="w-page-item w-page-item--x-small w-page-nav" type="button" aria-label="Next page" id="ty-0cf0f440-0">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--small" aria-label="Pagination" id="ty-17d1798d-0">
+        <button class="w-page-item w-page-item--small w-page-nav" type="button" aria-label="Previous page" id="ty-4af0b790-0">‹</button>
+        <button class="w-page-item w-page-item--small active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-e86e58bd-0">1</button>
+        <button class="w-page-item w-page-item--small" type="button" aria-label="Go to page 2" id="ty-c6540201-0">2</button>
+        <button class="w-page-item w-page-item--small w-page-nav" type="button" aria-label="Next page" id="ty-cdb75258-0">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination" id="ty-78d2cb59-0">
+        <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" id="ty-4be9324c-0">‹</button>
+        <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-2a5791e3-0">1</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 2" id="ty-00bcc524-0">2</button>
+        <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-0838f9a9-0">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--large" aria-label="Pagination" id="ty-8b55d644-0">
+        <button class="w-page-item w-page-item--large w-page-nav" type="button" aria-label="Previous page" id="ty-9bdc8421-0">‹</button>
+        <button class="w-page-item w-page-item--large active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-4d0b2cd3-0">1</button>
+        <button class="w-page-item w-page-item--large" type="button" aria-label="Go to page 2" id="ty-d8f283ac-0">2</button>
+        <button class="w-page-item w-page-item--large w-page-nav" type="button" aria-label="Next page" id="ty-67543d43-0">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--x-large" aria-label="Pagination" id="ty-b3535dd0-0">
+        <button class="w-page-item w-page-item--x-large w-page-nav" type="button" aria-label="Previous page" id="ty-ef00e350-0">‹</button>
+        <button class="w-page-item w-page-item--x-large active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-15cf211d-0">1</button>
+        <button class="w-page-item w-page-item--x-large" type="button" aria-label="Go to page 2" id="ty-362d04be-0">2</button>
+        <button class="w-page-item w-page-item--x-large w-page-nav" type="button" aria-label="Next page" id="ty-9d896c10-0">›</button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc" id="ty-03fee72d-0">
+    <div class="w-col w-gap-3" id="ty-a82211b9-0">
+      <w-pagination length="2" page="1" size="x-small" id="ty-ca358eaa-0"></w-pagination>
+      <w-pagination length="2" page="1" size="small" id="ty-0de980cc-0"></w-pagination>
+      <w-pagination length="2" page="1" size="default" id="ty-1728b875-0"></w-pagination>
+      <w-pagination length="2" page="1" size="large" id="ty-e915e3ed-0"></w-pagination>
+      <w-pagination length="2" page="1" size="x-large" id="ty-d86e3308-0"></w-pagination>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-18691e89-0">Rounded</h2><p id="ty-6b674894-0">Use <code id="ty-437ed07b-0">rounded="circle"</code> (or <code id="ty-84d737ea-0">rounded="pill"</code>) for fully rounded page buttons.</p><demo-compare >
+  <div slot="css" id="ty-0c9316ba-0">
+    <nav class="w-pagination" aria-label="Pagination" id="ty-81690d2b-0">
+      <button class="w-page-item w-page-item--pill w-page-nav" type="button" aria-label="Previous page" id="ty-65c6d1c4-0">‹</button>
+      <button class="w-page-item w-page-item--pill active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-f4d16b1a-0">1</button>
+      <button class="w-page-item w-page-item--pill" type="button" aria-label="Go to page 2" id="ty-47125676-0">2</button>
+      <button class="w-page-item w-page-item--pill" type="button" aria-label="Go to page 3" id="ty-26c78d73-0">3</button>
+      <button class="w-page-item w-page-item--pill w-page-nav" type="button" aria-label="Next page" id="ty-e92c72e3-0">›</button>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-5dcb3cc1-0">
+    <w-pagination length="3" page="1" rounded="circle" id="ty-6ca5f3ab-0"></w-pagination>
+  </div>
+</demo-compare><h2 id="ty-a1d910a3-0">Color and active-color</h2><p id="ty-88b5509b-0">Override the active page color with <code id="ty-79f0d2a2-0">color</code> or <code id="ty-a0bd96e6-0">active-color</code>.</p><demo-compare >
+  <div slot="css" id="ty-e6f17f64-0">
+    <nav class="w-pagination" aria-label="Pagination" id="ty-583b6baf-0">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" id="ty-2090b543-0">‹</button>
+      <button class="w-page-item w-page-item--color-success w-page-item--active-color-error active" type="button" aria-current="page" aria-label="Current page, page 1" id="ty-f432a6db-0">1</button>
+      <button class="w-page-item w-page-item--color-success" type="button" aria-label="Go to page 2" id="ty-3b94a90c-0">2</button>
+      <button class="w-page-item w-page-item--color-success" type="button" aria-label="Go to page 3" id="ty-2dc9f678-0">3</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page" id="ty-ed90eeac-0">›</button>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-d21a1d70-0">
+    <w-pagination length="3" page="1" color="success" active-color="error" id="ty-36a66354-0"></w-pagination>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,108 @@
+<h1>Switches</h1>
+<p><code>w-switch</code> is a boolean toggle &#8212; an accessible checkbox styled as an on/off control. Use it for settings that take effect immediately. Style a native checkbox with the <code>.w-switch</code> classes, or use the <code>&lt;w-switch&gt;</code> web component for colors, sizes, loading, hints, and the inset/flat variants.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-switch w-switch--md"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Auto-renew</span></label>
+      <label class="w-switch w-switch--md"><input class="w-switch-input" type="checkbox" /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Email notifications</span></label>
+      <label class="w-switch w-switch--md"><input class="w-switch-input" type="checkbox" disabled /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Locked setting</span></label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-switch checked label="Auto-renew"></w-switch>
+      <w-switch label="Email notifications"></w-switch>
+      <w-switch disabled label="Locked setting"></w-switch>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<p>Set <code>color</code> to tint the track and accent when on.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-switch w-switch--md w-switch--primary"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Primary</span></label>
+      <label class="w-switch w-switch--md w-switch--success"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Success</span></label>
+      <label class="w-switch w-switch--md w-switch--warning"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Warning</span></label>
+      <label class="w-switch w-switch--md w-switch--error"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Error</span></label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-switch checked color="primary" label="Primary"></w-switch>
+      <w-switch checked color="success" label="Success"></w-switch>
+      <w-switch checked color="warning" label="Warning"></w-switch>
+      <w-switch checked color="error" label="Error"></w-switch>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Four sizes from <code>xs</code> to <code>lg</code>; omit for the default (<code>md</code>).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-switch w-switch--xs"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Extra small</span></label>
+      <label class="w-switch w-switch--sm"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Small</span></label>
+      <label class="w-switch w-switch--md"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Medium</span></label>
+      <label class="w-switch w-switch--lg"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Large</span></label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-switch checked size="xs" label="Extra small"></w-switch>
+      <w-switch checked size="sm" label="Small"></w-switch>
+      <w-switch checked size="md" label="Medium"></w-switch>
+      <w-switch checked size="lg" label="Large"></w-switch>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Inset</h2>
+<p>Add <code>inset</code> so the track fully wraps the thumb.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-switch w-switch--md w-switch--inset"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Inset</span></label>
+      <label class="w-switch w-switch--md w-switch--inset w-switch--flat"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-label">Flat inset</span></label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-switch checked inset label="Inset"></w-switch>
+      <w-switch checked inset flat label="Flat inset"></w-switch>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Loading</h2>
+<p>Add <code>loading</code> to show a spinner in the thumb and block toggling while a request is in flight.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-switch w-switch--md w-switch--loading"><input class="w-switch-input" type="checkbox" checked aria-busy="true" /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"><span class="w-switch-spinner"></span></span></span><span class="w-switch-label">Saving&#8230;</span></label>
+  </div>
+  <div slot="wc">
+    <w-switch checked loading label="Saving&#8230;"></w-switch>
+  </div>
+</demo-compare>
+
+<h2>Hint &amp; error</h2>
+<p>Add <code>hint</code> for helper text, or <code>error</code> to surface a validation message and tint the control.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-switch w-switch--md"><input class="w-switch-input" type="checkbox" checked /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-text"><span class="w-switch-label">Marketing emails</span><span class="w-switch-hint">You can change this anytime</span></span></label>
+      <label class="w-switch w-switch--md w-switch--error"><input class="w-switch-input" type="checkbox" aria-invalid="true" /><span class="w-switch-track" aria-hidden="true"><span class="w-switch-thumb"></span></span><span class="w-switch-text"><span class="w-switch-label">Accept terms</span><span class="w-switch-error">You must accept to continue</span></span></label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-switch checked label="Marketing emails" hint="You can change this anytime"></w-switch>
+      <w-switch label="Accept terms" error="You must accept to continue"></w-switch>
+    </div>
+  </div>
+</demo-compare>
+

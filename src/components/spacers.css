@@ -1,0 +1,5 @@
+/* DuVay — Spacers component styles. */
+@import "../core.css";
+
+/* ── Spacer ─────────────────────────────────────────────────────────────── */
+.w-spacer { flex-grow: 1; }

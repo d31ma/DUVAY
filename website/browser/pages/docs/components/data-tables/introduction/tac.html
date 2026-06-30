@@ -1,0 +1,28 @@
+<h1>Data Tables</h1>
+<p><code>w-data-table</code> renders a semantic <code>&lt;table&gt;</code> and owns the client-side pipeline &#8212; filter (<code>search</code>) → sort → paginate. It supports rich or simple headers, single &amp; multi-column sorting, row selection, expandable detail rows, a paginated footer with a per-page select, and loading / empty states.</p>
+
+<ul>
+  <li><a href="/docs/components/data-tables/basics">Basics</a> &#8212; sorting, search, and pagination.</li>
+  <li><a href="/docs/components/data-tables/data-and-display">Data and Display</a> &#8212; rich headers, selection, expansion, density, and states.</li>
+  <li><a href="/docs/components/data-tables/server-side-tables">Server-side tables</a> &#8212; remote data with <code>update:options</code>.</li>
+  <li><a href="/docs/components/data-tables/virtual-tables">Virtual tables</a> &#8212; windowed rendering for very long lists.</li>
+</ul>
+
+<h2>Basic</h2>
+<p>Pass <code>headers</code> as a simple comma list (the label doubles as the key) and <code>items</code> as <code>a|b|c; …</code> rows or a JSON array.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th>Dessert</th><th>Calories</th><th>Fat</th></tr></thead>
+        <tbody>
+          <tr><td>Frozen yogurt</td><td>159</td><td>6</td></tr>
+          <tr><td>Ice cream sandwich</td><td>237</td><td>9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table headers="[Dessert,Calories,Fat]" items="[Frozen yogurt|159|6; Ice cream sandwich|237|9; Eclair|262|16; Cupcake|305|3; Gingerbread|356|16]" items-per-page="3"></w-data-table>
+  </div>
+</demo-compare>

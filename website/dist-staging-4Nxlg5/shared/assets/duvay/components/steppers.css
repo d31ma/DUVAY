@@ -1,0 +1,130 @@
+/* DuVay — Steppers component styles. */
+@import "../core.css";
+
+/* ── Stepper ─────────────────────────────────────────────────────────────── */
+.w-stepper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+}
+
+.w-step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.w-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--w-surface-container-high);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-bold);
+  z-index: 1;
+  transition: background var(--w-transition-normal), color var(--w-transition-normal);
+  box-shadow: 0 0 0 4px var(--w-surface);
+}
+
+.w-step.active .w-step-indicator {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+}
+
+.w-step.done .w-step-indicator {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border: 1px solid color-mix(in srgb, var(--w-primary) 40%, transparent);
+}
+
+.w-step-connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 16px);
+  right: calc(-50% + 16px);
+  height: 2px;
+  background: var(--w-divider);
+  z-index: 0;
+}
+
+.w-step.done .w-step-connector {
+  background: var(--w-primary);
+}
+
+.w-step:last-child .w-step-connector {
+  display: none;
+}
+
+.w-step-label {
+  margin-top: 0.5rem;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  color: var(--w-text-subtle);
+}
+
+.w-step-content {
+  min-width: 0;
+}
+
+.w-step.active .w-step-label {
+  color: var(--w-text);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-step.done .w-step-label {
+  color: var(--w-text-subtle);
+}
+
+.w-step-caption {
+  font-size: var(--w-font-xs);
+  color: var(--w-text-very-subtle);
+  margin-top: 0.125rem;
+}
+
+/* Vertical stepper */
+.w-stepper--vertical {
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+}
+
+.w-stepper--vertical .w-step {
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: var(--w-space-md);
+  width: 100%;
+  padding-bottom: var(--w-space-xl);
+}
+
+.w-stepper--vertical .w-step-connector {
+  position: absolute;
+  top: 32px;
+  left: 16px;
+  right: auto;
+  bottom: 0;
+  width: 2px;
+  height: auto;
+}
+
+.w-stepper--vertical .w-step-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0 0 var(--w-space-1);
+}
+
+.w-stepper--vertical .w-step-label {
+  margin-top: 0.125rem;
+}

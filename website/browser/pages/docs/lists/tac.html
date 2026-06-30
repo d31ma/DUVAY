@@ -1,0 +1,222 @@
+<h1>Lists</h1>
+<p>Vertical collections for navigation, settings rows, messages, and selectable options.</p>
+
+<h2>Basic List</h2>
+<p><code>w-list-item-title</code>, <code>w-list-item-subtitle</code>, <code>w-list-subheader</code>, <code>w-list-children</code>, <code>w-list-img</code>, <code>w-list-item-action</code>, and <code>w-list-item-media</code> are available as Vuetify-named subcomponents.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list">
+      <button class="w-list-item">
+        <span class="w-list-item-prepend">🏠</span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Dashboard</span>
+        </span>
+        <span class="w-list-item-append">›</span>
+      </button>
+      <button class="w-list-item active">
+        <span class="w-list-item-prepend">📥</span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Inbox</span>
+          <span class="w-list-item-subtitle">12 unread messages</span>
+        </span>
+        <span class="w-list-item-append">12</span>
+      </button>
+      <button class="w-list-item">
+        <span class="w-list-item-prepend">⚙</span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Settings</span>
+        </span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list selectable>
+      <w-list-item title="Dashboard" value="dashboard" prepend-icon="🏠" append-icon="›"></w-list-item>
+      <w-list-item title="Inbox" subtitle="12 unread messages" value="inbox" prepend-icon="📥" append-icon="12" active></w-list-item>
+      <w-list-item title="Settings" value="settings" prepend-icon="⚙"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>Items API</h2>
+<p><code>items</code> accepts a JSON array with item, divider, subheader, and nested children entries. Selection attributes also accept JSON arrays for multi-value state.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list w-list--nav">
+      <div class="w-list-subheader">Workspace</div>
+      <button class="w-list-item active">
+        <span class="w-list-item-prepend">@</span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Inbox</span>
+          <span class="w-list-item-subtitle">12 unread</span>
+        </span>
+      </button>
+      <div class="w-list-divider"></div>
+      <div class="w-list-group open">
+        <button class="w-list-group-activator w-list-item" type="button" aria-expanded="true">
+          <span class="w-list-item-content"><span class="w-list-item-title">Settings</span></span>
+          <span class="w-list-item-append">⌃</span>
+        </button>
+        <div class="w-list-group-items">
+          <button class="w-list-item">Profile</button>
+          <button class="w-list-item">Billing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list
+      nav
+      selectable
+      selected="[&#39;inbox&#39;]"
+      opened="[&#39;settings&#39;]"
+      items="[{&#39;type&#39;:&#39;subheader&#39;,&#39;title&#39;:&#39;Workspace&#39;},{&#39;title&#39;:&#39;Inbox&#39;,&#39;value&#39;:&#39;inbox&#39;,&#39;subtitle&#39;:&#39;12 unread&#39;,&#39;prependIcon&#39;:&#39;@&#39;},{&#39;type&#39;:&#39;divider&#39;},{&#39;title&#39;:&#39;Settings&#39;,&#39;value&#39;:&#39;settings&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Profile&#39;,&#39;value&#39;:&#39;profile&#39;},{&#39;title&#39;:&#39;Billing&#39;,&#39;value&#39;:&#39;billing&#39;}]}]"
+    ></w-list>
+  </div>
+</demo-compare>
+
+<h2>Media and Variants</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list w-list--two-line">
+      <button class="w-list-item w-list-item--variant-tonal active">
+        <span class="w-list-item-prepend"><span class="w-avatar w-avatar-sm"><span class="w-avatar-text">AM</span><span class="w-avatar-underlay" aria-hidden="true"></span></span></span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Avery Morgan</span>
+          <span class="w-list-item-subtitle">Shared the revised roadmap.</span>
+        </span>
+        <span class="w-list-item-append">9:42</span>
+      </button>
+      <button class="w-list-item w-list-item--variant-outlined">
+        <span class="w-list-item-prepend"><span class="w-avatar w-avatar-sm"><span class="w-avatar-text">NS</span><span class="w-avatar-underlay" aria-hidden="true"></span></span></span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Nora Singh</span>
+          <span class="w-list-item-subtitle">Left a launch checklist note.</span>
+        </span>
+        <span class="w-list-item-append">8:15</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list lines="two" selectable selected="avery">
+      <w-list-item title="Avery Morgan" subtitle="Shared the revised roadmap." value="avery" prepend-avatar="AM" append-icon="9:42" variant="tonal"></w-list-item>
+      <w-list-item title="Nora Singh" subtitle="Left a launch checklist note." value="nora" prepend-avatar="NS" append-icon="8:15" variant="outlined"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>List Groups</h2>
+<p><code>w-list-group</code> and <code>w-list-group-activator</code> provide expandable nested list sections.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list">
+      <div class="w-list-group open">
+        <button class="w-list-group-activator w-list-item" type="button" aria-expanded="true">
+          <span class="w-list-item-content"><span class="w-list-item-title">Components</span></span>
+          <span class="w-list-item-append">⌃</span>
+        </button>
+        <div class="w-list-group-items">
+          <button class="w-list-item">Lists</button>
+          <button class="w-list-item">Tables</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list nav>
+      <w-list-group title="Components" open>
+        <w-list-item title="Lists"></w-list-item>
+        <w-list-item title="Tables"></w-list-item>
+      </w-list-group>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>Navigation Density</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list w-list--nav w-list--compact">
+      <div class="w-list-subheader">Workspace</div>
+      <a class="w-list-item active" href="#">
+        <span class="w-list-item-prepend">📌</span>
+        <span class="w-list-item-content"><span class="w-list-item-title">Pinned</span></span>
+      </a>
+      <a class="w-list-item" href="#">
+        <span class="w-list-item-prepend">🗂</span>
+        <span class="w-list-item-content"><span class="w-list-item-title">Projects</span></span>
+      </a>
+      <div class="w-list-divider"></div>
+      <a class="w-list-item" href="#">
+        <span class="w-list-item-prepend">🕘</span>
+        <span class="w-list-item-content"><span class="w-list-item-title">Recent</span></span>
+      </a>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list nav density="compact" selectable>
+      <div class="w-list-subheader">Workspace</div>
+      <w-list-item href="#" title="Pinned" value="pinned" prepend-icon="📌" active></w-list-item>
+      <w-list-item href="#" title="Projects" value="projects" prepend-icon="🗂"></w-list-item>
+      <div class="w-list-divider"></div>
+      <w-list-item href="#" title="Recent" value="recent" prepend-icon="🕘"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>Multi-line Items</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-list w-list--two-line">
+      <button class="w-list-item">
+        <span class="w-list-item-prepend"><span class="w-avatar w-avatar-sm" data-w-initials="AM"></span></span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Avery Morgan</span>
+          <span class="w-list-item-subtitle">Shared the revised roadmap.</span>
+        </span>
+        <span class="w-list-item-append">9:42</span>
+      </button>
+      <button class="w-list-item">
+        <span class="w-list-item-prepend"><span class="w-avatar w-avatar-sm" data-w-initials="NS"></span></span>
+        <span class="w-list-item-content">
+          <span class="w-list-item-title">Nora Singh</span>
+          <span class="w-list-item-subtitle">Left a comment on the launch checklist.</span>
+        </span>
+        <span class="w-list-item-append">8:15</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-list lines="two">
+      <w-list-item title="Avery Morgan" subtitle="Shared the revised roadmap." append-icon="9:42">
+        <span slot="prepend" class="w-avatar w-avatar-sm" data-w-initials="AM"></span>
+      </w-list-item>
+      <w-list-item title="Nora Singh" subtitle="Left a comment on the launch checklist." append-icon="8:15">
+        <span slot="prepend" class="w-avatar w-avatar-sm" data-w-initials="NS"></span>
+      </w-list-item>
+    </w-list>
+  </div>
+</demo-compare>
+
+<h2>Tree view</h2>
+<p><code>w-treeview</code> renders hierarchical, collapsible data. Pass a flat <code>items</code> array of <code>&gt;</code>-delimited paths and DuVay builds the tree, or compose <code>w-treeview-item</code> children directly. Add <code>open-all</code> to expand every branch; toggle buttons are keyboard-focusable and report <code>aria-expanded</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview" role="tree">
+      <ul>
+        <li class="w-treeview-node open" role="treeitem" aria-expanded="true">
+          <span class="w-treeview-row">
+            <button class="w-treevietoggle" type="button" aria-expanded="true" aria-label="Toggle Components">›</button>
+            <span>Components</span>
+          </span>
+          <ul>
+            <li class="w-treeview-node open" role="treeitem"><span class="w-treeview-row"><span class="w-treeview-leaf" aria-hidden="true"></span><span>Buttons</span></span></li>
+            <li class="w-treeview-node open" role="treeitem"><span class="w-treeview-row"><span class="w-treeview-leaf" aria-hidden="true"></span><span>Inputs</span></span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview open-all items="[Components > Buttons; Components > Inputs > Text field; Components > Inputs > Select; Layout > Grid; Layout > Utilities]"></w-treeview>
+  </div>
+</demo-compare>

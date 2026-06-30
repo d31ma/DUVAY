@@ -1,0 +1,61 @@
+<h1>Item Groups</h1>
+<p>Item groups coordinate selected state across arbitrary children. They support single or multiple selection, a selection cap, custom active classes, and full keyboard navigation.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-item-group">
+      <button class="w-btn w-btn-outlined selected">Day</button>
+      <button class="w-btn w-btn-outlined">Week</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-item-group value="day" mandatory>
+      <button class="w-btn w-btn-outlined" value="day">Day</button>
+      <button class="w-btn w-btn-outlined" value="week">Week</button>
+      <button class="w-btn w-btn-outlined" value="month">Month</button>
+    </w-item-group>
+  </div>
+</demo-compare>
+
+<h2>Multiple selection with max</h2>
+<p>Add <code>multiple</code> to allow more than one selection and <code>max</code> to cap how many items can be selected at once.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-item-group">
+      <button class="w-btn w-btn-outlined selected">Red</button>
+      <button class="w-btn w-btn-outlined selected">Green</button>
+      <button class="w-btn w-btn-outlined">Blue</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-item-group multiple max="2" value='["red","green"]'>
+      <button class="w-btn w-btn-outlined" value="red">Red</button>
+      <button class="w-btn w-btn-outlined" value="green">Green</button>
+      <button class="w-btn w-btn-outlined" value="blue">Blue</button>
+    </w-item-group>
+  </div>
+</demo-compare>
+
+<h2>Custom active class</h2>
+<p>Use <code>active-class</code> (or <code>selected-class</code>) to apply your own CSS class to selected items.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-item-group">
+      <button class="w-btn w-btn-outlined w-btn-primary">S</button>
+      <button class="w-btn w-btn-outlined">M</button>
+      <button class="w-btn w-btn-outlined">L</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-item-group value="m" active-class="w-btn-primary">
+      <button class="w-btn w-btn-outlined" value="s">S</button>
+      <button class="w-btn w-btn-outlined" value="m">M</button>
+      <button class="w-btn w-btn-outlined" value="l">L</button>
+    </w-item-group>
+  </div>
+</demo-compare>
+
+<h2>Keyboard navigation</h2>
+<p>Item groups implement roving <code>tabindex</code> and arrow-key navigation. Tab into the group, then use <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> to move focus, <kbd>Home</kbd> and <kbd>End</kbd> to jump to the first or last item, and <kbd>Space</kbd> or <kbd>Enter</kbd> to toggle the focused item.</p>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-7c7ae31f-0">Breadcrumbs</h1><p id="ty-b0ff9b11-0">Breadcrumbs show the user's location within a hierarchy and provide a path back to parent pages. DuVay breadcrumbs support a declarative items array, custom dividers, leading and per-item icons, color theming, density, and rounded containers.</p><p id="ty-5937a0ff-0">The separator between crumbs is drawn by CSS, so plain markup, the <code id="ty-440f368c-0">items</code> array, and composed children all get automatic dividers. An explicit <code id="ty-0b9e4449-0">&lt;w-breadcrumbs-divider&gt;</code> between two crumbs overrides the automatic one.</p><h2 id="ty-d41073c8-0">Basic</h2><p id="ty-253e69ba-0">Mark the current page with the <code id="ty-383f73fa-0">active</code> class (or the <code id="ty-d113b12d-0">active</code> attribute), which renders a non-link crumb with <code id="ty-9f01a384-0">aria-current="page"</code>.</p><demo-compare >
+  <div slot="css" id="ty-69cf6486-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" id="ty-7896406e-0">
+      <a class="w-breadcrumb" href="/docs" id="ty-6d66b5f9-0">Docs</a>
+      <a class="w-breadcrumb" href="/docs/components" id="ty-6041d31e-0">Components</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-9b87eeec-0">Breadcrumbs</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-55be8a48-0">
+    <w-breadcrumbs id="ty-ef7b4389-0">
+      <w-breadcrumb href="/docs" id="ty-9bc9f642-0">Docs</w-breadcrumb>
+      <w-breadcrumb href="/docs/components" id="ty-894d2b7f-0">Components</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-e7e8a0e1-0">Breadcrumbs</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-4d633658-0">Declarative items</h2><p id="ty-c8f6a617-0">For data-driven breadcrumbs, set an <code id="ty-a3eb6005-0">items</code> array on <code id="ty-4460f0ca-0">&lt;w-breadcrumbs&gt;</code> from JavaScript instead of composing children. Each entry is an object with a <code id="ty-7da63830-0">title</code> (or <code id="ty-d763be6e-0">text</code>), an optional <code id="ty-8721f67b-0">href</code>, and optional <code id="ty-a2436c0d-0">disabled</code> and <code id="ty-8350c88a-0">icon</code> values; the last entry becomes the current page automatically. The example below shows the equivalent written as composed children.</p><demo-compare >
+  <div slot="css" id="ty-8a7fa6ed-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" id="ty-708e6592-0">
+      <a class="w-breadcrumb" href="/" id="ty-2e4b2f02-0"><span class="w-breadcrumb-icon" id="ty-8939bfa6-0">🏠</span>Home</a>
+      <a class="w-breadcrumb" href="/catalog" id="ty-8a71f32a-0">Catalog</a>
+      <span class="w-breadcrumb" aria-disabled="true" id="ty-8dd7d781-0">Phones</span>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-5ed28dbb-0">iPhone</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-e42d6ef1-0">
+    <w-breadcrumbs id="ty-0ec2bed3-0">
+      <w-breadcrumb href="/" icon="🏠" id="ty-35f64031-0">Home</w-breadcrumb>
+      <w-breadcrumb href="/catalog" id="ty-90d4d70c-0">Catalog</w-breadcrumb>
+      <w-breadcrumb href="/catalog/phones" disabled="" id="ty-e6265c5f-0">Phones</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-8227b179-0">iPhone</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-5d9f21bd-0">Custom divider</h2><p id="ty-f5995312-0">Set the <code id="ty-b7ff1430-0">divider</code> attribute to any string. With CSS classes, set the <code id="ty-2ab4582f-0">--w-breadcrumb-divider</code> custom property on the wrapper.</p><demo-compare >
+  <div slot="css" id="ty-2baaadaf-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" style="--w-breadcrumb-divider: '›'" id="ty-007e445f-0">
+      <a class="w-breadcrumb" href="/" id="ty-a0438ffc-0">Dashboard</a>
+      <a class="w-breadcrumb" href="/reports" id="ty-e7a125ff-0">Reports</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-4bb2c04b-0">Q2</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-7ebe5720-0">
+    <w-breadcrumbs divider="›" id="ty-d924106b-0">
+      <w-breadcrumb href="/" id="ty-23a72611-0">Dashboard</w-breadcrumb>
+      <w-breadcrumb href="/reports" id="ty-a6d3d419-0">Reports</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-9d4c8923-0">Q2</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-26fe827d-0">Icons</h2><p id="ty-bce15fd4-0">Add a leading icon with the <code id="ty-23672b55-0">icon</code> attribute on <code id="ty-280cc929-0">&lt;w-breadcrumbs&gt;</code>, or a per-crumb icon with <code id="ty-01417f13-0">icon</code> on <code id="ty-e96f9aa2-0">&lt;w-breadcrumb&gt;</code>.</p><demo-compare >
+  <div slot="css" id="ty-1ccfd3aa-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" id="ty-416125b0-0">
+      <span class="w-breadcrumb-icon" id="ty-87fc51a2-0">🏠</span>
+      <a class="w-breadcrumb" href="/photos" id="ty-4049cc9f-0"><span class="w-breadcrumb-icon" id="ty-612fa8c0-0">📷</span>Photos</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-9933f2f2-0">2024</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-8cf772b9-0">
+    <w-breadcrumbs icon="🏠" id="ty-0bdae3f3-0">
+      <w-breadcrumb href="/photos" icon="📷" id="ty-6fc8eeb1-0">Photos</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-b6917c70-0">2024</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-4080bab3-0">Color and active color</h2><p id="ty-2da37bbb-0"><code id="ty-b4429483-0">color</code> sets the link color and <code id="ty-77b8b423-0">active-color</code> the current-page color, using DuVay palette tokens. With CSS classes, set the <code id="ty-52ddc023-0">--w-breadcrumb-color</code> and <code id="ty-7475765f-0">--w-breadcrumb-active-color</code> custom properties.</p><demo-compare >
+  <div slot="css" id="ty-3a0e82f4-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" style="--w-breadcrumb-color: var(--w-primary); --w-breadcrumb-active-color: var(--w-success)" id="ty-e49fa8e5-0">
+      <a class="w-breadcrumb" href="/" id="ty-56166b39-0">Build</a>
+      <a class="w-breadcrumb" href="/deploy" id="ty-4ea344b3-0">Deploy</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-207bc5f0-0">Live</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-3a5c8473-0">
+    <w-breadcrumbs color="primary" active-color="success" id="ty-b6499620-0">
+      <w-breadcrumb href="/" id="ty-eaa911ea-0">Build</w-breadcrumb>
+      <w-breadcrumb href="/deploy" id="ty-e6640899-0">Deploy</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-78e3154f-0">Live</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-4530d54f-0">Background and rounded</h2><p id="ty-ba534a51-0">Give the strip a tinted, rounded container with <code id="ty-2236f070-0">bg-color</code> (a palette token) and <code id="ty-145086da-0">rounded</code>. With CSS classes, add <code id="ty-f26a05fa-0">w-breadcrumbs--rounded</code> and set <code id="ty-08dd623b-0">--w-breadcrumb-bg</code>.</p><demo-compare >
+  <div slot="css" id="ty-6a3f8f0b-0">
+    <nav class="w-breadcrumbs w-breadcrumbs--rounded" aria-label="Breadcrumb" style="--w-breadcrumb-bg: var(--w-surface-container-high)" id="ty-34d6d6cd-0">
+      <a class="w-breadcrumb" href="/" id="ty-b54e11fc-0">Root</a>
+      <a class="w-breadcrumb" href="/settings" id="ty-6840dea0-0">Settings</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-cdfdbe79-0">Profile</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-def087f6-0">
+    <w-breadcrumbs bg-color="surface-container-high" rounded="" id="ty-52948d76-0">
+      <w-breadcrumb href="/" id="ty-e9602712-0">Root</w-breadcrumb>
+      <w-breadcrumb href="/settings" id="ty-ed7196f0-0">Settings</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-ee8e7eae-0">Profile</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-a0e270ab-0">Density</h2><p id="ty-7cd32a46-0">Use <code id="ty-8265dc45-0">density</code> (<code id="ty-553eea9a-0">comfortable</code> or <code id="ty-53ee3fee-0">compact</code>) to adjust the vertical padding. With CSS classes, add <code id="ty-b7872cb7-0">w-breadcrumbs--comfortable</code> or <code id="ty-e9076343-0">w-breadcrumbs--compact</code>.</p><demo-compare >
+  <div slot="css" id="ty-6ebf5965-0">
+    <nav class="w-breadcrumbs w-breadcrumbs--compact" aria-label="Breadcrumb" id="ty-5fbe1bf3-0">
+      <a class="w-breadcrumb" href="/" id="ty-d1d52b1f-0">One</a>
+      <a class="w-breadcrumb" href="/two" id="ty-78f8fc61-0">Two</a>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-9cd80604-0">Three</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-82e2268b-0">
+    <w-breadcrumbs density="compact" id="ty-ddf0f85e-0">
+      <w-breadcrumb href="/" id="ty-cd204650-0">One</w-breadcrumb>
+      <w-breadcrumb href="/two" id="ty-586084b8-0">Two</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-26bfecfb-0">Three</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-9f49b271-0">Disabled</h2><p id="ty-830ee319-0">Add <code id="ty-2a9c59ec-0">disabled</code> to a single <code id="ty-a4e34978-0">&lt;w-breadcrumb&gt;</code> to make it non-interactive, or to <code id="ty-545c73dd-0">&lt;w-breadcrumbs&gt;</code> to disable the whole strip.</p><demo-compare >
+  <div slot="css" id="ty-76708069-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" id="ty-da108fc6-0">
+      <a class="w-breadcrumb" href="/" id="ty-6f3f5593-0">Home</a>
+      <span class="w-breadcrumb" aria-disabled="true" id="ty-94d2a9cf-0">Reports</span>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-e7703e8e-0">Q2</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-b3d89bd5-0">
+    <w-breadcrumbs id="ty-44c79adb-0">
+      <w-breadcrumb href="/" id="ty-e3e32934-0">Home</w-breadcrumb>
+      <w-breadcrumb href="/reports" disabled="" id="ty-f869c8ca-0">Reports</w-breadcrumb>
+      <w-breadcrumb active="" id="ty-2a62790f-0">Q2</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-02044d00-0">Custom divider element</h2><p id="ty-2716eaad-0">For a one-off divider — an icon, a different glyph per position — place <code id="ty-caa61847-0">&lt;w-breadcrumbs-divider&gt;</code> between crumbs. It overrides the automatic separator for that gap; provide the divider content as its child.</p><demo-compare >
+  <div slot="css" id="ty-a6cf5047-0">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" id="ty-f87f5934-0">
+      <a class="w-breadcrumb" href="/" id="ty-ca634c02-0">Home</a>
+      <span class="w-breadcrumb-sep" id="ty-61139d94-0">»</span>
+      <a class="w-breadcrumb" href="/docs" id="ty-3aef818a-0">Docs</a>
+      <span class="w-breadcrumb-sep" id="ty-4fba46ea-0">»</span>
+      <span class="w-breadcrumb active" aria-current="page" id="ty-50d7ea40-0">API</span>
+    </nav>
+  </div>
+  <div slot="wc" id="ty-bf8ce067-0">
+    <w-breadcrumbs id="ty-d8869e9c-0">
+      <w-breadcrumbs-item href="/" id="ty-8c6cbe2c-0">Home</w-breadcrumbs-item>
+      <w-breadcrumbs-divider id="ty-4d5b065f-0">»</w-breadcrumbs-divider>
+      <w-breadcrumbs-item href="/docs" id="ty-f4a74ad6-0">Docs</w-breadcrumbs-item>
+      <w-breadcrumbs-divider id="ty-68ea0833-0">»</w-breadcrumbs-divider>
+      <w-breadcrumbs-item active="" id="ty-a367f56e-0">API</w-breadcrumbs-item>
+    </w-breadcrumbs>
+  </div>
+</demo-compare><h2 id="ty-90ed41ad-0">Accessibility</h2><p id="ty-f785a4c6-0">Use <code id="ty-5f69b852-0">aria-label="Breadcrumb"</code> on the wrapper and <code id="ty-f8b71669-0">aria-current="page"</code> on the current item. The <code id="ty-210d81ab-0">&lt;w-breadcrumbs&gt;</code> component adds both automatically, marks disabled crumbs with <code id="ty-774ef774-0">aria-disabled</code>, and renders icons as <code id="ty-1df9e2a0-0">aria-hidden</code>.</p></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

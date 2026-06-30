@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-b71dba4c-0">Buttons</h1><p id="ty-63208135-0">DuVay buttons come in multiple variants and sizes. All buttons are accessible with proper focus states.</p><h2 id="ty-5f761ba1-0">Variants</h2><demo-compare >
+  <div slot="css" id="ty-9b3d56b4-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-cf9aee17-0">
+      <button class="w-btn w-btn-filled" id="ty-dff14af2-0">Filled</button>
+      <button class="w-btn w-btn-outlined" id="ty-6b5dde1b-0">Outlined</button>
+      <button class="w-btn w-btn-ghost" id="ty-234edbc8-0">Ghost</button>
+      <button class="w-btn w-btn-text" id="ty-799ffc86-0">Text</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-4fb9aaaf-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-4d9784cc-0">
+      <w-btn variant="filled" id="ty-22507d26-0">Filled</w-btn>
+      <w-btn variant="outlined" id="ty-c696cdfa-0">Outlined</w-btn>
+      <w-btn variant="ghost" id="ty-228e129e-0">Ghost</w-btn>
+      <w-btn variant="text" id="ty-ae6854f5-0">Text</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-da46f641-0">Sizes</h2><p id="ty-aecf171e-0">Five sizes from <code id="ty-448027d9-0">xs</code> to <code id="ty-2c460157-0">xl</code>; omit for the 40px default.</p><demo-compare >
+  <div slot="css" id="ty-da4ce11a-0">
+    <div class="w-row w-gap-2 w-wrap w-items-center" id="ty-1aded54a-0">
+      <button class="w-btn w-btn-filled w-btn-xs" id="ty-acdfd230-0">XS</button>
+      <button class="w-btn w-btn-filled w-btn-sm" id="ty-ba1cd4bf-0">Small</button>
+      <button class="w-btn w-btn-filled" id="ty-8d3c73fa-0">Default</button>
+      <button class="w-btn w-btn-filled w-btn-lg" id="ty-b58d7a20-0">Large</button>
+      <button class="w-btn w-btn-filled w-btn-xl" id="ty-39466652-0">XL</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-9ffce1b2-0">
+    <div class="w-row w-gap-2 w-wrap w-items-center" id="ty-0b4d3524-0">
+      <w-btn variant="filled" size="xs" id="ty-e1cef1b3-0">XS</w-btn>
+      <w-btn variant="filled" size="sm" id="ty-9b09b081-0">Small</w-btn>
+      <w-btn variant="filled" id="ty-ce9cc53c-0">Default</w-btn>
+      <w-btn variant="filled" size="lg" id="ty-23c7acf0-0">Large</w-btn>
+      <w-btn variant="filled" size="xl" id="ty-8d11c1c6-0">XL</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-3eac818a-0">Colors</h2><demo-compare >
+  <div slot="css" id="ty-42c48eb7-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-9583bb2f-0">
+      <button class="w-btn w-btn-filled w-btn-primary" id="ty-d451a1d0-0">Primary</button>
+      <button class="w-btn w-btn-filled w-btn-success" id="ty-6b1b966a-0">Success</button>
+      <button class="w-btn w-btn-filled w-btn-danger" id="ty-93982d5e-0">Danger</button>
+      <button class="w-btn w-btn-filled w-btn-warning" id="ty-33051e2b-0">Warning</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-97fd7de0-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-0f98892a-0">
+      <w-btn variant="filled" color="primary" id="ty-ec56ee6f-0">Primary</w-btn>
+      <w-btn variant="filled" color="success" id="ty-5437bbb8-0">Success</w-btn>
+      <w-btn variant="filled" color="danger" id="ty-374d1134-0">Danger</w-btn>
+      <w-btn variant="filled" color="warning" id="ty-5c83702c-0">Warning</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-7ad995b0-0">States</h2><demo-compare >
+  <div slot="css" id="ty-9228a27f-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-e5936911-0">
+      <button class="w-btn w-btn-filled" disabled="" id="ty-8d7b0bd8-0">Disabled</button>
+      <button class="w-btn w-btn-filled loading" id="ty-e0e6e495-0">Loading</button>
+      <button class="w-btn w-btn-filled" id="ty-004a633b-0">
+        <span class="w-btn-leading-icon" id="ty-4684273f-0">+</span>
+        With Icon
+      </button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ecf331ee-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-7a505cff-0">
+      <w-btn variant="filled" disabled="" id="ty-dc888d16-0">Disabled</w-btn>
+      <w-btn variant="filled" loading="" id="ty-ddbbff87-0">Loading</w-btn>
+      <w-btn variant="filled" icon="+" id="ty-a17a055a-0">With Icon</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-869b6a4e-0">Button group</h2><p id="ty-14299813-0">Join related buttons into a single segmented control with <code id="ty-c035c362-0">.w-btn-group</code>. Mark the chosen one with <code id="ty-be462a10-0">active</code>. Add <code id="ty-feb4fcda-0">.w-btn-group--vertical</code> to stack.</p><demo-compare >
+  <div slot="css" id="ty-a39c36c4-0">
+    <div class="w-btn-group" id="ty-b44e0c34-0">
+      <button class="w-btn active" id="ty-6f962ceb-0">Day</button>
+      <button class="w-btn" id="ty-d6b88562-0">Week</button>
+      <button class="w-btn" id="ty-91c32349-0">Month</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-a4a28535-0">
+    <div class="w-btn-group" id="ty-5a88bf09-0">
+      <w-btn active="" id="ty-1b33fd15-0">Day</w-btn>
+      <w-btn id="ty-57d08845-0">Week</w-btn>
+      <w-btn id="ty-09cb8fdb-0">Month</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-78aecae5-0">Block buttons</h2><p id="ty-7f2c521f-0">Add <code id="ty-e8073fa0-0">block</code> to make a button span the full width of its container.</p><demo-compare >
+  <div slot="css" id="ty-74a8918b-0">
+    <button class="w-btn w-btn-filled w-btn-block" id="ty-bfe794c4-0">Block button</button>
+  </div>
+  <div slot="wc" id="ty-c761195f-0">
+    <w-btn variant="filled" block="" id="ty-80ac4a9b-0">Block button</w-btn>
+  </div>
+</demo-compare><h2 id="ty-92268084-0">Stacked buttons</h2><p id="ty-4e8c3b76-0">Add <code id="ty-cf02e228-0">stacked</code> to place the icon above the label.</p><demo-compare >
+  <div slot="css" id="ty-8f86cd6c-0">
+    <button class="w-btn w-btn-text w-btn-stacked" id="ty-f2949c3a-0">
+      <span class="w-btn-leading-icon" id="ty-964506c8-0">★</span>
+      Star
+    </button>
+  </div>
+  <div slot="wc" id="ty-0b28593d-0">
+    <w-btn variant="text" stacked="" prepend-icon="★" id="ty-ad9c0f53-0">Star</w-btn>
+  </div>
+</demo-compare><h2 id="ty-37d831a0-0">Prepend and append icons</h2><p id="ty-2ca50fdb-0">Use <code id="ty-caa6f94e-0">prepend-icon</code> for a leading icon and <code id="ty-21efeb97-0">append-icon</code> for a trailing icon.</p><demo-compare >
+  <div slot="css" id="ty-7a15fd9e-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-c3351f25-0">
+      <button class="w-btn w-btn-filled" id="ty-a2970add-0">
+        <span class="w-btn-leading-icon" id="ty-1f3b5195-0">←</span>
+        Back
+      </button>
+      <button class="w-btn w-btn-filled" id="ty-77cf2205-0">
+        Next
+        <span class="w-btn-append-icon" id="ty-988b8f1b-0">→</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e64adc50-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-7ff4e593-0">
+      <w-btn variant="filled" prepend-icon="←" id="ty-b1a6e582-0">Back</w-btn>
+      <w-btn variant="filled" append-icon="→" id="ty-b9d9118c-0">Next</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-74bf77dd-0">Plain and elevated variants</h2><p id="ty-7e6502c9-0"><code id="ty-2bf13ab1-0">plain</code> is a subtle action with no hover background. <code id="ty-54491691-0">elevated</code> is a filled button with a shadow.</p><demo-compare >
+  <div slot="css" id="ty-83b1d2cc-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-ac40ec51-0">
+      <button class="w-btn w-btn-plain" id="ty-f34e9d9c-0">Plain</button>
+      <button class="w-btn w-btn-elevated" id="ty-97a2d356-0">Elevated</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-880c58e7-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-f2d4e2ed-0">
+      <w-btn variant="plain" id="ty-8660e6fa-0">Plain</w-btn>
+      <w-btn variant="elevated" id="ty-7bf0cf09-0">Elevated</w-btn>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-b5afecd3-0">Active state</h2><p id="ty-62f3c4be-0">Add <code id="ty-65d6df59-0">active</code> to mark a button as selected.</p><demo-compare >
+  <div slot="css" id="ty-0ea48fad-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-53c8fdd9-0">
+      <button class="w-btn w-btn-filled active" id="ty-16da8b4d-0">Active</button>
+      <button class="w-btn w-btn-outlined active" id="ty-9fe16d47-0">Active outlined</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-eaa24eb6-0">
+    <div class="w-row w-gap-2 w-wrap" id="ty-dd2b0a2c-0">
+      <w-btn variant="filled" active="" id="ty-29083b04-0">Active</w-btn>
+      <w-btn variant="outlined" active="" id="ty-769ba7fb-0">Active outlined</w-btn>
+    </div>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-c22d3c34-0">Calendars</h1><p id="ty-2b354ca9-0"><code id="ty-904dba19-0">w-calendar</code> is a responsive scheduling surface for month, week, day, four-day, custom, and category views. It accepts event and category arrays, renders all-day and timed events, and exposes a vanilla JavaScript API with native event names.</p><h2 id="ty-cd9b25b6-0">Month</h2><p id="ty-1ee62f2a-0">The month view displays all-day and timed events across a complete calendar grid. Select a date, use the header controls, or call <code id="ty-f0f67add-0">next()</code>, <code id="ty-bd10536e-0">prev()</code>, and <code id="ty-86f06695-0">today()</code>.</p><demo-compare >
+  <div slot="css" id="ty-5d68169b-0">
+    <section class="w-calendar w-calendar--month" id="ty-ce4d6951-0">
+      <header class="w-calendar-header" id="ty-5bd115b8-0">
+        <div class="w-calendar-header__nav" id="ty-98b2dcc3-0">
+          <button class="w-calendar-nav" type="button" aria-label="Previous period" id="ty-57d62c3b-0">‹</button>
+          <button class="w-calendar-today" type="button" id="ty-a3d432f8-0">Today</button>
+          <button class="w-calendar-nav" type="button" aria-label="Next period" id="ty-3163878b-0">›</button>
+        </div>
+        <strong class="w-calendar-title" id="ty-c4227abf-0">June 2026</strong>
+      </header>
+      <div class="w-calendar-month" role="grid" id="ty-39aaf2c9-0">
+        <div class="w-calendar-weekdays" role="row" id="ty-56e1d095-0">
+          <div class="w-calendar-weekday" id="ty-fed424d1-0">Sun</div><div class="w-calendar-weekday" id="ty-50d25c13-0">Mon</div><div class="w-calendar-weekday" id="ty-7ed37f2d-0">Tue</div><div class="w-calendar-weekday" id="ty-1150bad4-0">Wed</div><div class="w-calendar-weekday" id="ty-1268ec93-0">Thu</div><div class="w-calendar-weekday" id="ty-c227d353-0">Fri</div><div class="w-calendar-weekday" id="ty-2c2efb32-0">Sat</div>
+        </div>
+        <div class="w-calendar-week" role="row" id="ty-907df18a-0">
+          <div class="w-calendar-day outside" id="ty-b153695f-0"><button class="w-calendar-day-button" type="button" id="ty-6e4e583b-0">31</button></div>
+          <div class="w-calendar-day" id="ty-e776ce4e-0"><button class="w-calendar-day-button" type="button" id="ty-1afbd3af-0">1</button></div>
+          <div class="w-calendar-day" id="ty-6abca39b-0"><button class="w-calendar-day-button" type="button" id="ty-2c0a2682-0">2</button></div>
+          <div class="w-calendar-day" id="ty-29a122e7-0"><button class="w-calendar-day-button" type="button" id="ty-632d94f8-0">3</button></div>
+          <div class="w-calendar-day" id="ty-7dc04572-0"><button class="w-calendar-day-button" type="button" id="ty-f2f7815b-0">4</button><div class="w-calendar-day-events" id="ty-37b6e5d7-0"><button class="w-calendar-event" style="--w-calendar-event-color:var(--w-primary);--w-calendar-event-text:var(--w-on-primary)" id="ty-192f9a99-0">Design review</button></div></div>
+          <div class="w-calendar-day" id="ty-158e96aa-0"><button class="w-calendar-day-button" type="button" id="ty-00f99e7d-0">5</button></div>
+          <div class="w-calendar-day" id="ty-4a1497fb-0"><button class="w-calendar-day-button" type="button" id="ty-d2147fe0-0">6</button></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div slot="wc" id="ty-6fd96b85-0">
+    <w-calendar value="2026-06-13" now="2026-06-27 10:30" event-color="color" events="[{&quot;name&quot;:&quot;Design review&quot;,&quot;start&quot;:&quot;2026-06-04 09:00&quot;,&quot;end&quot;:&quot;2026-06-04 10:30&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Release window&quot;,&quot;start&quot;:&quot;2026-06-13&quot;,&quot;end&quot;:&quot;2026-06-13&quot;,&quot;color&quot;:&quot;success&quot;},{&quot;name&quot;:&quot;Conference&quot;,&quot;start&quot;:&quot;2026-06-18&quot;,&quot;end&quot;:&quot;2026-06-20&quot;,&quot;color&quot;:&quot;tertiary&quot;}]" id="ty-8a698312-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-6937e6cd-0">Week</h2><p id="ty-9757ef2d-0">Week views combine an all-day row with a scrollable interval grid. Timed events are positioned from their start and end values.</p><demo-compare >
+  <div slot="css" id="ty-99dd0ca8-0">
+    <div class="w-calendar w-calendar--week" id="ty-05d9a327-0">
+      <div class="w-calendar-schedule" style="--w-calendar-days:3;--w-calendar-interval-height:3rem;--w-calendar-interval-width:3.75rem" id="ty-3cc7534f-0">
+        <div class="w-calendar-schedule-head" id="ty-e0923462-0"><div class="w-calendar-gutter-head" id="ty-4bb0c0cb-0"></div><div class="w-calendar-day-headers" id="ty-e79f16ad-0"><div class="w-calendar-day-header" id="ty-edf48480-0">Mon <button type="button" id="ty-be59c91e-0">8</button></div><div class="w-calendar-day-header" id="ty-94fb3a2d-0">Tue <button type="button" id="ty-4a9c5169-0">9</button></div><div class="w-calendar-day-header" id="ty-3275e42f-0">Wed <button type="button" id="ty-25bc4d32-0">10</button></div></div></div>
+        <div class="w-calendar-schedule-scroll" id="ty-e1894ba4-0"><div class="w-calendar-time-axis" id="ty-9f6b3f92-0"><div class="w-calendar-time-label" id="ty-66556d73-0">9 AM</div><div class="w-calendar-time-label" id="ty-3a7c5ea6-0">10 AM</div></div><div class="w-calendar-day-columns" id="ty-6582a208-0"><div class="w-calendar-day-column" id="ty-84d7fb81-0"><div class="w-calendar-intervals" id="ty-9f94b9ac-0"><button class="w-calendar-interval" id="ty-d79c82f9-0"></button><button class="w-calendar-interval" id="ty-50334cd7-0"></button></div></div><div class="w-calendar-day-column" id="ty-e9492523-0"></div><div class="w-calendar-day-column" id="ty-766696c2-0"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-fd2b5746-0">
+    <w-calendar type="week" value="2026-06-10" first-interval="8" interval-count="11" interval-highlight="" event-color="color" events="[{&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-06-08 09:00&quot;,&quot;end&quot;:&quot;2026-06-08 10:00&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Lunch&quot;,&quot;start&quot;:&quot;2026-06-10 12:00&quot;,&quot;end&quot;:&quot;2026-06-10 13:00&quot;,&quot;color&quot;:&quot;success&quot;},{&quot;name&quot;:&quot;Launch&quot;,&quot;start&quot;:&quot;2026-06-11&quot;,&quot;end&quot;:&quot;2026-06-11&quot;,&quot;color&quot;:&quot;tertiary&quot;}]" id="ty-397b1c94-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-63ff39b4-0">Day and Four-day</h2><p id="ty-d915d765-0">Use <code id="ty-4185f2d9-0">day</code> for a focused agenda or <code id="ty-6c495f8b-0">4day</code> for a compact multi-day planner. The same interval and event attributes apply to both.</p><demo-compare >
+  <div slot="css" id="ty-eedea4ec-0">
+    <div class="w-grid" id="ty-6171c747-0">
+      <div class="w-grid-row" id="ty-65f698f0-0">
+        <div class="w-grid-col-6" id="ty-1ddcc019-0"><div class="w-calendar w-calendar--day" id="ty-9a33450c-0"><div class="w-calendar-header" id="ty-659db465-0"><strong class="w-calendar-title" id="ty-02adf1c1-0">June 13, 2026</strong></div><div class="w-calendar-schedule" id="ty-a07662b0-0"><div class="w-calendar-all-day" id="ty-d741cc3d-0"><div class="w-calendar-all-day-label" id="ty-464263d6-0">All day</div><div class="w-calendar-all-day-cells" id="ty-5d5a67e4-0"><div class="w-calendar-all-day-cell" id="ty-daf69c8e-0"></div></div></div></div></div></div>
+        <div class="w-grid-col-6" id="ty-01c36f49-0"><div class="w-calendar w-calendar--4day" id="ty-28bba71f-0"><div class="w-calendar-header" id="ty-b53190f3-0"><strong class="w-calendar-title" id="ty-8213b4d5-0">Jun 13–16, 2026</strong></div><div class="w-calendar-schedule" id="ty-dd761f5d-0"><div class="w-calendar-day-headers" id="ty-607d0e7e-0"><div class="w-calendar-day-header" id="ty-ba426cfc-0">Sat 13</div><div class="w-calendar-day-header" id="ty-994dff9e-0">Sun 14</div><div class="w-calendar-day-header" id="ty-46deaa94-0">Mon 15</div><div class="w-calendar-day-header" id="ty-56267441-0">Tue 16</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-608f5ace-0">
+    <div class="w-stack" id="ty-29984d01-0">
+      <w-calendar type="day" value="2026-06-13" first-interval="8" interval-count="10" format="24hr" interval-highlight="" id="ty-ee2f7e9e-0"></w-calendar>
+      <w-calendar type="4day" value="2026-06-13" first-interval="8" interval-count="10" interval-height="40" id="ty-bbe2376c-0"></w-calendar>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-60dad3b8-0">Weekdays, Locale, and Week Numbers</h2><p id="ty-af18556e-0">Choose visible days with a JSON <code id="ty-df56af06-0">weekdays</code> array, rotate them with <code id="ty-28b6f05a-0">first-day-of-week</code>, localize labels, and add ISO-style week numbers.</p><demo-compare >
+  <div slot="css" id="ty-7476fac5-0">
+    <div class="w-calendar w-calendar--month w-calendar--show-week" id="ty-d44ef5dc-0">
+      <div class="w-calendar-weekdays" style="--w-calendar-columns:6" id="ty-b3085fe7-0"><div class="w-calendar-week-number" id="ty-e1277b85-0">#</div><div class="w-calendar-weekday" id="ty-55f11c23-0">Monday</div><div class="w-calendar-weekday" id="ty-6076b97c-0">Tuesday</div><div class="w-calendar-weekday" id="ty-c52f32ca-0">Wednesday</div><div class="w-calendar-weekday" id="ty-922001de-0">Thursday</div><div class="w-calendar-weekday" id="ty-1a47e8be-0">Friday</div></div>
+      <div class="w-calendar-week" style="--w-calendar-columns:6" id="ty-125b41b2-0"><div class="w-calendar-week-number" id="ty-9094996a-0">24</div><div class="w-calendar-day" id="ty-602a66b3-0"><button class="w-calendar-day-button" id="ty-7ba71361-0">8</button></div><div class="w-calendar-day" id="ty-3468f0c0-0"><button class="w-calendar-day-button" id="ty-12841d68-0">9</button></div><div class="w-calendar-day" id="ty-f4a2d23f-0"><button class="w-calendar-day-button" id="ty-604f5344-0">10</button></div><div class="w-calendar-day" id="ty-a8a7f19a-0"><button class="w-calendar-day-button" id="ty-395b3d55-0">11</button></div><div class="w-calendar-day" id="ty-f3b31101-0"><button class="w-calendar-day-button" id="ty-6efc68b4-0">12</button></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-380ce66d-0">
+    <w-calendar value="2026-06-13" weekdays="[1,2,3,4,5]" first-day-of-week="1" first-day-of-year="4" short-weekdays="false" show-week="" locale="en-CA" id="ty-29556537-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-9a44971c-0">Intervals and Clock Format</h2><p id="ty-932a0f22-0">Control the visible schedule with <code id="ty-6ceff438-0">first-interval</code>, <code id="ty-03e25a91-0">first-time</code>, <code id="ty-fd99374d-0">interval-count</code>, <code id="ty-79cb9bfa-0">interval-minutes</code>, <code id="ty-d3be8b7f-0">interval-height</code>, and <code id="ty-438662f6-0">format</code>. <code id="ty-853b28db-0">first-time</code> overrides <code id="ty-29ba80ed-0">first-interval</code>.</p><demo-compare >
+  <div slot="css" id="ty-f565b886-0">
+    <div class="w-calendar w-calendar--day" id="ty-d7b60e49-0">
+      <div class="w-calendar-schedule" style="--w-calendar-days:1;--w-calendar-interval-height:2.5rem;--w-calendar-interval-width:4.5rem" id="ty-97477157-0">
+        <div class="w-calendar-schedule-scroll" id="ty-285e0012-0"><div class="w-calendar-time-axis" id="ty-3179a97b-0"><div class="w-calendar-time-label" id="ty-3558b22f-0">08:30</div><div class="w-calendar-time-label" id="ty-cb20d835-0">09:00</div><div class="w-calendar-time-label" id="ty-b95b047f-0">09:30</div></div><div class="w-calendar-day-columns" id="ty-a86df1d8-0"><div class="w-calendar-day-column" id="ty-1154d70d-0"><div class="w-calendar-intervals" id="ty-4a100964-0"><button class="w-calendar-interval w-calendar-interval--highlight" id="ty-9299f36e-0"></button><button class="w-calendar-interval w-calendar-interval--highlight" id="ty-15b82794-0"></button><button class="w-calendar-interval w-calendar-interval--highlight" id="ty-1e433e03-0"></button></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-1c22f470-0">
+    <w-calendar type="day" value="2026-06-13" first-time="08:30" interval-count="12" interval-minutes="30" interval-height="40" interval-width="72" format="24hr" interval-highlight="" events="[{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 09:30&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;}]" id="ty-618268fa-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-00e0bd00-0">Categories</h2><p id="ty-729ad415-0">The category view compares schedules side by side. Categories accept a JSON string or a JavaScript array; events map through <code id="ty-f464661f-0">event-category</code>.</p><demo-compare >
+  <div slot="css" id="ty-00498eb4-0">
+    <div class="w-calendar w-calendar--category" id="ty-759a55a4-0">
+      <div class="w-calendar-schedule w-calendar-category" style="--w-calendar-days:2" id="ty-bd47430a-0">
+        <div class="w-calendar-schedule-head" id="ty-0494af64-0"><div class="w-calendar-gutter-head" id="ty-2d70ff65-0"></div><div class="w-calendar-category-headers" id="ty-a01d6f41-0"><div class="w-calendar-category-header" id="ty-32db933a-0"><strong id="ty-18d92535-0">Design</strong></div><div class="w-calendar-category-header" id="ty-f49e711b-0"><strong id="ty-ecd1b5ad-0">Operations</strong></div></div></div>
+        <div class="w-calendar-category-columns" id="ty-c08ffb33-0"><div class="w-calendar-category-column" data-category="Design" id="ty-f13181fe-0"></div><div class="w-calendar-category-column" data-category="Operations" id="ty-eca7f47b-0"></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-5539b08c-0">
+    <w-calendar type="category" value="2026-06-13" categories="[&quot;Design&quot;,&quot;Operations&quot;]" category-show-all="" first-interval="8" interval-count="11" event-color="color" events="[{&quot;name&quot;:&quot;Wireframes&quot;,&quot;start&quot;:&quot;2026-06-13 09:00&quot;,&quot;end&quot;:&quot;2026-06-13 10:30&quot;,&quot;category&quot;:&quot;Design&quot;,&quot;color&quot;:&quot;primary&quot;},{&quot;name&quot;:&quot;Deploy&quot;,&quot;start&quot;:&quot;2026-06-13 10:00&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;,&quot;category&quot;:&quot;Operations&quot;,&quot;color&quot;:&quot;success&quot;}]" id="ty-80756d3a-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-c3ba692c-0">Custom Ranges</h2><p id="ty-7691d34d-0"><code id="ty-e5ac206e-0">custom-weekly</code> renders week rows between explicit dates; <code id="ty-204d7e84-0">custom-daily</code> renders interval columns. <code id="ty-2ef51698-0">max-days</code> caps open-ended daily ranges.</p><demo-compare >
+  <div slot="css" id="ty-d681ae72-0">
+    <div class="w-stack" id="ty-970e5689-0">
+      <div class="w-calendar w-calendar--custom-weekly" id="ty-98881eb1-0"><div class="w-calendar-header" id="ty-88f62edd-0"><strong class="w-calendar-title" id="ty-2ce3b85c-0">Jun 8 – Jun 19, 2026</strong></div><div class="w-calendar-week" id="ty-4071516d-0"></div><div class="w-calendar-week" id="ty-42c462b6-0"></div></div>
+      <div class="w-calendar w-calendar--custom-daily" id="ty-33092546-0"><div class="w-calendar-header" id="ty-330e8251-0"><strong class="w-calendar-title" id="ty-539cc4e7-0">Jun 8–10, 2026</strong></div><div class="w-calendar-day-columns" style="--w-calendar-days:3" id="ty-976385f0-0"><div class="w-calendar-day-column" id="ty-92aec730-0"></div><div class="w-calendar-day-column" id="ty-86351193-0"></div><div class="w-calendar-day-column" id="ty-651bc52b-0"></div></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-672911bd-0">
+    <div class="w-stack" id="ty-f617c677-0">
+      <w-calendar type="custom-weekly" value="2026-06-08" start="2026-06-08" end="2026-06-19" first-day-of-week="1" id="ty-fd56bd76-0"></w-calendar>
+      <w-calendar type="custom-daily" value="2026-06-08" start="2026-06-08" end="2026-06-10" first-interval="8" interval-count="8" id="ty-0db81ba5-0"></w-calendar>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-10920e27-0">Event Mapping and Overflow</h2><p id="ty-d615eacb-0">Map alternative event fields with <code id="ty-2b8b9548-0">event-name</code>, <code id="ty-b9103ee2-0">event-start</code>, <code id="ty-534b1ed6-0">event-end</code>, <code id="ty-38128973-0">event-timed</code>, and <code id="ty-7f2c35e7-0">event-color</code>. Month cells show three events before a configurable “more” action.</p><demo-compare >
+  <div slot="css" id="ty-0cc697ee-0">
+    <div class="w-calendar-day selected" id="ty-52878b0b-0">
+      <button class="w-calendar-day-button" type="button" id="ty-430454ed-0">13</button>
+      <div class="w-calendar-day-events" id="ty-53c6ebf6-0">
+        <button class="w-calendar-event" style="--w-calendar-event-color:#155e75;--w-calendar-event-text:#fff" id="ty-a05f2ffc-0">Design review</button>
+        <button class="w-calendar-event" style="--w-calendar-event-color:var(--w-success);--w-calendar-event-text:var(--w-on-primary)" id="ty-189af7cb-0">Launch</button>
+        <button class="w-calendar-event" style="--w-calendar-event-color:var(--w-tertiary);--w-calendar-event-text:var(--w-on-primary)" id="ty-2ec5782e-0">Retrospective</button>
+        <button class="w-calendar-more" type="button" id="ty-5b2dc37e-0">2 additional</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-476853fb-0">
+    <w-calendar value="2026-06-13" event-name="title" event-start="begins" event-end="finishes" event-color="tone" event-more-text="&#123;count&#125; additional" events="[{&quot;title&quot;:&quot;Design review&quot;,&quot;begins&quot;:&quot;2026-06-13 09:00&quot;,&quot;finishes&quot;:&quot;2026-06-13 10:00&quot;,&quot;tone&quot;:&quot;#155e75&quot;},{&quot;title&quot;:&quot;Launch&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;success&quot;},{&quot;title&quot;:&quot;Retrospective&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;tertiary&quot;},{&quot;title&quot;:&quot;Planning&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;primary&quot;},{&quot;title&quot;:&quot;Handoff&quot;,&quot;begins&quot;:&quot;2026-06-13&quot;,&quot;tone&quot;:&quot;secondary&quot;}]" id="ty-5a7c4bd3-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-8f4313f4-0">Custom Content</h2><p id="ty-38de6b94-0">Vue slots become framework-neutral rendering callbacks in DuVay. Use <code id="ty-5ef0bade-0">dayContent</code>, <code id="ty-ff33d6ad-0">dayHeaderContent</code>, <code id="ty-0bd98c05-0">dayBodyContent</code>, <code id="ty-b288fe41-0">intervalContent</code>, <code id="ty-3ac3eb12-0">intervalHeaderContent</code>, <code id="ty-ab8ca7c6-0">eventContent</code>, and <code id="ty-2ac71217-0">categoryContent</code> to return application-owned markup.</p><demo-compare >
+  <div slot="css" id="ty-5451254e-0">
+    <div class="w-calendar w-calendar--day" id="ty-5b43a165-0">
+      <div class="w-calendar-header" id="ty-8df5964d-0"><strong class="w-calendar-title" id="ty-6bc87d65-0">June 13, 2026</strong></div>
+      <div class="w-calendar-schedule" style="--w-calendar-days:1" id="ty-38afc706-0">
+        <div class="w-calendar-schedule-head" id="ty-636c2e02-0"><div class="w-calendar-gutter-head" id="ty-5066e571-0">Time</div><div class="w-calendar-day-headers" id="ty-a1cdd3a8-0"><div class="w-calendar-day-header" id="ty-4579b203-0"><span id="ty-4c4b0f75-0">Sat</span><button type="button" id="ty-32349cde-0">13</button><div class="w-calendar-day-header-content" id="ty-d0247251-0"><strong id="ty-3bebd237-0">Focus day</strong></div></div></div></div>
+        <div class="w-calendar-schedule-scroll" id="ty-3a27a417-0"><div class="w-calendar-time-axis" id="ty-1e20026f-0"><div class="w-calendar-time-label" id="ty-688e7515-0">9 AM</div></div><div class="w-calendar-day-columns" id="ty-3e0393ff-0"><div class="w-calendar-day-column" id="ty-20c10cdd-0"><button class="w-calendar-interval" id="ty-6e1cf378-0"><span class="w-calendar-interval-content" id="ty-f101962f-0">9 o'clock</span></button><div class="w-calendar-day-body-content" id="ty-f2b357f4-0"><span class="w-calendar-current-time" style="top:24px" id="ty-8ab1ddc8-0"></span></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-7929b80a-0">
+    <w-calendar data-calendar-custom-content="" type="day" value="2026-06-13" now="2026-06-13 09:30" first-interval="9" interval-count="4" events="[{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 10:00&quot;,&quot;end&quot;:&quot;2026-06-13 11:00&quot;}]" id="ty-8c8d2d9c-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-a26c4e87-0">Native Drag and Drop</h2><p id="ty-0b9d1ffb-0"><code id="ty-a7446b17-0">event-draggable</code> makes event controls draggable. Dropping a timed event onto an interval preserves its duration, updates the source event, and emits <code id="ty-f34b18a9-0">change</code> with <code id="ty-25e49366-0">reason: "event-drop"</code>. Native drag events continue to bubble for application-specific behavior.</p><demo-compare >
+  <div slot="css" id="ty-f83b6c3f-0">
+    <div class="w-calendar w-calendar--day" id="ty-d8ddb79d-0">
+      <div class="w-calendar-schedule" style="--w-calendar-days:1" id="ty-86c4df16-0">
+        <div class="w-calendar-schedule-scroll" id="ty-ae48da6f-0"><div class="w-calendar-time-axis" id="ty-b805d606-0"><div class="w-calendar-time-label" id="ty-a861cbad-0">9 AM</div><div class="w-calendar-time-label" id="ty-b7e755ab-0">10 AM</div></div><div class="w-calendar-day-columns" id="ty-1642b3df-0"><div class="w-calendar-day-column" id="ty-bf5e00fd-0"><div class="w-calendar-intervals" id="ty-5b70f99c-0"><button class="w-calendar-interval" id="ty-9102e733-0"></button><button class="w-calendar-interval" id="ty-db8585ab-0"></button></div><div class="w-calendar-timed-events" id="ty-6eda771b-0"><button class="w-calendar-event w-calendar-event--timed" draggable="true" style="top:0;height:48px" id="ty-7ab8e057-0">9 AM Planning</button></div></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e2154839-0">
+    <w-calendar type="day" value="2026-06-13" first-interval="9" interval-count="6" interval-highlight="" event-draggable="" events="[{&quot;name&quot;:&quot;Planning&quot;,&quot;start&quot;:&quot;2026-06-13 09:00&quot;,&quot;end&quot;:&quot;2026-06-13 10:00&quot;},{&quot;name&quot;:&quot;Review&quot;,&quot;start&quot;:&quot;2026-06-13 11:00&quot;,&quot;end&quot;:&quot;2026-06-13 12:30&quot;}]" id="ty-24e100e8-0"></w-calendar>
+  </div>
+</demo-compare><h2 id="ty-7bc60f16-0">Attributes</h2><p id="ty-c0f14629-0">All attributes are reflected and reactive. JSON-valued attributes (<code id="ty-74043cf2-0">events</code>, <code id="ty-1584f74c-0">categories</code>, <code id="ty-0a94dfe3-0">weekdays</code>) also accept arrays via the matching JavaScript properties.</p><table class="w-table" id="ty-9f5b52a4-0">
+  <thead id="ty-914279c6-0"><tr id="ty-2912e352-0"><th id="ty-00c021f2-0">Attribute</th><th id="ty-d8be5eb2-0">Type</th><th id="ty-5254fbde-0">Default</th><th id="ty-1d528b7c-0">Description</th></tr></thead>
+  <tbody id="ty-1d6e831c-0">
+    <tr id="ty-c60ed17f-0"><td id="ty-94db6555-0"><code id="ty-9d4f3b51-0">type</code></td><td id="ty-a070c552-0"><code id="ty-6bc4eca0-0">month | week | day | 4day | custom-weekly | custom-daily | category</code></td><td id="ty-78b33a08-0"><code id="ty-ac89abf1-0">month</code></td><td id="ty-4f851556-0">Active calendar view.</td></tr>
+    <tr id="ty-0b1a513f-0"><td id="ty-a44dc367-0"><code id="ty-8f934069-0">value</code></td><td id="ty-50e6e0bd-0"><code id="ty-7edde505-0">String</code></td><td id="ty-90959037-0">—</td><td id="ty-069417cd-0">Anchor date (ISO <code id="ty-31064e3f-0">YYYY-MM-DD</code>) the view is built around.</td></tr>
+    <tr id="ty-51dfdf24-0"><td id="ty-6ce5436e-0"><code id="ty-dcdb0157-0">now</code></td><td id="ty-963f67a5-0"><code id="ty-bbe06b4a-0">String</code></td><td id="ty-3da6fc65-0">—</td><td id="ty-28e717e1-0">Overrides "today" for the current-time indicator and highlight.</td></tr>
+    <tr id="ty-c908e1cb-0"><td id="ty-dba865df-0"><code id="ty-cb5f66b5-0">min</code> / <code id="ty-7c325dcf-0">max</code></td><td id="ty-4b0219b0-0"><code id="ty-6e9aa03d-0">String</code></td><td id="ty-c7c9c773-0">—</td><td id="ty-8d525d7b-0">Bounds for navigation and selection.</td></tr>
+    <tr id="ty-c54ccb98-0"><td id="ty-f185c9eb-0"><code id="ty-6d6534db-0">weekdays</code></td><td id="ty-eff9e630-0"><code id="ty-6742d56a-0">Array | String</code></td><td id="ty-97be2789-0"><code id="ty-979e096d-0">0,1,2,3,4,5,6</code></td><td id="ty-e0f43712-0">Which weekdays to display and their order.</td></tr>
+    <tr id="ty-79e56b1c-0"><td id="ty-cdd749d9-0"><code id="ty-b1ea886e-0">first-day-of-week</code></td><td id="ty-13eeb3ac-0"><code id="ty-f0d5eed9-0">Number</code></td><td id="ty-41b68874-0"><code id="ty-5b473067-0">0</code></td><td id="ty-3147114d-0">Starting weekday (0 = Sunday).</td></tr>
+    <tr id="ty-ae072366-0"><td id="ty-c5eb3670-0"><code id="ty-c00860d5-0">locale</code></td><td id="ty-12fba5af-0"><code id="ty-fa71f62f-0">String</code></td><td id="ty-497379f1-0">document locale</td><td id="ty-25d09225-0">Locale for day, month, and interval labels.</td></tr>
+    <tr id="ty-1ea4fc23-0"><td id="ty-903295d7-0"><code id="ty-e2fdd47f-0">show-week</code></td><td id="ty-0e3c76d7-0"><code id="ty-abf5eb16-0">Boolean</code></td><td id="ty-18075d67-0"><code id="ty-673abb89-0">false</code></td><td id="ty-7a3f6de6-0">Show ISO week numbers in month view.</td></tr>
+    <tr id="ty-e234bde7-0"><td id="ty-c4666c50-0"><code id="ty-7c0d6453-0">hide-header</code></td><td id="ty-c89fa854-0"><code id="ty-f2e14ae3-0">Boolean</code></td><td id="ty-bb217719-0"><code id="ty-02ea251b-0">false</code></td><td id="ty-7ecd701e-0">Hide the built-in navigation header.</td></tr>
+    <tr id="ty-fd47f9f6-0"><td id="ty-5fbe0bb2-0"><code id="ty-785fc025-0">events</code></td><td id="ty-2f3d1099-0"><code id="ty-63d621f6-0">Array&lt;Object&gt; | JSON</code></td><td id="ty-7ebe2637-0"><code id="ty-2c5eb699-0">[]</code></td><td id="ty-05bd2bfa-0">Event objects rendered on the calendar.</td></tr>
+    <tr id="ty-a5a4d1eb-0"><td id="ty-21ec9580-0"><code id="ty-a2698497-0">event-start</code> / <code id="ty-d80d1f8a-0">event-end</code></td><td id="ty-63b1a129-0"><code id="ty-213d8b5e-0">String</code></td><td id="ty-d0764329-0"><code id="ty-4ae0d1e3-0">start</code> / <code id="ty-5165ccf1-0">end</code></td><td id="ty-27d2612c-0">Property names mapping to each event's start/end.</td></tr>
+    <tr id="ty-f9361a9c-0"><td id="ty-01545fc0-0"><code id="ty-6bdb6dfb-0">event-name</code></td><td id="ty-40e45d70-0"><code id="ty-8043e9c4-0">String</code></td><td id="ty-e43e021c-0"><code id="ty-16b80a78-0">name</code></td><td id="ty-3d0a4d57-0">Property name for the event label.</td></tr>
+    <tr id="ty-47674d36-0"><td id="ty-2852ad87-0"><code id="ty-bdccd5af-0">event-color</code></td><td id="ty-1344c754-0"><code id="ty-66df1453-0">String</code></td><td id="ty-c46e8d94-0">—</td><td id="ty-6661d862-0">Property name (or token/color) for an event's color.</td></tr>
+    <tr id="ty-e8ce94bf-0"><td id="ty-73b947e0-0"><code id="ty-90d6e6fd-0">event-more</code> / <code id="ty-5b81d77a-0">event-more-text</code></td><td id="ty-21ca9327-0"><code id="ty-0e6b0c14-0">Boolean</code> / <code id="ty-8cd26214-0">String</code></td><td id="ty-d3e03990-0"><code id="ty-54417cc9-0">true</code> / <code id="ty-ca2956c8-0">&#123;count&#125; more</code></td><td id="ty-38733a47-0">Show an overflow "more" affordance and its label template.</td></tr>
+    <tr id="ty-9f8ae200-0"><td id="ty-32abe147-0"><code id="ty-9da53874-0">event-draggable</code></td><td id="ty-84eba248-0"><code id="ty-2ea22aa5-0">Boolean</code></td><td id="ty-37530c45-0"><code id="ty-ec623ad3-0">false</code></td><td id="ty-1febea92-0">Allow timed events to be dragged onto intervals.</td></tr>
+    <tr id="ty-7dade54d-0"><td id="ty-42419038-0"><code id="ty-774fc849-0">first-interval</code> / <code id="ty-c7459468-0">interval-count</code></td><td id="ty-268699b5-0"><code id="ty-9e13580f-0">Number</code></td><td id="ty-d6f4a537-0">—</td><td id="ty-ffb58a17-0">First interval and number of intervals in timed views.</td></tr>
+    <tr id="ty-7bcd9e9d-0"><td id="ty-a8b97360-0"><code id="ty-9f90d92d-0">interval-minutes</code> / <code id="ty-15c2baa0-0">interval-height</code></td><td id="ty-06473446-0"><code id="ty-fda7e5ba-0">Number</code></td><td id="ty-313833fd-0"><code id="ty-8b73f9cd-0">60</code> / —</td><td id="ty-8c264b4c-0">Minutes per interval and the row height.</td></tr>
+    <tr id="ty-1aac85b1-0"><td id="ty-9018c629-0"><code id="ty-c167c4d0-0">interval-highlight</code></td><td id="ty-1d4e8ce6-0"><code id="ty-45dfa768-0">Boolean</code></td><td id="ty-583fc8b9-0"><code id="ty-df7f62e9-0">false</code></td><td id="ty-9584d5d9-0">Highlight the current interval.</td></tr>
+    <tr id="ty-9686d1ff-0"><td id="ty-7a318971-0"><code id="ty-928319d8-0">categories</code></td><td id="ty-d0016e0a-0"><code id="ty-e0dc22ca-0">Array | String | JSON</code></td><td id="ty-f3009ab2-0"><code id="ty-5bd64ec6-0">[]</code></td><td id="ty-3d0571c2-0">Category columns for the <code id="ty-0f530337-0">category</code> view.</td></tr>
+  </tbody>
+</table><h2 id="ty-5f56d5f8-0">Events</h2><p id="ty-c8b3dd79-0">All events are native <code id="ty-02c2b0b7-0">CustomEvent</code>s (<code id="ty-d1177d29-0">bubbles: true, composed: true</code>) carrying a <code id="ty-ad759a5a-0">detail</code> object.</p><table class="w-table" id="ty-22bfef50-0">
+  <thead id="ty-cc6b4869-0"><tr id="ty-ad793e2a-0"><th id="ty-3eb8b071-0">Event</th><th id="ty-58a01c17-0">detail</th><th id="ty-52a13394-0">Fires when</th></tr></thead>
+  <tbody id="ty-10a48327-0">
+    <tr id="ty-951ac7ff-0"><td id="ty-088e47dc-0"><code id="ty-9c9cf38c-0">change</code></td><td id="ty-9b4def93-0"><code id="ty-e6b46a1c-0">&#123; reason, value, start, end &#125;</code></td><td id="ty-392581ad-0">The visible range changes. <code id="ty-896fc424-0">reason</code> is <code id="ty-119c3dc6-0">select</code>, <code id="ty-293e9a51-0">move</code>, <code id="ty-46ed1a73-0">today</code>, <code id="ty-eb975baf-0">check</code>, or <code id="ty-c6493ce0-0">event-drop</code>.</td></tr>
+    <tr id="ty-77b16fc1-0"><td id="ty-d7eee6f4-0"><code id="ty-f9e1417a-0">input</code></td><td id="ty-1a908430-0"><code id="ty-28fa2f30-0">&#123; value, ... &#125;</code></td><td id="ty-bee56cdb-0">A date is selected (model value updates).</td></tr>
+    <tr id="ty-c495e25c-0"><td id="ty-7a702276-0"><code id="ty-2f5f23da-0">click</code></td><td id="ty-17417d80-0"><code id="ty-528dfa9a-0">&#123; kind, date, event?, events?, hidden? &#125;</code></td><td id="ty-96ef16a8-0">A day, interval, event, or "more" affordance is clicked. <code id="ty-9708ac96-0">kind</code> is <code id="ty-e8dc9fc3-0">day</code>, <code id="ty-6db64b79-0">time</code>, <code id="ty-a6503496-0">timeCategory</code>, <code id="ty-ef2551cc-0">event</code>, or <code id="ty-07354607-0">more</code>.</td></tr>
+    <tr id="ty-635e8a3d-0"><td id="ty-33b0d618-0"><code id="ty-21de34a9-0">moved</code></td><td id="ty-a3538c9c-0"><code id="ty-3f9cb569-0">&#123; reason, value, start, end &#125;</code></td><td id="ty-0253c1f3-0">Navigation moves the view via <code id="ty-50bdf4d7-0">next()</code>, <code id="ty-c221e205-0">prev()</code>, or <code id="ty-6c63abc4-0">today()</code>.</td></tr>
+  </tbody>
+</table><h2 id="ty-3a4f9b2f-0">Methods</h2><p id="ty-e21a323f-0">Call these on the element instance (e.g. <code id="ty-b5089f49-0">document.querySelector('w-calendar').next()</code>).</p><table class="w-table" id="ty-d2b81449-0">
+  <thead id="ty-8e025b18-0"><tr id="ty-0a043de4-0"><th id="ty-b0d02432-0">Method</th><th id="ty-c8f24be3-0">Signature</th><th id="ty-cac60343-0">Description</th></tr></thead>
+  <tbody id="ty-6470f102-0">
+    <tr id="ty-435403b6-0"><td id="ty-8b3a97e5-0"><code id="ty-f063ed7c-0">next</code></td><td id="ty-ef23add2-0"><code id="ty-8b9667a6-0">next(amount = 1)</code></td><td id="ty-4263e7b9-0">Advance the view by <code id="ty-b32dab81-0">amount</code> periods.</td></tr>
+    <tr id="ty-bed1aadd-0"><td id="ty-64832c2a-0"><code id="ty-dcf950e8-0">prev</code></td><td id="ty-458133e2-0"><code id="ty-8665919d-0">prev(amount = 1)</code></td><td id="ty-81e935ea-0">Move the view back by <code id="ty-7a2d3204-0">amount</code> periods.</td></tr>
+    <tr id="ty-f2d67f43-0"><td id="ty-6a314d85-0"><code id="ty-6834543c-0">move</code></td><td id="ty-8e939bc3-0"><code id="ty-e4cf9b91-0">move(amount = 1)</code></td><td id="ty-971972dd-0">Move by a signed number of periods (negative moves back).</td></tr>
+    <tr id="ty-679ba51a-0"><td id="ty-1347d338-0"><code id="ty-d7c95ee3-0">today</code></td><td id="ty-462c2049-0"><code id="ty-a70c9aee-0">today()</code></td><td id="ty-10a57420-0">Jump the view to the current date.</td></tr>
+    <tr id="ty-b910ff77-0"><td id="ty-fdeeb41e-0"><code id="ty-01f25a5b-0">scrollToTime</code></td><td id="ty-d7010bc5-0"><code id="ty-7548e05a-0">scrollToTime(value)</code></td><td id="ty-44a5cb78-0">Scroll a timed view to the given time (e.g. <code id="ty-c8435839-0">"09:00"</code>).</td></tr>
+    <tr id="ty-9438e1dd-0"><td id="ty-27454337-0"><code id="ty-73051496-0">checkChange</code></td><td id="ty-599e4c76-0"><code id="ty-66e17a69-0">checkChange()</code></td><td id="ty-dfc478dd-0">Re-emit <code id="ty-81e6e830-0">change</code> for the current range (useful after async data loads).</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

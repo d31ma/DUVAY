@@ -1,0 +1,63 @@
+<h1>Flexbox</h1>
+<p>A complete set of flexbox utilities for building layouts: direction, wrapping, alignment, justification, grow/shrink, self-alignment, ordering, and gap. The shorthand helpers <code>w-row</code> and <code>w-col</code> set up common flex containers in one class.</p>
+<div class="d-flex ga-3 justify-space-between align-center w-border pa-3 w-mb-md">
+  <div class="w-bg-primary-container pa-3">1</div>
+  <div class="w-bg-primary-container pa-3">2</div>
+  <div class="w-bg-primary-container pa-3">3</div>
+</div>
+<div class="code-block"><code>&lt;div class="d-flex ga-3 justify-space-between align-center"&gt;
+  &lt;div&gt;1&lt;/div&gt;&lt;div&gt;2&lt;/div&gt;&lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></div>
+<h2>Containers</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>d-flex</code></td><td><code>display: flex</code></td></tr>
+    <tr><td><code>d-inline-flex</code></td><td><code>display: inline-flex</code></td></tr>
+    <tr><td><code>w-row</code></td><td>Flex row, centered items, wrapping.</td></tr>
+    <tr><td><code>w-col</code></td><td>Flex column.</td></tr>
+  </tbody>
+</table>
+<h2>Direction & wrap</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>flex-row</code></td><td><code>flex-direction: row</code></td></tr>
+    <tr><td><code>flex-row-reverse</code></td><td><code>flex-direction: row-reverse</code></td></tr>
+    <tr><td><code>flex-column</code></td><td><code>flex-direction: column</code></td></tr>
+    <tr><td><code>flex-column-reverse</code></td><td><code>flex-direction: column-reverse</code></td></tr>
+    <tr><td><code>flex-wrap</code> / <code>flex-wrap</code></td><td><code>flex-wrap: wrap</code></td></tr>
+    <tr><td><code>flex-nowrap</code> / <code>flex-nowrap</code></td><td><code>flex-wrap: nowrap</code></td></tr>
+  </tbody>
+</table>
+<h2>Alignment & justification</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>align-start</code> / <code>align-center</code> / <code>align-end</code></td><td><code>align-items</code> flex-start / center / flex-end.</td></tr>
+    <tr><td><code>align-stretch</code> / <code>align-baseline</code></td><td><code>align-items</code> stretch / baseline.</td></tr>
+    <tr><td><code>justify-center</code> / <code>justify-space-between</code> / <code>justify-end</code></td><td><code>justify-content</code> center / space-between / flex-end.</td></tr>
+    <tr><td><code>justify-space-around</code> / <code>justify-space-evenly</code></td><td><code>justify-content</code> space-around / space-evenly.</td></tr>
+    <tr><td><code>align-self-auto</code> / <code>align-self-start</code> / <code>align-self-center</code> / <code>align-self-end</code> / <code>align-self-stretch</code></td><td><code>align-self</code> per-item override.</td></tr>
+  </tbody>
+</table>
+<h2>Grow, shrink & order</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>w-flex-1</code></td><td><code>flex: 1 1 0</code></td></tr>
+    <tr><td><code>w-flex-auto</code></td><td><code>flex: 1 1 auto</code></td></tr>
+    <tr><td><code>w-flex-none</code></td><td><code>flex: 0 0 auto</code></td></tr>
+    <tr><td><code>flex-grow-0</code> / <code>flex-grow-1</code></td><td><code>flex-grow</code> 0 / 1.</td></tr>
+    <tr><td><code>flex-shrink-0</code> / <code>flex-shrink-1</code></td><td><code>flex-shrink</code> 0 / 1.</td></tr>
+    <tr><td><code>order-first</code> / <code>order-last</code> / <code>order-0</code></td><td><code>order</code> -1 / 9999 / 0.</td></tr>
+  </tbody>
+</table>
+<h2>Gap</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>ga-0</code> … <code>ga-8</code></td><td>Numeric gap on the spacing scale (0, 1–6, 8).</td></tr>
+    <tr><td><code>w-gap-xs</code> / <code>w-gap-sm</code> / <code>w-gap-md</code> / <code>w-gap-lg</code> / <code>w-gap-xl</code></td><td>Named gap aliases mapping to the spacing scale.</td></tr>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<h1>TailwindCSS</h1>
+<p>DuVay and Tailwind can coexist. Use DuVay for semantic components and design tokens, and Tailwind for highly custom, one-off layouts.</p>
+<div class="code-block"><code>/* tailwind.config.js */
+module.exports = &#123;
+  theme: &#123;
+    extend: &#123;
+      colors: &#123;
+        primary: 'var(--w-primary)',
+      &#125;,
+    &#125;,
+  &#125;,
+&#125;</code></div>
+<h2>Token sharing</h2>
+<p>Map Tailwind’s theme keys to DuVay CSS custom properties so spacing, color, and radius stay consistent across both systems.</p>

@@ -1,0 +1,46 @@
+<h1>Content</h1>
+<p>Utilities for controlling how text content wraps, truncates, and clamps. Use single-line truncation with an ellipsis, or clamp text to a fixed number of lines.</p>
+
+<h2>Usage</h2>
+
+<h3>Single-line truncation</h3>
+<p>Use <code>text-truncate</code> to clip a single line of text and append an ellipsis when it overflows.</p>
+<div class="w-mb-md" style="max-width: 18rem;">
+  <p class="text-truncate w-border pa-2">This is a long single line of text that will be truncated with an ellipsis.</p>
+</div>
+<div class="code-block"><code>&lt;p class="text-truncate"&gt;Single line, ellipsis&lt;/p&gt;</code></div>
+
+<h3>Line clamping</h3>
+<p>Use <code>w-line-clamp-1</code> through <code>w-line-clamp-4</code> to limit text to a fixed number of lines. Use <code>w-line-clamp-none</code> to remove a clamp.</p>
+<div class="w-mb-md" style="max-width: 18rem;">
+  <p class="w-line-clamp-2 w-border pa-2">This paragraph is clamped to two lines maximum. Any text beyond the second line is hidden and replaced with an ellipsis at the end of the visible content.</p>
+  <p class="w-line-clamp-3 w-border pa-2 mt-4">This paragraph is clamped to three lines. Extra text beyond the third line is hidden and replaced with an ellipsis at the end of the visible content, keeping the layout compact.</p>
+</div>
+<div class="code-block"><code>&lt;p class="w-line-clamp-2"&gt;Clamped to two lines&lt;/p&gt;
+&lt;p class="w-line-clamp-3"&gt;Clamped to three lines&lt;/p&gt;</code></div>
+
+<h3>Text wrapping</h3>
+<p>Use the wrapping helpers to prevent wrapping, preserve whitespace, or force long words to break.</p>
+<div class="w-mb-md" style="max-width: 12rem;">
+  <p class="text-no-wrap w-border pa-2">This text stays on one line even when the container is narrow.</p>
+  <p class="w-text-break w-border pa-2 mt-4">Averylongwordthatbreaksotherwiseunbreakablecontent.</p>
+</div>
+<div class="code-block"><code>&lt;p class="text-no-wrap"&gt;Stays on one line&lt;/p&gt;
+&lt;p class="w-text-break"&gt;Breakslongwords&lt;/p&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>text-truncate</code></td><td>Single-line truncation with an ellipsis (no wrapping).</td></tr>
+    <tr><td><code>w-line-clamp-1</code></td><td>Clamps content to 1 line with an ellipsis.</td></tr>
+    <tr><td><code>w-line-clamp-2</code></td><td>Clamps content to 2 lines with an ellipsis.</td></tr>
+    <tr><td><code>w-line-clamp-3</code></td><td>Clamps content to 3 lines with an ellipsis.</td></tr>
+    <tr><td><code>w-line-clamp-4</code></td><td>Clamps content to 4 lines with an ellipsis.</td></tr>
+    <tr><td><code>w-line-clamp-none</code></td><td>Removes any line clamp and shows all content.</td></tr>
+    <tr><td><code>text-no-wrap</code></td><td>Prevents text from wrapping.</td></tr>
+    <tr><td><code>w-text-break</code></td><td>Forces long words to break.</td></tr>
+    <tr><td><code>w-text-pre-wrap</code></td><td>Preserves whitespace and wraps as needed.</td></tr>
+    <tr><td><code>w-text-wrap</code></td><td>Allows text to wrap normally.</td></tr>
+  </tbody>
+</table>

@@ -1,0 +1,68 @@
+<h1>Navigation</h1>
+<p>DuVay provides primitives for topbars, sidebars, breadcrumbs, tabs, drawers, and mobile bottom navigation. All are built from utility classes — no JS required for the layout itself.</p>
+
+<h2>Tabs</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs">
+      <button class="w-tab active">Overview</button>
+      <button class="w-tab">Settings</button>
+      <button class="w-tab">Billing</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="overview">
+      <w-tab value="overview">Overview</w-tab>
+      <w-tab value="settings">Settings</w-tab>
+      <w-tab value="billing">Billing</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Breadcrumbs</h2>
+<p><code>w-breadcrumbs-item</code> is an alias for <code>w-breadcrumb</code> that matches Vuetify&#8217;s <code>v-breadcrumbs-item</code> naming.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs">
+      <a href="#" class="w-breadcrumb">Home</a>
+      <span class="w-breadcrumb-sep">/</span>
+      <a href="#" class="w-breadcrumb">Docs</a>
+      <span class="w-breadcrumb-sep">/</span>
+      <span class="w-breadcrumb active">Navigation</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs>
+      <w-breadcrumb href="#">Home</w-breadcrumb>
+      <w-breadcrumb href="#">Docs</w-breadcrumb>
+      <w-breadcrumb active>Navigation</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Pagination</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-pagination">
+      <button class="w-page-item">‹</button>
+      <button class="w-page-item">1</button>
+      <button class="w-page-item active">2</button>
+      <button class="w-page-item">3</button>
+      <button class="w-page-item">›</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-pagination page="2" length="3"></w-pagination>
+  </div>
+</demo-compare>
+
+<h2>Sidebar (CSS only)</h2>
+<p>Use the <code>.w-shell</code>, <code>.w-topbar</code>, <code>.w-sidebar</code>, and <code>.w-main</code> classes to compose a full app frame. See the install page for a quick scaffold.</p>
+
+<h2>Mobile bottom nav</h2>
+<p>Add <code>.w-mobile-nav</code> at the page root. It only renders on screens narrower than 760 px and respects the device safe-area inset.</p>
+<pre class="code-block"><code>&lt;nav class="w-mobile-nav"&gt;
+  &lt;a class="w-sidebar-folder active" href="/inbox"&gt;Inbox&lt;/a&gt;
+  &lt;a class="w-sidebar-folder" href="/search"&gt;Search&lt;/a&gt;
+  &lt;a class="w-sidebar-folder" href="/me"&gt;Profile&lt;/a&gt;
+&lt;/nav&gt;</code></pre>

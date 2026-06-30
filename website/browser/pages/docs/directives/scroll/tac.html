@@ -1,0 +1,120 @@
+<h1>Scroll</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-scroll</code> directive. Add <code>w-scroll</code> to any element and DuVay invokes a bubbling <code>w-scroll</code> event when the screen &#8212; or a chosen element &#8212; is scrolled. By default it watches the <code>window</code>; options let you switch the listener to the element itself or to another target. Requires <code>duvay-directives.js</code>.</p>
+
+<h2>Interactive demo</h2>
+<p>Scroll inside the panel below; the readout updates from each <code>w-scroll</code> event. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-card w-card-body" id="scroll-demo" w-scroll w-scroll-self style="height: 160px; overflow: auto;">
+      <div style="height: 600px;">Scroll this panel to update the readout below.</div>
+    </div>
+    <p>Scroll position: <code><span id="scroll-demo-out">0</span></code> px</p>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>The simplest case listens to the window. Add <code>w-scroll</code> to an element, then attach a <code>w-scroll</code> listener. Each event carries <code>detail.scrollTop</code>, <code>detail.scrollLeft</code>, and <code>detail.target</code>. The underlying scroll listener is passive.</p>
+<pre class="code-block"><code>&lt;div w-scroll id="watcher"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  document.getElementById('watcher')
+    .addEventListener('w-scroll', (e) =&gt; &#123;
+      console.log(e.detail.scrollTop);
+    &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Options</h2>
+<p>Two attributes change <em>what</em> the directive observes. <code>w-scroll-self</code> mirrors Vue's <code>.self</code> modifier; <code>w-scroll-target</code> mirrors Vuetify's <code>:target</code> argument. When both are present, <code>-self</code> takes precedence.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Attribute</th><th>Vuetify equivalent</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-scroll</code></td><td><code>v-scroll</code></td><td>Listen on <code>window</code> (the default).</td></tr>
+    <tr><td><code>w-scroll-self</code></td><td><code>v-scroll.self</code></td><td>Listen on the bound element itself rather than the window.</td></tr>
+    <tr><td><code>w-scroll-target="#sel"</code></td><td><code>v-scroll:target</code></td><td>Listen on another element matched by the CSS selector.</td></tr>
+  </tbody>
+</table>
+
+<h3>Self</h3>
+<p>By default <code>w-scroll</code> watches the window. Add <code>w-scroll-self</code> to instead observe scrolling <em>within</em> the bound element &#8212; useful for a scrollable card or panel whose own content moves.</p>
+<pre class="code-block"><code>&lt;div class="w-card" w-scroll w-scroll-self
+     style="height: 200px; overflow: auto;" id="panel"&gt;
+  &lt;!-- long content --&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  let count = 0;
+  document.getElementById('panel')
+    .addEventListener('w-scroll', () =&gt; &#123;
+      count += 1;
+      console.log('scrolled', count, 'times');
+    &#125;);
+&lt;/script&gt;</code></pre>
+
+<h3>Target</h3>
+<p>For finer control, point the listener at a different element with <code>w-scroll-target</code>. The value is any CSS selector; the <code>w-scroll</code> event still fires on the bound element, while the scroll position reported in <code>e.detail</code> comes from the target.</p>
+<pre class="code-block"><code>&lt;div id="scroll-area" style="height: 300px; overflow: auto;"&gt;
+  &lt;!-- long content --&gt;
+&lt;/div&gt;
+
+&lt;div w-scroll w-scroll-target="#scroll-area" id="reporter"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  document.getElementById('reporter')
+    .addEventListener('w-scroll', (e) =&gt; &#123;
+      console.log('area scrolled to', e.detail.scrollTop);
+    &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Events</h2>
+<p>The directive dispatches a bubbling <code>CustomEvent</code> named <code>w-scroll</code>. Read scroll position from the <code>detail</code> object.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Property</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>detail.scrollTop</code></td><td>Vertical scroll offset of the watched element or window.</td></tr>
+    <tr><td><code>detail.scrollLeft</code></td><td>Horizontal scroll offset of the watched element or window.</td></tr>
+    <tr><td><code>detail.target</code></td><td>The element (or <code>window</code>) the scroll was observed on.</td></tr>
+  </tbody>
+</table>
+<pre class="code-block"><code>el.addEventListener('w-scroll', (e) =&gt; &#123;
+  const &#123; scrollTop, scrollLeft, target &#125; = e.detail;
+  console.log(scrollTop, scrollLeft, target);
+&#125;);</code></pre>
+
+<h2>Examples</h2>
+
+<h3>Back-to-top button</h3>
+<p>Reveal a button once the window scrolls past a threshold, then scroll smoothly to the top when clicked.</p>
+<pre class="code-block"><code>&lt;button class="w-btn" id="to-top" w-scroll hidden&gt;
+  Back to top
+&lt;/button&gt;
+
+&lt;script&gt;
+  const btn = document.getElementById('to-top');
+  btn.addEventListener('w-scroll', (e) =&gt; &#123;
+    btn.hidden = e.detail.scrollTop &lt; 400;
+  &#125;);
+  btn.addEventListener('click', () =&gt; &#123;
+    window.scrollTo(&#123; top: 0, behavior: 'smooth' &#125;);
+  &#125;);
+&lt;/script&gt;</code></pre>
+
+<h3>Scroll within a container</h3>
+<p>Track scrolling inside a bounded region with <code>w-scroll-self</code> and update a progress indicator.</p>
+<pre class="code-block"><code>&lt;div w-scroll w-scroll-self id="reader"
+     style="height: 240px; overflow: auto;"&gt;
+  &lt;!-- article content --&gt;
+&lt;/div&gt;
+&lt;progress id="bar" max="100" value="0"&gt;&lt;/progress&gt;
+
+&lt;script&gt;
+  const reader = document.getElementById('reader');
+  const bar = document.getElementById('bar');
+  reader.addEventListener('w-scroll', (e) =&gt; &#123;
+    const max = reader.scrollHeight - reader.clientHeight;
+    bar.value = max &gt; 0 ? (e.detail.scrollTop / max) * 100 : 0;
+  &#125;);
+&lt;/script&gt;</code></pre>

@@ -1,0 +1,76 @@
+<h1>Number inputs</h1>
+<p><code>w-number-input</code> is a numeric field with stepper controls, mirroring Vuetify&#8217;s <code>v-number-input</code>. Use <code>min</code>, <code>max</code>, and <code>step</code> to constrain the value, <code>precision</code> and <code>grouping</code> to format it, and <code>control-variant</code> to change the stepper layout. It emits native-named <code>input</code> and <code>change</code> events as the number updates.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-number-input w-number-input--default">
+      <span class="w-label">Quantity</span>
+      <span class="w-number-input-field">
+        <input class="w-input" type="text" inputmode="decimal" value="4" />
+        <span class="w-number-input-control">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></button>
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-number-input label="Quantity" value="4" min="0" max="99"></w-number-input>
+  </div>
+</demo-compare>
+
+<h2>Control variants</h2>
+<p>The <code>control-variant</code> attribute sets the stepper layout: <code>default</code> (buttons grouped at the end), <code>stacked</code> (vertical spinner), <code>split</code> (− and + on opposite ends), or <code>hidden</code> (no buttons).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-field w-number-input w-number-input--stacked">
+        <span class="w-label">Stacked</span>
+        <span class="w-number-input-field">
+          <input class="w-input" type="text" inputmode="decimal" value="1" />
+          <span class="w-number-input-control">
+            <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+            <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></button>
+          </span>
+        </span>
+      </label>
+      <label class="w-field w-number-input w-number-input--split">
+        <span class="w-label">Split</span>
+        <span class="w-number-input-field">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg></button>
+          <input class="w-input" type="text" inputmode="decimal" value="1" />
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-number-input label="Stacked" value="1" control-variant="stacked"></w-number-input>
+      <w-number-input label="Split" value="1" control-variant="split"></w-number-input>
+      <w-number-input label="Hidden" value="1" control-variant="hidden"></w-number-input>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Formatting</h2>
+<p>Set <code>precision</code> for a fixed number of decimal places, <code>grouping</code> for thousands separators, and <code>decimal-separator</code> / <code>group-separator</code> to localize them. The <code>value</code> attribute always stays canonical (plain number); formatting applies only to what is shown.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-number-input w-number-input--default">
+      <span class="w-label">Price</span>
+      <span class="w-number-input-field">
+        <input class="w-input" type="text" inputmode="decimal" value="1,234.50" />
+        <span class="w-number-input-control">
+          <button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg></button>
+          <button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg></button>
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-number-input label="Price" value="1234.5" precision="2" grouping step="0.5"></w-number-input>
+  </div>
+</demo-compare>
+

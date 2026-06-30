@@ -1,0 +1,95 @@
+<h1>Autocompletes</h1>
+<p><code>w-autocomplete</code> is a searchable dropdown. Use <code>items</code> for simple strings or JSON objects with <code>item-title</code>/<code>item-value</code>. Add <code>multiple</code>, <code>chips</code>, and <code>closable-chips</code> for multi-select, and <code>clearable</code> for a reset button.</p>
+
+<h2>Single and multiple</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col-12 w-grid-col-md-6">
+        <label class="w-field" style="max-width:320px">
+          <span class="w-field-label">Country</span>
+          <span class="w-autocomplete">
+            <span class="w-autocomplete-wrap">
+              <input class="w-input w-autocomplete-input" type="text" role="combobox" aria-expanded="false" placeholder="Search countries..." />
+            </span>
+            <span class="w-autocomplete-list" role="listbox" hidden>
+              <span class="w-autocomplete-item" role="option">United States</span>
+              <span class="w-autocomplete-item" role="option">United Kingdom</span>
+              <span class="w-autocomplete-item" role="option">Canada</span>
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="w-grid-col-12 w-grid-col-md-6">
+        <label class="w-field" style="max-width:320px">
+          <span class="w-field-label">Tags</span>
+          <span class="w-autocomplete">
+            <span class="w-autocomplete-wrap">
+              <span class="w-autocomplete-chips">
+                <span class="w-chip w-chip-tonal w-chip--small">JavaScript</span>
+              </span>
+              <input class="w-input w-autocomplete-input" type="text" role="combobox" placeholder="Add tags..." />
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12" md="6">
+          <w-autocomplete label="Country" placeholder="Search countries..." items="[United States,United Kingdom,Canada]" clearable></w-autocomplete>
+        </w-col>
+        <w-col cols="12" md="6">
+          <w-autocomplete label="Tags" placeholder="Add tags..."
+            items='[{"title":"JavaScript","value":"js"},{"title":"TypeScript","value":"ts"},{"title":"Python","value":"py"}]'
+            item-title="title" item-value="value" value="js" multiple chips closable-chips></w-autocomplete>
+        </w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Hide selected</h2>
+<p>Add <code>hide-selected</code> so that items already chosen drop out of the dropdown &#8212; ideal for multi-select with chips. Removing a chip brings the option back.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field" style="max-width:320px">
+      <span class="w-field-label">Team</span>
+      <span class="w-autocomplete">
+        <span class="w-autocomplete-wrap">
+          <span class="w-autocomplete-chips">
+            <span class="w-chip w-chip-tonal w-chip--small">Ada</span>
+          </span>
+          <input class="w-input w-autocomplete-input" type="text" role="combobox" placeholder="Add members..." />
+        </span>
+        <span class="w-autocomplete-list" role="listbox" hidden>
+          <span class="w-autocomplete-item" role="option">Grace</span>
+          <span class="w-autocomplete-item" role="option">Linus</span>
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-autocomplete label="Team" placeholder="Add members..." items="[Ada,Grace,Linus,Alan]" value="Ada" multiple chips closable-chips hide-selected></w-autocomplete>
+  </div>
+</demo-compare>
+
+<h2>Hide no data</h2>
+<p>Add <code>hide-no-data</code> to suppress the &#8220;no data&#8221; message when a search has no matches &#8212; useful when the list is populated asynchronously.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field" style="max-width:320px">
+      <span class="w-field-label">Search</span>
+      <span class="w-autocomplete">
+        <span class="w-autocomplete-wrap">
+          <input class="w-input w-autocomplete-input" type="text" role="combobox" placeholder="Type to search..." />
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-autocomplete label="Search" placeholder="Type to search..." items="[Apple,Banana,Cherry]" hide-no-data></w-autocomplete>
+  </div>
+</demo-compare>

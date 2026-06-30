@@ -1,0 +1,10 @@
+/* DuVay — full framework entrypoint. */
+@import "./core.css";
+@import "./spacing.css";
+@import "./sizing-responsive.css";
+@import "./grid.css";
+@import "./layout.css";
+@import "./navigation.css";
+@import "./content.css";
+@import "./feedback.css";
+@import "./forms.css";

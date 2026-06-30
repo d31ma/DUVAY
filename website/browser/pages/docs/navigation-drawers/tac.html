@@ -1,0 +1,209 @@
+<h1>Navigation Drawers</h1>
+<p><code>w-navigation-drawer</code> provides a slide-out panel for app navigation with Vuetify parity: rail mode, expand-on-hover, floating, scrim, border, elevation, color, and responsive behavior.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer open" aria-label="Navigation" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#overview" class="w-nav-item" aria-current="page"><span aria-hidden="true">🏠</span> Overview</a>
+        <a href="#projects" class="w-nav-item"><span aria-hidden="true">📁</span> Projects</a>
+        <a href="#settings" class="w-nav-item"><span aria-hidden="true">⚙️</span> Settings</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer open label="Navigation">
+      <nav class="w-nav-menu">
+        <a href="#overview" aria-current="page"><span aria-hidden="true">🏠</span> Overview</a>
+        <a href="#projects"><span aria-hidden="true">📁</span> Projects</a>
+        <a href="#settings"><span aria-hidden="true">⚙️</span> Settings</a>
+      </nav>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Rail mode</h2>
+<p>Add <code>rail</code> for a collapsed icon-only rail. Combine with <code>expand-on-hover</code> to temporarily expand on hover/focus.</p>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--rail w-navigation-drawer--permanent" aria-label="Rail" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#home" class="w-nav-item"><span aria-hidden="true">🏠</span> <span class="w-nav-label">Home</span></a>
+        <a href="#search" class="w-nav-item"><span aria-hidden="true">🔍</span> <span class="w-nav-label">Search</span></a>
+        <a href="#fav" class="w-nav-item"><span aria-hidden="true">⭐</span> <span class="w-nav-label">Favorites</span></a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent rail label="Rail">
+      <nav class="w-nav-menu">
+        <a href="#home"><span aria-hidden="true">🏠</span> <span class="w-nav-label">Home</span></a>
+        <a href="#search"><span aria-hidden="true">🔍</span> <span class="w-nav-label">Search</span></a>
+        <a href="#fav"><span aria-hidden="true">⭐</span> <span class="w-nav-label">Favorites</span></a>
+      </nav>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Expand on hover</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--rail w-navigation-drawer--expand-on-hover w-navigation-drawer--permanent" aria-label="Expand" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#home" class="w-nav-item"><span aria-hidden="true">🏠</span> <span class="w-nav-label">Home</span></a>
+        <a href="#search" class="w-nav-item"><span aria-hidden="true">🔍</span> <span class="w-nav-label">Search</span></a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent rail expand-on-hover label="Expand">
+      <nav class="w-nav-menu">
+        <a href="#home"><span aria-hidden="true">🏠</span> <span class="w-nav-label">Home</span></a>
+        <a href="#search"><span aria-hidden="true">🔍</span> <span class="w-nav-label">Search</span></a>
+      </nav>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Temporary with scrim</h2>
+<p>Add <code>temporary</code> for a modal drawer that overlays content with a scrim backdrop. Clicking the scrim closes the drawer.</p>
+<demo-compare>
+  <div slot="css">
+    <div>
+      <aside class="w-navigation-drawer w-navigation-drawer--temporary open" aria-label="Temporary" aria-hidden="false">
+        <nav class="w-nav-menu">
+          <a href="#item1" class="w-nav-item">Item 1</a>
+          <a href="#item2" class="w-nav-item">Item 2</a>
+        </nav>
+      </aside>
+      <button class="w-navigation-drawer-scrim open" type="button" aria-label="Close navigation"></button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer id="temp-drawer" temporary open label="Temporary">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Right location</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--right w-navigation-drawer--permanent open" aria-label="Right" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+        <a href="#item2" class="w-nav-item">Item 2</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open location="right" label="Right">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Floating</h2>
+<p>Add <code>floating</code> to remove borders for an elevated floating look.</p>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--floating w-navigation-drawer--permanent open" aria-label="Floating" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+        <a href="#item2" class="w-nav-item">Item 2</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open floating label="Floating">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Border</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--border w-navigation-drawer--permanent open" aria-label="Border" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open border label="Border">
+      <a href="#item1">Item 1</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Elevation</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer elevation-4 w-navigation-drawer--permanent open" aria-label="Elevation" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open elevation="4" label="Elevation">
+      <a href="#item1">Item 1</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--permanent open" style="--w-drawer-bg:var(--w-surface)" aria-label="Color" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open color="surface" label="Color">
+      <a href="#item1">Item 1</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Custom width</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--permanent open" style="--w-drawer-width:320px" aria-label="Width" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent open width="320" label="Width">
+      <a href="#item1">Item 1</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>
+
+<h2>Permanent</h2>
+<p>A <code>permanent</code> drawer is always visible and cannot be closed.</p>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-navigation-drawer w-navigation-drawer--permanent open" aria-label="Permanent" aria-hidden="false">
+      <nav class="w-nav-menu">
+        <a href="#item1" class="w-nav-item">Item 1</a>
+        <a href="#item2" class="w-nav-item">Item 2</a>
+      </nav>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-navigation-drawer permanent label="Permanent">
+      <a href="#item1">Item 1</a>
+      <a href="#item2">Item 2</a>
+    </w-navigation-drawer>
+  </div>
+</demo-compare>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-15c2b2d0-0">Infinite Scroller</h1><p id="ty-72cc2209-0"><code id="ty-2ce223d5-0">w-infinite-scroll</code> emits a <code id="ty-60bb3644-0">load</code> event as the user reaches an edge of a scrollable area. Fetch the next batch, then call <code id="ty-279d4473-0">done(status)</code> with <code id="ty-9f8ee7ee-0">"ok"</code> (more available), <code id="ty-e8ec0868-0">"empty"</code> (stop), or <code id="ty-c8497859-0">"error"</code> (show a retry). It supports automatic (<code id="ty-c7e4f4e2-0">intersect</code>) and <code id="ty-5e0cd315-0">manual</code> modes, loading from the <code id="ty-ee8cad13-0">start</code>, <code id="ty-b4e47b49-0">end</code>, or <code id="ty-28d8e775-0">both</code> edges, and a horizontal <code id="ty-932d5ba0-0">direction</code>.</p><h2 id="ty-9919db40-0">Wiring it up</h2><p id="ty-72aa1a6b-0">Listen for <code id="ty-d31665cf-0">load</code>, append your data, then settle with <code id="ty-31c88865-0">done</code>:</p><pre class="code-block" id="ty-937e9c36-0"><code id="ty-a8317c81-0">const scroller = document.querySelector('w-infinite-scroll');
+let page = 0;
+
+scroller.addEventListener('load', async (e) =&gt; &#123;
+  try &#123;
+    const rows = await fetchPage(++page);     // your fetch
+    appendRows(scroller, rows);               // add to the slot content
+    e.detail.done(rows.length ? 'ok' : 'empty');
+  &#125; catch &#123;
+    e.detail.done('error');                   // shows a Retry button
+  &#125;
+&#125;);</code></pre><h2 id="ty-7dd17480-0">Intersect (default)</h2><p id="ty-5ed4a8e4-0">In <code id="ty-bfad8611-0">intersect</code> mode the bottom sentinel auto-loads when it scrolls into view; a spinner shows while the fetch is in flight.</p><demo-compare >
+  <div slot="css" id="ty-4859c618-0">
+    <div class="w-infinite-scroll" style="max-height:180px" id="ty-a8c757ec-0">
+      <div class="w-infinite-scroll-content" id="ty-4e9deba4-0"><div class="w-list" id="ty-a29e37b7-0"><div class="w-list-item" id="ty-bef0dcdb-0">Item 1</div><div class="w-list-item" id="ty-7d1be75b-0">Item 2</div><div class="w-list-item" id="ty-9e9f65f4-0">Item 3</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status" id="ty-59e6ad04-0"><span class="w-infinite-scroll-spinner" id="ty-f9502285-0"></span><span id="ty-3a01852f-0">Loading…</span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2d6d0cf5-0">
+    <w-infinite-scroll height="180px" status="loading" disabled="" id="ty-5b10d582-0">
+      <div class="w-list" id="ty-92e62a6c-0"><div class="w-list-item" id="ty-091f71f7-0">Item 1</div><div class="w-list-item" id="ty-bd324d61-0">Item 2</div><div class="w-list-item" id="ty-3fcb1696-0">Item 3</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare><h2 id="ty-4769d222-0">Manual</h2><p id="ty-01740917-0">Set <code id="ty-cb227407-0">mode="manual"</code> to load on a button press instead of automatically.</p><demo-compare >
+  <div slot="css" id="ty-e84bb1ca-0">
+    <div class="w-infinite-scroll" style="max-height:180px" id="ty-d98ac597-0">
+      <div class="w-infinite-scroll-content" id="ty-bff84ae8-0"><div class="w-list" id="ty-779f06b1-0"><div class="w-list-item" id="ty-226e6668-0">Item 1</div><div class="w-list-item" id="ty-70326f85-0">Item 2</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status" id="ty-a27fce95-0"><button type="button" class="w-btn w-btn-tonal" id="ty-fbcb987e-0">Load more</button></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-61f57b9b-0">
+    <w-infinite-scroll mode="manual" height="180px" id="ty-f7e90dc1-0">
+      <div class="w-list" id="ty-5c81db9d-0"><div class="w-list-item" id="ty-c7d3dbc0-0">Item 1</div><div class="w-list-item" id="ty-85ff2548-0">Item 2</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare><h2 id="ty-a4753e2c-0">Empty &amp; error states</h2><p id="ty-c78bdfa1-0">When you call <code id="ty-098846fd-0">done("empty")</code> the exhausted message shows; <code id="ty-c0c8bf02-0">done("error")</code> shows the error with a Retry button.</p><demo-compare >
+  <div slot="css" id="ty-f942e059-0">
+    <div class="w-stack" id="ty-4072d768-0">
+      <div class="w-infinite-scroll" style="max-height:140px" id="ty-16097a65-0">
+        <div class="w-infinite-scroll-content" id="ty-66193278-0"><div class="w-list" id="ty-59b53928-0"><div class="w-list-item" id="ty-60996350-0">Item 1</div></div></div>
+        <div class="w-infinite-scroll-trigger" role="status" id="ty-5e77e830-0"><span class="w-infinite-scroll-empty" id="ty-34f447ee-0">No more items</span></div>
+      </div>
+      <div class="w-infinite-scroll" style="max-height:140px" id="ty-a30cfaf5-0">
+        <div class="w-infinite-scroll-content" id="ty-96b42a27-0"><div class="w-list" id="ty-8a7e4ece-0"><div class="w-list-item" id="ty-c06043d4-0">Item 1</div></div></div>
+        <div class="w-infinite-scroll-trigger" role="status" id="ty-835ffda5-0"><span class="w-infinite-scroll-error" id="ty-93466ea7-0">Something went wrong</span> <button type="button" class="w-btn w-btn-text" id="ty-33a6150a-0">Retry</button></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-7c6dd67a-0">
+    <div class="w-stack" id="ty-92def84f-0">
+      <w-infinite-scroll mode="manual" height="140px" status="empty" empty-text="You've reached the end" disabled="" id="ty-9333e6f8-0">
+        <div class="w-list" id="ty-f260bb82-0"><div class="w-list-item" id="ty-06e93506-0">Item 1</div></div>
+      </w-infinite-scroll>
+      <w-infinite-scroll mode="manual" height="140px" status="error" disabled="" id="ty-589f8105-0">
+        <div class="w-list" id="ty-fe758863-0"><div class="w-list-item" id="ty-ee3cdee1-0">Item 1</div></div>
+      </w-infinite-scroll>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-375dd6e3-0">Color</h2><p id="ty-6e7e1e89-0">Tint the spinner with <code id="ty-d41ec0e8-0">color</code> (token name or CSS color).</p><demo-compare >
+  <div slot="css" id="ty-a1bb38e5-0">
+    <div class="w-infinite-scroll" style="max-height:140px;--w-infinite-color:var(--w-success)" id="ty-d3a6db12-0">
+      <div class="w-infinite-scroll-content" id="ty-16ceb618-0"><div class="w-list" id="ty-acac3aed-0"><div class="w-list-item" id="ty-42a35156-0">Item 1</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status" id="ty-5aa4e909-0"><span class="w-infinite-scroll-spinner" id="ty-949282ed-0"></span><span id="ty-13a5adb3-0">Loading…</span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2bd38dcb-0">
+    <w-infinite-scroll height="140px" color="success" status="loading" disabled="" id="ty-5fbdd53a-0">
+      <div class="w-list" id="ty-1fbc46ba-0"><div class="w-list-item" id="ty-8c44a0ea-0">Item 1</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare><h2 id="ty-e20c815b-0">Sides &amp; direction</h2><p id="ty-4ccefc4b-0">Use <code id="ty-d8e1da99-0">side="start"</code>, <code id="ty-a2e380bf-0">"end"</code> (default), or <code id="ty-a5bdbaf9-0">"both"</code> to choose which edge loads, and <code id="ty-312df8b7-0">direction="horizontal"</code> for horizontal carousels. Set <code id="ty-0bcd9100-0">margin</code> to start loading earlier (px before the edge).</p><h2 id="ty-7a230fd8-0">Sentinel</h2><p id="ty-5bd11df3-0"><code id="ty-017e6b33-0">&lt;w-infinite-scroll-intersect&gt;</code> mirrors Vuetify&#8217;s internal sentinel as a standalone subcomponent for custom scroll containers &#8212; place it inside your own scroller and listen for its <code id="ty-d683aa22-0">load</code> event.</p></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

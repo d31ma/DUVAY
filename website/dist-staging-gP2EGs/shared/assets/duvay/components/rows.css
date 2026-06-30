@@ -1,0 +1,27 @@
+/* DuVay — Rows component styles. */
+@import "../core.css";
+
+/* ── Row ────────────────────────────────────────────────────────────────── */
+.w-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: calc(var(--w-grid-gutter) / -2);
+  row-gap: var(--w-grid-gutter);
+}
+
+.w-container > slot,
+.w-grid-row > slot,
+.w-grid-col > slot,
+[class*="w-grid-col-"] > slot {
+  display: contents;
+}
+
+.w-grid-row--tight { --w-grid-gutter: var(--w-space-3); }
+.w-grid-row--flush { --w-grid-gutter: 0px; }
+
+.w-grid-row--top     { align-items: flex-start; }
+.w-grid-row--middle  { align-items: center; }
+.w-grid-row--bottom  { align-items: flex-end; }
+.w-grid-row--around  { justify-content: space-around; }
+.w-grid-row--between { justify-content: space-between; }
+.w-grid-row--center  { justify-content: center; }

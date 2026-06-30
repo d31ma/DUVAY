@@ -1,0 +1,220 @@
+<h1>Application layout</h1>
+<p>DuVay provides the building blocks for common application shells &#8212; app bars, navigation drawers, system bars, footers, bottom navigation, and a main content area. The layout works on an <strong>outside-in</strong> principle: each shell component reserves space along one edge (top, bottom, left, or right) using sticky/fixed positioning, and <code>w-main</code> flows into whatever space is left. Unlike Vuetify, there is no JavaScript layout engine &#8212; offsets are coordinated entirely with CSS positioning, <code>position</code>, and <code>inset</code>.</p>
+
+<h2>The layout system</h2>
+<p>A shell is assembled from a small set of cooperating components. Each one claims an edge; <code>w-main</code> occupies the remaining free space.</p>
+<table class="w-table">
+  <thead>
+    <tr><th>Component</th><th>Reserves</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-app-bar</code></td><td>top / bottom</td><td>Container for navigation, branding, search, and actions.</td></tr>
+    <tr><td><code>w-system-bar</code></td><td>top</td><td>A thin status strip that replaces the native device system bar.</td></tr>
+    <tr><td><code>w-navigation-drawer</code></td><td>left / right</td><td>Permanent or temporary container for site navigation links.</td></tr>
+    <tr><td><code>w-footer</code></td><td>bottom</td><td>A replacement for the default HTML footer.</td></tr>
+    <tr><td><code>w-bottom-navigation</code></td><td>bottom</td><td>Persistent navigation, typically for smaller devices.</td></tr>
+    <tr><td><code>w-main</code></td><td>&#8212;</td><td>Holds page content and fills the remaining free space.</td></tr>
+  </tbody>
+</table>
+<p class="w-text-medium-emphasis"><strong>Note:</strong> the examples below use <code>w-layout</code> as the root rather than <code>w-app</code>, because <code>w-app</code> defaults to a minimum height of <code>100dvh</code> (full viewport). In production, use <code>w-app</code> as the root of your application.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="min-height:200px;">
+      <header class="w-app-bar">
+        <span class="w-app-bar-title">My app</span>
+        <button class="w-btn w-btn-text">Settings</button>
+      </header>
+      <div class="w-layout">
+        <aside class="w-navigation-drawer w-navigation-drawer--permanent">
+          <nav class="w-list"><a class="w-list-item active" href="#">Home</a></nav>
+        </aside>
+        <main class="w-main"><div class="w-card">Page content</div></main>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-app-bar title="My app"><w-btn variant="text">Settings</w-btn></w-app-bar>
+      <w-layout>
+        <w-navigation-drawer permanent>
+          <w-list nav>
+            <w-list-item title="Home" active></w-list-item>
+          </w-list>
+        </w-navigation-drawer>
+        <w-main><w-card>Page content</w-card></w-main>
+      </w-layout>
+    </w-app>
+  </div>
+</demo-compare>
+
+<h2 id="usage">Usage</h2>
+<p>By default, shell components reserve space in the order they appear in the markup. This source order decides how edges are claimed when two components compete for the same corner. Compare an app bar placed <em>before</em> versus <em>after</em> the navigation drawer:</p>
+<ul>
+  <li>When <code>w-app-bar</code> comes <strong>before</strong> the drawer, the bar spans the <strong>full width</strong> of the screen and the drawer sits beneath it.</li>
+  <li>When the bar comes <strong>after</strong> the drawer, the drawer reaches the top edge and the bar only uses the <strong>leftover</strong> width beside it.</li>
+</ul>
+<pre class="code-block"><code>&lt;!-- App bar first: bar spans full width --&gt;
+&lt;div class="w-app"&gt;
+  &lt;header class="w-app-bar"&gt;&hellip;&lt;/header&gt;
+  &lt;div class="w-layout"&gt;
+    &lt;aside class="w-navigation-drawer w-navigation-drawer--permanent"&gt;&hellip;&lt;/aside&gt;
+    &lt;main class="w-main"&gt;&hellip;&lt;/main&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Drawer first: drawer reaches the top edge --&gt;
+&lt;div class="w-app"&gt;
+  &lt;div class="w-layout"&gt;
+    &lt;aside class="w-navigation-drawer w-navigation-drawer--permanent"&gt;&hellip;&lt;/aside&gt;
+    &lt;div&gt;
+      &lt;header class="w-app-bar"&gt;&hellip;&lt;/header&gt;
+      &lt;main class="w-main"&gt;&hellip;&lt;/main&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>Some components accept a <code>location</code> placement. A navigation drawer defaults to the left edge; add <code>w-navigation-drawer--right</code> (or <code>location="right"</code> on the web component) to anchor it on the right. You can place one drawer on each side.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="min-height:200px;">
+      <div class="w-layout">
+        <aside class="w-navigation-drawer w-navigation-drawer--permanent">
+          <nav class="w-list"><a class="w-list-item active" href="#">Left</a></nav>
+        </aside>
+        <main class="w-main"><div class="w-card">Content</div></main>
+        <aside class="w-navigation-drawer w-navigation-drawer--permanent w-navigation-drawer--right">
+          <nav class="w-list"><a class="w-list-item" href="#">Right</a></nav>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-layout>
+        <w-navigation-drawer permanent>
+          <w-list nav><w-list-item title="Left" active></w-list-item></w-list>
+        </w-navigation-drawer>
+        <w-main><w-card>Content</w-card></w-main>
+        <w-navigation-drawer permanent location="right">
+          <w-list nav><w-list-item title="Right"></w-list-item></w-list>
+        </w-navigation-drawer>
+      </w-layout>
+    </w-app>
+  </div>
+</demo-compare>
+
+<h2 id="sizing">Sizing shell components</h2>
+<p>Shell components accept an explicit size so they reserve a fixed band of space. Set a <code>width</code> on drawers and a <code>height</code> on bars and footers &#8212; with classes use an inline <code>style</code> custom property or a utility, and with web components use the <code>width</code> / <code>height</code> attributes. Multiple components of the same type may stack along the same edge to recreate richer shells (for example a chat app with a server rail, a channel list, and a content column).</p>
+<pre class="code-block"><code>&lt;!-- Two stacked drawers form a wide sidebar region --&gt;
+&lt;aside class="w-navigation-drawer w-navigation-drawer--permanent w-navigation-drawer--rail"&gt;&hellip;&lt;/aside&gt;
+&lt;aside class="w-navigation-drawer w-navigation-drawer--permanent" style="width:240px;"&gt;&hellip;&lt;/aside&gt;</code></pre>
+<pre class="code-block"><code>&lt;w-navigation-drawer permanent rail&gt;&hellip;&lt;/w-navigation-drawer&gt;
+&lt;w-navigation-drawer permanent width="240"&gt;&hellip;&lt;/w-navigation-drawer&gt;</code></pre>
+
+<h2 id="system-bar">System bar</h2>
+<p><code>w-system-bar</code> is a thin strip pinned to the very top of the shell, above the app bar &#8212; useful for status, connectivity, or device-style indicators. Add <code>w-system-bar--window</code> for a desktop window-chrome look.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="min-height:180px;">
+      <div class="w-system-bar"><span>9:41</span><span class="w-system-bar-spacer"></span><span>100%</span></div>
+      <header class="w-app-bar"><span class="w-app-bar-title">My app</span></header>
+      <main class="w-main"><div class="w-card">Page content</div></main>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-system-bar><span>9:41</span><w-spacer></w-spacer><span>100%</span></w-system-bar>
+      <w-app-bar title="My app"></w-app-bar>
+      <w-main><w-card>Page content</w-card></w-main>
+    </w-app>
+  </div>
+</demo-compare>
+
+<h2 id="footer">Footer</h2>
+<p><code>w-footer</code> reserves space along the bottom edge. Add <code>w-footer--app</code> so it behaves as a layout member (spanning the shell and respecting drawer offsets) rather than an inline content footer.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="min-height:180px;">
+      <header class="w-app-bar"><span class="w-app-bar-title">My app</span></header>
+      <main class="w-main"><div class="w-card">Page content</div></main>
+      <footer class="w-footer w-footer--app">&copy; 2026 DuVay</footer>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-app-bar title="My app"></w-app-bar>
+      <w-main><w-card>Page content</w-card></w-main>
+      <w-footer app>&copy; 2026 DuVay</w-footer>
+    </w-app>
+  </div>
+</demo-compare>
+
+<h2 id="bottom-navigation">Bottom navigation</h2>
+<p>On smaller viewports, <code>w-bottom-navigation</code> replaces a side drawer with a row of destinations pinned to the bottom edge. It reserves bottom space the same way a footer does.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="min-height:180px;">
+      <main class="w-main"><div class="w-card">Page content</div></main>
+      <nav class="w-bottom-navigation">
+        <button class="w-bottom-nav-item w-bottom-nav-item--active">Home</button>
+        <button class="w-bottom-nav-item">Search</button>
+        <button class="w-bottom-nav-item">Profile</button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-main><w-card>Page content</w-card></w-main>
+      <w-bottom-navigation>
+        <w-bottom-nav-item label="Home" value="home"></w-bottom-nav-item>
+        <w-bottom-nav-item label="Search" value="search"></w-bottom-nav-item>
+        <w-bottom-nav-item label="Profile" value="profile"></w-bottom-nav-item>
+      </w-bottom-navigation>
+    </w-app>
+  </div>
+</demo-compare>
+
+<h2 id="complex-layouts">Complex layouts</h2>
+<p>Because each component simply claims an edge, you can compose dense application shells &#8212; for example the general layout of a chat app like Discord: a narrow server rail, a wider channel drawer, a top app bar over the content, and a member drawer on the right. Stack same-type components and give each a fixed size to recreate the structure.</p>
+<pre class="code-block"><code>&lt;div class="w-app"&gt;
+  &lt;div class="w-layout"&gt;
+    &lt;!-- narrow server rail --&gt;
+    &lt;aside class="w-navigation-drawer w-navigation-drawer--permanent w-navigation-drawer--rail"&gt;&hellip;&lt;/aside&gt;
+    &lt;!-- channel list --&gt;
+    &lt;aside class="w-navigation-drawer w-navigation-drawer--permanent" style="width:240px;"&gt;&hellip;&lt;/aside&gt;
+    &lt;!-- content column with its own bar --&gt;
+    &lt;div&gt;
+      &lt;header class="w-app-bar"&gt;# general&lt;/header&gt;
+      &lt;main class="w-main"&gt;&hellip;&lt;/main&gt;
+    &lt;/div&gt;
+    &lt;!-- members on the right --&gt;
+    &lt;aside class="w-navigation-drawer w-navigation-drawer--permanent w-navigation-drawer--right"&gt;&hellip;&lt;/aside&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="ordering">Dynamic layouts and order</h2>
+<p>Placing components in the correct markup order is enough for most layouts. When you need to override that order &#8212; for example to push the app bar <em>above</em> a drawer it appears after in the DOM &#8212; use CSS <code>order</code> on the flex layout container, or a layout utility. All shell members default to an order of <code>0</code>; members with an equal order fall back to their markup sequence.</p>
+<pre class="code-block"><code>/* Force the app bar above the drawer regardless of markup position */
+.w-app-bar &#123; order: -1; &#125;</code></pre>
+<p>The <code>w-layout-item</code> wrapper exists for this purpose: drop a shell element inside it and control placement and order through positioning utilities, keeping the rest of the shell declarative.</p>
+
+<h2 id="offsets">Coordinating offsets</h2>
+<p>Vuetify computes layout sizes with a JavaScript engine and a <code>useLayout</code> composable. DuVay has no such engine &#8212; instead, the <code>w-layout</code> container coordinates offsets purely with CSS. Each shell member uses sticky or fixed positioning and reserves space via <code>position</code> and <code>inset</code>; <code>w-main</code> reads those reserved bands through the flex/grid flow and the drawer width custom properties, so its content never slides beneath a bar or drawer.</p>
+<p>If you need to read a shell member&#8217;s size or position at runtime (the equivalent of Vuetify&#8217;s <code>getLayoutItem</code>), query the element directly &#8212; there is no composable to inject:</p>
+<pre class="code-block"><code>const drawer = document.querySelector('.w-navigation-drawer');
+const &#123; width &#125; = drawer.getBoundingClientRect();
+document.documentElement.style.setProperty('--w-drawer-offset', width + 'px');</code></pre>
+<p>Because offsets are plain custom properties, you can override them in CSS or set them from script without coupling your components to a layout runtime.</p>
+
+<h2 id="scrolling">Scrolling techniques</h2>
+<p>The shell stays put while content scrolls. Pin a bar with <code>w-app-bar--sticky</code> (or <code>sticky</code> on the web component) so it remains visible during scroll, and let the main region own its own scroll with <code>w-main--scrollable</code>. App bars also support scroll behaviors &#8212; <code>hide</code>, <code>elevate</code>, <code>collapse</code>, and <code>fade-image</code> &#8212; that respond as the user scrolls past a threshold.</p>
+<pre class="code-block"><code>&lt;header class="w-app-bar w-app-bar--sticky"&gt;&hellip;&lt;/header&gt;
+&lt;main class="w-main w-main--scrollable"&gt;&hellip;&lt;/main&gt;</code></pre>
+<pre class="code-block"><code>&lt;w-app-bar sticky scroll-behavior="hide" scroll-threshold="48"&gt;&hellip;&lt;/w-app-bar&gt;</code></pre>
+
+<h2 id="responsive">Responsive shells</h2>
+<p>Combine layout classes with the <a href="/docs/grid">grid system</a> and <a href="/docs/utilities">utility classes</a> to adapt the shell to any viewport &#8212; swap a permanent drawer for a temporary one (<code>w-navigation-drawer--temporary</code>) on small screens, or replace a side drawer with bottom navigation. Respect <code>prefers-reduced-motion</code> for any drawer or bar transitions.</p>
+
+<h2 id="accessibility">Accessibility</h2>
+<p>Give the app bar a landmark role (it renders as <code>&lt;header&gt;</code>), use <code>&lt;nav&gt;</code> for drawer and bottom navigation contents, and pair the nav toggle (<code>w-app-bar-nav-icon</code>) with a clear <code>aria-label</code>. Temporary drawers must trap focus while open, restore focus on close, and be dismissible with <kbd class="w-kbd">Esc</kbd>. Keep touch targets at least 44&#215;44&#160;px and ensure a visible <code>:focus-visible</code> state on every interactive shell control.</p>

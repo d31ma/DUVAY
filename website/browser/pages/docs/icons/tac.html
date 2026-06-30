@@ -1,0 +1,79 @@
+<h1>Icons</h1>
+<p><code>w-icon</code> renders an icon resolved through the DuVay icon registry, matching Vuetify&#8217;s <code>VIcon</code> API: <code>size</code> aliases, <code>color</code>, <code>opacity</code>, <code>disabled</code>, and <code>start</code>/<code>end</code> spacing helpers. The icon <code>name</code> is rendered as text by default; register an icon set (font, ligature, or SVG) to draw glyphs. See <a href="/docs/features/icon-fonts">Icons setup</a>.</p>
+
+<h2>Sizes</h2>
+<p>Use Vuetify sizes <code>x-small</code> … <code>x-large</code>, the <code>xs</code>…<code>xl</code> aliases, or any CSS length.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 align-center">
+      <span class="w-icon w-icon--x-small">★</span>
+      <span class="w-icon w-icon--small">★</span>
+      <span class="w-icon w-icon--default">★</span>
+      <span class="w-icon w-icon--large">★</span>
+      <span class="w-icon w-icon--x-large">★</span>
+      <span class="w-icon" style="font-size: 3rem">★</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 align-center">
+      <w-icon name="★" size="x-small"></w-icon>
+      <w-icon name="★" size="small"></w-icon>
+      <w-icon name="★" size="default"></w-icon>
+      <w-icon name="★" size="large"></w-icon>
+      <w-icon name="★" size="x-large"></w-icon>
+      <w-icon name="★" size="3rem"></w-icon>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p>Pass a theme token (<code>primary</code>, <code>success</code>, <code>warning</code>, <code>error</code>…) or any CSS color.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 align-center">
+      <span class="w-icon w-icon--large" style="color: var(--w-primary)">●</span>
+      <span class="w-icon w-icon--large" style="color: var(--w-success)">●</span>
+      <span class="w-icon w-icon--large" style="color: var(--w-warning)">●</span>
+      <span class="w-icon w-icon--large" style="color: var(--w-error)">●</span>
+      <span class="w-icon w-icon--large" style="color: #8b5cf6">●</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 align-center">
+      <w-icon name="●" size="large" color="primary"></w-icon>
+      <w-icon name="●" size="large" color="success"></w-icon>
+      <w-icon name="●" size="large" color="warning"></w-icon>
+      <w-icon name="●" size="large" color="error"></w-icon>
+      <w-icon name="●" size="large" color="#8b5cf6"></w-icon>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Opacity and disabled</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 align-center">
+      <span class="w-icon w-icon--large">✓</span>
+      <span class="w-icon w-icon--large" style="--w-icon-opacity: 0.5">✓</span>
+      <span class="w-icon w-icon--large w-icon--disabled">✓</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 align-center">
+      <w-icon name="✓" size="large"></w-icon>
+      <w-icon name="✓" size="large" opacity="0.5"></w-icon>
+      <w-icon name="✓" size="large" disabled></w-icon>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Inline with text</h2>
+<p><code>start</code> and <code>end</code> add spacing so an icon sits cleanly before or after adjacent text.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn--primary"><span class="w-icon w-icon--start">→</span>Continue</button>
+  </div>
+  <div slot="wc">
+    <button class="w-btn w-btn--primary"><w-icon name="→" start></w-icon>Continue</button>
+  </div>
+</demo-compare>

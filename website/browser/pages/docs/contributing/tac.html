@@ -1,0 +1,52 @@
+<h1>Contributing</h1>
+<p>DuVay is an open framework and contributions are welcome. This page covers the repository layout, how to build and test locally, and the conventions every change must follow.</p>
+
+<h2>Repository layout</h2>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Path</th><th>Contents</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>src/*.css</code></td><td>Design tokens, themes, reset, and component styles (plain CSS custom properties)</td></tr>
+    <tr><td><code>src/tokens.css</code></td><td>The source of truth for colors, spacing, radii, shadows, and typography scales</td></tr>
+    <tr><td><code>src/themes.css</code></td><td>Light, dark, and high-contrast theme token values</td></tr>
+    <tr><td><code>src/components/*.css</code></td><td>Per-component styles, token-driven only</td></tr>
+    <tr><td><code>src/components/*.js</code></td><td>Light-DOM web components extending the base class</td></tr>
+    <tr><td><code>src/duvay.js</code></td><td>The behavior layer for CSS-class usage (dropdowns, dialogs, toasts, theme cycling)</td></tr>
+    <tr><td><code>website/</code></td><td>The documentation site (a Tac frontend app with file-system routing)</td></tr>
+  </tbody>
+</table>
+
+<h2>Building locally</h2>
+<p>Build the framework, then bundle the documentation site:</p>
+<div class="code-block"><code># Build the framework (CSS + JS bundles)
+bun run build
+
+# Bundle the documentation site
+bun run --cwd website bundle</code></div>
+<p>Framework edits do not appear in the docs preview until both commands have run and the preview server has been restarted.</p>
+
+<h2>Running tests</h2>
+<p>Component behavior is covered by an automated suite:</p>
+<div class="code-block"><code>bun run test:components</code></div>
+<p>Run the tests before opening a pull request and make sure they pass.</p>
+
+<h2>Coding conventions</h2>
+<ul>
+  <li><strong>Design tokens only.</strong> Every color, spacing value, radius, shadow, and typography scale must reference a CSS custom property. No hard-coded hex values and no magic numbers.</li>
+  <li><strong>Token naming.</strong> Follow the existing convention: <code>--w-&lt;category&gt;-&lt;name&gt;</code>, for example <code>--w-primary</code>, <code>--w-space-4</code>, <code>--w-radius-lg</code>.</li>
+  <li><strong>Define every token in every theme.</strong> When you add a token, update the light, dark, and high-contrast theme files. Never leave a token undefined in an active theme.</li>
+  <li><strong>Light DOM only.</strong> Web components must not use Shadow DOM. Generate the correct DuVay class names so static and component usage stay identical.</li>
+  <li><strong>Accessibility is non-negotiable.</strong> Provide correct <code>role</code> and <code>aria-*</code> attributes, full keyboard navigation, visible <code>:focus-visible</code> states, and respect <code>prefers-reduced-motion</code>. Maintain WCAG AA contrast.</li>
+  <li><strong>Stay lean.</strong> Every selector should earn its place. Prefer utility-class patterns over deeply nested selectors, and keep <code>rem</code>/<code>em</code> sizing (reserve <code>px</code> for hairline borders).</li>
+  <li><strong>Keep docs in sync.</strong> Any change to a public API (new component, renamed attribute, removed event) must update the matching docs page in the same pull request.</li>
+</ul>
+
+<h2>Pull request checklist</h2>
+<ul>
+  <li><code>bun run build</code> completes without errors.</li>
+  <li><code>bun run --cwd website bundle</code> builds the site with zero warnings.</li>
+  <li><code>bun run test:components</code> passes.</li>
+  <li>New or changed tokens are documented with a comment block and a brief changelog entry.</li>
+  <li>Contrast ratios and responsive behavior were verified at key breakpoints.</li>
+</ul>

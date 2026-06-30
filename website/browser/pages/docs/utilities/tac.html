@@ -1,0 +1,91 @@
+<h1>Utilities</h1>
+<p>Single-purpose classes for spacing, layout, sizing, and more — compose them to build UI without writing CSS. Spacing uses a numeric scale where <code>1</code> = 4px, <code>2</code> = 8px, <code>4</code> = 16px, up to <code>16</code> = 64px.</p>
+
+<h2>Spacing</h2>
+<p>Margin (<code>m</code>) and padding (<code>p</code>) on any side: <code>a</code> (all), <code>x</code>, <code>y</code>, <code>t</code>, <code>r</code>, <code>b</code>, <code>l</code>. For example <code>.pa-4</code>, <code>.mx-auto</code>, <code>.mt-2</code>. Margins also accept <code>auto</code> and negatives (<code>.ma-n2</code>).</p>
+<demo-compare>
+  <div slot="css">
+    <span class="util-demo-frame d-inline-block"><span class="util-demo-box pa-2">pa-2</span></span>
+    <span class="util-demo-frame d-inline-block ml-3"><span class="util-demo-box pa-4">pa-4</span></span>
+    <span class="util-demo-frame d-inline-block ml-3"><span class="util-demo-box pa-6">pa-6</span></span>
+  </div>
+</demo-compare>
+<demo-compare>
+  <div slot="css">
+    <span class="util-demo-frame d-inline-block"><span class="util-demo-box ma-2">ma-2</span></span>
+    <span class="util-demo-frame d-inline-block ml-3"><span class="util-demo-box ma-4">ma-4</span></span>
+    <span class="util-demo-frame d-inline-block ml-3"><span class="util-demo-box ma-6">ma-6</span></span>
+  </div>
+</demo-compare>
+
+<h2>Flexbox</h2>
+<p><code>.d-flex</code> plus alignment helpers — justify: <code>.w-justify-start</code>, <code>.justify-center</code>, <code>.justify-space-between</code>, <code>.justify-space-around</code>, <code>.justify-space-evenly</code>, <code>.justify-end</code>; align: <code>.align-start</code>, <code>.align-center</code>, <code>.align-end</code>, <code>.align-stretch</code>, <code>.align-baseline</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="d-flex justify-space-between align-center pa-3 w-border rounded-md">
+      <div class="util-demo-box">1</div>
+      <div class="util-demo-box">2</div>
+      <div class="util-demo-box">3</div>
+    </div>
+    <div class="d-flex justify-center ga-2 pa-3 mt-3 w-border rounded-md">
+      <div class="util-demo-box">A</div>
+      <div class="util-demo-box">B</div>
+      <div class="util-demo-box">C</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Display</h2>
+<div class="code-block"><code>.d-block      .d-inline       .d-inline-block
+.d-flex       .d-inline-flex  .d-grid
+.d-none     .d-contents
+
+&lt;!-- Responsive visibility --&gt;
+.w-hide-mobile   .w-show-mobile
+.w-hide-tablet   .w-hide-desktop</code></div>
+
+<h2>Sizing</h2>
+<p>Width helpers <code>.w-25</code>, <code>.w-50</code>, <code>.w-75</code>, <code>.w-100</code>, plus <code>.mw-100</code> and <code>.w-mw-prose</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-25"><div class="grid-demo-cell mb-2">w-25</div></div>
+    <div class="w-50"><div class="grid-demo-cell mb-2">w-50</div></div>
+    <div class="w-75"><div class="grid-demo-cell mb-2">w-75</div></div>
+    <div class="w-100"><div class="grid-demo-cell">w-100</div></div>
+  </div>
+</demo-compare>
+
+<h2>Text</h2>
+<p>Alignment, weight, colour, and wrapping.</p>
+<demo-compare>
+  <div slot="css">
+    <p class="text-center w-font-semibold mb-2">Centered &amp; semibold</p>
+    <p class="text-right w-text-subtle mb-2">Right-aligned, subtle</p>
+    <p class="text-primary text-uppercase w-tracking-wide">Primary uppercase</p>
+  </div>
+</demo-compare>
+
+<h2>Borders, radius &amp; elevation</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="d-flex ga-4 align-center flex-wrap">
+      <div class="util-demo-box pa-6 w-border rounded-sm">sm</div>
+      <div class="util-demo-box pa-6 w-border rounded-lg">lg</div>
+      <div class="util-demo-box pa-6 rounded-circle">●</div>
+      <div class="util-demo-box pa-6 rounded-lg w-shadow-md">shadow</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Text truncation</h2>
+<p>Use <code>.text-truncate</code> for a single-line ellipsis, and <code>.w-line-clamp-*</code> for multi-line clamping.</p>
+<demo-compare>
+  <div slot="css">
+    <p class="text-truncate w-border rounded-md pa-3" style="max-width: 320px;">
+      This sentence is far too long to fit on one line, so it will be truncated with an ellipsis.
+    </p>
+    <p class="w-line-clamp-2 w-border rounded-md pa-3 mt-3" style="max-width: 320px;">
+      This paragraph spans multiple lines but is clamped to exactly two lines. Anything beyond that point is hidden and an ellipsis is shown at the end of the second line.
+    </p>
+  </div>
+</demo-compare>

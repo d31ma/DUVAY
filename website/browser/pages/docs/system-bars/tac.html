@@ -1,0 +1,94 @@
+<h1>System Bars</h1>
+<p>Thin status bars for app-level indicators such as time, battery, Wi-Fi, and notifications.</p>
+
+<h2>Basic</h2>
+<p>Default system bar with subtle inverse surface styling. Use the default slot for status text or icons.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-system-bar">No Wi-Fi connection</div>
+  </div>
+  <div slot="wc">
+    <w-system-bar>No Wi-Fi connection</w-system-bar>
+  </div>
+</demo-compare>
+
+<h2>Window Variant</h2>
+<p>The <code>window</code> attribute creates a taller 32px status bar, matching desktop window chrome.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-system-bar w-system-bar--window">
+      <span>9:41 AM</span>
+      <span class="w-system-bar-spacer"></span>
+      <span>100%</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-system-bar window>
+      <span>9:41 AM</span>
+      <span class="w-system-bar-spacer"></span>
+      <span>100%</span>
+    </w-system-bar>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p>Use semantic color tokens or any custom CSS color value.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-2">
+      <div class="w-system-bar w-system-bar--color-primary">Primary status</div>
+      <div class="w-system-bar w-system-bar--color-success">Success status</div>
+      <div class="w-system-bar w-system-bar--color-warning">Warning status</div>
+      <div class="w-system-bar w-system-bar--color-error">Error status</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-2">
+      <w-system-bar color="primary">Primary status</w-system-bar>
+      <w-system-bar color="success">Success status</w-system-bar>
+      <w-system-bar color="warning">Warning status</w-system-bar>
+      <w-system-bar color="error">Error status</w-system-bar>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Height</h2>
+<p>Set a custom height with a number (px) or CSS length.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-system-bar" style="--w-system-bar-height: 40px;">40px tall</div>
+  </div>
+  <div slot="wc">
+    <w-system-bar height="40">40px tall</w-system-bar>
+  </div>
+</demo-compare>
+
+<h2>Elevation and Rounded</h2>
+<p>Add shadow depth and border radius for floating or card-like system bars.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-system-bar w-system-bar--elevation-2 w-system-bar--rounded-lg w-system-bar--color-surface" style="color: var(--w-text);">
+      Elevated and rounded
+    </div>
+  </div>
+  <div slot="wc">
+    <w-system-bar elevation="2" rounded="lg" color="surface">Elevated and rounded</w-system-bar>
+  </div>
+</demo-compare>
+
+<h2>Absolute Positioning</h2>
+<p>Use <code>absolute</code> to overlay the system bar at the top of its positioned container.</p>
+<demo-compare>
+  <div slot="css">
+    <div style="position: relative; height: 120px; background: var(--w-surface-container);">
+      <div class="w-system-bar w-system-bar--absolute w-system-bar--color-primary">Absolute bar</div>
+      <div style="padding: 40px 16px 16px;">Content below</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div style="position: relative; height: 120px; background: var(--w-surface-container);">
+      <w-system-bar absolute color="primary">Absolute bar</w-system-bar>
+      <div style="padding: 40px 16px 16px;">Content below</div>
+    </div>
+  </div>
+</demo-compare>

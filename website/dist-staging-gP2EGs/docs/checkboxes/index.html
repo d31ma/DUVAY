@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-6713e056-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-628d8344-6713e056-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-13d81bd6-6713e056-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-e456bada-6713e056-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-91fd6339-6713e056-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-9706ea80-6713e056-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-6dfc74f4-6713e056-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-ea1a80b6-6713e056-0" />
+        </svg>
+      </span>
+      <span id="ty-7624904a-6713e056-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-29b414e9-6713e056-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-d6f9f872-6713e056-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a3a6bdf8-6713e056-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-a4410c79-6713e056-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-1819ab96-6713e056-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-236d7cb6-6713e056-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-feed8ba5-6713e056-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-1e5e828e-6713e056-0">
+        <span data-w-theme-icon="" id="ty-d717c0c4-6713e056-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-6623802b-6713e056-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-aa787ad5-6713e056-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-01fe9eed-6713e056-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-b00c2522-0">
+  <div id="ty-dc4360ed-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-8dd275ee-dc4360ed-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-7ecee31a-dc4360ed-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-562b2010-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-9ff88ec0-dc4360ed-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-1c49f3aa-dc4360ed-0">
+        <li id="ty-d6e59b18-dc4360ed-0"><a href="/docs/introduction" id="ty-70bf461d-dc4360ed-0">Introduction</a></li>
+        <li id="ty-d2f235b9-dc4360ed-0"><a href="/docs/install" id="ty-5c444bd6-dc4360ed-0">Install</a></li>
+        <li id="ty-8926a03b-dc4360ed-0"><a href="/docs/getting-started" id="ty-9d0cc913-dc4360ed-0">Getting started</a></li>
+        <li id="ty-951cf5bc-dc4360ed-0"><a href="/docs/download" id="ty-88dd649c-dc4360ed-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fa907599-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-926792a5-dc4360ed-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-319d4f94-dc4360ed-0">
+        <li id="ty-aa64781e-dc4360ed-0"><a href="/docs/common-concepts" id="ty-e4707084-dc4360ed-0">Common concepts</a></li>
+        <li id="ty-4bce4ad2-dc4360ed-0"><a href="/docs/features" id="ty-ee7eb778-dc4360ed-0">Features</a></li>
+        <li id="ty-667435c9-dc4360ed-0"><a href="/docs/features/icon-fonts" id="ty-6751e5ad-dc4360ed-0">Icons</a></li>
+        <li id="ty-369c816b-dc4360ed-0"><a href="/docs/grid" id="ty-46b3bbc5-dc4360ed-0">Grid</a></li>
+        <li id="ty-0cb8bc10-dc4360ed-0"><a href="/docs/navigation" id="ty-b032562d-dc4360ed-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1ac4d322-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f0fd9cd0-dc4360ed-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-b14a2ce2-dc4360ed-0">
+        <li id="ty-272d54f8-dc4360ed-0"><a href="/docs/components" id="ty-f9cfedc9-dc4360ed-0">Components overview</a></li>
+        <li id="ty-12551f4c-dc4360ed-0"><a href="/docs/alerts" id="ty-c0cf9bca-dc4360ed-0">Alerts</a></li>
+        <li id="ty-d69bf29f-dc4360ed-0"><a href="/docs/avatars" id="ty-3bcbcf4f-dc4360ed-0">Avatars</a></li>
+        <li id="ty-7838b9e9-dc4360ed-0"><a href="/docs/badges" id="ty-468f1386-dc4360ed-0">Badges</a></li>
+        <li id="ty-5e3231dc-dc4360ed-0"><a href="/docs/breadcrumbs" id="ty-9ece91e6-dc4360ed-0">Breadcrumbs</a></li>
+        <li id="ty-fba5e810-dc4360ed-0"><a href="/docs/buttons" id="ty-4fd40b34-dc4360ed-0">Buttons</a></li>
+        <li id="ty-04f1a00b-dc4360ed-0"><a href="/docs/cards" id="ty-7fa63777-dc4360ed-0">Cards</a></li>
+        <li id="ty-b5ca386a-dc4360ed-0"><a href="/docs/chips" id="ty-4d80b3cc-dc4360ed-0">Chips</a></li>
+        <li id="ty-8df0d545-dc4360ed-0"><a href="/docs/command" id="ty-39ae8bfa-dc4360ed-0">Command palette</a></li>
+        <li id="ty-73660605-dc4360ed-0"><a href="/docs/dialog" id="ty-103b0f64-dc4360ed-0">Dialog</a></li>
+        <li id="ty-88f9c40f-dc4360ed-0"><a href="/docs/expand" id="ty-50ff222d-dc4360ed-0">Expand</a></li>
+        <li id="ty-a95c72f0-dc4360ed-0"><a href="/docs/feedback" id="ty-aedaea22-dc4360ed-0">Feedback</a></li>
+        <li id="ty-9d1520a0-dc4360ed-0"><a href="/docs/inputs" id="ty-653ad017-dc4360ed-0">Inputs</a></li>
+        <li id="ty-8d80146c-dc4360ed-0"><a href="/docs/layout-primitives" id="ty-50b1e149-dc4360ed-0">Layout primitives</a></li>
+        <li id="ty-2d7f6fde-dc4360ed-0"><a href="/docs/lists" id="ty-02286895-dc4360ed-0">Lists</a></li>
+        <li id="ty-5490c418-dc4360ed-0"><a href="/docs/menus" id="ty-e0724c17-dc4360ed-0">Menus</a></li>
+        <li id="ty-e966f3db-dc4360ed-0"><a href="/docs/overlays" id="ty-283a909c-dc4360ed-0">Overlays</a></li>
+        <li id="ty-d9391628-dc4360ed-0"><a href="/docs/color-pickers" id="ty-4f11eebf-dc4360ed-0">Color Pickers</a></li>
+        <li id="ty-89f6677a-dc4360ed-0"><a href="/docs/date-pickers" id="ty-444b6bfc-dc4360ed-0">Date Pickers</a></li>
+        <li id="ty-b35a167e-dc4360ed-0"><a href="/docs/time-pickers" id="ty-a24ba0ca-dc4360ed-0">Time Pickers</a></li>
+        <li id="ty-c53dfda4-dc4360ed-0"><a href="/docs/slider" id="ty-eecddc38-dc4360ed-0">Slider</a></li>
+        <li id="ty-4063aca6-dc4360ed-0"><a href="/docs/snackbar" id="ty-2c394c8d-dc4360ed-0">Snackbar</a></li>
+        <li id="ty-f025ae78-dc4360ed-0"><a href="/docs/surfaces" id="ty-3974f99b-dc4360ed-0">Surfaces</a></li>
+        <li id="ty-c8e1c1fd-dc4360ed-0"><a href="/docs/tables" id="ty-5e30b5a9-dc4360ed-0">Tables</a></li>
+        <li id="ty-a29c1cde-dc4360ed-0"><a href="/docs/tabs" id="ty-ada4458e-dc4360ed-0">Tabs</a></li>
+        <li id="ty-408dc100-dc4360ed-0"><a href="/docs/tooltips" id="ty-dc097be4-dc4360ed-0">Tooltips</a></li>
+        <li id="ty-799590e2-dc4360ed-0"><a href="/docs/workflows" id="ty-c8299208-dc4360ed-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ab848550-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-629f195f-dc4360ed-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-7800264e-dc4360ed-0">
+        <li id="ty-dd69446b-dc4360ed-0"><a href="/docs/themes" id="ty-31b16c38-dc4360ed-0">Themes</a></li>
+        <li id="ty-758b007b-dc4360ed-0"><a href="/docs/utilities" id="ty-9581b67a-dc4360ed-0">Utilities</a></li>
+        <li id="ty-0d797f1d-dc4360ed-0"><a href="/docs/styles-and-animations" id="ty-36f92405-dc4360ed-0">Styles and animations</a></li>
+        <li id="ty-351a4a4e-dc4360ed-0"><a href="/docs/animations" id="ty-da706df4-dc4360ed-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ae1239b0-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7a95dd38-dc4360ed-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-79b1f469-dc4360ed-0">
+        <li id="ty-dd38f503-dc4360ed-0"><a href="/docs/api" id="ty-fc42ab8b-dc4360ed-0">API</a></li>
+        <li id="ty-538daca0-dc4360ed-0"><a href="/docs/directives" id="ty-2b15a390-dc4360ed-0">Directives</a></li>
+        <li id="ty-3f949783-dc4360ed-0"><a href="/docs/labs" id="ty-2ae678f3-dc4360ed-0">Labs</a></li>
+        <li id="ty-fddaf8f5-dc4360ed-0"><a href="/docs/resources" id="ty-d8ca39ee-dc4360ed-0">Resources</a></li>
+        <li id="ty-7bd4be57-dc4360ed-0"><a href="/docs/roadmap" id="ty-fc933cfa-dc4360ed-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-e32d0df3-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-702fe864-dc4360ed-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-a73a5156-dc4360ed-0">
+        <li id="ty-dc1e8c5c-dc4360ed-0"><a href="/docs/about" id="ty-58cb06f4-dc4360ed-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-4167c80d-0"></button>
+  <main class="docs-main" id="ty-d520551e-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-bf80f072-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-eae99aa2-0">
+      <div id="ty-layout-slot"><h1 id="ty-3334ce26-0">Checkboxes</h1><p id="ty-5fa128a4-0"><code id="ty-f5a246ca-0">w-checkbox</code> is a labelled checkbox supporting checked, indeterminate, and disabled states, colour and size variants, hints, validation, and custom model values.</p><h2 id="ty-86e80b90-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-d66fe18d-0">
+    <div class="w-stack" id="ty-f0e84ef2-0">
+      <label class="w-checkbox" id="ty-28db873d-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-2078104c-0" />
+        <span class="w-checkbox-box" id="ty-d8008ec8-0"></span>
+        <span class="w-checkbox-label" id="ty-32ee77ca-0">Email updates</span>
+      </label>
+      <label class="w-checkbox" id="ty-31f4088d-0">
+        <input class="w-checkbox-input" type="checkbox" id="ty-c6968d5f-0" />
+        <span class="w-checkbox-box" id="ty-4b4f8b15-0"></span>
+        <span class="w-checkbox-label" id="ty-8338f5fd-0">Product research</span>
+      </label>
+      <label class="w-checkbox" id="ty-6b0c9f33-0">
+        <input class="w-checkbox-input" type="checkbox" data-demo-mixed="" id="ty-d6675cd7-0" />
+        <span class="w-checkbox-box" id="ty-c0b2938b-0"></span>
+        <span class="w-checkbox-label" id="ty-6a673d06-0">Mixed state</span>
+      </label>
+      <label class="w-checkbox" id="ty-d3e0d08a-0">
+        <input class="w-checkbox-input" type="checkbox" disabled="" id="ty-932dcc91-0" />
+        <span class="w-checkbox-box" id="ty-3dac217c-0"></span>
+        <span class="w-checkbox-label" id="ty-98cc8c0e-0">Locked option</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ba7f37a0-0">
+    <div class="w-stack" id="ty-ed9b5807-0">
+      <w-checkbox checked="" label="Email updates" id="ty-8cf7d295-0"></w-checkbox>
+      <w-checkbox label="Product research" id="ty-4a1a6904-0"></w-checkbox>
+      <w-checkbox indeterminate="" label="Mixed state" id="ty-9da42613-0"></w-checkbox>
+      <w-checkbox disabled="" label="Locked option" id="ty-e3e5cef1-0"></w-checkbox>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-b398f9ce-0">Colors</h2><demo-compare >
+  <div slot="css" id="ty-9dc26556-0">
+    <div class="w-stack" id="ty-8214c030-0">
+      <label class="w-checkbox w-checkbox--primary" id="ty-3171d2bc-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-5c2e083a-0" />
+        <span class="w-checkbox-box" id="ty-d0ac1471-0"></span>
+        <span class="w-checkbox-label" id="ty-3d5e3236-0">Primary</span>
+      </label>
+      <label class="w-checkbox w-checkbox--error" id="ty-0dde68ea-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-f2eeb146-0" />
+        <span class="w-checkbox-box" id="ty-57a5391d-0"></span>
+        <span class="w-checkbox-label" id="ty-e4b9c5f0-0">Error</span>
+      </label>
+      <label class="w-checkbox w-checkbox--success" id="ty-61c6b701-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-526a27cb-0" />
+        <span class="w-checkbox-box" id="ty-7daa2bb7-0"></span>
+        <span class="w-checkbox-label" id="ty-82944642-0">Success</span>
+      </label>
+      <label class="w-checkbox w-checkbox--warning" id="ty-6aa530ef-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-4d97bf7c-0" />
+        <span class="w-checkbox-box" id="ty-0e91bf67-0"></span>
+        <span class="w-checkbox-label" id="ty-7df42af8-0">Warning</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-0c6aff63-0">
+    <div class="w-stack" id="ty-6e04692b-0">
+      <w-checkbox checked="" color="primary" label="Primary" id="ty-d7ef4b21-0"></w-checkbox>
+      <w-checkbox checked="" color="error" label="Error" id="ty-977f9480-0"></w-checkbox>
+      <w-checkbox checked="" color="success" label="Success" id="ty-c4166a3c-0"></w-checkbox>
+      <w-checkbox checked="" color="warning" label="Warning" id="ty-fc6e1a2b-0"></w-checkbox>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-4a9fd6ce-0">Sizes</h2><demo-compare >
+  <div slot="css" id="ty-d172362b-0">
+    <div class="w-stack" id="ty-9ff040c9-0">
+      <label class="w-checkbox w-checkbox--xs" id="ty-ea2d9e1c-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-964d8ea1-0" />
+        <span class="w-checkbox-box" id="ty-067ee99b-0"></span>
+        <span class="w-checkbox-label" id="ty-e25d0e59-0">Extra small</span>
+      </label>
+      <label class="w-checkbox w-checkbox--sm" id="ty-302c62c1-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-96b00ee8-0" />
+        <span class="w-checkbox-box" id="ty-7b7fe4f1-0"></span>
+        <span class="w-checkbox-label" id="ty-69f8fea4-0">Small</span>
+      </label>
+      <label class="w-checkbox w-checkbox--md" id="ty-d4a30885-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-c9bc1dc5-0" />
+        <span class="w-checkbox-box" id="ty-39cbbccd-0"></span>
+        <span class="w-checkbox-label" id="ty-60471296-0">Medium</span>
+      </label>
+      <label class="w-checkbox w-checkbox--lg" id="ty-ae414b2c-0">
+        <input class="w-checkbox-input" type="checkbox" checked="" id="ty-6ef93fd2-0" />
+        <span class="w-checkbox-box" id="ty-f3b8f73e-0"></span>
+        <span class="w-checkbox-label" id="ty-9018bfe9-0">Large</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-5c472a49-0">
+    <div class="w-stack" id="ty-c35747f4-0">
+      <w-checkbox checked="" size="xs" label="Extra small" id="ty-835e740a-0"></w-checkbox>
+      <w-checkbox checked="" size="sm" label="Small" id="ty-c8dcba08-0"></w-checkbox>
+      <w-checkbox checked="" size="md" label="Medium" id="ty-7815b0b0-0"></w-checkbox>
+      <w-checkbox checked="" size="lg" label="Large" id="ty-ca2e49f9-0"></w-checkbox>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-2b976feb-0">Validation and hints</h2><demo-compare >
+  <div slot="css" id="ty-da6c9fab-0">
+    <div class="w-stack" id="ty-cfd9b193-0">
+      <label class="w-checkbox w-checkbox--error" id="ty-fa3a0f6c-0">
+        <input class="w-checkbox-input" type="checkbox" id="ty-6b6611aa-0" />
+        <span class="w-checkbox-box" id="ty-9a19dde5-0"></span>
+        <span class="w-checkbox-text" id="ty-07f829a0-0">
+          <span class="w-checkbox-label" id="ty-82683762-0">I accept the terms</span>
+          <span class="w-checkbox-error" id="ty-e35e6e5c-0">You must accept to continue.</span>
+        </span>
+      </label>
+      <label class="w-checkbox" id="ty-5b484a03-0">
+        <input class="w-checkbox-input" type="checkbox" id="ty-f8227f46-0" />
+        <span class="w-checkbox-box" id="ty-13ce9f75-0"></span>
+        <span class="w-checkbox-text" id="ty-5ae2e718-0">
+          <span class="w-checkbox-label" id="ty-f345a503-0">Subscribe</span>
+          <span class="w-checkbox-hint" id="ty-1d340b93-0">We send one email per month.</span>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ac31e833-0">
+    <div class="w-stack" id="ty-5332f09b-0">
+      <w-checkbox error="You must accept to continue." label="I accept the terms" id="ty-8f07125b-0"></w-checkbox>
+      <w-checkbox hint="We send one email per month." label="Subscribe" id="ty-94146b1b-0"></w-checkbox>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-97895e1f-0">Native state</h2><p id="ty-0d33861d-0">Use the native <code id="ty-c78aef9f-0">checked</code> state for selection and <code id="ty-c223316d-0">value</code> for form submission.</p><demo-compare >
+  <div slot="css" id="ty-3e9c2cd3-0">
+    <label class="w-checkbox" id="ty-d7d00259-0">
+      <input class="w-checkbox-input" type="checkbox" data-demo-bool="" id="ty-db61908f-0" />
+      <span class="w-checkbox-box" id="ty-a833c7ff-0"></span>
+      <span class="w-checkbox-label" id="ty-aa154019-0">Enable notifications</span>
+    </label>
+    <p class="w-field-hint" id="ty-53484c6b-0">Value: <code id="demo-bool-value-css">no</code></p>
+  </div>
+  <div slot="wc" id="ty-4a2b6e33-0">
+    <w-checkbox data-demo-bool="" value="notifications" label="Enable notifications" id="ty-bd4cc521-0"></w-checkbox>
+    <p class="w-field-hint" id="ty-a8d632e6-0">Value: <code id="demo-bool-value-wc">no</code></p>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-1087479d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-88a1f264-0"></aside>
+</div>
+</body>
+</html>
+

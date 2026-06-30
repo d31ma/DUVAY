@@ -1,0 +1,112 @@
+<h1>Layout Primitives</h1>
+<p>Aspect ratio, scroll area, resizable panes, sidebar, direction, and chart shells round out the shadcn layout surface.</p>
+
+<h2>Aspect Ratio</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-aspect-ratio" style="--w-aspect-ratio: 16 / 9;">
+      <div class="w-card h-100 w-p-lg d-grid align-center justify-center">16:9</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-aspect-ratio ratio="16 / 9">
+      <div class="w-card h-100 w-p-lg d-grid align-center justify-center">16:9</div>
+    </w-aspect-ratio>
+  </div>
+</demo-compare>
+
+<h2>Scroll Area</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-scroll-area" style="--w-scroll-area-height: 12rem;">
+      <div class="w-list">
+        <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Overview</span></div></div>
+        <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Components</span></div></div>
+        <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Themes</span></div></div>
+        <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Animations</span></div></div>
+        <div class="w-list-item"><div class="w-list-item-content"><span class="w-list-item-title">Resources</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-scroll-area height="12rem">
+      <w-list>
+        <w-list-item title="Overview"></w-list-item>
+        <w-list-item title="Components"></w-list-item>
+        <w-list-item title="Themes"></w-list-item>
+        <w-list-item title="Animations"></w-list-item>
+        <w-list-item title="About"></w-list-item>
+      </w-list>
+    </w-scroll-area>
+  </div>
+</demo-compare>
+
+<h2>Resizable</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-resizable w-resizable--horizontal">
+      <div class="w-resizable-panel"><div class="w-resizable-panel-inner">Sidebar pane</div></div>
+      <div class="w-resizable-panel"><div class="w-resizable-panel-inner">Content pane</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-resizable direction="horizontal">
+      <w-resizable-panel size="14rem">
+        <div class="w-resizable-panel-inner">Sidebar pane</div>
+      </w-resizable-panel>
+      <w-resizable-panel size="1fr">
+        <div class="w-resizable-panel-inner">Content pane</div>
+      </w-resizable-panel>
+    </w-resizable>
+  </div>
+</demo-compare>
+
+<h2>Sidebar</h2>
+<demo-compare>
+  <div slot="css">
+    <aside class="w-sidebar w-sidebar-component" aria-label="Project">
+      <a class="w-sidebar-folder active" href="#">Inbox</a>
+      <a class="w-sidebar-folder" href="#">Reports</a>
+      <a class="w-sidebar-folder" href="#">Settings</a>
+    </aside>
+  </div>
+  <div slot="wc">
+    <w-sidebar label="Project">
+      <a class="w-sidebar-folder active" href="#">Inbox</a>
+      <a class="w-sidebar-folder" href="#">Reports</a>
+      <a class="w-sidebar-folder" href="#">Settings</a>
+    </w-sidebar>
+  </div>
+</demo-compare>
+
+<h2>Direction</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-direction" dir="rtl">
+      <div class="w-card w-card-body">مرحبا بالعالم</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-direction dir="rtl">
+      <div class="w-card w-card-body">مرحبا بالعالم</div>
+    </w-direction>
+  </div>
+</demo-compare>
+
+<h2>Chart</h2>
+<demo-compare>
+  <div slot="css">
+    <figure class="w-chart" aria-label="Weekly activity">
+      <figcaption class="w-chart-title">Weekly activity</figcaption>
+      <div class="w-chart-bars">
+        <span class="w-chart-bar" style="--w-chart-value: 36%;"></span>
+        <span class="w-chart-bar" style="--w-chart-value: 62%;"></span>
+        <span class="w-chart-bar" style="--w-chart-value: 48%;"></span>
+        <span class="w-chart-bar" style="--w-chart-value: 88%;"></span>
+      </div>
+    </figure>
+  </div>
+  <div slot="wc">
+    <w-chart title="Weekly activity" values="[36,62,48,88]"></w-chart>
+  </div>
+</demo-compare>

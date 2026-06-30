@@ -1,0 +1,118 @@
+<h1>Items</h1>
+<p>Many DuVay components accept a list of choices through an <code>items</code> attribute: selects, autocompletes, breadcrumbs, command palettes, data tables, and more. Items can be a comma-separated string or a JSON array of objects.</p>
+
+<h2>String items</h2>
+<p>The simplest form is a comma-separated list. Each string becomes both the visible label and the value.</p>
+
+<demo-compare>
+  <div slot="css">
+    <div class="w-select">
+      <button class="w-select__trigger" aria-haspopup="listbox" aria-expanded="true">Choose a fruit</button>
+      <div class="w-select-list" role="listbox">
+        <div class="w-select-item" role="option">Apple</div>
+        <div class="w-select-item" role="option">Banana</div>
+        <div class="w-select-item" role="option">Cherry</div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-autocomplete label="Choose a fruit" items="Apple, Banana, Cherry" open></w-autocomplete>
+  </div>
+</demo-compare>
+
+<h2>Object items</h2>
+<p>For separate labels and values, pass a JSON array. By default DuVay reads <code>title</code> for the label and <code>value</code> for the selection value.</p>
+
+<demo-compare>
+  <div slot="wc">
+    <w-autocomplete label="Choose a user" items='[&#123;&quot;title&quot;:&quot;Ada Lovelace&quot;,&quot;value&quot;:&quot;ada&quot;&#125;,&#123;&quot;title&quot;:&quot;Grace Hopper&quot;,&quot;value&quot;:&quot;grace&quot;&#125;]' open></w-autocomplete>
+  </div>
+  <div slot="css">
+    <div class="w-select">
+      <button class="w-select__trigger" aria-haspopup="listbox" aria-expanded="true">Choose a user</button>
+      <div class="w-select-list" role="listbox">
+        <div class="w-select-item" role="option" data-value="ada">Ada Lovelace</div>
+        <div class="w-select-item" role="option" data-value="grace">Grace Hopper</div>
+      </div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Custom title and value keys</h2>
+<p>If your data uses different field names, set <code>item-title</code> and <code>item-value</code>.</p>
+
+<demo-compare>
+  <div slot="wc">
+    <w-autocomplete label="Choose a role" item-title="name" item-value="id" items='[&#123;&quot;name&quot;:&quot;Admin&quot;,&quot;id&quot;:&quot;admin&quot;&#125;,&#123;&quot;name&quot;:&quot;Editor&quot;,&quot;id&quot;:&quot;editor&quot;&#125;,&#123;&quot;name&quot;:&quot;Viewer&quot;,&quot;id&quot;:&quot;viewer&quot;&#125;]' open></w-autocomplete>
+  </div>
+  <div slot="css">
+    <div class="code-block"><code>&lt;w-autocomplete
+  label="Choose a role"
+  item-title="name"
+  item-value="id"
+  items='[&#123;&quot;name&quot;:&quot;Admin&quot;,&quot;id&quot;:&quot;admin&quot;&#125;,
+          &#123;&quot;name&quot;:&quot;Editor&quot;,&quot;id&quot;:&quot;editor&quot;&#125;,
+          &#123;&quot;name&quot;:&quot;Viewer&quot;,&quot;id&quot;:&quot;viewer&quot;&#125;]'&gt;
+&lt;/w-autocomplete&gt;</code></div>
+  </div>
+</demo-compare>
+
+<h2>Disabled items</h2>
+<p>Object items can include a <code>disabled</code> property to make an option non-interactive.</p>
+
+<demo-compare>
+  <div slot="wc">
+    <w-autocomplete label="Choose a plan" items='[&#123;&quot;title&quot;:&quot;Free&quot;,&quot;value&quot;:&quot;free&quot;&#125;,&#123;&quot;title&quot;:&quot;Pro&quot;,&quot;value&quot;:&quot;pro&quot;&#125;,&#123;&quot;title&quot;:&quot;Enterprise&quot;,&quot;value&quot;:&quot;enterprise&quot;,&quot;disabled&quot;:true&#125;]' open></w-autocomplete>
+  </div>
+  <div slot="css">
+    <div class="w-select">
+      <button class="w-select__trigger" aria-haspopup="listbox">Choose a plan</button>
+      <div class="w-select-list" role="listbox">
+        <div class="w-select-item" role="option">Free</div>
+        <div class="w-select-item" role="option">Pro</div>
+        <div class="w-select-item" role="option" aria-disabled="true">Enterprise</div>
+      </div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Slots instead of items</h2>
+<p>When you need custom markup per row, omit <code>items</code> and use slotted children. DuVay components that accept items also expose a default slot for hand-authored rows.</p>
+
+<demo-compare>
+  <div slot="wc">
+    <w-autocomplete label="Custom rows" open>
+      <button class="w-autocomplete-item" type="button" role="option" value="ada">
+        <strong>Ada Lovelace</strong>
+        <span class="w-text-subtle">&mdash; First programmer</span>
+      </button>
+      <button class="w-autocomplete-item" type="button" role="option" value="grace">
+        <strong>Grace Hopper</strong>
+        <span class="w-text-subtle">&mdash; COBOL pioneer</span>
+      </button>
+    </w-autocomplete>
+  </div>
+  <div slot="css">
+    <div class="code-block"><code>&lt;w-autocomplete label="Custom rows"&gt;
+  &lt;button class="w-autocomplete-item" type="button" role="option" value="ada"&gt;
+    &lt;strong&gt;Ada Lovelace&lt;/strong&gt;
+    &lt;span class="w-text-subtle"&gt;&amp;mdash; First programmer&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="w-autocomplete-item" type="button" role="option" value="grace"&gt;
+    &lt;strong&gt;Grace Hopper&lt;/strong&gt;
+    &lt;span class="w-text-subtle"&gt;&amp;mdash; COBOL pioneer&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/w-autocomplete&gt;</code></div>
+  </div>
+</demo-compare>
+
+<h2>Common item properties</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Property</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>title</code> / <code>item-title</code></td><td>The visible label.</td></tr>
+    <tr><td><code>value</code> / <code>item-value</code></td><td>The submitted or emitted value.</td></tr>
+    <tr><td><code>subtitle</code></td><td>Secondary text shown beneath the title.</td></tr>
+    <tr><td><code>disabled</code></td><td>Makes the item non-interactive.</td></tr>
+  </tbody>
+</table>

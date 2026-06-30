@@ -1,0 +1,35 @@
+<h1>Entry points</h1>
+<p>DuVay provides full-bundle entry points for simple apps and split CSS entry points for apps that only want selected components.</p>
+<table class="w-table api-table">
+  <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><code>duvay.css</code></td><td>Flattened full CSS bundle with core and every component.</td></tr>
+    <tr><td><code>core.css</code></td><td>Reset, tokens, themes, motion, typography, and utilities.</td></tr>
+    <tr><td><code>components/*.css</code></td><td>Individual component styles, each importing <code>core.css</code>.</td></tr>
+    <tr><td><code>grid.css</code>, <code>forms.css</code>, etc.</td><td>Compatibility indexes that import related component CSS files.</td></tr>
+    <tr><td><code>duvay.js</code></td><td>Behaviour hooks for CSS-class usage (dropdowns, dialogs, etc.).</td></tr>
+    <tr><td><code>duvay-wc.js</code></td><td>Custom element definitions for the web-component API.</td></tr>
+  </tbody>
+</table>
+<h2>Hosted from duvay.del.ma</h2>
+<p>Use the latest release:</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.js" defer&gt;&lt;/script&gt;
+&lt;script type="module" src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js"&gt;&lt;/script&gt;</code></div>
+
+<h2>Selective CSS</h2>
+<p>Import individual component files when you want a smaller CSS surface. Component files import the required core layer themselves.</p>
+<div class="code-block"><code>@import "duvay-css/components/buttons.css";
+@import "duvay-css/components/cards.css";
+@import "duvay-css/components/tooltips.css";</code></div>
+
+<p>For explicit control, import core once and then the component files your app uses.</p>
+<div class="code-block"><code>@import "duvay-css/core.css";
+@import "duvay-css/components/buttons.css";
+@import "duvay-css/components/cards.css";</code></div>
+
+<h2>Pin to a CalVer release</h2>
+<p>Every release is kept at a permanent URL. Replace <code>VERSION</code> with the CalVer you want (for example <code>26.24.12</code>):</p>
+<div class="code-block"><code>&lt;link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.css"&gt;
+&lt;script src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.js" defer&gt;&lt;/script&gt;
+&lt;script type="module" src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay-wc.min.js"&gt;&lt;/script&gt;</code></div>

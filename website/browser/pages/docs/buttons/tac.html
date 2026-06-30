@@ -1,0 +1,187 @@
+<h1>Buttons</h1>
+<p>DuVay buttons come in multiple variants and sizes. All buttons are accessible with proper focus states.</p>
+
+<h2>Variants</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled">Filled</button>
+      <button class="w-btn w-btn-outlined">Outlined</button>
+      <button class="w-btn w-btn-ghost">Ghost</button>
+      <button class="w-btn w-btn-text">Text</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled">Filled</w-btn>
+      <w-btn variant="outlined">Outlined</w-btn>
+      <w-btn variant="ghost">Ghost</w-btn>
+      <w-btn variant="text">Text</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Five sizes from <code>xs</code> to <code>xl</code>; omit for the 40px default.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <button class="w-btn w-btn-filled w-btn-xs">XS</button>
+      <button class="w-btn w-btn-filled w-btn-sm">Small</button>
+      <button class="w-btn w-btn-filled">Default</button>
+      <button class="w-btn w-btn-filled w-btn-lg">Large</button>
+      <button class="w-btn w-btn-filled w-btn-xl">XL</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-btn variant="filled" size="xs">XS</w-btn>
+      <w-btn variant="filled" size="sm">Small</w-btn>
+      <w-btn variant="filled">Default</w-btn>
+      <w-btn variant="filled" size="lg">Large</w-btn>
+      <w-btn variant="filled" size="xl">XL</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled w-btn-primary">Primary</button>
+      <button class="w-btn w-btn-filled w-btn-success">Success</button>
+      <button class="w-btn w-btn-filled w-btn-danger">Danger</button>
+      <button class="w-btn w-btn-filled w-btn-warning">Warning</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled" color="primary">Primary</w-btn>
+      <w-btn variant="filled" color="success">Success</w-btn>
+      <w-btn variant="filled" color="danger">Danger</w-btn>
+      <w-btn variant="filled" color="warning">Warning</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>States</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled" disabled>Disabled</button>
+      <button class="w-btn w-btn-filled loading">Loading</button>
+      <button class="w-btn w-btn-filled">
+        <span class="w-btn-leading-icon">+</span>
+        With Icon
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled" disabled>Disabled</w-btn>
+      <w-btn variant="filled" loading>Loading</w-btn>
+      <w-btn variant="filled" icon="+">With Icon</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Button group</h2>
+<p>Join related buttons into a single segmented control with <code>.w-btn-group</code>. Mark the chosen one with <code>active</code>. Add <code>.w-btn-group--vertical</code> to stack.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group">
+      <button class="w-btn active">Day</button>
+      <button class="w-btn">Week</button>
+      <button class="w-btn">Month</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-btn-group">
+      <w-btn active>Day</w-btn>
+      <w-btn>Week</w-btn>
+      <w-btn>Month</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Block buttons</h2>
+<p>Add <code>block</code> to make a button span the full width of its container.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled w-btn-block">Block button</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" block>Block button</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Stacked buttons</h2>
+<p>Add <code>stacked</code> to place the icon above the label.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-text w-btn-stacked">
+      <span class="w-btn-leading-icon">★</span>
+      Star
+    </button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="text" stacked prepend-icon="★">Star</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Prepend and append icons</h2>
+<p>Use <code>prepend-icon</code> for a leading icon and <code>append-icon</code> for a trailing icon.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled">
+        <span class="w-btn-leading-icon">←</span>
+        Back
+      </button>
+      <button class="w-btn w-btn-filled">
+        Next
+        <span class="w-btn-append-icon">→</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled" prepend-icon="←">Back</w-btn>
+      <w-btn variant="filled" append-icon="→">Next</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Plain and elevated variants</h2>
+<p><code>plain</code> is a subtle action with no hover background. <code>elevated</code> is a filled button with a shadow.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-plain">Plain</button>
+      <button class="w-btn w-btn-elevated">Elevated</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="plain">Plain</w-btn>
+      <w-btn variant="elevated">Elevated</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Active state</h2>
+<p>Add <code>active</code> to mark a button as selected.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled active">Active</button>
+      <button class="w-btn w-btn-outlined active">Active outlined</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled" active>Active</w-btn>
+      <w-btn variant="outlined" active>Active outlined</w-btn>
+    </div>
+  </div>
+</demo-compare>

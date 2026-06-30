@@ -1,0 +1,96 @@
+<h1>Selects</h1>
+<p><code>w-select</code> is a custom dropdown that opens an overlay listbox of <code>w-option</code> children, mirroring Vuetify&#8217;s <code>v-select</code>. It supports single and multiple selection (shown as chips), a clear button, and keyboard navigation. For a plain, zero-JS native control, use <code>w-native-select</code>.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-field" style="max-width:320px">
+      <label class="w-field-label">Plan</label>
+      <div class="w-select-wrap">
+        <div class="w-select w-select-field" role="combobox" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+          <span class="w-select-selection"><span class="w-select-value">Pro</span></span>
+          <span class="w-select-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+          </span>
+        </div>
+      </div>
+      <span class="w-field-hint">Click to open the option list.</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-select label="Plan" value="pro" hint="Click to open the option list.">
+      <w-option value="starter">Starter</w-option>
+      <w-option value="pro">Pro</w-option>
+      <w-option value="enterprise">Enterprise</w-option>
+    </w-select>
+  </div>
+</demo-compare>
+
+<h2>Multiple with chips</h2>
+<p>Add <code>multiple</code> to select several values; they render as chips in the field. Combine with <code>closable-chips</code> to remove them inline.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-select label="Regions" multiple closable-chips value="us,eu">
+      <w-option value="us">United States</w-option>
+      <w-option value="eu">Europe</w-option>
+      <w-option value="apac">Asia Pacific</w-option>
+      <w-option value="latam">Latin America</w-option>
+    </w-select>
+  </div>
+</demo-compare>
+
+<h2>Clearable</h2>
+<p>Add <code>clearable</code> for a clear (&#215;) button that resets the selection.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-select label="Priority" clearable value="high" placeholder="Select a priority">
+      <w-option value="low">Low</w-option>
+      <w-option value="medium">Medium</w-option>
+      <w-option value="high">High</w-option>
+    </w-select>
+  </div>
+</demo-compare>
+
+<h2>Placeholder</h2>
+<demo-compare>
+  <div slot="wc">
+    <w-select label="Country" placeholder="Choose a country">
+      <w-option value="ca">Canada</w-option>
+      <w-option value="mx">Mexico</w-option>
+      <w-option value="us">United States</w-option>
+    </w-select>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<demo-compare>
+  <div slot="wc">
+    <w-select label="Plan" value="pro" disabled>
+      <w-option value="starter">Starter</w-option>
+      <w-option value="pro">Pro</w-option>
+    </w-select>
+  </div>
+</demo-compare>
+
+<h2>Native select</h2>
+<p><code>w-native-select</code> renders a real <code>&lt;select&gt;</code> with plain <code>&lt;option&gt;</code> children — accessible and zero-JavaScript.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field">
+      <span class="w-field-label">Density</span>
+      <select class="w-select">
+        <option>Compact</option>
+        <option selected>Comfortable</option>
+        <option>Spacious</option>
+      </select>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-native-select label="Density" value="comfortable">
+      <option value="compact">Compact</option>
+      <option value="comfortable">Comfortable</option>
+      <option value="spacious">Spacious</option>
+    </w-native-select>
+  </div>
+</demo-compare>
+

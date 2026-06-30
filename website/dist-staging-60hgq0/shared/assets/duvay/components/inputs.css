@@ -1,0 +1,61 @@
+/* DuVay — Inputs component styles. */
+@import "../core.css";
+
+/* ── Input ───────────────────────────────────────────────────────────────── */
+.w-input {
+  display: block;
+  width: 100%;
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  line-height: 1.4;
+  outline: none;
+  transition: border-color var(--w-transition-fast);
+}
+
+/* Field sizes — xs / sm / (default) / lg / xl, applied to inputs and selects */
+.w-input--xs,
+.w-select--xs {
+  min-height: var(--w-size-xs);
+  padding-inline: var(--w-space-2);
+  font-size: var(--w-font-xs);
+}
+
+.w-input--sm,
+.w-select--sm {
+  min-height: var(--w-size-sm);
+  font-size: var(--w-font-sm);
+}
+
+.w-input--lg,
+.w-select--lg {
+  min-height: var(--w-size-lg);
+  font-size: var(--w-font-md);
+}
+
+.w-input--xl,
+.w-select--xl {
+  min-height: var(--w-size-xl);
+  padding-inline: var(--w-space-lg);
+  font-size: var(--w-font-lg);
+}
+
+.w-input::placeholder {
+  color: var(--w-text-very-subtle);
+}
+
+.w-input:focus {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-input:disabled {
+  opacity: 0.5;
+  background: var(--w-surface-container-low);
+  cursor: not-allowed;
+}

@@ -1,0 +1,58 @@
+<h1>Server-side Tables</h1>
+<p><code>w-data-table-server</code> shares all of <a href="/docs/components/data-tables/introduction">data table</a>&#8217;s chrome but does <strong>not</strong> filter, sort, or paginate locally. Instead <code>items</code> is the current page already prepared by your backend, and <code>items-length</code> is the total row count that drives the footer. When the user changes the page, page size, or sort, it emits <code>update:options</code> so you can fetch the matching slice and update <code>items</code> / <code>items-length</code>.</p>
+
+<h2>Example</h2>
+<p>The table holds only the current page of <code>items</code>; <code>items-length</code> tells the footer there are 50 rows in total, so the pagination controls reflect the full set. Changing the page, size, or sort emits <code>update:options</code> for your fetch handler (wired below).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th>Item</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Item 1</td><td>3</td></tr>
+          <tr><td>Item 2</td><td>6</td></tr>
+          <tr><td>Item 3</td><td>9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table-server
+      headers="[Item,Value]"
+      items="[Item 1|3; Item 2|6; Item 3|9; Item 4|12; Item 5|15]"
+      items-length="50"
+      items-per-page="5"
+      items-per-page-options="5,10,25"></w-data-table-server>
+  </div>
+</demo-compare>
+
+<h2>Wiring it up</h2>
+<p>In application code, listen for <code>update:options</code>, fetch, then set the new <code>items</code> and <code>items-length</code>:</p>
+<pre class="code-block"><code>const table = document.querySelector('w-data-table-server');
+
+table.addEventListener('update:options', async (e) =&gt; {
+  const &#123; page, itemsPerPage, sortBy, sortDesc &#125; = e.detail;
+  table.setAttribute('loading', '');
+  const res = await fetch(`/api/desserts?page=$&#123;page&#125;&amp;size=$&#123;itemsPerPage&#125;&amp;sort=$&#123;sortBy&#125;&amp;desc=$&#123;sortDesc&#125;`);
+  const &#123; rows, total &#125; = await res.json();
+  table.items = rows;                       // current page only
+  table.setAttribute('items-length', total); // total across all pages
+  table.removeAttribute('loading');
+&#125;);</code></pre>
+
+<h2>Loading</h2>
+<p>Toggle <code>loading</code> around each fetch to show the progress bar.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-table w-data-table--loading">
+      <span class="w-data-table-loader" aria-hidden="true"></span>
+      <div class="w-table-wrap">
+        <table class="w-table"><thead><tr><th>Item</th><th>Value</th></tr></thead>
+        <tbody><tr><td>Item 1</td><td>3</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table-server loading headers="[Item,Value]" items="[Item 1|3; Item 2|6]" items-length="50" items-per-page="5"></w-data-table-server>
+  </div>
+</demo-compare>

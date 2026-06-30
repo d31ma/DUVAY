@@ -1,0 +1,119 @@
+<h1>Tooltips</h1>
+<p>Tooltips identify or describe an activator on hover, focus, click, or controlled state.</p>
+
+<h2>Usage</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <button class="w-btn w-btn-outlined w-tooltip" w-tooltip="Archive this project">Archive</button>
+      <button class="w-btn w-btn-ghost w-tooltip" w-tooltip="Pin to sidebar" w-tooltip-position="bottom">Pin</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-tooltip text="Archive this project"><w-btn variant="outlined">Archive</w-btn></w-tooltip>
+      <w-tooltip text="Pin to sidebar" location="bottom"><w-btn variant="ghost">Pin</w-btn></w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Location</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <span class="w-tooltip" w-tooltip="Top tooltip" w-tooltip-position="top">Top</span>
+      <span class="w-tooltip" w-tooltip="Right tooltip" w-tooltip-position="right">Right</span>
+      <span class="w-tooltip" w-tooltip="Bottom tooltip" w-tooltip-position="bottom">Bottom</span>
+      <span class="w-tooltip" w-tooltip="Left tooltip" w-tooltip-position="left">Left</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-tooltip text="Top tooltip" location="top"><span>Top</span></w-tooltip>
+      <w-tooltip text="Right tooltip" location="right"><span>Right</span></w-tooltip>
+      <w-tooltip text="Bottom tooltip" location="bottom"><span>Bottom</span></w-tooltip>
+      <w-tooltip text="Left tooltip" location="left"><span>Left</span></w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-btn w-btn-filled w-tooltip" style="--w-tooltip-bg: var(--w-primary); --w-tooltip-fg: var(--w-on-primary);" w-tooltip="Primary tooltip">Primary</button>
+      <button class="w-btn w-btn-outlined w-tooltip" style="--w-tooltip-bg: var(--w-success); --w-tooltip-fg: var(--w-on-success);" w-tooltip="Success tooltip">Success</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-tooltip text="Primary tooltip" color="primary"><w-btn variant="filled">Primary</w-btn></w-tooltip>
+      <w-tooltip text="Success tooltip" color="success"><w-btn variant="outlined">Success</w-btn></w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Open on Click</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-btn w-btn-outlined w-tooltip" w-tooltip="Click-triggered tooltip">Click target</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-tooltip text="Click-triggered tooltip" open-on-click open-on-hover="false">
+        <w-btn variant="outlined">Click target</w-btn>
+      </w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Visibility</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <span class="w-tooltip" w-tooltip="Always shown through component state">Controlled state</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center justify-center">
+      <w-tooltip text="Always shown through component state" location="bottom" open>
+        <span class="w-chip">Controlled state</span>
+      </w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Interactive</h2>
+<demo-compare class="docs-tooltip-demo">
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-btn w-btn-outlined w-tooltip" w-tooltip="Copyable helper text">Hover details</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-tooltip interactive open-on-click open-on-hover="false" location="bottom">
+        <w-btn slot="activator" variant="outlined">Hover details</w-btn>
+        <span slot="content">Copyable helper text</span>
+      </w-tooltip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Tooltip at Cursor</h2>
+<demo-compare class="docs-tooltip-demo docs-tooltip-demo--cursor">
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-btn w-btn-ghost w-tooltip" w-tooltip="Cursor placement is component-only">Cursor target</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-tooltip text="Appears near the click position" open-on-click open-on-hover="false" target="cursor">
+        <w-btn variant="ghost">Cursor target</w-btn>
+      </w-tooltip>
+    </div>
+  </div>
+</demo-compare>

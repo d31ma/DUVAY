@@ -1,0 +1,77 @@
+<h1>Ripple</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-ripple</code> directive. Add <code>w-ripple</code> to any block-level element and the behavior layer paints a water-ripple effect on press, giving visual feedback for user actions. It can be applied to any interactive surface &#8212; buttons, cards, list items &#8212; and requires <code>duvay-directives.js</code> to be loaded. The ripple is purely presentational: it dispatches no event.</p>
+
+<h2>Interactive demo</h2>
+<p>Press the surfaces below &#8212; or focus one and press <kbd class="w-kbd">Enter</kbd> &#8212; to see the ripple.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack" style="gap: 1rem; align-items: flex-start;">
+      <button class="w-btn w-btn-filled" w-ripple>Default ripple</button>
+      <button class="w-btn w-btn-outlined" w-ripple w-ripple-center>Centered ripple</button>
+      <div class="w-card w-card-body" w-ripple w-ripple-color="primary" tabindex="0" role="button" style="cursor: pointer; max-width: 320px;">Ripple on a card surface</div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Enable basic ripple functionality by adding the <code>w-ripple</code> attribute to a component or HTML element. On pointer down (and on <code>Enter</code> / <code>Space</code> keydown) the behavior layer adds the class <code>w-ripple-host</code> to the element and appends a <code>.w-ripple-ink</code> span at the pointer position. The span removes itself when its animation ends.</p>
+<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple&gt;Press me&lt;/button&gt;</code></div>
+
+<h2>API</h2>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>DuVay</th><th>Vuetify</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-ripple</code></td><td><code>v-ripple</code></td><td>Presence enables the ripple effect on the element.</td></tr>
+    <tr><td><code>w-ripple="false"</code></td><td><code>:ripple="false"</code></td><td>Disables the ripple on an element that would otherwise receive it.</td></tr>
+    <tr><td><code>w-ripple-center</code></td><td><code>v-ripple.center</code></td><td>The ripple always originates from the center of the target.</td></tr>
+    <tr><td><code>w-ripple-color="primary"</code></td><td>custom-color helper class</td><td>Tints the ink. Accepts <code>primary</code>, <code>secondary</code>, or <code>surface</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2>Ripple on web components</h2>
+<p>Interactive web components accept an opt-in <code>ripple</code> attribute (matching Vuetify's <code>ripple</code> prop) so you do not need the directive on every element. It is off by default; add the attribute to enable it.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled" w-ripple>CSS class + w-ripple</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" ripple>Web component + ripple</w-btn>
+  </div>
+</demo-compare>
+<p>Supported on <code>&lt;w-btn&gt;</code>, <code>&lt;w-list-item&gt;</code>, <code>&lt;w-chip&gt;</code>, and <code>&lt;w-tab&gt;</code>.</p>
+
+<h2>Examples</h2>
+
+<h3>Options</h3>
+<p>By default the ripple originates from the pointer position. Add <code>w-ripple-center</code> so it always originates from the center of the target, mirroring Vuetify's <code>.center</code> modifier.</p>
+<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple w-ripple-center&gt;Centered&lt;/button&gt;</code></div>
+
+<h3>Custom color</h3>
+<p>Use <code>w-ripple-color</code> to adjust the color of the ink. The value maps to a design token, so the tint stays theme-aware across light and dark.</p>
+<div class="code-block"><code>&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="primary"&gt;Primary ink&lt;/button&gt;
+&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="secondary"&gt;Secondary ink&lt;/button&gt;
+&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="surface"&gt;Surface ink&lt;/button&gt;</code></div>
+
+<h3>Disabling the ripple</h3>
+<p>Where a component opts into the ripple, set <code>w-ripple="false"</code> to turn it off for a single element without removing the styling.</p>
+<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple="false"&gt;No ripple&lt;/button&gt;</code></div>
+
+<h3>Ripple on a custom surface</h3>
+<p>The directive is not limited to buttons. Apply it to any block-level element &#8212; a card or a list item &#8212; to add press feedback.</p>
+<div class="code-block"><code>&lt;article class="w-card" w-ripple&gt;
+  &lt;h3 class="w-card-title"&gt;Tap me&lt;/h3&gt;
+  &lt;p&gt;The whole card ripples on press.&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;ul class="w-list"&gt;
+  &lt;li class="w-list-item" w-ripple&gt;Inbox&lt;/li&gt;
+  &lt;li class="w-list-item" w-ripple w-ripple-center&gt;Drafts&lt;/li&gt;
+&lt;/ul&gt;</code></div>
+
+<h2>Accessibility</h2>
+<p>The ripple is decorative and adds no semantics, so it never interferes with assistive technology &#8212; keep the element's own <code>role</code>, label, and keyboard behavior intact. Because the effect also fires on <code>Enter</code> / <code>Space</code> keydown, keyboard users get the same feedback as pointer users.</p>
+
+<h3>Reduced motion</h3>
+<p>The ripple animation honors <code>prefers-reduced-motion: reduce</code>. Users who request less motion get the press registered without the animated ink, so the feedback stays instant and non-animated.</p>

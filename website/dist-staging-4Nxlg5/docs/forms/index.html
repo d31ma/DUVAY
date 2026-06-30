@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-8b9031d7-0">Forms</h1><p id="ty-d9a9277a-0"><code id="ty-7ec5512c-0">w-form</code> wraps native form controls and DuVay inputs, mirroring Vuetify&#8217;s <code id="ty-43e3ea6f-0">v-form</code>. It aggregates the validity of every field, cascades <code id="ty-ecdd5796-0">disabled</code> and <code id="ty-acac193b-0">readonly</code> to its controls, and emits <code id="ty-81532455-0">submit</code> with the result. Validation is native HTML5 constraint validation (<code id="ty-3aa3a3e5-0">required</code>, <code id="ty-d69bf530-0">type</code>, <code id="ty-3ae99257-0">pattern</code>, <code id="ty-098d3e1e-0">min</code>/<code id="ty-365079fc-0">max</code>, <code id="ty-60422626-0">minlength</code>/<code id="ty-c2d1a493-0">maxlength</code>), so the browser does the checking with no extra JavaScript. DuVay inputs forward those constraint attributes to their underlying control, so they validate inside a form too.</p><h2 id="ty-18723257-0">Basic</h2><p id="ty-b281c06c-0">Submitting validates every field. The native submit is always prevented; listen for <code id="ty-1639806e-0">submit</code> and read <code id="ty-420a43bb-0">event.detail.valid</code>.</p><demo-compare >
+  <div slot="css" id="ty-678dc296-0">
+    <form class="w-form" id="ty-321b50c6-0">
+      <div class="w-stack" id="ty-8d362405-0">
+        <div class="w-field" id="ty-228bec03-0">
+          <label class="w-field-label" for="form-name" id="ty-f878b845-0">Name</label>
+          <input class="w-input" id="form-name" type="text" required="" placeholder="Jane Doe" />
+        </div>
+        <div class="w-field" id="ty-0b9ce88b-0">
+          <label class="w-field-label" for="form-email" id="ty-75222df6-0">Email</label>
+          <input class="w-input" id="form-email" type="email" required="" placeholder="you@example.com" />
+        </div>
+        <button class="w-btn w-btn-primary" type="submit" id="ty-7641f1c7-0">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div slot="wc" id="ty-88fbb60a-0">
+    <w-form id="ty-52abb143-0">
+      <div class="w-stack" id="ty-1dd7c14e-0">
+        <w-input label="Name" type="text" required="" placeholder="Jane Doe" id="ty-73566c41-0"></w-input>
+        <w-input label="Email" type="email" required="" placeholder="you@example.com" id="ty-a2887e9b-0"></w-input>
+        <button class="w-btn w-btn-primary" type="submit" id="ty-1f5e2cb9-0">Submit</button>
+      </div>
+    </w-form>
+  </div>
+</demo-compare><h2 id="ty-266a766a-0">Disabled and read-only</h2><p id="ty-3e1417b1-0">Set <code id="ty-2153ecb2-0">disabled</code> or <code id="ty-e3ec99b1-0">readonly</code> on the form to apply it to every contained control at once. A control that is individually disabled stays disabled when the form is re-enabled.</p><demo-compare >
+  <div slot="css" id="ty-b51c4aa9-0">
+    <form class="w-form" id="ty-58a732d9-0">
+      <fieldset class="w-stack" disabled="" id="ty-402295e6-0">
+        <div class="w-field" id="ty-52fc8e7f-0">
+          <label class="w-field-label" for="form-plan" id="ty-3216075d-0">Plan</label>
+          <input class="w-input" id="form-plan" type="text" value="Pro" />
+        </div>
+        <button class="w-btn w-btn-primary" type="submit" id="ty-56b7fe3c-0">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div slot="wc" id="ty-13b4e0e8-0">
+    <w-form disabled="" id="ty-aea8c9b5-0">
+      <div class="w-stack" id="ty-68b74537-0">
+        <w-input label="Plan" type="text" value="Pro" id="ty-8c9539ba-0"></w-input>
+        <button class="w-btn w-btn-primary" type="submit" id="ty-39890773-0">Submit</button>
+      </div>
+    </w-form>
+  </div>
+</demo-compare><h2 id="ty-3af6be2c-0">When fields validate</h2><p id="ty-6583f996-0">The <code id="ty-a040e52e-0">validate-on</code> attribute controls when fields re-validate as the user interacts: <code id="ty-fd9ce763-0">input</code> (default), <code id="ty-b3a7ffb1-0">blur</code>, or <code id="ty-c5e7c939-0">submit</code>. Combine values with a space, e.g. <code id="ty-a18e90ba-0">validate-on="blur submit"</code>. Use <code id="ty-7e3b5a87-0">fast-fail</code> to stop at the first failing field.</p><demo-compare >
+  <div slot="css" id="ty-bfbab2fd-0">
+    <form class="w-form" id="ty-ed0742d7-0">
+      <div class="w-field" id="ty-e02f41f0-0">
+        <label class="w-field-label" for="form-user" id="ty-5227ed54-0">Username</label>
+        <input class="w-input" id="form-user" type="text" required="" minlength="3" />
+        <span class="w-field-hint" id="ty-ba0544c4-0">At least 3 characters.</span>
+      </div>
+    </form>
+  </div>
+  <div slot="wc" id="ty-8b80befa-0">
+    <w-form validate-on="blur" id="ty-2399b52d-0">
+      <w-input label="Username" type="text" required="" minlength="3" hint="At least 3 characters." id="ty-3067844b-0"></w-input>
+    </w-form>
+  </div>
+</demo-compare><h2 id="ty-8c005114-0">Programmatic validation</h2><p id="ty-5f2afedb-0">Hold a reference to the element and call its methods directly &#8212; the same API <code id="ty-60046cf3-0">v-form</code> exposes through its ref.</p><pre class="w-code" id="ty-e90e8817-0"><code id="ty-85920c83-0">const form = document.querySelector('w-form')
+
+const &#123; valid, errors &#125; = form.validate()
+// errors -&gt; [&#123; id: 'email', errorMessages: ['Please fill out this field.'] &#125;]
+
+form.resetValidation() // clear messages, keep values
+form.reset()           // clear values and validation
+
+form.isValid     // true | false | null (not yet validated)
+form.errors      // current FieldValidationResult[]
+form.items       // the validatable controls in the form</code></pre><h2 id="ty-728c6b7c-0">Attributes</h2><table class="w-table api-table" id="ty-6a5553ef-0">
+  <thead id="ty-8d03c8cc-0">
+    <tr id="ty-a235a017-0"><th id="ty-3ec7240e-0">Attribute</th><th id="ty-41f1fc32-0">Type</th><th id="ty-449d07fe-0">Default</th><th id="ty-4fa2b43b-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-05bd52b1-0">
+    <tr id="ty-4f050f6c-0"><td id="ty-3438f46d-0"><code id="ty-e978b1b0-0">disabled</code></td><td id="ty-21b775f4-0">boolean</td><td id="ty-d86998a0-0"><code id="ty-6b35392d-0">false</code></td><td id="ty-2398715d-0">Disables every contained control.</td></tr>
+    <tr id="ty-8c16edd0-0"><td id="ty-18c53064-0"><code id="ty-3369425f-0">readonly</code></td><td id="ty-4f837456-0">boolean</td><td id="ty-30423b67-0"><code id="ty-2d09f619-0">false</code></td><td id="ty-fa9d867d-0">Makes every contained control read-only where supported.</td></tr>
+    <tr id="ty-441b0d7c-0"><td id="ty-dee89231-0"><code id="ty-8570652c-0">fast-fail</code></td><td id="ty-03f2c198-0">boolean</td><td id="ty-ccda7c53-0"><code id="ty-0f59d6ef-0">false</code></td><td id="ty-b02c67fa-0">Stop validating at the first failing field.</td></tr>
+    <tr id="ty-5d98298d-0"><td id="ty-1e8e1f23-0"><code id="ty-67817a20-0">validate-on</code></td><td id="ty-0dc1fea5-0">string</td><td id="ty-06863e0d-0"><code id="ty-6866cce2-0">input</code></td><td id="ty-bb9b43a6-0">When fields validate: <code id="ty-666b42dc-0">input</code>, <code id="ty-3c23daf9-0">blur</code>, <code id="ty-4f15595f-0">submit</code>, or a space-separated combination.</td></tr>
+    <tr id="ty-f1b42193-0"><td id="ty-039522a4-0"><code id="ty-16935d5e-0">value</code></td><td id="ty-1fdd031f-0">boolean</td><td id="ty-b88c789a-0">&#8212;</td><td id="ty-ca1646b1-0">Reflects validity: <code id="ty-51ea228a-0">true</code> valid, <code id="ty-9a721788-0">false</code> invalid, absent until validated.</td></tr>
+  </tbody>
+</table><h2 id="ty-948cc1ce-0">Events</h2><table class="w-table api-table" id="ty-386d0f1d-0">
+  <thead id="ty-09ffcacc-0">
+    <tr id="ty-078e7cd2-0"><th id="ty-992fc5d9-0">Event</th><th id="ty-5bf50d8b-0">Detail</th><th id="ty-f472fd9d-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-1e841dc0-0">
+    <tr id="ty-338303af-0"><td id="ty-035cbf17-0"><code id="ty-becec1fc-0">submit</code></td><td id="ty-4532a238-0"><code id="ty-111ed685-0">&#123; valid, errors &#125;</code></td><td id="ty-e396f263-0">Fired on submit after validation; the native submit is prevented.</td></tr>
+    <tr id="ty-3fe73848-0"><td id="ty-81f536d1-0"><code id="ty-1e5a4530-0">change</code></td><td id="ty-8b040a64-0"><code id="ty-8c7bac9f-0">&#123; value &#125;</code></td><td id="ty-ccb8b6fd-0">Fired when validity changes to <code id="ty-a4f7a920-0">true</code>, <code id="ty-60d12ec7-0">false</code>, or <code id="ty-b33908cc-0">null</code>.</td></tr>
+  </tbody>
+</table><h2 id="ty-73defd99-0">Methods</h2><table class="w-table api-table" id="ty-59f60909-0">
+  <thead id="ty-a4350b35-0">
+    <tr id="ty-c78ed7a1-0"><th id="ty-fbf1381f-0">Method</th><th id="ty-dfcfd0cb-0">Returns</th><th id="ty-2b4e5e4c-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-71a38e6a-0">
+    <tr id="ty-3500a9a3-0"><td id="ty-99f71256-0"><code id="ty-4038f405-0">validate()</code></td><td id="ty-7df792f6-0"><code id="ty-60061e00-0">&#123; valid, errors &#125;</code></td><td id="ty-7bb3c00b-0">Validate every field and mark invalid controls.</td></tr>
+    <tr id="ty-256edb2e-0"><td id="ty-ced93100-0"><code id="ty-331e6991-0">reset()</code></td><td id="ty-b4c4c7d5-0"><code id="ty-a229a58f-0">void</code></td><td id="ty-30acec4b-0">Reset field values and clear validation.</td></tr>
+    <tr id="ty-a00a5d12-0"><td id="ty-c84f00d0-0"><code id="ty-52745514-0">resetValidation()</code></td><td id="ty-8a791229-0"><code id="ty-b93d33c7-0">void</code></td><td id="ty-57f27823-0">Clear validation state, keep values.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

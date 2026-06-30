@@ -1,0 +1,71 @@
+/* DuVay — Messages component styles. */
+@import "../core.css";
+
+/* ── Message / Callout ───────────────────────────────────────────────────── */
+/* Highlighted content block (Bulma message / Foundation callout). */
+.w-message {
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-left-width: 4px;
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-size: var(--w-font-base);
+  line-height: 1.5;
+}
+
+.w-message-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  margin: calc(-1 * var(--w-space-4)) calc(-1 * var(--w-space-4)) var(--w-space-3);
+  padding: var(--w-space-3) var(--w-space-4);
+  border-bottom: 1px solid var(--w-border);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  background: var(--w-surface-container-low);
+  color: var(--w-text);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-message-body > :first-child { margin-top: 0; }
+.w-message-body > :last-child { margin-bottom: 0; }
+
+.w-message-primary {
+  border-left-color: var(--w-primary);
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+}
+.w-message-primary .w-message-header {
+  background: color-mix(in srgb, var(--w-primary) 12%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--w-primary) 24%, transparent);
+}
+
+.w-message-success {
+  border-left-color: var(--w-success);
+  background: var(--w-success-container);
+  color: var(--w-on-success-container);
+}
+.w-message-success .w-message-header {
+  background: color-mix(in srgb, var(--w-success) 12%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--w-success) 24%, transparent);
+}
+
+.w-message-warning {
+  border-left-color: var(--w-warning);
+  background: var(--w-warning-container);
+  color: var(--w-on-warning-container);
+}
+.w-message-warning .w-message-header {
+  background: color-mix(in srgb, var(--w-warning) 12%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--w-warning) 24%, transparent);
+}
+
+.w-message-error {
+  border-left-color: var(--w-error);
+  background: var(--w-error-container);
+  color: var(--w-on-error-container);
+}
+.w-message-error .w-message-header {
+  background: color-mix(in srgb, var(--w-error) 12%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--w-error) 24%, transparent);
+}

@@ -1,0 +1,134 @@
+<h1>Intersect</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-intersect</code> directive. The <code>w-intersect</code> attribute wraps the native <code>IntersectionObserver</code> API and provides an easy-to-use interface for detecting when an element becomes visible in the viewport. It fires a bubbling <code>w-intersect</code> event and reflects its state as a <code>w-intersecting</code> attribute, so you can react in JavaScript or style reveals in pure CSS. Requires <code>duvay-directives.js</code>.</p>
+
+<h2>Interactive demo</h2>
+<p>Scroll the box into view inside the panel; <code>w-intersecting</code> flips and a <code>w-intersect</code> event fires. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div id="io-scroll" class="w-card w-card-body" style="height: 180px; overflow: auto;">
+      <div style="height: 220px;">Scroll down inside this panel.</div>
+      <div id="io-target" w-intersect w-intersect-root="#io-scroll" w-intersect-threshold="0.8" class="w-card w-card-body" style="text-align: center;">
+        <span id="io-status">Not visible yet</span>
+      </div>
+      <div style="height: 220px;"></div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Add <code>w-intersect</code> to any element you want to observe. As it scrolls into and out of view, DuVay updates <code>w-intersecting</code> and dispatches a <code>w-intersect</code> event &#8212; for example, a card that flips from <em>error</em> to <em>success</em> the moment it enters the viewport.</p>
+<pre class="code-block"><code>&lt;div class="w-card" w-intersect&gt;
+  Scroll me into view
+&lt;/div&gt;
+
+&lt;script&gt;
+  document.querySelector('[w-intersect]')
+    .addEventListener('w-intersect', (e) =&gt; &#123;
+      e.target.classList.toggle('is-visible', e.detail.isIntersecting);
+    &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Options</h2>
+<p>The directive accepts options that map directly onto the Intersection Observer API and Vuetify's <code>v-intersect</code> modifiers. Each is set as a <code>w-intersect-*</code> attribute.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Attribute</th><th>Vue modifier</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-intersect-once</code></td><td><code>.once</code></td><td>Stop observing after the first time the element intersects.</td></tr>
+    <tr><td><code>w-intersect-quiet</code></td><td><code>.quiet</code></td><td>Skip the initial callback fired when the observer first attaches.</td></tr>
+    <tr><td><code>w-intersect-margin</code></td><td><code>rootMargin</code></td><td>Grow or shrink the root bounds, e.g. <code>"0px 0px -100px 0px"</code>.</td></tr>
+    <tr><td><code>w-intersect-threshold</code></td><td><code>threshold</code></td><td>Comma-separated list of visible fractions that trigger the callback, e.g. <code>"0, 0.5, 1"</code>.</td></tr>
+    <tr><td><code>w-intersect-root</code></td><td><code>root</code></td><td>CSS selector for the scroll container to observe within, e.g. <code>"#scroll-area"</code>.</td></tr>
+  </tbody>
+</table>
+
+<p>An example using the <code>threshold</code> option, which fires only once half of the element is visible:</p>
+<pre class="code-block"><code>&lt;div
+  class="w-card"
+  w-intersect
+  w-intersect-threshold="0.5"
+&gt;
+  Half of me must be visible
+&lt;/div&gt;</code></pre>
+
+<h2>Events</h2>
+<p>Observed elements dispatch a bubbling <code>w-intersect</code> <code>CustomEvent</code>. The <code>detail</code> object carries <code>isIntersecting</code> (a boolean) and <code>entries</code> (the raw <code>IntersectionObserverEntry[]</code>).</p>
+<pre class="code-block"><code>el.addEventListener('w-intersect', (e) =&gt; &#123;
+  if (e.detail.isIntersecting) &#123;
+    console.log('Entered view', e.detail.entries);
+  &#125; else &#123;
+    console.log('Left view');
+  &#125;
+&#125;);</code></pre>
+
+<h2>Reflected state</h2>
+<p>DuVay reflects the current visibility onto the element as <code>w-intersecting="true|false"</code>. Because it is a plain attribute, you can drive reveal animations entirely in CSS &#8212; no JavaScript listener required.</p>
+<pre class="code-block"><code>&lt;div class="reveal" w-intersect w-intersect-once&gt;
+  I fade in when scrolled into view
+&lt;/div&gt;
+
+&lt;style&gt;
+  .reveal &#123;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  &#125;
+  .reveal[w-intersecting="true"] &#123;
+    opacity: 1;
+    transform: none;
+  &#125;
+&lt;/style&gt;</code></pre>
+
+<h2>Examples</h2>
+
+<h3>Reveal on scroll</h3>
+<p>Combine <code>w-intersect-once</code> with the reflected state attribute to animate elements in exactly once as the page scrolls.</p>
+<pre class="code-block"><code>&lt;section
+  class="reveal"
+  w-intersect
+  w-intersect-once
+  w-intersect-margin="0px 0px -100px 0px"
+&gt;
+  &lt;h2&gt;I slide in once&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+
+<h3>Lazy-load images</h3>
+<p>Defer loading heavy assets until a placeholder approaches the viewport. The negative-free <code>w-intersect-margin</code> pre-loads the image 200px before it appears.</p>
+<pre class="code-block"><code>&lt;img
+  data-src="/large-image.jpg"
+  alt="Deferred image"
+  w-intersect
+  w-intersect-once
+  w-intersect-margin="200px"
+&gt;
+
+&lt;script&gt;
+  document.querySelectorAll('img[w-intersect]').forEach((img) =&gt; &#123;
+    img.addEventListener('w-intersect', (e) =&gt; &#123;
+      if (e.detail.isIntersecting) &#123;
+        img.src = img.dataset.src;
+      &#125;
+    &#125;);
+  &#125;);
+&lt;/script&gt;</code></pre>
+
+<h3>Infinite-scroll sentinel</h3>
+<p>Place an empty sentinel at the end of a list. Each time it intersects, load the next page of results. Omit <code>w-intersect-once</code> so it keeps firing as the sentinel re-enters view.</p>
+<pre class="code-block"><code>&lt;ul id="feed"&gt;&lt;!-- items --&gt;&lt;/ul&gt;
+&lt;div id="sentinel" w-intersect w-intersect-margin="0px 0px 400px 0px"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  document.getElementById('sentinel')
+    .addEventListener('w-intersect', (e) =&gt; &#123;
+      if (e.detail.isIntersecting) loadMore();
+    &#125;);
+&lt;/script&gt;</code></pre>
+
+<h3>Scoped root</h3>
+<p>Observe visibility within a scrolling container instead of the viewport by pointing <code>w-intersect-root</code> at it.</p>
+<pre class="code-block"><code>&lt;div id="scroll-area" style="overflow: auto; height: 300px"&gt;
+  &lt;div w-intersect w-intersect-root="#scroll-area"&gt;
+    Tracked against the panel, not the window
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>

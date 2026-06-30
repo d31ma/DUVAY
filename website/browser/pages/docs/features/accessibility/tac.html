@@ -1,0 +1,93 @@
+<h1>Accessibility (a11y)</h1>
+<p>Web accessibility (a11y for short) is the inclusive practice of removing barriers that prevent people with disabilities from interacting with, or accessing, websites. DuVay treats accessibility as a first-class constraint: components ship with logical focus order, visible focus indicators, semantic HTML, and reduced-motion support out of the box. Where Vuetify relies on Vue runtime wiring, DuVay leans on plain CSS, real semantic markup, and the few ARIA attributes you add yourself &#8212; or that the Light-DOM web components add for you.</p>
+
+<h2 id="built-in">Built-in behavior</h2>
+<p>DuVay components are built to provide keyboard interactions for every mouse-based action and to use HTML5 semantic elements wherever applicable. Buttons are real <code>&lt;button&gt;</code> elements, inputs are real <code>&lt;input&gt;</code> elements, and lists are real <code>&lt;ul&gt;</code>/<code>&lt;li&gt;</code> structures. Because the web components render in the Light DOM with the same DuVay classes, the CSS-only and component approaches are accessible in exactly the same way.</p>
+
+<h2 id="focus-management">Focus management and keyboard interactions</h2>
+<p>Every interactive element uses <code>:focus-visible</code> so keyboard users get a clear focus ring while mouse users are not distracted by one. Tab order follows visual order, and no component traps focus. Tokenized focus rings keep the indicator at WCAG AA contrast against any theme.</p>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn">Focused button</button>
+    <input class="w-input" placeholder="Focused input" />
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled">Focused button</w-btn>
+    <w-input placeholder="Focused input"></w-input>
+  </div>
+</demo-compare>
+<p>Define your own focus styles with <code>:focus-visible</code> rather than <code>:focus</code> so the ring only appears for keyboard interaction:</p>
+<pre class="code-block"><code>.my-control:focus-visible &#123;
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+&#125;</code></pre>
+
+<h2 id="activator-attributes">Activator attributes</h2>
+<p>Vuetify passes a11y attributes down through activator slots so a trigger is associated with the content it opens. DuVay has no slot scope, so you wire the relationship explicitly with ARIA. A menu or dropdown trigger should advertise that it owns a popup, expose its expanded state, and point at the content it controls:</p>
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-outlined"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="actions-menu"&gt;
+  Actions
+&lt;/button&gt;
+
+&lt;ul id="actions-menu" class="w-menu-content" role="menu"&gt;
+  &lt;li class="w-list-item" role="menuitem"&gt;
+    &lt;span class="w-list-item-title"&gt;Option 1&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="w-list-item" role="menuitem"&gt;
+    &lt;span class="w-list-item-title"&gt;Option 2&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li class="w-list-item" role="menuitem" aria-disabled="true"&gt;
+    &lt;span class="w-list-item-title"&gt;Option 3&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>Toggle <code>aria-expanded</code> between <code>"true"</code> and <code>"false"</code> as the menu opens and closes. The DuVay web components manage this lifecycle for you &#8212; the rendered trigger already carries the bound attributes, equivalent to Vuetify&#8217;s output:</p>
+<div class="code-block"><code>&lt;button aria-expanded="false" aria-haspopup="true" role="button" type="button"&gt;</code></div>
+
+<h2 id="menus">Menus and lists</h2>
+<p>Inside a menu, each item should carry <code>role="menuitem"</code> so assistive technology announces it correctly, and the container should be reachable with the up and down arrow keys. With CSS-only markup you add these roles yourself; the DuVay list and menu components apply them automatically. Disabled options use <code>aria-disabled="true"</code> rather than being removed, so they remain discoverable.</p>
+<demo-compare>
+  <div slot="css">
+    <ul role="menu" aria-label="Account actions">
+      <li class="w-list-item" role="menuitem"><span class="w-list-item-title">Profile</span></li>
+      <li class="w-list-item" role="menuitem"><span class="w-list-item-title">Settings</span></li>
+      <li class="w-list-item" role="menuitem" aria-disabled="true"><span class="w-list-item-title">Billing</span></li>
+    </ul>
+  </div>
+</demo-compare>
+
+<h2 id="form-controls">Form controls and labels</h2>
+<p>Vuetify auto-generates <code>id</code>, <code>aria-labelledby</code>, and <code>aria-selected</code> for select-style components. In DuVay, the relationship between a control and its label is plain HTML: associate every input with a <code>&lt;label&gt;</code> via matching <code>for</code> and <code>id</code>, or wrap the control in the label. When you build a custom listbox out of CSS markup, bind each option&#8217;s <code>id</code> to the <code>aria-labelledby</code> of its visible title so the accessible name matches what is on screen.</p>
+<pre class="code-block"><code>&lt;label for="email" class="w-label"&gt;Email address&lt;/label&gt;
+&lt;input id="email" type="email"
+       class="w-input"
+       autocomplete="email" /&gt;</code></pre>
+<p>The DuVay form web components generate the label association, required state, and error messaging wiring for you, so this is handled automatically when you are not assembling the markup by hand.</p>
+
+<h2 id="aria">ARIA</h2>
+<p>DuVay web components set appropriate <code>role</code>, <code>aria-*</code>, and label attributes. When you use CSS-only markup, add the equivalent ARIA attributes yourself. Reach for native semantics first &#8212; a real <code>&lt;button&gt;</code>, <code>&lt;nav&gt;</code>, or <code>&lt;dialog&gt;</code> needs less ARIA than a <code>&lt;div&gt;</code> retrofitted with roles. There is no first rule of ARIA quite like &#8220;don&#8217;t use ARIA when HTML will do,&#8221; and DuVay&#8217;s markup is designed to let you follow it.</p>
+
+<h2 id="color-contrast">Color and contrast</h2>
+<p>Theme colors are defined as design tokens and tuned to meet WCAG AA: 4.5:1 for body text and 3:1 for UI components and large text. The light, dark, and high-contrast themes each redefine these tokens so contrast holds across the <code>data-w-theme</code> modes, including the <code>auto</code> theme that respects <code>prefers-color-scheme</code>. Never communicate state with color alone &#8212; pair it with text, an icon, or a shape.</p>
+
+<h2 id="reduced-motion">Reduced motion</h2>
+<p>All motion respects <code>prefers-reduced-motion</code>. Disable or soften custom animations the same way in your own styles:</p>
+<div class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
+  .my-animation &#123;
+    animation: none;
+    transition: none;
+  &#125;
+&#125;</code></div>
+
+<h2 id="standards">Standards and specifications</h2>
+<p>Beyond what DuVay supports by default, the underlying standards describe how to build accessible components and verify best practices. The W3C Web Accessibility Initiative publishes the Web Content Accessibility Guidelines (WCAG), and WAI-ARIA provides guidance for dynamic content and advanced UI controls. Use them as the source of truth when you extend DuVay with custom markup.</p>
+
+<h2 id="resources">Additional resources</h2>
+<p>While DuVay attempts to make a11y as easy as possible in your application, there are times where additional information is needed. Below you can find a list of helpful resources.</p>
+<ul>
+  <li><a href="https://www.w3.org/WAI/" target="_blank" rel="noopener">W3C Web Accessibility Initiative</a></li>
+  <li><a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener">WAI-ARIA Authoring Practices</a></li>
+  <li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener">Web Content Accessibility Guidelines (WCAG)</a></li>
+  <li><a href="https://a11yproject.com/" target="_blank" rel="noopener">The A11Y Project</a></li>
+</ul>

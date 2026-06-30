@@ -1,0 +1,70 @@
+/* DuVay — Progress component styles. */
+@import "../core.css";
+
+/* ── Progress ─────────────────────────────────────────────────────────────── */
+.w-progress {
+  width: 100%;
+  height: 4px;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+  overflow: hidden;
+}
+
+.w-progress-bar {
+  height: 100%;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-primary);
+  transition: width 0.3s ease;
+}
+
+.w-progress--indeterminate .w-progress-bar {
+  width: 40%;
+  animation: w-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes w-progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* Circular progress */
+.w-progress-circular {
+  display: inline-flex;
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+.w-progress-circular svg {
+  transform: rotate(-90deg);
+}
+
+.w-progress-circular circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.w-progress-circular .w-progress-track {
+  stroke: var(--w-surface-container-high);
+}
+
+.w-progress-circular .w-progress-fill {
+  stroke: var(--w-primary);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.w-progress-circular--indeterminate .w-progress-fill {
+  animation: w-circular-indeterminate 1.4s linear infinite;
+}
+
+@keyframes w-circular-indeterminate {
+  0%   { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 90, 200; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 90, 200; stroke-dashoffset: -124; }
+}
+
+.w-progress-circular--sm { width: 32px; height: 32px; }
+.w-progress-circular--sm circle { stroke-width: 4; }
+.w-progress-circular--lg { width: 64px; height: 64px; }
+.w-progress-circular--lg circle { stroke-width: 3; }

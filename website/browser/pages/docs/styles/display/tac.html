@@ -1,0 +1,61 @@
+<h1>Display</h1>
+<p>Display helpers control the CSS <code>display</code> value of an element, plus responsive visibility helpers that show or hide content at mobile, tablet, and desktop breakpoints.</p>
+
+<h2>Usage</h2>
+
+<h3>Inline and block</h3>
+<p>Use <code>d-inline</code>, <code>d-inline-block</code>, and <code>d-block</code> to switch between inline and block flow.</p>
+<div class="w-mb-md">
+  <span class="d-inline w-border pa-2">inline</span>
+  <span class="d-inline w-border pa-2">inline</span>
+  <span class="d-inline-block w-border pa-2">inline-block</span>
+  <div class="d-block w-border pa-2 mt-4">block</div>
+</div>
+<div class="code-block"><code>&lt;span class="d-inline"&gt;inline&lt;/span&gt;
+&lt;span class="d-inline-block"&gt;inline-block&lt;/span&gt;
+&lt;div class="d-block"&gt;block&lt;/div&gt;</code></div>
+
+<h3>Flex containers</h3>
+<p>Use <code>d-flex</code> and <code>d-inline-flex</code> to create flex formatting contexts. Combine with gap and alignment utilities to lay out children.</p>
+<div class="w-mb-md">
+  <div class="d-flex ga-3 w-border pa-3">
+    <span class="w-bg-primary-container pa-2">flex 1</span>
+    <span class="w-bg-primary-container pa-2">flex 2</span>
+  </div>
+  <span class="d-inline-flex ga-2 w-border pa-2 mt-4">
+    <span class="w-bg-primary-container pa-2">inline-flex 1</span>
+    <span class="w-bg-primary-container pa-2">inline-flex 2</span>
+  </span>
+</div>
+<div class="code-block"><code>&lt;div class="d-flex ga-3"&gt;...flex children...&lt;/div&gt;
+&lt;span class="d-inline-flex ga-2"&gt;...inline-flex children...&lt;/span&gt;</code></div>
+
+<h3>Hide elements</h3>
+<p>Use <code>d-none</code> to remove an element from layout, or the responsive helpers to show/hide at specific breakpoints.</p>
+<div class="w-mb-md">
+  <div class="d-none w-border pa-2">this is hidden (<code>d-none</code>)</div>
+  <div class="w-hide-mobile w-bg-primary-container pa-2">hidden on mobile, visible on tablet+</div>
+  <div class="w-show-mobile w-bg-surface-high pa-2 mt-4">mobile-only visible</div>
+</div>
+<div class="code-block"><code>&lt;div class="d-none"&gt;Hidden everywhere&lt;/div&gt;
+&lt;div class="w-hide-mobile"&gt;Hidden on small viewports&lt;/div&gt;
+&lt;div class="w-show-mobile"&gt;Only on small viewports&lt;/div&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>d-block</code></td><td><code>display: block</code></td></tr>
+    <tr><td><code>d-inline</code></td><td><code>display: inline</code></td></tr>
+    <tr><td><code>d-inline-block</code></td><td><code>display: inline-block</code></td></tr>
+    <tr><td><code>d-inline-flex</code></td><td><code>display: inline-flex</code></td></tr>
+    <tr><td><code>d-flex</code></td><td><code>display: flex</code></td></tr>
+    <tr><td><code>d-grid</code></td><td><code>display: grid</code></td></tr>
+    <tr><td><code>d-contents</code></td><td><code>display: contents</code> — children participate in parent layout.</td></tr>
+    <tr><td><code>d-none</code></td><td><code>display: none</code></td></tr>
+    <tr><td><code>w-hide-mobile</code></td><td>Hidden at &lt;= 760px.</td></tr>
+    <tr><td><code>w-show-mobile</code></td><td>Hidden at &gt;= 761px (mobile-only).</td></tr>
+    <tr><td><code>w-hide-tablet</code></td><td>Hidden between 761px and 1024px.</td></tr>
+    <tr><td><code>w-hide-desktop</code></td><td>Hidden at &gt;= 1025px.</td></tr>
+  </tbody>
+</table>

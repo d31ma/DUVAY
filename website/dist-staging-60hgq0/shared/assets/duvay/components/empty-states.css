@@ -1,0 +1,33 @@
+/* DuVay — Empty States component styles. */
+@import "../core.css";
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.w-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--w-text-subtle);
+  min-height: 240px;
+}
+
+.w-empty svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.4;
+  margin-bottom: var(--w-space-lg);
+}
+
+.w-empty-title {
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  margin-bottom: 0.25rem;
+  color: var(--w-text);
+}
+
+.w-empty-subtitle {
+  font-size: var(--w-font-sm);
+  max-width: 280px;
+}

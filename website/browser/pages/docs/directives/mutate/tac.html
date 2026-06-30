@@ -1,0 +1,118 @@
+<h1>Mutate</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-mutate</code> directive. The <code>w-mutate</code> attribute wraps the native <code>MutationObserver</code> API to detect when an element is updated. It requires <code>duvay-directives.js</code>, which wires the observer and dispatches a bubbling <code>w-mutate</code> event whenever the watched node changes.</p>
+
+<h2>Interactive demo</h2>
+<p>Add items and watch the <code>w-mutate</code> event count climb as the list's subtree changes. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack" style="gap: 1rem; align-items: flex-start;">
+      <button class="w-btn w-btn-filled" id="mu-add">Add item</button>
+      <ul id="mu-list" w-mutate class="w-card w-card-body" style="min-width: 240px; margin: 0;">
+        <li>Item 1</li>
+      </ul>
+    </div>
+    <p>Mutations observed: <code><span id="mu-count">0</span></code></p>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Add <code>w-mutate</code> to any element and listen for the <code>w-mutate</code> event. The observer can be configured two ways: through type-flag attributes, or by leaving them off entirely. By default &#8212; with no type flag present &#8212; <code>w-mutate-attr</code>, <code>w-mutate-char</code>, <code>w-mutate-child</code>, and <code>w-mutate-sub</code> are all enabled. Applying any one type flag manually sets the undefined options to <code>false</code>, exactly matching Vuetify's modifier behavior.</p>
+<pre class="code-block"><code>&lt;!-- attr, char, child, and sub are all observed --&gt;
+&lt;div w-mutate&gt;...&lt;/div&gt;
+
+&lt;!-- child is observed; attr, char, and sub are off --&gt;
+&lt;div w-mutate w-mutate-child&gt;...&lt;/div&gt;</code></pre>
+<p>Combine type flags to scope the observer. The pair below watches child-node additions and removals across the entire subtree:</p>
+<pre class="code-block"><code>&lt;div w-mutate w-mutate-child w-mutate-sub id="watched"&gt;...&lt;/div&gt;
+
+&lt;script&gt;
+  document.getElementById('watched').addEventListener('w-mutate', (e) =&gt; &#123;
+    onMutate(e.detail.mutations);
+  &#125;);
+
+  function onMutate (mutations) &#123;
+    //
+  &#125;
+&lt;/script&gt;</code></pre>
+
+<h2>Once</h2>
+<p>When a callback should fire only once, add <code>w-mutate-once</code>. The observer disconnects itself after the first detected mutation. In the example below the same content is bound to two cards and an input; both cards fire <code>w-mutate</code> on the first change, but the once-flagged card unbinds afterward and ignores every subsequent edit.</p>
+<pre class="code-block"><code>&lt;input type="text" id="content-input" value="Foo"&gt;
+
+&lt;div class="w-card" id="card-a"&gt;Foo&lt;/div&gt;
+&lt;div class="w-card" id="card-b" w-mutate-once&gt;Foo&lt;/div&gt;
+
+&lt;script&gt;
+  let mutations = 0;
+  const input = document.getElementById('content-input');
+  const cardA = document.getElementById('card-a');
+  const cardB = document.getElementById('card-b');
+
+  [cardA, cardB].forEach((card) =&gt; &#123;
+    card.setAttribute('w-mutate', '');
+    card.setAttribute('w-mutate-char', '');
+    card.addEventListener('w-mutate', () =&gt; &#123; mutations++; &#125;);
+  &#125;);
+
+  input.addEventListener('input', () =&gt; &#123;
+    cardA.textContent = input.value;
+    cardB.textContent = input.value; // card-b only counts the first change
+  &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Immediate</h2>
+<p>Unlike the Intersection Observer API, a Mutation Observer's callback is not invoked when it is created. Add <code>w-mutate-immediate</code> to normalize this: DuVay fires <code>w-mutate</code> once right after wiring, then again on every subsequent mutation. The immediate dispatch carries an empty <code>detail.mutations</code> array, is not counted as a mutation, and does not trigger disconnect when combined with <code>w-mutate-once</code>.</p>
+<pre class="code-block"><code>&lt;div w-mutate w-mutate-immediate id="panel"&gt;...&lt;/div&gt;
+
+&lt;script&gt;
+  let mutations = 0;
+  document.getElementById('panel').addEventListener('w-mutate', () =&gt; &#123;
+    mutations++; // fires once immediately, then on each change
+  &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Modifiers</h2>
+<p>Each DuVay attribute maps directly to a Vuetify <code>v-mutate</code> modifier. With no type flag present, the four observer options default to <code>true</code>; adding any one flag turns the others off.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Attribute</th><th>Vue modifier</th><th>Default</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-mutate-attr</code></td><td><code>.attr</code></td><td><code>true</code></td><td>Monitors the target node's attribute changes.</td></tr>
+    <tr><td><code>w-mutate-char</code></td><td><code>.char</code></td><td><code>true</code></td><td>Monitors changes to character data (and descendants when <code>w-mutate-sub</code> is set).</td></tr>
+    <tr><td><code>w-mutate-child</code></td><td><code>.child</code></td><td><code>true</code></td><td>Monitors addition and removal of child nodes (and descendants when <code>w-mutate-sub</code> is set).</td></tr>
+    <tr><td><code>w-mutate-sub</code></td><td><code>.sub</code></td><td><code>true</code></td><td>Extends monitoring to the entire subtree of the target node.</td></tr>
+    <tr><td><code>w-mutate-once</code></td><td><code>.once</code></td><td><code>&#8212;</code></td><td>Dispatches <code>w-mutate</code> once, then disconnects the observer.</td></tr>
+    <tr><td><code>w-mutate-immediate</code></td><td><code>.immediate</code></td><td><code>&#8212;</code></td><td>Dispatches <code>w-mutate</code> once right after wiring; does not affect <code>w-mutate-once</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2>Events</h2>
+<p>The directive dispatches a single bubbling <code>CustomEvent</code> named <code>w-mutate</code>. Its <code>detail.mutations</code> property holds the <code>MutationRecord[]</code> reported by the underlying observer (empty for the immediate dispatch).</p>
+<pre class="code-block"><code>el.addEventListener('w-mutate', (e) =&gt; &#123;
+  e.detail.mutations.forEach((record) =&gt; &#123;
+    if (record.addedNodes.length) onItemsAdded(record.addedNodes);
+  &#125;);
+&#125;);</code></pre>
+
+<h2>Example</h2>
+<p>A live list that reacts whenever rows are inserted or removed. The observer watches the subtree for child-node changes and reports the affected nodes through <code>detail.mutations</code>.</p>
+<div class="code-block"><code>&lt;ul class="live-list" w-mutate w-mutate-child w-mutate-sub&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+  const list = document.querySelector('.live-list');
+
+  list.addEventListener('w-mutate', (e) =&gt; &#123;
+    const added = e.detail.mutations
+      .flatMap((record) =&gt; [...record.addedNodes]);
+    if (added.length) console.log('rows added:', added.length);
+  &#125;);
+
+  // appending a row triggers w-mutate
+  const li = document.createElement('li');
+  li.textContent = 'Third';
+  list.appendChild(li);
+&lt;/script&gt;</code></div>

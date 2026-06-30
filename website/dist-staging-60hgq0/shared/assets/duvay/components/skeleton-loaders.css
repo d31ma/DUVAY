@@ -1,0 +1,47 @@
+/* DuVay — Skeleton Loaders component styles. */
+@import "../core.css";
+
+/* ── Skeleton loading ────────────────────────────────────────────────────── */
+.w-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--w-divider) 25%,
+    var(--w-hover) 50%,
+    var(--w-divider) 75%
+  );
+  background-size: 200% 100%;
+  animation: w-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--w-radius);
+}
+
+@keyframes w-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Common skeleton shapes */
+.w-skeleton-text {
+  height: 14px;
+  margin-bottom: 0.5rem;
+}
+
+.w-skeleton-text:last-child { width: 60%; }
+
+.w-skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--w-radius);
+}
+
+.w-skeleton-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-divider);
+}
+
+.w-skeleton-block {
+  height: 56px;
+}

@@ -1,0 +1,34 @@
+<h1>Pull To Refresh</h1>
+<p><code>w-pull-to-refresh</code> lets a scroll region be pulled down past a threshold to trigger a refresh, matching Vuetify's <code>VPullToRefresh</code>. When the threshold is crossed it fires <code>load</code> (and the back-compatible <code>change</code>) with a <code>done</code> callback; call <code>done()</code> or <code>complete()</code> when the async work finishes.</p>
+
+<h2>Pull gesture</h2>
+<p>Pull down from the top of the region (touch or click-drag) past <code>pull-down-threshold</code> to refresh.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-pull-to-refresh">
+      <div class="w-pull-indicator"><span class="w-pull-spinner"></span>Pull to refresh</div>
+      <div class="w-list"><div class="w-list-item">Inbox</div><div class="w-list-item">Updates</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-pull-to-refresh pull-down-threshold="64" onload="event.detail.done()">
+      <div class="w-list"><div class="w-list-item">Inbox</div><div class="w-list-item">Updates</div></div>
+    </w-pull-to-refresh>
+  </div>
+</demo-compare>
+
+<h2>Refreshing state</h2>
+<p>Add <code>refreshing</code> (or bind <code>model-value</code>) to show the spinning indicator while data loads.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-pull-to-refresh is-refreshing">
+      <div class="w-pull-indicator"><span class="w-pull-spinner"></span>Refreshing…</div>
+      <div class="w-list"><div class="w-list-item">Inbox</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-pull-to-refresh refreshing>
+      <div class="w-list"><div class="w-list-item">Inbox</div></div>
+    </w-pull-to-refresh>
+  </div>
+</demo-compare>

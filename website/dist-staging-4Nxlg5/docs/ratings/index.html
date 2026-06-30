@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-0fa06aa2-0">Ratings</h1><p id="ty-e028910c-0"><code id="ty-28d79ef5-0">w-rating</code> captures whole or half-step scores with keyboard navigation, hover previews, custom icons, labels, form values, and controlled <code id="ty-26649141-0">value</code> state.</p><h2 id="ty-9feea56a-0">Usage</h2><p id="ty-7d1ae266-0">Use the class structure for a static score or <code id="ty-c5f6a7ec-0">w-rating</code> for an interactive form control.</p><demo-compare >
+  <div slot="css" id="ty-054ab9fe-0">
+    <div class="w-rating" role="img" aria-label="4 out of 5" id="ty-20958fc3-0">
+      <span class="w-rating__items" id="ty-a29f95b6-0">
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%" id="ty-2f1af8c2-0">
+          <span class="w-rating__item" id="ty-5f97bda2-0"><span class="w-rating__visual" aria-hidden="true" id="ty-b980d042-0"><span class="w-rating__icon w-rating__icon--empty" id="ty-dfea51ed-0">☆</span><span class="w-rating__icon w-rating__icon--filled" id="ty-535eadb7-0">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%" id="ty-ab9c9d57-0">
+          <span class="w-rating__item" id="ty-c7fe7c88-0"><span class="w-rating__visual" aria-hidden="true" id="ty-6e302ce5-0"><span class="w-rating__icon w-rating__icon--empty" id="ty-e124636a-0">☆</span><span class="w-rating__icon w-rating__icon--filled" id="ty-44330714-0">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%" id="ty-fa6fff6f-0">
+          <span class="w-rating__item" id="ty-b9ee8ad9-0"><span class="w-rating__visual" aria-hidden="true" id="ty-d6ea935c-0"><span class="w-rating__icon w-rating__icon--empty" id="ty-1858baf3-0">☆</span><span class="w-rating__icon w-rating__icon--filled" id="ty-b71f83f5-0">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%" id="ty-551482e4-0">
+          <span class="w-rating__item" id="ty-2b173e02-0"><span class="w-rating__visual" aria-hidden="true" id="ty-6a604580-0"><span class="w-rating__icon w-rating__icon--empty" id="ty-f61bb329-0">☆</span><span class="w-rating__icon w-rating__icon--filled" id="ty-012d399c-0">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="empty" style="--w-rating-fill:0%" id="ty-39fcd6b9-0">
+          <span class="w-rating__item" id="ty-59beb952-0"><span class="w-rating__visual" aria-hidden="true" id="ty-ad85142b-0"><span class="w-rating__icon w-rating__icon--empty" id="ty-53fa06d4-0">☆</span><span class="w-rating__icon w-rating__icon--filled" id="ty-77affda8-0">★</span></span></span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-f3cadc45-0">
+    <w-rating value="4" label="Product rating" ripple="" id="ty-a07ab7bd-0"></w-rating>
+  </div>
+</demo-compare><h2 id="ty-62a9a555-0">Colors</h2><p id="ty-13d456ba-0"><code id="ty-d4c1303f-0">color</code> controls empty items and <code id="ty-55957cf9-0">active-color</code> controls the selected value.</p><demo-compare >
+  <div slot="css" id="ty-9e9b22cb-0">
+    <div class="w-column w-gap-2" id="ty-cd5907ed-0">
+      <div class="w-row w-gap-1 w-items-center" style="color:var(--w-primary)" id="ty-0e66a761-0"><span aria-hidden="true" id="ty-a4f23233-0">★ ★ ★ ★ ☆</span><span id="ty-e3981f6f-0">Primary</span></div>
+      <div class="w-row w-gap-1 w-items-center" style="color:var(--w-success)" id="ty-b4a32162-0"><span aria-hidden="true" id="ty-d38260f6-0">★ ★ ★ ☆ ☆</span><span id="ty-49565b5d-0">Success</span></div>
+      <div class="w-row w-gap-1 w-items-center" style="color:var(--w-warning)" id="ty-29e21637-0"><span aria-hidden="true" id="ty-a2cd089f-0">★ ★ ★ ★ ★</span><span id="ty-05d5d5be-0">Warning</span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-f32400e2-0">
+    <div class="w-column w-gap-2" id="ty-01523d48-0">
+      <w-rating value="4" active-color="primary" label="Primary rating" id="ty-02565b40-0"></w-rating>
+      <w-rating value="3" active-color="success" label="Success rating" id="ty-431baa6c-0"></w-rating>
+      <w-rating value="5" active-color="warning" label="Warning rating" id="ty-0fe86ff2-0"></w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-551e8125-0">Half Increments</h2><p id="ty-0b8fe3e9-0"><code id="ty-1c69f27f-0">half-increments</code> exposes two selectable zones per item. Arrow keys move by one half step.</p><demo-compare >
+  <div slot="css" id="ty-90e14764-0">
+    <div class="w-rating" role="img" aria-label="3.5 out of 5" style="--w-rating-active-color:var(--w-warning)" id="ty-b9e7315d-0">
+      <span aria-hidden="true" id="ty-297a31fc-0">★ ★ ★ ◐ ☆</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e8b83b05-0">
+    <w-rating value="3.5" half-increments="" label="Half-step rating" ripple="" id="ty-8588592a-0"></w-rating>
+  </div>
+</demo-compare><h2 id="ty-61ed78c8-0">Hover and Clearable</h2><p id="ty-e85dff7c-0">Hover previews a prospective value. With <code id="ty-56441bfe-0">clearable</code>, selecting the current value resets the score to zero.</p><demo-compare >
+  <div slot="css" id="ty-2fd76c4b-0">
+    <div class="w-column w-gap-2" id="ty-f17c7267-0">
+      <span id="ty-43d2dc74-0">Hover states preview the active color.</span>
+      <span id="ty-57bcc39b-0">Select the same value again to clear it.</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2a06bbe2-0">
+    <w-rating value="3" hover="" clearable="" ripple="" label="Hover and clear rating" id="ty-25675325-0"></w-rating>
+  </div>
+</demo-compare><h2 id="ty-2d93b359-0">Length</h2><p id="ty-6650d54e-0">Set <code id="ty-1d5b77a8-0">length</code> for short sentiment scales or more granular scores.</p><demo-compare >
+  <div slot="css" id="ty-63877d61-0">
+    <div class="w-column w-gap-2" id="ty-c68b5b23-0">
+      <span aria-label="2 out of 3" id="ty-6cfc0c55-0">★ ★ ☆</span>
+      <span aria-label="7 out of 10" id="ty-9007ac35-0">★ ★ ★ ★ ★ ★ ★ ☆ ☆ ☆</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-eb90cd0f-0">
+    <div class="w-column w-gap-2" id="ty-e5d9f180-0">
+      <w-rating value="2" length="3" label="Three point score" id="ty-95da5b36-0"></w-rating>
+      <w-rating value="7" length="10" size="small" label="Ten point score" id="ty-7d2d70ec-0"></w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-f3622385-0">Size and Density</h2><p id="ty-54155d0c-0">Named sizes follow the component scale. Density adjusts the space between items without shrinking accessible hit targets.</p><demo-compare >
+  <div slot="css" id="ty-7e893035-0">
+    <div class="w-column w-gap-2" id="ty-a398e616-0">
+      <span style="font-size:1rem" id="ty-bf3b0115-0">★ ★ ★ ★ ☆</span>
+      <span style="font-size:1.5rem" id="ty-05d060fd-0">★ ★ ★ ★ ☆</span>
+      <span style="font-size:2.5rem" id="ty-c988ec53-0">★ ★ ★ ★ ☆</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-bfc9be55-0">
+    <div class="w-column w-gap-2" id="ty-30f80279-0">
+      <w-rating value="4" size="x-small" density="compact" label="Extra-small compact rating" id="ty-ab1c46e3-0"></w-rating>
+      <w-rating value="4" size="default" label="Default rating" id="ty-ee45c5c6-0"></w-rating>
+      <w-rating value="4" size="x-large" density="comfortable" label="Extra-large comfortable rating" id="ty-9ca335a6-0"></w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-9b02a6d9-0">Readonly and Disabled</h2><p id="ty-7bc41528-0"><code id="ty-a3a25e0f-0">readonly</code> keeps the score legible without allowing changes. <code id="ty-1927d625-0">disabled</code> also removes the control from interaction and applies disabled emphasis.</p><demo-compare >
+  <div slot="css" id="ty-4fdcc963-0">
+    <div class="w-column w-gap-2" id="ty-89cfcc78-0">
+      <span id="ty-11c7a7c8-0">Readonly: ★ ★ ★ ★ ☆</span>
+      <span style="opacity:.5" id="ty-85c45b66-0">Disabled: ★ ★ ☆ ☆ ☆</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-37a6e59a-0">
+    <div class="w-column w-gap-2" id="ty-687eb935-0">
+      <w-rating value="4" readonly="" label="Readonly rating" id="ty-739d32c1-0"></w-rating>
+      <w-rating value="2" disabled="" label="Disabled rating" id="ty-2251ba2d-0"></w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-3fe45863-0">Icons</h2><p id="ty-7a4d5d0a-0">Replace the empty and full symbols through the icon registry or provide a custom <code id="ty-4472a48a-0">item</code> slot.</p><demo-compare >
+  <div slot="css" id="ty-e426a124-0">
+    <div class="w-column w-gap-2" id="ty-19a33f97-0">
+      <span aria-label="3 out of 5" id="ty-760f27cf-0">♥ ♥ ♥ ♡ ♡</span>
+      <span aria-label="4 out of 5" id="ty-7fde9793-0">◆ ◆ ◆ ◆ ◇</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-afbff219-0">
+    <div class="w-column w-gap-2" id="ty-3d5386f4-0">
+      <w-rating value="3" empty-icon="♡" full-icon="♥" active-color="danger" label="Heart rating" id="ty-6228878a-0"></w-rating>
+      <w-rating value="4" active-color="primary" label="Diamond rating" id="ty-ddc5c019-0">
+        <span slot="item" id="ty-74080fdd-0">◆</span>
+      </w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-b116b86c-0">Item Labels</h2><p id="ty-767e2d15-0">Pass labels as a JSON array. Labels can sit above or below items and can be formatted through the <code id="ty-f8e9b39d-0">item-label</code> slot.</p><demo-compare >
+  <div slot="css" id="ty-5a3189b4-0">
+    <div class="w-row w-gap-3" id="ty-da2953d7-0">
+      <span id="ty-311cc689-0">Low<br id="ty-aa7499d5-0" />★</span>
+      <span id="ty-9223c384-0">Medium<br id="ty-7e2ba715-0" />★</span>
+      <span id="ty-a194b0d4-0">High<br id="ty-48e2146d-0" />☆</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-8e5b599a-0">
+    <div class="w-column w-gap-4" id="ty-0baaab54-0">
+      <w-rating value="2" length="3" item-labels="["Low","Medium","High"]" label="Priority" id="ty-4c17faf5-0"></w-rating>
+      <w-rating value="3" length="5" item-label-position="bottom" item-labels="["1","2","3","4","5"]" label="Score" id="ty-456f8ac3-0">
+        <strong slot="item-label" id="ty-8ebfaae3-0">Score</strong>
+      </w-rating>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-bbcff46b-0">Form and Accessibility</h2><p id="ty-4fff5fb9-0"><code id="ty-ca7808c6-0">name</code> adds a synchronized hidden form value. Customize spoken item labels with <code id="ty-e021ee87-0">item-aria-label</code>, using value and length placeholders in the label template.</p><demo-compare >
+  <div slot="css" id="ty-c3c9f561-0">
+    <label for="static-rating-value" id="ty-c69cd915-0">Service quality</label>
+    <input id="static-rating-value" class="w-input" name="service-quality" value="4.5" readonly="" />
+  </div>
+  <div slot="wc" id="ty-81e0497a-0">
+    <form class="w-column w-gap-2" id="ty-090de0cd-0">
+      <w-rating value="4.5" half-increments="" name="service-quality" label="Service quality" item-aria-label="{value} stars out of {length}" id="ty-673eb77d-0"></w-rating>
+    </form>
+  </div>
+</demo-compare><h2 id="ty-e9a8df62-0">Card Rating</h2><p id="ty-8680f787-0">Ratings can compose with DuVay surfaces without requiring a specialized wrapper.</p><demo-compare >
+  <div slot="css" id="ty-6bef809d-0">
+    <article class="w-card" id="ty-883153fe-0">
+      <div class="w-card-body" id="ty-29109279-0">
+        <strong id="ty-49f6789b-0">Field Notes</strong>
+        <p class="w-text-muted" id="ty-552ece9c-0">A compact, thoughtful release.</p>
+        <span aria-label="4 out of 5" id="ty-d22e0269-0">★ ★ ★ ★ ☆</span>
+      </div>
+    </article>
+  </div>
+  <div slot="wc" id="ty-2413157a-0">
+    <w-card id="ty-37c19f9b-0">
+      <w-card-title id="ty-2fb649cd-0">Field Notes</w-card-title>
+      <w-card-text id="ty-61a6cbb7-0">A compact, thoughtful release.</w-card-text>
+      <w-card-actions id="ty-9a6d8858-0">
+        <w-rating value="4" hover="" clearable="" size="small" label="Rate Field Notes" id="ty-c478ac71-0"></w-rating>
+      </w-card-actions>
+    </w-card>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

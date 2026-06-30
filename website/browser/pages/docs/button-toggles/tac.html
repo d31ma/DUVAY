@@ -1,0 +1,97 @@
+<h1>Button toggles</h1>
+<p><code>w-btn-toggle</code> groups a set of <code>w-btn</code> children into a single segmented control and manages which are selected. Clicking a button reports its value through a <code>change</code> event. It builds on the joined <code>.w-btn-group</code> visual.</p>
+
+<h2>Single selection</h2>
+<p>By default one button is selected at a time. Bind the chosen value with <code>value</code>. Add <code>mandatory</code> to always keep one selected.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group w-btn-toggle" role="group">
+      <button class="w-btn active">Day</button>
+      <button class="w-btn">Week</button>
+      <button class="w-btn">Month</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn-toggle value="day" mandatory>
+      <w-btn value="day">Day</w-btn>
+      <w-btn value="week">Week</w-btn>
+      <w-btn value="month">Month</w-btn>
+    </w-btn-toggle>
+  </div>
+</demo-compare>
+
+<h2>Multiple selection</h2>
+<p>Add <code>multiple</code> to allow several selections; the <code>value</code> becomes a comma-separated list. Use <code>max</code> to cap how many can be active at once.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group w-btn-toggle" role="group">
+      <button class="w-btn active">Bold</button>
+      <button class="w-btn active">Italic</button>
+      <button class="w-btn">Underline</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn-toggle multiple value="bold,italic">
+      <w-btn value="bold">Bold</w-btn>
+      <w-btn value="italic">Italic</w-btn>
+      <w-btn value="underline">Underline</w-btn>
+    </w-btn-toggle>
+  </div>
+</demo-compare>
+
+<h2>Divided</h2>
+<p>Add <code>divided</code> to draw a separator between buttons.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group w-btn-toggle w-btn-group--divided" role="group">
+      <button class="w-btn active">Left</button>
+      <button class="w-btn">Center</button>
+      <button class="w-btn">Right</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn-toggle divided value="left" mandatory>
+      <w-btn value="left">Left</w-btn>
+      <w-btn value="center">Center</w-btn>
+      <w-btn value="right">Right</w-btn>
+    </w-btn-toggle>
+  </div>
+</demo-compare>
+
+<h2>Variant &amp; color</h2>
+<p>Set <code>variant</code>, <code>color</code>, or <code>density</code> on the toggle and they cascade to any child button that doesn't set its own.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group w-btn-toggle" role="group">
+      <button class="w-btn w-btn-outlined w-btn-primary active">Low</button>
+      <button class="w-btn w-btn-outlined w-btn-primary">Medium</button>
+      <button class="w-btn w-btn-outlined w-btn-primary">High</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn-toggle variant="outlined" color="primary" value="low" mandatory>
+      <w-btn value="low">Low</w-btn>
+      <w-btn value="medium">Medium</w-btn>
+      <w-btn value="high">High</w-btn>
+    </w-btn-toggle>
+  </div>
+</demo-compare>
+
+<h2>Button group</h2>
+<p>For a static, non-selecting cluster, use <code>.w-btn-group</code> directly. Mark the chosen one with <code>active</code>, add <code>.w-btn-group--vertical</code> to stack, or <code>.w-btn-group--divided</code> for separators.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-btn-group">
+      <button class="w-btn active">Day</button>
+      <button class="w-btn">Week</button>
+      <button class="w-btn">Month</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-btn-group">
+      <w-btn active>Day</w-btn>
+      <w-btn>Week</w-btn>
+      <w-btn>Month</w-btn>
+    </div>
+  </div>
+</demo-compare>

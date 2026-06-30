@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-ece9aa08-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-e938deff-ece9aa08-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-d7c5da31-ece9aa08-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-21b10305-ece9aa08-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-bd3b93b9-ece9aa08-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-7680fda8-ece9aa08-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-5b011ae1-ece9aa08-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-c1663585-ece9aa08-0" />
+        </svg>
+      </span>
+      <span id="ty-07e52817-ece9aa08-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-24d9a70f-ece9aa08-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-47e7304c-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a35b8b48-ece9aa08-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-66d9770e-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-3f5b39f2-ece9aa08-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-22a00201-ece9aa08-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-d1d10a40-ece9aa08-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-a61ec279-ece9aa08-0">
+        <span data-w-theme-icon="" id="ty-87466a0f-ece9aa08-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-0980cdcc-ece9aa08-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-c02febd4-ece9aa08-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-c80e4466-ece9aa08-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-310a6eef-0">
+  <div id="ty-6b0106f3-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-10817518-6b0106f3-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-d4b0f2f0-6b0106f3-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-f20731fb-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-56e5cb2a-6b0106f3-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-fb95993d-6b0106f3-0">
+        <li id="ty-c7a350b0-6b0106f3-0"><a href="/docs/introduction" id="ty-594ed95c-6b0106f3-0">Introduction</a></li>
+        <li id="ty-899aaefb-6b0106f3-0"><a href="/docs/install" id="ty-cd813db3-6b0106f3-0">Install</a></li>
+        <li id="ty-4731fe8b-6b0106f3-0"><a href="/docs/getting-started" id="ty-a5ae5d2d-6b0106f3-0">Getting started</a></li>
+        <li id="ty-9e794c03-6b0106f3-0"><a href="/docs/download" id="ty-03666b20-6b0106f3-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-87851584-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-082f12ba-6b0106f3-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-98181f43-6b0106f3-0">
+        <li id="ty-0a2ac23c-6b0106f3-0"><a href="/docs/common-concepts" id="ty-c8a421c6-6b0106f3-0">Common concepts</a></li>
+        <li id="ty-a79cad30-6b0106f3-0"><a href="/docs/features" id="ty-9bc6bb24-6b0106f3-0">Features</a></li>
+        <li id="ty-6e53fbe4-6b0106f3-0"><a href="/docs/features/icon-fonts" id="ty-d1cb5b08-6b0106f3-0">Icons</a></li>
+        <li id="ty-6ba74063-6b0106f3-0"><a href="/docs/grid" id="ty-72c0ffce-6b0106f3-0">Grid</a></li>
+        <li id="ty-f610e6c7-6b0106f3-0"><a href="/docs/navigation" id="ty-512eca93-6b0106f3-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-05ff09b9-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7e7e4f9e-6b0106f3-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-21d4434d-6b0106f3-0">
+        <li id="ty-fdf56bcc-6b0106f3-0"><a href="/docs/components" id="ty-3e4ad48c-6b0106f3-0">Components overview</a></li>
+        <li id="ty-fe23d09d-6b0106f3-0"><a href="/docs/alerts" id="ty-2fe8136e-6b0106f3-0">Alerts</a></li>
+        <li id="ty-3252bc25-6b0106f3-0"><a href="/docs/avatars" id="ty-a117269c-6b0106f3-0">Avatars</a></li>
+        <li id="ty-b2af1c1c-6b0106f3-0"><a href="/docs/badges" id="ty-85c67442-6b0106f3-0">Badges</a></li>
+        <li id="ty-7bf8caab-6b0106f3-0"><a href="/docs/breadcrumbs" id="ty-63f1aab3-6b0106f3-0">Breadcrumbs</a></li>
+        <li id="ty-0fa81b9b-6b0106f3-0"><a href="/docs/buttons" id="ty-779d7a99-6b0106f3-0">Buttons</a></li>
+        <li id="ty-d115603c-6b0106f3-0"><a href="/docs/cards" id="ty-803d22a5-6b0106f3-0">Cards</a></li>
+        <li id="ty-0da96966-6b0106f3-0"><a href="/docs/chips" id="ty-b4692fa9-6b0106f3-0">Chips</a></li>
+        <li id="ty-f63b460b-6b0106f3-0"><a href="/docs/command" id="ty-6942393b-6b0106f3-0">Command palette</a></li>
+        <li id="ty-47ffe3d0-6b0106f3-0"><a href="/docs/dialog" id="ty-2e2b9a94-6b0106f3-0">Dialog</a></li>
+        <li id="ty-63abbc90-6b0106f3-0"><a href="/docs/expand" id="ty-127af8aa-6b0106f3-0">Expand</a></li>
+        <li id="ty-296e8a05-6b0106f3-0"><a href="/docs/feedback" id="ty-62af0603-6b0106f3-0">Feedback</a></li>
+        <li id="ty-77ecf9e8-6b0106f3-0"><a href="/docs/inputs" id="ty-9e0c007a-6b0106f3-0">Inputs</a></li>
+        <li id="ty-2dc6f1e1-6b0106f3-0"><a href="/docs/layout-primitives" id="ty-7caa5e05-6b0106f3-0">Layout primitives</a></li>
+        <li id="ty-3fba6ed9-6b0106f3-0"><a href="/docs/lists" id="ty-f7166ebc-6b0106f3-0">Lists</a></li>
+        <li id="ty-2ec7d366-6b0106f3-0"><a href="/docs/menus" id="ty-919a4650-6b0106f3-0">Menus</a></li>
+        <li id="ty-43cdc75e-6b0106f3-0"><a href="/docs/overlays" id="ty-cbbdb998-6b0106f3-0">Overlays</a></li>
+        <li id="ty-970465d3-6b0106f3-0"><a href="/docs/color-pickers" id="ty-3749e314-6b0106f3-0">Color Pickers</a></li>
+        <li id="ty-c93ce6d4-6b0106f3-0"><a href="/docs/date-pickers" id="ty-6a7de840-6b0106f3-0">Date Pickers</a></li>
+        <li id="ty-fa21a225-6b0106f3-0"><a href="/docs/time-pickers" id="ty-441bc818-6b0106f3-0">Time Pickers</a></li>
+        <li id="ty-6b80b884-6b0106f3-0"><a href="/docs/slider" id="ty-d639002e-6b0106f3-0">Slider</a></li>
+        <li id="ty-fa551e21-6b0106f3-0"><a href="/docs/snackbar" id="ty-0946ece1-6b0106f3-0">Snackbar</a></li>
+        <li id="ty-3bd2d59c-6b0106f3-0"><a href="/docs/surfaces" id="ty-1293f46a-6b0106f3-0">Surfaces</a></li>
+        <li id="ty-75bf504d-6b0106f3-0"><a href="/docs/tables" id="ty-dd253014-6b0106f3-0">Tables</a></li>
+        <li id="ty-2ad171be-6b0106f3-0"><a href="/docs/tabs" id="ty-bc0c3c7c-6b0106f3-0">Tabs</a></li>
+        <li id="ty-256f6888-6b0106f3-0"><a href="/docs/tooltips" id="ty-08cec745-6b0106f3-0">Tooltips</a></li>
+        <li id="ty-82d4d7aa-6b0106f3-0"><a href="/docs/workflows" id="ty-46169720-6b0106f3-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-2ea4382e-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-099c94fb-6b0106f3-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-549e6898-6b0106f3-0">
+        <li id="ty-febae9f7-6b0106f3-0"><a href="/docs/themes" id="ty-4949fe95-6b0106f3-0">Themes</a></li>
+        <li id="ty-760aaf72-6b0106f3-0"><a href="/docs/utilities" id="ty-5a81ec9e-6b0106f3-0">Utilities</a></li>
+        <li id="ty-2001d60c-6b0106f3-0"><a href="/docs/styles-and-animations" id="ty-411ee635-6b0106f3-0">Styles and animations</a></li>
+        <li id="ty-a06550f6-6b0106f3-0"><a href="/docs/animations" id="ty-c5240d4b-6b0106f3-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-89240a38-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-75eba137-6b0106f3-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-15912ef6-6b0106f3-0">
+        <li id="ty-2e9ceeaf-6b0106f3-0"><a href="/docs/api" id="ty-543bb451-6b0106f3-0">API</a></li>
+        <li id="ty-6cb2ebdf-6b0106f3-0"><a href="/docs/directives" id="ty-67d8ab1c-6b0106f3-0">Directives</a></li>
+        <li id="ty-d3a571a4-6b0106f3-0"><a href="/docs/labs" id="ty-b7503fcd-6b0106f3-0">Labs</a></li>
+        <li id="ty-7a714a74-6b0106f3-0"><a href="/docs/resources" id="ty-21a4d138-6b0106f3-0">Resources</a></li>
+        <li id="ty-3eeef2e1-6b0106f3-0"><a href="/docs/roadmap" id="ty-9ea6afa4-6b0106f3-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c0e57710-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7ee6a302-6b0106f3-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-ceed89b1-6b0106f3-0">
+        <li id="ty-019a94a2-6b0106f3-0"><a href="/docs/about" id="ty-a84e8078-6b0106f3-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-990714da-0"></button>
+  <main class="docs-main" id="ty-62ecfbdf-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-56a8f1b8-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-5ba50793-0">
+      <div id="ty-layout-slot"><h1 id="ty-5d2b2f05-0">Utilities</h1><p id="ty-9eecf6ee-0">Single-purpose classes for spacing, layout, sizing, and more — compose them to build UI without writing CSS. Spacing uses a numeric scale where <code id="ty-c8275fd4-0">1</code> = 4px, <code id="ty-a4af503c-0">2</code> = 8px, <code id="ty-e4a13b62-0">4</code> = 16px, up to <code id="ty-33dbe0df-0">16</code> = 64px.</p><h2 id="ty-3fe2672a-0">Spacing</h2><p id="ty-8b64e866-0">Margin (<code id="ty-a53be85c-0">m</code>) and padding (<code id="ty-7492fef6-0">p</code>) on any side: <code id="ty-ccd1a3c9-0">a</code> (all), <code id="ty-8bc69a3e-0">x</code>, <code id="ty-edd43584-0">y</code>, <code id="ty-6b3b7fc5-0">t</code>, <code id="ty-6904e3c5-0">r</code>, <code id="ty-11793f66-0">b</code>, <code id="ty-23efb357-0">l</code>. For example <code id="ty-adeffb10-0">.w-pa-4</code>, <code id="ty-2aac2516-0">.w-mx-auto</code>, <code id="ty-77f1df5c-0">.w-mt-2</code>. Margins also accept <code id="ty-70b358e9-0">auto</code> and negatives (<code id="ty-a9f4f726-0">.w-ma-n2</code>).</p><demo-compare >
+  <div slot="css" id="ty-bcd0781e-0">
+    <span class="util-demo-frame w-inline-block" id="ty-9174f827-0"><span class="util-demo-box w-pa-2" id="ty-02cce799-0">pa-2</span></span>
+    <span class="util-demo-frame w-inline-block w-ml-3" id="ty-e13fe497-0"><span class="util-demo-box w-pa-4" id="ty-73e80099-0">pa-4</span></span>
+    <span class="util-demo-frame w-inline-block w-ml-3" id="ty-c13fe2ff-0"><span class="util-demo-box w-pa-6" id="ty-6c93a21f-0">pa-6</span></span>
+  </div>
+</demo-compare><demo-compare >
+  <div slot="css" id="ty-523a8db1-0">
+    <span class="util-demo-frame w-inline-block" id="ty-1a410a75-0"><span class="util-demo-box w-ma-2" id="ty-747d4375-0">ma-2</span></span>
+    <span class="util-demo-frame w-inline-block w-ml-3" id="ty-b7eab78e-0"><span class="util-demo-box w-ma-4" id="ty-4edc0d5b-0">ma-4</span></span>
+    <span class="util-demo-frame w-inline-block w-ml-3" id="ty-60187d0f-0"><span class="util-demo-box w-ma-6" id="ty-9ff12b07-0">ma-6</span></span>
+  </div>
+</demo-compare><h2 id="ty-42c8d6ed-0">Flexbox</h2><p id="ty-ec6a2003-0"><code id="ty-b04353c0-0">.w-flex</code> plus alignment helpers — justify: <code id="ty-2d7f6d78-0">.w-justify-start</code>, <code id="ty-11051017-0">.w-justify-center</code>, <code id="ty-916f8614-0">.w-justify-between</code>, <code id="ty-3ecec93d-0">.w-justify-around</code>, <code id="ty-cc3f7f07-0">.w-justify-evenly</code>, <code id="ty-68aa496e-0">.w-justify-end</code>; align: <code id="ty-508a33ca-0">.w-items-start</code>, <code id="ty-9cbf0a7c-0">.w-items-center</code>, <code id="ty-0493863d-0">.w-items-end</code>, <code id="ty-b8c7f566-0">.w-items-stretch</code>, <code id="ty-de77cffa-0">.w-items-baseline</code>.</p><demo-compare >
+  <div slot="css" id="ty-1675592b-0">
+    <div class="w-flex w-justify-between w-items-center w-pa-3 w-border w-rounded-md" id="ty-52417272-0">
+      <div class="util-demo-box" id="ty-475efeb1-0">1</div>
+      <div class="util-demo-box" id="ty-27b08c1d-0">2</div>
+      <div class="util-demo-box" id="ty-a6e94338-0">3</div>
+    </div>
+    <div class="w-flex w-justify-center w-gap-2 w-pa-3 w-mt-3 w-border w-rounded-md" id="ty-ef151a16-0">
+      <div class="util-demo-box" id="ty-1274979f-0">A</div>
+      <div class="util-demo-box" id="ty-68756d69-0">B</div>
+      <div class="util-demo-box" id="ty-a95a1353-0">C</div>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-ed4d1297-0">Display</h2><div class="code-block" id="ty-ae7ee99d-0"><code id="ty-2f2bd2ea-0">.w-block      .w-inline       .w-inline-block
+.w-flex       .w-inline-flex  .w-grid
+.w-hidden     .w-contents
+
+&lt;!-- Responsive visibility --&gt;
+.w-hide-mobile   .w-show-mobile
+.w-hide-tablet   .w-hide-desktop</code></div><h2 id="ty-3624c600-0">Sizing</h2><p id="ty-050abffe-0">Width helpers <code id="ty-107b6ddf-0">.w-w-25</code>, <code id="ty-ba48ad4b-0">.w-w-50</code>, <code id="ty-4c948dfa-0">.w-w-75</code>, <code id="ty-32362caa-0">.w-w-100</code>, plus <code id="ty-3bcaf65f-0">.w-mw-full</code> and <code id="ty-d034f4c9-0">.w-mw-prose</code>.</p><demo-compare >
+  <div slot="css" id="ty-7bae3391-0">
+    <div class="w-w-25" id="ty-4de90200-0"><div class="grid-demo-cell w-mb-2" id="ty-120d7a8a-0">w-25</div></div>
+    <div class="w-w-50" id="ty-4a082109-0"><div class="grid-demo-cell w-mb-2" id="ty-c9adf756-0">w-50</div></div>
+    <div class="w-w-75" id="ty-80fbdc59-0"><div class="grid-demo-cell w-mb-2" id="ty-f3d61317-0">w-75</div></div>
+    <div class="w-w-100" id="ty-aaae7efd-0"><div class="grid-demo-cell" id="ty-b0844836-0">w-100</div></div>
+  </div>
+</demo-compare><h2 id="ty-a14b3235-0">Text</h2><p id="ty-764ced98-0">Alignment, weight, colour, and wrapping.</p><demo-compare >
+  <div slot="css" id="ty-f5348f3d-0">
+    <p class="w-text-center w-font-semibold w-mb-2" id="ty-60de776b-0">Centered &amp; semibold</p>
+    <p class="w-text-right w-text-subtle w-mb-2" id="ty-da32427c-0">Right-aligned, subtle</p>
+    <p class="w-text-primary w-uppercase w-tracking-wide" id="ty-9228dda0-0">Primary uppercase</p>
+  </div>
+</demo-compare><h2 id="ty-09e14e27-0">Borders, radius &amp; elevation</h2><demo-compare >
+  <div slot="css" id="ty-aa2fc061-0">
+    <div class="w-flex w-gap-4 w-items-center w-flex-wrap" id="ty-0c2cd2d0-0">
+      <div class="util-demo-box w-pa-6 w-border w-rounded-sm" id="ty-c4974759-0">sm</div>
+      <div class="util-demo-box w-pa-6 w-border w-rounded-lg" id="ty-18c29ab9-0">lg</div>
+      <div class="util-demo-box w-pa-6 w-rounded-circle" id="ty-46e99567-0">●</div>
+      <div class="util-demo-box w-pa-6 w-rounded-lg w-shadow-md" id="ty-0ae76c98-0">shadow</div>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-0aa1fea5-0">Text truncation</h2><p id="ty-6537ca67-0">Use <code id="ty-9d95c476-0">.w-truncate</code> for a single-line ellipsis, and <code id="ty-c92378e5-0">.w-line-clamp-*</code> for multi-line clamping.</p><demo-compare >
+  <div slot="css" id="ty-0a1398b3-0">
+    <p class="w-truncate w-border w-rounded-md w-pa-3" style="max-width: 320px;" id="ty-12246cf3-0">
+      This sentence is far too long to fit on one line, so it will be truncated with an ellipsis.
+    </p>
+    <p class="w-line-clamp-2 w-border w-rounded-md w-pa-3 w-mt-3" style="max-width: 320px;" id="ty-84ce2962-0">
+      This paragraph spans multiple lines but is clamped to exactly two lines. Anything beyond that point is hidden and an ellipsis is shown at the end of the second line.
+    </p>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-6adff5f9-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5055db09-0"></aside>
+</div>
+</body>
+</html>
+

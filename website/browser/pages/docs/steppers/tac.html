@@ -1,0 +1,104 @@
+<h1>Steppers</h1>
+<p><code>w-stepper</code> guides a user through an ordered sequence of steps. It tracks an active step (<code>value</code>), marks earlier steps complete, optionally drives a <code>w-stepper-window</code>'s panels, and wires <code>w-stepper-actions</code> (Back / Next).</p>
+
+<h2>Basic</h2>
+<p>Headers go in a <code>w-stepper-header</code>, panels in a <code>w-stepper-window</code>, and navigation in <code>w-stepper-actions</code>. The <code>Next</code> / <code>Back</code> buttons move the active step.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper">
+      <div class="w-stepper-header">
+        <div class="w-step active"><div class="w-step-indicator">1</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Account</div></div></div>
+        <div class="w-step"><div class="w-step-indicator">2</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Billing</div></div></div>
+        <div class="w-step"><div class="w-step-indicator">3</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Confirm</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper value="1">
+      <w-stepper-header>
+        <w-step value="1" label="Account"></w-step>
+        <w-step value="2" label="Billing"></w-step>
+        <w-step value="3" label="Confirm"></w-step>
+      </w-stepper-header>
+      <w-stepper-window>
+        <w-stepper-window-item value="1"><div class="pa-4">Create your account.</div></w-stepper-window-item>
+        <w-stepper-window-item value="2"><div class="pa-4">Enter billing details.</div></w-stepper-window-item>
+        <w-stepper-window-item value="3"><div class="pa-4">Review and confirm.</div></w-stepper-window-item>
+      </w-stepper-window>
+      <w-stepper-actions></w-stepper-actions>
+    </w-stepper>
+  </div>
+</demo-compare>
+
+<h2>Editable</h2>
+<p>Add <code>editable</code> so any step header can be clicked to jump to it; <code>non-linear</code> allows visiting steps in any order.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper w-stepper--clickable">
+      <div class="w-stepper-header">
+        <div class="w-step done editable"><div class="w-step-indicator">✓</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Cart</div></div></div>
+        <div class="w-step active editable"><div class="w-step-indicator">2</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Shipping</div></div></div>
+        <div class="w-step editable"><div class="w-step-indicator">3</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Payment</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper editable value="2">
+      <w-stepper-header>
+        <w-step value="1" label="Cart"></w-step>
+        <w-step value="2" label="Shipping"></w-step>
+        <w-step value="3" label="Payment"></w-step>
+      </w-stepper-header>
+      <w-stepper-window>
+        <w-stepper-window-item value="1"><div class="pa-4">Your cart.</div></w-stepper-window-item>
+        <w-stepper-window-item value="2"><div class="pa-4">Shipping address.</div></w-stepper-window-item>
+        <w-stepper-window-item value="3"><div class="pa-4">Payment method.</div></w-stepper-window-item>
+      </w-stepper-window>
+      <w-stepper-actions></w-stepper-actions>
+    </w-stepper>
+  </div>
+</demo-compare>
+
+<h2>Complete &amp; error states</h2>
+<p>Steps before the active one are marked complete (✓) automatically. Mark a step with <code>error</code> to flag a problem.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper">
+      <div class="w-stepper-header">
+        <div class="w-step done"><div class="w-step-indicator">✓</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Details</div></div></div>
+        <div class="w-step error"><div class="w-step-indicator">!</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Payment</div></div></div>
+        <div class="w-step"><div class="w-step-indicator">3</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Done</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper value="2">
+      <w-stepper-header>
+        <w-step value="1" label="Details"></w-step>
+        <w-step value="2" label="Payment" error></w-step>
+        <w-step value="3" label="Done"></w-step>
+      </w-stepper-header>
+    </w-stepper>
+  </div>
+</demo-compare>
+
+<h2>Alt labels &amp; captions</h2>
+<p><code>alt-labels</code> spaces the labels beneath the indicators; <code>caption</code> adds secondary helper text.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper w-stepper--alt-labels">
+      <div class="w-stepper-header">
+        <div class="w-step active"><div class="w-step-indicator">1</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Plan</div><div class="w-step-caption">Choose a tier</div></div></div>
+        <div class="w-step"><div class="w-step-indicator">2</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Team</div><div class="w-step-caption">Invite people</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper alt-labels value="1">
+      <w-stepper-header>
+        <w-step value="1" label="Plan" caption="Choose a tier"></w-step>
+        <w-step value="2" label="Team" caption="Invite people"></w-step>
+      </w-stepper-header>
+    </w-stepper>
+  </div>
+</demo-compare>

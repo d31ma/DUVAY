@@ -1,0 +1,189 @@
+<h1>Carousels</h1>
+<p>Carousels display one slide from a sequence at a time, with arrows, delimiters, keyboard navigation, optional cycling, and a progress bar. They support touch and pointer swipe, custom icons, color theming, side delimiters, and a fade transition.</p>
+
+<h2>Basic</h2>
+<p>Arrow buttons, delimiters, the ←/→/Home/End keys, and horizontal swipe all change the active slide. Set a <code>height</code> on the carousel. Disable swipe with <code>touch="false"</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Launch</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Review</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide">‹</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide">›</button>
+      <div class="w-carousel-delimiters" role="tablist">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px">
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Launch</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Review</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-tertiary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Validate</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Cycle and progress</h2>
+<p>Add <code>cycle</code> to auto-advance (every <code>interval</code> ms, default 6000), pausing on hover and focus. <code>progress</code> shows a linear progress bar.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Auto 1</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Auto 2</div></div>
+      </div>
+      <div class="w-carousel-progress" aria-hidden="true"><span style="width: 50%"></span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" cycle interval="3000" progress>
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Auto 1</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Auto 2</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-tertiary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Auto 3</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Arrows on hover</h2>
+<p>Use <code>show-arrows="hover"</code> to reveal the arrows only on hover or focus. With CSS classes, add <code>w-carousel--arrows-hover</code>. Set <code>show-arrows="false"</code> to hide them entirely.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel w-carousel--arrows-hover" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Hover me</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Arrows appear</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide">‹</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide">›</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" show-arrows="hover">
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Hover me</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Arrows appear</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Custom icons</h2>
+<p>Replace the arrow glyphs with <code>prev-icon</code> / <code>next-icon</code>, and the delimiter dots with <code>delimiter-icon</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Alpha</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Beta</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide">←</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide">→</button>
+      <div class="w-carousel-delimiters" role="tablist">
+        <button class="w-carousel-delimiter w-carousel-delimiter--icon active" type="button" role="tab" aria-selected="true">■</button>
+        <button class="w-carousel-delimiter w-carousel-delimiter--icon" type="button" role="tab" aria-selected="false">■</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" prev-icon="←" next-icon="→" delimiter-icon="■">
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Alpha</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Beta</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-tertiary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Gamma</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Delimiter placement</h2>
+<p>Drop the delimiter backdrop with <code>hide-delimiter-background</code>, or move the delimiters to a side rail with <code>vertical-delimiters="left"</code> or <code>vertical-delimiters="right"</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel w-carousel--vdelim-left" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Left rail</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Slide 2</div></div>
+      </div>
+      <div class="w-carousel-delimiters" role="tablist">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" vertical-delimiters="left">
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Left rail</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Slide 2</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-tertiary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Slide 3</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p><code>color</code> tints the active delimiter and the progress bar with a DuVay palette token. With CSS classes, set the <code>--w-carousel-color</code> custom property.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel" style="height: 200px; --w-carousel-color: var(--w-success)">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Build</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Deploy</div></div>
+      </div>
+      <div class="w-carousel-progress" aria-hidden="true"><span style="width: 50%"></span></div>
+      <div class="w-carousel-delimiters" role="tablist">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" color="success" progress>
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Build</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Deploy</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Fade transition</h2>
+<p>Set <code>transition="fade"</code> (or add <code>w-carousel--fade</code>) to crossfade between slides instead of sliding. Fade carousels need an explicit <code>height</code> since the slides are stacked.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel w-carousel--fade" style="height: 200px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item active w-bg-primary-container pa-8"><div class="w-text-xl w-font-bold">Fade A</div></div>
+        <div class="w-carousel-item w-bg-secondary-container pa-8"><div class="w-text-xl w-font-bold">Fade B</div></div>
+      </div>
+      <div class="w-carousel-delimiters" role="tablist">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="200px" transition="fade">
+      <w-carousel-item><div class="w-bg-primary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Fade A</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-secondary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Fade B</div></div></w-carousel-item>
+      <w-carousel-item><div class="w-bg-tertiary-container pa-8 h-100"><div class="w-text-xl w-font-bold">Fade C</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<h2>Image slides</h2>
+<p>Give <code>&lt;w-carousel-item&gt;</code> a <code>src</code> (and <code>alt</code>) to render a slide image. Images use <code>object-fit: cover</code> by default; add <code>cover="false"</code> to contain instead.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-carousel" style="height: 220px">
+      <div class="w-carousel-track">
+        <div class="w-carousel-item"><img class="w-carousel-img w-carousel-img--cover" src="https://picsum.photos/seed/hecss/800/300" alt="Example one" /></div>
+        <div class="w-carousel-item"><img class="w-carousel-img w-carousel-img--cover" src="https://picsum.photos/seed/hecss2/800/300" alt="Example two" /></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-carousel height="220px">
+      <w-carousel-item src="https://picsum.photos/seed/hewc/800/300" alt="Example one"></w-carousel-item>
+      <w-carousel-item src="https://picsum.photos/seed/hewc2/800/300" alt="Example two"></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare>
+
+<p>For the lower-level panel primitive behind carousels, see <a href="/docs/windows">Windows</a>.</p>

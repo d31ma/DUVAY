@@ -1,0 +1,55 @@
+<h1>Elevation</h1>
+<p>Elevation helpers apply shadow depth to convey layering. Classes map to shadow tokens (<code>--w-shadow-sm</code>, <code>--w-shadow-md</code>, <code>--w-shadow-lg</code>) and cascade to nested components such as cards, buttons, sheets, and menus.</p>
+
+<h2>Usage</h2>
+
+<h3>Elevation levels</h3>
+<p>Pick a level from <code>elevation-0</code> (flat) to <code>elevation-6</code> (highest). Intermediate levels share the same shadow tokens, giving you fine-grained semantic control.</p>
+<div class="w-row ga-4 w-mb-md">
+  <div class="w-bg-surface pa-4 elevation-0">0</div>
+  <div class="w-bg-surface pa-4 elevation-1">1</div>
+  <div class="w-bg-surface pa-4 elevation-3">3</div>
+  <div class="w-bg-surface pa-4 elevation-6">6</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-card elevation-1"&gt;Resting card&lt;/div&gt;
+&lt;div class="w-card elevation-3"&gt;Elevated card&lt;/div&gt;</code></div>
+
+<h3>Hover elevation</h3>
+<p>Increase elevation on hover by adding a custom rule. Combine with a transition token so the lift feels smooth.</p>
+<style>
+  .hover-lift { transition: box-shadow var(--w-transition-normal); }
+  .hover-lift:hover { box-shadow: var(--w-shadow-md); }
+</style>
+<div class="w-row ga-4 w-mb-md">
+  <div class="w-bg-surface pa-4 elevation-1 hover-lift rounded cursor-pointer">Hover to lift</div>
+</div>
+<div class="code-block"><code>.my-card &#123;
+  box-shadow: var(--w-shadow-sm);
+  transition: box-shadow var(--w-transition-normal);
+&#125;
+.my-card:hover &#123;
+  box-shadow: var(--w-shadow-md);
+&#125;</code></div>
+
+<h3>Remove shadows</h3>
+<p>Use <code>w-shadow-none</code> to explicitly remove a box shadow from a component that carries one by default.</p>
+<div class="w-row ga-4 w-mb-md">
+  <div class="w-bg-surface pa-4 elevation-3">Shadow</div>
+  <div class="w-bg-surface pa-4 elevation-3 w-shadow-none">No shadow</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-card w-shadow-none"&gt;Flat card&lt;/div&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>elevation-0</code></td><td>No shadow.</td></tr>
+    <tr><td><code>elevation-1</code></td><td>Subtle shadow (<code>--w-shadow-sm</code>).</td></tr>
+    <tr><td><code>elevation-2</code> / <code>elevation-3</code></td><td>Medium shadow (<code>--w-shadow-md</code>).</td></tr>
+    <tr><td><code>elevation-4</code> / <code>elevation-5</code> / <code>elevation-6</code></td><td>Large shadow (<code>--w-shadow-lg</code>).</td></tr>
+    <tr><td><code>w-shadow-none</code></td><td>Removes the box shadow.</td></tr>
+    <tr><td><code>w-shadow-sm</code></td><td>Small shadow (<code>--w-shadow-sm</code>).</td></tr>
+    <tr><td><code>w-shadow-md</code></td><td>Medium shadow (<code>--w-shadow-md</code>).</td></tr>
+    <tr><td><code>w-shadow-lg</code></td><td>Large shadow (<code>--w-shadow-lg</code>).</td></tr>
+  </tbody>
+</table>

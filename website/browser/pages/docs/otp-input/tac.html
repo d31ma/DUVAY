@@ -1,0 +1,52 @@
+<h1>OTP Input</h1>
+<p><code>w-otp-input</code> (alias <code>w-otp</code>) renders one box per character for entering verification codes, mirroring Vuetify&#8217;s <code>v-otp-input</code>. Set the box count with <code>length</code>. Pasting a full code into any box distributes it across the row, and arrow keys move between boxes. It emits <code>input</code> as the value changes and <code>change</code> once every box is filled.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-otp">
+      <input class="w-otp-input" maxlength="1" value="1" aria-label="Digit 1" />
+      <input class="w-otp-input" maxlength="1" value="2" aria-label="Digit 2" />
+      <input class="w-otp-input" maxlength="1" value="3" aria-label="Digit 3" />
+      <input class="w-otp-input" maxlength="1" aria-label="Digit 4" />
+    </div>
+  </div>
+  <div slot="wc">
+    <w-otp length="4" value="123"></w-otp>
+  </div>
+</demo-compare>
+
+<h2>Type</h2>
+<p>Set <code>type</code> to <code>number</code> to accept digits only, or <code>password</code> to mask each character.</p>
+<demo-compare>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-otp length="6" type="number" value="1234"></w-otp>
+      <w-otp length="6" type="password" value="1234"></w-otp>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Divider</h2>
+<p>The <code>divider</code> attribute draws a character between each box.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-otp length="6" divider="-" value="123"></w-otp>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-otp">
+      <input class="w-otp-input" maxlength="1" value="1" disabled aria-label="Digit 1" />
+      <input class="w-otp-input" maxlength="1" value="2" disabled aria-label="Digit 2" />
+      <input class="w-otp-input" maxlength="1" value="3" disabled aria-label="Digit 3" />
+      <input class="w-otp-input" maxlength="1" value="4" disabled aria-label="Digit 4" />
+    </div>
+  </div>
+  <div slot="wc">
+    <w-otp length="4" value="1234" disabled></w-otp>
+  </div>
+</demo-compare>
+

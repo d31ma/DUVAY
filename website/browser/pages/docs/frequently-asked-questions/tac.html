@@ -1,0 +1,43 @@
+<h1>Frequently asked questions</h1>
+<p>Answers to the questions developers ask most often when adopting DuVay. If something is missing here, check the relevant component page or open a discussion on the repository.</p>
+
+<h2>Does DuVay have any dependencies?</h2>
+<p>No. DuVay is a zero-dependency framework. The stylesheet is plain CSS built on custom properties, and the optional behavior layer and web components are vanilla JavaScript. There is no runtime, no virtual DOM, and nothing to install beyond the files themselves.</p>
+
+<h2>Do I need a build step?</h2>
+<p>No. You can link the hosted CSS and scripts directly and start writing markup. There is no Sass, PostCSS, or bundler required for the framework itself. A build step is only relevant if you choose to self-host and minify your own copies.</p>
+
+<h2>How does theming work?</h2>
+<p>Themes are driven entirely by the <code>data-w-theme</code> attribute on the root element. Every color, radius, shadow, and spacing value resolves from a CSS custom property, so switching themes is a single attribute change.</p>
+<div class="code-block"><code>&lt;html data-w-theme="light"&gt;   &lt;!-- light theme --&gt;
+&lt;html data-w-theme="dark"&gt;    &lt;!-- dark theme --&gt;
+&lt;html data-w-theme="auto"&gt;    &lt;!-- follows prefers-color-scheme --&gt;</code></div>
+<p>The <code>auto</code> theme respects the operating system <code>prefers-color-scheme</code> setting and updates live. See the <a href="/docs/themes">Themes</a> page for the full token set.</p>
+
+<h2>What is the difference between the CSS classes and the web components?</h2>
+<p>DuVay ships two ways to use every component, and they share the exact same styles:</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Approach</th><th>Looks like</th><th>Best for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CSS classes</td><td><code>&lt;button class="w-btn w-btn-filled"&gt;</code></td><td>Static markup, server-rendered pages, full control of HTML</td></tr>
+    <tr><td>Web components</td><td><code>&lt;w-btn variant="filled"&gt;</code></td><td>Less markup, declarative attributes, encapsulated behavior</td></tr>
+  </tbody>
+</table>
+<p>The web components use <strong>Light DOM only</strong> (no Shadow DOM), so they render the same DuVay class names you would write by hand. You can mix both approaches freely on the same page.</p>
+
+<h2>Does DuVay work without JavaScript?</h2>
+<p>Yes, for everything that is structurally static. DuVay is built on progressive enhancement: a button, card, alert, or list rendered with CSS classes is fully styled and usable with no JavaScript at all. The behavior layer and web components enhance interactivity (dropdowns, dialogs, toasts, theme cycling) once the scripts load.</p>
+
+<h2>Is DuVay tied to a framework like React or Vue?</h2>
+<p>No. DuVay is framework-agnostic. The CSS works anywhere you can write HTML, and the web components are standard Custom Elements, so they work in plain HTML, React, Vue, Svelte, Angular, or any templating language. There is nothing React- or Vue-specific in the framework.</p>
+
+<h2>Is DuVay accessible?</h2>
+<p>Accessibility is a core requirement, not an afterthought. Components ship with correct <code>role</code> and <code>aria-*</code> attributes, full keyboard navigation, logical focus order, visible <code>:focus-visible</code> indicators, and respect for <code>prefers-reduced-motion</code>. Color tokens meet WCAG AA contrast ratios, and a high-contrast theme is available.</p>
+
+<h2>Which browsers are supported?</h2>
+<p>DuVay targets modern evergreen browsers (Chrome, Edge, Firefox, and Safari). See the <a href="/docs/browser-support">Browser support</a> page for the full matrix and the underlying platform features.</p>
+
+<h2>How are versions numbered?</h2>
+<p>DuVay uses CalVer (<code>YY.WW.DD</code>). Versioned CDN URLs are permanent, so you can pin a release and trust it never changes underneath you.</p>

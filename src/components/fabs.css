@@ -1,0 +1,380 @@
+/* DuVay — Fabs component styles. */
+@import "../core.css";
+
+/* ── Floating Action Button (FAB) ─────────────────────────────────────────── */
+.w-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-fab-size, var(--w-size-xl));
+  height: var(--w-fab-size, var(--w-size-xl));
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--w-fab-bg, var(--w-primary-container));
+  color: var(--w-fab-color, var(--w-on-primary-container));
+  cursor: pointer;
+  box-shadow: var(--w-fab-shadow, var(--w-shadow-md));
+  transition: background var(--w-transition-normal), box-shadow var(--w-transition-normal), transform var(--w-transition-fast), opacity var(--w-transition-normal);
+  min-width: var(--w-touch-min);
+  min-height: var(--w-touch-min);
+  font-family: var(--w-font-family);
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.w-fab:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-fab:hover {
+  background: var(--w-fab-hover-bg, color-mix(in srgb, var(--w-primary-container) 82%, var(--w-primary)));
+  box-shadow: var(--w-fab-hover-shadow, var(--w-shadow-lg));
+}
+
+.w-fab:active {
+  transform: scale(0.96);
+}
+
+.w-fab:disabled,
+.w-fab[aria-disabled="true"] {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Icon sizing */
+.w-fab .w-icon,
+.w-fab svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ──────────────────────────────────────────────────────────────── */
+.w-fab--x-small {
+  --w-fab-size: var(--w-size-sm);
+}
+.w-fab--x-small .w-icon,
+.w-fab--x-small svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.w-fab--small {
+  --w-fab-size: var(--w-size-md);
+}
+.w-fab--small .w-icon,
+.w-fab--small svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.w-fab--default {
+  --w-fab-size: var(--w-size-xl);
+}
+
+.w-fab--large {
+  --w-fab-size: var(--w-size-icon-lg);
+}
+.w-fab--large .w-icon,
+.w-fab--large svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.w-fab--x-large {
+  --w-fab-size: var(--w-size-icon-xl);
+}
+.w-fab--x-large .w-icon,
+.w-fab--x-large svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Legacy aliases */
+.w-fab--sm {
+  --w-fab-size: var(--w-size-md);
+}
+.w-fab--sm .w-icon,
+.w-fab--sm svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.w-fab--lg {
+  --w-fab-size: 4.5rem;
+}
+.w-fab--lg .w-icon,
+.w-fab--lg svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ── Positioning ─────────────────────────────────────────────────────────── */
+.w-fab--fixed {
+  position: fixed;
+  z-index: var(--w-z-sticky);
+}
+
+.w-fab--absolute {
+  position: absolute;
+  z-index: var(--w-z-sticky);
+}
+
+.w-fab--bottom {
+  bottom: var(--w-space-6);
+}
+.w-fab--top {
+  top: var(--w-space-6);
+}
+.w-fab--start,
+.w-fab--left {
+  left: var(--w-space-6);
+}
+.w-fab--end,
+.w-fab--right {
+  right: var(--w-space-6);
+}
+
+/* Legacy position classes (single token) */
+.w-fab--bottom-right {
+  bottom: var(--w-space-6);
+  right: var(--w-space-6);
+}
+.w-fab--bottom-left {
+  bottom: var(--w-space-6);
+  left: var(--w-space-6);
+}
+.w-fab--top-right {
+  top: var(--w-space-6);
+  right: var(--w-space-6);
+}
+.w-fab--top-left {
+  top: var(--w-space-6);
+  left: var(--w-space-6);
+}
+
+/* ── Extended FAB (with label) ───────────────────────────────────────────── */
+.w-fab--extended {
+  width: auto;
+  min-width: var(--w-touch-min);
+  border-radius: var(--w-radius-pill);
+  padding: 0 var(--w-space-xl);
+  gap: var(--w-space-2);
+}
+
+.w-fab--extended .w-icon,
+.w-fab--extended svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.w-fab__label {
+  white-space: nowrap;
+}
+
+/* ── Rounded ─────────────────────────────────────────────────────────────── */
+.w-fab--rounded {
+  border-radius: var(--w-radius-pill);
+}
+.w-fab--rounded-sm {
+  border-radius: var(--w-radius-sm);
+}
+.w-fab--rounded-md {
+  border-radius: var(--w-radius-md);
+}
+.w-fab--rounded-lg {
+  border-radius: var(--w-radius-lg);
+}
+.w-fab--rounded-xl {
+  border-radius: var(--w-radius-xl);
+}
+.w-fab--rounded-0,
+.w-fab--rounded-circle {
+  border-radius: 50%;
+}
+
+/* ── Variants ───────────────────────────────────────────────────────────── */
+/* elevated (default) */
+.w-fab--variant-elevated {
+  --w-fab-bg: var(--w-surface-container-high);
+  --w-fab-color: var(--w-text);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-surface-container-high) 90%, var(--w-text));
+}
+
+/* flat */
+.w-fab--variant-flat {
+  --w-fab-bg: var(--w-primary);
+  --w-fab-color: var(--w-on-primary);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-primary) 88%, var(--w-on-primary));
+  box-shadow: none;
+}
+.w-fab--variant-flat:hover {
+  box-shadow: none;
+}
+
+/* tonal */
+.w-fab--variant-tonal {
+  --w-fab-bg: var(--w-secondary-container);
+  --w-fab-color: var(--w-on-secondary-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-secondary-container) 88%, var(--w-on-secondary-container));
+}
+
+/* outlined */
+.w-fab--variant-outlined {
+  --w-fab-bg: transparent;
+  --w-fab-color: var(--w-primary);
+  --w-fab-hover-bg: var(--w-hover);
+  border: 1px solid var(--w-border);
+  box-shadow: none;
+}
+.w-fab--variant-outlined:hover {
+  box-shadow: none;
+}
+
+/* text */
+.w-fab--variant-text {
+  --w-fab-bg: transparent;
+  --w-fab-color: var(--w-primary);
+  --w-fab-hover-bg: var(--w-hover);
+  box-shadow: none;
+}
+.w-fab--variant-text:hover {
+  box-shadow: none;
+}
+
+/* plain */
+.w-fab--variant-plain {
+  --w-fab-bg: transparent;
+  --w-fab-color: var(--w-text);
+  --w-fab-hover-bg: var(--w-hover);
+  box-shadow: none;
+}
+.w-fab--variant-plain:hover {
+  box-shadow: none;
+}
+
+/* ── Colors ─────────────────────────────────────────────────────────────── */
+.w-fab--color-primary {
+  --w-fab-bg: var(--w-primary-container);
+  --w-fab-color: var(--w-on-primary-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-primary-container) 82%, var(--w-primary));
+}
+.w-fab--color-secondary {
+  --w-fab-bg: var(--w-secondary-container);
+  --w-fab-color: var(--w-on-secondary-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-secondary-container) 82%, var(--w-secondary));
+}
+.w-fab--color-success {
+  --w-fab-bg: var(--w-success-container);
+  --w-fab-color: var(--w-on-success-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-success-container) 82%, var(--w-success));
+}
+.w-fab--color-warning {
+  --w-fab-bg: var(--w-warning-container);
+  --w-fab-color: var(--w-on-warning-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-warning-container) 82%, var(--w-warning));
+}
+.w-fab--color-error {
+  --w-fab-bg: var(--w-error-container);
+  --w-fab-color: var(--w-on-error-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-error-container) 82%, var(--w-error));
+}
+.w-fab--color-surface {
+  --w-fab-bg: var(--w-surface-container-high);
+  --w-fab-color: var(--w-text);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-surface-container-high) 90%, var(--w-text));
+}
+
+/* Color overrides for variant-flat */
+.w-fab--variant-flat.w-fab--color-primary {
+  --w-fab-bg: var(--w-primary);
+  --w-fab-color: var(--w-on-primary);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-primary) 88%, var(--w-on-primary));
+}
+.w-fab--variant-flat.w-fab--color-secondary {
+  --w-fab-bg: var(--w-secondary);
+  --w-fab-color: var(--w-on-primary);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-secondary) 88%, var(--w-on-primary));
+}
+.w-fab--variant-flat.w-fab--color-success {
+  --w-fab-bg: var(--w-success);
+  --w-fab-color: var(--w-on-success);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-success) 88%, var(--w-on-success));
+}
+.w-fab--variant-flat.w-fab--color-warning {
+  --w-fab-bg: var(--w-warning);
+  --w-fab-color: var(--w-on-warning);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-warning) 88%, var(--w-on-warning));
+}
+.w-fab--variant-flat.w-fab--color-error {
+  --w-fab-bg: var(--w-error);
+  --w-fab-color: var(--w-on-error);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-error) 88%, var(--w-on-error));
+}
+
+/* Color overrides for variant-outlined / text */
+.w-fab--variant-outlined.w-fab--color-primary,
+.w-fab--variant-text.w-fab--color-primary {
+  --w-fab-color: var(--w-primary);
+}
+.w-fab--variant-outlined.w-fab--color-secondary,
+.w-fab--variant-text.w-fab--color-secondary {
+  --w-fab-color: var(--w-secondary);
+}
+.w-fab--variant-outlined.w-fab--color-success,
+.w-fab--variant-text.w-fab--color-success {
+  --w-fab-color: var(--w-success);
+}
+.w-fab--variant-outlined.w-fab--color-warning,
+.w-fab--variant-text.w-fab--color-warning {
+  --w-fab-color: var(--w-warning);
+}
+.w-fab--variant-outlined.w-fab--color-error,
+.w-fab--variant-text.w-fab--color-error {
+  --w-fab-color: var(--w-error);
+}
+
+/* ── Active state ────────────────────────────────────────────────────────── */
+.w-fab--active {
+  --w-fab-bg: var(--w-primary);
+  --w-fab-color: var(--w-on-primary);
+}
+
+/* ── Appear transition (used by w-fab-transition) ─────────────────────────── */
+.w-fab-transition-enter {
+  opacity: 0;
+  transform: scale(0.4);
+}
+.w-fab-transition-enter-active {
+  transition: opacity var(--w-motion-duration) var(--w-motion-ease-enter), transform var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+.w-fab-transition-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.w-fab-transition-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+.w-fab-transition-leave-active {
+  transition: opacity var(--w-motion-duration) var(--w-motion-ease-exit), transform var(--w-motion-duration) var(--w-motion-ease-exit);
+}
+.w-fab-transition-leave-to {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-fab,
+  .w-fab-transition-enter-active,
+  .w-fab-transition-leave-active {
+    transition: none !important;
+  }
+}

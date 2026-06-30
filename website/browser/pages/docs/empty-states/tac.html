@@ -1,0 +1,36 @@
+<h1>Empty states</h1>
+<p><code>w-empty-state</code> (alias <code>w-empty</code>) communicates that there is nothing to show. It supports a leading <code>icon</code> or <code>image</code>, a large <code>headline</code>, <code>title</code>/<code>text</code>, an <code>action-text</code> button, <code>color</code>/<code>bg-color</code>, and <code>justify</code> alignment.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-empty w-empty--center">
+      <div class="w-empty-media w-empty-icon">📭</div>
+      <div class="w-empty-content">
+        <p class="w-empty-title">No messages</p>
+        <p class="w-empty-subtitle">Your inbox is empty.</p>
+      </div>
+      <div class="w-empty-actions"><button class="w-btn w-btn--tonal">Refresh</button></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-empty icon="📭" title="No messages" text="Your inbox is empty." action-text="Refresh"></w-empty>
+  </div>
+</demo-compare>
+
+<h2>Headline variant</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-empty w-empty--center">
+      <div class="w-empty-headline">404</div>
+      <div class="w-empty-content">
+        <p class="w-empty-title">Page not found</p>
+        <p class="w-empty-subtitle">We couldn&#8217;t find the page you were looking for.</p>
+      </div>
+      <div class="w-empty-actions"><a class="w-btn w-btn--tonal" href="/">Go home</a></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-empty headline="404" title="Page not found" text="We couldn&#8217;t find the page you were looking for." action-text="Go home" href="/"></w-empty>
+  </div>
+</demo-compare>

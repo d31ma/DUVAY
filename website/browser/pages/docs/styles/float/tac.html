@@ -1,0 +1,43 @@
+<h1>Float</h1>
+<p>DuVay does not ship dedicated <code>float</code> utility classes. The framework favors flexbox and grid for layout, which avoid the clearing and collapse issues that come with floats. Use the flexbox alignment helpers instead.</p>
+
+<h2>Usage</h2>
+
+<h3>Push one item to the end</h3>
+<p>Apply <code>ml-auto</code> to a flex child to push it to the end of the row — the equivalent of <code>float: right</code> without needing clearfixes.</p>
+<div class="d-flex ga-3 w-border pa-3 w-mb-md">
+  <div class="w-bg-primary-container pa-3">Start</div>
+  <div class="w-bg-primary-container pa-3 ml-auto">Pushed to the end</div>
+</div>
+<div class="code-block"><code>&lt;div class="d-flex"&gt;
+  &lt;div&gt;Start&lt;/div&gt;
+  &lt;div class="ml-auto"&gt;Pushed to the end&lt;/div&gt;
+&lt;/div&gt;</code></div>
+
+<h3>Align the whole row</h3>
+<p>Use <code>justify-end</code> or <code>justify-space-between</code> to align all children at once, and <code>mr-auto</code> to pin an item to the start.</p>
+<div class="d-flex ga-3 justify-end w-border pa-3 w-mb-md">
+  <div class="w-bg-primary-container pa-3">End aligned 1</div>
+  <div class="w-bg-primary-container pa-3">End aligned 2</div>
+</div>
+<div class="d-flex ga-3 w-border pa-3 w-mb-md">
+  <div class="w-bg-primary-container pa-3 mr-auto">Pinned start</div>
+  <div class="w-bg-primary-container pa-3">End</div>
+  <div class="w-bg-primary-container pa-3">End</div>
+</div>
+<div class="code-block"><code>&lt;div class="d-flex justify-end"&gt;...all to the end...&lt;/div&gt;
+&lt;div class="d-flex"&gt;
+  &lt;div class="mr-auto"&gt;Pinned start&lt;/div&gt;
+  &lt;div&gt;End&lt;/div&gt;
+&lt;/div&gt;</code></div>
+
+<h2>Alternatives</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>ml-auto</code></td><td>Pushes a flex item to the end of the row (replaces <code>float: right</code>).</td></tr>
+    <tr><td><code>mr-auto</code></td><td>Pushes a flex item to the start (replaces <code>float: left</code>).</td></tr>
+    <tr><td><code>justify-end</code></td><td>Aligns all flex children to the end of the container.</td></tr>
+    <tr><td><code>justify-space-between</code></td><td>Distributes children with the first at the start and last at the end.</td></tr>
+  </tbody>
+</table>

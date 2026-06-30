@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-ece9aa08-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-e938deff-ece9aa08-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-d7c5da31-ece9aa08-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-21b10305-ece9aa08-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-bd3b93b9-ece9aa08-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-7680fda8-ece9aa08-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-5b011ae1-ece9aa08-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-c1663585-ece9aa08-0" />
+        </svg>
+      </span>
+      <span id="ty-07e52817-ece9aa08-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-24d9a70f-ece9aa08-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-47e7304c-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a35b8b48-ece9aa08-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-66d9770e-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-3f5b39f2-ece9aa08-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-22a00201-ece9aa08-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-d1d10a40-ece9aa08-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-a61ec279-ece9aa08-0">
+        <span data-w-theme-icon="" id="ty-87466a0f-ece9aa08-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-0980cdcc-ece9aa08-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-c02febd4-ece9aa08-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-c80e4466-ece9aa08-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-310a6eef-0">
+  <div id="ty-6b0106f3-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-10817518-6b0106f3-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-d4b0f2f0-6b0106f3-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-f20731fb-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-56e5cb2a-6b0106f3-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-fb95993d-6b0106f3-0">
+        <li id="ty-c7a350b0-6b0106f3-0"><a href="/docs/introduction" id="ty-594ed95c-6b0106f3-0">Introduction</a></li>
+        <li id="ty-899aaefb-6b0106f3-0"><a href="/docs/install" id="ty-cd813db3-6b0106f3-0">Install</a></li>
+        <li id="ty-4731fe8b-6b0106f3-0"><a href="/docs/getting-started" id="ty-a5ae5d2d-6b0106f3-0">Getting started</a></li>
+        <li id="ty-9e794c03-6b0106f3-0"><a href="/docs/download" id="ty-03666b20-6b0106f3-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-87851584-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-082f12ba-6b0106f3-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-98181f43-6b0106f3-0">
+        <li id="ty-0a2ac23c-6b0106f3-0"><a href="/docs/common-concepts" id="ty-c8a421c6-6b0106f3-0">Common concepts</a></li>
+        <li id="ty-a79cad30-6b0106f3-0"><a href="/docs/features" id="ty-9bc6bb24-6b0106f3-0">Features</a></li>
+        <li id="ty-6e53fbe4-6b0106f3-0"><a href="/docs/features/icon-fonts" id="ty-d1cb5b08-6b0106f3-0">Icons</a></li>
+        <li id="ty-6ba74063-6b0106f3-0"><a href="/docs/grid" id="ty-72c0ffce-6b0106f3-0">Grid</a></li>
+        <li id="ty-f610e6c7-6b0106f3-0"><a href="/docs/navigation" id="ty-512eca93-6b0106f3-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-05ff09b9-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7e7e4f9e-6b0106f3-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-21d4434d-6b0106f3-0">
+        <li id="ty-fdf56bcc-6b0106f3-0"><a href="/docs/components" id="ty-3e4ad48c-6b0106f3-0">Components overview</a></li>
+        <li id="ty-fe23d09d-6b0106f3-0"><a href="/docs/alerts" id="ty-2fe8136e-6b0106f3-0">Alerts</a></li>
+        <li id="ty-3252bc25-6b0106f3-0"><a href="/docs/avatars" id="ty-a117269c-6b0106f3-0">Avatars</a></li>
+        <li id="ty-b2af1c1c-6b0106f3-0"><a href="/docs/badges" id="ty-85c67442-6b0106f3-0">Badges</a></li>
+        <li id="ty-7bf8caab-6b0106f3-0"><a href="/docs/breadcrumbs" id="ty-63f1aab3-6b0106f3-0">Breadcrumbs</a></li>
+        <li id="ty-0fa81b9b-6b0106f3-0"><a href="/docs/buttons" id="ty-779d7a99-6b0106f3-0">Buttons</a></li>
+        <li id="ty-d115603c-6b0106f3-0"><a href="/docs/cards" id="ty-803d22a5-6b0106f3-0">Cards</a></li>
+        <li id="ty-0da96966-6b0106f3-0"><a href="/docs/chips" id="ty-b4692fa9-6b0106f3-0">Chips</a></li>
+        <li id="ty-f63b460b-6b0106f3-0"><a href="/docs/command" id="ty-6942393b-6b0106f3-0">Command palette</a></li>
+        <li id="ty-47ffe3d0-6b0106f3-0"><a href="/docs/dialog" id="ty-2e2b9a94-6b0106f3-0">Dialog</a></li>
+        <li id="ty-63abbc90-6b0106f3-0"><a href="/docs/expand" id="ty-127af8aa-6b0106f3-0">Expand</a></li>
+        <li id="ty-296e8a05-6b0106f3-0"><a href="/docs/feedback" id="ty-62af0603-6b0106f3-0">Feedback</a></li>
+        <li id="ty-77ecf9e8-6b0106f3-0"><a href="/docs/inputs" id="ty-9e0c007a-6b0106f3-0">Inputs</a></li>
+        <li id="ty-2dc6f1e1-6b0106f3-0"><a href="/docs/layout-primitives" id="ty-7caa5e05-6b0106f3-0">Layout primitives</a></li>
+        <li id="ty-3fba6ed9-6b0106f3-0"><a href="/docs/lists" id="ty-f7166ebc-6b0106f3-0">Lists</a></li>
+        <li id="ty-2ec7d366-6b0106f3-0"><a href="/docs/menus" id="ty-919a4650-6b0106f3-0">Menus</a></li>
+        <li id="ty-43cdc75e-6b0106f3-0"><a href="/docs/overlays" id="ty-cbbdb998-6b0106f3-0">Overlays</a></li>
+        <li id="ty-970465d3-6b0106f3-0"><a href="/docs/color-pickers" id="ty-3749e314-6b0106f3-0">Color Pickers</a></li>
+        <li id="ty-c93ce6d4-6b0106f3-0"><a href="/docs/date-pickers" id="ty-6a7de840-6b0106f3-0">Date Pickers</a></li>
+        <li id="ty-fa21a225-6b0106f3-0"><a href="/docs/time-pickers" id="ty-441bc818-6b0106f3-0">Time Pickers</a></li>
+        <li id="ty-6b80b884-6b0106f3-0"><a href="/docs/slider" id="ty-d639002e-6b0106f3-0">Slider</a></li>
+        <li id="ty-fa551e21-6b0106f3-0"><a href="/docs/snackbar" id="ty-0946ece1-6b0106f3-0">Snackbar</a></li>
+        <li id="ty-3bd2d59c-6b0106f3-0"><a href="/docs/surfaces" id="ty-1293f46a-6b0106f3-0">Surfaces</a></li>
+        <li id="ty-75bf504d-6b0106f3-0"><a href="/docs/tables" id="ty-dd253014-6b0106f3-0">Tables</a></li>
+        <li id="ty-2ad171be-6b0106f3-0"><a href="/docs/tabs" id="ty-bc0c3c7c-6b0106f3-0">Tabs</a></li>
+        <li id="ty-256f6888-6b0106f3-0"><a href="/docs/tooltips" id="ty-08cec745-6b0106f3-0">Tooltips</a></li>
+        <li id="ty-82d4d7aa-6b0106f3-0"><a href="/docs/workflows" id="ty-46169720-6b0106f3-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-2ea4382e-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-099c94fb-6b0106f3-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-549e6898-6b0106f3-0">
+        <li id="ty-febae9f7-6b0106f3-0"><a href="/docs/themes" id="ty-4949fe95-6b0106f3-0">Themes</a></li>
+        <li id="ty-760aaf72-6b0106f3-0"><a href="/docs/utilities" id="ty-5a81ec9e-6b0106f3-0">Utilities</a></li>
+        <li id="ty-2001d60c-6b0106f3-0"><a href="/docs/styles-and-animations" id="ty-411ee635-6b0106f3-0">Styles and animations</a></li>
+        <li id="ty-a06550f6-6b0106f3-0"><a href="/docs/animations" id="ty-c5240d4b-6b0106f3-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-89240a38-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-75eba137-6b0106f3-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-15912ef6-6b0106f3-0">
+        <li id="ty-2e9ceeaf-6b0106f3-0"><a href="/docs/api" id="ty-543bb451-6b0106f3-0">API</a></li>
+        <li id="ty-6cb2ebdf-6b0106f3-0"><a href="/docs/directives" id="ty-67d8ab1c-6b0106f3-0">Directives</a></li>
+        <li id="ty-d3a571a4-6b0106f3-0"><a href="/docs/labs" id="ty-b7503fcd-6b0106f3-0">Labs</a></li>
+        <li id="ty-7a714a74-6b0106f3-0"><a href="/docs/resources" id="ty-21a4d138-6b0106f3-0">Resources</a></li>
+        <li id="ty-3eeef2e1-6b0106f3-0"><a href="/docs/roadmap" id="ty-9ea6afa4-6b0106f3-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c0e57710-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7ee6a302-6b0106f3-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-ceed89b1-6b0106f3-0">
+        <li id="ty-019a94a2-6b0106f3-0"><a href="/docs/about" id="ty-a84e8078-6b0106f3-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-990714da-0"></button>
+  <main class="docs-main" id="ty-62ecfbdf-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-56a8f1b8-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-5ba50793-0">
+      <div id="ty-layout-slot"><h1 id="ty-51d3ff6c-0">Dialog &amp; Overlay</h1><p id="ty-6424a1f2-0">Modal dialogs, sheets, and overlays for focused interactions.</p><h2 id="ty-fcf42434-0">Dialog</h2><demo-compare >
+  <div slot="css" id="ty-d183ad39-0">
+    <button class="w-btn w-btn-filled" data-w-dialog-open="demo-dialog" id="ty-832422fd-0">Open Dialog</button>
+    <div class="w-overlay w-overlay--scrim" id="demo-dialog-overlay"></div>
+    <div class="w-dialog-wrapper" id="demo-dialog" data-w-overlay="demo-dialog-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="w-dialog" id="ty-21c86d14-0">
+        <div class="w-dialog-header" id="ty-21e33cf2-0">
+          <h3 class="w-dialog-title" id="ty-8da491a2-0">Confirm</h3>
+          <button class="w-btn w-btn-icon w-btn--sm" data-w-dialog-close="" aria-label="Close" id="ty-802987ce-0">&times;</button>
+        </div>
+        <div class="w-dialog-body" id="ty-bdf05022-0">
+          <p id="ty-9255aa19-0">Are you sure you want to proceed?</p>
+        </div>
+        <div class="w-dialog-footer" id="ty-000cd580-0">
+          <button class="w-btn w-btn-text" data-w-dialog-close="" id="ty-c3638e9d-0">Cancel</button>
+          <button class="w-btn w-btn-filled" id="ty-fc83c603-0">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-c141d494-0">
+    <w-dialog title="Confirm" id="ty-1820cc1a-0">
+      <w-btn slot="activator" variant="filled" id="ty-08a2b567-0">Open Dialog</w-btn>
+      Are you sure you want to proceed?
+      <div slot="footer" id="ty-5f265081-0">
+        <w-btn variant="text" data-w-dialog-close="" id="ty-bd32db0b-0">Cancel</w-btn>
+        <w-btn variant="filled" data-w-dialog-close="" id="ty-e913398c-0">Confirm</w-btn>
+      </div>
+    </w-dialog>
+  </div>
+</demo-compare><h2 id="ty-e2825260-0">Persistent</h2><demo-compare >
+  <div slot="css" id="ty-2394dcf4-0">
+    <button class="w-btn w-btn-outlined" id="ty-69d685b4-0">Persistent dialog</button>
+    <div class="w-dialog-wrapper open w-dialog-wrapper--persistent" aria-hidden="false" role="dialog" aria-modal="true" style="position:relative; inset:auto; z-index:1; padding:0; opacity:1; visibility:visible" id="ty-ec32c7d0-0">
+      <div class="w-dialog" id="ty-0072ee74-0">
+        <div class="w-dialog-header" id="ty-eebb482e-0"><h3 class="w-dialog-title" id="ty-794272bf-0">Unsaved changes</h3></div>
+        <div class="w-dialog-body" id="ty-9b7891c5-0"><p id="ty-00c54ab7-0">Outside clicks keep this dialog open until the user chooses an action.</p></div>
+        <div class="w-dialog-footer" id="ty-69a31d97-0">
+          <button class="w-btn w-btn-text" id="ty-8b4c8c38-0">Cancel</button>
+          <button class="w-btn w-btn-filled" id="ty-1cbab9d1-0">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-9102eec6-0">
+    <w-dialog title="Unsaved changes" persistent="" id="ty-9d974b3c-0">
+      <w-btn slot="activator" variant="outlined" id="ty-d003a61c-0">Persistent dialog</w-btn>
+      Outside clicks keep this dialog open until the user chooses an action.
+      <div slot="footer" id="ty-451c136c-0">
+        <w-btn variant="text" data-w-dialog-close="" id="ty-17085cc9-0">Cancel</w-btn>
+        <w-btn variant="filled" data-w-dialog-close="" id="ty-e14067a6-0">Save</w-btn>
+      </div>
+    </w-dialog>
+  </div>
+</demo-compare><h2 id="ty-bc36f9ee-0">Fullscreen and Scrollable</h2><demo-compare >
+  <div slot="css" id="ty-de4fd682-0">
+    <button class="w-btn w-btn-outlined" id="ty-463c79dd-0">Open fullscreen</button>
+    <div class="w-dialog-wrapper open w-dialog-wrapper--fullscreen w-dialog-wrapper--scrollable" aria-hidden="false" role="dialog" aria-modal="true" style="position:relative; inset:auto; z-index:1; padding:0; opacity:1; visibility:visible" id="ty-a45be9e8-0">
+      <div class="w-dialog w-dialog--fullscreen w-dialog--scrollable" style="width:100%; max-width:100%; min-height:220px; max-height:220px" id="ty-fd44077e-0">
+        <div class="w-dialog-header" id="ty-10034e55-0">
+          <h3 class="w-dialog-title" id="ty-ee7e1734-0">Review details</h3>
+          <button class="w-btn w-btn-icon w-btn--sm" aria-label="Close" id="ty-5d8c17c7-0">&times;</button>
+        </div>
+        <div class="w-dialog-body" id="ty-a29ead74-0">
+          <p id="ty-1ae6973b-0">Scrollable dialogs keep the header and footer in place while the body carries longer content.</p>
+          <p id="ty-89c9e71e-0">Use fullscreen dialogs for complex mobile flows or focused editing states.</p>
+        </div>
+        <div class="w-dialog-footer" id="ty-3e12d385-0"><button class="w-btn w-btn-filled" id="ty-6b1d5600-0">Done</button></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e1963e25-0">
+    <w-dialog title="Review details" fullscreen="" scrollable="" id="ty-68cd418f-0">
+      <w-btn slot="activator" variant="outlined" id="ty-51f8d96d-0">Open fullscreen</w-btn>
+      <p id="ty-62f95bf7-0">Scrollable dialogs keep the header and footer in place while the body carries longer content.</p>
+      <p id="ty-f368f0db-0">Use fullscreen dialogs for complex mobile flows or focused editing states.</p>
+      <div slot="footer" id="ty-95695ed4-0"><w-btn variant="filled" data-w-dialog-close="" id="ty-ea144df8-0">Done</w-btn></div>
+    </w-dialog>
+  </div>
+</demo-compare><h2 id="ty-24886a01-0">Overlay</h2><demo-compare >
+  <div slot="css" id="ty-f2b9d1f1-0">
+    <div class="w-overlay w-overlay--scrim open" style="position:relative; min-height:160px; z-index:1" id="ty-b73af8d2-0">
+      <div class="w-card w-card-body" style="max-width:320px" id="ty-8040bfe9-0">Overlay content</div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-fb09a1d7-0">
+    <w-overlay open="" scrim="primary" opacity="0.42" contained="" style="display:block; position:relative; min-height:160px; overflow:hidden; border-radius:var(--w-radius)" id="ty-a18d8198-0">
+      <div class="w-card w-card-body" style="max-width:320px" id="ty-9fa31b64-0">Overlay content</div>
+    </w-overlay>
+  </div>
+</demo-compare><h2 id="ty-e35f57c5-0">Sheet</h2><demo-compare >
+  <div slot="css" id="ty-7f38b125-0">
+    <button class="w-btn w-btn-outlined" data-w-sheet-open="demo-sheet" id="ty-0617c9fc-0">Open Sheet</button>
+    <div class="w-overlay" id="demo-sheet-overlay"></div>
+    <div class="w-sheet-bottom" id="demo-sheet" data-w-overlay="demo-sheet-overlay" aria-hidden="true">
+      <div class="w-sheet-handle" id="ty-4aaabd72-0"></div>
+      <div class="w-dialog-header" id="ty-c47627b2-0">
+        <h3 class="w-dialog-title" id="ty-f5796fdf-0">Options</h3>
+        <button class="w-btn w-btn-icon w-btn--sm" data-w-sheet-close="" aria-label="Close" id="ty-929fd268-0">&times;</button>
+      </div>
+      <div class="w-dialog-body" id="ty-0076687e-0">
+        <p id="ty-8896ca4c-0">Sheet content goes here.</p>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e5b9a1a7-0">
+    <w-btn variant="outlined" data-demo-sheet-open="wc-sheet" id="ty-53b322b5-0">Open Sheet</w-btn>
+    <div class="w-overlay" data-demo-sheet-overlay="wc-sheet" id="ty-14c6a78b-0"></div>
+    <div class="w-sheet-bottom" data-demo-sheet="wc-sheet" id="ty-af85d04f-0">
+      <div class="w-sheet-handle" id="ty-9c43f311-0"></div>
+      <div class="w-dialog-header" id="ty-c525a656-0">
+        <h3 class="w-dialog-title" id="ty-2a965915-0">Options</h3>
+        <button class="w-btn w-btn-icon w-btn--sm" data-demo-sheet-close="wc-sheet" aria-label="Close" id="ty-6d311012-0">&times;</button>
+      </div>
+      <div class="w-dialog-body" id="ty-5810757e-0">
+        <p id="ty-5f967cb4-0">Sheet content goes here.</p>
+      </div>
+    </div>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-6adff5f9-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5055db09-0"></aside>
+</div>
+</body>
+</html>
+

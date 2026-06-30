@@ -1,0 +1,41 @@
+/* DuVay — Bottom Navigation component styles. */
+@import "../core.css";
+
+/* ── Mobile bottom nav ──────────────────────────────────────────────────── */
+.w-mobile-nav {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: calc(var(--w-mobile-nav-height) + env(safe-area-inset-bottom));
+  padding: 0.375rem var(--w-space-sm) max(0.375rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--w-divider);
+  background: var(--w-sidebar);
+  box-shadow: 0 -12px 28px var(--w-shadow-color);
+}
+
+.w-mobile-nav .w-sidebar-folder {
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 52px;
+  padding: 0.25rem;
+  font-size: var(--w-font-xs);
+}
+
+.w-mobile-nav .w-sidebar-folder svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Show mobile nav only on small screens */
+@media (max-width: 760px) {
+  .w-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

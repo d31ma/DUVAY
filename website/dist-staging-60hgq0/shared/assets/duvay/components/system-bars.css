@@ -1,0 +1,20 @@
+/* DuVay — System Bars component styles. */
+@import "../core.css";
+
+/* ── System Bar ───────────────────────────────────────────────────────────── */
+/* Thin bar for status indicators (time, battery, wifi, notifications). */
+.w-system-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: 28px;
+  padding: 0 var(--w-space-lg);
+  background: var(--w-inverse-surface);
+  color: var(--w-inverse-on-surface);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-system-bar .w-topbar-spacer {
+  margin-left: auto;
+}

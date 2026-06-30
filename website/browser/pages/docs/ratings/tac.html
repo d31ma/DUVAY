@@ -1,0 +1,212 @@
+<h1>Ratings</h1>
+<p><code>w-rating</code> captures whole or half-step scores with keyboard navigation, hover previews, custom icons, labels, form values, and controlled <code>value</code> state.</p>
+
+<h2>Usage</h2>
+<p>Use the class structure for a static score or <code>w-rating</code> for an interactive form control.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-rating" role="img" aria-label="4 out of 5">
+      <span class="w-rating__items">
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%">
+          <span class="w-rating__item"><span class="w-rating__visual" aria-hidden="true"><span class="w-rating__icon w-rating__icon--empty">☆</span><span class="w-rating__icon w-rating__icon--filled">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%">
+          <span class="w-rating__item"><span class="w-rating__visual" aria-hidden="true"><span class="w-rating__icon w-rating__icon--empty">☆</span><span class="w-rating__icon w-rating__icon--filled">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%">
+          <span class="w-rating__item"><span class="w-rating__visual" aria-hidden="true"><span class="w-rating__icon w-rating__icon--empty">☆</span><span class="w-rating__icon w-rating__icon--filled">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="full" style="--w-rating-fill:100%">
+          <span class="w-rating__item"><span class="w-rating__visual" aria-hidden="true"><span class="w-rating__icon w-rating__icon--empty">☆</span><span class="w-rating__icon w-rating__icon--filled">★</span></span></span>
+        </span>
+        <span class="w-rating__wrapper" data-state="empty" style="--w-rating-fill:0%">
+          <span class="w-rating__item"><span class="w-rating__visual" aria-hidden="true"><span class="w-rating__icon w-rating__icon--empty">☆</span><span class="w-rating__icon w-rating__icon--filled">★</span></span></span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-rating value="4" label="Product rating" ripple></w-rating>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<p><code>color</code> controls empty items and <code>active-color</code> controls the selected value.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <div class="w-row ga-1 align-center" style="color:var(--w-primary)"><span aria-hidden="true">★ ★ ★ ★ ☆</span><span>Primary</span></div>
+      <div class="w-row ga-1 align-center" style="color:var(--w-success)"><span aria-hidden="true">★ ★ ★ ☆ ☆</span><span>Success</span></div>
+      <div class="w-row ga-1 align-center" style="color:var(--w-warning)"><span aria-hidden="true">★ ★ ★ ★ ★</span><span>Warning</span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-2">
+      <w-rating value="4" active-color="primary" label="Primary rating"></w-rating>
+      <w-rating value="3" active-color="success" label="Success rating"></w-rating>
+      <w-rating value="5" active-color="warning" label="Warning rating"></w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Half Increments</h2>
+<p><code>half-increments</code> exposes two selectable zones per item. Arrow keys move by one half step.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-rating" role="img" aria-label="3.5 out of 5" style="--w-rating-active-color:var(--w-warning)">
+      <span aria-hidden="true">★ ★ ★ ◐ ☆</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-rating value="3.5" half-increments label="Half-step rating" ripple></w-rating>
+  </div>
+</demo-compare>
+
+<h2>Hover and Clearable</h2>
+<p>Hover previews a prospective value. With <code>clearable</code>, selecting the current value resets the score to zero.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <span>Hover states preview the active color.</span>
+      <span>Select the same value again to clear it.</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-rating value="3" hover clearable ripple label="Hover and clear rating"></w-rating>
+  </div>
+</demo-compare>
+
+<h2>Length</h2>
+<p>Set <code>length</code> for short sentiment scales or more granular scores.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <span aria-label="2 out of 3">★ ★ ☆</span>
+      <span aria-label="7 out of 10">★ ★ ★ ★ ★ ★ ★ ☆ ☆ ☆</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-2">
+      <w-rating value="2" length="3" label="Three point score"></w-rating>
+      <w-rating value="7" length="10" size="small" label="Ten point score"></w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Size and Density</h2>
+<p>Named sizes follow the component scale. Density adjusts the space between items without shrinking accessible hit targets.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <span style="font-size:1rem">★ ★ ★ ★ ☆</span>
+      <span style="font-size:1.5rem">★ ★ ★ ★ ☆</span>
+      <span style="font-size:2.5rem">★ ★ ★ ★ ☆</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-2">
+      <w-rating value="4" size="x-small" density="compact" label="Extra-small compact rating"></w-rating>
+      <w-rating value="4" size="default" label="Default rating"></w-rating>
+      <w-rating value="4" size="x-large" density="comfortable" label="Extra-large comfortable rating"></w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Readonly and Disabled</h2>
+<p><code>readonly</code> keeps the score legible without allowing changes. <code>disabled</code> also removes the control from interaction and applies disabled emphasis.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <span>Readonly: ★ ★ ★ ★ ☆</span>
+      <span style="opacity:.5">Disabled: ★ ★ ☆ ☆ ☆</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-2">
+      <w-rating value="4" readonly label="Readonly rating"></w-rating>
+      <w-rating value="2" disabled label="Disabled rating"></w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Icons</h2>
+<p>Replace the empty and full symbols through the icon registry or provide a custom <code>item</code> slot.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-column ga-2">
+      <span aria-label="3 out of 5">♥ ♥ ♥ ♡ ♡</span>
+      <span aria-label="4 out of 5">◆ ◆ ◆ ◆ ◇</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-2">
+      <w-rating value="3" empty-icon="♡" full-icon="♥" active-color="danger" label="Heart rating"></w-rating>
+      <w-rating value="4" active-color="primary" label="Diamond rating">
+        <span slot="item">◆</span>
+      </w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Item Labels</h2>
+<p>Pass labels as a JSON array. Labels can sit above or below items and can be formatted through the <code>item-label</code> slot.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3">
+      <span>Low<br />★</span>
+      <span>Medium<br />★</span>
+      <span>High<br />☆</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-column ga-4">
+      <w-rating value="2" length="3" item-labels='["Low","Medium","High"]' label="Priority"></w-rating>
+      <w-rating value="3" length="5" item-label-position="bottom" item-labels='["1","2","3","4","5"]' label="Score">
+        <strong slot="item-label">Score</strong>
+      </w-rating>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Form and Accessibility</h2>
+<p><code>name</code> adds a synchronized hidden form value. Customize spoken item labels with <code>item-aria-label</code>, using value and length placeholders in the label template.</p>
+<demo-compare>
+  <div slot="css">
+    <label for="static-rating-value">Service quality</label>
+    <input id="static-rating-value" class="w-input" name="service-quality" value="4.5" readonly />
+  </div>
+  <div slot="wc">
+    <form class="w-column ga-2">
+      <w-rating
+        value="4.5"
+        half-increments
+        name="service-quality"
+        label="Service quality"
+        item-aria-label="{value} stars out of {length}"
+      ></w-rating>
+    </form>
+  </div>
+</demo-compare>
+
+<h2>Card Rating</h2>
+<p>Ratings can compose with DuVay surfaces without requiring a specialized wrapper.</p>
+<demo-compare>
+  <div slot="css">
+    <article class="w-card">
+      <div class="w-card-body">
+        <strong>Field Notes</strong>
+        <p class="w-text-muted">A compact, thoughtful release.</p>
+        <span aria-label="4 out of 5">★ ★ ★ ★ ☆</span>
+      </div>
+    </article>
+  </div>
+  <div slot="wc">
+    <w-card>
+      <w-card-title>Field Notes</w-card-title>
+      <w-card-text>A compact, thoughtful release.</w-card-text>
+      <w-card-actions>
+        <w-rating value="4" hover clearable size="small" label="Rate Field Notes"></w-rating>
+      </w-card-actions>
+    </w-card>
+  </div>
+</demo-compare>

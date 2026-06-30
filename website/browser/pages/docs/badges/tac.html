@@ -1,0 +1,141 @@
+<h1>Badges</h1>
+<p>Small status descriptors for counts, presence, icons, and short labels.</p>
+
+<h2>Content</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-icon" type="button" aria-label="Messages">M</button>
+        <span class="w-badge w-badge-content w-badge-primary">4</span>
+      </span>
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-outlined" type="button">Inbox</button>
+        <span class="w-badge w-badge-content w-badge-error">99+</span>
+      </span>
+      <span class="w-badge-wrap">
+        <span class="w-avatar" data-w-initials="AB"></span>
+        <span class="w-badge w-badge-content w-badge-success w-badge-dot" aria-label="Online"></span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-badge content="4" color="primary">
+        <w-btn variant="icon" aria-label="Messages">M</w-btn>
+      </w-badge>
+      <w-badge content="128" max="99">
+        <w-btn variant="outlined">Inbox</w-btn>
+      </w-badge>
+      <w-badge dot color="success" label="Online">
+        <w-avatar initials="AB"></w-avatar>
+      </w-badge>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Locations and Offsets</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <span class="w-badge-wrap w-badge-wrap--top-start">
+        <button class="w-btn w-btn-outlined" type="button">Top start</button>
+        <span class="w-badge w-badge-content">1</span>
+      </span>
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-outlined" type="button">Top end</button>
+        <span class="w-badge w-badge-content">2</span>
+      </span>
+      <span class="w-badge-wrap w-badge-wrap--bottom-start">
+        <button class="w-btn w-btn-outlined" type="button">Bottom start</button>
+        <span class="w-badge w-badge-content">3</span>
+      </span>
+      <span class="w-badge-wrap w-badge-wrap--bottom-end w-badge-wrap--floating">
+        <button class="w-btn w-btn-outlined" type="button">Floating</button>
+        <span class="w-badge w-badge-content">4</span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-badge content="1" location="top-start"><w-btn variant="outlined">Top start</w-btn></w-badge>
+      <w-badge content="2" location="top end"><w-btn variant="outlined">Top end</w-btn></w-badge>
+      <w-badge content="3" location="bottom-start"><w-btn variant="outlined">Bottom start</w-btn></w-badge>
+      <w-badge content="4" location="bottom-end" floating offset-x="4" offset-y="4"><w-btn variant="outlined">Floating</w-btn></w-badge>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Dot, Border, and Icon</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <span class="w-badge-wrap">
+        <span class="w-avatar" data-w-initials="DUVAY"></span>
+        <span class="w-badge w-badge-content w-badge-success w-badge-dot w-badge-bordered" aria-label="Active"></span>
+      </span>
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-outlined" type="button">Upload</button>
+        <span class="w-badge w-badge-content w-badge-warning w-badge-bordered">!</span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-badge dot dot-size="14" color="success" bordered label="Active">
+        <w-avatar initials="DUVAY"></w-avatar>
+      </w-badge>
+      <w-badge icon="!" color="warning" bordered>
+        <w-btn variant="outlined">Upload</w-btn>
+      </w-badge>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Inline Labels</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-badge w-badge-primary">Primary</span>
+      <span class="w-badge w-badge-success">Success</span>
+      <span class="w-badge w-badge-warning">Warning</span>
+      <span class="w-badge w-badge-error">Error</span>
+      <span class="w-badge w-badge-outlined">Outlined</span>
+      <span class="w-badge w-badge-tonal w-badge-success">Tonal</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-badge inline content="Primary" color="primary"></w-badge>
+      <w-badge inline content="Success" color="success"></w-badge>
+      <w-badge inline content="Warning" color="warning"></w-badge>
+      <w-badge inline content="Error" color="error"></w-badge>
+      <w-badge inline content="Outlined" variant="outlined"></w-badge>
+      <w-badge inline content="Tonal" variant="tonal" color="success"></w-badge>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Model and Badge Slot</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-outlined" type="button">Hidden badge</button>
+      </span>
+      <span class="w-badge-wrap">
+        <button class="w-btn w-btn-outlined" type="button">Custom</button>
+        <span class="w-badge w-badge-content w-badge-primary">new</span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4 flex-wrap align-center">
+      <w-badge content="5" active="false"><w-btn variant="outlined">Hidden badge</w-btn></w-badge>
+      <w-badge color="primary">
+        <w-btn variant="outlined">Custom</w-btn>
+        <span slot="badge">new</span>
+      </w-badge>
+    </div>
+  </div>
+</demo-compare>

@@ -1,0 +1,871 @@
+var AsyncFunction=Object.getPrototypeOf(async function(){}).constructor;var TY_INTERNAL_FIELDS=new Set(["props","tac","__ty_bound_persistent_fields__","__ty_bound_reactive_fields__"]),ty_camelCasePropName=(name)=>name.replace(/-([a-zA-Z0-9])/g,(_match,char)=>char.toUpperCase()),ty_decodeProps=(props)=>{let withCamelAliases=(propBag)=>{for(let key of Object.keys(propBag)){if(!key.includes("-"))continue;let camelKey=ty_camelCasePropName(key);if(camelKey!==key&&!Object.prototype.hasOwnProperty.call(propBag,camelKey))propBag[camelKey]=propBag[key]}return propBag};if(typeof props==="string")try{return withCamelAliases(JSON.parse(decodeURIComponent(props)))}catch{return{}}return props&&typeof props==="object"?withCamelAliases(props):{}},ty_createScope=(controller,props)=>{let state=Object.create(null),propBag=props&&typeof props==="object"?props:{},proxy;return proxy=new Proxy(state,{has(_target,key){if(key===Symbol.unscopables||typeof key!=="string")return!1;return Object.prototype.hasOwnProperty.call(state,key)||(controller?key in controller:!1)||key in propBag},get(_target,key){if(key===Symbol.unscopables)return;if(key==="__ty_controller__")return controller;if(key==="__ty_props__")return propBag;if(typeof key!=="string")return;if(Object.prototype.hasOwnProperty.call(state,key))return state[key];if(controller&&key in controller){let value=controller[key];return typeof value==="function"?value.bind(controller):value}return propBag[key]},set(_target,key,value){if(typeof key!=="string")return!0;if(controller&&key in controller)return controller[key]=value,!0;if(key in propBag)return propBag[key]=value,!0;return state[key]=value,!0},ownKeys(){let keys=new Set(Object.keys(state));if(controller&&typeof controller==="object")for(let key of Object.keys(controller))keys.add(key);for(let key of Object.keys(propBag))keys.add(key);return[...keys]},getOwnPropertyDescriptor(_target,key){if(typeof key!=="string")return;return{configurable:!0,enumerable:!0,writable:!0,value:proxy[key]}}}),proxy},__ty_isBrowserEnv=()=>typeof window<"u"&&!globalThis.__ty_prerender__,__ty_openFetchCache=async()=>{if(!__ty_isBrowserEnv()||typeof indexedDB>"u")return null;if(window.__ty_fetch_cache_db__)return window.__ty_fetch_cache_db__??null;return window.__ty_fetch_cache_db__=await new Promise((resolve)=>{let request=indexedDB.open("tachyon-fetch-cache",1);request.onupgradeneeded=()=>{request.result.createObjectStore("responses",{keyPath:"key"})},request.onsuccess=()=>resolve(request.result),request.onerror=()=>resolve(null)}),window.__ty_fetch_cache_db__??null},__ty_readCachedResponse=async(cacheKey)=>{let db=await __ty_openFetchCache();if(!db)return null;return await new Promise((resolve)=>{let request=db.transaction("responses","readonly").objectStore("responses").get(cacheKey);request.onsuccess=()=>{let entry=request.result;if(!entry){resolve(null);return}resolve(new Response(entry.body?new Uint8Array(entry.body):null,{status:entry.status,statusText:entry.statusText,headers:entry.headers}))},request.onerror=()=>resolve(null)})},__ty_writeCachedResponse=async(cacheKey,response)=>{let db=await __ty_openFetchCache();if(!db)return;let body=await response.arrayBuffer();await new Promise((resolve)=>{let tx=db.transaction("responses","readwrite");tx.oncomplete=()=>resolve(void 0),tx.onerror=()=>resolve(void 0),tx.objectStore("responses").put({key:cacheKey,status:response.status,statusText:response.statusText,headers:Object.fromEntries(response.headers.entries()),body,updatedAt:Date.now()})})},__ty_deleteCachedResponse=async(cacheKey)=>{let db=await __ty_openFetchCache();if(!db)return;await new Promise((resolve)=>{let tx=db.transaction("responses","readwrite");tx.oncomplete=()=>resolve(void 0),tx.onerror=()=>resolve(void 0),tx.objectStore("responses").delete(cacheKey)})},localFirstFetch=async(input,init)=>{let request=new Request(input,init),method=request.method.toUpperCase(),browserEnv=__ty_isBrowserEnv(),sharedCache=globalThis.__ty_browser_cache__;if(browserEnv&&typeof sharedCache?.fetch==="function"){let canCacheRead=(method==="GET"||method==="HEAD")&&request.cache!=="no-store";return await sharedCache.fetch(input,init,{key:canCacheRead?`${method}:${request.url}`:null,invalidateKeys:method==="GET"||method==="HEAD"?[]:[`GET:${request.url}`,`HEAD:${request.url}`]})}let cacheKey=browserEnv&&(method==="GET"||method==="HEAD")&&request.cache!=="no-store"?`${method}:${request.url}`:null;if(cacheKey&&request.cache!=="reload"){let cached=await __ty_readCachedResponse(cacheKey);if(cached)return cached}try{let response=await(globalThis.__ty_native_fetch__??fetch)(input,init);if(cacheKey&&response.ok)__ty_writeCachedResponse(cacheKey,response.clone());if(!cacheKey&&response.ok&&browserEnv)Promise.all([__ty_deleteCachedResponse(`GET:${request.url}`),__ty_deleteCachedResponse(`HEAD:${request.url}`)]);return response}catch(error){if(cacheKey){let cached=await __ty_readCachedResponse(cacheKey);if(cached)return cached}throw error}};if(__ty_isBrowserEnv()){let g=globalThis;if(!g.__ty_fetch_installed__)g.__ty_fetch_installed__=!0,g.__ty_native_fetch__=globalThis.fetch.bind(globalThis),globalThis.fetch=(input,init)=>localFirstFetch(input,init)}var ty_createHelpers=(modulePath)=>{let renderContext={componentRootId:null,elemId:null,event:void 0},isBrowser=typeof window<"u"&&!globalThis.__ty_prerender__,isServer=!isBrowser,rerenderScheduled=!1,suppressReactiveRerender=!1,scheduleRerender=()=>{if(!isBrowser||suppressReactiveRerender||renderContext.elemId)return;if(rerenderScheduled)return;rerenderScheduled=!0,queueMicrotask(()=>{rerenderScheduled=!1,window.__ty_rerender?.()})},onMount=(fn)=>{if(!isBrowser)return;if(!window.__ty_onMount_queue__)window.__ty_onMount_queue__=[];window.__ty_onMount_queue__.push(fn)},rerender=()=>{if(isBrowser)window.__ty_rerender?.()},inject=(key,fallback=void 0)=>{if(!isBrowser)return fallback;return window.__ty_context__?.get(key)??fallback},env=(key,fallback=void 0)=>{if(!isBrowser)return fallback;let publicEnv=window.__ty_public_env__;if(!publicEnv||!(key in publicEnv))return fallback;return publicEnv[key]},fylo=(()=>{let noopCollection={find:async()=>({error:"Fylo browser not enabled"}),list:async()=>({error:"Fylo browser not enabled"}),get:async()=>({error:"Fylo browser not enabled"}),events:async()=>({error:"Fylo browser not enabled"}),patch:async()=>({error:"Fylo browser not enabled"}),del:async()=>({error:"Fylo browser not enabled"}),rebuild:async()=>({error:"Fylo browser not enabled"})},noop=new Proxy({enabled:!1,root:void 0,setCredentials(){},clearCredentials(){},sql:async()=>({error:"Fylo browser not enabled"}),collections:async()=>({root:"",collections:[]}),meta:async()=>null},{get(target,prop){if(typeof prop==="string"&&!(prop in target))return noopCollection;return Reflect.get(target,prop)}});return new Proxy(noop,{get(_,prop){let live=(typeof window<"u"?window.fylo:void 0)??noop;return Reflect.get(live,prop)}})})(),provide=(key,value)=>{if(isBrowser)window.__ty_context__?.set(key,value)},resolvePersistScope=(props)=>{let rawScope=props.__ty_persist_id__??(isBrowser?window.location.pathname||"/":modulePath||"server");return`${modulePath||"module"}:${String(rawScope)}`},emit=(name,detail)=>{let eventName=String(name||"").replace(/^@/,""),targetId=renderContext.componentRootId;if(!eventName||!targetId||typeof document>"u")return!1;let target=document.getElementById(targetId);if(!target||typeof CustomEvent>"u")return!1;return target.dispatchEvent(new CustomEvent(eventName,{detail,bubbles:!0,composed:!0}))},readSessionValue=(storageKey,fallback=void 0)=>{if(!isBrowser)return fallback;try{let stored=sessionStorage.getItem(storageKey);return stored===null?fallback:JSON.parse(stored)}catch{return fallback}},writeSessionValue=(storageKey,value)=>{if(!isBrowser)return;try{if(value===void 0){sessionStorage.removeItem(storageKey);return}sessionStorage.setItem(storageKey,JSON.stringify(value))}catch{}},readLocalValue=(storageKey,fallback=void 0)=>{if(!isBrowser)return fallback;try{let stored=globalThis.localStorage.getItem(storageKey);return stored===null?fallback:JSON.parse(stored)}catch{return fallback}},writeLocalValue=(storageKey,value)=>{if(!isBrowser)return;try{if(value===void 0){globalThis.localStorage.removeItem(storageKey);return}globalThis.localStorage.setItem(storageKey,JSON.stringify(value))}catch{}},bindPersistentFields=(controller,props)=>{let boundFields=controller.__ty_bound_persistent_fields__ instanceof Set?controller.__ty_bound_persistent_fields__:new Set;controller.__ty_bound_persistent_fields__=boundFields;let persistScope=resolvePersistScope(props);for(let fieldName of Object.keys(controller)){if(boundFields.has(fieldName))continue;if(fieldName.startsWith("$$")){let storageKey2=`tac:${persistScope}:${fieldName}`,currentValue2=readLocalValue(storageKey2,controller[fieldName]);Object.defineProperty(controller,fieldName,{configurable:!0,enumerable:!0,get(){return currentValue2},set(nextValue){currentValue2=nextValue,writeLocalValue(storageKey2,nextValue)}}),controller[fieldName]=currentValue2,boundFields.add(fieldName);continue}if(!fieldName.startsWith("$"))continue;let storageKey=`tac:${persistScope}:${fieldName}`,currentValue=readSessionValue(storageKey,controller[fieldName]);Object.defineProperty(controller,fieldName,{configurable:!0,enumerable:!0,get(){return currentValue},set(nextValue){currentValue=nextValue,writeSessionValue(storageKey,nextValue)}}),controller[fieldName]=currentValue,boundFields.add(fieldName)}},bindReactiveFields=(controller)=>{let boundFields=controller.__ty_bound_reactive_fields__ instanceof Set?controller.__ty_bound_reactive_fields__:new Set;controller.__ty_bound_reactive_fields__=boundFields;for(let fieldName of Object.keys(controller)){if(TY_INTERNAL_FIELDS.has(fieldName)||boundFields.has(fieldName))continue;let descriptor=Object.getOwnPropertyDescriptor(controller,fieldName);if(!descriptor||descriptor.configurable===!1)continue;if("value"in descriptor){let currentValue=descriptor.value;Object.defineProperty(controller,fieldName,{configurable:!0,enumerable:descriptor.enumerable,get(){return currentValue},set(nextValue){if(Object.is(currentValue,nextValue))return;currentValue=nextValue,scheduleRerender()}}),boundFields.add(fieldName);continue}if(typeof descriptor.get==="function"&&typeof descriptor.set==="function")Object.defineProperty(controller,fieldName,{configurable:!0,enumerable:descriptor.enumerable,get(){return descriptor.get?.call(controller)},set(nextValue){let previousValue=descriptor.get?.call(controller);descriptor.set?.call(controller,nextValue);let currentValue=descriptor.get?.call(controller);if(!Object.is(previousValue,currentValue))scheduleRerender()}}),boundFields.add(fieldName)}};return{createTacHelpers:(props)=>({get isBrowser(){return isBrowser},get isServer(){return isServer},bindPersistentFields(controller){bindPersistentFields(controller,props)},env,props,emit,fetch:(input,init)=>localFirstFetch(input,init),inject,onMount,provide,rerender}),bindCompanion:(instance,props,tac)=>{instance.props=props,instance.tac=tac,suppressReactiveRerender=!0;try{if(props){let propBag=props;for(let fieldName of Object.keys(instance)){if(fieldName==="props"||fieldName==="tac")continue;if(Object.prototype.hasOwnProperty.call(propBag,fieldName)){instance[fieldName]=propBag[fieldName];continue}if(fieldName.startsWith("$$")){let stripped=fieldName.slice(2);if(Object.prototype.hasOwnProperty.call(propBag,stripped))instance[fieldName]=propBag[stripped];continue}if(fieldName.startsWith("$")){let stripped=fieldName.slice(1);if(Object.prototype.hasOwnProperty.call(propBag,stripped))instance[fieldName]=propBag[stripped]}}}bindPersistentFields(instance,props),bindReactiveFields(instance)}finally{suppressReactiveRerender=!1}},createScope:ty_createScope,decodeProps:ty_decodeProps,env,emit,inject,isBrowser,isServer,onMount,provide,rerender,fylo,loadTacModule:async(modulePath2)=>{let tacGlobal=typeof window<"u"?window.Tac:void 0;if(tacGlobal?.load)return tacGlobal.load(modulePath2);let resolved=new URL(import.meta.url);resolved.pathname=resolved.pathname.replace(/\/(?:pages|components)\/.*$/,modulePath2);let module=await import(resolved.href);if(typeof module.default==="function")return module.default;throw Error(`Tac module "${modulePath2}" did not export a renderer`)},matchSwitchCase(switchValue,caseValue){return Array.isArray(caseValue)?caseValue.some((value)=>Object.is(value,switchValue)):Object.is(caseValue,switchValue)},setRenderContext(context){renderContext.componentRootId=context.componentRootId??null,renderContext.elemId=context.elemId??null,renderContext.event=context.event}}},__ty_module_imports__={},__ty_compiled_factory__=new AsyncFunction("__ty_helpers__","__ty_module_imports__","props",`
+const __ty_props__ = __ty_helpers__.decodeProps(props);
+
+const __ty_companion__ = null;
+const __ty_scope__ = __ty_helpers__.createScope(__ty_companion__, __ty_props__);
+
+with (__ty_scope__) {
+    const emit = __ty_helpers__.emit;
+    const fetch = __ty_helpers__.fetch;
+    const isBrowser = __ty_helpers__.isBrowser;
+    const isServer = __ty_helpers__.isServer;
+    const onMount = __ty_helpers__.onMount;
+    const rerender = __ty_helpers__.rerender;
+    const inject = __ty_helpers__.inject;
+    const provide = __ty_helpers__.provide;
+    const env = __ty_helpers__.env;
+    const fylo = __ty_helpers__.fylo;
+
+    const demo_compare = await __ty_helpers__.loadTacModule('/components/demo/compare/tac.js')
+    
+
+    if (__ty_props__) {
+        for (const __k__ of Object.keys(__ty_props__)) {
+            if (/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(__k__) && !__k__.startsWith('__ty_')) {
+                const __v__ = __ty_props__[__k__];
+                try { eval(\`\${__k__} = __v__\`) } catch {}
+            }
+        }
+    }
+
+    const compRenders = new Map();
+    const compRenderProps = new Map();
+
+    return async function(elemId, event, compId) {
+        const counters = { id: {}, ev: {}, bind: {}, persist: {} };
+        const ty_componentRootId = compId
+            ? (String(compId).startsWith('ty-') ? String(compId) : 'ty-' + compId + '-0')
+            : null;
+
+        __ty_helpers__.setRenderContext({ componentRootId: ty_componentRootId, elemId, event });
+
+        const ty_generateId = (hash, source, displayHash = hash) => {
+            const key = compId ? hash + '-' + compId : hash;
+            const map = counters[source];
+            const displayKey = compId ? displayHash + '-' + compId : displayHash;
+
+            if (key in map) {
+                return 'ty-' + displayKey + '-' + map[key]++;
+            }
+
+            map[key] = 1;
+            return 'ty-' + displayKey + '-0';
+        };
+
+        const ty_invokeEvent = async (hash, action, targetHash = hash) => {
+            if (elemId === ty_generateId(hash, 'ev', targetHash)) {
+                if (typeof action === 'function') await action(event);
+                else {
+                    const toCall = (event && !action.endsWith(')')) ? action + "('" + event + "')" : action;
+                    await eval(toCall);
+                }
+            }
+            return '';
+        };
+
+        const ty_assignValue = (hash, variable, currentValue) => {
+            let nextValue = currentValue;
+            if (elemId === ty_generateId(hash, 'bind') && event) {
+                if (/^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(variable)) {
+                    const __val__ = event.value;
+                    try { eval(\`\${variable} = __val__\`) } catch {}
+                    nextValue = __val__;
+                }
+            }
+            return nextValue ?? '';
+        };
+
+        const ty_escapeHtml = (value) => {
+            if (value === null || value === undefined) return '';
+            return String(value)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        };
+
+        const ty_escapeText = ty_escapeHtml;
+        const ty_escapeAttr = ty_escapeHtml;
+
+        let elements = '';
+        let render;
+
+        elements+=\`<h1 id="\${ty_escapeAttr(ty_generateId('e01bcbd0', 'id'))}">\`
+elements+=\`Number inputs\`
+elements+=\`</h1>\`
+elements+=\`<p id="\${ty_escapeAttr(ty_generateId('e271b6b8', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('aca4e503', 'id'))}">\`
+elements+=\`w-number-input\`
+elements+=\`</code>\`
+elements+=\` is a numeric field with stepper controls, mirroring Vuetify&#8217;s \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('27bf3854', 'id'))}">\`
+elements+=\`v-number-input\`
+elements+=\`</code>\`
+elements+=\`. Use \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('673ec13d', 'id'))}">\`
+elements+=\`min\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('23348988', 'id'))}">\`
+elements+=\`max\`
+elements+=\`</code>\`
+elements+=\`, and \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('c9c17c6a', 'id'))}">\`
+elements+=\`step\`
+elements+=\`</code>\`
+elements+=\` to constrain the value, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('b3f2356d', 'id'))}">\`
+elements+=\`precision\`
+elements+=\`</code>\`
+elements+=\` and \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('b55a3f35', 'id'))}">\`
+elements+=\`grouping\`
+elements+=\`</code>\`
+elements+=\` to format it, and \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('80ac704f', 'id'))}">\`
+elements+=\`control-variant\`
+elements+=\`</code>\`
+elements+=\` to change the stepper layout. It emits native-named \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('65dd1f22', 'id'))}">\`
+elements+=\`input\`
+elements+=\`</code>\`
+elements+=\` and \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('583d918c', 'id'))}">\`
+elements+=\`change\`
+elements+=\`</code>\`
+elements+=\` events as the number updates.\`
+elements+=\`</p>\`
+elements+=\`<h2 id="\${ty_escapeAttr(ty_generateId('01e95789', 'id'))}">\`
+elements+=\`Basic\`
+elements+=\`</h2>\`
+elements+=\`<demo-compare >\`
+elements+=\`
+  \`
+elements+=\`<div slot="css" id="\${ty_escapeAttr(ty_generateId('bd90c3ba', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<label class="w-field w-number-input w-number-input--default" id="\${ty_escapeAttr(ty_generateId('30e611a3', 'id'))}">\`
+elements+=\`
+      \`
+elements+=\`<span class="w-label" id="\${ty_escapeAttr(ty_generateId('c180d223', 'id'))}">\`
+elements+=\`Quantity\`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`<span class="w-number-input-field" id="\${ty_escapeAttr(ty_generateId('75e2fae5', 'id'))}">\`
+elements+=\`
+        \`
+elements+=\`<input class="w-input" type="text" inputmode="decimal" value="4" id="\${ty_escapeAttr(ty_generateId('90d84a93', 'id'))}" />\`
+elements+=\`
+        \`
+elements+=\`<span class="w-number-input-control" id="\${ty_escapeAttr(ty_generateId('6b8de280', 'id'))}">\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="\${ty_escapeAttr(ty_generateId('8a6f9adb', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('63875dec', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="\${ty_escapeAttr(ty_generateId('03e13c8f', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="\${ty_escapeAttr(ty_generateId('5b74a9b8', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('7dfb8a7b', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="\${ty_escapeAttr(ty_generateId('ded05579', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+        \`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`</span>\`
+elements+=\`
+    \`
+elements+=\`</label>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+  \`
+elements+=\`<div slot="wc" id="\${ty_escapeAttr(ty_generateId('e3929da2', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<w-number-input label="Quantity" value="4" min="0" max="99" id="\${ty_escapeAttr(ty_generateId('86213cac', 'id'))}">\`
+elements+=\`</w-number-input>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+\`
+elements+=\`</demo-compare>\`
+elements+=\`<h2 id="\${ty_escapeAttr(ty_generateId('80d73c2d', 'id'))}">\`
+elements+=\`Control variants\`
+elements+=\`</h2>\`
+elements+=\`<p id="\${ty_escapeAttr(ty_generateId('a283a836', 'id'))}">\`
+elements+=\`The \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('ee404473', 'id'))}">\`
+elements+=\`control-variant\`
+elements+=\`</code>\`
+elements+=\` attribute sets the stepper layout: \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('f6dfd4ca', 'id'))}">\`
+elements+=\`default\`
+elements+=\`</code>\`
+elements+=\` (buttons grouped at the end), \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('7bb8cb43', 'id'))}">\`
+elements+=\`stacked\`
+elements+=\`</code>\`
+elements+=\` (vertical spinner), \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('03e85991', 'id'))}">\`
+elements+=\`split\`
+elements+=\`</code>\`
+elements+=\` (− and + on opposite ends), or \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('78736e3e', 'id'))}">\`
+elements+=\`hidden\`
+elements+=\`</code>\`
+elements+=\` (no buttons).\`
+elements+=\`</p>\`
+elements+=\`<demo-compare >\`
+elements+=\`
+  \`
+elements+=\`<div slot="css" id="\${ty_escapeAttr(ty_generateId('d059a463', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<div class="w-stack" id="\${ty_escapeAttr(ty_generateId('605150cc', 'id'))}">\`
+elements+=\`
+      \`
+elements+=\`<label class="w-field w-number-input w-number-input--stacked" id="\${ty_escapeAttr(ty_generateId('faa5111b', 'id'))}">\`
+elements+=\`
+        \`
+elements+=\`<span class="w-label" id="\${ty_escapeAttr(ty_generateId('c2866f3c', 'id'))}">\`
+elements+=\`Stacked\`
+elements+=\`</span>\`
+elements+=\`
+        \`
+elements+=\`<span class="w-number-input-field" id="\${ty_escapeAttr(ty_generateId('0b67e6ee', 'id'))}">\`
+elements+=\`
+          \`
+elements+=\`<input class="w-input" type="text" inputmode="decimal" value="1" id="\${ty_escapeAttr(ty_generateId('d640a6b5', 'id'))}" />\`
+elements+=\`
+          \`
+elements+=\`<span class="w-number-input-control" id="\${ty_escapeAttr(ty_generateId('4aeb5ece', 'id'))}">\`
+elements+=\`
+            \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="\${ty_escapeAttr(ty_generateId('363c79b2', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('81773e65', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="\${ty_escapeAttr(ty_generateId('3a710b32', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+            \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="\${ty_escapeAttr(ty_generateId('29cb4b6b', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('ed8996de', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="\${ty_escapeAttr(ty_generateId('ff131152', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+          \`
+elements+=\`</span>\`
+elements+=\`
+        \`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`</label>\`
+elements+=\`
+      \`
+elements+=\`<label class="w-field w-number-input w-number-input--split" id="\${ty_escapeAttr(ty_generateId('eaeff555', 'id'))}">\`
+elements+=\`
+        \`
+elements+=\`<span class="w-label" id="\${ty_escapeAttr(ty_generateId('48cd0b01', 'id'))}">\`
+elements+=\`Split\`
+elements+=\`</span>\`
+elements+=\`
+        \`
+elements+=\`<span class="w-number-input-field" id="\${ty_escapeAttr(ty_generateId('5e9b6953', 'id'))}">\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="\${ty_escapeAttr(ty_generateId('bdb4052c', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('8506df46', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M19 13H5v-2h14v2z" id="\${ty_escapeAttr(ty_generateId('e32ea3ae', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+          \`
+elements+=\`<input class="w-input" type="text" inputmode="decimal" value="1" id="\${ty_escapeAttr(ty_generateId('aefa27d1', 'id'))}" />\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="\${ty_escapeAttr(ty_generateId('9c796587', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('5aebfd29', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" id="\${ty_escapeAttr(ty_generateId('82ebed4a', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+        \`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`</label>\`
+elements+=\`
+    \`
+elements+=\`</div>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+  \`
+elements+=\`<div slot="wc" id="\${ty_escapeAttr(ty_generateId('e00e6e21', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<div class="w-stack" id="\${ty_escapeAttr(ty_generateId('9798d889', 'id'))}">\`
+elements+=\`
+      \`
+elements+=\`<w-number-input label="Stacked" value="1" control-variant="stacked" id="\${ty_escapeAttr(ty_generateId('a2eee1b6', 'id'))}">\`
+elements+=\`</w-number-input>\`
+elements+=\`
+      \`
+elements+=\`<w-number-input label="Split" value="1" control-variant="split" id="\${ty_escapeAttr(ty_generateId('33e1c2c5', 'id'))}">\`
+elements+=\`</w-number-input>\`
+elements+=\`
+      \`
+elements+=\`<w-number-input label="Hidden" value="1" control-variant="hidden" id="\${ty_escapeAttr(ty_generateId('b60a94ea', 'id'))}">\`
+elements+=\`</w-number-input>\`
+elements+=\`
+    \`
+elements+=\`</div>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+\`
+elements+=\`</demo-compare>\`
+elements+=\`<h2 id="\${ty_escapeAttr(ty_generateId('34f06928', 'id'))}">\`
+elements+=\`Formatting\`
+elements+=\`</h2>\`
+elements+=\`<p id="\${ty_escapeAttr(ty_generateId('f95964b4', 'id'))}">\`
+elements+=\`Set \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('d257e191', 'id'))}">\`
+elements+=\`precision\`
+elements+=\`</code>\`
+elements+=\` for a fixed number of decimal places, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('cc8b07dc', 'id'))}">\`
+elements+=\`grouping\`
+elements+=\`</code>\`
+elements+=\` for thousands separators, and \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('fc2e77cf', 'id'))}">\`
+elements+=\`decimal-separator\`
+elements+=\`</code>\`
+elements+=\` / \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('f978455b', 'id'))}">\`
+elements+=\`group-separator\`
+elements+=\`</code>\`
+elements+=\` to localize them. The \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('4a862efe', 'id'))}">\`
+elements+=\`value\`
+elements+=\`</code>\`
+elements+=\` attribute always stays canonical (plain number); formatting applies only to what is shown.\`
+elements+=\`</p>\`
+elements+=\`<demo-compare >\`
+elements+=\`
+  \`
+elements+=\`<div slot="css" id="\${ty_escapeAttr(ty_generateId('f69e2757', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<label class="w-field w-number-input w-number-input--default" id="\${ty_escapeAttr(ty_generateId('adc52bce', 'id'))}">\`
+elements+=\`
+      \`
+elements+=\`<span class="w-label" id="\${ty_escapeAttr(ty_generateId('85e0a586', 'id'))}">\`
+elements+=\`Price\`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`<span class="w-number-input-field" id="\${ty_escapeAttr(ty_generateId('dbe380c3', 'id'))}">\`
+elements+=\`
+        \`
+elements+=\`<input class="w-input" type="text" inputmode="decimal" value="1,234.50" id="\${ty_escapeAttr(ty_generateId('82ac804e', 'id'))}" />\`
+elements+=\`
+        \`
+elements+=\`<span class="w-number-input-control" id="\${ty_escapeAttr(ty_generateId('c2ca3e2e', 'id'))}">\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="-1" tabindex="-1" aria-label="Decrease" id="\${ty_escapeAttr(ty_generateId('0f997a0f', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('b05d916e', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z" id="\${ty_escapeAttr(ty_generateId('c0228c17', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+          \`
+elements+=\`<button type="button" class="w-number-input-btn" data-step="1" tabindex="-1" aria-label="Increase" id="\${ty_escapeAttr(ty_generateId('cc260844', 'id'))}">\`
+elements+=\`<svg viewbox="0 0 24 24" width="18" height="18" aria-hidden="true" id="\${ty_escapeAttr(ty_generateId('827d2c4e', 'id'))}">\`
+elements+=\`<path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z" id="\${ty_escapeAttr(ty_generateId('54882ffa', 'id'))}" />\`
+elements+=\`</svg>\`
+elements+=\`</button>\`
+elements+=\`
+        \`
+elements+=\`</span>\`
+elements+=\`
+      \`
+elements+=\`</span>\`
+elements+=\`
+    \`
+elements+=\`</label>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+  \`
+elements+=\`<div slot="wc" id="\${ty_escapeAttr(ty_generateId('fd0bb333', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<w-number-input label="Price" value="1234.5" precision="2" grouping="" step="0.5" id="\${ty_escapeAttr(ty_generateId('1f4ab4f8', 'id'))}">\`
+elements+=\`</w-number-input>\`
+elements+=\`
+  \`
+elements+=\`</div>\`
+elements+=\`
+\`
+elements+=\`</demo-compare>\`
+elements+=\`<h2 id="\${ty_escapeAttr(ty_generateId('38b408c3', 'id'))}">\`
+elements+=\`Attributes\`
+elements+=\`</h2>\`
+elements+=\`<table class="w-table api-table" id="\${ty_escapeAttr(ty_generateId('98d9b35c', 'id'))}">\`
+elements+=\`
+  \`
+elements+=\`<thead id="\${ty_escapeAttr(ty_generateId('0c68c716', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('44a7ec90', 'id'))}">\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('45581515', 'id'))}">\`
+elements+=\`Attribute\`
+elements+=\`</th>\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('3c6ca17c', 'id'))}">\`
+elements+=\`Type\`
+elements+=\`</th>\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('57850f0a', 'id'))}">\`
+elements+=\`Default\`
+elements+=\`</th>\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('6ebcf88f', 'id'))}">\`
+elements+=\`Description\`
+elements+=\`</th>\`
+elements+=\`</tr>\`
+elements+=\`
+  \`
+elements+=\`</thead>\`
+elements+=\`
+  \`
+elements+=\`<tbody id="\${ty_escapeAttr(ty_generateId('f068e864', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('7a7f285d', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('35fd5f74', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('1786fa75', 'id'))}">\`
+elements+=\`value\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('39595833', 'id'))}">\`
+elements+=\`number\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('666e4a3a', 'id'))}">\`
+elements+=\`&#8212;\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('dc84fe27', 'id'))}">\`
+elements+=\`Current value, clamped to \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('f33de7c7', 'id'))}">\`
+elements+=\`min\`
+elements+=\`</code>\`
+elements+=\`/\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('297bedb8', 'id'))}">\`
+elements+=\`max\`
+elements+=\`</code>\`
+elements+=\`.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('2822ccba', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('d40c6d62', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('3d5c52d8', 'id'))}">\`
+elements+=\`min\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('fa53e228', 'id'))}">\`
+elements+=\`max\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('9229418b', 'id'))}">\`
+elements+=\`number\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('cc3244d4', 'id'))}">\`
+elements+=\`safe-int range\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('e07211b6', 'id'))}">\`
+elements+=\`Value bounds.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('13ec2812', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('469a264f', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('3437e92b', 'id'))}">\`
+elements+=\`step\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('99398a43', 'id'))}">\`
+elements+=\`number\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('25ae5bc6', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('1a4b5497', 'id'))}">\`
+elements+=\`1\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('507fb7e6', 'id'))}">\`
+elements+=\`Increment / decrement amount.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('43e08f9f', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('96df43f0', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('d0a9b71f', 'id'))}">\`
+elements+=\`control-variant\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('a9794079', 'id'))}">\`
+elements+=\`string\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('884edf06', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('340e873b', 'id'))}">\`
+elements+=\`default\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('1e3152d6', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('85dbbd09', 'id'))}">\`
+elements+=\`default\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('16adb79f', 'id'))}">\`
+elements+=\`stacked\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('e14271a5', 'id'))}">\`
+elements+=\`split\`
+elements+=\`</code>\`
+elements+=\`, or \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('bb1670d2', 'id'))}">\`
+elements+=\`hidden\`
+elements+=\`</code>\`
+elements+=\`.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('52bad8d9', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('9409ef99', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('077cea73', 'id'))}">\`
+elements+=\`inset\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('7e94ff92', 'id'))}">\`
+elements+=\`boolean\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('04dad111', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('9e9cfc3c', 'id'))}">\`
+elements+=\`false\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('de8b57e9', 'id'))}">\`
+elements+=\`Tuck the controls inside the field with no divider.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('d9de474a', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('737e2bcd', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('c93c985d', 'id'))}">\`
+elements+=\`hide-input\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('b362fa7d', 'id'))}">\`
+elements+=\`boolean\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('40f0e988', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('12b2acb9', 'id'))}">\`
+elements+=\`false\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('b03823fe', 'id'))}">\`
+elements+=\`Show only the stepper (implies \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('df594e95', 'id'))}">\`
+elements+=\`stacked\`
+elements+=\`</code>\`
+elements+=\`).\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('9a639b77', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('44f7a427', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('58387367', 'id'))}">\`
+elements+=\`reverse\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('c490079a', 'id'))}">\`
+elements+=\`boolean\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('d8722aa8', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('b3450df4', 'id'))}">\`
+elements+=\`false\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('8e48c7f5', 'id'))}">\`
+elements+=\`Place the controls before the input.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('8c7c6417', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('db25453d', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('9a461707', 'id'))}">\`
+elements+=\`precision\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('5255a8f9', 'id'))}">\`
+elements+=\`number\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('7f180cc4', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('84d6fd85', 'id'))}">\`
+elements+=\`0\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('fadbb13f', 'id'))}">\`
+elements+=\`Decimal places to display; \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('97184dd9', 'id'))}">\`
+elements+=\`null\`
+elements+=\`</code>\`
+elements+=\` disables rounding.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('bef13ba1', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('3676e92e', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('97dccb47', 'id'))}">\`
+elements+=\`min-fraction-digits\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('3a5d10b6', 'id'))}">\`
+elements+=\`number\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('007223fe', 'id'))}">\`
+elements+=\`&#8212;\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('08e7b517', 'id'))}">\`
+elements+=\`Minimum decimals to keep.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('82b58b74', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('db5b432b', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('3c7e0e58', 'id'))}">\`
+elements+=\`grouping\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('143ebc0d', 'id'))}">\`
+elements+=\`boolean | string\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('a2eb22e3', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('242c602c', 'id'))}">\`
+elements+=\`false\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('93e8842d', 'id'))}">\`
+elements+=\`Thousands separators: \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('95d20d18', 'id'))}">\`
+elements+=\`true\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('07f8001c', 'id'))}">\`
+elements+=\`always\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('8673a1da', 'id'))}">\`
+elements+=\`auto\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('106c4cb0', 'id'))}">\`
+elements+=\`min2\`
+elements+=\`</code>\`
+elements+=\`.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('7b0058cc', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('21d0c81b', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('d551074f', 'id'))}">\`
+elements+=\`decimal-separator\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('37099ecb', 'id'))}">\`
+elements+=\`group-separator\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('7ad7e16e', 'id'))}">\`
+elements+=\`string\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('b1cb0b3c', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('a76eba48', 'id'))}">\`
+elements+=\`.\`
+elements+=\`</code>\`
+elements+=\` / \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('2afb5518', 'id'))}">\`
+elements+=\`,\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('47df10fd', 'id'))}">\`
+elements+=\`Single-character separator overrides.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('4e2db3bb', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('cdeb4858', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('6d26c65a', 'id'))}">\`
+elements+=\`label\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('9d70dffd', 'id'))}">\`
+elements+=\`placeholder\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('0550e95f', 'id'))}">\`
+elements+=\`hint\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('c3b30da0', 'id'))}">\`
+elements+=\`error\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('67bb3820', 'id'))}">\`
+elements+=\`name\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('1df58451', 'id'))}">\`
+elements+=\`size\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('871cc7a8', 'id'))}">\`
+elements+=\`string\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('29889933', 'id'))}">\`
+elements+=\`&#8212;\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('7ad3ce80', 'id'))}">\`
+elements+=\`Text-field props forwarded to the input.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('6e96e29d', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('cb7a711b', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('136fedf9', 'id'))}">\`
+elements+=\`disabled\`
+elements+=\`</code>\`
+elements+=\`, \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('54c27716', 'id'))}">\`
+elements+=\`readonly\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('67d9d17c', 'id'))}">\`
+elements+=\`boolean\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('b3de3180', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('c4a8064b', 'id'))}">\`
+elements+=\`false\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('95074401', 'id'))}">\`
+elements+=\`Disable the field and its controls.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+  \`
+elements+=\`</tbody>\`
+elements+=\`
+\`
+elements+=\`</table>\`
+elements+=\`<h2 id="\${ty_escapeAttr(ty_generateId('10ed55ea', 'id'))}">\`
+elements+=\`Events\`
+elements+=\`</h2>\`
+elements+=\`<table class="w-table api-table" id="\${ty_escapeAttr(ty_generateId('e682a3d0', 'id'))}">\`
+elements+=\`
+  \`
+elements+=\`<thead id="\${ty_escapeAttr(ty_generateId('142d8668', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('c4a242a9', 'id'))}">\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('ffd8d3ff', 'id'))}">\`
+elements+=\`Event\`
+elements+=\`</th>\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('bc90690d', 'id'))}">\`
+elements+=\`Detail\`
+elements+=\`</th>\`
+elements+=\`<th id="\${ty_escapeAttr(ty_generateId('06089c59', 'id'))}">\`
+elements+=\`Description\`
+elements+=\`</th>\`
+elements+=\`</tr>\`
+elements+=\`
+  \`
+elements+=\`</thead>\`
+elements+=\`
+  \`
+elements+=\`<tbody id="\${ty_escapeAttr(ty_generateId('4aea720a', 'id'))}">\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('11b16224', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('87b6e7b9', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('31f54fef', 'id'))}">\`
+elements+=\`input\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('2ed759fb', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('322e9eb7', 'id'))}">\`
+elements+=\`&#123; value &#125;\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('9f76864a', 'id'))}">\`
+elements+=\`Fired on each keystroke with the parsed number.\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+    \`
+elements+=\`<tr id="\${ty_escapeAttr(ty_generateId('865aa59a', 'id'))}">\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('e927a4ce', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('f2bf0745', 'id'))}">\`
+elements+=\`change\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('2aceee88', 'id'))}">\`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('ed392a18', 'id'))}">\`
+elements+=\`&#123; value &#125;\`
+elements+=\`</code>\`
+elements+=\`</td>\`
+elements+=\`<td id="\${ty_escapeAttr(ty_generateId('8e5c7f6e', 'id'))}">\`
+elements+=\`Fired on commit or step with the clamped number (or \`
+elements+=\`<code id="\${ty_escapeAttr(ty_generateId('d3e03926', 'id'))}">\`
+elements+=\`null\`
+elements+=\`</code>\`
+elements+=\`).\`
+elements+=\`</td>\`
+elements+=\`</tr>\`
+elements+=\`
+  \`
+elements+=\`</tbody>\`
+elements+=\`
+\`
+elements+=\`</table>\`
+
+        return elements;
+    };
+}`);async function tac_default(props){return await __ty_compiled_factory__(ty_createHelpers("/pages/docs/number-inputs/tac.js"),__ty_module_imports__,props)}export{tac_default as default};

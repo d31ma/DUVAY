@@ -1,0 +1,76 @@
+<h1>Custom inputs</h1>
+<p>The <code>w-field</code> class and the <code>w-input-group</code> component are the foundation every DuVay form control is built on. They provide the label, hint, validation messages, prefix/suffix add-ons, and inline actions that wrap a raw <code>w-input</code> &#8212; use them directly to compose a control that isn&#8217;t covered by a dedicated component.</p>
+
+<h2>Field anatomy</h2>
+<p>A field is a label, a control, and an optional hint. Add <code>w-field-error</code> for the error state.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-field">
+        <label class="w-field-label" for="demo-anatomy">Display name</label>
+        <input class="w-input" id="demo-anatomy" value="duvay.css" />
+        <span class="w-field-hint">Shown on your public profile.</span>
+      </div>
+      <div class="w-field w-field-error">
+        <label class="w-field-label">Email</label>
+        <input class="w-input" value="bad-email" />
+        <span class="w-field-hint">Invalid email format.</span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-input label="Display name" value="duvay.css" hint="Shown on your public profile."></w-input>
+      <w-input label="Email" value="bad-email" error="Invalid email format."></w-input>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Add-ons</h2>
+<p><code>w-input-group</code> places prefixes, suffixes, and inline actions alongside the control with <code>w-input-group-addon</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field">
+      <span class="w-field-label">Website</span>
+      <span class="w-input-group">
+        <span class="w-input-group-addon">https://</span>
+        <input class="w-input" value="duvay.css" />
+        <button class="w-btn w-btn-text" type="button">Copy</button>
+      </span>
+      <span class="w-field-hint">Use add-ons for prefixes, suffixes, and inline actions.</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-input-group label="Website" hint="Use add-ons for prefixes, suffixes, and inline actions.">
+      <span class="w-input-group-addon">https://</span>
+      <input class="w-input" value="duvay.css" />
+      <button class="w-btn w-btn-text" type="button">Copy</button>
+    </w-input-group>
+  </div>
+</demo-compare>
+
+<h2>Form input components</h2>
+<p>For common controls, reach for the dedicated components rather than composing a field by hand.</p>
+<div class="w-table-wrap">
+  <div class="w-table-grid w-table-grid--dense">
+    <div class="w-grid-row w-table-header">
+      <div class="w-grid-col-4">Control</div>
+      <div class="w-grid-col-4">DuVay component</div>
+      <div class="w-grid-col-4">Docs</div>
+    </div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Text field</div><div class="w-grid-col-4"><code>w-text-field</code> / <code>w-input</code></div><div class="w-grid-col-4"><a href="/docs/text-fields">Text fields</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Textarea</div><div class="w-grid-col-4"><code>w-textarea</code></div><div class="w-grid-col-4"><a href="/docs/textareas">Textareas</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Select</div><div class="w-grid-col-4"><code>w-select</code>, <code>w-native-select</code></div><div class="w-grid-col-4"><a href="/docs/selects">Selects</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Autocomplete</div><div class="w-grid-col-4"><code>w-autocomplete</code></div><div class="w-grid-col-4"><a href="/docs/autocompletes">Autocompletes</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Combobox</div><div class="w-grid-col-4"><code>w-combobox</code></div><div class="w-grid-col-4"><a href="/docs/combobox">Combobox</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Checkbox</div><div class="w-grid-col-4"><code>w-checkbox</code></div><div class="w-grid-col-4"><a href="/docs/checkboxes">Checkboxes</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Radio</div><div class="w-grid-col-4"><code>w-radio-group</code>, <code>w-radio</code></div><div class="w-grid-col-4"><a href="/docs/radio-buttons">Radio buttons</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Switch</div><div class="w-grid-col-4"><code>w-switch</code></div><div class="w-grid-col-4"><a href="/docs/switches">Switches</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Slider / range</div><div class="w-grid-col-4"><code>w-slider</code>, <code>w-range-slider</code></div><div class="w-grid-col-4"><a href="/docs/slider">Sliders</a>, <a href="/docs/range-sliders">Range sliders</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Number</div><div class="w-grid-col-4"><code>w-number-input</code></div><div class="w-grid-col-4"><a href="/docs/number-inputs">Number inputs</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">File</div><div class="w-grid-col-4"><code>w-file-input</code>, <code>w-file-upload</code></div><div class="w-grid-col-4"><a href="/docs/file-inputs">File inputs</a>, <a href="/docs/file-upload">File upload</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Date</div><div class="w-grid-col-4"><code>w-date-input</code></div><div class="w-grid-col-4"><a href="/docs/date-inputs">Date inputs</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">Color</div><div class="w-grid-col-4"><code>w-color-input</code></div><div class="w-grid-col-4"><a href="/docs/color-inputs">Color inputs</a></div></div>
+    <div class="w-grid-row"><div class="w-grid-col-4">OTP</div><div class="w-grid-col-4"><code>w-otp</code> / <code>w-otp-input</code></div><div class="w-grid-col-4"><a href="/docs/otp-input">OTP Input</a></div></div>
+  </div>
+</div>

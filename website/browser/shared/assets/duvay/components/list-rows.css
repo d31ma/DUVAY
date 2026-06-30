@@ -1,0 +1,115 @@
+/* DuVay — List Rows component styles. */
+@import "../core.css";
+
+/* ── List row ────────────────────────────────────────────────────────────── */
+/* Clickable list items — used for email rows, search results, etc. */
+.w-list-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  min-height: 72px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal);
+}
+
+.w-list-row:hover {
+  background: var(--w-hover);
+}
+
+.w-list-row:active {
+  background: var(--w-surface-container-high);
+}
+
+.w-list-row.selected {
+  border-left-color: var(--w-primary);
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+}
+
+.w-list-row.unread {
+  border-left-color: var(--w-primary);
+}
+
+.w-list-row.unread .w-list-row-title {
+  color: var(--w-text);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-list-row.read .w-list-row-title,
+.w-list-row.read .w-list-row-subtitle {
+  color: var(--w-text-subtle);
+}
+
+.w-list-row-title {
+  min-width: 0;
+  line-height: 1.35;
+  font-size: var(--w-font-base);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-list-row-subtitle {
+  margin-top: 0.2rem;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-list-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.w-list-row-time {
+  color: var(--w-text-very-subtle);
+  flex-shrink: 0;
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+}
+
+/* Quick actions that appear on hover */
+.w-list-row-actions {
+  position: absolute;
+  top: 50%;
+  right: 3.25rem;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: 0 8px 22px var(--w-shadow-color);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity var(--w-transition-normal);
+}
+
+.w-list-row:hover .w-list-row-actions {
+  opacity: 1;
+}
+
+.w-list-row:hover .w-list-row-time {
+  opacity: 0;
+}
+
+/* Density variants */
+.w-list-row[data-density="compact"] {
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  min-height: 56px;
+  padding-block: var(--w-space-sm);
+}

@@ -1,0 +1,45 @@
+<h1>Browser support</h1>
+<p>DuVay targets modern evergreen browsers and the current platform standards. Because the framework is built on CSS custom properties and standard Custom Elements, it works wherever those features are available without polyfills or transpilation.</p>
+
+<h2>Supported browsers</h2>
+<p>DuVay is tested against the latest two stable versions of each major evergreen browser. Older or non-evergreen browsers are not supported.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Browser</th><th>Supported</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Chrome</td><td>Yes</td><td>Latest 2 versions</td></tr>
+    <tr><td>Edge</td><td>Yes</td><td>Latest 2 versions (Chromium)</td></tr>
+    <tr><td>Firefox</td><td>Yes</td><td>Latest 2 versions</td></tr>
+    <tr><td>Safari</td><td>Yes</td><td>Safari 15.4+ (desktop and iOS)</td></tr>
+    <tr><td>Internet Explorer</td><td>No</td><td>Not supported</td></tr>
+  </tbody>
+</table>
+
+<h2>Platform features used</h2>
+<p>DuVay relies on the following web platform capabilities. All are widely available in the supported browsers above.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Feature</th><th>Used for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Custom Elements v1</td><td>The web component layer (<code>&lt;w-btn&gt;</code>, <code>&lt;w-item&gt;</code>, etc.)</td></tr>
+    <tr><td>CSS custom properties</td><td>Design tokens and the entire theming system</td></tr>
+    <tr><td>CSS <code>:has()</code></td><td>Relational styling without extra markup or JavaScript</td></tr>
+    <tr><td>Container queries</td><td>Component-level responsive behavior</td></tr>
+    <tr><td>CSS logical properties</td><td>Bidirectional (LTR/RTL) layout support</td></tr>
+    <tr><td>IntersectionObserver</td><td>Lazy enhancement and scroll-aware behaviors</td></tr>
+  </tbody>
+</table>
+
+<h2>Graceful degradation</h2>
+<p>DuVay is built on progressive enhancement, so partial support degrades gracefully rather than breaking:</p>
+<ul>
+  <li><strong>No JavaScript</strong> — Components authored with CSS classes are fully styled and usable. Interactive enhancements (dropdowns, dialogs, toasts) simply do not activate.</li>
+  <li><strong>No Custom Elements</strong> — Author your markup with CSS classes instead of web-component tags; the visual result is identical.</li>
+  <li><strong>Missing <code>:has()</code> or container queries</strong> — Affected components fall back to their default static layout; content remains readable and accessible.</li>
+</ul>
+<p>Because the static HTML carries the real DuVay class names, the baseline experience never depends on script execution.</p>
+
+<h2>Mobile</h2>
+<p>DuVay is mobile-first. Touch targets meet the 44x44 px minimum, layouts use logical properties for RTL support, and interactive components are tested on iOS Safari and Chrome for Android.</p>

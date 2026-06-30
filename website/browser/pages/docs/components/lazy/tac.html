@@ -1,0 +1,28 @@
+<h1>Lazy</h1>
+<p><code>w-lazy</code> defers rendering of its content until it scrolls into view, reserving placeholder space to avoid layout shift — matching Vuetify's <code>VLazy</code>. It activates via an IntersectionObserver (tune with <code>root-margin</code> / <code>threshold</code>) and reveals content with a <code>transition</code> (fade by default).</p>
+
+<h2>Deferred until visible</h2>
+<p>The wrapper holds <code>min-height</code> until the content enters the viewport, then swaps the shimmer placeholder for the slotted content.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-lazy" style="min-height:160px"><div class="w-lazy-placeholder"></div></div>
+  </div>
+  <div slot="wc">
+    <w-lazy min-height="160px" root-margin="80px">
+      <div class="w-card w-card-body">Loaded lazily</div>
+    </w-lazy>
+  </div>
+</demo-compare>
+
+<h2>Eagerly active</h2>
+<p>Set <code>active</code> (or bind <code>model-value</code>) to render immediately and skip the observer.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-lazy is-active w-lazy--transition-fade"><div class="w-card w-card-body">Rendered now</div></div>
+  </div>
+  <div slot="wc">
+    <w-lazy active>
+      <div class="w-card w-card-body">Rendered now</div>
+    </w-lazy>
+  </div>
+</demo-compare>

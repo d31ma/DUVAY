@@ -1,0 +1,149 @@
+<h1>Slide Groups</h1>
+<p>Slide groups are scrollable, selectable item sets with overflow arrows and keyboard navigation. Arrows appear only when the content overflows and disable at the reached end; <code>center-active</code> keeps the selected item in view.</p>
+
+<h2>Basic</h2>
+<p>Select an item by click or keyboard (arrow keys, Home/End). With CSS classes, the JS toggles <code>w-slide-group-shell--overflow</code> when the content overflows; mark the overflowing state yourself for a static example.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-slide-group-shell w-slide-group-shell--overflow">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled>‹</button>
+      <div class="w-slide-group">
+        <button class="w-slide-group-item active">Alpha</button>
+        <button class="w-slide-group-item">Beta</button>
+        <button class="w-slide-group-item">Gamma</button>
+        <button class="w-slide-group-item">Delta</button>
+        <button class="w-slide-group-item">Epsilon</button>
+        <button class="w-slide-group-item">Zeta</button>
+        <button class="w-slide-group-item">Eta</button>
+        <button class="w-slide-group-item">Theta</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items">›</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-slide-group value="alpha" show-arrows center-active mandatory>
+      <w-slide-group-item value="alpha"><button class="w-btn w-btn-outlined">Alpha</button></w-slide-group-item>
+      <w-slide-group-item value="beta"><button class="w-btn w-btn-outlined">Beta</button></w-slide-group-item>
+      <w-slide-group-item value="gamma"><button class="w-btn w-btn-outlined">Gamma</button></w-slide-group-item>
+      <w-slide-group-item value="delta"><button class="w-btn w-btn-outlined">Delta</button></w-slide-group-item>
+      <w-slide-group-item value="epsilon"><button class="w-btn w-btn-outlined">Epsilon</button></w-slide-group-item>
+      <w-slide-group-item value="zeta"><button class="w-btn w-btn-outlined">Zeta</button></w-slide-group-item>
+      <w-slide-group-item value="eta"><button class="w-btn w-btn-outlined">Eta</button></w-slide-group-item>
+      <w-slide-group-item value="theta"><button class="w-btn w-btn-outlined">Theta</button></w-slide-group-item>
+      <w-slide-group-item value="iota"><button class="w-btn w-btn-outlined">Iota</button></w-slide-group-item>
+      <w-slide-group-item value="kappa"><button class="w-btn w-btn-outlined">Kappa</button></w-slide-group-item>
+      <w-slide-group-item value="lambda"><button class="w-btn w-btn-outlined">Lambda</button></w-slide-group-item>
+      <w-slide-group-item value="omega"><button class="w-btn w-btn-outlined">Omega</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare>
+
+<h2>Arrow visibility</h2>
+<p><code>show-arrows</code> takes <code>true</code> (default — arrows show only on overflow), <code>always</code> (always visible, disabled at the ends), or <code>false</code> (never). With CSS classes, add <code>w-slide-group-shell--arrows-always</code> to keep them visible without overflow.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-slide-group-shell w-slide-group-shell--arrows-always">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled>‹</button>
+      <div class="w-slide-group">
+        <button class="w-slide-group-item active">One</button>
+        <button class="w-slide-group-item">Two</button>
+        <button class="w-slide-group-item">Three</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items" disabled>›</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-slide-group value="one" show-arrows="always" mandatory>
+      <w-slide-group-item value="one"><button class="w-btn w-btn-outlined">One</button></w-slide-group-item>
+      <w-slide-group-item value="two"><button class="w-btn w-btn-outlined">Two</button></w-slide-group-item>
+      <w-slide-group-item value="three"><button class="w-btn w-btn-outlined">Three</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare>
+
+<h2>Custom arrow icons</h2>
+<p>Set <code>prev-icon</code> and <code>next-icon</code> to any glyph (defaults <code>‹</code>/<code>›</code>, or <code>↑</code>/<code>↓</code> when vertical).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-slide-group-shell w-slide-group-shell--overflow">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled>−</button>
+      <div class="w-slide-group">
+        <button class="w-slide-group-item active">Tag one</button>
+        <button class="w-slide-group-item">Tag two</button>
+        <button class="w-slide-group-item">Tag three</button>
+        <button class="w-slide-group-item">Tag four</button>
+        <button class="w-slide-group-item">Tag five</button>
+        <button class="w-slide-group-item">Tag six</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items">+</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-slide-group value="1" prev-icon="−" next-icon="+">
+      <w-slide-group-item value="1"><button class="w-btn w-btn-outlined">Tag one</button></w-slide-group-item>
+      <w-slide-group-item value="2"><button class="w-btn w-btn-outlined">Tag two</button></w-slide-group-item>
+      <w-slide-group-item value="3"><button class="w-btn w-btn-outlined">Tag three</button></w-slide-group-item>
+      <w-slide-group-item value="4"><button class="w-btn w-btn-outlined">Tag four</button></w-slide-group-item>
+      <w-slide-group-item value="5"><button class="w-btn w-btn-outlined">Tag five</button></w-slide-group-item>
+      <w-slide-group-item value="6"><button class="w-btn w-btn-outlined">Tag six</button></w-slide-group-item>
+      <w-slide-group-item value="7"><button class="w-btn w-btn-outlined">Tag seven</button></w-slide-group-item>
+      <w-slide-group-item value="8"><button class="w-btn w-btn-outlined">Tag eight</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare>
+
+<h2>Vertical</h2>
+<p>Set <code>direction="vertical"</code> with a fixed height to stack items into a scrollable column.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-slide-group-shell w-slide-group-shell--vertical w-slide-group-shell--overflow" style="height: 16rem">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled>↑</button>
+      <div class="w-slide-group">
+        <button class="w-slide-group-item active">Row 1</button>
+        <button class="w-slide-group-item">Row 2</button>
+        <button class="w-slide-group-item">Row 3</button>
+        <button class="w-slide-group-item">Row 4</button>
+        <button class="w-slide-group-item">Row 5</button>
+        <button class="w-slide-group-item">Row 6</button>
+        <button class="w-slide-group-item">Row 7</button>
+        <button class="w-slide-group-item">Row 8</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items">↓</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-slide-group direction="vertical" show-arrows value="1" style="height: 16rem">
+      <w-slide-group-item value="1"><button class="w-btn w-btn-outlined">Row 1</button></w-slide-group-item>
+      <w-slide-group-item value="2"><button class="w-btn w-btn-outlined">Row 2</button></w-slide-group-item>
+      <w-slide-group-item value="3"><button class="w-btn w-btn-outlined">Row 3</button></w-slide-group-item>
+      <w-slide-group-item value="4"><button class="w-btn w-btn-outlined">Row 4</button></w-slide-group-item>
+      <w-slide-group-item value="5"><button class="w-btn w-btn-outlined">Row 5</button></w-slide-group-item>
+      <w-slide-group-item value="6"><button class="w-btn w-btn-outlined">Row 6</button></w-slide-group-item>
+      <w-slide-group-item value="7"><button class="w-btn w-btn-outlined">Row 7</button></w-slide-group-item>
+      <w-slide-group-item value="8"><button class="w-btn w-btn-outlined">Row 8</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare>
+
+<h2>Multiple selection</h2>
+<p>Add <code>multiple</code> to allow more than one selection, and <code>mandatory</code> to require at least one. Selecting emits <code>change</code> with the chosen value(s).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-slide-group-shell">
+      <div class="w-slide-group">
+        <button class="w-slide-group-item active">Design</button>
+        <button class="w-slide-group-item active">Engineering</button>
+        <button class="w-slide-group-item">Sales</button>
+        <button class="w-slide-group-item">Support</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-slide-group multiple value="design,eng">
+      <w-slide-group-item value="design"><button class="w-btn w-btn-outlined">Design</button></w-slide-group-item>
+      <w-slide-group-item value="eng"><button class="w-btn w-btn-outlined">Engineering</button></w-slide-group-item>
+      <w-slide-group-item value="sales"><button class="w-btn w-btn-outlined">Sales</button></w-slide-group-item>
+      <w-slide-group-item value="support"><button class="w-btn w-btn-outlined">Support</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare>

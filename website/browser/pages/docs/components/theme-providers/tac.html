@@ -1,0 +1,48 @@
+<h1>Theme Providers</h1>
+<p><code>w-theme-provider</code> scopes a DuVay theme to a section of the page, matching Vuetify's <code>VThemeProvider</code>. It sets <code>data-w-theme</code> on its wrapper so descendant components resolve their tokens to that palette — useful for an always-dark sidebar or a previewed theme. By default the provider is renderless (it only scopes tokens); add <code>with-background</code> to paint the themed surface.</p>
+
+<h2>Scoping a theme</h2>
+<p>Set <code>theme</code> to <code>light</code>, <code>dark</code>, <code>auto</code>, or <code>high-contrast</code>. Components inside adopt that theme regardless of the page theme.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-theme-provider w-theme-provider--with-background" data-w-theme="dark" style="padding: var(--w-space-4)">
+      <div class="w-row ga-2 align-center">
+        <button class="w-btn w-btn-filled">Dark action</button>
+        <span>Always dark region</span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-theme-provider theme="dark" with-background style="padding: var(--w-space-4)">
+      <div class="w-row ga-2 align-center">
+        <w-btn variant="filled">Dark action</w-btn>
+        <span>Always dark region</span>
+      </div>
+    </w-theme-provider>
+  </div>
+</demo-compare>
+
+<h2>With background</h2>
+<p>Without <code>with-background</code> the provider is renderless and only scopes tokens. With it, the wrapper paints the theme's surface and text colors, so the region reads as a self-contained themed panel.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap">
+      <div class="w-theme-provider w-theme-provider--with-background" data-w-theme="light" style="padding: var(--w-space-4); border: 1px solid var(--w-border)">
+        <strong>Light</strong>
+      </div>
+      <div class="w-theme-provider w-theme-provider--with-background" data-w-theme="dark" style="padding: var(--w-space-4)">
+        <strong>Dark</strong>
+      </div>
+      <div class="w-theme-provider w-theme-provider--with-background" data-w-theme="high-contrast" style="padding: var(--w-space-4)">
+        <strong>High contrast</strong>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap">
+      <w-theme-provider theme="light" with-background style="padding: var(--w-space-4); border: 1px solid var(--w-border)"><strong>Light</strong></w-theme-provider>
+      <w-theme-provider theme="dark" with-background style="padding: var(--w-space-4)"><strong>Dark</strong></w-theme-provider>
+      <w-theme-provider theme="high-contrast" with-background style="padding: var(--w-space-4)"><strong>High contrast</strong></w-theme-provider>
+    </div>
+  </div>
+</demo-compare>

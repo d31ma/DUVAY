@@ -1,0 +1,16 @@
+/* DuVay — Infinite Scroll component styles. */
+@import "../core.css";
+
+/* ── Infinite Scroll ──────────────────────────────────────────────────────── */
+.w-infinite-scroll {
+  min-height: 1px;
+}
+
+.w-infinite-scroll-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--w-space-xl);
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-sm);
+}

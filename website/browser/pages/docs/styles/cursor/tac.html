@@ -1,0 +1,36 @@
+<h1>Cursor</h1>
+<p>Utilities for controlling the cursor shown when hovering an element. Pair cursor helpers with selection and pointer-event utilities for complete control over interaction affordances.</p>
+
+<h2>Usage</h2>
+
+<h3>Pointer and default</h3>
+<p>Use <code>cursor-pointer</code> on clickable elements and <code>cursor-default</code> where you want to keep the normal arrow cursor.</p>
+<div class="w-row ga-3 w-mb-md">
+  <div class="w-border pa-4 cursor-pointer">cursor-pointer</div>
+  <div class="w-border pa-4 cursor-default">cursor-default</div>
+</div>
+<div class="code-block"><code>&lt;button class="cursor-pointer"&gt;Clickable&lt;/button&gt;
+&lt;div class="cursor-default"&gt;Normal cursor&lt;/div&gt;</code></div>
+
+<h3>Text selection and pointer events</h3>
+<p>Add <code>w-select-none</code> to prevent text selection, or <code>w-pointer-none</code> to let clicks pass through to an element below.</p>
+<div class="w-row ga-3 w-mb-md">
+  <div class="w-border pa-4 w-select-none">selection disabled</div>
+  <div class="position-relative w-border pa-4">
+    <span class="w-pointer-none position-absolute top-0 left-0 w-bg-primary-container pa-2 rounded">pointer-events none overlay</span>
+    underlying content
+  </div>
+</div>
+<div class="code-block"><code>&lt;div class="w-select-none"&gt;Cannot select this text&lt;/div&gt;
+&lt;div class="w-pointer-none"&gt;Clicks pass through&lt;/div&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>cursor-pointer</code></td><td>Shows the pointer (hand) cursor on hover.</td></tr>
+    <tr><td><code>cursor-default</code></td><td>Shows the default arrow cursor.</td></tr>
+    <tr><td><code>w-select-none</code></td><td>Prevents text selection (<code>user-select: none</code>).</td></tr>
+    <tr><td><code>w-pointer-none</code></td><td>Disables pointer events on the element.</td></tr>
+  </tbody>
+</table>

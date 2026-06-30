@@ -1,0 +1,71 @@
+<h1>Resize</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-resize</code> directive. Add <code>w-resize</code> to any element to call your code whenever that element changes size. Vuetify's <code>v-resize</code> listens to the window <code>resize</code> event only; DuVay is a superset &#8212; it observes the element itself with a <code>ResizeObserver</code> <em>and</em> listens to window <code>resize</code>, then dispatches a bubbling <code>w-resize</code> event enriched with the element's current dimensions. Requires <code>duvay-directives.js</code>.</p>
+
+<h2>Interactive demo</h2>
+<p>Drag the bottom-right corner of the box to resize it; the readout updates from each <code>w-resize</code> event. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div id="rz-box" w-resize class="w-card w-card-body" style="resize: both; overflow: auto; width: 240px; height: 120px; min-width: 120px; min-height: 80px;">
+      Resize me from the corner.
+    </div>
+    <p>Size: <code><span id="rz-out">0 x 0</span></code></p>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Mark the element with <code>w-resize</code> and listen for the <code>w-resize</code> event. It fires once immediately on wiring (so your handler runs with the initial size) and again on every subsequent size change. Resize your window or the element and observe the values change.</p>
+<pre class="code-block"><code>&lt;div class="responsive-box" w-resize&gt;
+  Width: &lt;span class="value"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<pre class="code-block"><code>const box = document.querySelector('.responsive-box');
+box.addEventListener('w-resize', (e) =&gt; &#123;
+  box.querySelector('.value').textContent = Math.round(e.detail.width) + 'px';
+&#125;);</code></pre>
+
+<h2>Modifiers</h2>
+<p>By default <code>w-resize</code> calls your handler immediately when it is wired up, matching Vuetify's default behavior. Add the <code>w-resize-quiet</code> option to suppress that initial call &#8212; the equivalent of Vuetify's <code>.quiet</code> modifier &#8212; so your handler only runs on actual size changes.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Option</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>w-resize-quiet</code></td><td>Suppress the immediate call that fires when the directive is wired up. The handler then runs only on subsequent resize events.</td></tr>
+  </tbody>
+</table>
+<pre class="code-block"><code>&lt;div class="responsive-box" w-resize w-resize-quiet&gt;
+  &lt;!-- w-resize fires only on actual size changes, not on wiring --&gt;
+&lt;/div&gt;</code></pre>
+
+<h2>Events</h2>
+<p>The directive dispatches a bubbling <code>w-resize</code> <code>CustomEvent</code>. Its <code>detail</code> carries the element's current bounding box plus the raw observer entries when available.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>detail.width</code></td><td><code>number</code></td><td>The element's current bounding-box width in pixels.</td></tr>
+    <tr><td><code>detail.height</code></td><td><code>number</code></td><td>The element's current bounding-box height in pixels.</td></tr>
+    <tr><td><code>detail.entries</code></td><td><code>ResizeObserverEntry[]</code></td><td>The raw observer entries, when the resize came from the <code>ResizeObserver</code>. Absent for window-driven calls.</td></tr>
+  </tbody>
+</table>
+<pre class="code-block"><code>el.addEventListener('w-resize', (e) =&gt; &#123;
+  const &#123; width, height, entries &#125; = e.detail;
+  console.log('size is now', width, 'x', height);
+
+  if (entries) &#123;
+    for (const entry of entries) &#123;
+      // entry.contentRect, entry.borderBoxSize, etc.
+    &#125;
+  &#125;
+&#125;);</code></pre>
+
+<h2>Example</h2>
+<p>Toggle a class based on the element's own width &#8212; container-driven responsiveness without media queries.</p>
+<pre class="code-block"><code>&lt;div class="card" w-resize&gt;
+  &lt;h3&gt;Adaptive card&lt;/h3&gt;
+  &lt;p&gt;Resize the container to switch layouts.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<pre class="code-block"><code>const card = document.querySelector('.card');
+card.addEventListener('w-resize', (e) =&gt; &#123;
+  card.classList.toggle('is-narrow', e.detail.width &lt; 480);
+&#125;);</code></pre>

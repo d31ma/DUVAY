@@ -1,0 +1,80 @@
+<h1>Variants</h1>
+<p>Variants control the visual weight and interaction style of a component. Most DuVay controls that accept a <code>variant</code> attribute share the same vocabulary: <code>filled</code>, <code>outlined</code>, <code>text</code>, <code>tonal</code>, and <code>plain</code>. Buttons also expose <code>icon</code> for icon-only actions.</p>
+
+<h2>Button variants</h2>
+
+<table class="w-table api-table">
+  <thead><tr><th>Variant</th><th>Class</th><th>Use when</th></tr></thead>
+  <tbody>
+    <tr><td><code>filled</code></td><td><code>w-btn-filled</code></td><td>Primary, high-emphasis actions.</td></tr>
+    <tr><td><code>outlined</code></td><td><code>w-btn-outlined</code></td><td>Secondary actions that need a border.</td></tr>
+    <tr><td><code>text</code></td><td><code>w-btn-text</code> (or bare <code>w-btn</code>)</td><td>Low-emphasis actions, links, tertiary choices.</td></tr>
+    <tr><td><code>tonal</code></td><td><code>w-btn-tonal</code></td><td>Mid-emphasis actions with a subtle container.</td></tr>
+    <tr><td><code>plain</code></td><td><code>w-btn-plain</code></td><td>Minimal, hover-only background.</td></tr>
+    <tr><td><code>icon</code></td><td><code>w-btn-icon</code></td><td>Icon-only buttons in toolbars and lists.</td></tr>
+  </tbody>
+</table>
+
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled">Filled</button>
+    <button class="w-btn w-btn-outlined">Outlined</button>
+    <button class="w-btn w-btn-text">Text</button>
+    <button class="w-btn w-btn-tonal">Tonal</button>
+    <button class="w-btn w-btn-plain">Plain</button>
+    <button class="w-btn w-btn-icon" aria-label="Add"><span class="w-icon" aria-hidden="true">+</span></button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled">Filled</w-btn>
+    <w-btn variant="outlined">Outlined</w-btn>
+    <w-btn variant="text">Text</w-btn>
+    <w-btn variant="tonal">Tonal</w-btn>
+    <w-btn variant="plain">Plain</w-btn>
+    <w-btn variant="icon" icon="mdi-plus" aria-label="Add"></w-btn>
+  </div>
+</demo-compare>
+
+<h2>Variants with color</h2>
+<p>The <code>color</code> attribute composes with variants. The same semantic tokens work on filled, outlined, and tonal buttons.</p>
+
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled w-btn-primary">Primary</button>
+    <button class="w-btn w-btn-outlined w-btn-success">Success</button>
+    <button class="w-btn w-btn-tonal w-btn-error">Error</button>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" color="primary">Primary</w-btn>
+    <w-btn variant="outlined" color="success">Success</w-btn>
+    <w-btn variant="tonal" color="error">Error</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Form-control variants</h2>
+<p>Inputs, selects, text fields, and textareas support the same core variants. The default is usually <code>outlined</code>; set <code>filled</code> for a solid background field.</p>
+
+<demo-compare>
+  <div slot="css">
+    <label class="w-input w-input--outlined">
+      <span class="w-input__label">Outlined</span>
+      <input class="w-input__control" value="Hello" />
+    </label>
+    <label class="w-input w-input--filled">
+      <span class="w-input__label">Filled</span>
+      <input class="w-input__control" value="Hello" />
+    </label>
+  </div>
+  <div slot="wc">
+    <w-text-field variant="outlined" label="Outlined" value="Hello"></w-text-field>
+    <w-text-field variant="filled" label="Filled" value="Hello"></w-text-field>
+  </div>
+</demo-compare>
+
+<h2>Choosing a variant</h2>
+<ul>
+  <li>Use <strong>filled</strong> for the single most important action on a surface.</li>
+  <li>Use <strong>outlined</strong> for secondary actions or dismissal buttons.</li>
+  <li>Use <strong>text</strong> or <strong>plain</strong> for low-priority actions inside dense lists or toolbars.</li>
+  <li>Use <strong>tonal</strong> when you need more emphasis than text but less than filled.</li>
+  <li>Use <strong>icon</strong> sparingly, and always pair it with an <code>aria-label</code>.</li>
+</ul>

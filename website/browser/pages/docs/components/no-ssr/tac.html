@@ -1,0 +1,28 @@
+<h1>No SSR</h1>
+<p><code>w-no-ssr</code> renders its content only after the client mounts, matching Vuetify's <code>VNoSsr</code>. Until then it shows the optional <code>placeholder</code> slot. Use it for browser-only widgets that must not render during static prerender / SSR.</p>
+
+<h2>Client-only content</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-no-ssr"><div class="w-card w-card-body">Rendered in the browser</div></div>
+  </div>
+  <div slot="wc">
+    <w-no-ssr>
+      <div class="w-card w-card-body">Rendered in the browser</div>
+    </w-no-ssr>
+  </div>
+</demo-compare>
+
+<h2>With a placeholder</h2>
+<p>The <code>placeholder</code> slot is shown until the component mounts, then swapped for the default content.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-no-ssr"><div class="w-card w-card-body">Live widget</div></div>
+  </div>
+  <div slot="wc">
+    <w-no-ssr>
+      <div slot="placeholder" class="w-card w-card-body w-text-subtle">Loading…</div>
+      <div class="w-card w-card-body">Live widget</div>
+    </w-no-ssr>
+  </div>
+</demo-compare>

@@ -1,0 +1,41 @@
+/* DuVay — Attachment Chips component styles. */
+@import "../core.css";
+
+/* ── Attachment chips ───────────────────────────────────────────────────── */
+.w-attachment {
+  display: inline-flex;
+  width: auto;
+  max-width: 320px;
+  background: var(--w-surface-container-high);
+  border: 1px solid var(--w-border);
+  color: var(--w-text);
+  border-radius: var(--w-radius);
+  padding: 0.5rem 0.625rem;
+  align-items: center;
+  gap: var(--w-space-sm);
+  font-size: var(--w-font-sm);
+  font-family: inherit;
+  transition: background var(--w-transition-normal);
+}
+
+.w-attachment:hover {
+  background: color-mix(in srgb, var(--w-surface-container-high) 85%, var(--w-primary));
+}
+
+.w-attachment-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-attachment-size {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+}
+
+.w-attachment svg {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+}

@@ -1,0 +1,16 @@
+/* DuVay — Containers component styles. */
+@import "../core.css";
+
+/* ── Container ──────────────────────────────────────────────────────────── */
+.w-container {
+  width: 100%;
+  max-width: var(--w-container-max);
+  margin-inline: auto;
+  padding-inline: var(--w-space-4);
+}
+
+.w-container--fluid { max-width: none; }
+.w-container--sm    { max-width: 40rem; }   /* 640px */
+.w-container--md    { max-width: 56rem; }   /* 896px */
+.w-container--lg    { max-width: 75rem; }   /* 1200px */
+.w-container--xl    { max-width: 90rem; }   /* 1440px */

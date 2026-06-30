@@ -1,0 +1,64 @@
+<h1>Vertical steppers</h1>
+<p><code>w-stepper-vertical</code> stacks steps top-to-bottom and reveals each step's content inline as it becomes active — a good fit for forms on narrow screens. Each step is a <code>w-stepper-vertical-item</code> whose default slot is its panel content.</p>
+
+<h2>Basic</h2>
+<p>The active item expands its content; <code>w-stepper-actions</code> inside an item advances or rewinds the active step.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper w-stepper--vertical">
+      <div class="w-stepper-vertical-item active">
+        <div class="w-step active" data-step-header><div class="w-step-indicator">1</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Name your project</div></div></div>
+        <div class="w-stepper-vertical-content"><div class="py-2">Give the project a memorable name.</div></div>
+      </div>
+      <div class="w-stepper-vertical-item">
+        <div class="w-step" data-step-header><div class="w-step-indicator">2</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Invite your team</div></div></div>
+        <div class="w-stepper-vertical-content" hidden></div>
+      </div>
+      <div class="w-stepper-vertical-item">
+        <div class="w-step" data-step-header><div class="w-step-indicator">3</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Done</div></div></div>
+        <div class="w-stepper-vertical-content" hidden></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper-vertical editable value="1">
+      <w-stepper-vertical-item value="1" title="Name your project">
+        <div class="py-2">Give the project a memorable name.</div>
+        <w-stepper-actions></w-stepper-actions>
+      </w-stepper-vertical-item>
+      <w-stepper-vertical-item value="2" title="Invite your team">
+        <div class="py-2">Add teammates by email.</div>
+        <w-stepper-actions></w-stepper-actions>
+      </w-stepper-vertical-item>
+      <w-stepper-vertical-item value="3" title="Done">
+        <div class="py-2">You're all set.</div>
+        <w-stepper-actions></w-stepper-actions>
+      </w-stepper-vertical-item>
+    </w-stepper-vertical>
+  </div>
+</demo-compare>
+
+<h2>Complete &amp; error states</h2>
+<p>Earlier steps show a ✓; mark any step with <code>error</code> to flag it.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stepper w-stepper--vertical">
+      <div class="w-stepper-vertical-item done">
+        <div class="w-step done" data-step-header><div class="w-step-indicator">✓</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Account created</div></div></div>
+        <div class="w-stepper-vertical-content" hidden></div>
+      </div>
+      <div class="w-stepper-vertical-item error">
+        <div class="w-step error" data-step-header><div class="w-step-indicator">!</div><div class="w-step-connector"></div><div class="w-step-content"><div class="w-step-label">Payment failed</div></div></div>
+        <div class="w-stepper-vertical-content"><div class="py-2">Update your card and retry.</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-stepper-vertical value="2">
+      <w-stepper-vertical-item value="1" title="Account created"></w-stepper-vertical-item>
+      <w-stepper-vertical-item value="2" title="Payment failed" error>
+        <div class="py-2">Update your card and retry.</div>
+      </w-stepper-vertical-item>
+    </w-stepper-vertical>
+  </div>
+</demo-compare>

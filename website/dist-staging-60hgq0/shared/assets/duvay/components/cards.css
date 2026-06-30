@@ -1,0 +1,259 @@
+/* DuVay — Cards component styles. */
+@import "../core.css";
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.w-card {
+  --w-card-bg: var(--w-surface);
+  --w-card-fg: var(--w-text);
+  --w-card-accent: var(--w-primary);
+  --w-card-border-color: var(--w-border);
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--w-card-border-color);
+  border-radius: var(--w-radius);
+  background: var(--w-card-bg);
+  color: var(--w-card-fg);
+  box-shadow: var(--w-shadow-md);
+  text-decoration: none;
+  transition:
+    background var(--w-transition-fast),
+    border-color var(--w-transition-fast),
+    box-shadow var(--w-transition-fast),
+    color var(--w-transition-fast),
+    opacity var(--w-transition-fast);
+}
+
+.w-card::before,
+.w-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-card::before {
+  z-index: -1;
+  opacity: 1;
+}
+
+.w-card::after,
+.w-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-card--hover,
+.w-card--link {
+  cursor: pointer;
+}
+
+.w-card--hover:hover,
+.w-card--link:hover {
+  box-shadow: var(--w-shadow-lg);
+}
+
+.w-card--hover:hover .w-card__overlay,
+.w-card--link:hover .w-card__overlay {
+  opacity: 0.04;
+}
+
+.w-card--disabled {
+  pointer-events: none;
+  user-select: none;
+}
+
+.w-card--disabled > :not(.w-card__loader) {
+  opacity: var(--w-text-disabled-opacity);
+}
+
+.w-card__content {
+  position: relative;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.w-card__image {
+  display: flex;
+  position: relative;
+  min-height: 10rem;
+  overflow: hidden;
+  background: var(--w-surface-container-high);
+}
+
+.w-card__image > :where(img, picture, video),
+.w-card__image > slot > :where(img, picture, video) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+.w-card__loader {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 0.25rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--w-card-accent) 16%, transparent);
+}
+
+.w-card__loader-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--w-card-accent);
+  transform-origin: left center;
+  animation: w-card-loader 1.2s ease-in-out infinite;
+}
+
+.w-card__loader-bar--primary { background: var(--w-primary); }
+.w-card__loader-bar--secondary { background: var(--w-text-subtle); }
+.w-card__loader-bar--tertiary,
+.w-card__loader-bar--warning { background: var(--w-warning); }
+.w-card__loader-bar--success { background: var(--w-success); }
+.w-card__loader-bar--error,
+.w-card__loader-bar--danger { background: var(--w-error); }
+
+w-card.w-common-loading::after {
+  content: none;
+  display: none;
+}
+
+@keyframes w-card-loader {
+  0% { transform: translateX(-100%) scaleX(0.35); }
+  50% { transform: translateX(0) scaleX(0.6); }
+  100% { transform: translateX(100%) scaleX(0.35); }
+}
+
+.w-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  padding: var(--w-space-lg) var(--w-space-xl);
+  border-bottom: 1px solid var(--w-border);
+}
+
+.w-card-body {
+  padding: var(--w-space-lg) var(--w-space-xl);
+}
+
+.w-card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  padding: var(--w-space-md) var(--w-space-xl);
+  border-top: 1px solid var(--w-border);
+}
+
+.w-card--color-primary {
+  --w-card-bg: var(--w-primary-container);
+  --w-card-fg: var(--w-on-primary-container);
+  --w-card-accent: var(--w-primary);
+}
+
+.w-card--color-secondary {
+  --w-card-bg: var(--w-secondary-container);
+  --w-card-fg: var(--w-on-secondary-container);
+  --w-card-accent: var(--w-text-subtle);
+}
+
+.w-card--color-tertiary {
+  --w-card-bg: var(--w-tertiary-container);
+  --w-card-fg: var(--w-on-tertiary-container);
+  --w-card-accent: var(--w-warning);
+}
+
+.w-card--color-success {
+  --w-card-bg: var(--w-success-container);
+  --w-card-fg: var(--w-on-success-container);
+  --w-card-accent: var(--w-success);
+}
+
+.w-card--color-warning {
+  --w-card-bg: var(--w-warning-container);
+  --w-card-fg: var(--w-on-warning-container);
+  --w-card-accent: var(--w-warning);
+}
+
+.w-card--color-error {
+  --w-card-bg: var(--w-error-container);
+  --w-card-fg: var(--w-error);
+  --w-card-accent: var(--w-error);
+}
+
+.w-card--variant-flat,
+.w-card--flat {
+  box-shadow: none;
+}
+
+.w-card--variant-tonal {
+  background: color-mix(in srgb, var(--w-card-bg) 70%, transparent);
+}
+
+.w-card--variant-outlined {
+  background: transparent;
+  border-color: var(--w-card-accent);
+  box-shadow: none;
+}
+
+.w-card--variant-text,
+.w-card--variant-plain {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.w-card--variant-text .w-card__overlay {
+  opacity: 0.03;
+}
+
+.w-card--variant-plain {
+  opacity: var(--w-text-medium-emphasis-opacity);
+}
+
+.w-card--border {
+  border-color: var(--w-card-accent);
+}
+
+.w-card--tile {
+  border-radius: 0;
+}
+
+.w-card--rounded { border-radius: var(--w-radius); }
+.w-card--rounded-0,
+.w-card--rounded-none { border-radius: 0; }
+.w-card--rounded-sm { border-radius: var(--w-radius-sm); }
+.w-card--rounded-md { border-radius: var(--w-radius-md); }
+.w-card--rounded-lg { border-radius: var(--w-radius-lg); }
+.w-card--rounded-xl { border-radius: var(--w-radius-xl); }
+.w-card--rounded-pill { border-radius: var(--w-radius-pill); }
+
+.w-card--elevation-0 { box-shadow: none; }
+.w-card--elevation-1 { box-shadow: var(--w-shadow-sm); }
+.w-card--elevation-2,
+.w-card--elevation-3 { box-shadow: var(--w-shadow-md); }
+.w-card--elevation-4,
+.w-card--elevation-5,
+.w-card--elevation-6 { box-shadow: var(--w-shadow-lg); }
+
+.w-card--density-compact :where(.w-card-item, .w-card-text, .w-card-actions, .w-card-header, .w-card-body, .w-card-footer) {
+  padding-block: var(--w-space-2);
+}
+
+.w-card--density-comfortable :where(.w-card-item, .w-card-text, .w-card-actions, .w-card-header, .w-card-body, .w-card-footer) {
+  padding-block: var(--w-space-3);
+}

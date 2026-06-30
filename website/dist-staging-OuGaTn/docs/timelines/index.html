@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-bc56c6ac-0">Timelines</h1><p id="ty-9c58d24c-0"><code id="ty-e27b98e3-0">w-timeline</code> arranges <code id="ty-68b99c3a-0">w-timeline-item</code> entries along a connecting line. The default left-rail layout shows an opposite-side <code id="ty-2854be27-0">time</code>, a dot, and the entry body. Per-item <code id="ty-9de38e05-0">dot-color</code>, <code id="ty-86a1043c-0">icon</code>, <code id="ty-6cd93386-0">fill-dot</code>, <code id="ty-25d008b4-0">hide-dot</code>, and <code id="ty-870e68f8-0">size</code> are supported.</p><h2 id="ty-4b89a11d-0">Default (left rail)</h2><demo-compare >
+  <div slot="css" id="ty-3b7d39c4-0">
+    <div class="w-timeline" id="ty-81892c4a-0">
+      <div class="w-timeline-item" id="ty-f56b2026-0">
+        <div class="w-timeline-opposite" id="ty-e84effa8-0">09:00</div>
+        <div class="w-timeline-divider-col" id="ty-7566bc47-0"><span class="w-timeline-dot w-timeline-dot--filled" id="ty-f01b32c3-0"></span></div>
+        <div class="w-timeline-content" id="ty-3618df2d-0">
+          <div class="w-timeline-title" id="ty-dc879a9b-0">Kickoff</div>
+          <div class="w-timeline-body" id="ty-91da24c5-0">Reviewed scope, owners, and release dependencies.</div>
+        </div>
+      </div>
+      <div class="w-timeline-item" id="ty-c0d03984-0">
+        <div class="w-timeline-opposite" id="ty-f3228669-0">11:30</div>
+        <div class="w-timeline-divider-col" id="ty-40f32e12-0"><span class="w-timeline-dot w-timeline-dot--outlined" id="ty-da8e7090-0"></span></div>
+        <div class="w-timeline-content" id="ty-c29c2782-0">
+          <div class="w-timeline-title" id="ty-96c26001-0">Design pass</div>
+          <div class="w-timeline-body" id="ty-4970cc3c-0">Aligned components with the docs surface and interaction states.</div>
+        </div>
+      </div>
+      <div class="w-timeline-item" id="ty-635ace1d-0">
+        <div class="w-timeline-opposite" id="ty-afd07582-0">14:00</div>
+        <div class="w-timeline-divider-col" id="ty-09c1253a-0"><span class="w-timeline-dot w-timeline-dot--filled" id="ty-49faab8f-0"></span></div>
+        <div class="w-timeline-content" id="ty-45339665-0">
+          <div class="w-timeline-title" id="ty-ea61ad31-0">Validation</div>
+          <div class="w-timeline-body" id="ty-ab9b77c6-0">Checked keyboard flow and responsive spacing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ce3a6c4a-0">
+    <w-timeline id="ty-a5678b45-0">
+      <w-timeline-item time="09:00" title="Kickoff" id="ty-736d11ee-0">Reviewed scope, owners, and release dependencies.</w-timeline-item>
+      <w-timeline-item time="11:30" title="Design pass" dot="outlined" id="ty-49fafc96-0">Aligned components with the docs surface and interaction states.</w-timeline-item>
+      <w-timeline-item time="14:00" title="Validation" id="ty-d5b68c79-0">Checked keyboard flow and responsive spacing.</w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare><h2 id="ty-eeba33f3-0">Alternating &amp; colored dots</h2><p id="ty-4b8db3c6-0">Set <code id="ty-c423da45-0">align="center"</code> for Vuetify&#8217;s alternating layout. Items accept <code id="ty-6986906e-0">dot-color</code> and an <code id="ty-84303590-0">icon</code> inside the dot.</p><demo-compare >
+  <div slot="css" id="ty-48686ff8-0">
+    <div class="w-timeline w-timeline--align-center" id="ty-5f2ed96a-0">
+      <div class="w-timeline-item" id="ty-ea2ba92c-0">
+        <div class="w-timeline-opposite" id="ty-09667701-0">Mon</div>
+        <div class="w-timeline-divider-col" id="ty-104e997f-0"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-success)" id="ty-340763a1-0"></span></div>
+        <div class="w-timeline-content" id="ty-e43b35a9-0"><div class="w-timeline-title" id="ty-de9eac59-0">Shipped v1</div></div>
+      </div>
+      <div class="w-timeline-item" id="ty-01407cec-0">
+        <div class="w-timeline-opposite" id="ty-6815c9c9-0">Wed</div>
+        <div class="w-timeline-divider-col" id="ty-2b111472-0"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-warning)" id="ty-ec001bd4-0"></span></div>
+        <div class="w-timeline-content" id="ty-7fb6f37f-0"><div class="w-timeline-title" id="ty-00b55248-0">Hotfix</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-14650f7b-0">
+    <w-timeline align="center" id="ty-f74b72f3-0">
+      <w-timeline-item time="Mon" title="Shipped v1" dot-color="success" id="ty-d44048b9-0"></w-timeline-item>
+      <w-timeline-item time="Wed" title="Hotfix" dot-color="warning" id="ty-6191a4ce-0"></w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare><h2 id="ty-bf089e8f-0">Hide opposite (single rail)</h2><p id="ty-dd50eda1-0">Set <code id="ty-a43db324-0">hide-opposite</code> on the timeline to drop every opposite column, or on a single <code id="ty-455bc110-0">w-timeline-item</code> to hide just that one. Pair with <code id="ty-eeeceab9-0">icon-color</code> to recolor the dot glyph.</p><demo-compare >
+  <div slot="css" id="ty-cb7e59b7-0">
+    <div class="w-timeline w-timeline--hide-opposite" id="ty-a147ea5f-0">
+      <div class="w-timeline-item w-timeline-item--hide-opposite" id="ty-e8642da6-0">
+        <div class="w-timeline-divider-col" id="ty-3b041505-0"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-success)" id="ty-ea4bc8a8-0"><span class="w-timeline-dot__icon" style="--w-timeline-icon-color:var(--w-surface)" id="ty-f6222ebb-0">✓</span></span></div>
+        <div class="w-timeline-content" id="ty-d7f15569-0"><div class="w-timeline-title" id="ty-39d2c468-0">Deployed</div><div class="w-timeline-body" id="ty-1610d4ff-0">Rolled out to production.</div></div>
+      </div>
+      <div class="w-timeline-item w-timeline-item--hide-opposite" id="ty-57ac2dbc-0">
+        <div class="w-timeline-divider-col" id="ty-1f662898-0"><span class="w-timeline-dot w-timeline-dot--outlined" id="ty-44a766d5-0"></span></div>
+        <div class="w-timeline-content" id="ty-e021d132-0"><div class="w-timeline-title" id="ty-364a63c7-0">Monitoring</div><div class="w-timeline-body" id="ty-a6d4cc85-0">Watching error rates.</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-dfc4856b-0">
+    <w-timeline hide-opposite="" id="ty-6f408b0a-0">
+      <w-timeline-item title="Deployed" dot-color="success" icon="✓" icon-color="surface" id="ty-e367e4f4-0">Rolled out to production.</w-timeline-item>
+      <w-timeline-item title="Monitoring" dot="outlined" id="ty-82da7c17-0">Watching error rates.</w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare><h2 id="ty-f87af546-0">Justify center</h2><p id="ty-23bcbd4b-0">Add <code id="ty-374c0df1-0">justify="center"</code> to give both sides of the rail equal width, centering the connecting line.</p><demo-compare >
+  <div slot="css" id="ty-1f421814-0">
+    <div class="w-timeline w-timeline--align-center w-timeline--justify-center" id="ty-9357bb9b-0">
+      <div class="w-timeline-item" id="ty-3ebfe6df-0">
+        <div class="w-timeline-opposite" id="ty-38cf1925-0">Q1</div>
+        <div class="w-timeline-divider-col" id="ty-4cb730ff-0"><span class="w-timeline-dot w-timeline-dot--filled" id="ty-38339dc1-0"></span></div>
+        <div class="w-timeline-content" id="ty-509e0b47-0"><div class="w-timeline-title" id="ty-1b55eeb6-0">Plan</div></div>
+      </div>
+      <div class="w-timeline-item" id="ty-88c3b994-0">
+        <div class="w-timeline-opposite" id="ty-072c3f7e-0">Q2</div>
+        <div class="w-timeline-divider-col" id="ty-5e8a57a0-0"><span class="w-timeline-dot w-timeline-dot--filled" id="ty-48df734e-0"></span></div>
+        <div class="w-timeline-content" id="ty-10be4e58-0"><div class="w-timeline-title" id="ty-96073c19-0">Build</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-f89ac59c-0">
+    <w-timeline align="center" justify="center" id="ty-eb6cca8c-0">
+      <w-timeline-item time="Q1" title="Plan" id="ty-038e82f9-0"></w-timeline-item>
+      <w-timeline-item time="Q2" title="Build" id="ty-f0d79f80-0"></w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+<h1>Sizing</h1>
+<p>Sizing utility classes modify the dimensions of an element, mirroring Vuetify's sizing helpers. Apply <code>height</code> and <code>width</code> with the format <code>.&#123;prefix&#125;-&#123;size&#125;</code> — <code>w</code> for width, <code>h</code> for height. Each also has responsive variants (<code>w-md-50</code>, <code>h-lg-100</code>) that apply from that breakpoint up.</p>
+
+<h2>Usage</h2>
+
+<h3>Width</h3>
+<p>Set the <code>width</code> of a block-level element. Percentages are relative to the parent.</p>
+<div class="w-border pa-3 mb-4">
+  <div class="w-25 w-bg-primary-container pa-2 mb-2">w-25</div>
+  <div class="w-33 w-bg-primary-container pa-2 mb-2">w-33</div>
+  <div class="w-50 w-bg-primary-container pa-2 mb-2">w-50</div>
+  <div class="w-66 w-bg-primary-container pa-2 mb-2">w-66</div>
+  <div class="w-75 w-bg-primary-container pa-2 mb-2">w-75</div>
+  <div class="w-100 w-bg-primary-container pa-2">w-100</div>
+</div>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>w-auto</code></td><td><code>width: auto</code></td></tr>
+    <tr><td><code>w-0</code></td><td><code>width: 0</code></td></tr>
+    <tr><td><code>w-25</code> / <code>w-33</code> / <code>w-50</code> / <code>w-66</code> / <code>w-75</code></td><td>25% / 33% / 50% / 66% / 75%</td></tr>
+    <tr><td><code>w-100</code></td><td><code>width: 100%</code></td></tr>
+    <tr><td><code>mw-100</code></td><td><code>max-width: 100%</code> (DuVay)</td></tr>
+    <tr><td><code>w-mw-prose</code></td><td><code>max-width: 65ch</code> — readable measure (DuVay)</td></tr>
+    <tr><td><code>w-min-w-0</code></td><td><code>min-width: 0</code> — lets flex children shrink (DuVay)</td></tr>
+  </tbody>
+</table>
+
+<h3>Height</h3>
+<p>Set the <code>height</code> of a block-level element. Percentages require the parent to have a defined height.</p>
+<div class="w-border pa-3 mb-4 d-flex align-end ga-3" style="height: 10rem;">
+  <div class="h-25 w-bg-primary-container px-2" style="width: 4rem;">h-25</div>
+  <div class="h-50 w-bg-primary-container px-2" style="width: 4rem;">h-50</div>
+  <div class="h-75 w-bg-primary-container px-2" style="width: 4rem;">h-75</div>
+  <div class="h-100 w-bg-primary-container px-2" style="width: 4rem;">h-100</div>
+</div>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>h-auto</code></td><td><code>height: auto</code></td></tr>
+    <tr><td><code>h-screen</code></td><td><code>height: 100dvh</code></td></tr>
+    <tr><td><code>h-0</code></td><td><code>height: 0</code></td></tr>
+    <tr><td><code>h-25</code> / <code>h-50</code> / <code>h-75</code></td><td>25% / 50% / 75%</td></tr>
+    <tr><td><code>h-100</code> / <code>fill-height</code></td><td><code>height: 100%</code></td></tr>
+    <tr><td><code>mh-100</code></td><td><code>max-height: 100%</code> (DuVay)</td></tr>
+    <tr><td><code>w-min-h-0</code></td><td><code>min-height: 0</code> (DuVay)</td></tr>
+  </tbody>
+</table>
+
+<h2>Responsive</h2>
+<p>Append a breakpoint — <code>sm</code> (≥600px), <code>md</code> (≥960px), <code>lg</code> (≥1280px), <code>xl</code> (≥1920px) — to apply a size from that width up: <code>&#123;prefix&#125;-&#123;breakpoint&#125;-&#123;size&#125;</code>. The box below is full width on mobile and half width from <code>md</code>.</p>
+<div class="w-border pa-3 mb-4">
+  <div class="w-100 w-md-50 w-bg-primary-container pa-2">w-100 w-md-50</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-100 w-md-50"&gt;Full width, then half from md up&lt;/div&gt;</code></div>

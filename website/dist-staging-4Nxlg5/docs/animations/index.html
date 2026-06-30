@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-fb63d681-0">Animations</h1><p id="ty-bbf57283-0">DuVay motion combines named transition helpers with Svelte-inspired FLIP, crossfade, tween, and spring helpers. Every helper respects <code id="ty-f3a6f697-0">prefers-reduced-motion</code>.</p><h2 id="ty-5a0c3cab-0">Named Transitions</h2><demo-compare >
+  <div slot="css" id="ty-4edd63e8-0">
+    <button class="w-btn w-btn-filled" type="button" data-w-transition-toggle="motion-css-card" data-w-transition-name="scale" id="ty-23e93f97-0">Toggle scale</button>
+    <div id="motion-css-card" class="w-card w-card-body w-mt-3 w-scale-transition" data-w-transition="scale">
+      <strong id="ty-5536655a-0">Scale transition</strong>
+      <p class="w-text-muted" id="ty-27750ba9-0">Named helpers mirror Vuetify patterns such as fade, scale, slide, and scroll.</p>
+    </div>
+  </div>
+  <div slot="wc" id="ty-a9043794-0">
+    <w-btn variant="filled" data-w-transition-toggle="motion-wc-card" data-w-transition-name="slide-y" id="ty-c986c8ca-0">Toggle slide</w-btn>
+    <w-card id="motion-wc-card" data-w-transition="slide-y">
+      <strong id="ty-1966f769-0">Slide transition</strong>
+      <p class="w-text-muted" id="ty-4d24dd95-0">The same data hook works on web components and class-only markup.</p>
+    </w-card>
+  </div>
+</demo-compare><h2 id="ty-045d95b7-0">Expansion Height</h2><demo-compare >
+  <div slot="css" id="ty-215f2afb-0">
+    <div class="w-expand" id="ty-03135fb2-0">
+      <button class="w-expand-header" type="button" data-w-expand-toggle="" aria-expanded="false" id="ty-37071eeb-0">
+        <span class="w-expand-title" id="ty-97a819b9-0">Animated disclosure</span>
+        <svg class="w-expand-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" id="ty-b82441ea-0"><polyline points="6 9 12 15 18 9" id="ty-55ef7e91-0" /></svg>
+      </button>
+      <div class="w-expand-body" id="ty-de8c9e24-0">
+        <p id="ty-837f9bd0-0">Height now animates from measured content instead of snapping between hidden and visible states.</p>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ca58efa9-0">
+    <w-expansion-panels id="ty-91123126-0">
+      <w-expansion-panel header="Animated item" id="ty-3853dd26-0">
+        Expansion panels use the same measured expansion helper internally.
+      </w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare><h2 id="ty-c7af5a22-0">FLIP Reorder</h2><demo-compare >
+  <div slot="css" id="ty-8628aab4-0">
+    <button class="w-btn w-btn-outlined" type="button" data-w-flip-reorder="motion-css-flip" data-w-flip-mode="rotate" id="ty-aba6fe27-0">Rotate list</button>
+    <div id="motion-css-flip" class="w-list w-motion-flip w-mt-3" data-w-flip="">
+      <div class="w-list-item" id="ty-fef3c32c-0"><div class="w-list-item-content" id="ty-2855a46f-0"><span class="w-list-item-title" id="ty-6b59a0db-0">Design review</span><span class="w-list-item-subtitle" id="ty-bd7ee4e8-0">Motion polish</span></div></div>
+      <div class="w-list-item" id="ty-6338aed7-0"><div class="w-list-item-content" id="ty-7691bdb9-0"><span class="w-list-item-title" id="ty-40d47e5f-0">Implementation</span><span class="w-list-item-subtitle" id="ty-1447fed6-0">Runtime helpers</span></div></div>
+      <div class="w-list-item" id="ty-f14f30d9-0"><div class="w-list-item-content" id="ty-8628a910-0"><span class="w-list-item-title" id="ty-c734fa7d-0">QA pass</span><span class="w-list-item-subtitle" id="ty-a45ec9d7-0">Preview browser</span></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3da7c0bf-0">
+    <w-btn variant="outlined" data-w-flip-reorder="motion-wc-flip" data-w-flip-mode="rotate" id="ty-4bc242b6-0">Rotate list</w-btn>
+    <w-list id="motion-wc-flip" data-w-flip="" data-w-flip-items="w-list-item">
+      <w-list-item title="Design review" subtitle="Motion polish" id="ty-2e9c97c7-0"></w-list-item>
+      <w-list-item title="Implementation" subtitle="Runtime helpers" id="ty-d67abe80-0"></w-list-item>
+      <w-list-item title="QA pass" subtitle="Preview browser" id="ty-2c259bef-0"></w-list-item>
+    </w-list>
+  </div>
+</demo-compare><h2 id="ty-907fccdd-0">Crossfade</h2><demo-compare >
+  <div slot="css" id="ty-705719ef-0">
+    <button class="w-btn w-btn-outlined" type="button" data-w-crossfade="motion-css-a motion-css-b" data-w-crossfade-toggle="" id="ty-52be53df-0">Swap avatar</button>
+    <div class="w-row w-gap-4 w-items-center w-mt-3" id="ty-4d1e4682-0">
+      <div class="w-card w-card-body" data-w-crossfade-key="motion-css-a" id="ty-a2d196f1-0"><span class="w-avatar" id="ty-23dc8183-0">DuVay</span></div>
+      <div class="w-card w-card-body w-transition-hidden" data-w-crossfade-key="motion-css-b" hidden="" id="ty-48fc911e-0"><span class="w-avatar w-avatar-lg" id="ty-21de6fbb-0">UI</span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-784f3932-0">
+    <w-btn variant="outlined" data-w-crossfade="motion-wc-a motion-wc-b" data-w-crossfade-toggle="" id="ty-1b2af90c-0">Swap avatar</w-btn>
+    <div class="w-row w-gap-4 w-items-center w-mt-3" id="ty-ba2671fc-0">
+      <w-card data-w-crossfade-key="motion-wc-a" id="ty-f89aa471-0"><w-avatar initials="DuVay" id="ty-b3a3a65c-0"></w-avatar></w-card>
+      <w-card data-w-crossfade-key="motion-wc-b" hidden="" id="ty-6eb3310c-0"><w-avatar initials="UI" size="lg" id="ty-620d717d-0"></w-avatar></w-card>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-4dd1704d-0">Tweened Values</h2><demo-compare >
+  <div slot="css" id="ty-5fa65774-0">
+    <button class="w-btn w-btn-outlined" type="button" data-w-tween-start="motion-css-count" id="ty-653b1b72-0">Replay</button>
+    <div class="w-card w-card-body w-mt-3" id="ty-877e24f6-0">
+      <strong id="motion-css-count" data-w-tween="" data-w-tween-from="0" data-w-tween-to="84" data-w-tween-suffix="%">0%</strong>
+      <div class="w-progress w-mt-3" id="ty-5ea23134-0">
+        <div class="w-progress-bar" style="width:0" data-w-tween="" data-w-tween-property="width" data-w-tween-from="0" data-w-tween-to="84" id="ty-1aaac4cb-0"></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-1cb2eec7-0">
+    <div class="w-card w-card-body" id="ty-02a5f6a8-0">
+      <w-counter value="84" max="100" tween="" id="ty-2b28d3d7-0"></w-counter>
+      <w-progress-linear value="84" tween="" id="ty-e17a8912-0"></w-progress-linear>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-a9cd8d33-0">Spring Motion</h2><demo-compare >
+  <div slot="css" id="ty-964273a7-0">
+    <button class="w-btn w-btn-outlined" type="button" data-w-spring-start="motion-css-spring" id="ty-ba1e8d4a-0">Replay spring</button>
+    <div class="w-row w-items-center w-gap-3 w-mt-3" id="ty-d7c39345-0">
+      <span id="motion-css-spring" class="w-avatar w-motion-spring" data-w-spring="" data-w-spring-auto="false" data-w-spring-from="0.72" data-w-spring-to="1" data-w-spring-property="scale">S</span>
+      <span class="w-text-muted" id="ty-349937b1-0">A small spring helper is useful for counters, chips, and state changes.</span>
+    </div>
+  </div>
+  <div slot="wc" id="ty-359da97b-0">
+    <w-btn variant="outlined" data-w-spring-start="motion-wc-spring" id="ty-2efdfad3-0">Replay spring</w-btn>
+    <div class="w-row w-items-center w-gap-3 w-mt-3" id="ty-cb39f39b-0">
+      <w-avatar id="motion-wc-spring" initials="S" data-w-spring="" data-w-spring-auto="false" data-w-spring-from="0.72" data-w-spring-to="1" data-w-spring-property="scale"></w-avatar>
+      <span class="w-text-muted" id="ty-84d7d179-0">The data hook can target any element.</span>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-eec47bcc-0">API Reference</h2><table class="w-table api-table" id="ty-dd7f136d-0">
+  <thead id="ty-e2db1623-0">
+    <tr id="ty-0689a16c-0"><th id="ty-0333b63a-0">Helper</th><th id="ty-6e91c14b-0">Purpose</th></tr>
+  </thead>
+  <tbody id="ty-54f90971-0">
+    <tr id="ty-db7206c4-0"><td id="ty-6bcd5e8c-0"><code id="ty-8fa125dd-0">WMotion.enter(el, name)</code></td><td id="ty-91fa279a-0">Shows an element with a named transition.</td></tr>
+    <tr id="ty-4f006608-0"><td id="ty-64eb816b-0"><code id="ty-000e7e95-0">WMotion.leave(el, name)</code></td><td id="ty-388158e8-0">Hides an element with a named transition.</td></tr>
+    <tr id="ty-4698d84a-0"><td id="ty-a38446e5-0"><code id="ty-39e28241-0">WMotion.toggle(el, open, name)</code></td><td id="ty-d6fca168-0">Switches between enter and leave.</td></tr>
+    <tr id="ty-3ddf4ba0-0"><td id="ty-e8059dbf-0"><code id="ty-fc59a897-0">WMotion.setExpand(panel, open)</code></td><td id="ty-7ae91027-0">Measures and animates expansion-panel height.</td></tr>
+    <tr id="ty-b04b1b3a-0"><td id="ty-0e693e37-0"><code id="ty-8b21c885-0">WMotion.flip(container, mutate)</code></td><td id="ty-33865e3b-0">Runs FLIP animation around a DOM mutation.</td></tr>
+    <tr id="ty-48a16ee9-0"><td id="ty-f18242f4-0"><code id="ty-705e37d4-0">WMotion.crossfade(from, to)</code></td><td id="ty-49128e40-0">Animates a cloned shared element between two targets.</td></tr>
+    <tr id="ty-4bc19b82-0"><td id="ty-3d28aad7-0"><code id="ty-73ab33a4-0">WMotion.tween(el, options)</code></td><td id="ty-d8f655e7-0">Interpolates text, dimensions, transforms, attributes, or CSS variables.</td></tr>
+    <tr id="ty-637692db-0"><td id="ty-2119a40d-0"><code id="ty-cd6e2ad6-0">WMotion.spring(el, options)</code></td><td id="ty-a676e8b4-0">Applies a damped spring-style value animation.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

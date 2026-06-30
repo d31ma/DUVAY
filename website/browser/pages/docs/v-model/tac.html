@@ -1,0 +1,73 @@
+<h1>v-model</h1>
+<p>DuVay web components support two-way binding through a <code>value</code> or <code>model-value</code> attribute and standard events. Use an explicit attribute + event pair to recreate Vue's <code>v-model</code>, React controlled components, or plain DOM scripting without a framework-specific adapter.</p>
+
+<h2>Usage</h2>
+
+<h3>Binding models</h3>
+<p>The <code>model-value</code> attribute is the Vuetify/Vue v-model alias. When a component's state changes, it dispatches an <code>update:model-value</code> event with the new value. Form controls also accept <code>value</code> and emit <code>input</code> and <code>change</code> events.</p>
+
+<div class="code-block"><code>&lt;!-- Vue --&gt;
+&lt;template&gt;
+  &lt;w-alert &#58;model-value="show" &#64;update&#58;model-value="show = $event.detail"&gt;
+    Saved successfully
+  &lt;/w-alert&gt;
+  &lt;w-btn &#64;click="show = !show"&gt;Toggle&lt;/w-btn&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+  import &#123; shallowRef &#125; from 'vue'
+  const show = shallowRef(true)
+&lt;/script&gt;</code></div>
+
+<p>The same binding in vanilla JavaScript:</p>
+
+<div class="code-block"><code>&lt;w-alert id="alert" model-value="true"&gt;Saved successfully&lt;/w-alert&gt;
+&lt;button id="toggle"&gt;Toggle&lt;/button&gt;
+
+&lt;script&gt;
+  const alert = document.getElementById('alert')
+  const btn = document.getElementById('toggle')
+  btn.addEventListener('click', () =&gt; &#123;
+    const open = alert.getAttribute('model-value') === 'true'
+    alert.setAttribute('model-value', String(!open))
+  &#125;)
+  alert.addEventListener('update:model-value', (e) =&gt; &#123;
+    console.log('open:', e.detail)
+  &#125;)
+&lt;/script&gt;</code></div>
+
+<h3>Controlled and uncontrolled</h3>
+<p>If you only set <code>model-value</code> once, the component starts uncontrolled and manages its own state. To control it externally, always reflect the new value back to the attribute in the event listener.</p>
+
+<div class="code-block"><code>// Uncontrolled: initial value only
+&lt;w-alert model-value="true"&gt;...&lt;/w-alert&gt;
+
+// Controlled: state lives in the parent
+&lt;w-rating id="rating" model-value="3"&gt;&lt;/w-rating&gt;
+&lt;script&gt;
+  document.getElementById('rating')
+    .addEventListener('update:model-value', (e) =&gt; e.target.setAttribute('model-value', e.detail))
+&lt;/script&gt;</code></div>
+
+<h3>Binding specific properties</h3>
+<p>Some components expose additional bindable properties such as <code>active</code>, <code>open</code>, or <code>selected</code>. Use them as regular attributes and listen for <code>update:active</code>, <code>update:open</code>, or <code>update:selected</code>. DuVay also fires colon-free aliases — <code>update-active</code>, <code>update-open</code>, <code>update-selected</code> — so Angular and Svelte templates can bind them.</p>
+
+<div class="code-block"><code>&lt;w-item-group
+  &#58;selected="selected"
+  &#64;update&#58;selected="selected = $event.detail"
+&gt;
+  &lt;w-item value="a" title="A"&gt;&lt;/w-item&gt;
+  &lt;w-item value="b" title="B"&gt;&lt;/w-item&gt;
+&lt;/w-item-group&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Attribute</th><th>Event</th><th>Use</th></tr></thead>
+  <tbody>
+    <tr><td><code>model-value</code></td><td><code>update:model-value</code></td><td>Boolean, numeric, or string state (Vue v-model alias).</td></tr>
+    <tr><td><code>value</code></td><td><code>input</code>, <code>change</code></td><td>Form control value (vanilla and React friendly).</td></tr>
+    <tr><td><code>active</code></td><td><code>update:active</code> / <code>update-active</code></td><td>Active state of tabs, lists, etc.</td></tr>
+    <tr><td><code>open</code></td><td><code>update:open</code> / <code>update-open</code></td><td>Open/closed state of drawers, dialogs, menus.</td></tr>
+    <tr><td><code>selected</code></td><td><code>update:selected</code> / <code>update-selected</code></td><td>Selection state of item groups.</td></tr>
+  </tbody>
+</table>

@@ -1,0 +1,136 @@
+<h1>Dialog &amp; Overlay</h1>
+<p>Modal dialogs, sheets, and overlays for focused interactions.</p>
+
+<h2>Dialog</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-filled" data-w-dialog-open="demo-dialog">Open Dialog</button>
+    <div class="w-overlay w-overlay--scrim" id="demo-dialog-overlay"></div>
+    <div class="w-dialog-wrapper" id="demo-dialog" data-w-overlay="demo-dialog-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="w-dialog">
+        <div class="w-dialog-header">
+          <h3 class="w-dialog-title">Confirm</h3>
+          <button class="w-btn w-btn-icon w-btn--sm" data-w-dialog-close aria-label="Close">&times;</button>
+        </div>
+        <div class="w-dialog-body">
+          <p>Are you sure you want to proceed?</p>
+        </div>
+        <div class="w-dialog-footer">
+          <button class="w-btn w-btn-text" data-w-dialog-close>Cancel</button>
+          <button class="w-btn w-btn-filled">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-dialog title="Confirm">
+      <w-btn slot="activator" variant="filled">Open Dialog</w-btn>
+      Are you sure you want to proceed?
+      <div slot="footer">
+        <w-btn variant="text" data-w-dialog-close>Cancel</w-btn>
+        <w-btn variant="filled" data-w-dialog-close>Confirm</w-btn>
+      </div>
+    </w-dialog>
+  </div>
+</demo-compare>
+
+<h2>Persistent</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined">Persistent dialog</button>
+    <div class="w-dialog-wrapper open w-dialog-wrapper--persistent" aria-hidden="false" role="dialog" aria-modal="true" style="position:relative; inset:auto; z-index:1; padding:0; opacity:1; visibility:visible">
+      <div class="w-dialog">
+        <div class="w-dialog-header"><h3 class="w-dialog-title">Unsaved changes</h3></div>
+        <div class="w-dialog-body"><p>Outside clicks keep this dialog open until the user chooses an action.</p></div>
+        <div class="w-dialog-footer">
+          <button class="w-btn w-btn-text">Cancel</button>
+          <button class="w-btn w-btn-filled">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-dialog title="Unsaved changes" persistent>
+      <w-btn slot="activator" variant="outlined">Persistent dialog</w-btn>
+      Outside clicks keep this dialog open until the user chooses an action.
+      <div slot="footer">
+        <w-btn variant="text" data-w-dialog-close>Cancel</w-btn>
+        <w-btn variant="filled" data-w-dialog-close>Save</w-btn>
+      </div>
+    </w-dialog>
+  </div>
+</demo-compare>
+
+<h2>Fullscreen and Scrollable</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined">Open fullscreen</button>
+    <div class="w-dialog-wrapper open w-dialog-wrapper--fullscreen w-dialog-wrapper--scrollable" aria-hidden="false" role="dialog" aria-modal="true" style="position:relative; inset:auto; z-index:1; padding:0; opacity:1; visibility:visible">
+      <div class="w-dialog w-dialog--fullscreen w-dialog--scrollable" style="width:100%; max-width:100%; min-height:220px; max-height:220px">
+        <div class="w-dialog-header">
+          <h3 class="w-dialog-title">Review details</h3>
+          <button class="w-btn w-btn-icon w-btn--sm" aria-label="Close">&times;</button>
+        </div>
+        <div class="w-dialog-body">
+          <p>Scrollable dialogs keep the header and footer in place while the body carries longer content.</p>
+          <p>Use fullscreen dialogs for complex mobile flows or focused editing states.</p>
+        </div>
+        <div class="w-dialog-footer"><button class="w-btn w-btn-filled">Done</button></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-dialog title="Review details" fullscreen scrollable>
+      <w-btn slot="activator" variant="outlined">Open fullscreen</w-btn>
+      <p>Scrollable dialogs keep the header and footer in place while the body carries longer content.</p>
+      <p>Use fullscreen dialogs for complex mobile flows or focused editing states.</p>
+      <div slot="footer"><w-btn variant="filled" data-w-dialog-close>Done</w-btn></div>
+    </w-dialog>
+  </div>
+</demo-compare>
+
+<h2>Overlay</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-overlay w-overlay--scrim open" style="position:relative; min-height:160px; z-index:1">
+      <div class="w-card w-card-body" style="max-width:320px">Overlay content</div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-overlay open scrim="primary" opacity="0.42" contained style="display:block; position:relative; min-height:160px; overflow:hidden; border-radius:var(--w-radius)">
+      <div class="w-card w-card-body" style="max-width:320px">Overlay content</div>
+    </w-overlay>
+  </div>
+</demo-compare>
+
+<h2>Sheet</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-btn w-btn-outlined" data-w-sheet-open="demo-sheet">Open Sheet</button>
+    <div class="w-overlay" id="demo-sheet-overlay"></div>
+    <div class="w-sheet-bottom" id="demo-sheet" data-w-overlay="demo-sheet-overlay" aria-hidden="true">
+      <div class="w-sheet-handle"></div>
+      <div class="w-dialog-header">
+        <h3 class="w-dialog-title">Options</h3>
+        <button class="w-btn w-btn-icon w-btn--sm" data-w-sheet-close aria-label="Close">&times;</button>
+      </div>
+      <div class="w-dialog-body">
+        <p>Sheet content goes here.</p>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-btn variant="outlined" data-demo-sheet-open="wc-sheet">Open Sheet</w-btn>
+    <div class="w-overlay" data-demo-sheet-overlay="wc-sheet"></div>
+    <div class="w-sheet-bottom" data-demo-sheet="wc-sheet">
+      <div class="w-sheet-handle"></div>
+      <div class="w-dialog-header">
+        <h3 class="w-dialog-title">Options</h3>
+        <button class="w-btn w-btn-icon w-btn--sm" data-demo-sheet-close="wc-sheet" aria-label="Close">&times;</button>
+      </div>
+      <div class="w-dialog-body">
+        <p>Sheet content goes here.</p>
+      </div>
+    </div>
+  </div>
+</demo-compare>

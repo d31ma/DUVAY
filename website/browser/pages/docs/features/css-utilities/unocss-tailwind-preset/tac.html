@@ -1,0 +1,15 @@
+<h1>UnoCSS + presetWind4</h1>
+<p>UnoCSS can generate Tailwind-compatible utilities from DuVay’s token values. Point UnoCSS at the same CSS custom properties to keep classes in sync.</p>
+<div class="code-block"><code>// uno.config.ts
+import presetWind4 from '@unocss/preset-wind4';
+
+export default &#123;
+  presets: [presetWind4()],
+  theme: &#123;
+    colors: &#123;
+      primary: 'var(--w-primary)',
+    &#125;,
+  &#125;,
+&#125;;</code></div>
+<h2>Use with DuVay</h2>
+<p>Import duvay.css first, then let UnoCSS generate atomic utilities on top. DuVay components continue to use their own semantic classes.</p>

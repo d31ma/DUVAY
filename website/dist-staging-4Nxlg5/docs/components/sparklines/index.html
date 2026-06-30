@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-7c18a2e7-0">Sparklines</h1><p id="ty-8c27ade0-0"><code id="ty-9cf89bdd-0">w-sparkline</code> draws a small inline trend line or bar chart from a list of <code id="ty-0bb809d4-0">values</code>. It supports fills, smoothing, gradients, custom line width, labels, min/max clamping, and an auto-draw animation. Pass numbers via <code id="ty-54b15433-0">values</code> (comma list or JSON array).</p><h2 id="ty-ea28d98a-0">Trend &amp; bar</h2><p id="ty-29ce20f4-0">Set <code id="ty-ea4b09a2-0">type</code> to <code id="ty-802b789b-0">trend</code> (default line) or <code id="ty-948b304b-0">bar</code>.</p><demo-compare >
+  <div slot="css" id="ty-ebc8797c-0">
+    <svg class="w-sparkline w-sparkline--trend" viewbox="0 0 100 40" id="ty-bc7924e5-0"><path class="w-sparkline-line" d="M4,28 L23,10 L42,20 L61,6 L80,16 L96,9" id="ty-a7ad3057-0"></path></svg>
+  </div>
+  <div slot="wc" id="ty-2daa8daa-0">
+    <div class="w-stack" id="ty-f2552d19-0">
+      <w-sparkline values="[3,8,5,10,6,12]" id="ty-bbbf8a4c-0"></w-sparkline>
+      <w-sparkline type="bar" values="[4,7,2,9,5,8]" id="ty-bcd8da32-0"></w-sparkline>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-df56fc64-0">Fill &amp; smooth</h2><p id="ty-d89afe4e-0">Add <code id="ty-02032f21-0">fill</code> to shade the area under a trend, and <code id="ty-61b65c1f-0">smooth</code> to round the corners.</p><demo-compare >
+  <div slot="css" id="ty-9c9fe48e-0">
+    <svg class="w-sparkline w-sparkline--trend w-sparkline--fill" viewbox="0 0 100 40" id="ty-b59fbf9f-0"><path class="w-sparkline-fill" d="M4,28 C20,10 30,10 50,18 C70,26 80,6 96,12 L96,40 L4,40 Z" id="ty-279e3981-0"></path><path class="w-sparkline-line" d="M4,28 C20,10 30,10 50,18 C70,26 80,6 96,12" id="ty-1d9987b9-0"></path></svg>
+  </div>
+  <div slot="wc" id="ty-315e74ea-0">
+    <div class="w-stack" id="ty-a70cbee2-0">
+      <w-sparkline values="[3,8,5,10,6,12]" fill="" id="ty-d9606ef7-0"></w-sparkline>
+      <w-sparkline values="[3,8,5,10,6,12]" smooth="" fill="" id="ty-376b59a6-0"></w-sparkline>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-083c3042-0">Color</h2><p id="ty-6eec493d-0">Set <code id="ty-bc8366b0-0">color</code> to a token name (e.g. <code id="ty-7aa2fbff-0">success</code>) or any CSS color.</p><demo-compare >
+  <div slot="css" id="ty-b76a3026-0">
+    <svg class="w-sparkline w-sparkline--trend" viewbox="0 0 100 40" style="--w-sparkline-color:var(--w-success)" id="ty-a01062f9-0"><path class="w-sparkline-line" d="M4,28 L23,10 L42,20 L61,6 L80,16 L96,9" id="ty-07c089e0-0"></path></svg>
+  </div>
+  <div slot="wc" id="ty-efc2dd6b-0">
+    <div class="w-stack" id="ty-f2e23c8f-0">
+      <w-sparkline values="[3,8,5,10,6,12]" color="success" id="ty-7afb5db0-0"></w-sparkline>
+      <w-sparkline type="bar" values="[4,7,2,9,5,8]" color="warning" id="ty-1eb72dea-0"></w-sparkline>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-663552af-0">Gradient</h2><p id="ty-620ab350-0">Pass a comma list of colors to <code id="ty-6b9f9bac-0">gradient</code> (with optional <code id="ty-3f076340-0">gradient-direction</code>).</p><demo-compare >
+  <div slot="css" id="ty-bd1c98d8-0">
+    <svg class="w-sparkline w-sparkline--trend" viewbox="0 0 100 40" style="--w-sparkline-color:url(#demo-grad)" id="ty-53cdb2e2-0">
+      <defs id="ty-560e4c1b-0"><lineargradient id="demo-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f72047" id="ty-0fa4ac3f-0"></stop><stop offset="50%" stop-color="#ffd200" id="ty-7423e764-0"></stop><stop offset="100%" stop-color="#1feaea" id="ty-03b6e391-0"></stop></lineargradient></defs>
+      <path class="w-sparkline-line" d="M4,30 L23,12 L42,22 L61,8 L80,18 L96,6" id="ty-72359edc-0"></path>
+    </svg>
+  </div>
+  <div slot="wc" id="ty-fab8981d-0">
+    <w-sparkline values="[2,9,4,11,6,14]" gradient="#f72047,#ffd200,#1feaea" gradient-direction="right" line-width="3" id="ty-66b5c037-0"></w-sparkline>
+  </div>
+</demo-compare><h2 id="ty-48755624-0">Line width</h2><demo-compare >
+  <div slot="css" id="ty-3d10e0c6-0">
+    <svg class="w-sparkline w-sparkline--trend" viewbox="0 0 100 40" style="--w-sparkline-width:1.5" id="ty-27a00f24-0"><path class="w-sparkline-line" d="M4,28 L23,10 L42,20 L61,6 L80,16 L96,9" id="ty-69b45130-0"></path></svg>
+  </div>
+  <div slot="wc" id="ty-f65e6bec-0">
+    <div class="w-stack" id="ty-285de99f-0">
+      <w-sparkline values="[3,8,5,10,6,12]" line-width="1.5" id="ty-897064cf-0"></w-sparkline>
+      <w-sparkline values="[3,8,5,10,6,12]" line-width="6" id="ty-0177aa01-0"></w-sparkline>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-46619612-0">Labels</h2><p id="ty-6170b38d-0">Provide <code id="ty-e54f439b-0">labels</code> for custom captions, or <code id="ty-1095f6c4-0">show-labels</code> to print the values themselves.</p><demo-compare >
+  <div slot="css" id="ty-0183c46b-0">
+    <svg class="w-sparkline w-sparkline--bar" viewbox="0 0 100 50" id="ty-53a37757-0">
+      <rect class="w-sparkline-bar" x="6" y="20" width="20" height="20" rx="1.5" id="ty-23aa0426-0"></rect>
+      <rect class="w-sparkline-bar" x="40" y="8" width="20" height="32" rx="1.5" id="ty-431b38fc-0"></rect>
+      <rect class="w-sparkline-bar" x="74" y="26" width="20" height="14" rx="1.5" id="ty-4a90e4c4-0"></rect>
+      <g class="w-sparkline-labels" font-size="6" id="ty-15b0f505-0"><text x="16" y="49" text-anchor="middle" id="ty-20f48585-0">Jan</text><text x="50" y="49" text-anchor="middle" id="ty-25777d95-0">Feb</text><text x="84" y="49" text-anchor="middle" id="ty-d962e5dc-0">Mar</text></g>
+    </svg>
+  </div>
+  <div slot="wc" id="ty-2db8ba61-0">
+    <div class="w-stack" id="ty-4f6f430d-0">
+      <w-sparkline type="bar" values="[5,12,7]" labels="Jan,Feb,Mar" id="ty-a674913d-0"></w-sparkline>
+      <w-sparkline values="[10,20,15,30,25]" show-labels="" id="ty-80c38225-0"></w-sparkline>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-69a85085-0">Auto-draw</h2><p id="ty-d57720d6-0">Add <code id="ty-762324d9-0">auto-draw</code> to animate the trend line on load; tune with <code id="ty-8c543902-0">auto-draw-duration</code> (ms).</p><demo-compare >
+  <div slot="css" id="ty-1658e312-0">
+    <svg class="w-sparkline w-sparkline--trend w-sparkline--auto-draw" viewbox="0 0 100 40" style="--w-sparkline-draw-duration:1500ms" id="ty-803dfd10-0"><path class="w-sparkline-line" d="M4,28 L23,10 L42,20 L61,6 L80,16 L96,9" pathlength="1" id="ty-1d9373cd-0"></path></svg>
+  </div>
+  <div slot="wc" id="ty-521b56ba-0">
+    <w-sparkline values="[3,8,5,10,6,12,7,13]" auto-draw="" auto-draw-duration="1500" fill="" id="ty-72a85ee2-0"></w-sparkline>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

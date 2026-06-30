@@ -1,0 +1,144 @@
+<h1>Range sliders</h1>
+<p><code>w-range-slider</code> selects a range between two values with a pair of thumbs on a single track; the selected segment is highlighted. Bind the ends with <code>start</code> and <code>end</code>, and constrain with <code>min</code>, <code>max</code>, and <code>step</code>. For a single value, use the <a href="/docs/sliders">slider</a>.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider">
+      <span class="w-label">Budget</span>
+      <span class="w-range-slider-control">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill" style="left:20%;width:60%"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" value="20" aria-label="Start" />
+        <input class="w-range-slider-input" type="range" value="80" aria-label="End" />
+      </span>
+      <span class="w-messages">20 – 80</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Budget" start="20" end="80"></w-range-slider>
+  </div>
+</demo-compare>
+
+<h2>Min, max, and step</h2>
+<p>Constrain the range with <code>min</code> / <code>max</code> and snap to increments with <code>step</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider">
+      <span class="w-label">Temperature (°C)</span>
+      <span class="w-range-slider-control">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill" style="left:33.33%;width:33.33%"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" min="-20" max="40" step="5" value="0" aria-label="Start" />
+        <input class="w-range-slider-input" type="range" min="-20" max="40" step="5" value="20" aria-label="End" />
+      </span>
+      <span class="w-messages">0 – 20</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Temperature (°C)" min="-20" max="40" step="5" start="0" end="20"></w-range-slider>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider w-range-slider--disabled">
+      <span class="w-label">Budget</span>
+      <span class="w-range-slider-control">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill" style="left:30%;width:40%"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" value="30" aria-label="Start" disabled />
+        <input class="w-range-slider-input" type="range" value="70" aria-label="End" disabled />
+      </span>
+      <span class="w-messages">30 – 70</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Budget" start="30" end="70" disabled></w-range-slider>
+  </div>
+</demo-compare>
+
+<h2>Thumb labels</h2>
+<p>Add <code>thumb-label</code> to show each thumb&#8217;s value on hover or focus, or <code>thumb-label="always"</code> to keep the bubbles visible.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider w-range-slider--thumb-label w-range-slider--thumb-label-always">
+      <span class="w-label">Budget</span>
+      <span class="w-range-slider-control" style="--start:20%;--end:80%">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" value="20" aria-label="Start" />
+        <input class="w-range-slider-input" type="range" value="80" aria-label="End" />
+        <span class="w-range-slider-thumb-label" data-thumb="start" style="--pos:20%">20</span>
+        <span class="w-range-slider-thumb-label" data-thumb="end" style="--pos:80%">80</span>
+      </span>
+      <span class="w-messages">20 – 80</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Budget" start="20" end="80" thumb-label="always"></w-range-slider>
+  </div>
+</demo-compare>
+
+<h2>Ticks</h2>
+<p>Add <code>ticks</code> to mark each <code>step</code> along the track.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider">
+      <span class="w-label">Rating</span>
+      <span class="w-range-slider-control" style="--start:30%;--end:70%">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill"></span>
+        </span>
+        <span class="w-range-slider-ticks" aria-hidden="true">
+          <span class="w-range-slider-tick" style="--pos:0%"></span>
+          <span class="w-range-slider-tick" style="--pos:10%"></span>
+          <span class="w-range-slider-tick" style="--pos:20%"></span>
+          <span class="w-range-slider-tick" style="--pos:30%"></span>
+          <span class="w-range-slider-tick" style="--pos:40%"></span>
+          <span class="w-range-slider-tick" style="--pos:50%"></span>
+          <span class="w-range-slider-tick" style="--pos:60%"></span>
+          <span class="w-range-slider-tick" style="--pos:70%"></span>
+          <span class="w-range-slider-tick" style="--pos:80%"></span>
+          <span class="w-range-slider-tick" style="--pos:90%"></span>
+          <span class="w-range-slider-tick" style="--pos:100%"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" min="0" max="10" step="1" value="3" aria-label="Start" />
+        <input class="w-range-slider-input" type="range" min="0" max="10" step="1" value="7" aria-label="End" />
+      </span>
+      <span class="w-messages">3 – 7</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Rating" min="0" max="10" step="1" start="3" end="7" ticks></w-range-slider>
+  </div>
+</demo-compare>
+
+<h2>Vertical</h2>
+<p>Set <code>direction="vertical"</code> to orient the slider vertically.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-range-slider w-range-slider--vertical w-range-slider--thumb-label w-range-slider--thumb-label-always">
+      <span class="w-label">Budget</span>
+      <span class="w-range-slider-control" style="--start:20%;--end:80%">
+        <span class="w-range-slider-track" aria-hidden="true">
+          <span class="w-range-slider-fill"></span>
+        </span>
+        <input class="w-range-slider-input" type="range" value="20" aria-label="Start" />
+        <input class="w-range-slider-input" type="range" value="80" aria-label="End" />
+        <span class="w-range-slider-thumb-label" data-thumb="start" style="--pos:20%">20</span>
+        <span class="w-range-slider-thumb-label" data-thumb="end" style="--pos:80%">80</span>
+      </span>
+      <span class="w-messages">20 – 80</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-range-slider label="Budget" start="20" end="80" direction="vertical" thumb-label="always"></w-range-slider>
+  </div>
+</demo-compare>
+

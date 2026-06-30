@@ -1,0 +1,44 @@
+<h1>Themes</h1>
+<p>DuVay ships with light, dark, auto, and high-contrast themes. Switch by setting <code>data-w-theme</code> on the root element.</p>
+
+<h2>Switching themes</h2>
+<p>Set the attribute manually on the html element, or call the theme API exposed by <code>duvay.js</code>:</p>
+<pre class="code-block"><code>&lt;html data-w-theme="dark"&gt;
+
+// or programmatically:
+WTheme.set('dark')          // light, dark, auto, high-contrast
+WTheme.cycle()              // cycles light to dark to auto
+WTheme.get()                // returns current theme</code></pre>
+
+<h2>Auto mode</h2>
+<p>The <code>auto</code> theme follows the user's operating-system preference via <code>prefers-color-scheme</code>. Falls back to light when no preference is set.</p>
+
+<h2>High-contrast</h2>
+<p>For accessibility-first surfaces, the <code>high-contrast</code> theme strengthens borders and uses near-pure foreground/background pairs that meet WCAG AAA contrast on text.</p>
+
+<h2>Tokens</h2>
+<p>Every theme defines the same semantic tokens. Components only ever reference the token name, never the underlying hex value.</p>
+
+<h3>Color tokens</h3>
+<pre class="code-block"><code>--w-primary, --w-on-primary, --w-primary-container, --w-on-primary-container
+--w-surface, --w-surface-container-low, --w-surface-container-high
+--w-text, --w-text-subtle, --w-text-very-subtle
+--w-border, --w-divider, --w-hover, --w-selected, --w-selected-text
+--w-error, --w-success, --w-warning      (each has a -container / on-container pair)
+--w-inverse-surface, --w-inverse-on-surface, --w-inverse-primary
+--w-scrim, --w-shadow-color</code></pre>
+
+<h3>Spacing</h3>
+<p>Both a numeric scale (<code>--w-space-1</code> through <code>--w-space-20</code>, 4 px steps) and a t-shirt scale (<code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, <code>2xl</code>, <code>3xl</code>) are exposed. Pick either — the t-shirt names are aliases.</p>
+
+<h3>Shape</h3>
+<p><code>--w-radius-sm</code>, <code>--w-radius</code>, <code>--w-radius-md</code>, <code>--w-radius-lg</code>, <code>--w-radius-xl</code>, <code>--w-radius-pill</code>.</p>
+
+<h2>Custom theme</h2>
+<p>Override any token under your own attribute or class — it cascades through the whole framework. Example pattern:</p>
+<pre class="code-block"><code>[data-w-theme="brand"] &#123;
+  --w-primary: #5a31f4;
+  --w-on-primary: #ffffff;
+  --w-primary-container: #ebe4ff;
+  --w-on-primary-container: #1b0654;
+&#125;</code></pre>

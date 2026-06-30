@@ -1,0 +1,42 @@
+/* DuVay — Copy Buttons component styles. */
+@import "../core.css";
+
+/* ── Copy button ─────────────────────────────────────────────────────────── */
+/* Icon button that copies a value to the clipboard (Primer). */
+.w-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-1_5);
+  min-height: var(--w-touch-min);
+  min-width: var(--w-touch-min);
+  padding: 0 var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  transition: background var(--w-transition-fast), color var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+
+.w-copy:hover,
+.w-copy:focus-visible {
+  border-color: var(--w-primary);
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+}
+
+.w-copy svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.w-copy--copied {
+  border-color: var(--w-success);
+  background: var(--w-success-container);
+  color: var(--w-on-success-container);
+}

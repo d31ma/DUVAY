@@ -1,0 +1,84 @@
+/* DuVay — Snackbars component styles. */
+@import "../core.css";
+
+/* ── Snackbar ─────────────────────────────────────────────────────────────── */
+.w-snackbar {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--w-z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-width: 344px;
+  max-width: min(672px, calc(100vw - 2rem));
+  padding: 0.75rem var(--w-space-lg);
+  border-radius: var(--w-radius);
+  background: var(--w-inverse-surface);
+  color: var(--w-inverse-on-surface);
+  font-size: var(--w-font-sm);
+  line-height: 1.4;
+  box-shadow: var(--w-shadow-lg);
+  animation: w-toast-in 0.2s ease-out;
+}
+
+.w-snackbar--inline,
+.w-sonner--inline .w-snackbar {
+  position: static;
+  bottom: auto;
+  left: auto;
+  z-index: auto;
+  width: min(28rem, 100%);
+  min-width: min(21.5rem, 100%);
+  max-width: 100%;
+  transform: none;
+}
+
+.w-snackbar-msg {
+  flex: 1;
+  min-width: 0;
+}
+
+.w-snackbar-action {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-inverse-primary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--w-letter-spacing-wide);
+  padding: 0.25rem 0.5rem;
+  min-height: 32px;
+  transition: background var(--w-transition-fast);
+}
+
+.w-snackbar-action:hover {
+  background: color-mix(in srgb, var(--w-inverse-on-surface) 12%, transparent);
+}
+
+.w-snackbar-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--w-transition-fast), background var(--w-transition-fast);
+}
+
+.w-snackbar-close:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--w-inverse-on-surface) 12%, transparent);
+}

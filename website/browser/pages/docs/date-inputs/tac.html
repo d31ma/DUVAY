@@ -1,0 +1,58 @@
+<h1>Date inputs</h1>
+<p><code>w-date-input</code> is a Vuetify-style date field: a text input with a calendar icon that opens a popup date picker. The canonical value is always ISO — use the <code>format</code> attribute to change how it reads.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-date-input">
+      <span class="w-field-label">Date</span>
+      <span class="w-date-input-wrap">
+        <button class="w-date-input-icon" type="button" aria-label="Open calendar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+        </button>
+        <input class="w-input w-date-input-field" type="text" value="2026-06-12" />
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-date-input label="Date" value="2026-06-12"></w-date-input>
+  </div>
+</demo-compare>
+
+<h2>Format and constraints</h2>
+<p>Set <code>format</code> to a pattern such as <code>MM/dd/yyyy</code> or <code>dd.MM.yyyy</code>. Use <code>min</code> and <code>max</code> to restrict selectable dates.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-date-input label="Appointment" value="2026-06-15" format="MM/dd/yyyy" min="2026-06-10" max="2026-06-30"></w-date-input>
+  </div>
+</demo-compare>
+
+<h2>Clearable</h2>
+<p>Add the <code>clearable</code> boolean attribute to show a clear button.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-date-input label="Appointment" value="2026-06-15" clearable=""></w-date-input>
+  </div>
+</demo-compare>
+
+<h2>Multiple and range</h2>
+<p>Set <code>mode="multiple"</code> to toggle several dates, or <code>mode="range"</code> to pick a start and end date.</p>
+<demo-compare>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-date-input label="Multi-select" mode="multiple" value="2026-06-12,2026-06-15"></w-date-input>
+      <w-date-input label="Range" mode="range" value="2026-06-10,2026-06-14"></w-date-input>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>API</h2>
+<ul>
+  <li><code>value</code> — ISO date value(s). Comma-separated for <code>multiple</code>; <code>start,end</code> for <code>range</code>.</li>
+  <li><code>label</code>, <code>hint</code>, <code>error</code>, <code>placeholder</code>, <code>size</code>, <code>disabled</code>, <code>readonly</code>, <code>name</code> — standard field attributes.</li>
+  <li><code>min</code> / <code>max</code> — ISO date bounds.</li>
+  <li><code>format</code> — display pattern (<code>yyyy</code>, <code>MM</code>, <code>M</code>, <code>dd</code>, <code>d</code>).</li>
+  <li><code>mode</code> — <code>single</code> (default), <code>multiple</code>, or <code>range</code>.</li>
+  <li><code>clearable</code> — show a clear button.</li>
+</ul>
+<p>Events: <code>input</code> while typing and <code>change</code> when the value commits.</p>

@@ -1,0 +1,422 @@
+/* DuVay — Popovers component styles. */
+@import "../core.css";
+
+/* ── Popover and hover card ─────────────────────────────────────────────── */
+.w-popover-content,
+.w-hover-card-content {
+  position: absolute;
+  top: calc(100% + var(--w-space-2));
+  left: 0;
+  z-index: var(--w-z-dropdown);
+  display: block;
+  width: min(18rem, calc(100vw - var(--w-space-8)));
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+  color: var(--w-text);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity var(--w-transition-fast), transform var(--w-transition-fast);
+}
+
+.w-popover.open .w-popover-content,
+.w-hover-card.open .w-hover-card-content {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.w-popover--inline,
+.w-hover-card--inline {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--w-space-2);
+}
+
+.w-popover--inline:not(.open) .w-popover-content,
+.w-hover-card--inline:not(.open) .w-hover-card-content {
+  display: none;
+}
+
+.w-popover--inline.open .w-popover-content,
+.w-hover-card--inline.open .w-hover-card-content {
+  position: static;
+  inset: auto;
+  width: min(18rem, 100%);
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-popover--bottom-end .w-popover-content {
+  right: 0;
+  left: auto;
+}
+
+.w-popover--top-start .w-popover-content,
+.w-hover-card--top .w-hover-card-content {
+  top: auto;
+  bottom: calc(100% + var(--w-space-2));
+}
+
+.w-hover-card {
+  position: relative;
+  display: inline-flex;
+}
+
+.w-hover-card-trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: default;
+  border-radius: var(--w-radius-sm);
+}
+
+.w-hover-card-trigger:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-alert-dialog-description {
+  color: var(--w-text-subtle);
+}
+
+.w-alert-dialog-trigger {
+  display: inline-flex;
+}
+
+.w-sonner {
+  position: fixed;
+  z-index: var(--w-z-toast);
+  display: grid;
+  gap: var(--w-space-2);
+  width: min(24rem, calc(100vw - var(--w-space-8)));
+  pointer-events: none;
+}
+
+.w-sonner > * {
+  pointer-events: auto;
+}
+
+.w-sonner--bottom-center {
+  right: 50%;
+  bottom: var(--w-space-4);
+  transform: translateX(50%);
+}
+
+.w-sonner--bottom-right {
+  right: var(--w-space-4);
+  bottom: var(--w-space-4);
+}
+
+.w-sonner--top-right {
+  top: var(--w-space-4);
+  right: var(--w-space-4);
+}
+
+.w-sonner--inline {
+  position: static;
+  width: 100%;
+  transform: none;
+}
+
+.w-form {
+  display: grid;
+  gap: var(--w-space-4);
+}
+
+.w-defaults-provider,
+.w-locale-provider,
+.w-theme-provider,
+.w-validation {
+  display: contents;
+}
+
+.w-field {
+  display: grid;
+  gap: var(--w-space-1);
+  min-width: 220px;
+  color: var(--w-text);
+}
+
+.w-label {
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  color: var(--w-text-subtle);
+}
+
+.w-messages {
+  margin: 0;
+  font-size: var(--w-font-xs);
+  color: var(--w-text-very-subtle);
+}
+
+.w-field.error .w-label,
+.w-messages.error {
+  color: var(--w-error);
+}
+
+.w-file-input {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--w-space-3);
+  border: 1px dashed var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+  color: var(--w-text-subtle);
+  cursor: pointer;
+}
+
+.w-selection-control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  min-height: 40px;
+  color: var(--w-text);
+  cursor: pointer;
+}
+
+.w-selection-control input {
+  accent-color: var(--w-primary);
+}
+
+.w-file-input input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-color-input > span,
+.w-confirm-edit {
+  display: inline-flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--w-space-2);
+}
+
+.w-confirm-edit .w-field {
+  min-width: min(14rem, 100%);
+}
+
+
+.w-color-input input[type="color"],
+.w-color-picker input[type="color"] {
+  width: 42px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: transparent;
+}
+
+.w-color-picker {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--w-space-3);
+  padding: var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+}
+
+.w-color-picker-main {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-3);
+}
+
+.w-color-picker-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--w-space-2);
+  max-width: 18rem;
+}
+
+.w-color-input-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--w-space-2);
+  margin-top: var(--w-space-2);
+}
+
+.w-color-preview {
+  width: 56px;
+  height: 40px;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+}
+
+.w-calendar {
+  display: inline-grid;
+  grid-template-columns: repeat(7, 2rem);
+  gap: var(--w-space-1);
+  padding: var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+}
+
+.w-calendar-title {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-calendar-nav {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--w-radius-pill);
+}
+
+.w-calendar-weekday {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+  text-align: center;
+}
+
+.w-calendar button {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: var(--w-radius-pill);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+}
+
+.w-calendar button:hover {
+  background: var(--w-hover);
+}
+
+.w-calendar button.today {
+  box-shadow: inset 0 0 0 1px var(--w-primary);
+}
+
+.w-calendar button.selected {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+}
+
+.w-date-range-picker {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--w-space-3);
+  padding: var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+}
+
+.w-date-range-picker > legend {
+  grid-column: 1 / -1;
+  padding: 0 var(--w-space-1);
+}
+
+.w-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 10rem;
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface-container-low);
+  touch-action: pan-y;
+}
+
+.w-carousel-track {
+  height: 100%;
+  display: flex;
+  transition: transform var(--w-transition-normal);
+}
+
+.w-carousel-track > slot {
+  display: contents;
+}
+
+.w-carousel-item {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.w-carousel-item > slot {
+  display: contents;
+}
+
+.w-carousel-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.w-carousel-img--cover {
+  object-fit: cover;
+}
+
+.w-carousel-delimiters {
+  position: absolute;
+  bottom: var(--w-space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-1);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--w-radius-pill);
+  background: color-mix(in srgb, var(--w-on-surface) 14%, transparent);
+  pointer-events: none;
+}
+
+.w-carousel-delimiter {
+  width: 2rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-radius-pill);
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.w-carousel-delimiter::before {
+  content: "";
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: auto;
+  border-radius: var(--w-radius-pill);
+  background: color-mix(in srgb, var(--w-on-surface) 46%, transparent);
+  transition: width var(--w-transition-fast), background var(--w-transition-fast);
+}
+
+.w-carousel-delimiter.active::before {
+  width: 1.15rem;
+  background: var(--w-carousel-color, var(--w-primary));
+}
+
+.w-carousel-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: color-mix(in srgb, var(--w-on-surface) 18%, transparent);
+}
+
+.w-carousel-progress span {
+  display: block;
+  height: 100%;
+  background: var(--w-carousel-color, var(--w-primary));
+  transition: width var(--w-transition-normal);
+}

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-4124e5da-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-88c4114b-4124e5da-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-e6991849-4124e5da-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-fac4995a-4124e5da-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-fab71090-4124e5da-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-4558c54c-4124e5da-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-4f8e7735-4124e5da-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-1efddf23-4124e5da-0" />
+        </svg>
+      </span>
+      <span id="ty-1a433e3e-4124e5da-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-32d98e7a-4124e5da-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-0514409f-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-63c834b6-4124e5da-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-15e56934-4124e5da-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-c279b786-4124e5da-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-cb78a909-4124e5da-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-b8d65360-4124e5da-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-8f1801f0-4124e5da-0">
+        <span data-w-theme-icon="" id="ty-4546b152-4124e5da-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-72f51f06-4124e5da-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-589f71e3-4124e5da-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-3e2e715f-4124e5da-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-d9b87e85-0">
+  <div id="ty-30a49288-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-5bf032d6-30a49288-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-878ab9d2-30a49288-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-64347865-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-40ae175e-30a49288-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-5f218a88-30a49288-0">
+        <li id="ty-221ccdd5-30a49288-0"><a href="/docs/introduction" id="ty-01185806-30a49288-0">Introduction</a></li>
+        <li id="ty-a242d194-30a49288-0"><a href="/docs/install" id="ty-c13a7f71-30a49288-0">Install</a></li>
+        <li id="ty-71e3bb5d-30a49288-0"><a href="/docs/getting-started" id="ty-8883723e-30a49288-0">Getting started</a></li>
+        <li id="ty-a15f389d-30a49288-0"><a href="/docs/download" id="ty-4916069c-30a49288-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-08d1cf08-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f09a71ea-30a49288-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-dde50528-30a49288-0">
+        <li id="ty-63cd920e-30a49288-0"><a href="/docs/common-concepts" id="ty-6a0edc4c-30a49288-0">Common concepts</a></li>
+        <li id="ty-87df7b8f-30a49288-0"><a href="/docs/features" id="ty-7fd83a83-30a49288-0">Features</a></li>
+        <li id="ty-4f58f741-30a49288-0"><a href="/docs/features/icon-fonts" id="ty-1e204378-30a49288-0">Icons</a></li>
+        <li id="ty-7ca100de-30a49288-0"><a href="/docs/grid" id="ty-83282b72-30a49288-0">Grid</a></li>
+        <li id="ty-5012b017-30a49288-0"><a href="/docs/navigation" id="ty-e65ebd40-30a49288-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fd45697c-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1cd0262c-30a49288-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-8da2ad5b-30a49288-0">
+        <li id="ty-2a33a3b6-30a49288-0"><a href="/docs/components" id="ty-f60bc484-30a49288-0">Components overview</a></li>
+        <li id="ty-096899b9-30a49288-0"><a href="/docs/alerts" id="ty-bcb486c7-30a49288-0">Alerts</a></li>
+        <li id="ty-fd5c99f1-30a49288-0"><a href="/docs/app-bars" id="ty-fd6b0b7d-30a49288-0">App bars</a></li>
+        <li id="ty-4a932241-30a49288-0"><a href="/docs/aspect-ratios" id="ty-f9140ee7-30a49288-0">Aspect ratios</a></li>
+        <li id="ty-f6fcc6e9-30a49288-0"><a href="/docs/avatars" id="ty-c608d1fb-30a49288-0">Avatars</a></li>
+        <li id="ty-6071da5d-30a49288-0"><a href="/docs/badges" id="ty-0dc2ea08-30a49288-0">Badges</a></li>
+        <li id="ty-29ddd0d4-30a49288-0"><a href="/docs/bottom-navigation" id="ty-31cfda96-30a49288-0">Bottom navigation</a></li>
+        <li id="ty-04fcc937-30a49288-0"><a href="/docs/breadcrumbs" id="ty-5514b9a1-30a49288-0">Breadcrumbs</a></li>
+        <li id="ty-442eed49-30a49288-0"><a href="/docs/buttons" id="ty-3d296699-30a49288-0">Buttons</a></li>
+        <li id="ty-d942a982-30a49288-0"><a href="/docs/cards" id="ty-ab329501-30a49288-0">Cards</a></li>
+        <li id="ty-9a06aec5-30a49288-0"><a href="/docs/chips" id="ty-072f5170-30a49288-0">Chips</a></li>
+        <li id="ty-adf979dc-30a49288-0"><a href="/docs/command" id="ty-11f8004a-30a49288-0">Command palette</a></li>
+        <li id="ty-7d410248-30a49288-0"><a href="/docs/dialog" id="ty-cd1479c3-30a49288-0">Dialog</a></li>
+        <li id="ty-c9d418a7-30a49288-0"><a href="/docs/expand" id="ty-a6db7bf4-30a49288-0">Expand</a></li>
+        <li id="ty-36d09f65-30a49288-0"><a href="/docs/feedback" id="ty-e5491e77-30a49288-0">Feedback</a></li>
+        <li id="ty-01bd8449-30a49288-0"><a href="/docs/floating-action-buttons" id="ty-fe83b532-30a49288-0">Floating action buttons</a></li>
+        <li id="ty-94baf3bd-30a49288-0"><a href="/docs/footers" id="ty-8c128877-30a49288-0">Footers</a></li>
+        <li id="ty-73a1956a-30a49288-0"><a href="/docs/icons" id="ty-ee925852-30a49288-0">Icons</a></li>
+        <li id="ty-6798779a-30a49288-0"><a href="/docs/images" id="ty-66d60215-30a49288-0">Images</a></li>
+        <li id="ty-e1b5fe4d-30a49288-0"><a href="/docs/inputs" id="ty-db97d4de-30a49288-0">Inputs</a></li>
+        <li id="ty-553bab37-30a49288-0"><a href="/docs/layout-primitives" id="ty-7fbdb094-30a49288-0">Layout primitives</a></li>
+        <li id="ty-4dc7b8a2-30a49288-0"><a href="/docs/lists" id="ty-0b6c0bb5-30a49288-0">Lists</a></li>
+        <li id="ty-8d58779d-30a49288-0"><a href="/docs/menus" id="ty-1d5d42b0-30a49288-0">Menus</a></li>
+        <li id="ty-b85e8d9e-30a49288-0"><a href="/docs/navigation-drawers" id="ty-857ba029-30a49288-0">Navigation drawers</a></li>
+        <li id="ty-2c2ca107-30a49288-0"><a href="/docs/overlays" id="ty-b1a52ebf-30a49288-0">Overlays</a></li>
+        <li id="ty-2818fadb-30a49288-0"><a href="/docs/parallax" id="ty-f54ccdec-30a49288-0">Parallax</a></li>
+        <li id="ty-8ca63410-30a49288-0"><a href="/docs/paginations" id="ty-7efea576-30a49288-0">Paginations</a></li>
+        <li id="ty-e3a83d0b-30a49288-0"><a href="/docs/color-pickers" id="ty-7b423477-30a49288-0">Color Pickers</a></li>
+        <li id="ty-7628ed76-30a49288-0"><a href="/docs/date-pickers" id="ty-7fe60692-30a49288-0">Date Pickers</a></li>
+        <li id="ty-f67d4914-30a49288-0"><a href="/docs/time-pickers" id="ty-17cdfc78-30a49288-0">Time Pickers</a></li>
+        <li id="ty-bcbba81c-30a49288-0"><a href="/docs/slider" id="ty-31c7892f-30a49288-0">Slider</a></li>
+        <li id="ty-efa620e9-30a49288-0"><a href="/docs/snackbar" id="ty-e8c90254-30a49288-0">Snackbar</a></li>
+        <li id="ty-1cf30e79-30a49288-0"><a href="/docs/speed-dials" id="ty-7004e7dc-30a49288-0">Speed dials</a></li>
+        <li id="ty-59de5dd8-30a49288-0"><a href="/docs/surfaces" id="ty-1a797222-30a49288-0">Surfaces</a></li>
+        <li id="ty-106ddb6f-30a49288-0"><a href="/docs/system-bars" id="ty-9f39cd73-30a49288-0">System bars</a></li>
+        <li id="ty-481a3da9-30a49288-0"><a href="/docs/tables" id="ty-327c6632-30a49288-0">Tables</a></li>
+        <li id="ty-d26925ea-30a49288-0"><a href="/docs/tabs" id="ty-f66b9c9b-30a49288-0">Tabs</a></li>
+        <li id="ty-78051101-30a49288-0"><a href="/docs/timelines" id="ty-828f69d2-30a49288-0">Timelines</a></li>
+        <li id="ty-5d3d24d4-30a49288-0"><a href="/docs/tooltips" id="ty-7ebe6f5e-30a49288-0">Tooltips</a></li>
+        <li id="ty-cde8ca08-30a49288-0"><a href="/docs/workflows" id="ty-7cfab1fb-30a49288-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-07605ce3-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-91284e1f-30a49288-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-652cff35-30a49288-0">
+        <li id="ty-c577a474-30a49288-0"><a href="/docs/themes" id="ty-47671713-30a49288-0">Themes</a></li>
+        <li id="ty-ff0ad400-30a49288-0"><a href="/docs/utilities" id="ty-2f6a8845-30a49288-0">Utilities</a></li>
+        <li id="ty-210e1a4d-30a49288-0"><a href="/docs/styles-and-animations" id="ty-300a4b74-30a49288-0">Styles and animations</a></li>
+        <li id="ty-d318ba48-30a49288-0"><a href="/docs/animations" id="ty-a47cde42-30a49288-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1e426d12-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-b270cae9-30a49288-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-06ce2ecf-30a49288-0">
+        <li id="ty-cd0f3771-30a49288-0"><a href="/docs/api" id="ty-9ac34ad1-30a49288-0">API</a></li>
+        <li id="ty-f98ac031-30a49288-0"><a href="/docs/directives" id="ty-38c84043-30a49288-0">Directives</a></li>
+        <li id="ty-2687a836-30a49288-0"><a href="/docs/labs" id="ty-3efa76e9-30a49288-0">Labs</a></li>
+        <li id="ty-1b8db44d-30a49288-0"><a href="/docs/resources" id="ty-2bc0a99f-30a49288-0">Resources</a></li>
+        <li id="ty-cf1469ea-30a49288-0"><a href="/docs/roadmap" id="ty-baf589c4-30a49288-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-4328c4ea-30a49288-0">
+      <h3 class="docs-sidebar-subhead" id="ty-baf073da-30a49288-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-11085d69-30a49288-0">
+        <li id="ty-1bd2c72a-30a49288-0"><a href="/docs/about" id="ty-ae529179-30a49288-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dbf04390-0"></button>
+  <main class="docs-main" id="ty-398116db-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-2cb14e98-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-e3a23787-0">
+      <div id="ty-layout-slot"><h1 id="ty-2855f9ca-0">Tabs</h1><p id="ty-00a9a74a-0">Organize content into switchable panels. DuVay tabs support alignment, equal-width layouts, vertical orientation, stacked icons, overflow pagination, theming, and an animated selection indicator that glides between tabs.</p><p id="ty-896028f0-0">The indicator is progressively enhanced: hand-authored markup shows a static underline, while the <code id="ty-d850e1db-0">&lt;w-tabs&gt;</code> web component renders an animated slider (and falls back to the underline when JavaScript is absent). Pair tabs with <code id="ty-29f9ad4b-0">&lt;w-tabs-window&gt;</code> for the matching content panes.</p><h2 id="ty-c6aca520-0">Basic tabs</h2><p id="ty-36d88602-0">Mark the selected tab with the <code id="ty-cb402ed8-0">active</code> class, or set <code id="ty-de0c7803-0">value</code> on <code id="ty-c7ce1787-0">&lt;w-tabs&gt;</code> to the active tab's <code id="ty-5115d386-0">value</code>. The component emits a <code id="ty-b49907ea-0">change</code> event carrying the new <code id="ty-476c932a-0">value</code> in <code id="ty-0479466a-0">event.detail</code> when the selection changes.</p><demo-compare >
+  <div slot="css" id="ty-af9fac4c-0">
+    <div class="w-tabs" id="ty-c76ac844-0">
+      <button class="w-tab active" id="ty-09444579-0">Account</button>
+      <button class="w-tab" id="ty-690aa7db-0">Security</button>
+      <button class="w-tab" id="ty-2cefa791-0">Notifications</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3232985d-0">
+    <w-tabs value="account" id="ty-b0dd12c4-0">
+      <w-tab value="account" id="ty-833d3dc2-0">Account</w-tab>
+      <w-tab value="security" id="ty-2d6d7aa9-0">Security</w-tab>
+      <w-tab value="notifications" id="ty-d6710055-0">Notifications</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-1c5a8b37-0">Tabs with content</h2><p id="ty-b32b9cfb-0"><code id="ty-8ef9a138-0">&lt;w-tabs-window&gt;</code> and <code id="ty-de93ab3c-0">&lt;w-tabs-window-item&gt;</code> are Vuetify-named aliases for <code id="ty-52005d42-0">&lt;w-window&gt;</code> / <code id="ty-9013f76e-0">&lt;w-window-item&gt;</code>. Listen for <code id="ty-4e7d7c9a-0">change</code> on the tabs and set the window's <code id="ty-0cf50d78-0">value</code> to the active index to keep them in sync.</p><demo-compare >
+  <div slot="css" id="ty-48356ff9-0">
+    <div class="w-tabs" id="ty-f47bcab2-0">
+      <button class="w-tab active" id="ty-c42f5518-0">Overview</button>
+      <button class="w-tab" id="ty-a39b208c-0">Details</button>
+    </div>
+    <div class="w-tab-panel" id="ty-5e2029ba-0">
+      <p id="ty-5765d6a7-0">Overview content goes here.</p>
+    </div>
+  </div>
+  <div slot="wc" id="ty-de04b29e-0">
+    <w-tabs value="overview" data-window="demo-window-basic" id="ty-e8286abf-0">
+      <w-tab value="overview" id="ty-71999c9f-0">Overview</w-tab>
+      <w-tab value="details" id="ty-3a492b85-0">Details</w-tab>
+      <w-tab value="activity" id="ty-86d8e1a5-0">Activity</w-tab>
+    </w-tabs>
+    <w-tabs-window id="demo-window-basic">
+      <w-tabs-window-item id="ty-ba91c801-0"><div class="w-pa-4" id="ty-8fcc19fe-0">Overview — the big picture at a glance.</div></w-tabs-window-item>
+      <w-tabs-window-item id="ty-33cc55ca-0"><div class="w-pa-4" id="ty-afbb6d66-0">Details — every field, spelled out.</div></w-tabs-window-item>
+      <w-tabs-window-item id="ty-0d27b9d6-0"><div class="w-pa-4" id="ty-a221470d-0">Activity — a log of recent changes.</div></w-tabs-window-item>
+    </w-tabs-window>
+  </div>
+</demo-compare><h2 id="ty-1e2615aa-0">Alignment</h2><p id="ty-1559fd64-0">Use <code id="ty-82379178-0">align-tabs</code> (<code id="ty-483d4199-0">start</code> · <code id="ty-5259d2a8-0">center</code> · <code id="ty-d1e6cec0-0">end</code>) to position the strip. With CSS classes, add <code id="ty-7039be8e-0">w-tabs--align-center</code> or <code id="ty-de95ba97-0">w-tabs--align-end</code>.</p><demo-compare >
+  <div slot="css" id="ty-b66664aa-0">
+    <div class="w-tabs w-tabs--align-center" id="ty-15968928-0">
+      <button class="w-tab active" id="ty-006369ee-0">Overview</button>
+      <button class="w-tab" id="ty-476bf8e2-0">Activity</button>
+      <button class="w-tab" id="ty-4699acc2-0">Settings</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-85c6f647-0">
+    <w-tabs value="overview" align-tabs="center" id="ty-dd772b1b-0">
+      <w-tab value="overview" id="ty-c478be7e-0">Overview</w-tab>
+      <w-tab value="activity" id="ty-de43e310-0">Activity</w-tab>
+      <w-tab value="settings" id="ty-5eef2628-0">Settings</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-eb21bb01-0">Fixed and grow</h2><p id="ty-758fcb57-0"><code id="ty-76f32a05-0">fixed-tabs</code> gives every tab an equal share of the width, capped at <code id="ty-1da48a81-0">--w-tab-max-width</code> (18rem) and centered. <code id="ty-e0f7b397-0">grow</code> spreads the tabs to fill the whole strip with no cap.</p><demo-compare >
+  <div slot="css" id="ty-99377494-0">
+    <div class="w-tabs w-tabs--grow" id="ty-30b6d403-0">
+      <button class="w-tab active" id="ty-fc11873f-0">Day</button>
+      <button class="w-tab" id="ty-1e8c17d2-0">Week</button>
+      <button class="w-tab" id="ty-af402dc1-0">Month</button>
+      <button class="w-tab" id="ty-778a1f77-0">Year</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-e2c07c6d-0">
+    <w-tabs value="week" grow="" id="ty-72397189-0">
+      <w-tab value="day" id="ty-bdc175c4-0">Day</w-tab>
+      <w-tab value="week" id="ty-9bde6577-0">Week</w-tab>
+      <w-tab value="month" id="ty-5f767ee2-0">Month</w-tab>
+      <w-tab value="year" id="ty-5e315fea-0">Year</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-cdd13ca3-0">Stacked</h2><p id="ty-9e4acc62-0">Add <code id="ty-f1c2b8a2-0">stacked</code> to place an icon above the label. Slot an icon element followed by the text.</p><demo-compare >
+  <div slot="css" id="ty-e6b60b4c-0">
+    <div class="w-tabs w-tabs--stacked" id="ty-3f35ca3f-0">
+      <button class="w-tab active" id="ty-c6e841b1-0"><span class="w-text-2xl" id="ty-ad1814c9-0">🕑</span>Recent</button>
+      <button class="w-tab" id="ty-10f5c7b6-0"><span class="w-text-2xl" id="ty-5c6e2b9d-0">★</span>Favorites</button>
+      <button class="w-tab" id="ty-da72a616-0"><span class="w-text-2xl" id="ty-3d1bb438-0">📍</span>Nearby</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-de56d467-0">
+    <w-tabs value="recent" stacked="" id="ty-3607beb1-0">
+      <w-tab value="recent" id="ty-241a9336-0"><span class="w-text-2xl" id="ty-2332faae-0">🕑</span>Recent</w-tab>
+      <w-tab value="favorites" id="ty-920026e3-0"><span class="w-text-2xl" id="ty-24441482-0">★</span>Favorites</w-tab>
+      <w-tab value="nearby" id="ty-af630eb8-0"><span class="w-text-2xl" id="ty-d77d922c-0">📍</span>Nearby</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-9d2f6a8e-0">Vertical</h2><p id="ty-9854b142-0">Set <code id="ty-79399282-0">direction="vertical"</code> (or add <code id="ty-f572dcdc-0">w-tabs--vertical</code>) for a side rail with an inline-start indicator. It pairs naturally with a content window.</p><demo-compare >
+  <div slot="css" id="ty-1184cc18-0">
+    <div class="w-row w-gap-4" id="ty-a04c7545-0">
+      <div class="w-tabs w-tabs--vertical" id="ty-f442075e-0">
+        <button class="w-tab active" id="ty-c9ae745e-0">Profile</button>
+        <button class="w-tab" id="ty-93a38f48-0">Account</button>
+        <button class="w-tab" id="ty-fe02952f-0">Billing</button>
+      </div>
+      <div class="w-tab-panel" id="ty-8e7f322b-0"><p id="ty-30a7236a-0">Profile content goes here.</p></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d584b15d-0">
+    <div class="w-row w-gap-4" id="ty-287ca1d5-0">
+      <w-tabs value="profile" direction="vertical" data-window="demo-window-vertical" id="ty-e65ef44b-0">
+        <w-tab value="profile" id="ty-923283b5-0">Profile</w-tab>
+        <w-tab value="account" id="ty-38d44309-0">Account</w-tab>
+        <w-tab value="billing" id="ty-975bb05a-0">Billing</w-tab>
+      </w-tabs>
+      <w-tabs-window id="demo-window-vertical" class="w-flex-1">
+        <w-tabs-window-item id="ty-3f7cfc6c-0"><div class="w-pa-4" id="ty-b82cacee-0">Profile — your name and avatar.</div></w-tabs-window-item>
+        <w-tabs-window-item id="ty-a4ed6a2a-0"><div class="w-pa-4" id="ty-a72ead75-0">Account — email and password.</div></w-tabs-window-item>
+        <w-tabs-window-item id="ty-ed66a49a-0"><div class="w-pa-4" id="ty-8b881475-0">Billing — plan and invoices.</div></w-tabs-window-item>
+      </w-tabs-window>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-fc5b7a1c-0">Density</h2><p id="ty-2e30b2c3-0">Use <code id="ty-524a18bc-0">density</code> (<code id="ty-1cdebd36-0">comfortable</code> or <code id="ty-ebd05b35-0">compact</code>) to tighten the tab height. With CSS classes, add <code id="ty-60a3c2f3-0">w-tabs--comfortable</code> or <code id="ty-87b37d6a-0">w-tabs--compact</code>.</p><demo-compare >
+  <div slot="css" id="ty-823eb501-0">
+    <div class="w-tabs w-tabs--compact" id="ty-21c78766-0">
+      <button class="w-tab active" id="ty-21ae8e5a-0">Compact</button>
+      <button class="w-tab" id="ty-1f6aaef7-0">Strip</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-34db4187-0">
+    <w-tabs value="compact" density="compact" id="ty-cca315c7-0">
+      <w-tab value="compact" id="ty-f9af0177-0">Compact</w-tab>
+      <w-tab value="strip" id="ty-6a79c1ed-0">Strip</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-6b3978e8-0">Color and slider color</h2><p id="ty-019e5f0c-0"><code id="ty-bdbef620-0">color</code> sets the active tab's text and the default indicator color; <code id="ty-4526340d-0">slider-color</code> overrides just the indicator; <code id="ty-2a51c00c-0">bg-color</code> tints the strip. Values are DuVay palette tokens (e.g. <code id="ty-9cd3efa3-0">primary</code>, <code id="ty-4225b3e4-0">success</code>, <code id="ty-fd5520ba-0">tertiary</code>). With CSS classes, set the <code id="ty-6b50451a-0">--w-tabs-color</code>, <code id="ty-f1544fd3-0">--w-tabs-slider-color</code>, and <code id="ty-9fcd1c3c-0">--w-tabs-bg</code> custom properties.</p><demo-compare >
+  <div slot="css" id="ty-683768a8-0">
+    <div class="w-tabs" style="--w-tabs-color: var(--w-success); --w-tabs-slider-color: var(--w-success)" id="ty-74b2b00c-0">
+      <button class="w-tab active" id="ty-c70d1b0d-0">Build</button>
+      <button class="w-tab" id="ty-8b01a261-0">Deploy</button>
+      <button class="w-tab" id="ty-9bca20e0-0">Monitor</button>
+    </div>
+    <div class="w-tabs w-mt-2" style="--w-tabs-bg: var(--w-surface-container-high); --w-tabs-slider-color: var(--w-tertiary)" id="ty-0077e361-0">
+      <button class="w-tab active" id="ty-6f0078ac-0">Alpha</button>
+      <button class="w-tab" id="ty-b927db87-0">Beta</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-1f531e4b-0">
+    <w-tabs value="build" color="success" slider-color="success" id="ty-6769d960-0">
+      <w-tab value="build" id="ty-3eb4d5af-0">Build</w-tab>
+      <w-tab value="deploy" id="ty-0bb72416-0">Deploy</w-tab>
+      <w-tab value="monitor" id="ty-99a34468-0">Monitor</w-tab>
+    </w-tabs>
+    <w-tabs value="alpha" bg-color="surface-container-high" slider-color="tertiary" class="w-mt-2" id="ty-1de4988c-0">
+      <w-tab value="alpha" id="ty-6d1f58f7-0">Alpha</w-tab>
+      <w-tab value="beta" id="ty-6c5bd313-0">Beta</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-0adf291e-0">Hide slider</h2><p id="ty-2a6caf7a-0">Add <code id="ty-55462de9-0">hide-slider</code> (or <code id="ty-5f37e26a-0">w-tabs--no-slider</code>) to remove the indicator entirely — the active tab is shown by color alone.</p><demo-compare >
+  <div slot="css" id="ty-9a74f10a-0">
+    <div class="w-tabs w-tabs--no-slider" id="ty-fd99206d-0">
+      <button class="w-tab active" id="ty-7ccf04f6-0">No</button>
+      <button class="w-tab" id="ty-6ee09a8f-0">Indicator</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-6418865d-0">
+    <w-tabs value="no" hide-slider="" id="ty-addea576-0">
+      <w-tab value="no" id="ty-eb2caad8-0">No</w-tab>
+      <w-tab value="indicator" id="ty-821abbc5-0">Indicator</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-4d098e0a-0">Overflow arrows</h2><p id="ty-fd3344e0-0">When a strip is too narrow for its tabs it scrolls. Add <code id="ty-2517cf53-0">show-arrows</code> to the web component for pagination buttons (customizable with <code id="ty-bc7fc5f6-0">prev-icon</code> / <code id="ty-bf1a4c08-0">next-icon</code>), and <code id="ty-c62e3791-0">center-active</code> to keep the selected tab scrolled to center. Arrows are a web-component enhancement; with plain CSS the strip simply scrolls.</p><demo-compare >
+  <div slot="css" id="ty-d48254e1-0">
+    <div class="w-tabs" style="max-width: 22rem" id="ty-7bfc253f-0">
+      <button class="w-tab" id="ty-bb292cec-0">January</button>
+      <button class="w-tab" id="ty-23aa6d87-0">February</button>
+      <button class="w-tab" id="ty-58a1c4e7-0">March</button>
+      <button class="w-tab active" id="ty-6faa1512-0">April</button>
+      <button class="w-tab" id="ty-50aa02ed-0">May</button>
+      <button class="w-tab" id="ty-32985585-0">June</button>
+      <button class="w-tab" id="ty-d5fdd27b-0">July</button>
+      <button class="w-tab" id="ty-a917139a-0">August</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-bd1fd0fa-0">
+    <w-tabs value="apr" show-arrows="" center-active="" style="max-width: 22rem" id="ty-d0776bfe-0">
+      <w-tab value="jan" id="ty-1551d418-0">January</w-tab>
+      <w-tab value="feb" id="ty-7ef1e473-0">February</w-tab>
+      <w-tab value="mar" id="ty-e86aa30e-0">March</w-tab>
+      <w-tab value="apr" id="ty-9689c023-0">April</w-tab>
+      <w-tab value="may" id="ty-e9e73801-0">May</w-tab>
+      <w-tab value="jun" id="ty-9fcf351d-0">June</w-tab>
+      <w-tab value="jul" id="ty-af7aa3df-0">July</w-tab>
+      <w-tab value="aug" id="ty-51495fef-0">August</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-ada4c417-0">Link tabs</h2><p id="ty-2a5aeb79-0">Give <code id="ty-d880f4f7-0">&lt;w-tab&gt;</code> an <code id="ty-7aefa817-0">href</code> to render a real anchor that participates in navigation. With CSS classes, use an <code id="ty-cd542492-0">&lt;a class="w-tab"&gt;</code>.</p><demo-compare >
+  <div slot="css" id="ty-ee769d8a-0">
+    <div class="w-tabs" id="ty-58a13a14-0">
+      <a class="w-tab active" href="#docs" id="ty-96966453-0">Docs</a>
+      <a class="w-tab" href="#api" id="ty-f360d954-0">API</a>
+      <a class="w-tab" href="#guides" id="ty-b13126f1-0">Guides</a>
+    </div>
+  </div>
+  <div slot="wc" id="ty-56d0b7bf-0">
+    <w-tabs value="docs" id="ty-11863460-0">
+      <w-tab value="docs" href="#docs" id="ty-e3b422f2-0">Docs</w-tab>
+      <w-tab value="api" href="#api" id="ty-0cb0b3f6-0">API</w-tab>
+      <w-tab value="guides" href="#guides" id="ty-971b98e1-0">Guides</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-865212d9-0">Disabled</h2><p id="ty-7e039a5c-0">Add <code id="ty-bc4e2d87-0">disabled</code> to a <code id="ty-9d53c659-0">&lt;w-tab&gt;</code> to skip it during pointer and keyboard navigation, or to <code id="ty-1429467b-0">&lt;w-tabs&gt;</code> to disable the whole strip.</p><demo-compare >
+  <div slot="css" id="ty-4636ff90-0">
+    <div class="w-tabs" id="ty-c84ebd89-0">
+      <button class="w-tab active" id="ty-dfeac8a9-0">Inbox</button>
+      <button class="w-tab" id="ty-2d7e235d-0">Drafts</button>
+      <button class="w-tab" disabled="" id="ty-9957f00a-0">Archive</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-33c9eab2-0">
+    <w-tabs value="inbox" id="ty-9c639829-0">
+      <w-tab value="inbox" id="ty-8891e332-0">Inbox</w-tab>
+      <w-tab value="drafts" id="ty-9ff9ec86-0">Drafts</w-tab>
+      <w-tab value="archive" disabled="" id="ty-7377d415-0">Archive</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-36abac07-0">Pills</h2><p id="ty-c18270e9-0">Set <code id="ty-0d11551b-0">variant="pills"</code> (or add <code id="ty-77dec50a-0">w-tabs-pills</code>) for a rounded, background-highlighted style. The sliding indicator is suppressed in favor of the pill background.</p><demo-compare >
+  <div slot="css" id="ty-34cff0c7-0">
+    <div class="w-tabs w-tabs-pills" id="ty-6718276b-0">
+      <button class="w-tab active" id="ty-c97d4859-0">All</button>
+      <button class="w-tab" id="ty-1cad6542-0">Active</button>
+      <button class="w-tab" id="ty-6b5cd7f1-0">Archived</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-fe20be3c-0">
+    <w-tabs value="all" variant="pills" id="ty-abcbb4fb-0">
+      <w-tab value="all" id="ty-40dc87af-0">All</w-tab>
+      <w-tab value="active" id="ty-5c720e68-0">Active</w-tab>
+      <w-tab value="archived" id="ty-085fa44f-0">Archived</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare><h2 id="ty-de86decc-0">Keyboard</h2><p id="ty-8272f2a7-0">Tabs are a <code id="ty-3db91b7d-0">role="tablist"</code>. Arrow keys move between tabs (Left/Right when horizontal, Up/Down when vertical) and skip disabled tabs, wrapping at the ends. <code id="ty-3ab3d842-0">Home</code> and <code id="ty-59d05dc2-0">End</code> jump to the first and last tab. Every tab has a visible <code id="ty-9fc4cffc-0">:focus-visible</code> ring and a 44px touch target by default.</p></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-56837830-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5c1e34f2-0"></aside>
+</div>
+</body>
+</html>
+

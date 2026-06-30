@@ -1,0 +1,179 @@
+<h1>Slider</h1>
+<p>A control for choosing a value along a track. Use the <code>.w-slider</code> class on a native <code>&lt;input type="range"&gt;</code> for the minimal version, or the <code>&lt;w-slider&gt;</code> web component for labels, ticks, value bubbles, theming, and vertical orientation. For two thumbs, see the <a href="/docs/range-sliders">range slider</a>.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <input class="w-slider" type="range" min="0" max="100" value="40" style="--w-slider-pct:40%" />
+  </div>
+  <div slot="wc">
+    <w-slider min="0" max="100" value="40"></w-slider>
+  </div>
+</demo-compare>
+
+<h2>Label</h2>
+<p>Add a <code>label</code>; the current value shows below the track.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-slider-field">
+      <span class="w-label">Volume</span>
+      <span class="w-slider-control" style="--value:60%">
+        <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+        <input class="w-slider-input" type="range" value="60" aria-label="Volume" />
+      </span>
+      <span class="w-messages">60</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-slider label="Volume" value="60"></w-slider>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Five sizes from <code>xs</code> to <code>xl</code>; omit for the default.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <input class="w-slider w-slider--xs" type="range" value="20" style="--w-slider-pct:20%" />
+      <input class="w-slider w-slider--sm" type="range" value="30" style="--w-slider-pct:30%" />
+      <input class="w-slider" type="range" value="50" style="--w-slider-pct:50%" />
+      <input class="w-slider w-slider--lg" type="range" value="70" style="--w-slider-pct:70%" />
+      <input class="w-slider w-slider--xl" type="range" value="80" style="--w-slider-pct:80%" />
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-slider size="xs" value="20"></w-slider>
+      <w-slider size="sm" value="30"></w-slider>
+      <w-slider value="50"></w-slider>
+      <w-slider size="lg" value="70"></w-slider>
+      <w-slider size="xl" value="80"></w-slider>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Steps</h2>
+<p>Set <code>min</code>, <code>max</code>, and <code>step</code> to constrain the values.</p>
+<demo-compare>
+  <div slot="css">
+    <input class="w-slider" type="range" min="0" max="10" step="2" value="6" style="--w-slider-pct:60%" />
+  </div>
+  <div slot="wc">
+    <w-slider min="0" max="10" step="2" value="6"></w-slider>
+  </div>
+</demo-compare>
+
+<h2>Thumb label</h2>
+<p>Add <code>thumb-label</code> to show the value on hover or focus, or <code>thumb-label="always"</code> to keep the bubble visible.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-slider-field w-slider-field--thumb-label w-slider-field--thumb-label-always">
+      <span class="w-label">Brightness</span>
+      <span class="w-slider-control" style="--value:65%">
+        <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+        <input class="w-slider-input" type="range" value="65" aria-label="Brightness" />
+        <span class="w-slider-thumb-label" style="--pos:65%">65</span>
+      </span>
+      <span class="w-messages">65</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-slider label="Brightness" value="65" thumb-label="always"></w-slider>
+  </div>
+</demo-compare>
+
+<h2>Ticks</h2>
+<p>Add <code>ticks</code> to mark every <code>step</code>, or <code>tick-labels</code> (pipe-separated) to label each one.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-slider-field">
+      <span class="w-label">Rating</span>
+      <span class="w-slider-control" style="--value:50%">
+        <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+        <span class="w-slider-ticks w-slider-ticks--labelled" aria-hidden="true">
+          <span class="w-slider-tick" style="--pos:0%"><span class="w-slider-tick-label">None</span></span>
+          <span class="w-slider-tick" style="--pos:25%"><span class="w-slider-tick-label">Low</span></span>
+          <span class="w-slider-tick" style="--pos:50%"><span class="w-slider-tick-label">Mid</span></span>
+          <span class="w-slider-tick" style="--pos:75%"><span class="w-slider-tick-label">High</span></span>
+          <span class="w-slider-tick" style="--pos:100%"><span class="w-slider-tick-label">Max</span></span>
+        </span>
+        <input class="w-slider-input" type="range" min="0" max="4" step="1" value="2" aria-label="Rating" />
+      </span>
+      <span class="w-messages">2</span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-slider label="Rating" min="0" max="4" step="1" value="2" tick-labels="None|Low|Mid|High|Max"></w-slider>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p>Theme the fill and thumb with <code>color</code>, and the rail with <code>track-color</code>, using any token color name.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-field w-slider-field">
+        <span class="w-slider-control" style="--value:60%;--w-slider-color:var(--w-success)">
+          <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+          <input class="w-slider-input" type="range" value="60" aria-label="Success" />
+        </span>
+      </label>
+      <label class="w-field w-slider-field">
+        <span class="w-slider-control" style="--value:40%;--w-slider-color:var(--w-error)">
+          <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+          <input class="w-slider-input" type="range" value="40" aria-label="Error" />
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-slider value="60" color="success"></w-slider>
+      <w-slider value="40" color="error"></w-slider>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Disabled &amp; readonly</h2>
+<p><code>disabled</code> dims and freezes the slider; <code>readonly</code> freezes it without dimming.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-field w-slider-field w-slider-field--disabled">
+        <span class="w-slider-control" style="--value:50%">
+          <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+          <input class="w-slider-input" type="range" value="50" aria-label="Disabled" disabled />
+        </span>
+      </label>
+      <label class="w-field w-slider-field w-slider-field--readonly">
+        <span class="w-slider-control" style="--value:50%">
+          <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+          <input class="w-slider-input" type="range" value="50" aria-label="Readonly" disabled />
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-slider value="50" disabled></w-slider>
+      <w-slider value="50" readonly></w-slider>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Vertical</h2>
+<p>Set <code>direction="vertical"</code> to orient the slider vertically.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field w-slider-field w-slider-field--vertical w-slider-field--thumb-label w-slider-field--thumb-label-always">
+      <span class="w-slider-control" style="--value:40%">
+        <span class="w-slider-rail" aria-hidden="true"><span class="w-slider-fill"></span></span>
+        <input class="w-slider-input" type="range" value="40" aria-label="Level" />
+        <span class="w-slider-thumb-label" style="--pos:40%">40</span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-slider value="40" direction="vertical" thumb-label="always"></w-slider>
+  </div>
+</demo-compare>

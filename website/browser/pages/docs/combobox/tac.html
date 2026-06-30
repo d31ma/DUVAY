@@ -1,0 +1,42 @@
+<h1>Combobox</h1>
+<p><code>w-combobox</code> extends <code>w-autocomplete</code> to accept free-text values that are not in the list. Press Enter, or leave the field, to commit whatever was typed.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field" style="max-width:320px">
+      <span class="w-field-label">Skill</span>
+      <span class="w-autocomplete">
+        <span class="w-autocomplete-wrap">
+          <input class="w-input w-autocomplete-input" type="text" role="combobox" placeholder="Type or select..." />
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-combobox label="Skill" items="[Design,Development,Marketing]" placeholder="Type or select..." clearable></w-combobox>
+  </div>
+</demo-compare>
+
+<h2>Delimiters and chips</h2>
+<p>Set <code>delimiters</code> so that typing one of those characters commits the current text as a value &#8212; each character in the attribute is a delimiter, so <code>delimiters=", "</code> ends a tag on comma or space. Combine with <code>multiple</code>, <code>chips</code>, and <code>closable-chips</code> for a tag editor.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-field" style="max-width:320px">
+      <span class="w-field-label">Tags</span>
+      <span class="w-autocomplete">
+        <span class="w-autocomplete-wrap">
+          <span class="w-autocomplete-chips">
+            <span class="w-chip w-chip-tonal w-chip--small">react</span>
+            <span class="w-chip w-chip-tonal w-chip--small">vue</span>
+          </span>
+          <input class="w-input w-autocomplete-input" type="text" role="combobox" placeholder="Type a tag, then comma" />
+        </span>
+      </span>
+    </label>
+  </div>
+  <div slot="wc">
+    <w-combobox label="Tags" items="[react,vue,svelte,angular]" value="react,vue"
+      multiple chips closable-chips delimiters=", " placeholder="Type a tag, then comma"></w-combobox>
+  </div>
+</demo-compare>

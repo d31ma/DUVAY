@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-ece9aa08-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-e938deff-ece9aa08-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-d7c5da31-ece9aa08-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-21b10305-ece9aa08-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-bd3b93b9-ece9aa08-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-7680fda8-ece9aa08-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-5b011ae1-ece9aa08-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-c1663585-ece9aa08-0" />
+        </svg>
+      </span>
+      <span id="ty-07e52817-ece9aa08-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-24d9a70f-ece9aa08-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-47e7304c-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a35b8b48-ece9aa08-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-66d9770e-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-3f5b39f2-ece9aa08-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-22a00201-ece9aa08-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-d1d10a40-ece9aa08-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-a61ec279-ece9aa08-0">
+        <span data-w-theme-icon="" id="ty-87466a0f-ece9aa08-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-0980cdcc-ece9aa08-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-c02febd4-ece9aa08-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-c80e4466-ece9aa08-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-310a6eef-0">
+  <div id="ty-6b0106f3-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-10817518-6b0106f3-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-d4b0f2f0-6b0106f3-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-f20731fb-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-56e5cb2a-6b0106f3-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-fb95993d-6b0106f3-0">
+        <li id="ty-c7a350b0-6b0106f3-0"><a href="/docs/introduction" id="ty-594ed95c-6b0106f3-0">Introduction</a></li>
+        <li id="ty-899aaefb-6b0106f3-0"><a href="/docs/install" id="ty-cd813db3-6b0106f3-0">Install</a></li>
+        <li id="ty-4731fe8b-6b0106f3-0"><a href="/docs/getting-started" id="ty-a5ae5d2d-6b0106f3-0">Getting started</a></li>
+        <li id="ty-9e794c03-6b0106f3-0"><a href="/docs/download" id="ty-03666b20-6b0106f3-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-87851584-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-082f12ba-6b0106f3-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-98181f43-6b0106f3-0">
+        <li id="ty-0a2ac23c-6b0106f3-0"><a href="/docs/common-concepts" id="ty-c8a421c6-6b0106f3-0">Common concepts</a></li>
+        <li id="ty-a79cad30-6b0106f3-0"><a href="/docs/features" id="ty-9bc6bb24-6b0106f3-0">Features</a></li>
+        <li id="ty-6e53fbe4-6b0106f3-0"><a href="/docs/features/icon-fonts" id="ty-d1cb5b08-6b0106f3-0">Icons</a></li>
+        <li id="ty-6ba74063-6b0106f3-0"><a href="/docs/grid" id="ty-72c0ffce-6b0106f3-0">Grid</a></li>
+        <li id="ty-f610e6c7-6b0106f3-0"><a href="/docs/navigation" id="ty-512eca93-6b0106f3-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-05ff09b9-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7e7e4f9e-6b0106f3-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-21d4434d-6b0106f3-0">
+        <li id="ty-fdf56bcc-6b0106f3-0"><a href="/docs/components" id="ty-3e4ad48c-6b0106f3-0">Components overview</a></li>
+        <li id="ty-fe23d09d-6b0106f3-0"><a href="/docs/alerts" id="ty-2fe8136e-6b0106f3-0">Alerts</a></li>
+        <li id="ty-3252bc25-6b0106f3-0"><a href="/docs/avatars" id="ty-a117269c-6b0106f3-0">Avatars</a></li>
+        <li id="ty-b2af1c1c-6b0106f3-0"><a href="/docs/badges" id="ty-85c67442-6b0106f3-0">Badges</a></li>
+        <li id="ty-7bf8caab-6b0106f3-0"><a href="/docs/breadcrumbs" id="ty-63f1aab3-6b0106f3-0">Breadcrumbs</a></li>
+        <li id="ty-0fa81b9b-6b0106f3-0"><a href="/docs/buttons" id="ty-779d7a99-6b0106f3-0">Buttons</a></li>
+        <li id="ty-d115603c-6b0106f3-0"><a href="/docs/cards" id="ty-803d22a5-6b0106f3-0">Cards</a></li>
+        <li id="ty-0da96966-6b0106f3-0"><a href="/docs/chips" id="ty-b4692fa9-6b0106f3-0">Chips</a></li>
+        <li id="ty-f63b460b-6b0106f3-0"><a href="/docs/command" id="ty-6942393b-6b0106f3-0">Command palette</a></li>
+        <li id="ty-47ffe3d0-6b0106f3-0"><a href="/docs/dialog" id="ty-2e2b9a94-6b0106f3-0">Dialog</a></li>
+        <li id="ty-63abbc90-6b0106f3-0"><a href="/docs/expand" id="ty-127af8aa-6b0106f3-0">Expand</a></li>
+        <li id="ty-296e8a05-6b0106f3-0"><a href="/docs/feedback" id="ty-62af0603-6b0106f3-0">Feedback</a></li>
+        <li id="ty-77ecf9e8-6b0106f3-0"><a href="/docs/inputs" id="ty-9e0c007a-6b0106f3-0">Inputs</a></li>
+        <li id="ty-2dc6f1e1-6b0106f3-0"><a href="/docs/layout-primitives" id="ty-7caa5e05-6b0106f3-0">Layout primitives</a></li>
+        <li id="ty-3fba6ed9-6b0106f3-0"><a href="/docs/lists" id="ty-f7166ebc-6b0106f3-0">Lists</a></li>
+        <li id="ty-2ec7d366-6b0106f3-0"><a href="/docs/menus" id="ty-919a4650-6b0106f3-0">Menus</a></li>
+        <li id="ty-43cdc75e-6b0106f3-0"><a href="/docs/overlays" id="ty-cbbdb998-6b0106f3-0">Overlays</a></li>
+        <li id="ty-970465d3-6b0106f3-0"><a href="/docs/color-pickers" id="ty-3749e314-6b0106f3-0">Color Pickers</a></li>
+        <li id="ty-c93ce6d4-6b0106f3-0"><a href="/docs/date-pickers" id="ty-6a7de840-6b0106f3-0">Date Pickers</a></li>
+        <li id="ty-fa21a225-6b0106f3-0"><a href="/docs/time-pickers" id="ty-441bc818-6b0106f3-0">Time Pickers</a></li>
+        <li id="ty-6b80b884-6b0106f3-0"><a href="/docs/slider" id="ty-d639002e-6b0106f3-0">Slider</a></li>
+        <li id="ty-fa551e21-6b0106f3-0"><a href="/docs/snackbar" id="ty-0946ece1-6b0106f3-0">Snackbar</a></li>
+        <li id="ty-3bd2d59c-6b0106f3-0"><a href="/docs/surfaces" id="ty-1293f46a-6b0106f3-0">Surfaces</a></li>
+        <li id="ty-75bf504d-6b0106f3-0"><a href="/docs/tables" id="ty-dd253014-6b0106f3-0">Tables</a></li>
+        <li id="ty-2ad171be-6b0106f3-0"><a href="/docs/tabs" id="ty-bc0c3c7c-6b0106f3-0">Tabs</a></li>
+        <li id="ty-256f6888-6b0106f3-0"><a href="/docs/tooltips" id="ty-08cec745-6b0106f3-0">Tooltips</a></li>
+        <li id="ty-82d4d7aa-6b0106f3-0"><a href="/docs/workflows" id="ty-46169720-6b0106f3-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-2ea4382e-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-099c94fb-6b0106f3-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-549e6898-6b0106f3-0">
+        <li id="ty-febae9f7-6b0106f3-0"><a href="/docs/themes" id="ty-4949fe95-6b0106f3-0">Themes</a></li>
+        <li id="ty-760aaf72-6b0106f3-0"><a href="/docs/utilities" id="ty-5a81ec9e-6b0106f3-0">Utilities</a></li>
+        <li id="ty-2001d60c-6b0106f3-0"><a href="/docs/styles-and-animations" id="ty-411ee635-6b0106f3-0">Styles and animations</a></li>
+        <li id="ty-a06550f6-6b0106f3-0"><a href="/docs/animations" id="ty-c5240d4b-6b0106f3-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-89240a38-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-75eba137-6b0106f3-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-15912ef6-6b0106f3-0">
+        <li id="ty-2e9ceeaf-6b0106f3-0"><a href="/docs/api" id="ty-543bb451-6b0106f3-0">API</a></li>
+        <li id="ty-6cb2ebdf-6b0106f3-0"><a href="/docs/directives" id="ty-67d8ab1c-6b0106f3-0">Directives</a></li>
+        <li id="ty-d3a571a4-6b0106f3-0"><a href="/docs/labs" id="ty-b7503fcd-6b0106f3-0">Labs</a></li>
+        <li id="ty-7a714a74-6b0106f3-0"><a href="/docs/resources" id="ty-21a4d138-6b0106f3-0">Resources</a></li>
+        <li id="ty-3eeef2e1-6b0106f3-0"><a href="/docs/roadmap" id="ty-9ea6afa4-6b0106f3-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c0e57710-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7ee6a302-6b0106f3-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-ceed89b1-6b0106f3-0">
+        <li id="ty-019a94a2-6b0106f3-0"><a href="/docs/about" id="ty-a84e8078-6b0106f3-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-990714da-0"></button>
+  <main class="docs-main" id="ty-62ecfbdf-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-56a8f1b8-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-5ba50793-0">
+      <div id="ty-layout-slot"><h1 id="ty-9d60a682-0">Time Pickers</h1><p id="ty-86e7aeaf-0"><code id="ty-b3725e78-0">w-time-picker</code> is a standalone clock picker inspired by Vuetify's <code id="ty-a91a7aa6-0">v-time-picker</code>. It supports AM/PM and 24-hour display, seconds, allowed time windows, scroll-wheel editing, input fields, color, elevation, density, and compact headers while keeping the canonical value in 24-hour <code id="ty-9128285b-0">HH:MM</code> or <code id="ty-4bed7835-0">HH:MM:SS</code> format.</p><h2 id="ty-636e5599-0">Clock</h2><demo-compare class="docs-time-picker-demo">
+  <div slot="css" id="ty-a2b58b84-0">
+    <div class="w-time-picker" id="ty-795b51c4-0">
+      <div class="w-time-picker-title" id="ty-bf1a5f7e-0">Select time</div>
+      <div class="w-time-picker-label" id="ty-ebc56eea-0">Time</div>
+      <div class="w-time-picker-header" id="ty-db6a33db-0">
+        <button class="w-time-picker-display active" type="button" id="ty-f3987702-0">09</button>
+        <span class="w-time-picker-separator" id="ty-49413873-0">:</span>
+        <button class="w-time-picker-display" type="button" id="ty-90037e78-0">30</button>
+        <div class="w-time-picker-period" id="ty-ba0e3e7a-0"><button class="active" id="ty-12bc89da-0">AM</button><button id="ty-ed74ac2c-0">PM</button></div>
+      </div>
+      <div class="w-time-picker-clock" id="ty-6b7f0309-0">
+        <button class="w-time-picker-clock-item" style="left:71%;top:14%" id="ty-1ae66fb3-0">1</button>
+        <button class="w-time-picker-clock-item" style="left:86%;top:29%" id="ty-243a4a09-0">2</button>
+        <button class="w-time-picker-clock-item selected" style="left:8%;top:50%" id="ty-04196387-0">9</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:270deg" id="ty-9d48b036-0"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-fa8b67d0-0">
+    <w-time-picker label="Time" value="09:30" id="ty-92ef946b-0"></w-time-picker>
+  </div>
+</demo-compare><h2 id="ty-7e142a4b-0">Allowed Times</h2><p id="ty-912e6b5b-0">Use <code id="ty-56e1d659-0">min</code>, <code id="ty-5aa3ed8c-0">max</code>, and <code id="ty-2ffe772e-0">allowed-hours</code>, <code id="ty-5a3c1842-0">allowed-minutes</code>, or <code id="ty-141941a8-0">allowed-seconds</code> to constrain choices. Pass allowed values as JSON arrays.</p><demo-compare class="docs-time-picker-demo">
+  <div slot="css" id="ty-ebf079f3-0">
+    <div class="w-time-picker w-time-picker--format-24hr" id="ty-1033267c-0">
+      <div class="w-time-picker-title" id="ty-d160dae3-0">Allowed window</div>
+      <div class="w-time-picker-header" id="ty-4eec2c0d-0">
+        <button class="w-time-picker-display active" type="button" id="ty-49ca3fcf-0">11</button><span class="w-time-picker-separator" id="ty-788198e9-0">:</span><button class="w-time-picker-display" type="button" id="ty-6b1ea18c-0">15</button>
+      </div>
+      <div class="w-time-picker-clock" id="ty-c804fc41-0">
+        <button class="w-time-picker-clock-item disabled" style="left:75%;top:7%" disabled="" id="ty-5cd5b755-0">10</button>
+        <button class="w-time-picker-clock-item selected" style="left:63%;top:23%" id="ty-26cfb6e6-0">11</button>
+        <button class="w-time-picker-clock-item" style="left:71%;top:86%" id="ty-b409d68b-0">13</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:165deg" id="ty-84226a5b-0"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-5ef5e810-0">
+    <w-time-picker value="11:15" format="24hr" min="09:30" max="22:15" allowed-hours="[9,11,13,15,17,19,21]" allowed-minutes="10,15,20,25,30,35,40,45,50" scrollable="" id="ty-5daa9f9d-0"></w-time-picker>
+  </div>
+</demo-compare><h2 id="ty-acb87b71-0">Color and Elevation</h2><demo-compare class="docs-time-picker-demo">
+  <div slot="css" id="ty-663bfb67-0">
+    <div class="w-time-picker w-time-picker--color-success w-time-picker--elevation-4" style="width:320px" id="ty-042aee8a-0">
+      <div class="w-time-picker-title" id="ty-8b892ba7-0">Release window</div>
+      <div class="w-time-picker-label" id="ty-b21d374f-0">Success color</div>
+      <div class="w-time-picker-header" id="ty-5f76caae-0"><button class="w-time-picker-display active" id="ty-69c7f7b0-0">02</button><span class="w-time-picker-separator" id="ty-db00cf4d-0">:</span><button class="w-time-picker-display" id="ty-14544328-0">45</button><div class="w-time-picker-period" id="ty-a5bcca63-0"><button id="ty-a85841c3-0">AM</button><button class="active" id="ty-355826df-0">PM</button></div></div>
+      <div class="w-time-picker-clock" id="ty-9c9c4e4e-0"><button class="w-time-picker-clock-item selected" style="left:86%;top:29%" id="ty-613a8dbd-0">2</button><span class="w-time-picker-hand" style="--w-time-picker-angle:60deg" id="ty-0dd12476-0"></span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-24be7299-0">
+    <w-time-picker value="14:45" color="success" elevation="4" width="320px" title="Release window" label="Success color" id="ty-5a0382f0-0"></w-time-picker>
+  </div>
+</demo-compare><h2 id="ty-61be2f3a-0">24-hour and Seconds</h2><demo-compare class="docs-time-picker-demo">
+  <div slot="css" id="ty-f499504f-0">
+    <div class="w-time-picker w-time-picker--format-24hr" id="ty-cc406509-0">
+      <div class="w-time-picker-title" id="ty-495a5347-0">Deployment window</div>
+      <div class="w-time-picker-label" id="ty-311fb429-0">Time</div>
+      <div class="w-time-picker-header" id="ty-4ae558af-0">
+        <button class="w-time-picker-display" type="button" id="ty-fec9ed76-0">18</button>
+        <span class="w-time-picker-separator" id="ty-be013e31-0">:</span>
+        <button class="w-time-picker-display active" type="button" id="ty-95229917-0">45</button>
+        <span class="w-time-picker-separator" id="ty-957491f4-0">:</span>
+        <button class="w-time-picker-display" type="button" id="ty-555bc059-0">00</button>
+      </div>
+      <div class="w-time-picker-clock" id="ty-f1641598-0">
+        <button class="w-time-picker-clock-item" style="left:50%;top:8%" id="ty-5ada707a-0">00</button>
+        <button class="w-time-picker-clock-item selected" style="left:8%;top:50%" id="ty-53fb3dc9-0">45</button>
+        <button class="w-time-picker-clock-item" style="left:29%;top:14%" id="ty-e0da0bff-0">55</button>
+        <span class="w-time-picker-hand" style="--w-time-picker-angle:270deg" id="ty-771df43a-0"></span>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-622dd60f-0">
+    <w-time-picker label="Time" title="Deployment window" value="18:45:00" format="24hr" use-seconds="" view="minutes" id="ty-5d0f404f-0"></w-time-picker>
+  </div>
+</demo-compare><h2 id="ty-3c82f4ef-0">No Header, Readonly, and Disabled</h2><demo-compare class="docs-time-picker-demo docs-time-picker-demo--states">
+  <div slot="css" id="ty-3f841995-0">
+    <div class="w-cluster" id="ty-29649e35-0">
+      <div class="w-time-picker w-time-picker--density-compact" style="width:260px" id="ty-9cdb85bc-0">
+        <div class="w-time-picker-header" id="ty-e7215847-0"><button class="w-time-picker-display active" id="ty-f34ee066-0">08</button><span class="w-time-picker-separator" id="ty-190606bd-0">:</span><button class="w-time-picker-display" id="ty-8112c058-0">00</button><div class="w-time-picker-period" id="ty-71bffa9f-0"><button class="active" id="ty-509000b7-0">AM</button><button id="ty-c4d7bd20-0">PM</button></div></div>
+        <div class="w-time-picker-clock" id="ty-5709aadf-0"><button class="w-time-picker-clock-item selected" style="left:86%;top:71%" id="ty-1b0ea5b3-0">4</button><span class="w-time-picker-hand" style="--w-time-picker-angle:120deg" id="ty-afbae4b2-0"></span></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-0e0c03bc-0">
+    <div class="docs-time-picker-grid" id="ty-9d19bdfb-0">
+      <w-time-picker value="08:00" hide-header="" density="compact" width="100%" id="ty-87997c0d-0"></w-time-picker>
+      <w-time-picker value="09:15" readonly="" ampm-in-title="" title="Readonly" width="100%" density="compact" id="ty-598b0069-0"></w-time-picker>
+      <w-time-picker value="09:15" disabled="" title="Disabled" width="100%" density="compact" id="ty-2de76f82-0"></w-time-picker>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-67a78f71-0">Input Variant</h2><p id="ty-4b26a51c-0">The <code id="ty-30ffffee-0">variant="input"</code> mode exposes numeric fields for hour, minute, and optional seconds while retaining the clock face for quick selection.</p><demo-compare class="docs-time-picker-demo">
+  <div slot="css" id="ty-9767596e-0">
+    <div class="w-time-picker w-time-picker--variant-input w-time-picker--format-24hr" id="ty-d3b71f11-0">
+      <div class="w-time-picker-title" id="ty-7dd596f2-0">Manual entry</div>
+      <div class="w-time-picker-header" id="ty-4fd931d5-0">
+        <label class="w-time-picker-field active" id="ty-f4dc0e31-0"><input value="18" id="ty-9de145c7-0" /></label>
+        <span class="w-time-picker-separator" id="ty-edf8cafc-0">:</span>
+        <label class="w-time-picker-field" id="ty-febafaaf-0"><input value="45" id="ty-03250011-0" /></label>
+        <span class="w-time-picker-separator" id="ty-b8df4d20-0">:</span>
+        <label class="w-time-picker-field" id="ty-74edde1c-0"><input value="30" id="ty-c391d143-0" /></label>
+      </div>
+      <div class="w-time-picker-clock" id="ty-68733570-0"><button class="w-time-picker-clock-item selected" style="left:8%;top:50%" id="ty-4c7083a6-0">45</button><span class="w-time-picker-hand" style="--w-time-picker-angle:270deg" id="ty-e3285f14-0"></span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-9e28a853-0">
+    <w-time-picker value="18:45:30" format="24hr" use-seconds="" variant="input" title="Manual entry" id="ty-84ecec5d-0"></w-time-picker>
+  </div>
+</demo-compare><h2 id="ty-0db79e88-0">Range</h2><p id="ty-ec394c40-0">Pair two pickers with <code id="ty-0ad3a73b-0">max</code> and <code id="ty-aebe2226-0">min</code> to keep a start/end range valid.</p><demo-compare class="docs-time-picker-demo docs-time-picker-demo--range">
+  <div slot="css" id="ty-6571d283-0">
+    <div class="w-grid-row" style="--w-grid-gutter:var(--w-space-4)" id="ty-b8cf782b-0">
+      <div class="w-col-12 w-col-md-6" id="ty-4fb413a7-0"><div class="w-card w-card-body" id="ty-bdad57d4-0"><h3 id="ty-7f0ba910-0">Start</h3><p id="ty-698201e6-0">Uses <code id="ty-c4b6dff7-0">max</code> from the end picker.</p></div></div>
+      <div class="w-col-12 w-col-md-6" id="ty-3525f1fe-0"><div class="w-card w-card-body" id="ty-df7373c1-0"><h3 id="ty-0b0621cb-0">End</h3><p id="ty-4f34a083-0">Uses <code id="ty-e969bbda-0">min</code> from the start picker.</p></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-f2f95d2c-0">
+    <div class="docs-time-picker-grid" id="ty-9ef5e5b9-0">
+      <w-time-picker title="Start" value="09:30" max="17:00" width="100%" density="compact" id="ty-5f3977be-0"></w-time-picker>
+      <w-time-picker title="End" value="17:00" min="09:30" width="100%" density="compact" id="ty-94060459-0"></w-time-picker>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-2431a686-0">Dialog and Menu Composition</h2><p id="ty-7b4407e5-0">Time pickers are standalone, so they can sit inside menus, dialogs, cards, and custom popovers.</p><demo-compare class="docs-time-picker-demo docs-time-picker-demo--composition">
+  <div slot="css" id="ty-36189fd3-0">
+    <div class="w-card w-card-body" style="max-width:420px" id="ty-73c3bced-0">
+      <h3 id="ty-126024ad-0">Picker in overlay</h3>
+      <p class="w-text-subtle" id="ty-ed9c906a-0">Use <code id="ty-8d590b27-0">w-menu</code> or <code id="ty-7552f2c7-0">w-dialog</code> as the container.</p>
+    </div>
+  </div>
+  <div slot="wc" id="ty-aecc45ae-0">
+    <div class="docs-time-picker-actions" id="ty-12991475-0">
+      <w-menu location="bottom" id="ty-86141b29-0">
+        <w-btn slot="activator" variant="outlined" id="ty-970b2a25-0">Picker in menu</w-btn>
+        <w-time-picker value="10:30" hide-header="" id="ty-0230efc8-0"></w-time-picker>
+      </w-menu>
+      <w-dialog aria-label="Picker dialog" id="ty-66efb1db-0">
+        <w-btn slot="activator" variant="filled" id="ty-d7583499-0">Open dialog picker</w-btn>
+        <w-time-picker value="14:45" hide-header="" id="ty-5545ef30-0"></w-time-picker>
+      </w-dialog>
+    </div>
+  </div>
+</demo-compare></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-6adff5f9-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5055db09-0"></aside>
+</div>
+</body>
+</html>
+

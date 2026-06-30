@@ -1,0 +1,102 @@
+<h1>Infinite Scroller</h1>
+<p><code>w-infinite-scroll</code> emits a <code>load</code> event as the user reaches an edge of a scrollable area. Fetch the next batch, then call <code>done(status)</code> with <code>"ok"</code> (more available), <code>"empty"</code> (stop), or <code>"error"</code> (show a retry). It supports automatic (<code>intersect</code>) and <code>manual</code> modes, loading from the <code>start</code>, <code>end</code>, or <code>both</code> edges, and a horizontal <code>direction</code>.</p>
+
+<h2>Wiring it up</h2>
+<p>Listen for <code>load</code>, append your data, then settle with <code>done</code>:</p>
+<pre class="code-block"><code>const scroller = document.querySelector('w-infinite-scroll');
+let page = 0;
+
+scroller.addEventListener('load', async (e) =&gt; &#123;
+  try &#123;
+    const rows = await fetchPage(++page);     // your fetch
+    appendRows(scroller, rows);               // add to the slot content
+    e.detail.done(rows.length ? 'ok' : 'empty');
+  &#125; catch &#123;
+    e.detail.done('error');                   // shows a Retry button
+  &#125;
+&#125;);</code></pre>
+
+<h2>Intersect (default)</h2>
+<p>In <code>intersect</code> mode the bottom sentinel auto-loads when it scrolls into view; a spinner shows while the fetch is in flight.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-infinite-scroll" style="max-height:180px">
+      <div class="w-infinite-scroll-content"><div class="w-list"><div class="w-list-item">Item 1</div><div class="w-list-item">Item 2</div><div class="w-list-item">Item 3</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status"><span class="w-infinite-scroll-spinner"></span><span>Loading…</span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-infinite-scroll height="180px"
+      onload="var l=this.querySelector('.w-list'),n=l.children.length;l.insertAdjacentHTML('beforeend','<div class=w-list-item>Item '+(n+1)+'</div><div class=w-list-item>Item '+(n+2)+'</div>');event.detail.done(l.children.length>=18?'empty':'ok')">
+      <div class="w-list"><div class="w-list-item">Item 1</div><div class="w-list-item">Item 2</div><div class="w-list-item">Item 3</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare>
+
+<h2>Manual</h2>
+<p>Set <code>mode="manual"</code> to load on a button press instead of automatically.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-infinite-scroll" style="max-height:180px">
+      <div class="w-infinite-scroll-content"><div class="w-list"><div class="w-list-item">Item 1</div><div class="w-list-item">Item 2</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status"><button type="button" class="w-btn w-btn-tonal">Load more</button></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-infinite-scroll mode="manual" height="180px"
+      onload="var l=this.querySelector('.w-list'),n=l.children.length;l.insertAdjacentHTML('beforeend','<div class=w-list-item>Item '+(n+1)+'</div><div class=w-list-item>Item '+(n+2)+'</div>');event.detail.done(l.children.length>=12?'empty':'ok')">
+      <div class="w-list"><div class="w-list-item">Item 1</div><div class="w-list-item">Item 2</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare>
+
+<h2>Empty &amp; error states</h2>
+<p>When you call <code>done("empty")</code> the exhausted message shows; <code>done("error")</code> shows the error with a Retry button.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-infinite-scroll" style="max-height:140px">
+        <div class="w-infinite-scroll-content"><div class="w-list"><div class="w-list-item">Item 1</div></div></div>
+        <div class="w-infinite-scroll-trigger" role="status"><span class="w-infinite-scroll-empty">No more items</span></div>
+      </div>
+      <div class="w-infinite-scroll" style="max-height:140px">
+        <div class="w-infinite-scroll-content"><div class="w-list"><div class="w-list-item">Item 1</div></div></div>
+        <div class="w-infinite-scroll-trigger" role="status"><span class="w-infinite-scroll-error">Something went wrong</span> <button type="button" class="w-btn w-btn-text">Retry</button></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-infinite-scroll mode="manual" height="140px" status="empty" empty-text="You've reached the end" disabled>
+        <div class="w-list"><div class="w-list-item">Item 1</div></div>
+      </w-infinite-scroll>
+      <w-infinite-scroll mode="manual" height="140px"
+        onload="this.dataset.n=(+this.dataset.n||0)+1;if(this.dataset.n=='1')return event.detail.done('error');var l=this.querySelector('.w-list');l.insertAdjacentHTML('beforeend','<div class=w-list-item>Loaded after retry</div>');event.detail.done('empty')">
+        <div class="w-list"><div class="w-list-item">Item 1</div></div>
+      </w-infinite-scroll>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Color</h2>
+<p>Tint the spinner with <code>color</code> (token name or CSS color).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-infinite-scroll" style="max-height:140px;--w-infinite-color:var(--w-success)">
+      <div class="w-infinite-scroll-content"><div class="w-list"><div class="w-list-item">Item 1</div></div></div>
+      <div class="w-infinite-scroll-trigger" role="status"><span class="w-infinite-scroll-spinner"></span><span>Loading…</span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-infinite-scroll height="140px" color="success"
+      onload="var l=this.querySelector('.w-list'),n=l.children.length;l.insertAdjacentHTML('beforeend','<div class=w-list-item>Item '+(n+1)+'</div>');event.detail.done(l.children.length>=8?'empty':'ok')">
+      <div class="w-list"><div class="w-list-item">Item 1</div></div>
+    </w-infinite-scroll>
+  </div>
+</demo-compare>
+
+<h2>Sides &amp; direction</h2>
+<p>Use <code>side="start"</code>, <code>"end"</code> (default), or <code>"both"</code> to choose which edge loads, and <code>direction="horizontal"</code> for horizontal carousels. Set <code>margin</code> to start loading earlier (px before the edge).</p>
+
+<h2>Sentinel</h2>
+<p><code>&lt;w-infinite-scroll-intersect&gt;</code> mirrors Vuetify&#8217;s internal sentinel as a standalone subcomponent for custom scroll containers &#8212; place it inside your own scroller and listen for its <code>load</code> event.</p>

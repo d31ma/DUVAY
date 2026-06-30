@@ -1,0 +1,51 @@
+/* DuVay — Rows component styles. */
+@import "../core.css";
+
+/* ── Row ────────────────────────────────────────────────────────────────── */
+.w-grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-inline: calc(var(--w-grid-gutter) / -2);
+  row-gap: var(--w-grid-gutter);
+}
+
+.w-container > slot,
+.w-grid-row > slot,
+.w-grid-col > slot,
+[class*="w-grid-col-"] > slot {
+  display: contents;
+}
+
+.w-grid-row--tight { --w-grid-gutter: var(--w-space-3); }
+.w-grid-row--flush { --w-grid-gutter: 0px; }
+
+/* Legacy short alignment classes (retained for backwards compatibility) */
+.w-grid-row--top     { align-items: flex-start; }
+.w-grid-row--middle  { align-items: center; }
+.w-grid-row--bottom  { align-items: flex-end; }
+.w-grid-row--around  { justify-content: space-around; }
+.w-grid-row--between { justify-content: space-between; }
+.w-grid-row--center  { justify-content: center; }
+
+/* align — align-items (Vuetify parity) */
+.w-grid-row--align-start    { align-items: flex-start; }
+.w-grid-row--align-center   { align-items: center; }
+.w-grid-row--align-end      { align-items: flex-end; }
+.w-grid-row--align-baseline { align-items: baseline; }
+.w-grid-row--align-stretch  { align-items: stretch; }
+
+/* justify — justify-content (Vuetify parity) */
+.w-grid-row--justify-start         { justify-content: flex-start; }
+.w-grid-row--justify-center        { justify-content: center; }
+.w-grid-row--justify-end           { justify-content: flex-end; }
+.w-grid-row--justify-space-between  { justify-content: space-between; }
+.w-grid-row--justify-space-around   { justify-content: space-around; }
+.w-grid-row--justify-space-evenly   { justify-content: space-evenly; }
+
+/* align-content — align-content (Vuetify parity) */
+.w-grid-row--align-content-start         { align-content: flex-start; }
+.w-grid-row--align-content-center        { align-content: center; }
+.w-grid-row--align-content-end           { align-content: flex-end; }
+.w-grid-row--align-content-space-between  { align-content: space-between; }
+.w-grid-row--align-content-space-around   { align-content: space-around; }
+.w-grid-row--align-content-stretch        { align-content: stretch; }

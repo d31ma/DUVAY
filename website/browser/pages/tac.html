@@ -1,0 +1,54 @@
+<site-header />
+
+<w-app>
+  <w-container size="lg">
+    <section class="text-center pa-12" aria-labelledby="duvay-title">
+      <p class="w-text-label-large text-primary w-font-semibold mb-3">Zero-dependency UI framework</p>
+      <h1 id="duvay-title" class="w-text-display-medium w-font-bold ma-0 mb-4">DuVay</h1>
+      <p class="w-text-headline-small ma-0 mb-4">Build polished interfaces without writing component CSS.</p>
+      <p class="w-text-body-large w-text-subtle w-leading-normal w-mw-prose mx-auto ma-0">
+        Design tokens, responsive utilities, themes, and accessible components share one system.
+        Compose with CSS classes, web components, or both.
+      </p>
+
+      <w-row justify="center" gutter="sm" class="mt-6">
+        <w-col cols="12" sm="auto">
+          <w-btn href="/docs/install" variant="filled" size="lg" block>Get Started</w-btn>
+        </w-col>
+        <w-col cols="12" sm="auto">
+          <w-btn href="/docs/components" variant="outlined" size="lg" block>Browse Components</w-btn>
+        </w-col>
+      </w-row>
+    </section>
+
+    <section class="px-4 pb-8" aria-labelledby="framework-features">
+      <div class="text-center mb-8">
+        <h2 id="framework-features" class="w-text-headline-medium ma-0 mb-2">Built to stay out of your way</h2>
+        <p class="w-text-body-large w-text-subtle ma-0">A coherent foundation for production interfaces.</p>
+      </div>
+
+      <w-row gutter="md">
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Zero Dependencies" text="No runtime dependency chain. Import the CSS, add the optional components, and build."></w-card>
+        </w-col>
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Design Tokens" text="Colors, spacing, typography, motion, and layout share customizable CSS variables."></w-card>
+        </w-col>
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Two Flavors" text="Use utility classes for direct control or Light-DOM web components for declarative UI."></w-card>
+        </w-col>
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Accessible" text="Keyboard navigation, focus management, semantic roles, and ARIA behavior are built in."></w-card>
+        </w-col>
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Adaptive" text="Container queries and responsive primitives reshape interfaces for desktop, tablet, and mobile."></w-card>
+        </w-col>
+        <w-col cols="12" md="4">
+          <w-card class="h-100" variant="text" hover title="Lightweight">
+            <span slot="text"><span data-w-size="duvay.min.css">~258 KB</span> minified CSS, <span data-w-size="duvay.min.js">~7 KB</span> behavior, and an optional <span data-w-size="duvay-motion.min.js">~10 KB</span> motion add-on.</span>
+          </w-card>
+        </w-col>
+      </w-row>
+    </section>
+  </w-container>
+</w-app>

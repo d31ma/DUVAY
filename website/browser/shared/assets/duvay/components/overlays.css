@@ -1,0 +1,27 @@
+/* DuVay — Overlays component styles. */
+@import "../core.css";
+
+/* ── Overlay / Scrim ──────────────────────────────────────────────────────── */
+/* Reusable backdrop for modals, dialogs, bottom sheets, drawers. */
+.w-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--w-z-overlay);
+  background: var(--w-scrim);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--w-transition-normal), visibility var(--w-transition-normal);
+}
+
+.w-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-overlay--scrim {
+  background: color-mix(in srgb, var(--w-scrim) 56%, transparent);
+}
+
+.w-dialog-scroll-lock {
+  overflow: hidden;
+}

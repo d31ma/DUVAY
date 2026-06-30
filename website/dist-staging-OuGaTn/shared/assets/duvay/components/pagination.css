@@ -1,0 +1,292 @@
+/* DuVay — Pagination component styles.
+ * @import "../core.css";
+ *
+ * Design tokens used:
+ *   --w-primary, --w-on-primary, --w-surface, --w-text, --w-text-subtle,
+ *   --w-border, --w-hover, --w-radius, --w-radius-pill, --w-space-*,
+ *   --w-font-*, --w-font-weight-*, --w-elevation-*, --w-transition-fast,
+ *   --w-size-*, --w-touch-min
+ */
+
+/* ── Pagination container ─────────────────────────────────────────────────── */
+.w-pagination {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-1);
+  padding: var(--w-space-lg);
+}
+
+/* ── Page item (button) ──────────────────────────────────────────────────── */
+.w-page-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--w-touch-min);
+  min-height: var(--w-touch-min);
+  padding: 0 var(--w-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  text-decoration: none;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast), border-color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-page-item:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-page-item:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* Active page */
+.w-page-item.active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-color: color-mix(in srgb, var(--w-primary) 24%, transparent);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-page-item.active:hover {
+  background: color-mix(in srgb, var(--w-primary-container) 80%, var(--w-hover));
+}
+
+/* Disabled */
+.w-page-item:disabled,
+.w-page-item--disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Nav buttons (prev/next/first/last) */
+.w-page-nav {
+  font-size: var(--w-font-md);
+  font-weight: var(--w-font-weight-bold);
+  min-width: calc(var(--w-touch-min) + var(--w-space-1));
+}
+
+/* ── Ellipsis ────────────────────────────────────────────────────────────── */
+.w-page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--w-touch-min);
+  min-height: var(--w-touch-min);
+  padding: 0 var(--w-space-2);
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Variants ─────────────────────────────────────────────────────────────── */
+
+/* text (default) — already defined above */
+
+/* flat */
+.w-page-item--flat {
+  background: var(--w-surface-container);
+  border-color: transparent;
+  color: var(--w-text-subtle);
+}
+.w-page-item--flat:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+.w-page-item--flat.active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-color: color-mix(in srgb, var(--w-primary) 24%, transparent);
+}
+
+/* tonal */
+.w-page-item--tonal {
+  background: var(--w-primary-container);
+  border-color: transparent;
+  color: var(--w-on-primary-container);
+  opacity: 0.72;
+}
+.w-page-item--tonal:hover {
+  opacity: 1;
+  background: var(--w-primary-container);
+}
+.w-page-item--tonal.active {
+  opacity: 1;
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: transparent;
+}
+
+/* outlined */
+.w-page-item--outlined {
+  background: transparent;
+  border-color: var(--w-border);
+  color: var(--w-text-subtle);
+}
+.w-page-item--outlined:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+  border-color: var(--w-border);
+}
+.w-page-item--outlined.active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-color: var(--w-primary);
+}
+
+/* elevated */
+.w-page-item--elevated {
+  background: var(--w-surface-container-low);
+  border-color: transparent;
+  color: var(--w-text-subtle);
+  box-shadow: var(--w-shadow-sm);
+}
+.w-page-item--elevated:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+  box-shadow: var(--w-shadow-md);
+}
+.w-page-item--elevated.active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-color: color-mix(in srgb, var(--w-primary) 24%, transparent);
+  box-shadow: var(--w-shadow-sm);
+}
+
+/* ── Sizes ───────────────────────────────────────────────────────────────── */
+.w-page-item--x-small,
+.w-pagination--x-small .w-page-item,
+.w-pagination--x-small .w-page-ellipsis {
+  min-width: var(--w-size-xs);
+  min-height: var(--w-size-xs);
+  font-size: var(--w-font-xs);
+  padding: 0 var(--w-space-1);
+}
+
+.w-page-item--small,
+.w-pagination--small .w-page-item,
+.w-pagination--small .w-page-ellipsis {
+  min-width: var(--w-size-sm);
+  min-height: var(--w-size-sm);
+  font-size: var(--w-font-sm);
+  padding: 0 var(--w-space-1_5);
+}
+
+.w-page-item--large,
+.w-pagination--large .w-page-item,
+.w-pagination--large .w-page-ellipsis {
+  min-width: var(--w-size-lg);
+  min-height: var(--w-size-lg);
+  font-size: var(--w-font-base);
+  padding: 0 var(--w-space-3);
+}
+
+.w-page-item--x-large,
+.w-pagination--x-large .w-page-item,
+.w-pagination--x-large .w-page-ellipsis {
+  min-width: var(--w-size-xl);
+  min-height: var(--w-size-xl);
+  font-size: var(--w-font-lg);
+  padding: 0 var(--w-space-4);
+}
+
+/* ── Density ──────────────────────────────────────────────────────────────── */
+.w-page-item--density-compact,
+.w-pagination--density-compact .w-page-item,
+.w-pagination--density-compact .w-page-ellipsis {
+  min-height: calc(var(--w-touch-min) - var(--w-space-2));
+  padding: 0 var(--w-space-1);
+}
+
+.w-page-item--density-comfortable,
+.w-pagination--density-comfortable .w-page-item,
+.w-pagination--density-comfortable .w-page-ellipsis {
+  min-height: calc(var(--w-touch-min) + var(--w-space-1));
+  padding: 0 var(--w-space-3);
+}
+
+/* ── Rounded ──────────────────────────────────────────────────────────────── */
+.w-page-item--rounded,
+.w-pagination--rounded .w-page-item {
+  border-radius: var(--w-radius-lg);
+}
+
+.w-page-item--pill,
+.w-pagination--rounded .w-page-item--pill {
+  border-radius: var(--w-radius-pill);
+}
+
+/* ── Border ───────────────────────────────────────────────────────────────── */
+.w-page-item--border,
+.w-pagination--border .w-page-item {
+  border-color: var(--w-border);
+}
+
+/* ── Color overrides (active page) ────────────────────────────────────────── */
+.w-page-item--active-color-primary.active {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+.w-page-item--active-color-secondary.active {
+  background: var(--w-secondary);
+  color: var(--w-on-primary);
+  border-color: var(--w-secondary);
+}
+.w-page-item--active-color-tertiary.active {
+  background: var(--w-tertiary-container);
+  color: var(--w-on-tertiary-container);
+  border-color: var(--w-tertiary-container);
+}
+.w-page-item--active-color-success.active {
+  background: var(--w-success);
+  color: var(--w-on-success);
+  border-color: var(--w-success);
+}
+.w-page-item--active-color-warning.active {
+  background: var(--w-warning);
+  color: var(--w-on-warning);
+  border-color: var(--w-warning);
+}
+.w-page-item--active-color-error.active {
+  background: var(--w-error);
+  color: var(--w-on-error);
+  border-color: var(--w-error);
+}
+
+/* ── Color overrides (non-active hover tint) ──────────────────────────────── */
+.w-page-item--color-primary:hover:not(.active) {
+  color: var(--w-primary);
+}
+.w-page-item--color-secondary:hover:not(.active) {
+  color: var(--w-secondary);
+}
+.w-page-item--color-tertiary:hover:not(.active) {
+  color: var(--w-tertiary-container);
+}
+.w-page-item--color-success:hover:not(.active) {
+  color: var(--w-success);
+}
+.w-page-item--color-warning:hover:not(.active) {
+  color: var(--w-warning);
+}
+.w-page-item--color-error:hover:not(.active) {
+  color: var(--w-error);
+}
+
+/* ── prefers-reduced-motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .w-page-item {
+    transition: none;
+  }
+}

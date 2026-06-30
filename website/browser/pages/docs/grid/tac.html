@@ -1,0 +1,214 @@
+<h1>Grid</h1>
+<p>A 12-column flexbox grid for responsive layouts. Use <code>w-container</code>, <code>w-row</code>, and <code>w-col</code> for component layouts, or the equivalent <code>.w-container</code>, <code>.w-grid-row</code>, and <code>.w-grid-col-*</code> classes.</p>
+
+<h2>Container</h2>
+<p>Centers content and applies a max width. Add <code>--fluid</code> for full width, or <code>--sm</code> / <code>--md</code> / <code>--lg</code> / <code>--xl</code> for a fixed maximum.</p>
+<div class="code-block"><code>&lt;div class="w-container"&gt;
+  &lt;!-- centered, max 1200px --&gt;
+&lt;/div&gt;
+
+&lt;w-container&gt;
+  &lt;!-- centered, max 1200px --&gt;
+&lt;/w-container&gt;</code></div>
+
+<h2>Basic columns</h2>
+<p>Each row has 12 units. <code>.w-grid-col-6</code> spans half, two of them fill the row.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col-6"><div class="grid-demo-cell">col-6</div></div>
+      <div class="w-grid-col-6"><div class="grid-demo-cell">col-6</div></div>
+    </div>
+    <div class="w-grid-row mt-3">
+      <div class="w-grid-col-4"><div class="grid-demo-cell">col-4</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell">col-4</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell">col-4</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="6"><div class="grid-demo-cell">col-6</div></w-col>
+        <w-col cols="6"><div class="grid-demo-cell">col-6</div></w-col>
+      </w-row>
+      <w-row class="mt-3">
+        <w-col cols="4"><div class="grid-demo-cell">col-4</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell">col-4</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell">col-4</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Auto / equal width</h2>
+<p>Columns without a number share the remaining space equally.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col"><div class="grid-demo-cell">auto</div></div>
+      <div class="w-grid-col"><div class="grid-demo-cell">auto</div></div>
+      <div class="w-grid-col"><div class="grid-demo-cell">auto</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col><div class="grid-demo-cell">auto</div></w-col>
+        <w-col><div class="grid-demo-cell">auto</div></w-col>
+        <w-col><div class="grid-demo-cell">auto</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Responsive columns</h2>
+<p>Stack on mobile, two-up from <code>md</code> (≥960px), four-up from <code>lg</code> (≥1280px). Resize the window to see it adapt.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col-12 w-grid-col-md-6 w-grid-col-lg-3"><div class="grid-demo-cell">1</div></div>
+      <div class="w-grid-col-12 w-grid-col-md-6 w-grid-col-lg-3"><div class="grid-demo-cell">2</div></div>
+      <div class="w-grid-col-12 w-grid-col-md-6 w-grid-col-lg-3"><div class="grid-demo-cell">3</div></div>
+      <div class="w-grid-col-12 w-grid-col-md-6 w-grid-col-lg-3"><div class="grid-demo-cell">4</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12" md="6" lg="3"><div class="grid-demo-cell">1</div></w-col>
+        <w-col cols="12" md="6" lg="3"><div class="grid-demo-cell">2</div></w-col>
+        <w-col cols="12" md="6" lg="3"><div class="grid-demo-cell">3</div></w-col>
+        <w-col cols="12" md="6" lg="3"><div class="grid-demo-cell">4</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Offsets</h2>
+<p>Push a column to the right with <code>.w-grid-offset-*</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col-4"><div class="grid-demo-cell">col-4</div></div>
+      <div class="w-grid-col-4 w-grid-offset-4"><div class="grid-demo-cell">col-4 · offset-4</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="4"><div class="grid-demo-cell">col-4</div></w-col>
+        <w-col cols="4" offset="4"><div class="grid-demo-cell">col-4 · offset-4</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Gutters & alignment</h2>
+<p>Add <code>--tight</code> or <code>--flush</code> to the row for smaller / no gutters, set <code>gutter</code> on <code>w-row</code> for named or custom spacing, and use <code>--center</code>, <code>--between</code>, or <code>--middle</code> to align columns.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row w-grid-row--flush">
+      <div class="w-grid-col-3"><div class="grid-demo-cell">flush</div></div>
+      <div class="w-grid-col-3"><div class="grid-demo-cell">flush</div></div>
+      <div class="w-grid-col-3"><div class="grid-demo-cell">flush</div></div>
+      <div class="w-grid-col-3"><div class="grid-demo-cell">flush</div></div>
+    </div>
+    <div class="w-grid-row mt-3" style="--w-grid-gutter: var(--w-space-8)">
+      <div class="w-grid-col-4"><div class="grid-demo-cell">xl gutter</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell">xl gutter</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell">xl gutter</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row no-gutters>
+        <w-col cols="3"><div class="grid-demo-cell">flush</div></w-col>
+        <w-col cols="3"><div class="grid-demo-cell">flush</div></w-col>
+        <w-col cols="3"><div class="grid-demo-cell">flush</div></w-col>
+        <w-col cols="3"><div class="grid-demo-cell">flush</div></w-col>
+      </w-row>
+      <w-row gutter="xl" class="mt-3">
+        <w-col cols="4"><div class="grid-demo-cell">xl gutter</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell">xl gutter</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell">xl gutter</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Justify content</h2>
+<p>Set <code>justify</code> on the row to distribute columns along the main axis: <code>start</code>, <code>center</code>, <code>end</code>, <code>space-between</code>, <code>space-around</code>, or <code>space-evenly</code>. Each maps to a <code>.w-grid-row--justify-*</code> class.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row w-grid-row--justify-center">
+      <div class="w-grid-col-3"><div class="grid-demo-cell">center</div></div>
+      <div class="w-grid-col-3"><div class="grid-demo-cell">center</div></div>
+    </div>
+    <div class="w-grid-row w-grid-row--justify-space-between mt-3">
+      <div class="w-grid-col-3"><div class="grid-demo-cell">between</div></div>
+      <div class="w-grid-col-3"><div class="grid-demo-cell">between</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row justify="center">
+        <w-col cols="3"><div class="grid-demo-cell">center</div></w-col>
+        <w-col cols="3"><div class="grid-demo-cell">center</div></w-col>
+      </w-row>
+      <w-row justify="space-between" class="mt-3">
+        <w-col cols="3"><div class="grid-demo-cell">between</div></w-col>
+        <w-col cols="3"><div class="grid-demo-cell">between</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Align items</h2>
+<p>Set <code>align</code> on the row to align columns of differing heights along the cross axis: <code>start</code>, <code>center</code>, <code>end</code>, <code>baseline</code>, or <code>stretch</code>. Responsive variants (<code>align-md</code>, <code>justify-lg</code>, &hellip;) apply from a breakpoint up.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row w-grid-row--align-center" style="min-height:90px">
+      <div class="w-grid-col-4"><div class="grid-demo-cell">center</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell" style="padding-block:1.5rem">tall</div></div>
+      <div class="w-grid-col-4"><div class="grid-demo-cell">center</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row align="center" style="min-height:90px">
+        <w-col cols="4"><div class="grid-demo-cell">center</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell" style="padding-block:1.5rem">tall</div></w-col>
+        <w-col cols="4"><div class="grid-demo-cell">center</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Order</h2>
+<p>Change the visual order without touching source order with <code>order</code> on a column (a number <code>0</code>–<code>12</code>, or <code>first</code> / <code>last</code>). Responsive variants like <code>order-md</code> reorder from a breakpoint up.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-grid-row">
+      <div class="w-grid-col-4 w-grid-order-3"><div class="grid-demo-cell">source 1 · order 3</div></div>
+      <div class="w-grid-col-4 w-grid-order-1"><div class="grid-demo-cell">source 2 · order 1</div></div>
+      <div class="w-grid-col-4 w-grid-order-2"><div class="grid-demo-cell">source 3 · order 2</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="4" order="3"><div class="grid-demo-cell">source 1 · order 3</div></w-col>
+        <w-col cols="4" order="1"><div class="grid-demo-cell">source 2 · order 1</div></w-col>
+        <w-col cols="4" order="2"><div class="grid-demo-cell">source 3 · order 2</div></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Fill height</h2>
+<p>Add <code>fill-height</code> to a container to stretch it to the parent height and vertically center its rows — handy for hero sections.</p>
+<div class="code-block"><code>&lt;w-container fill-height&gt;
+  &lt;w-row&gt;&hellip;&lt;/w-row&gt;
+&lt;/w-container&gt;</code></div>
+
+<p>Breakpoints: <code>xs</code> (&lt;600px), <code>sm</code> (≥600px), <code>md</code> (≥960px), <code>lg</code> (≥1280px), <code>xl</code> (≥1920px), <code>xxl</code> (≥2560px). The full attribute reference for each component is below.</p>

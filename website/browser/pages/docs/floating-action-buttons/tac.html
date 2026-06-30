@@ -1,0 +1,159 @@
+<h1>Floating Action Buttons</h1>
+<p>Prominent circular buttons for the primary action on a screen. DuVay FABs support Vuetify-style sizes, variants, colors, positioning, and extended labels.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab" type="button" aria-label="Add">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab w-fab--extended" type="button" aria-label="Compose">
+        <span class="w-icon" aria-hidden="true">✎</span>
+        <span class="w-fab__label">Compose</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" aria-label="Add"></w-fab>
+      <w-fab icon="✎" label="Compose"></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Use Vuetify-style sizes: <code>x-small</code>, <code>small</code>, <code>default</code>, <code>large</code>, and <code>x-large</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab w-fab--x-small" type="button" aria-label="XS">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab w-fab--small" type="button" aria-label="SM">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab" type="button" aria-label="MD">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab w-fab--large" type="button" aria-label="LG">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab w-fab--x-large" type="button" aria-label="XL">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" size="x-small"></w-fab>
+      <w-fab icon="+" size="small"></w-fab>
+      <w-fab icon="+"></w-fab>
+      <w-fab icon="+" size="large"></w-fab>
+      <w-fab icon="+" size="x-large"></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<p>Vuetify variant names: <code>elevated</code> (default), <code>flat</code>, <code>tonal</code>, <code>outlined</code>, <code>text</code>, and <code>plain</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab" type="button" aria-label="Elevated">E</button>
+      <button class="w-fab w-fab--variant-flat" type="button" aria-label="Flat">F</button>
+      <button class="w-fab w-fab--variant-tonal" type="button" aria-label="Tonal">T</button>
+      <button class="w-fab w-fab--variant-outlined" type="button" aria-label="Outlined">O</button>
+      <button class="w-fab w-fab--variant-text" type="button" aria-label="Text">X</button>
+      <button class="w-fab w-fab--variant-plain" type="button" aria-label="Plain">P</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" variant="elevated"></w-fab>
+      <w-fab icon="+" variant="flat"></w-fab>
+      <w-fab icon="+" variant="tonal"></w-fab>
+      <w-fab icon="+" variant="outlined"></w-fab>
+      <w-fab icon="+" variant="text"></w-fab>
+      <w-fab icon="+" variant="plain"></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab w-fab--color-primary" type="button" aria-label="Primary">P</button>
+      <button class="w-fab w-fab--color-secondary" type="button" aria-label="Secondary">S</button>
+      <button class="w-fab w-fab--color-success" type="button" aria-label="Success">+</button>
+      <button class="w-fab w-fab--color-warning" type="button" aria-label="Warning">!</button>
+      <button class="w-fab w-fab--color-error" type="button" aria-label="Error">&times;</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" color="primary"></w-fab>
+      <w-fab icon="+" color="secondary"></w-fab>
+      <w-fab icon="+" color="success"></w-fab>
+      <w-fab icon="+" color="warning"></w-fab>
+      <w-fab icon="+" color="error"></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Positioning</h2>
+<p>Use <code>fixed</code> or <code>absolute</code> with <code>location</code> (or legacy <code>position</code>) to place the FAB in a corner.</p>
+<demo-compare>
+  <div slot="css">
+    <div style="position:relative;height:8rem;background:var(--w-surface-container);border:1px solid var(--w-border);overflow:hidden;">
+      <button class="w-fab w-fab--absolute w-fab--top w-fab--end" type="button" aria-label="Top end">
+        <span class="w-icon" aria-hidden="true">+</span>
+      </button>
+      <button class="w-fab w-fab--absolute w-fab--bottom w-fab--start" type="button" aria-label="Bottom start">
+        <span class="w-icon" aria-hidden="true">✎</span>
+      </button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div style="position:relative;height:8rem;background:var(--w-surface-container);border:1px solid var(--w-border);overflow:hidden;">
+      <w-fab icon="+" absolute location="top end"></w-fab>
+      <w-fab icon="✎" absolute location="bottom start"></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Rounded</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab w-fab--rounded-0" type="button" aria-label="Square">0</button>
+      <button class="w-fab w-fab--rounded-sm" type="button" aria-label="Small radius">SM</button>
+      <button class="w-fab w-fab--rounded" type="button" aria-label="Pill">Pill</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" rounded="0"></w-fab>
+      <w-fab icon="+" rounded="sm"></w-fab>
+      <w-fab icon="+" rounded></w-fab>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Active</h2>
+<p>The <code>active</code> attribute toggles the selected state styling.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <button class="w-fab w-fab--active" type="button" aria-label="Active">A</button>
+      <button class="w-fab" type="button" aria-label="Inactive">I</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-3 flex-wrap align-center">
+      <w-fab icon="+" active></w-fab>
+      <w-fab icon="+"></w-fab>
+    </div>
+  </div>
+</demo-compare>

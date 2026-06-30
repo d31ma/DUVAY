@@ -1,0 +1,73 @@
+<h1>Date Pickers</h1>
+<p><code>w-date-picker</code> is a standalone calendar picker with title header, date/month/year views, min/max constraints, adjacent month days, and single, multiple, or range selection. For a text field that opens a picker, see <a href="/docs/date-inputs">date inputs</a>.</p>
+
+<h2>Date Picker</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-date-picker">
+      <div class="w-date-picker-picker-title"><span>Select date</span><strong>Fri, Jun 12</strong></div>
+      <div class="w-date-picker-header">
+        <button class="w-date-picker-nav" type="button" aria-label="Previous month">‹</button>
+        <button class="w-date-picker-title" type="button">June 2026</button>
+        <button class="w-date-picker-nav" type="button" aria-label="Next month">›</button>
+      </div>
+      <div class="w-date-picker-grid">
+        <div class="w-date-picker-weekday">Sun</div><div class="w-date-picker-weekday">Mon</div><div class="w-date-picker-weekday">Tue</div><div class="w-date-picker-weekday">Wed</div><div class="w-date-picker-weekday">Thu</div><div class="w-date-picker-weekday">Fri</div><div class="w-date-picker-weekday">Sat</div>
+        <button class="w-date-picker-day" type="button">1</button>
+        <button class="w-date-picker-day selected" type="button">12</button>
+        <button class="w-date-picker-day today" type="button">26</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-date-picker year="2026" month="6" value="2026-06-12" min="2026-06-01" max="2026-06-30" show-adjacent-months></w-date-picker>
+  </div>
+</demo-compare>
+
+<h2>Month and Year Views</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-date-picker w-date-picker--view-months">
+      <div class="w-date-picker-picker-title"><span>Select month</span><strong>2026</strong></div>
+      <div class="w-date-picker-header">
+        <button class="w-date-picker-nav" type="button">‹</button>
+        <button class="w-date-picker-title" type="button">2026</button>
+        <button class="w-date-picker-nav" type="button">›</button>
+      </div>
+      <div class="w-date-picker-months">
+        <button class="w-date-picker-month">Jan</button><button class="w-date-picker-month">Feb</button><button class="w-date-picker-month">Mar</button>
+        <button class="w-date-picker-month">Apr</button><button class="w-date-picker-month">May</button><button class="w-date-picker-month selected">Jun</button>
+        <button class="w-date-picker-month">Jul</button><button class="w-date-picker-month">Aug</button><button class="w-date-picker-month">Sep</button>
+        <button class="w-date-picker-month">Oct</button><button class="w-date-picker-month">Nov</button><button class="w-date-picker-month">Dec</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-date-picker year="2026" month="6" view="months"></w-date-picker>
+  </div>
+</demo-compare>
+
+<h2>Range</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-date-picker">
+      <div class="w-date-picker-picker-title"><span>Select range</span><strong>Jun 10 – Jun 14</strong></div>
+      <div class="w-date-picker-header">
+        <button class="w-date-picker-nav" type="button">‹</button>
+        <button class="w-date-picker-title" type="button">June 2026</button>
+        <button class="w-date-picker-nav" type="button">›</button>
+      </div>
+      <div class="w-date-picker-grid">
+        <div class="w-date-picker-weekday">Sun</div><div class="w-date-picker-weekday">Mon</div><div class="w-date-picker-weekday">Tue</div><div class="w-date-picker-weekday">Wed</div><div class="w-date-picker-weekday">Thu</div><div class="w-date-picker-weekday">Fri</div><div class="w-date-picker-weekday">Sat</div>
+        <button class="w-date-picker-day range-start" type="button">10</button>
+        <button class="w-date-picker-day in-range" type="button">11</button>
+        <button class="w-date-picker-day in-range" type="button">12</button>
+        <button class="w-date-picker-day in-range" type="button">13</button>
+        <button class="w-date-picker-day range-end" type="button">14</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-date-picker year="2026" month="6" mode="range" value="2026-06-10,2026-06-14"></w-date-picker>
+  </div>
+</demo-compare>

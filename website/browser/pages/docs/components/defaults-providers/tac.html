@@ -1,0 +1,61 @@
+<h1>Defaults Providers</h1>
+<p><code>w-defaults-provider</code> applies default attributes to descendant components, the attribute-driven analogue of Vuetify's <code>VDefaultsProvider</code>. Pass a <code>defaults</code> JSON object mapping a tag selector to the attributes it should receive. Defaults only fill in attributes a consumer hasn't set, and the nearest provider wins for nested scopes.</p>
+
+<h2>Scoped defaults</h2>
+<p>Every <code>w-btn</code> inside this provider becomes outlined and small without repeating those attributes.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2">
+      <button class="w-btn w-btn-outlined w-btn-sm">Save</button>
+      <button class="w-btn w-btn-outlined w-btn-sm">Cancel</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-defaults-provider defaults="{&quot;w-btn&quot;:{&quot;variant&quot;:&quot;outlined&quot;,&quot;size&quot;:&quot;sm&quot;}}">
+      <div class="w-row ga-2">
+        <w-btn>Save</w-btn>
+        <w-btn>Cancel</w-btn>
+      </div>
+    </w-defaults-provider>
+  </div>
+</demo-compare>
+
+<h2>Explicit values win</h2>
+<p>An attribute set directly on a component overrides the provider default; missing ones are still filled.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2">
+      <button class="w-btn w-btn-outlined w-btn-sm">Default</button>
+      <button class="w-btn w-btn-filled w-btn-sm">Explicit filled</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-defaults-provider defaults="{&quot;w-btn&quot;:{&quot;variant&quot;:&quot;outlined&quot;,&quot;size&quot;:&quot;sm&quot;}}">
+      <div class="w-row ga-2">
+        <w-btn>Default</w-btn>
+        <w-btn variant="filled">Explicit filled</w-btn>
+      </div>
+    </w-defaults-provider>
+  </div>
+</demo-compare>
+
+<h2>Nesting</h2>
+<p>Defaults merge across nesting: a nested provider overrides the keys it sets (here <code>color</code>) while keys it omits (<code>variant</code>) still inherit from the outer provider.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2">
+      <button class="w-btn w-btn-filled w-btn-primary">Outer primary</button>
+      <button class="w-btn w-btn-filled w-btn-success">Inner success</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-defaults-provider defaults="{&quot;w-btn&quot;:{&quot;variant&quot;:&quot;filled&quot;,&quot;color&quot;:&quot;primary&quot;}}">
+      <div class="w-row ga-2">
+        <w-btn>Outer primary</w-btn>
+        <w-defaults-provider defaults="{&quot;w-btn&quot;:{&quot;color&quot;:&quot;success&quot;}}">
+          <w-btn>Inner success</w-btn>
+        </w-defaults-provider>
+      </div>
+    </w-defaults-provider>
+  </div>
+</demo-compare>

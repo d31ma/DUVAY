@@ -1,0 +1,85 @@
+<h1>Routing</h1>
+<p>DuVay does not ship a router. It renders standard links and buttons, so any client-side router &#8212; Vue Router, React Router, SvelteKit, or a small in-house solution &#8212; can drive navigation.</p>
+
+<h2>Native links</h2>
+<p>DuVay linkable components accept an <code>href</code> attribute and render a real <code>&lt;a&gt;</code> tag. This gives you right-click, middle-click, keyboard activation, and screen-reader support for free.</p>
+
+<demo-compare>
+  <div slot="css">
+    <a class="w-btn w-btn-filled" href="/docs/variants">Go to Variants</a>
+    <a class="w-btn w-btn-text" href="/docs/items">Items page</a>
+  </div>
+  <div slot="wc">
+    <w-btn variant="filled" href="/docs/variants">Go to Variants</w-btn>
+    <w-btn variant="text" href="/docs/items">Items page</w-btn>
+  </div>
+</demo-compare>
+
+<h2>Client-side routers</h2>
+<p>Most routers intercept clicks on internal links. Because DuVay renders native anchors, the router's global link handler works without adapters. If your router requires a special component (e.g. <code>&lt;RouterLink&gt;</code>), wrap DuVay components inside it.</p>
+
+<h3>Vue Router example</h3>
+
+<div class="code-block"><code>&lt;!-- The router intercepts the native click and does a SPA navigation. --&gt;
+&lt;RouterLink to="/docs/items" custom v-slot="&#123; href, navigate &#125;"&gt;
+  &lt;w-btn variant="filled" &#58;href="href" &#64;click="navigate"&gt;
+    Go to Items
+  &lt;/w-btn&gt;
+&lt;/RouterLink&gt;</code></div>
+
+<h3>React Router example</h3>
+
+<div class="code-block"><code>import &#123; useNavigate &#125; from 'react-router-dom'
+
+function HomeLink() &#123;
+  const navigate = useNavigate()
+  return (
+    &lt;w-btn variant="filled" onClick=&#123;() =&gt; navigate('/docs/items')&#125;&gt;
+      Go to Items
+    &lt;/w-btn&gt;
+  )
+&#125;</code></div>
+
+<h3>Vanilla example</h3>
+
+<div class="code-block"><code>&lt;w-btn id="next" variant="filled" href="/docs/items"&gt;
+  Go to Items
+&lt;/w-btn&gt;
+
+&lt;script&gt;
+  document.getElementById('next').addEventListener('click', (e) =&gt; &#123;
+    // Your tiny router decides whether to handle the URL locally.
+    if (myRouter.matches(e.target.href)) &#123;
+      e.preventDefault()
+      myRouter.navigate(e.target.href)
+    &#125;
+  &#125;)
+&lt;/script&gt;</code></div>
+
+<h2>Navigation components</h2>
+<p>App bars, bottom navigation, breadcrumbs, tabs, and lists all accept <code>href</code> (or an internal link child) so they participate in normal browser navigation. Use your router's link component as the child when you need framework-specific routing behavior.</p>
+
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation" role="navigation" aria-label="Demo">
+      <a class="w-bottom-nav-item w-bottom-nav-item--active" href="/">Home</a>
+      <a class="w-bottom-nav-item" href="/docs">Docs</a>
+      <a class="w-bottom-nav-item" href="/about">About</a>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home">
+      <w-bottom-nav-item value="home" href="/">Home</w-bottom-nav-item>
+      <w-bottom-nav-item value="docs" href="/docs">Docs</w-bottom-nav-item>
+      <w-bottom-nav-item value="about" href="/about">About</w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Active state</h2>
+<p>DuVay leaves active-state logic to your router. Pass <code>active</code>, <code>value</code>, or an explicit active class based on the current route. The docs site uses the same pattern: the sidebar compares the current path to each link's <code>href</code> and adds the active class.</p>
+
+<div class="code-block"><code>&lt;w-bottom-navigation &#58;value="currentRoute"&gt;
+  &lt;w-bottom-nav-item value="/" href="/"&gt;Home&lt;/w-bottom-nav-item&gt;
+  &lt;w-bottom-nav-item value="/docs" href="/docs"&gt;Docs&lt;/w-bottom-nav-item&gt;
+&lt;/w-bottom-navigation&gt;</code></div>

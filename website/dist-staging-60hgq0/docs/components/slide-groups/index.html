@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-ece9aa08-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-e938deff-ece9aa08-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-d7c5da31-ece9aa08-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-21b10305-ece9aa08-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-bd3b93b9-ece9aa08-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-7680fda8-ece9aa08-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-5b011ae1-ece9aa08-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-c1663585-ece9aa08-0" />
+        </svg>
+      </span>
+      <span id="ty-07e52817-ece9aa08-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-24d9a70f-ece9aa08-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-47e7304c-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a35b8b48-ece9aa08-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-66d9770e-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-3f5b39f2-ece9aa08-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-22a00201-ece9aa08-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-d1d10a40-ece9aa08-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-a61ec279-ece9aa08-0">
+        <span data-w-theme-icon="" id="ty-87466a0f-ece9aa08-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-0980cdcc-ece9aa08-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-c02febd4-ece9aa08-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-c80e4466-ece9aa08-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-310a6eef-0">
+  <div id="ty-6b0106f3-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-10817518-6b0106f3-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-d4b0f2f0-6b0106f3-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-f20731fb-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-56e5cb2a-6b0106f3-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-fb95993d-6b0106f3-0">
+        <li id="ty-c7a350b0-6b0106f3-0"><a href="/docs/introduction" id="ty-594ed95c-6b0106f3-0">Introduction</a></li>
+        <li id="ty-899aaefb-6b0106f3-0"><a href="/docs/install" id="ty-cd813db3-6b0106f3-0">Install</a></li>
+        <li id="ty-4731fe8b-6b0106f3-0"><a href="/docs/getting-started" id="ty-a5ae5d2d-6b0106f3-0">Getting started</a></li>
+        <li id="ty-9e794c03-6b0106f3-0"><a href="/docs/download" id="ty-03666b20-6b0106f3-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-87851584-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-082f12ba-6b0106f3-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-98181f43-6b0106f3-0">
+        <li id="ty-0a2ac23c-6b0106f3-0"><a href="/docs/common-concepts" id="ty-c8a421c6-6b0106f3-0">Common concepts</a></li>
+        <li id="ty-a79cad30-6b0106f3-0"><a href="/docs/features" id="ty-9bc6bb24-6b0106f3-0">Features</a></li>
+        <li id="ty-6e53fbe4-6b0106f3-0"><a href="/docs/features/icon-fonts" id="ty-d1cb5b08-6b0106f3-0">Icons</a></li>
+        <li id="ty-6ba74063-6b0106f3-0"><a href="/docs/grid" id="ty-72c0ffce-6b0106f3-0">Grid</a></li>
+        <li id="ty-f610e6c7-6b0106f3-0"><a href="/docs/navigation" id="ty-512eca93-6b0106f3-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-05ff09b9-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7e7e4f9e-6b0106f3-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-21d4434d-6b0106f3-0">
+        <li id="ty-fdf56bcc-6b0106f3-0"><a href="/docs/components" id="ty-3e4ad48c-6b0106f3-0">Components overview</a></li>
+        <li id="ty-fe23d09d-6b0106f3-0"><a href="/docs/alerts" id="ty-2fe8136e-6b0106f3-0">Alerts</a></li>
+        <li id="ty-3252bc25-6b0106f3-0"><a href="/docs/avatars" id="ty-a117269c-6b0106f3-0">Avatars</a></li>
+        <li id="ty-b2af1c1c-6b0106f3-0"><a href="/docs/badges" id="ty-85c67442-6b0106f3-0">Badges</a></li>
+        <li id="ty-7bf8caab-6b0106f3-0"><a href="/docs/breadcrumbs" id="ty-63f1aab3-6b0106f3-0">Breadcrumbs</a></li>
+        <li id="ty-0fa81b9b-6b0106f3-0"><a href="/docs/buttons" id="ty-779d7a99-6b0106f3-0">Buttons</a></li>
+        <li id="ty-d115603c-6b0106f3-0"><a href="/docs/cards" id="ty-803d22a5-6b0106f3-0">Cards</a></li>
+        <li id="ty-0da96966-6b0106f3-0"><a href="/docs/chips" id="ty-b4692fa9-6b0106f3-0">Chips</a></li>
+        <li id="ty-f63b460b-6b0106f3-0"><a href="/docs/command" id="ty-6942393b-6b0106f3-0">Command palette</a></li>
+        <li id="ty-47ffe3d0-6b0106f3-0"><a href="/docs/dialog" id="ty-2e2b9a94-6b0106f3-0">Dialog</a></li>
+        <li id="ty-63abbc90-6b0106f3-0"><a href="/docs/expand" id="ty-127af8aa-6b0106f3-0">Expand</a></li>
+        <li id="ty-296e8a05-6b0106f3-0"><a href="/docs/feedback" id="ty-62af0603-6b0106f3-0">Feedback</a></li>
+        <li id="ty-77ecf9e8-6b0106f3-0"><a href="/docs/inputs" id="ty-9e0c007a-6b0106f3-0">Inputs</a></li>
+        <li id="ty-2dc6f1e1-6b0106f3-0"><a href="/docs/layout-primitives" id="ty-7caa5e05-6b0106f3-0">Layout primitives</a></li>
+        <li id="ty-3fba6ed9-6b0106f3-0"><a href="/docs/lists" id="ty-f7166ebc-6b0106f3-0">Lists</a></li>
+        <li id="ty-2ec7d366-6b0106f3-0"><a href="/docs/menus" id="ty-919a4650-6b0106f3-0">Menus</a></li>
+        <li id="ty-43cdc75e-6b0106f3-0"><a href="/docs/overlays" id="ty-cbbdb998-6b0106f3-0">Overlays</a></li>
+        <li id="ty-970465d3-6b0106f3-0"><a href="/docs/color-pickers" id="ty-3749e314-6b0106f3-0">Color Pickers</a></li>
+        <li id="ty-c93ce6d4-6b0106f3-0"><a href="/docs/date-pickers" id="ty-6a7de840-6b0106f3-0">Date Pickers</a></li>
+        <li id="ty-fa21a225-6b0106f3-0"><a href="/docs/time-pickers" id="ty-441bc818-6b0106f3-0">Time Pickers</a></li>
+        <li id="ty-6b80b884-6b0106f3-0"><a href="/docs/slider" id="ty-d639002e-6b0106f3-0">Slider</a></li>
+        <li id="ty-fa551e21-6b0106f3-0"><a href="/docs/snackbar" id="ty-0946ece1-6b0106f3-0">Snackbar</a></li>
+        <li id="ty-3bd2d59c-6b0106f3-0"><a href="/docs/surfaces" id="ty-1293f46a-6b0106f3-0">Surfaces</a></li>
+        <li id="ty-75bf504d-6b0106f3-0"><a href="/docs/tables" id="ty-dd253014-6b0106f3-0">Tables</a></li>
+        <li id="ty-2ad171be-6b0106f3-0"><a href="/docs/tabs" id="ty-bc0c3c7c-6b0106f3-0">Tabs</a></li>
+        <li id="ty-256f6888-6b0106f3-0"><a href="/docs/tooltips" id="ty-08cec745-6b0106f3-0">Tooltips</a></li>
+        <li id="ty-82d4d7aa-6b0106f3-0"><a href="/docs/workflows" id="ty-46169720-6b0106f3-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-2ea4382e-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-099c94fb-6b0106f3-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-549e6898-6b0106f3-0">
+        <li id="ty-febae9f7-6b0106f3-0"><a href="/docs/themes" id="ty-4949fe95-6b0106f3-0">Themes</a></li>
+        <li id="ty-760aaf72-6b0106f3-0"><a href="/docs/utilities" id="ty-5a81ec9e-6b0106f3-0">Utilities</a></li>
+        <li id="ty-2001d60c-6b0106f3-0"><a href="/docs/styles-and-animations" id="ty-411ee635-6b0106f3-0">Styles and animations</a></li>
+        <li id="ty-a06550f6-6b0106f3-0"><a href="/docs/animations" id="ty-c5240d4b-6b0106f3-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-89240a38-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-75eba137-6b0106f3-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-15912ef6-6b0106f3-0">
+        <li id="ty-2e9ceeaf-6b0106f3-0"><a href="/docs/api" id="ty-543bb451-6b0106f3-0">API</a></li>
+        <li id="ty-6cb2ebdf-6b0106f3-0"><a href="/docs/directives" id="ty-67d8ab1c-6b0106f3-0">Directives</a></li>
+        <li id="ty-d3a571a4-6b0106f3-0"><a href="/docs/labs" id="ty-b7503fcd-6b0106f3-0">Labs</a></li>
+        <li id="ty-7a714a74-6b0106f3-0"><a href="/docs/resources" id="ty-21a4d138-6b0106f3-0">Resources</a></li>
+        <li id="ty-3eeef2e1-6b0106f3-0"><a href="/docs/roadmap" id="ty-9ea6afa4-6b0106f3-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c0e57710-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7ee6a302-6b0106f3-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-ceed89b1-6b0106f3-0">
+        <li id="ty-019a94a2-6b0106f3-0"><a href="/docs/about" id="ty-a84e8078-6b0106f3-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-990714da-0"></button>
+  <main class="docs-main" id="ty-62ecfbdf-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-56a8f1b8-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-5ba50793-0">
+      <div id="ty-layout-slot"><h1 id="ty-02c2b3c3-0">Slide Groups</h1><p id="ty-287a2914-0">Slide groups are scrollable, selectable item sets with overflow arrows and keyboard navigation. Arrows appear only when the content overflows and disable at the reached end; <code id="ty-25bfea83-0">center-active</code> keeps the selected item in view.</p><h2 id="ty-e9e36bf9-0">Basic</h2><p id="ty-af45834d-0">Select an item by click or keyboard (arrow keys, Home/End). With CSS classes, the JS toggles <code id="ty-a1a7046c-0">w-slide-group-shell--overflow</code> when the content overflows; mark the overflowing state yourself for a static example.</p><demo-compare >
+  <div slot="css" id="ty-eafed1d3-0">
+    <div class="w-slide-group-shell w-slide-group-shell--overflow" id="ty-2f32f650-0">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled="" id="ty-d4108f0c-0">‹</button>
+      <div class="w-slide-group" id="ty-62d17cea-0">
+        <button class="w-slide-group-item active" id="ty-d2e53550-0">Alpha</button>
+        <button class="w-slide-group-item" id="ty-def50a0a-0">Beta</button>
+        <button class="w-slide-group-item" id="ty-a4f5f4ca-0">Gamma</button>
+        <button class="w-slide-group-item" id="ty-2c18ae73-0">Delta</button>
+        <button class="w-slide-group-item" id="ty-79aedd7f-0">Epsilon</button>
+        <button class="w-slide-group-item" id="ty-8a4fc9cf-0">Zeta</button>
+        <button class="w-slide-group-item" id="ty-04179b14-0">Eta</button>
+        <button class="w-slide-group-item" id="ty-09a9ade3-0">Theta</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items" id="ty-048b402d-0">›</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d031b56b-0">
+    <w-slide-group value="alpha" show-arrows="" center-active="" mandatory="" id="ty-c1ef1241-0">
+      <w-slide-group-item value="alpha" id="ty-3e963976-0"><button class="w-btn w-btn-outlined" id="ty-1be5c767-0">Alpha</button></w-slide-group-item>
+      <w-slide-group-item value="beta" id="ty-2a522721-0"><button class="w-btn w-btn-outlined" id="ty-c924a12f-0">Beta</button></w-slide-group-item>
+      <w-slide-group-item value="gamma" id="ty-2d35a7ad-0"><button class="w-btn w-btn-outlined" id="ty-f61ce72a-0">Gamma</button></w-slide-group-item>
+      <w-slide-group-item value="delta" id="ty-99eebc4e-0"><button class="w-btn w-btn-outlined" id="ty-9b2723b7-0">Delta</button></w-slide-group-item>
+      <w-slide-group-item value="epsilon" id="ty-5a44fd3f-0"><button class="w-btn w-btn-outlined" id="ty-cc1c86b0-0">Epsilon</button></w-slide-group-item>
+      <w-slide-group-item value="zeta" id="ty-8f43050e-0"><button class="w-btn w-btn-outlined" id="ty-2007ac67-0">Zeta</button></w-slide-group-item>
+      <w-slide-group-item value="eta" id="ty-df538912-0"><button class="w-btn w-btn-outlined" id="ty-c131b619-0">Eta</button></w-slide-group-item>
+      <w-slide-group-item value="theta" id="ty-93f31e53-0"><button class="w-btn w-btn-outlined" id="ty-c7dbc221-0">Theta</button></w-slide-group-item>
+      <w-slide-group-item value="iota" id="ty-7f984971-0"><button class="w-btn w-btn-outlined" id="ty-24d96e5a-0">Iota</button></w-slide-group-item>
+      <w-slide-group-item value="kappa" id="ty-964a1cdc-0"><button class="w-btn w-btn-outlined" id="ty-67702893-0">Kappa</button></w-slide-group-item>
+      <w-slide-group-item value="lambda" id="ty-a0756a67-0"><button class="w-btn w-btn-outlined" id="ty-03cae4e1-0">Lambda</button></w-slide-group-item>
+      <w-slide-group-item value="omega" id="ty-6eb99395-0"><button class="w-btn w-btn-outlined" id="ty-955bd7c5-0">Omega</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare><h2 id="ty-8600203b-0">Arrow visibility</h2><p id="ty-636ff1a7-0"><code id="ty-214d827e-0">show-arrows</code> takes <code id="ty-7a07e78f-0">true</code> (default — arrows show only on overflow), <code id="ty-3c52939c-0">always</code> (always visible, disabled at the ends), or <code id="ty-eebeb222-0">false</code> (never). With CSS classes, add <code id="ty-5bc8fbb2-0">w-slide-group-shell--arrows-always</code> to keep them visible without overflow.</p><demo-compare >
+  <div slot="css" id="ty-ced81904-0">
+    <div class="w-slide-group-shell w-slide-group-shell--arrows-always" id="ty-dc1f5373-0">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled="" id="ty-ea0d246d-0">‹</button>
+      <div class="w-slide-group" id="ty-d8fd343d-0">
+        <button class="w-slide-group-item active" id="ty-8f329f78-0">One</button>
+        <button class="w-slide-group-item" id="ty-97ffa050-0">Two</button>
+        <button class="w-slide-group-item" id="ty-f6e48adf-0">Three</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items" disabled="" id="ty-e0e926bd-0">›</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-200085c6-0">
+    <w-slide-group value="one" show-arrows="always" mandatory="" id="ty-34a3c5bb-0">
+      <w-slide-group-item value="one" id="ty-d64ae7a8-0"><button class="w-btn w-btn-outlined" id="ty-0775cb13-0">One</button></w-slide-group-item>
+      <w-slide-group-item value="two" id="ty-a5cac687-0"><button class="w-btn w-btn-outlined" id="ty-bedfdb4a-0">Two</button></w-slide-group-item>
+      <w-slide-group-item value="three" id="ty-ca4ed9a8-0"><button class="w-btn w-btn-outlined" id="ty-350735fd-0">Three</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare><h2 id="ty-e2e786b7-0">Custom arrow icons</h2><p id="ty-f3e2ff82-0">Set <code id="ty-aaa069da-0">prev-icon</code> and <code id="ty-36a3d4f8-0">next-icon</code> to any glyph (defaults <code id="ty-9abe534c-0">‹</code>/<code id="ty-3a104f73-0">›</code>, or <code id="ty-aa9cd8de-0">↑</code>/<code id="ty-d6e31eaa-0">↓</code> when vertical).</p><demo-compare >
+  <div slot="css" id="ty-7770b476-0">
+    <div class="w-slide-group-shell w-slide-group-shell--overflow" id="ty-ed6396f9-0">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled="" id="ty-3c1ac4ca-0">−</button>
+      <div class="w-slide-group" id="ty-5a1d68da-0">
+        <button class="w-slide-group-item active" id="ty-b02b5801-0">Tag one</button>
+        <button class="w-slide-group-item" id="ty-0007e0d7-0">Tag two</button>
+        <button class="w-slide-group-item" id="ty-a12562f3-0">Tag three</button>
+        <button class="w-slide-group-item" id="ty-ac73023b-0">Tag four</button>
+        <button class="w-slide-group-item" id="ty-f96b0add-0">Tag five</button>
+        <button class="w-slide-group-item" id="ty-ca3b2c83-0">Tag six</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items" id="ty-d522b31c-0">+</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3c53751c-0">
+    <w-slide-group value="1" prev-icon="−" next-icon="+" id="ty-403e2342-0">
+      <w-slide-group-item value="1" id="ty-706085da-0"><button class="w-btn w-btn-outlined" id="ty-45aa65f8-0">Tag one</button></w-slide-group-item>
+      <w-slide-group-item value="2" id="ty-35c8e530-0"><button class="w-btn w-btn-outlined" id="ty-f93a2a75-0">Tag two</button></w-slide-group-item>
+      <w-slide-group-item value="3" id="ty-fadc7967-0"><button class="w-btn w-btn-outlined" id="ty-5aa19a1d-0">Tag three</button></w-slide-group-item>
+      <w-slide-group-item value="4" id="ty-9cc9f710-0"><button class="w-btn w-btn-outlined" id="ty-13ed4b88-0">Tag four</button></w-slide-group-item>
+      <w-slide-group-item value="5" id="ty-47025d91-0"><button class="w-btn w-btn-outlined" id="ty-74cdc2ed-0">Tag five</button></w-slide-group-item>
+      <w-slide-group-item value="6" id="ty-d1676607-0"><button class="w-btn w-btn-outlined" id="ty-f734fb57-0">Tag six</button></w-slide-group-item>
+      <w-slide-group-item value="7" id="ty-f8931b8d-0"><button class="w-btn w-btn-outlined" id="ty-0137a6b7-0">Tag seven</button></w-slide-group-item>
+      <w-slide-group-item value="8" id="ty-ff89b6fc-0"><button class="w-btn w-btn-outlined" id="ty-7a9d5433-0">Tag eight</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare><h2 id="ty-b3697b8a-0">Vertical</h2><p id="ty-11604cb8-0">Set <code id="ty-eee7a0cf-0">direction="vertical"</code> with a fixed height to stack items into a scrollable column.</p><demo-compare >
+  <div slot="css" id="ty-eed59421-0">
+    <div class="w-slide-group-shell w-slide-group-shell--vertical w-slide-group-shell--overflow" style="height: 16rem" id="ty-463f1b2f-0">
+      <button class="w-slide-group-arrow w-slide-group-arrow--prev" type="button" aria-label="Previous items" disabled="" id="ty-ba0e0707-0">↑</button>
+      <div class="w-slide-group" id="ty-1b2d78ec-0">
+        <button class="w-slide-group-item active" id="ty-bb3134e3-0">Row 1</button>
+        <button class="w-slide-group-item" id="ty-f34ee087-0">Row 2</button>
+        <button class="w-slide-group-item" id="ty-37e09412-0">Row 3</button>
+        <button class="w-slide-group-item" id="ty-b0c24954-0">Row 4</button>
+        <button class="w-slide-group-item" id="ty-bc93bc77-0">Row 5</button>
+        <button class="w-slide-group-item" id="ty-409542da-0">Row 6</button>
+        <button class="w-slide-group-item" id="ty-6b40f316-0">Row 7</button>
+        <button class="w-slide-group-item" id="ty-857d8ef4-0">Row 8</button>
+      </div>
+      <button class="w-slide-group-arrow w-slide-group-arrow--next" type="button" aria-label="Next items" id="ty-b20afaa1-0">↓</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-1a12724e-0">
+    <w-slide-group direction="vertical" show-arrows="" value="1" style="height: 16rem" id="ty-d16dc902-0">
+      <w-slide-group-item value="1" id="ty-ac16f39f-0"><button class="w-btn w-btn-outlined" id="ty-cf37562f-0">Row 1</button></w-slide-group-item>
+      <w-slide-group-item value="2" id="ty-584d7e44-0"><button class="w-btn w-btn-outlined" id="ty-15a1a56c-0">Row 2</button></w-slide-group-item>
+      <w-slide-group-item value="3" id="ty-fe1ca2cc-0"><button class="w-btn w-btn-outlined" id="ty-9556191b-0">Row 3</button></w-slide-group-item>
+      <w-slide-group-item value="4" id="ty-18273cd6-0"><button class="w-btn w-btn-outlined" id="ty-0be8a329-0">Row 4</button></w-slide-group-item>
+      <w-slide-group-item value="5" id="ty-0aee3d1c-0"><button class="w-btn w-btn-outlined" id="ty-dd8f4971-0">Row 5</button></w-slide-group-item>
+      <w-slide-group-item value="6" id="ty-66af18fa-0"><button class="w-btn w-btn-outlined" id="ty-9400f661-0">Row 6</button></w-slide-group-item>
+      <w-slide-group-item value="7" id="ty-59ba9972-0"><button class="w-btn w-btn-outlined" id="ty-f4b7adea-0">Row 7</button></w-slide-group-item>
+      <w-slide-group-item value="8" id="ty-a26e66f2-0"><button class="w-btn w-btn-outlined" id="ty-9f1bcf44-0">Row 8</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare><h2 id="ty-c9231918-0">Multiple selection</h2><p id="ty-b1a42c40-0">Add <code id="ty-a6f668f0-0">multiple</code> to allow more than one selection, and <code id="ty-6128fdc7-0">mandatory</code> to require at least one. Selecting emits <code id="ty-751a2389-0">w-change</code> with the chosen value(s).</p><demo-compare >
+  <div slot="css" id="ty-295bcdca-0">
+    <div class="w-slide-group-shell" id="ty-442ae9cb-0">
+      <div class="w-slide-group" id="ty-05e68d58-0">
+        <button class="w-slide-group-item active" id="ty-e9758964-0">Design</button>
+        <button class="w-slide-group-item active" id="ty-2637849f-0">Engineering</button>
+        <button class="w-slide-group-item" id="ty-95501f03-0">Sales</button>
+        <button class="w-slide-group-item" id="ty-13c20044-0">Support</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3ebc9431-0">
+    <w-slide-group multiple="" value="design,eng" id="ty-84a00f12-0">
+      <w-slide-group-item value="design" id="ty-2f19aa2f-0"><button class="w-btn w-btn-outlined" id="ty-ecffb581-0">Design</button></w-slide-group-item>
+      <w-slide-group-item value="eng" id="ty-561811ce-0"><button class="w-btn w-btn-outlined" id="ty-b98d090d-0">Engineering</button></w-slide-group-item>
+      <w-slide-group-item value="sales" id="ty-7385ff34-0"><button class="w-btn w-btn-outlined" id="ty-3a8592e9-0">Sales</button></w-slide-group-item>
+      <w-slide-group-item value="support" id="ty-b2b99fb0-0"><button class="w-btn w-btn-outlined" id="ty-a080cede-0">Support</button></w-slide-group-item>
+    </w-slide-group>
+  </div>
+</demo-compare><h2 id="ty-e26bc205-0">API reference</h2><p id="ty-65de1454-0">Components: <code id="ty-e8820963-0">&lt;w-slide-group&gt;</code>, <code id="ty-20dd27ce-0">&lt;w-slide-group-item&gt;</code>.</p><p id="ty-41a9a29f-0"><strong id="ty-b57e5c23-0">&lt;w-slide-group&gt;</strong> attributes: <code id="ty-da161469-0">value</code> / <code id="ty-f68b1a47-0">model-value</code>, <code id="ty-c0dc5a62-0">multiple</code>, <code id="ty-998e2c5e-0">mandatory</code>, <code id="ty-fb9d9cb8-0">selected-class</code>, <code id="ty-faf8319e-0">disabled</code>, <code id="ty-927517e6-0">center-active</code>, <code id="ty-45edf519-0">direction</code> (horizontal · vertical), <code id="ty-7a035eed-0">show-arrows</code> (true · always · false), <code id="ty-232ed570-0">prev-icon</code>, <code id="ty-7a7f9c22-0">next-icon</code>. Emits <code id="ty-c78b4315-0">w-change</code> with the selected value(s).</p></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-6adff5f9-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5055db09-0"></aside>
+</div>
+</body>
+</html>
+

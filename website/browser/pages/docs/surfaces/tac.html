@@ -1,0 +1,48 @@
+<h1>Surfaces</h1>
+<p>Structural surfaces for app frames, toolbars, banners, sheets, and separators.</p>
+
+<h2>Toolbar and System Bar</h2>
+<p>Use <code>w-toolbar-title</code> and <code>w-app-bar-title</code> as Vuetify-named title subcomponents.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-system-bar">9:41 <span class="w-topbar-spacer"></span>Wi-Fi 100%</div>
+    <div class="w-toolbar">
+      <div class="w-toolbar-title">Inbox</div>
+      <button class="w-btn w-btn-icon" aria-label="Search">⌕</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-system-bar>9:41 <span class="w-topbar-spacer"></span>Wi-Fi 100%</w-system-bar>
+    <w-toolbar>
+      <w-toolbar-title>Inbox</w-toolbar-title>
+      <w-btn variant="icon" aria-label="Search">⌕</w-btn>
+    </w-toolbar>
+  </div>
+</demo-compare>
+
+<h2>Divider</h2>
+<p>A divider separates related sections. For prominent message surfaces see <a href="/docs/banners">Banners</a>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-divider"></div>
+    <p class="w-text-subtle">The divider separates related sections.</p>
+  </div>
+  <div slot="wc">
+    <w-divider></w-divider>
+    <p class="w-text-subtle">The divider separates related sections.</p>
+  </div>
+</demo-compare>
+
+<h2>FAB</h2>
+<demo-compare>
+  <div slot="css">
+    <button class="w-fab" aria-label="Create">+</button>
+    <button class="w-fab w-fab--extended" aria-label="Create"><span>+</span><span>Create</span></button>
+  </div>
+  <div slot="wc">
+    <div class="w-row">
+      <w-fab icon="+" aria-label="Create"></w-fab>
+      <w-fab icon="+" label="Create"></w-fab>
+    </div>
+  </div>
+</demo-compare>

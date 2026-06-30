@@ -1,0 +1,82 @@
+<h1>Click Outside</h1>
+<p>The DuVay equivalent of Vuetify's <code>v-click-outside</code> directive. Add <code>w-click-outside</code> to any element and DuVay fires a bubbling <code>w-click-outside</code> event whenever a click lands outside that element. Like Vuetify's directive, this is the same mechanism DuVay uses internally to dismiss dropdowns, menus, and dialogs. Requires <code>duvay-directives.js</code> to be loaded.</p>
+
+<h2>Interactive demo</h2>
+<p>Open the menu, then click anywhere outside it to dismiss. Powered live by <code>duvay-directives.js</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack" style="gap: 1rem; align-items: flex-start;">
+      <button class="w-btn w-btn-filled" id="co-toggle">Open menu</button>
+      <div id="co-panel" class="w-card w-card-body" w-click-outside w-click-outside-include="#co-toggle" hidden style="max-width: 320px;">
+        <p>I close when you click outside. <span id="co-status">open</span></p>
+      </div>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Usage</h2>
+<p>Mark the element you want to watch with <code>w-click-outside</code>, then listen for the <code>w-click-outside</code> event to run your handler. The element itself and all of its descendants are always treated as &#8220;inside&#8221; &#8212; clicking them will not fire the event.</p>
+<pre class="code-block"><code>&lt;div id="panel" class="w-card" w-click-outside&gt;
+  &lt;p&gt;Click anywhere outside this card to close it.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  const panel = document.getElementById('panel');
+  panel.addEventListener('w-click-outside', () =&gt; &#123;
+    panel.classList.remove('is-open');
+  &#125;);
+&lt;/script&gt;</code></pre>
+
+<h2>Options</h2>
+<p>The directive's behavior is configured through companion <code>w-*</code> attributes. The table below maps each one to the Vuetify modifier it replaces.</p>
+<table class="w-table api-table">
+  <thead>
+    <tr><th>DuVay attribute</th><th>Vuetify equivalent</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>w-click-outside</code></td>
+      <td><code>v-click-outside="handler"</code></td>
+      <td>Marks the target element. Fires <code>w-click-outside</code> when a click occurs outside of it.</td>
+    </tr>
+    <tr>
+      <td><code>w-click-outside-include="#a, #b"</code></td>
+      <td><code>:include</code> option</td>
+      <td>A comma-separated CSS selector list of extra elements treated as &#8220;inside.&#8221; Clicks on these elements (or their descendants) will not fire the event &#8212; useful for an external trigger button.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Vuetify also exposes a <code>closeConditional</code> option, a function that decides whether the handler should run. DuVay has no attribute form for this; gate the behavior inside your own <code>w-click-outside</code> listener instead.</p>
+
+<h2>Events</h2>
+<p>The directive dispatches a single bubbling <code>CustomEvent</code> named <code>w-click-outside</code> on the target element. Its <code>detail.originalEvent</code> holds the underlying DOM click event.</p>
+<pre class="code-block"><code>el.addEventListener('w-click-outside', (event) =&gt; &#123;
+  const original = event.detail.originalEvent;
+  console.log('Clicked outside at', original.clientX, original.clientY);
+&#125;);</code></pre>
+
+<h2>Example</h2>
+<p>A dismissible panel with an external toggle button. The button is listed in <code>w-click-outside-include</code> so clicking it does not immediately re-close the panel that it just opened.</p>
+<pre class="code-block"><code>&lt;button id="toggle" class="w-btn w-btn-outlined"&gt;Toggle panel&lt;/button&gt;
+
+&lt;div
+  id="panel"
+  class="w-card"
+  w-click-outside
+  w-click-outside-include="#toggle"
+&gt;
+  &lt;p&gt;Click outside (but not on the toggle) to close me.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+  const toggle = document.getElementById('toggle');
+  const panel = document.getElementById('panel');
+
+  toggle.addEventListener('click', () =&gt; &#123;
+    panel.classList.toggle('is-open');
+  &#125;);
+
+  panel.addEventListener('w-click-outside', () =&gt; &#123;
+    panel.classList.remove('is-open');
+  &#125;);
+&lt;/script&gt;</code></pre>

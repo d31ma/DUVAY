@@ -1,0 +1,86 @@
+<h1>CSS Utilities</h1>
+<p>DuVay ships its own compact utility layer &#8212; plain classes for spacing, display, flex, text, sizing, borders, and shadows. Utilities are zero-dependency and work without JavaScript, so you can compose layouts directly in your markup alongside DuVay's semantic components. Tailwind and UnoCSS remain optional coexistence paths for teams that already use them.</p>
+
+<h2>Native utilities</h2>
+<p>The utility classes are the primary way to tweak layout and spacing without writing custom CSS. Combine display, flex, gap, and spacing classes to assemble a row in one element.</p>
+<div class="code-block"><code>&lt;div class="d-flex justify-space-between align-center ga-4 pa-4"&gt;
+  &lt;span class="text-h6"&gt;Title&lt;/span&gt;
+  &lt;button class="w-btn w-btn-filled"&gt;Action&lt;/button&gt;
+&lt;/div&gt;</code></div>
+<demo-compare>
+  <div slot="css">
+    <div class="d-flex justify-space-between align-center ga-4 pa-4 rounded-lg elevation-1">
+      <span class="text-h6">Title</span>
+      <button class="w-btn w-btn-filled">Action</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="d-flex justify-space-between align-center ga-4 pa-4 rounded-lg elevation-1">
+      <span class="text-h6">Title</span>
+      <button class="w-btn w-btn-filled">Action</button>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Categories</h2>
+<p>DuVay's utility families mirror the most common styling needs:</p>
+<ul>
+  <li><strong>Spacing</strong> &#8212; margin and padding on every side (<code>ma-4</code>, <code>pa-4</code>, <code>px-2</code>, <code>pt-6</code>) and grid gaps (<code>ga-4</code>, <code>gr-2</code>, <code>gc-3</code>).</li>
+  <li><strong>Display</strong> &#8212; <code>d-flex</code>, <code>d-grid</code>, <code>d-block</code>, <code>d-inline-flex</code>, <code>d-none</code>.</li>
+  <li><strong>Flex</strong> &#8212; <code>flex-column</code>, <code>flex-wrap</code>, <code>justify-space-between</code>, <code>align-center</code>, <code>flex-grow-1</code>.</li>
+  <li><strong>Text</strong> &#8212; type scale (<code>text-h6</code>, <code>text-body-1</code>), alignment (<code>text-center</code>), weight (<code>font-weight-bold</code>), and emphasis (<code>text-medium-emphasis</code>).</li>
+  <li><strong>Sizing</strong> &#8212; <code>w-100</code>, <code>h-100</code>, <code>w-50</code>, <code>fill-height</code>.</li>
+  <li><strong>Borders &amp; shadows</strong> &#8212; <code>rounded</code>, <code>rounded-lg</code>, <code>rounded-pill</code>, <code>elevation-1</code> through <code>elevation-6</code>.</li>
+</ul>
+<p>Every utility resolves to a design token, so values stay consistent with components and respect the active theme. See the full list on the <a href="/docs/utilities">Utilities</a> reference.</p>
+
+<h2>Color utilities</h2>
+<p>Background and text color utilities draw from the semantic token palette, so they shift automatically across light, dark, and high-contrast themes.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="d-flex ga-2 flex-wrap">
+      <span class="bg-primary pa-2 rounded">Primary</span>
+      <span class="bg-secondary pa-2 rounded">Secondary</span>
+      <span class="text-success font-weight-bold pa-2">Success text</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="d-flex ga-2 flex-wrap">
+      <span class="bg-primary pa-2 rounded">Primary</span>
+      <span class="bg-secondary pa-2 rounded">Secondary</span>
+      <span class="text-success font-weight-bold pa-2">Success text</span>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Working with other utility systems</h2>
+<p>DuVay's native utilities cover the common cases, but you can layer a dedicated utility engine on top for highly custom, one-off work. Import <code>duvay.css</code> first, then let the other system generate atomic classes that reference the same CSS custom properties. The four guides below cover each path.</p>
+<div class="w-grid-row">
+  <div class="w-grid-col-12 w-grid-col-md-6">
+    <div class="w-card w-card-body">
+      <h3><a href="/docs/features/css-utilities/overview">Overview</a></h3>
+      <p>How DuVay's native spacing, display, flex, text, sizing, border, and shadow utilities compose into layouts without custom CSS.</p>
+    </div>
+  </div>
+  <div class="w-grid-col-12 w-grid-col-md-6">
+    <div class="w-card w-card-body">
+      <h3><a href="/docs/features/css-utilities/tailwindcss">TailwindCSS</a></h3>
+      <p>Run Tailwind beside DuVay, mapping Tailwind's theme keys to DuVay tokens so spacing, color, and radius stay in sync.</p>
+    </div>
+  </div>
+  <div class="w-grid-col-12 w-grid-col-md-6">
+    <div class="w-card w-card-body">
+      <h3><a href="/docs/features/css-utilities/unocss-tailwind-preset">UnoCSS + presetWind4</a></h3>
+      <p>Generate Tailwind-compatible atomic utilities from DuVay's token values using UnoCSS.</p>
+    </div>
+  </div>
+  <div class="w-grid-col-12 w-grid-col-md-6">
+    <div class="w-card w-card-body">
+      <h3><a href="/docs/features/css-utilities/unocss-vuetify-preset">UnoCSS + Vuetify preset</a></h3>
+      <p>Reproduce familiar Vuetify utility names during migration while DuVay provides the component layer.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Accessibility</h2>
+<p>Utilities are presentational. When you use spacing and display classes to build layouts, keep the underlying markup semantic &#8212; correct heading order, real buttons and links, and a logical tab order &#8212; so the visual arrangement never overrides the document structure.</p>

@@ -1,0 +1,64 @@
+{
+  "name": "duvay-css",
+  "version": "26.24.12",
+  "description": "DuVay — A zero-dependency CSS framework with design tokens, theming, and accessible web components.",
+  "type": "module",
+  "main": "dist/duvay.css",
+  "style": "dist/duvay.css",
+  "unpkg": "dist/duvay.min.css",
+  "jsdelivr": "dist/duvay.min.css",
+  "exports": {
+    ".": "./dist/duvay.css",
+    "./duvay.css": "./dist/duvay.css",
+    "./duvay.min.css": "./dist/duvay.min.css",
+    "./core.css": "./dist/core.css",
+    "./core.min.css": "./dist/core.min.css",
+    "./components/*.css": "./dist/components/*.css",
+    "./grid.css": "./dist/grid.css",
+    "./layout.css": "./dist/layout.css",
+    "./navigation.css": "./dist/navigation.css",
+    "./content.css": "./dist/content.css",
+    "./feedback.css": "./dist/feedback.css",
+    "./forms.css": "./dist/forms.css",
+    "./duvay.js": "./dist/duvay.js",
+    "./duvay.min.js": "./dist/duvay.min.js",
+    "./duvay-wc.js": "./dist/duvay-wc.js",
+    "./duvay-wc.min.js": "./dist/duvay-wc.min.js",
+    "./duvay-motion.js": "./dist/duvay-motion.js",
+    "./src/*": "./src/*"
+  },
+  "files": [
+    "src/",
+    "dist/"
+  ],
+  "scripts": {
+    "build": "bun scripts/build.mjs",
+    "prepublishOnly": "bun run build",
+    "docs:dev": "bun run build && bun run --cwd website preview",
+    "docs:build": "bun run build && bun run --cwd website bundle",
+    "test:components": "bun --cwd website playwright test --config ../playwright.config.js"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "design-tokens",
+    "design-system",
+    "theme",
+    "lightweight",
+    "web-components",
+    "zero-dependency",
+    "accessible"
+  ],
+  "license": "MIT",
+  "homepage": "https://duvay.del.ma",
+  "bugs": {
+    "url": "https://github.com/d31ma/duvay/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d31ma/duvay.git"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

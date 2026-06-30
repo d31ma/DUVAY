@@ -1,0 +1,9 @@
+<h1>CSS Layers</h1>
+<p>DuVay uses CSS cascade layers to make overrides predictable. Layers are ordered from least to most specific: reset, elements, components, utilities.</p>
+<div class="code-block"><code>@layer w-reset, w-elements, w-components, w-utilities;
+
+@layer w-utilities &#123;
+  .text-center &#123; text-align: center; &#125;
+&#125;</code></div>
+<h2>Author layers</h2>
+<p>Put your own styles in an author layer that comes after w-utilities, or use unlayered styles for intentional overrides.</p>

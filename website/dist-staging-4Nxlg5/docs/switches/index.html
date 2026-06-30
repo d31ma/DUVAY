@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-08295bcc-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-b4fbe595-08295bcc-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-a4d7e0e9-08295bcc-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-d64b37c2-08295bcc-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-3be2f085-08295bcc-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-0d259174-08295bcc-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-890cc243-08295bcc-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-0dc75327-08295bcc-0" />
+        </svg>
+      </span>
+      <span id="ty-dcb2788c-08295bcc-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-a7056a4f-08295bcc-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-cbafd2fa-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-52f6f39f-08295bcc-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-812b783f-08295bcc-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-f09eaa22-08295bcc-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-dbf069c6-08295bcc-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-979331ec-08295bcc-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-0ed833ba-08295bcc-0">
+        <span data-w-theme-icon="" id="ty-c3d50d1f-08295bcc-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-83e372f9-08295bcc-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-4e48c197-08295bcc-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-f37c287b-08295bcc-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-e3824974-0">
+  <div id="ty-89d6b524-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-b43897f2-89d6b524-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-83c42571-89d6b524-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-af97cd63-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1210d91e-89d6b524-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-e207133f-89d6b524-0">
+        <li id="ty-3dabda0f-89d6b524-0"><a href="/docs/introduction" id="ty-d25f7978-89d6b524-0">Introduction</a></li>
+        <li id="ty-f10e9a79-89d6b524-0"><a href="/docs/install" id="ty-5a1e204d-89d6b524-0">Install</a></li>
+        <li id="ty-3dc0c6ff-89d6b524-0"><a href="/docs/getting-started" id="ty-99ef3a1f-89d6b524-0">Getting started</a></li>
+        <li id="ty-71a9a1d7-89d6b524-0"><a href="/docs/download" id="ty-cc0c0746-89d6b524-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-21a40f8f-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-d7e5e93e-89d6b524-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-1a824d30-89d6b524-0">
+        <li id="ty-be1ddf6f-89d6b524-0"><a href="/docs/common-concepts" id="ty-c9e132d3-89d6b524-0">Common concepts</a></li>
+        <li id="ty-fc2d31cc-89d6b524-0"><a href="/docs/features" id="ty-7acf26e0-89d6b524-0">Features</a></li>
+        <li id="ty-480e6e12-89d6b524-0"><a href="/docs/features/icon-fonts" id="ty-1456473b-89d6b524-0">Icons</a></li>
+        <li id="ty-b4db20a7-89d6b524-0"><a href="/docs/grid" id="ty-cd5fa49b-89d6b524-0">Grid</a></li>
+        <li id="ty-7214abd4-89d6b524-0"><a href="/docs/navigation" id="ty-e42e9b60-89d6b524-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c6b6d141-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-1847ae0e-89d6b524-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-23693d6d-89d6b524-0">
+        <li id="ty-12829b00-89d6b524-0"><a href="/docs/components" id="ty-27c42b62-89d6b524-0">Components overview</a></li>
+        <li id="ty-e6eb3e00-89d6b524-0"><a href="/docs/alerts" id="ty-523401df-89d6b524-0">Alerts</a></li>
+        <li id="ty-ab4e770d-89d6b524-0"><a href="/docs/avatars" id="ty-f00d3c63-89d6b524-0">Avatars</a></li>
+        <li id="ty-3325c65c-89d6b524-0"><a href="/docs/badges" id="ty-43c586ee-89d6b524-0">Badges</a></li>
+        <li id="ty-b258d83e-89d6b524-0"><a href="/docs/breadcrumbs" id="ty-81cc1e15-89d6b524-0">Breadcrumbs</a></li>
+        <li id="ty-12f97e4a-89d6b524-0"><a href="/docs/buttons" id="ty-c90c304e-89d6b524-0">Buttons</a></li>
+        <li id="ty-980c9923-89d6b524-0"><a href="/docs/cards" id="ty-10a9388f-89d6b524-0">Cards</a></li>
+        <li id="ty-45812556-89d6b524-0"><a href="/docs/chips" id="ty-5d6e9a63-89d6b524-0">Chips</a></li>
+        <li id="ty-bc7eae4a-89d6b524-0"><a href="/docs/command" id="ty-2cd8727a-89d6b524-0">Command palette</a></li>
+        <li id="ty-0175dc10-89d6b524-0"><a href="/docs/dialog" id="ty-f928f138-89d6b524-0">Dialog</a></li>
+        <li id="ty-a9f20c0d-89d6b524-0"><a href="/docs/expand" id="ty-749f50be-89d6b524-0">Expand</a></li>
+        <li id="ty-79110b61-89d6b524-0"><a href="/docs/feedback" id="ty-11f0089f-89d6b524-0">Feedback</a></li>
+        <li id="ty-c652635d-89d6b524-0"><a href="/docs/inputs" id="ty-b72a8fda-89d6b524-0">Inputs</a></li>
+        <li id="ty-e73b04f6-89d6b524-0"><a href="/docs/layout-primitives" id="ty-08babbfb-89d6b524-0">Layout primitives</a></li>
+        <li id="ty-26670ff3-89d6b524-0"><a href="/docs/lists" id="ty-7219032d-89d6b524-0">Lists</a></li>
+        <li id="ty-5e83f164-89d6b524-0"><a href="/docs/menus" id="ty-130a365d-89d6b524-0">Menus</a></li>
+        <li id="ty-68217b17-89d6b524-0"><a href="/docs/overlays" id="ty-02bbb55b-89d6b524-0">Overlays</a></li>
+        <li id="ty-ce47817c-89d6b524-0"><a href="/docs/color-pickers" id="ty-58533e48-89d6b524-0">Color Pickers</a></li>
+        <li id="ty-f2fa1af6-89d6b524-0"><a href="/docs/date-pickers" id="ty-faedf593-89d6b524-0">Date Pickers</a></li>
+        <li id="ty-993dbe03-89d6b524-0"><a href="/docs/time-pickers" id="ty-ec5cadbf-89d6b524-0">Time Pickers</a></li>
+        <li id="ty-9aebd996-89d6b524-0"><a href="/docs/slider" id="ty-ac3f097f-89d6b524-0">Slider</a></li>
+        <li id="ty-d426e62b-89d6b524-0"><a href="/docs/snackbar" id="ty-48915b8e-89d6b524-0">Snackbar</a></li>
+        <li id="ty-b45df2cb-89d6b524-0"><a href="/docs/surfaces" id="ty-fdb4d1e5-89d6b524-0">Surfaces</a></li>
+        <li id="ty-07bdda5f-89d6b524-0"><a href="/docs/tables" id="ty-85ed06b2-89d6b524-0">Tables</a></li>
+        <li id="ty-c049801d-89d6b524-0"><a href="/docs/tabs" id="ty-539d3be5-89d6b524-0">Tabs</a></li>
+        <li id="ty-f3e2912a-89d6b524-0"><a href="/docs/tooltips" id="ty-b59a1ded-89d6b524-0">Tooltips</a></li>
+        <li id="ty-d2b4c7ad-89d6b524-0"><a href="/docs/workflows" id="ty-61a7808c-89d6b524-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-9957f993-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-96aa862f-89d6b524-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-8605b8e8-89d6b524-0">
+        <li id="ty-187be84d-89d6b524-0"><a href="/docs/themes" id="ty-f3450dfc-89d6b524-0">Themes</a></li>
+        <li id="ty-3ec23692-89d6b524-0"><a href="/docs/utilities" id="ty-6359703d-89d6b524-0">Utilities</a></li>
+        <li id="ty-afe5cfc5-89d6b524-0"><a href="/docs/styles-and-animations" id="ty-5dc4b2fd-89d6b524-0">Styles and animations</a></li>
+        <li id="ty-eb8334dd-89d6b524-0"><a href="/docs/animations" id="ty-1650a90a-89d6b524-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-6699c8b6-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-ec4d2977-89d6b524-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-72aa2279-89d6b524-0">
+        <li id="ty-df439c86-89d6b524-0"><a href="/docs/api" id="ty-341be713-89d6b524-0">API</a></li>
+        <li id="ty-0e20c39d-89d6b524-0"><a href="/docs/directives" id="ty-23264292-89d6b524-0">Directives</a></li>
+        <li id="ty-64d8527f-89d6b524-0"><a href="/docs/labs" id="ty-0093f894-89d6b524-0">Labs</a></li>
+        <li id="ty-075159c4-89d6b524-0"><a href="/docs/resources" id="ty-78262788-89d6b524-0">Resources</a></li>
+        <li id="ty-26efd5fb-89d6b524-0"><a href="/docs/roadmap" id="ty-ac622e96-89d6b524-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-7e6e9cca-89d6b524-0">
+      <h3 class="docs-sidebar-subhead" id="ty-59ca35a8-89d6b524-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-3eb407c0-89d6b524-0">
+        <li id="ty-95895856-89d6b524-0"><a href="/docs/about" id="ty-5c38afd6-89d6b524-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-dc1a1fdb-0"></button>
+  <main class="docs-main" id="ty-af856f83-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-b0991238-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-6ae7e22e-0">
+      <div id="ty-layout-slot"><h1 id="ty-4038100b-0">Switches</h1><p id="ty-94786c7e-0"><code id="ty-be588e0f-0">w-switch</code> is a boolean toggle &#8212; an accessible checkbox styled as an on/off control. Use it for settings that take effect immediately. Style a native checkbox with the <code id="ty-e5a34b8d-0">.w-switch</code> classes, or use the <code id="ty-088f002b-0">&lt;w-switch&gt;</code> web component for colors, sizes, loading, hints, and the inset/flat variants.</p><h2 id="ty-96f4c5f2-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-4f75b87f-0">
+    <div class="w-stack" id="ty-7295eacb-0">
+      <label class="w-switch w-switch--md" id="ty-e81fe1f3-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-fe05d3ba-0" /><span class="w-switch-track" aria-hidden="true" id="ty-addb3fad-0"><span class="w-switch-thumb" id="ty-9654899b-0"></span></span><span class="w-switch-label" id="ty-542aadac-0">Auto-renew</span></label>
+      <label class="w-switch w-switch--md" id="ty-a4dfa000-0"><input class="w-switch-input" type="checkbox" id="ty-3d805366-0" /><span class="w-switch-track" aria-hidden="true" id="ty-1f77fa71-0"><span class="w-switch-thumb" id="ty-ab28ee94-0"></span></span><span class="w-switch-label" id="ty-a6788613-0">Email notifications</span></label>
+      <label class="w-switch w-switch--md" id="ty-6fa1f460-0"><input class="w-switch-input" type="checkbox" disabled="" id="ty-cb653836-0" /><span class="w-switch-track" aria-hidden="true" id="ty-27eb8b18-0"><span class="w-switch-thumb" id="ty-19bd1ec4-0"></span></span><span class="w-switch-label" id="ty-7256a535-0">Locked setting</span></label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-a887d3ef-0">
+    <div class="w-stack" id="ty-0d49fbe6-0">
+      <w-switch checked="" label="Auto-renew" id="ty-84f51179-0"></w-switch>
+      <w-switch label="Email notifications" id="ty-e3a17dd9-0"></w-switch>
+      <w-switch disabled="" label="Locked setting" id="ty-d8d084d9-0"></w-switch>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-310104e9-0">Colors</h2><p id="ty-26dfb9a9-0">Set <code id="ty-4c430617-0">color</code> to tint the track and accent when on.</p><demo-compare >
+  <div slot="css" id="ty-97be1edb-0">
+    <div class="w-stack" id="ty-17248ba6-0">
+      <label class="w-switch w-switch--md w-switch--primary" id="ty-ed4b476e-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-1e64fd4a-0" /><span class="w-switch-track" aria-hidden="true" id="ty-499b3c0a-0"><span class="w-switch-thumb" id="ty-0766051f-0"></span></span><span class="w-switch-label" id="ty-1105ef3c-0">Primary</span></label>
+      <label class="w-switch w-switch--md w-switch--success" id="ty-eb02165f-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-c654969b-0" /><span class="w-switch-track" aria-hidden="true" id="ty-3c3d4d23-0"><span class="w-switch-thumb" id="ty-ca94596d-0"></span></span><span class="w-switch-label" id="ty-c3031348-0">Success</span></label>
+      <label class="w-switch w-switch--md w-switch--warning" id="ty-23897501-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-1e59ba44-0" /><span class="w-switch-track" aria-hidden="true" id="ty-61073179-0"><span class="w-switch-thumb" id="ty-8bd3171d-0"></span></span><span class="w-switch-label" id="ty-c42aaba7-0">Warning</span></label>
+      <label class="w-switch w-switch--md w-switch--error" id="ty-08939bd0-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-dc8ffe88-0" /><span class="w-switch-track" aria-hidden="true" id="ty-420f512d-0"><span class="w-switch-thumb" id="ty-e0662dcc-0"></span></span><span class="w-switch-label" id="ty-8f3fbafb-0">Error</span></label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-49e282ce-0">
+    <div class="w-stack" id="ty-e7067ffe-0">
+      <w-switch checked="" color="primary" label="Primary" id="ty-f0c28aa0-0"></w-switch>
+      <w-switch checked="" color="success" label="Success" id="ty-acb7b8bd-0"></w-switch>
+      <w-switch checked="" color="warning" label="Warning" id="ty-202a570b-0"></w-switch>
+      <w-switch checked="" color="error" label="Error" id="ty-ac7d035f-0"></w-switch>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-c38d4f98-0">Sizes</h2><p id="ty-8f2c65cd-0">Four sizes from <code id="ty-b2b3fd6e-0">xs</code> to <code id="ty-dea36a2d-0">lg</code>; omit for the default (<code id="ty-dc575a99-0">md</code>).</p><demo-compare >
+  <div slot="css" id="ty-9966dced-0">
+    <div class="w-stack" id="ty-07af7d84-0">
+      <label class="w-switch w-switch--xs" id="ty-55d9146d-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-c327737a-0" /><span class="w-switch-track" aria-hidden="true" id="ty-47d6d35c-0"><span class="w-switch-thumb" id="ty-12ec8200-0"></span></span><span class="w-switch-label" id="ty-93f4374e-0">Extra small</span></label>
+      <label class="w-switch w-switch--sm" id="ty-0cfc91b3-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-04de4c32-0" /><span class="w-switch-track" aria-hidden="true" id="ty-a0e205e5-0"><span class="w-switch-thumb" id="ty-4dbc35a3-0"></span></span><span class="w-switch-label" id="ty-60b108d7-0">Small</span></label>
+      <label class="w-switch w-switch--md" id="ty-3e739179-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-6f37f77e-0" /><span class="w-switch-track" aria-hidden="true" id="ty-85d5fd29-0"><span class="w-switch-thumb" id="ty-7b613fbb-0"></span></span><span class="w-switch-label" id="ty-ec07e7f1-0">Medium</span></label>
+      <label class="w-switch w-switch--lg" id="ty-7f7ab4bc-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-4512cd2d-0" /><span class="w-switch-track" aria-hidden="true" id="ty-c1317c3e-0"><span class="w-switch-thumb" id="ty-7986b51a-0"></span></span><span class="w-switch-label" id="ty-dbc4cb1e-0">Large</span></label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-b0c69638-0">
+    <div class="w-stack" id="ty-06dacd76-0">
+      <w-switch checked="" size="xs" label="Extra small" id="ty-1714c9ac-0"></w-switch>
+      <w-switch checked="" size="sm" label="Small" id="ty-21983c49-0"></w-switch>
+      <w-switch checked="" size="md" label="Medium" id="ty-53239a03-0"></w-switch>
+      <w-switch checked="" size="lg" label="Large" id="ty-ffb4d1ac-0"></w-switch>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-d015020a-0">Inset</h2><p id="ty-ff242c07-0">Add <code id="ty-2aca6f14-0">inset</code> so the track fully wraps the thumb.</p><demo-compare >
+  <div slot="css" id="ty-52f51170-0">
+    <div class="w-stack" id="ty-f698d816-0">
+      <label class="w-switch w-switch--md w-switch--inset" id="ty-7dc58bce-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-31756d72-0" /><span class="w-switch-track" aria-hidden="true" id="ty-7c91855b-0"><span class="w-switch-thumb" id="ty-bd608fb5-0"></span></span><span class="w-switch-label" id="ty-cfb60396-0">Inset</span></label>
+      <label class="w-switch w-switch--md w-switch--inset w-switch--flat" id="ty-7d7c9359-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-d662e865-0" /><span class="w-switch-track" aria-hidden="true" id="ty-f254ae80-0"><span class="w-switch-thumb" id="ty-0096d159-0"></span></span><span class="w-switch-label" id="ty-b6e990ac-0">Flat inset</span></label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d89951ed-0">
+    <div class="w-stack" id="ty-c6326e33-0">
+      <w-switch checked="" inset="" label="Inset" id="ty-f8e9051f-0"></w-switch>
+      <w-switch checked="" inset="" flat="" label="Flat inset" id="ty-d94e3616-0"></w-switch>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-21b942de-0">Loading</h2><p id="ty-ae640a7a-0">Add <code id="ty-7e061609-0">loading</code> to show a spinner in the thumb and block toggling while a request is in flight.</p><demo-compare >
+  <div slot="css" id="ty-df2e91ce-0">
+    <label class="w-switch w-switch--md w-switch--loading" id="ty-9f1a76eb-0"><input class="w-switch-input" type="checkbox" checked="" aria-busy="true" id="ty-6d484e65-0" /><span class="w-switch-track" aria-hidden="true" id="ty-c265e0be-0"><span class="w-switch-thumb" id="ty-fc0631fe-0"><span class="w-switch-spinner" id="ty-f97a6a25-0"></span></span></span><span class="w-switch-label" id="ty-49b93d03-0">Saving&#8230;</span></label>
+  </div>
+  <div slot="wc" id="ty-2e4db8a8-0">
+    <w-switch checked="" loading="" label="Saving&#8230;" id="ty-5d06c365-0"></w-switch>
+  </div>
+</demo-compare><h2 id="ty-3c99d28b-0">Hint &amp; error</h2><p id="ty-5fd20520-0">Add <code id="ty-74ac0a04-0">hint</code> for helper text, or <code id="ty-c42d366f-0">error</code> to surface a validation message and tint the control.</p><demo-compare >
+  <div slot="css" id="ty-3b8f7c81-0">
+    <div class="w-stack" id="ty-a58e7520-0">
+      <label class="w-switch w-switch--md" id="ty-4952ee0b-0"><input class="w-switch-input" type="checkbox" checked="" id="ty-2690df31-0" /><span class="w-switch-track" aria-hidden="true" id="ty-678bc8b5-0"><span class="w-switch-thumb" id="ty-c8b03f64-0"></span></span><span class="w-switch-text" id="ty-ff616843-0"><span class="w-switch-label" id="ty-93fed214-0">Marketing emails</span><span class="w-switch-hint" id="ty-15c1ad83-0">You can change this anytime</span></span></label>
+      <label class="w-switch w-switch--md w-switch--error" id="ty-6893eafc-0"><input class="w-switch-input" type="checkbox" aria-invalid="true" id="ty-f4f01bc6-0" /><span class="w-switch-track" aria-hidden="true" id="ty-8cf6c900-0"><span class="w-switch-thumb" id="ty-ef7170cb-0"></span></span><span class="w-switch-text" id="ty-66bde4b6-0"><span class="w-switch-label" id="ty-6d3ff5d9-0">Accept terms</span><span class="w-switch-error" id="ty-4dc605d4-0">You must accept to continue</span></span></label>
+    </div>
+  </div>
+  <div slot="wc" id="ty-0a3c8b99-0">
+    <div class="w-stack" id="ty-ef7a4747-0">
+      <w-switch checked="" label="Marketing emails" hint="You can change this anytime" id="ty-436ab055-0"></w-switch>
+      <w-switch label="Accept terms" error="You must accept to continue" id="ty-4cca67bf-0"></w-switch>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-3056855e-0">Attributes</h2><table class="w-table api-table" id="ty-14d2d1fc-0">
+  <thead id="ty-126c45d9-0">
+    <tr id="ty-c7a07136-0"><th id="ty-4b7d09af-0">Attribute</th><th id="ty-fe22a5b5-0">Type</th><th id="ty-fbe26b75-0">Default</th><th id="ty-f076d6bb-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-0aa033e8-0">
+    <tr id="ty-69c64b82-0"><td id="ty-7b9be483-0"><code id="ty-8f6ab16a-0">checked</code></td><td id="ty-0412b400-0">boolean</td><td id="ty-5a638cd8-0"><code id="ty-cf65aa9c-0">false</code></td><td id="ty-475aaf20-0">On/off state (reflected; also a property).</td></tr>
+    <tr id="ty-6efa808f-0"><td id="ty-b3613cc7-0"><code id="ty-5369f6e4-0">label</code></td><td id="ty-432318de-0">string</td><td id="ty-436268df-0">&#8212;</td><td id="ty-94744b90-0">Label text (or use the default slot).</td></tr>
+    <tr id="ty-9864b1d7-0"><td id="ty-826a0990-0"><code id="ty-373293ba-0">color</code></td><td id="ty-1e6875dd-0">string</td><td id="ty-b38f5000-0"><code id="ty-2f1e80a0-0">primary</code></td><td id="ty-e124bce5-0"><code id="ty-05c05db5-0">primary</code>, <code id="ty-a17bce7e-0">success</code>, <code id="ty-6fcd5656-0">warning</code>, or <code id="ty-9da09eb1-0">error</code>.</td></tr>
+    <tr id="ty-c2976f17-0"><td id="ty-c4f32d9d-0"><code id="ty-88de0788-0">size</code></td><td id="ty-0896ac42-0">string</td><td id="ty-d57c4e85-0"><code id="ty-f9ec74e0-0">md</code></td><td id="ty-5a15b3da-0"><code id="ty-8004621c-0">xs</code>, <code id="ty-c7c841ba-0">sm</code>, <code id="ty-c760224e-0">md</code>, or <code id="ty-e9f6fde1-0">lg</code>.</td></tr>
+    <tr id="ty-7dcf070e-0"><td id="ty-12dba951-0"><code id="ty-ce843c9f-0">inset</code></td><td id="ty-8ccc2e6f-0">boolean</td><td id="ty-fb7481f9-0"><code id="ty-dc53e4fd-0">false</code></td><td id="ty-ec600099-0">Track fully encloses the thumb.</td></tr>
+    <tr id="ty-4d6af6c9-0"><td id="ty-ac93d90c-0"><code id="ty-0cf632d7-0">flat</code></td><td id="ty-600ac631-0">boolean</td><td id="ty-12cd0cb6-0"><code id="ty-71ef9cce-0">false</code></td><td id="ty-d3e89332-0">Thumb without elevation.</td></tr>
+    <tr id="ty-53156917-0"><td id="ty-3e4ec327-0"><code id="ty-3dc9b5b4-0">loading</code></td><td id="ty-abf44e73-0">boolean</td><td id="ty-4b1bb681-0"><code id="ty-d9c02075-0">false</code></td><td id="ty-be3ffe85-0">Show a spinner in the thumb and block toggling.</td></tr>
+    <tr id="ty-f6191fb6-0"><td id="ty-7190a062-0"><code id="ty-cd78aa55-0">disabled</code></td><td id="ty-619f07a4-0">boolean</td><td id="ty-874c96c6-0"><code id="ty-dfd00665-0">false</code></td><td id="ty-ab740e6d-0">Non-interactive and dimmed.</td></tr>
+    <tr id="ty-e3663430-0"><td id="ty-33401172-0"><code id="ty-cebd2043-0">readonly</code></td><td id="ty-d8315ad9-0">boolean</td><td id="ty-a89ed2a7-0"><code id="ty-614a4392-0">false</code></td><td id="ty-e6344975-0">Non-interactive without dimming.</td></tr>
+    <tr id="ty-328719e4-0"><td id="ty-c6477cc7-0"><code id="ty-8faa7f54-0">hint</code></td><td id="ty-151d3afe-0">string</td><td id="ty-d8000fed-0">&#8212;</td><td id="ty-c26714e5-0">Helper text below the label.</td></tr>
+    <tr id="ty-0c01708d-0"><td id="ty-8074622b-0"><code id="ty-f7b72718-0">error</code></td><td id="ty-e26e2de1-0">string</td><td id="ty-d60cc07b-0">&#8212;</td><td id="ty-08d09714-0">Error text; tints the control red.</td></tr>
+    <tr id="ty-4e6105de-0"><td id="ty-5fcdda17-0"><code id="ty-a0857bc6-0">hide-details</code></td><td id="ty-887e2873-0">boolean</td><td id="ty-f02fca8e-0"><code id="ty-a16e6d85-0">false</code></td><td id="ty-7460a474-0">Suppress hint/error text.</td></tr>
+    <tr id="ty-3997d8eb-0"><td id="ty-6793c7e3-0"><code id="ty-c59c99c2-0">name</code>, <code id="ty-509bd570-0">value</code></td><td id="ty-57c57b08-0">string</td><td id="ty-bb4a52d7-0">&#8212; / <code id="ty-11160a67-0">on</code></td><td id="ty-941734e8-0">Form field name and value when checked.</td></tr>
+  </tbody>
+</table><h2 id="ty-66a67d99-0">Events</h2><table class="w-table api-table" id="ty-67a3b5f3-0">
+  <thead id="ty-2a6e4868-0">
+    <tr id="ty-955f6764-0"><th id="ty-33345960-0">Event</th><th id="ty-d4fad13b-0">Detail</th><th id="ty-a077a5dd-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-a3493d3f-0">
+    <tr id="ty-45114958-0"><td id="ty-9c0c9f5a-0"><code id="ty-5293a170-0">change</code></td><td id="ty-654361de-0"><code id="ty-54c3c170-0">&#123; checked, value, name &#125;</code></td><td id="ty-4ba58819-0">Fired when the switch is toggled.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-7b8a2e1d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-a948f4e7-0"></aside>
+</div>
+</body>
+</html>
+

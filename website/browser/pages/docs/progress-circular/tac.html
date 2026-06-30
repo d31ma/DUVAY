@@ -1,0 +1,44 @@
+<h1>Progress circular</h1>
+<p><code>w-progress-circular</code> is a ring progress indicator. Set <code>size</code>, stroke <code>width</code>, <code>color</code>, <code>bg-color</code>, or <code>rotate</code>; slot content renders centered. Set <code>indeterminate</code> for an unknown duration.</p>
+
+<h2>Determinate</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4" style="align-items:center">
+      <div class="w-progress-circular" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+        <svg viewBox="0 0 48 48" width="100%" height="100%">
+          <circle class="w-progress-track" cx="24" cy="24" r="20"></circle>
+          <circle class="w-progress-fill" cx="24" cy="24" r="20" stroke-dasharray="125.66" stroke-dashoffset="50.26"></circle>
+        </svg>
+      </div>
+      <div class="w-progress-circular" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:64px;height:64px;--w-progress-color:var(--w-success);--w-progress-width:6">
+        <svg viewBox="0 0 48 48" width="100%" height="100%">
+          <circle class="w-progress-track" cx="24" cy="24" r="20"></circle>
+          <circle class="w-progress-fill" cx="24" cy="24" r="20" stroke-dasharray="125.66" stroke-dashoffset="31.42"></circle>
+        </svg>
+        <div class="w-progress-content">75%</div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4" style="align-items:center">
+      <w-progress-circular value="60"></w-progress-circular>
+      <w-progress-circular value="75" size="64" width="6" color="success">75%</w-progress-circular>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Indeterminate</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-progress-circular w-progress-circular--indeterminate">
+      <svg viewBox="0 0 48 48" width="100%" height="100%">
+        <circle class="w-progress-track" cx="24" cy="24" r="20"></circle>
+        <circle class="w-progress-fill" cx="24" cy="24" r="20" stroke-dasharray="125.66"></circle>
+      </svg>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-progress-circular indeterminate></w-progress-circular>
+  </div>
+</demo-compare>

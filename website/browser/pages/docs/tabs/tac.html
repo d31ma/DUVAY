@@ -1,0 +1,286 @@
+<h1>Tabs</h1>
+<p>Organize content into switchable panels. DuVay tabs support alignment, equal-width layouts, vertical orientation, stacked icons, overflow pagination, theming, and an animated selection indicator that glides between tabs.</p>
+<p>The indicator is progressively enhanced: hand-authored markup shows a static underline, while the <code>&lt;w-tabs&gt;</code> web component renders an animated slider (and falls back to the underline when JavaScript is absent). Pair tabs with <code>&lt;w-tabs-window&gt;</code> for the matching content panes.</p>
+
+<h2>Basic tabs</h2>
+<p>Mark the selected tab with the <code>active</code> class, or set <code>value</code> on <code>&lt;w-tabs&gt;</code> to the active tab's <code>value</code>. The component emits a <code>change</code> event carrying the new <code>value</code> in <code>event.detail</code> when the selection changes.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs">
+      <button class="w-tab active">Account</button>
+      <button class="w-tab">Security</button>
+      <button class="w-tab">Notifications</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="account">
+      <w-tab value="account">Account</w-tab>
+      <w-tab value="security">Security</w-tab>
+      <w-tab value="notifications">Notifications</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Tabs with content</h2>
+<p><code>&lt;w-tabs-window&gt;</code> and <code>&lt;w-tabs-window-item&gt;</code> are Vuetify-named aliases for <code>&lt;w-window&gt;</code> / <code>&lt;w-window-item&gt;</code>. Listen for <code>change</code> on the tabs and set the window's <code>value</code> to the active index to keep them in sync.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs">
+      <button class="w-tab active">Overview</button>
+      <button class="w-tab">Details</button>
+    </div>
+    <div class="w-tab-panel">
+      <p>Overview content goes here.</p>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="overview" data-window="demo-window-basic">
+      <w-tab value="overview">Overview</w-tab>
+      <w-tab value="details">Details</w-tab>
+      <w-tab value="activity">Activity</w-tab>
+    </w-tabs>
+    <w-tabs-window id="demo-window-basic">
+      <w-tabs-window-item><div class="pa-4">Overview — the big picture at a glance.</div></w-tabs-window-item>
+      <w-tabs-window-item><div class="pa-4">Details — every field, spelled out.</div></w-tabs-window-item>
+      <w-tabs-window-item><div class="pa-4">Activity — a log of recent changes.</div></w-tabs-window-item>
+    </w-tabs-window>
+  </div>
+</demo-compare>
+
+<h2>Alignment</h2>
+<p>Use <code>align-tabs</code> (<code>start</code> · <code>center</code> · <code>end</code>) to position the strip. With CSS classes, add <code>w-tabs--align-center</code> or <code>w-tabs--align-end</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs--align-center">
+      <button class="w-tab active">Overview</button>
+      <button class="w-tab">Activity</button>
+      <button class="w-tab">Settings</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="overview" align-tabs="center">
+      <w-tab value="overview">Overview</w-tab>
+      <w-tab value="activity">Activity</w-tab>
+      <w-tab value="settings">Settings</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Fixed and grow</h2>
+<p><code>fixed-tabs</code> gives every tab an equal share of the width, capped at <code>--w-tab-max-width</code> (18rem) and centered. <code>grow</code> spreads the tabs to fill the whole strip with no cap.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs--grow">
+      <button class="w-tab active">Day</button>
+      <button class="w-tab">Week</button>
+      <button class="w-tab">Month</button>
+      <button class="w-tab">Year</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="week" grow>
+      <w-tab value="day">Day</w-tab>
+      <w-tab value="week">Week</w-tab>
+      <w-tab value="month">Month</w-tab>
+      <w-tab value="year">Year</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Stacked</h2>
+<p>Add <code>stacked</code> to place an icon above the label. Slot an icon element followed by the text.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs--stacked">
+      <button class="w-tab active"><span class="w-text-2xl">🕑</span>Recent</button>
+      <button class="w-tab"><span class="w-text-2xl">★</span>Favorites</button>
+      <button class="w-tab"><span class="w-text-2xl">📍</span>Nearby</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="recent" stacked>
+      <w-tab value="recent"><span class="w-text-2xl">🕑</span>Recent</w-tab>
+      <w-tab value="favorites"><span class="w-text-2xl">★</span>Favorites</w-tab>
+      <w-tab value="nearby"><span class="w-text-2xl">📍</span>Nearby</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Vertical</h2>
+<p>Set <code>direction="vertical"</code> (or add <code>w-tabs--vertical</code>) for a side rail with an inline-start indicator. It pairs naturally with a content window.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4">
+      <div class="w-tabs w-tabs--vertical">
+        <button class="w-tab active">Profile</button>
+        <button class="w-tab">Account</button>
+        <button class="w-tab">Billing</button>
+      </div>
+      <div class="w-tab-panel"><p>Profile content goes here.</p></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4">
+      <w-tabs value="profile" direction="vertical" data-window="demo-window-vertical">
+        <w-tab value="profile">Profile</w-tab>
+        <w-tab value="account">Account</w-tab>
+        <w-tab value="billing">Billing</w-tab>
+      </w-tabs>
+      <w-tabs-window id="demo-window-vertical" class="w-flex-1">
+        <w-tabs-window-item><div class="pa-4">Profile — your name and avatar.</div></w-tabs-window-item>
+        <w-tabs-window-item><div class="pa-4">Account — email and password.</div></w-tabs-window-item>
+        <w-tabs-window-item><div class="pa-4">Billing — plan and invoices.</div></w-tabs-window-item>
+      </w-tabs-window>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Density</h2>
+<p>Use <code>density</code> (<code>comfortable</code> or <code>compact</code>) to tighten the tab height. With CSS classes, add <code>w-tabs--comfortable</code> or <code>w-tabs--compact</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs--compact">
+      <button class="w-tab active">Compact</button>
+      <button class="w-tab">Strip</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="compact" density="compact">
+      <w-tab value="compact">Compact</w-tab>
+      <w-tab value="strip">Strip</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Color and slider color</h2>
+<p><code>color</code> sets the active tab's text and the default indicator color; <code>slider-color</code> overrides just the indicator; <code>bg-color</code> tints the strip. Values are DuVay palette tokens (e.g. <code>primary</code>, <code>success</code>, <code>tertiary</code>). With CSS classes, set the <code>--w-tabs-color</code>, <code>--w-tabs-slider-color</code>, and <code>--w-tabs-bg</code> custom properties.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs" style="--w-tabs-color: var(--w-success); --w-tabs-slider-color: var(--w-success)">
+      <button class="w-tab active">Build</button>
+      <button class="w-tab">Deploy</button>
+      <button class="w-tab">Monitor</button>
+    </div>
+    <div class="w-tabs mt-2" style="--w-tabs-bg: var(--w-surface-container-high); --w-tabs-slider-color: var(--w-tertiary)">
+      <button class="w-tab active">Alpha</button>
+      <button class="w-tab">Beta</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="build" color="success" slider-color="success">
+      <w-tab value="build">Build</w-tab>
+      <w-tab value="deploy">Deploy</w-tab>
+      <w-tab value="monitor">Monitor</w-tab>
+    </w-tabs>
+    <w-tabs value="alpha" bg-color="surface-container-high" slider-color="tertiary" class="mt-2">
+      <w-tab value="alpha">Alpha</w-tab>
+      <w-tab value="beta">Beta</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Hide slider</h2>
+<p>Add <code>hide-slider</code> (or <code>w-tabs--no-slider</code>) to remove the indicator entirely — the active tab is shown by color alone.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs--no-slider">
+      <button class="w-tab active">No</button>
+      <button class="w-tab">Indicator</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="no" hide-slider>
+      <w-tab value="no">No</w-tab>
+      <w-tab value="indicator">Indicator</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Overflow arrows</h2>
+<p>When a strip is too narrow for its tabs it scrolls. Add <code>show-arrows</code> to the web component for pagination buttons (customizable with <code>prev-icon</code> / <code>next-icon</code>), and <code>center-active</code> to keep the selected tab scrolled to center. Arrows are a web-component enhancement; with plain CSS the strip simply scrolls.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs" style="max-width: 22rem">
+      <button class="w-tab">January</button>
+      <button class="w-tab">February</button>
+      <button class="w-tab">March</button>
+      <button class="w-tab active">April</button>
+      <button class="w-tab">May</button>
+      <button class="w-tab">June</button>
+      <button class="w-tab">July</button>
+      <button class="w-tab">August</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="apr" show-arrows center-active style="max-width: 22rem">
+      <w-tab value="jan">January</w-tab>
+      <w-tab value="feb">February</w-tab>
+      <w-tab value="mar">March</w-tab>
+      <w-tab value="apr">April</w-tab>
+      <w-tab value="may">May</w-tab>
+      <w-tab value="jun">June</w-tab>
+      <w-tab value="jul">July</w-tab>
+      <w-tab value="aug">August</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Link tabs</h2>
+<p>Give <code>&lt;w-tab&gt;</code> an <code>href</code> to render a real anchor that participates in navigation. With CSS classes, use an <code>&lt;a class="w-tab"&gt;</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs">
+      <a class="w-tab active" href="#docs">Docs</a>
+      <a class="w-tab" href="#api">API</a>
+      <a class="w-tab" href="#guides">Guides</a>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="docs">
+      <w-tab value="docs" href="#docs">Docs</w-tab>
+      <w-tab value="api" href="#api">API</w-tab>
+      <w-tab value="guides" href="#guides">Guides</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<p>Add <code>disabled</code> to a <code>&lt;w-tab&gt;</code> to skip it during pointer and keyboard navigation, or to <code>&lt;w-tabs&gt;</code> to disable the whole strip.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs">
+      <button class="w-tab active">Inbox</button>
+      <button class="w-tab">Drafts</button>
+      <button class="w-tab" disabled>Archive</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="inbox">
+      <w-tab value="inbox">Inbox</w-tab>
+      <w-tab value="drafts">Drafts</w-tab>
+      <w-tab value="archive" disabled>Archive</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Pills</h2>
+<p>Set <code>variant="pills"</code> (or add <code>w-tabs-pills</code>) for a rounded, background-highlighted style. The sliding indicator is suppressed in favor of the pill background.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-tabs w-tabs-pills">
+      <button class="w-tab active">All</button>
+      <button class="w-tab">Active</button>
+      <button class="w-tab">Archived</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-tabs value="all" variant="pills">
+      <w-tab value="all">All</w-tab>
+      <w-tab value="active">Active</w-tab>
+      <w-tab value="archived">Archived</w-tab>
+    </w-tabs>
+  </div>
+</demo-compare>
+
+<h2>Keyboard</h2>
+<p>Tabs are a <code>role="tablist"</code>. Arrow keys move between tabs (Left/Right when horizontal, Up/Down when vertical) and skip disabled tabs, wrapping at the ends. <code>Home</code> and <code>End</code> jump to the first and last tab. Every tab has a visible <code>:focus-visible</code> ring and a 44px touch target by default.</p>

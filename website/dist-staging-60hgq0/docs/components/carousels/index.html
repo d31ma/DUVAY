@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-ece9aa08-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-e938deff-ece9aa08-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-d7c5da31-ece9aa08-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-21b10305-ece9aa08-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-bd3b93b9-ece9aa08-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-7680fda8-ece9aa08-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-5b011ae1-ece9aa08-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-c1663585-ece9aa08-0" />
+        </svg>
+      </span>
+      <span id="ty-07e52817-ece9aa08-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-24d9a70f-ece9aa08-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-47e7304c-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a35b8b48-ece9aa08-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-66d9770e-ece9aa08-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-3f5b39f2-ece9aa08-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-22a00201-ece9aa08-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-d1d10a40-ece9aa08-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-a61ec279-ece9aa08-0">
+        <span data-w-theme-icon="" id="ty-87466a0f-ece9aa08-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-0980cdcc-ece9aa08-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-c02febd4-ece9aa08-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-c80e4466-ece9aa08-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-310a6eef-0">
+  <div id="ty-6b0106f3-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-10817518-6b0106f3-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-d4b0f2f0-6b0106f3-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-f20731fb-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-56e5cb2a-6b0106f3-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-fb95993d-6b0106f3-0">
+        <li id="ty-c7a350b0-6b0106f3-0"><a href="/docs/introduction" id="ty-594ed95c-6b0106f3-0">Introduction</a></li>
+        <li id="ty-899aaefb-6b0106f3-0"><a href="/docs/install" id="ty-cd813db3-6b0106f3-0">Install</a></li>
+        <li id="ty-4731fe8b-6b0106f3-0"><a href="/docs/getting-started" id="ty-a5ae5d2d-6b0106f3-0">Getting started</a></li>
+        <li id="ty-9e794c03-6b0106f3-0"><a href="/docs/download" id="ty-03666b20-6b0106f3-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-87851584-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-082f12ba-6b0106f3-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-98181f43-6b0106f3-0">
+        <li id="ty-0a2ac23c-6b0106f3-0"><a href="/docs/common-concepts" id="ty-c8a421c6-6b0106f3-0">Common concepts</a></li>
+        <li id="ty-a79cad30-6b0106f3-0"><a href="/docs/features" id="ty-9bc6bb24-6b0106f3-0">Features</a></li>
+        <li id="ty-6e53fbe4-6b0106f3-0"><a href="/docs/features/icon-fonts" id="ty-d1cb5b08-6b0106f3-0">Icons</a></li>
+        <li id="ty-6ba74063-6b0106f3-0"><a href="/docs/grid" id="ty-72c0ffce-6b0106f3-0">Grid</a></li>
+        <li id="ty-f610e6c7-6b0106f3-0"><a href="/docs/navigation" id="ty-512eca93-6b0106f3-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-05ff09b9-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7e7e4f9e-6b0106f3-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-21d4434d-6b0106f3-0">
+        <li id="ty-fdf56bcc-6b0106f3-0"><a href="/docs/components" id="ty-3e4ad48c-6b0106f3-0">Components overview</a></li>
+        <li id="ty-fe23d09d-6b0106f3-0"><a href="/docs/alerts" id="ty-2fe8136e-6b0106f3-0">Alerts</a></li>
+        <li id="ty-3252bc25-6b0106f3-0"><a href="/docs/avatars" id="ty-a117269c-6b0106f3-0">Avatars</a></li>
+        <li id="ty-b2af1c1c-6b0106f3-0"><a href="/docs/badges" id="ty-85c67442-6b0106f3-0">Badges</a></li>
+        <li id="ty-7bf8caab-6b0106f3-0"><a href="/docs/breadcrumbs" id="ty-63f1aab3-6b0106f3-0">Breadcrumbs</a></li>
+        <li id="ty-0fa81b9b-6b0106f3-0"><a href="/docs/buttons" id="ty-779d7a99-6b0106f3-0">Buttons</a></li>
+        <li id="ty-d115603c-6b0106f3-0"><a href="/docs/cards" id="ty-803d22a5-6b0106f3-0">Cards</a></li>
+        <li id="ty-0da96966-6b0106f3-0"><a href="/docs/chips" id="ty-b4692fa9-6b0106f3-0">Chips</a></li>
+        <li id="ty-f63b460b-6b0106f3-0"><a href="/docs/command" id="ty-6942393b-6b0106f3-0">Command palette</a></li>
+        <li id="ty-47ffe3d0-6b0106f3-0"><a href="/docs/dialog" id="ty-2e2b9a94-6b0106f3-0">Dialog</a></li>
+        <li id="ty-63abbc90-6b0106f3-0"><a href="/docs/expand" id="ty-127af8aa-6b0106f3-0">Expand</a></li>
+        <li id="ty-296e8a05-6b0106f3-0"><a href="/docs/feedback" id="ty-62af0603-6b0106f3-0">Feedback</a></li>
+        <li id="ty-77ecf9e8-6b0106f3-0"><a href="/docs/inputs" id="ty-9e0c007a-6b0106f3-0">Inputs</a></li>
+        <li id="ty-2dc6f1e1-6b0106f3-0"><a href="/docs/layout-primitives" id="ty-7caa5e05-6b0106f3-0">Layout primitives</a></li>
+        <li id="ty-3fba6ed9-6b0106f3-0"><a href="/docs/lists" id="ty-f7166ebc-6b0106f3-0">Lists</a></li>
+        <li id="ty-2ec7d366-6b0106f3-0"><a href="/docs/menus" id="ty-919a4650-6b0106f3-0">Menus</a></li>
+        <li id="ty-43cdc75e-6b0106f3-0"><a href="/docs/overlays" id="ty-cbbdb998-6b0106f3-0">Overlays</a></li>
+        <li id="ty-970465d3-6b0106f3-0"><a href="/docs/color-pickers" id="ty-3749e314-6b0106f3-0">Color Pickers</a></li>
+        <li id="ty-c93ce6d4-6b0106f3-0"><a href="/docs/date-pickers" id="ty-6a7de840-6b0106f3-0">Date Pickers</a></li>
+        <li id="ty-fa21a225-6b0106f3-0"><a href="/docs/time-pickers" id="ty-441bc818-6b0106f3-0">Time Pickers</a></li>
+        <li id="ty-6b80b884-6b0106f3-0"><a href="/docs/slider" id="ty-d639002e-6b0106f3-0">Slider</a></li>
+        <li id="ty-fa551e21-6b0106f3-0"><a href="/docs/snackbar" id="ty-0946ece1-6b0106f3-0">Snackbar</a></li>
+        <li id="ty-3bd2d59c-6b0106f3-0"><a href="/docs/surfaces" id="ty-1293f46a-6b0106f3-0">Surfaces</a></li>
+        <li id="ty-75bf504d-6b0106f3-0"><a href="/docs/tables" id="ty-dd253014-6b0106f3-0">Tables</a></li>
+        <li id="ty-2ad171be-6b0106f3-0"><a href="/docs/tabs" id="ty-bc0c3c7c-6b0106f3-0">Tabs</a></li>
+        <li id="ty-256f6888-6b0106f3-0"><a href="/docs/tooltips" id="ty-08cec745-6b0106f3-0">Tooltips</a></li>
+        <li id="ty-82d4d7aa-6b0106f3-0"><a href="/docs/workflows" id="ty-46169720-6b0106f3-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-2ea4382e-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-099c94fb-6b0106f3-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-549e6898-6b0106f3-0">
+        <li id="ty-febae9f7-6b0106f3-0"><a href="/docs/themes" id="ty-4949fe95-6b0106f3-0">Themes</a></li>
+        <li id="ty-760aaf72-6b0106f3-0"><a href="/docs/utilities" id="ty-5a81ec9e-6b0106f3-0">Utilities</a></li>
+        <li id="ty-2001d60c-6b0106f3-0"><a href="/docs/styles-and-animations" id="ty-411ee635-6b0106f3-0">Styles and animations</a></li>
+        <li id="ty-a06550f6-6b0106f3-0"><a href="/docs/animations" id="ty-c5240d4b-6b0106f3-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-89240a38-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-75eba137-6b0106f3-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-15912ef6-6b0106f3-0">
+        <li id="ty-2e9ceeaf-6b0106f3-0"><a href="/docs/api" id="ty-543bb451-6b0106f3-0">API</a></li>
+        <li id="ty-6cb2ebdf-6b0106f3-0"><a href="/docs/directives" id="ty-67d8ab1c-6b0106f3-0">Directives</a></li>
+        <li id="ty-d3a571a4-6b0106f3-0"><a href="/docs/labs" id="ty-b7503fcd-6b0106f3-0">Labs</a></li>
+        <li id="ty-7a714a74-6b0106f3-0"><a href="/docs/resources" id="ty-21a4d138-6b0106f3-0">Resources</a></li>
+        <li id="ty-3eeef2e1-6b0106f3-0"><a href="/docs/roadmap" id="ty-9ea6afa4-6b0106f3-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-c0e57710-6b0106f3-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7ee6a302-6b0106f3-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-ceed89b1-6b0106f3-0">
+        <li id="ty-019a94a2-6b0106f3-0"><a href="/docs/about" id="ty-a84e8078-6b0106f3-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-990714da-0"></button>
+  <main class="docs-main" id="ty-62ecfbdf-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-56a8f1b8-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-5ba50793-0">
+      <div id="ty-layout-slot"><h1 id="ty-55c82adc-0">Carousels</h1><p id="ty-37a00f6d-0">Carousels display one slide from a sequence at a time, with arrows, delimiters, keyboard navigation, optional cycling, and a progress bar. They support touch and pointer swipe, custom icons, color theming, side delimiters, and a fade transition.</p><h2 id="ty-81819723-0">Basic</h2><p id="ty-e088b5d9-0">Arrow buttons, delimiters, the ←/→/Home/End keys, and horizontal swipe all change the active slide. Set a <code id="ty-33dbd82b-0">height</code> on the carousel. Disable swipe with <code id="ty-2adb9f4f-0">touch="false"</code>.</p><demo-compare >
+  <div slot="css" id="ty-a1516f64-0">
+    <div class="w-carousel" style="height: 200px" id="ty-9f89dcc6-0">
+      <div class="w-carousel-track" id="ty-b1da4692-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-98433153-0"><div class="w-text-xl w-font-bold" id="ty-7ceeb70a-0">Launch</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-06d7d5e5-0"><div class="w-text-xl w-font-bold" id="ty-811237ba-0">Review</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide" id="ty-e1f45983-0">‹</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide" id="ty-941215e2-0">›</button>
+      <div class="w-carousel-delimiters" role="tablist" id="ty-484e5cc4-0">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true" id="ty-1d7a5536-0"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false" id="ty-c4127853-0"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-29c6cfd0-0">
+    <w-carousel height="200px" id="ty-621baa33-0">
+      <w-carousel-item id="ty-f0401ca3-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-74c1a882-0"><div class="w-text-xl w-font-bold" id="ty-54b7f281-0">Launch</div></div></w-carousel-item>
+      <w-carousel-item id="ty-2fbe90ef-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-41cdf8f7-0"><div class="w-text-xl w-font-bold" id="ty-e8ff2556-0">Review</div></div></w-carousel-item>
+      <w-carousel-item id="ty-9f3f3ef8-0"><div class="w-bg-tertiary-container w-pa-8 w-h-100" id="ty-5a8ca789-0"><div class="w-text-xl w-font-bold" id="ty-6e7eebff-0">Validate</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-2ee46ba0-0">Cycle and progress</h2><p id="ty-b946ac2e-0">Add <code id="ty-8edec340-0">cycle</code> to auto-advance (every <code id="ty-984a5cf5-0">interval</code> ms, default 6000), pausing on hover and focus. <code id="ty-209a8483-0">progress</code> shows a linear progress bar.</p><demo-compare >
+  <div slot="css" id="ty-38f86c2c-0">
+    <div class="w-carousel" style="height: 200px" id="ty-e8fb0ebf-0">
+      <div class="w-carousel-track" id="ty-b58643f8-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-78810cd7-0"><div class="w-text-xl w-font-bold" id="ty-d3d4d007-0">Auto 1</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-88b6a904-0"><div class="w-text-xl w-font-bold" id="ty-6f479d8b-0">Auto 2</div></div>
+      </div>
+      <div class="w-carousel-progress" aria-hidden="true" id="ty-fe3eaba5-0"><span style="width: 50%" id="ty-cc55efc1-0"></span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3e6eaa05-0">
+    <w-carousel height="200px" cycle="" interval="3000" progress="" id="ty-9ef2b0e6-0">
+      <w-carousel-item id="ty-b2f09b10-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-8c40ec85-0"><div class="w-text-xl w-font-bold" id="ty-9420119d-0">Auto 1</div></div></w-carousel-item>
+      <w-carousel-item id="ty-ea7cc94b-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-bc629f57-0"><div class="w-text-xl w-font-bold" id="ty-42839a1b-0">Auto 2</div></div></w-carousel-item>
+      <w-carousel-item id="ty-8441a761-0"><div class="w-bg-tertiary-container w-pa-8 w-h-100" id="ty-a1e34685-0"><div class="w-text-xl w-font-bold" id="ty-3a84f2cc-0">Auto 3</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-7e0621ab-0">Arrows on hover</h2><p id="ty-fe34e551-0">Use <code id="ty-1c899abd-0">show-arrows="hover"</code> to reveal the arrows only on hover or focus. With CSS classes, add <code id="ty-53281c97-0">w-carousel--arrows-hover</code>. Set <code id="ty-12ca11b7-0">show-arrows="false"</code> to hide them entirely.</p><demo-compare >
+  <div slot="css" id="ty-7a7c8772-0">
+    <div class="w-carousel w-carousel--arrows-hover" style="height: 200px" id="ty-c19a06e4-0">
+      <div class="w-carousel-track" id="ty-ffbd2bc1-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-2b9d0f60-0"><div class="w-text-xl w-font-bold" id="ty-226075ef-0">Hover me</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-9a1e4464-0"><div class="w-text-xl w-font-bold" id="ty-29efd6f5-0">Arrows appear</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide" id="ty-fd816769-0">‹</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide" id="ty-5a40d0da-0">›</button>
+    </div>
+  </div>
+  <div slot="wc" id="ty-ea218f72-0">
+    <w-carousel height="200px" show-arrows="hover" id="ty-9ef162c1-0">
+      <w-carousel-item id="ty-9e891788-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-e0fc9cdf-0"><div class="w-text-xl w-font-bold" id="ty-8a62c3a1-0">Hover me</div></div></w-carousel-item>
+      <w-carousel-item id="ty-5d97e26d-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-0bae8493-0"><div class="w-text-xl w-font-bold" id="ty-54f4f721-0">Arrows appear</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-155dae74-0">Custom icons</h2><p id="ty-9c64ef3d-0">Replace the arrow glyphs with <code id="ty-2d49a40e-0">prev-icon</code> / <code id="ty-cc1de2b9-0">next-icon</code>, and the delimiter dots with <code id="ty-26c569f7-0">delimiter-icon</code>.</p><demo-compare >
+  <div slot="css" id="ty-2a191bab-0">
+    <div class="w-carousel" style="height: 200px" id="ty-7939ad56-0">
+      <div class="w-carousel-track" id="ty-42cb9d82-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-1ec67692-0"><div class="w-text-xl w-font-bold" id="ty-2557d16d-0">Alpha</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-4079282a-0"><div class="w-text-xl w-font-bold" id="ty-5d9b8ea9-0">Beta</div></div>
+      </div>
+      <button class="w-carousel-control prev" type="button" aria-label="Previous slide" id="ty-1c6bf4fc-0">←</button>
+      <button class="w-carousel-control next" type="button" aria-label="Next slide" id="ty-53d3242b-0">→</button>
+      <div class="w-carousel-delimiters" role="tablist" id="ty-656c726b-0">
+        <button class="w-carousel-delimiter w-carousel-delimiter--icon active" type="button" role="tab" aria-selected="true" id="ty-79133b92-0">■</button>
+        <button class="w-carousel-delimiter w-carousel-delimiter--icon" type="button" role="tab" aria-selected="false" id="ty-53d20576-0">■</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2e6aa2de-0">
+    <w-carousel height="200px" prev-icon="←" next-icon="→" delimiter-icon="■" id="ty-4148d719-0">
+      <w-carousel-item id="ty-cb516222-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-714e28a8-0"><div class="w-text-xl w-font-bold" id="ty-601b0280-0">Alpha</div></div></w-carousel-item>
+      <w-carousel-item id="ty-8e72a012-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-15f950a1-0"><div class="w-text-xl w-font-bold" id="ty-76d062b5-0">Beta</div></div></w-carousel-item>
+      <w-carousel-item id="ty-bf85227f-0"><div class="w-bg-tertiary-container w-pa-8 w-h-100" id="ty-6443d0bd-0"><div class="w-text-xl w-font-bold" id="ty-2515a028-0">Gamma</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-3f1e1388-0">Delimiter placement</h2><p id="ty-864b0282-0">Drop the delimiter backdrop with <code id="ty-4178fa89-0">hide-delimiter-background</code>, or move the delimiters to a side rail with <code id="ty-894d46e6-0">vertical-delimiters="left"</code> or <code id="ty-483313e2-0">vertical-delimiters="right"</code>.</p><demo-compare >
+  <div slot="css" id="ty-32dcf912-0">
+    <div class="w-carousel w-carousel--vdelim-left" style="height: 200px" id="ty-215b2490-0">
+      <div class="w-carousel-track" id="ty-cd6c17c1-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-ae6429dc-0"><div class="w-text-xl w-font-bold" id="ty-f0b16de2-0">Left rail</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-ab4fc01b-0"><div class="w-text-xl w-font-bold" id="ty-8b9b3a59-0">Slide 2</div></div>
+      </div>
+      <div class="w-carousel-delimiters" role="tablist" id="ty-a6df664c-0">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true" id="ty-76e7dd08-0"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false" id="ty-e154e0d6-0"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-a720a125-0">
+    <w-carousel height="200px" vertical-delimiters="left" id="ty-c2de389a-0">
+      <w-carousel-item id="ty-a34c35bd-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-5384f85f-0"><div class="w-text-xl w-font-bold" id="ty-5230d050-0">Left rail</div></div></w-carousel-item>
+      <w-carousel-item id="ty-14dcc5f3-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-41ad2fa4-0"><div class="w-text-xl w-font-bold" id="ty-dbdcb9e9-0">Slide 2</div></div></w-carousel-item>
+      <w-carousel-item id="ty-7d187e16-0"><div class="w-bg-tertiary-container w-pa-8 w-h-100" id="ty-0a69d5bf-0"><div class="w-text-xl w-font-bold" id="ty-e9bdad63-0">Slide 3</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-bacc263e-0">Color</h2><p id="ty-8488a89c-0"><code id="ty-cc8c6f91-0">color</code> tints the active delimiter and the progress bar with a DuVay palette token. With CSS classes, set the <code id="ty-69d02616-0">--w-carousel-color</code> custom property.</p><demo-compare >
+  <div slot="css" id="ty-919e51d5-0">
+    <div class="w-carousel" style="height: 200px; --w-carousel-color: var(--w-success)" id="ty-be69d071-0">
+      <div class="w-carousel-track" id="ty-a0a523b4-0">
+        <div class="w-carousel-item w-bg-primary-container w-pa-8" id="ty-6bec97c4-0"><div class="w-text-xl w-font-bold" id="ty-af624f0f-0">Build</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-b80a09f7-0"><div class="w-text-xl w-font-bold" id="ty-75e64130-0">Deploy</div></div>
+      </div>
+      <div class="w-carousel-progress" aria-hidden="true" id="ty-10d45a6c-0"><span style="width: 50%" id="ty-bed2c5cb-0"></span></div>
+      <div class="w-carousel-delimiters" role="tablist" id="ty-9f90b0dd-0">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true" id="ty-34f43e26-0"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false" id="ty-7d667607-0"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-62341231-0">
+    <w-carousel height="200px" color="success" progress="" id="ty-9f5e9094-0">
+      <w-carousel-item id="ty-c9cc1f70-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-40fa47ba-0"><div class="w-text-xl w-font-bold" id="ty-bdcffe2a-0">Build</div></div></w-carousel-item>
+      <w-carousel-item id="ty-e6c45faf-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-44265c57-0"><div class="w-text-xl w-font-bold" id="ty-d5462ec5-0">Deploy</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-d268c213-0">Fade transition</h2><p id="ty-0a2dd183-0">Set <code id="ty-e020ada7-0">transition="fade"</code> (or add <code id="ty-c7101920-0">w-carousel--fade</code>) to crossfade between slides instead of sliding. Fade carousels need an explicit <code id="ty-69f2fe78-0">height</code> since the slides are stacked.</p><demo-compare >
+  <div slot="css" id="ty-22f352eb-0">
+    <div class="w-carousel w-carousel--fade" style="height: 200px" id="ty-83af93b0-0">
+      <div class="w-carousel-track" id="ty-63a68bfc-0">
+        <div class="w-carousel-item active w-bg-primary-container w-pa-8" id="ty-f3880c3f-0"><div class="w-text-xl w-font-bold" id="ty-1e6050b0-0">Fade A</div></div>
+        <div class="w-carousel-item w-bg-secondary-container w-pa-8" id="ty-12c57577-0"><div class="w-text-xl w-font-bold" id="ty-6e06b909-0">Fade B</div></div>
+      </div>
+      <div class="w-carousel-delimiters" role="tablist" id="ty-b1b9135d-0">
+        <button class="w-carousel-delimiter active" type="button" role="tab" aria-selected="true" id="ty-600162dd-0"></button>
+        <button class="w-carousel-delimiter" type="button" role="tab" aria-selected="false" id="ty-05c2a124-0"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-366e6202-0">
+    <w-carousel height="200px" transition="fade" id="ty-c7453bba-0">
+      <w-carousel-item id="ty-ebb7da53-0"><div class="w-bg-primary-container w-pa-8 w-h-100" id="ty-703af516-0"><div class="w-text-xl w-font-bold" id="ty-dc3f4960-0">Fade A</div></div></w-carousel-item>
+      <w-carousel-item id="ty-526af2f4-0"><div class="w-bg-secondary-container w-pa-8 w-h-100" id="ty-06164e08-0"><div class="w-text-xl w-font-bold" id="ty-5f35705f-0">Fade B</div></div></w-carousel-item>
+      <w-carousel-item id="ty-b185e88f-0"><div class="w-bg-tertiary-container w-pa-8 w-h-100" id="ty-b3e103d5-0"><div class="w-text-xl w-font-bold" id="ty-8a5fa2f9-0">Fade C</div></div></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-d33a367c-0">Image slides</h2><p id="ty-bebfd7ac-0">Give <code id="ty-c17d4bfe-0">&lt;w-carousel-item&gt;</code> a <code id="ty-7575894c-0">src</code> (and <code id="ty-4b470d90-0">alt</code>) to render a slide image. Images use <code id="ty-bd99c2ce-0">object-fit: cover</code> by default; add <code id="ty-d649f4d8-0">cover="false"</code> to contain instead.</p><demo-compare >
+  <div slot="css" id="ty-d07379a7-0">
+    <div class="w-carousel" style="height: 220px" id="ty-179d32d0-0">
+      <div class="w-carousel-track" id="ty-4f6c451d-0">
+        <div class="w-carousel-item" id="ty-d2767c78-0"><img class="w-carousel-img w-carousel-img--cover" src="https://picsum.photos/seed/hecss/800/300" alt="Example one" id="ty-763c6f66-0" /></div>
+        <div class="w-carousel-item" id="ty-87eedeaa-0"><img class="w-carousel-img w-carousel-img--cover" src="https://picsum.photos/seed/hecss2/800/300" alt="Example two" id="ty-87bd6631-0" /></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-b024ca8f-0">
+    <w-carousel height="220px" id="ty-29b23a56-0">
+      <w-carousel-item src="https://picsum.photos/seed/hewc/800/300" alt="Example one" id="ty-ee19278c-0"></w-carousel-item>
+      <w-carousel-item src="https://picsum.photos/seed/hewc2/800/300" alt="Example two" id="ty-78bd744a-0"></w-carousel-item>
+    </w-carousel>
+  </div>
+</demo-compare><h2 id="ty-f690c0a8-0">Window</h2><p id="ty-2f84a6c4-0"><code id="ty-2b3deda2-0">&lt;w-window&gt;</code> is the lower-level primitive used for carousel-like selection flows.</p><demo-compare >
+  <div slot="css" id="ty-e3f355dc-0">
+    <div class="w-window" id="ty-58812eb9-0">
+      <div class="w-window-track" id="ty-cffcdd16-0">
+        <div class="w-window-item w-pa-6" id="ty-01a073a9-0">Overview</div>
+        <div class="w-window-item w-pa-6" id="ty-3c552a87-0">Details</div>
+      </div>
+      <div class="w-window-controls" id="ty-a61ad71b-0">
+        <button class="w-window-dot active" type="button" aria-label="Show item 1" id="ty-97b296eb-0"></button>
+        <button class="w-window-dot" type="button" aria-label="Show item 2" id="ty-fab6dba0-0"></button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-88d2da5d-0">
+    <w-window show-arrows="" continuous="" height="200px" id="ty-054ddd79-0">
+      <w-window-item id="ty-74347b19-0">
+        <div class="w-pa-6" id="ty-70f7bc32-0">
+          <div class="w-text-xl w-font-bold" id="ty-542c4be7-0">Overview</div>
+          <p class="w-text-body-small" id="ty-c4c4368e-0">Use arrows, dots, Home, End, and arrow keys.</p>
+        </div>
+      </w-window-item>
+      <w-window-item id="ty-4cf36c03-0">
+        <div class="w-pa-6" id="ty-c4299ff0-0">
+          <div class="w-text-xl w-font-bold" id="ty-d3d80b50-0">Details</div>
+          <p class="w-text-body-small" id="ty-ef348479-0">The active item receives selected state and aria-hidden sync.</p>
+        </div>
+      </w-window-item>
+    </w-window>
+  </div>
+</demo-compare><h2 id="ty-6084a5ee-0">API reference</h2><p id="ty-133f4a9c-0">Components: <code id="ty-e63de722-0">&lt;w-carousel&gt;</code>, <code id="ty-f3934a78-0">&lt;w-carousel-item&gt;</code>, <code id="ty-99b76050-0">&lt;w-window&gt;</code>, <code id="ty-800115c8-0">&lt;w-window-item&gt;</code>.</p><p id="ty-4d715901-0"><strong id="ty-5d727c94-0">&lt;w-carousel&gt;</strong> attributes: <code id="ty-eb48ec1f-0">value</code>, <code id="ty-908d3492-0">height</code>, <code id="ty-8018187b-0">cycle</code>, <code id="ty-8c6bd088-0">interval</code>, <code id="ty-b8689a0f-0">continuous</code>, <code id="ty-68058385-0">show-arrows</code> (<code id="ty-ddce225f-0">true</code>·<code id="ty-fb47e670-0">false</code>·<code id="ty-bb933d48-0">hover</code>), <code id="ty-f43e2ae6-0">prev-icon</code>, <code id="ty-09dd9500-0">next-icon</code>, <code id="ty-4f5e0c35-0">hide-delimiters</code>, <code id="ty-d604ba40-0">delimiter-icon</code>, <code id="ty-5b319dad-0">hide-delimiter-background</code>, <code id="ty-2a6f4c35-0">vertical-delimiters</code> (<code id="ty-a163e5ce-0">left</code>·<code id="ty-195e949e-0">right</code>), <code id="ty-e66cd93a-0">progress</code>, <code id="ty-0e11dd2a-0">color</code>, <code id="ty-7ab71bda-0">touch</code>, <code id="ty-54f22a79-0">transition</code> (<code id="ty-8a254a89-0">slide</code>·<code id="ty-96860329-0">fade</code>). Emits <code id="ty-5a8e7b80-0">w-change</code> with the new index in <code id="ty-bbeb2473-0">event.detail</code>.</p><p id="ty-2db17875-0"><strong id="ty-db482976-0">&lt;w-carousel-item&gt;</strong> attributes: <code id="ty-1a9dcebb-0">src</code>, <code id="ty-1d3d2ecc-0">alt</code>, <code id="ty-7bfba4c7-0">cover</code>.</p></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-6adff5f9-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-5055db09-0"></aside>
+</div>
+</body>
+</html>
+

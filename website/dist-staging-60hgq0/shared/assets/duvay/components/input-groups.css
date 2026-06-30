@@ -1,0 +1,65 @@
+/* DuVay — Input Groups component styles. */
+@import "../core.css";
+
+/* ── Input group ────────────────────────────────────────────────────────── */
+.w-input-group {
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  overflow: hidden;
+  transition: border-color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-input-group:focus-within {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-input-group.error {
+  border-color: var(--w-error);
+}
+
+.w-input-group .w-input,
+.w-input-group .w-select,
+.w-input-group .w-textarea {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.w-input-group .w-input:focus,
+.w-input-group .w-select:focus,
+.w-input-group .w-textarea:focus {
+  box-shadow: none;
+}
+
+.w-input-group-addon,
+.w-input-group-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--w-size-md);
+  padding-inline: var(--w-space-3);
+  border-inline-end: 1px solid var(--w-border);
+  background: var(--w-surface-container-low);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+}
+
+.w-input-group-addon:last-child,
+.w-input-group-text:last-child {
+  border-inline: 1px solid transparent;
+  border-inline-start-color: var(--w-border);
+}
+
+.w-input-group .w-btn {
+  border-radius: 0;
+  border-block: 0;
+}

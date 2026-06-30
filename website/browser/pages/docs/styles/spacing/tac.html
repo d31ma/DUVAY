@@ -1,0 +1,98 @@
+<h1>Spacing</h1>
+<p>Update your layout without creating new classes. Spacing helpers apply <strong>margin</strong>, <strong>padding</strong>, or <strong>gap</strong> to any element in 4px increments from 0 to 16, mirroring Vuetify's spacing helpers. Classes follow the format <code>&#123;property&#125;&#123;direction&#125;-&#123;size&#125;</code> — e.g. <code>pa-4</code> (padding, all, 16px) or <code>mt-2</code> (margin, top, 8px).</p>
+
+<h2>Usage</h2>
+<p>The <strong>property</strong> applies the type of spacing:</p>
+<ul>
+  <li><code>m</code> — applies <code>margin</code></li>
+  <li><code>p</code> — applies <code>padding</code></li>
+  <li><code>g</code> — applies <code>gap</code></li>
+</ul>
+<p>The <strong>direction</strong> designates the side:</p>
+<table class="w-table api-table">
+  <thead><tr><th>Direction</th><th>Applies to</th></tr></thead>
+  <tbody>
+    <tr><td><code>t</code> / <code>b</code></td><td><code>*-top</code> / <code>*-bottom</code></td></tr>
+    <tr><td><code>l</code> / <code>r</code></td><td><code>*-left</code> / <code>*-right</code></td></tr>
+    <tr><td><code>s</code> / <code>e</code></td><td>inline-start / inline-end (RTL-aware — flips under <a href="/docs/components/locale-providers">RTL</a>)</td></tr>
+    <tr><td><code>x</code> / <code>y</code></td><td>left+right / top+bottom</td></tr>
+    <tr><td><code>a</code></td><td>all directions</td></tr>
+    <tr><td><code>r</code> / <code>c</code> (gap)</td><td><code>gr-*</code> row-gap · <code>gc-*</code> column-gap · <code>ga-*</code> gap</td></tr>
+  </tbody>
+</table>
+<p>The <strong>size</strong> is a 4px increment from <code>0</code> to <code>16</code> (0=0, 1=4px … 16=64px), <code>auto</code> (margins), or a negative margin <code>n1</code>–<code>n16</code>.</p>
+<div class="code-block"><code>&lt;div class="pa-4"&gt;Padding all sides, 16px&lt;/div&gt;
+&lt;div class="mx-auto"&gt;Centered with auto inline margins&lt;/div&gt;
+&lt;div class="ms-2 pe-6 ga-4"&gt;Logical start margin, end padding, gap&lt;/div&gt;</code></div>
+
+<h3>Padding</h3>
+<div class="w-row ga-3 flex-wrap align-start w-border pa-3 mb-4">
+  <div class="w-bg-primary-container pa-2">pa-2</div>
+  <div class="w-bg-primary-container pa-4">pa-4</div>
+  <div class="w-bg-primary-container pa-6">pa-6</div>
+  <div class="w-bg-primary-container px-6 py-2">px-6 py-2</div>
+</div>
+
+<h2>Examples</h2>
+
+<h3>Breakpoints</h3>
+<p>Apply margin or padding at a given breakpoint with <code>&#123;property&#125;&#123;direction&#125;-&#123;breakpoint&#125;-&#123;size&#125;</code> (breakpoints <code>sm</code> 600px, <code>md</code> 960px, <code>lg</code> 1280px, <code>xl</code> 1920px). The base size applies below the breakpoint; resize the window to see it change.</p>
+<div class="w-border pa-2 mb-4">
+  <div class="w-bg-primary-container pa-2 pa-md-8">pa-2 pa-md-8</div>
+</div>
+<div class="code-block"><code>&lt;div class="pa-2 pa-md-8"&gt;Tight on mobile, roomy from md up&lt;/div&gt;</code></div>
+
+<h3>Horizontal</h3>
+<p>Margin helpers center content horizontally with <code>mx-auto</code>, or push to one edge with <code>ms-auto</code> / <code>me-auto</code>.</p>
+<div class="w-border pa-3 mb-4">
+  <div class="w-bg-primary-container pa-2 mx-auto" style="width: 8rem; text-align: center;">mx-auto</div>
+  <div class="w-row mt-3">
+    <div class="w-bg-primary-container pa-2">start</div>
+    <div class="w-bg-primary-container pa-2 ms-auto">ms-auto</div>
+  </div>
+</div>
+
+<h3>Gap</h3>
+<p>Apply a gap between flex or grid children with <code>ga-*</code> (gap), <code>gr-*</code> (row-gap), or <code>gc-*</code> (column-gap).</p>
+<div class="w-border pa-3 mb-4">
+  <div class="d-flex flex-wrap ga-4">
+    <div class="w-bg-primary-container pa-3">1</div>
+    <div class="w-bg-primary-container pa-3">2</div>
+    <div class="w-bg-primary-container pa-3">3</div>
+    <div class="w-bg-primary-container pa-3">4</div>
+  </div>
+</div>
+<div class="code-block"><code>&lt;div class="d-flex flex-wrap ga-4"&gt;…&lt;/div&gt;</code></div>
+
+<h3>Negative margin</h3>
+<p>Margin can be applied negatively at the same 1–16 intervals with <code>n1</code>–<code>n16</code> — useful for overlap.</p>
+<div class="w-border pa-4 mb-4">
+  <div class="w-bg-primary-container pa-2" style="width: 6rem;">Base</div>
+  <div class="bg-secondary pa-2 mt-n2 ms-4" style="width: 6rem; color: var(--w-on-secondary);">mt-n2</div>
+</div>
+
+<h2>Scale</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Size</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td><code>0</code></td><td>0</td></tr>
+    <tr><td><code>1</code> … <code>16</code></td><td>4px increments — <code>1</code> = 4px, <code>4</code> = 16px, <code>8</code> = 32px, <code>16</code> = 64px.</td></tr>
+    <tr><td><code>auto</code></td><td>Auto margin.</td></tr>
+    <tr><td><code>n1</code> … <code>n16</code></td><td>Negative margin — <code>n1</code> = -4px … <code>n16</code> = -64px.</td></tr>
+  </tbody>
+</table>
+
+<h2>Class reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>ma-&#123;0-16&#125;</code> / <code>pa-&#123;0-16&#125;</code></td><td>Margin / padding on all sides.</td></tr>
+    <tr><td><code>mx-</code> / <code>my-</code> / <code>px-</code> / <code>py-&#123;0-16&#125;</code></td><td>Inline (x) / block (y) margin &amp; padding.</td></tr>
+    <tr><td><code>mt- / mr- / mb- / ml-&#123;0-16&#125;</code></td><td>Single-edge margin (and <code>pt-/pr-/pb-/pl-</code> for padding).</td></tr>
+    <tr><td><code>ms- / me- / ps- / pe-&#123;0-16&#125;</code></td><td>Logical inline-start / inline-end margin &amp; padding (RTL-aware).</td></tr>
+    <tr><td><code>ga-</code> / <code>gr-</code> / <code>gc-&#123;0-16&#125;</code></td><td>Gap / row-gap / column-gap.</td></tr>
+    <tr><td><code>m&#123;dir&#125;-auto</code></td><td>Auto margin (<code>ma-auto</code>, <code>mx-auto</code>, <code>ms-auto</code>, …).</td></tr>
+    <tr><td><code>m&#123;dir&#125;-n&#123;1-16&#125;</code></td><td>Negative margins on any direction.</td></tr>
+    <tr><td><code>&#123;property&#125;&#123;direction&#125;-&#123;sm|md|lg|xl&#125;-&#123;size&#125;</code></td><td>Responsive variants applied from that breakpoint up.</td></tr>
+  </tbody>
+</table>

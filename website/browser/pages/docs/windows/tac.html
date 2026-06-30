@@ -1,0 +1,71 @@
+<h1>Windows</h1>
+<p><code>w-window</code> shows one panel at a time and transitions between them — the engine behind carousels, tabs panels, and steppers. Navigate with arrows, dots, the keyboard, or a swipe.</p>
+
+<h2>Basic</h2>
+<p>Each <code>w-window-item</code> is a panel. <code>show-arrows</code> adds prev/next controls; dots are always rendered.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-window">
+      <div class="w-window-track"><div class="w-window-item active">Panel one</div></div>
+      <div class="w-window-controls" role="tablist"><button class="w-window-dot active"></button><button class="w-window-dot"></button><button class="w-window-dot"></button></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-window value="0" show-arrows>
+      <w-window-item><div class="pa-6">Panel one</div></w-window-item>
+      <w-window-item><div class="pa-6">Panel two</div></w-window-item>
+      <w-window-item><div class="pa-6">Panel three</div></w-window-item>
+    </w-window>
+  </div>
+</demo-compare>
+
+<h2>Vertical</h2>
+<p>Set <code>direction="vertical"</code> to slide panels up and down.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-window w-window--vertical" style="height:160px">
+      <div class="w-window-track"><div class="w-window-item active">Top</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-window value="0" direction="vertical" show-arrows height="160px">
+      <w-window-item><div class="pa-6">Top</div></w-window-item>
+      <w-window-item><div class="pa-6">Middle</div></w-window-item>
+      <w-window-item><div class="pa-6">Bottom</div></w-window-item>
+    </w-window>
+  </div>
+</demo-compare>
+
+<h2>Crossfade &amp; reverse</h2>
+<p><code>crossfade</code> fades panels instead of sliding; <code>reverse</code> flips the slide direction.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-window w-window--crossfade">
+      <div class="w-window-track"><div class="w-window-item active">Fades in</div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-window value="0" crossfade show-arrows>
+      <w-window-item><div class="pa-6">Fades in</div></w-window-item>
+      <w-window-item><div class="pa-6">Fades out</div></w-window-item>
+    </w-window>
+  </div>
+</demo-compare>
+
+<h2>Custom arrows &amp; continuous</h2>
+<p>Override the controls with <code>prev-icon</code> / <code>next-icon</code>, and add <code>continuous</code> to loop from the last panel back to the first.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-window">
+      <button class="w-window-arrow w-window-arrow--prev">«</button>
+      <div class="w-window-track"><div class="w-window-item active">Wraps around</div></div>
+      <button class="w-window-arrow w-window-arrow--next">»</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-window value="0" show-arrows continuous prev-icon="«" next-icon="»">
+      <w-window-item><div class="pa-6">Wraps around</div></w-window-item>
+      <w-window-item><div class="pa-6">From the end</div></w-window-item>
+    </w-window>
+  </div>
+</demo-compare>

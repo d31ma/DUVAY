@@ -1,0 +1,68 @@
+<h1>Radio buttons</h1>
+<p><code>w-radio-group</code> wraps a set of <code>w-radio</code> options for a single choice. The group manages the <code>name</code>, selected <code>value</code>, and keyboard navigation. Add <code>inline</code> to lay the options out in a row.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-selection-control-group w-radio-group" role="radiogroup" aria-label="Delivery speed">
+      <span class="w-label">Delivery speed</span>
+      <label class="w-checkbox w-radio">
+        <input class="w-checkbox-input" type="radio" name="delivery-css" value="standard" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Standard</span>
+      </label>
+      <label class="w-checkbox w-radio">
+        <input class="w-checkbox-input" type="radio" name="delivery-css" value="express" />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Express</span>
+      </label>
+      <label class="w-checkbox w-radio">
+        <input class="w-checkbox-input" type="radio" name="delivery-css" value="scheduled" />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Scheduled</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-radio-group label="Delivery speed" name="delivery-wc" value="standard">
+      <w-radio value="standard" label="Standard"></w-radio>
+      <w-radio value="express" label="Express"></w-radio>
+      <w-radio value="scheduled" label="Scheduled"></w-radio>
+    </w-radio-group>
+  </div>
+</demo-compare>
+
+<h2>Inline</h2>
+<p>The <code>inline</code> attribute arranges the options horizontally, wrapping as needed.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-radio-group label="Contact method" name="contact-wc" value="email" inline>
+      <w-radio value="email" label="Email"></w-radio>
+      <w-radio value="phone" label="Phone"></w-radio>
+      <w-radio value="sms" label="SMS"></w-radio>
+    </w-radio-group>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<p>Set <code>color</code> on a <code>w-radio</code> to change its accent.</p>
+<demo-compare>
+  <div slot="wc">
+    <w-radio-group label="Priority" name="priority-wc" value="low" inline>
+      <w-radio value="low" label="Low" color="success"></w-radio>
+      <w-radio value="medium" label="Medium" color="warning"></w-radio>
+      <w-radio value="high" label="High" color="error"></w-radio>
+    </w-radio-group>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<demo-compare>
+  <div slot="wc">
+    <w-radio-group label="Plan" name="plan-wc" value="free" disabled>
+      <w-radio value="free" label="Free"></w-radio>
+      <w-radio value="pro" label="Pro"></w-radio>
+    </w-radio-group>
+  </div>
+</demo-compare>
+

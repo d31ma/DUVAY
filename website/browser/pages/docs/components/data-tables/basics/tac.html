@@ -1,0 +1,60 @@
+<h1>Data Tables: Basics</h1>
+<p>The everyday interactions of <a href="/docs/components/data-tables/introduction"><code>w-data-table</code></a>: sorting, searching, and pagination. See <a href="/docs/components/data-tables/data-and-display">Data and Display</a> for selection, expansion, and rich columns.</p>
+
+<h2>Sorting</h2>
+<p>Sortable headers toggle ascending → descending → unsorted. Add <code>multi-sort</code> to sort by several columns; set an initial order with <code>sort-by</code> / <code>sort-desc</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th class="w-table-sortable"><button class="w-table-sort" type="button">Dessert</button></th><th class="w-table-sortable" aria-sort="ascending"><button class="w-table-sort" type="button">Calories<span class="w-table-sort-icon">↑</span></button></th></tr></thead>
+        <tbody><tr><td>Frozen yogurt</td><td>159</td></tr><tr><td>Eclair</td><td>262</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table headers="[Dessert,Calories,Fat]" sort-by="Calories" items="[Frozen yogurt|159|6; Ice cream sandwich|237|9; Eclair|262|16; Cupcake|305|3; Gingerbread|356|16]" items-per-page="5"></w-data-table>
+  </div>
+</demo-compare>
+
+<h2>Search</h2>
+<p>Set <code>search</code> to filter across every cell (case-insensitive). Wire it to a text field for live filtering.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap">
+      <table class="w-table">
+        <thead><tr><th>Dessert</th><th>Calories</th><th>Fat</th></tr></thead>
+        <tbody><tr><td>Cupcake</td><td>305</td><td>3</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-text-field label="Search" oninput="document.getElementById('dt-search').setAttribute('search', event.detail.value)"></w-text-field>
+      <w-data-table id="dt-search" headers="[Dessert,Calories,Fat]" items="[Frozen yogurt|159|6; Ice cream sandwich|237|9; Eclair|262|16; Cupcake|305|3; Gingerbread|356|16]" items-per-page="10"></w-data-table>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Pagination &amp; page size</h2>
+<p>The footer shows the item range and a per-page select from <code>items-per-page-options</code> (use <code>-1</code> for &#8220;All&#8221;).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-data-table-footer">
+      <label class="w-data-table-per-page">Rows per page
+        <select class="w-select"><option>5</option><option>10</option><option>All</option></select>
+      </label>
+      <span class="w-data-table-range">1–5 of 12</span>
+      <div class="w-data-table-pagination">
+        <button class="w-data-table-nav" disabled>«</button>
+        <button class="w-data-table-nav" disabled>‹</button>
+        <button class="w-data-table-nav">›</button>
+        <button class="w-data-table-nav">»</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table headers="[Dessert,Calories]" items-per-page="3" items-per-page-options="3,5,-1"
+      items="[Frozen yogurt|159; Ice cream sandwich|237; Eclair|262; Cupcake|305; Gingerbread|356; Jelly bean|375; Lollipop|392; Honeycomb|408]"></w-data-table>
+  </div>
+</demo-compare>

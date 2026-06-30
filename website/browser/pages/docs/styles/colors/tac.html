@@ -1,0 +1,61 @@
+<h1>Colors</h1>
+<p>DuVay uses a semantic color system rather than a fixed Material palette. Each role — <code>primary</code>, <code>secondary</code>, <code>tertiary</code>, <code>success</code>, <code>warning</code>, <code>error</code> — resolves to a theme token that adapts across the light, dark, and high-contrast themes. Apply a role as a background with <code>bg-*</code> (which also sets a legible on-color) or as a foreground with <code>text-*</code>.</p>
+
+<h2>Background colors</h2>
+<div class="w-row ga-3 w-mb-md">
+  <div class="bg-primary pa-4 rounded">bg-primary</div>
+  <div class="bg-secondary pa-4 rounded">bg-secondary</div>
+  <div class="bg-tertiary pa-4 rounded">bg-tertiary</div>
+  <div class="bg-success pa-4 rounded">bg-success</div>
+  <div class="bg-warning pa-4 rounded">bg-warning</div>
+  <div class="bg-error pa-4 rounded">bg-error</div>
+</div>
+<div class="code-block"><code>&lt;div class="bg-primary pa-4"&gt;Primary surface&lt;/div&gt;
+&lt;div class="bg-error pa-4"&gt;Error surface&lt;/div&gt;</code></div>
+
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>bg-primary</code></td><td>Primary container background with on-primary text.</td></tr>
+    <tr><td><code>bg-secondary</code></td><td>Secondary container background with on-secondary text.</td></tr>
+    <tr><td><code>bg-tertiary</code></td><td>Tertiary container background with on-tertiary text.</td></tr>
+    <tr><td><code>bg-success</code></td><td>Success container background.</td></tr>
+    <tr><td><code>bg-warning</code></td><td>Warning container background.</td></tr>
+    <tr><td><code>bg-error</code> / <code>bg-danger</code></td><td>Error container background.</td></tr>
+  </tbody>
+</table>
+
+<h2>Text colors</h2>
+<div class="w-row ga-3 w-mb-md">
+  <span class="text-primary">text-primary</span>
+  <span class="text-secondary">text-secondary</span>
+  <span class="text-tertiary">text-tertiary</span>
+  <span class="text-success">text-success</span>
+  <span class="text-warning">text-warning</span>
+  <span class="text-error">text-error</span>
+</div>
+<div class="code-block"><code>&lt;p class="text-primary"&gt;Primary text&lt;/p&gt;
+&lt;p class="text-error"&gt;Error text&lt;/p&gt;</code></div>
+
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>text-primary</code></td><td>Foreground in the primary role color.</td></tr>
+    <tr><td><code>text-secondary</code></td><td>Foreground in the secondary role color.</td></tr>
+    <tr><td><code>text-tertiary</code></td><td>Foreground in the tertiary role color.</td></tr>
+    <tr><td><code>text-success</code></td><td>Foreground in the success color.</td></tr>
+    <tr><td><code>text-warning</code></td><td>Foreground in the warning color.</td></tr>
+    <tr><td><code>text-error</code> / <code>text-danger</code></td><td>Foreground in the error color.</td></tr>
+    <tr><td><code>text-high-emphasis</code> / <code>text-medium-emphasis</code> / <code>text-disabled</code></td><td>On-surface text at decreasing emphasis levels.</td></tr>
+  </tbody>
+</table>
+
+<h2>Tokens</h2>
+<p>Reference the underlying custom properties directly in your own CSS to stay theme-aware. Every role has a base color, a container variant, and matching on-colors for accessible contrast.</p>
+<div class="code-block"><code>.my-banner &#123;
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+&#125;</code></div>
+
+<h2>High contrast</h2>
+<p>The high-contrast theme increases color separation and border thickness for users who need stronger differentiation. Because these classes resolve to tokens, no markup changes are needed — switching the theme updates every color automatically.</p>

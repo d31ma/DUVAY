@@ -1,0 +1,122 @@
+<h1>Overlays</h1>
+<p>Overlay primitives place content above the interface with optional scrims, activators, persistence, positioning, and contained rendering.</p>
+
+<h2>Basic Overlay</h2>
+<demo-compare class="docs-overlay-primitive-demo">
+  <div slot="css">
+    <div class="docs-overlay-stage">
+      <button class="w-btn w-btn-outlined" type="button" aria-haspopup="dialog" aria-expanded="true">Open overlay</button>
+      <div class="w-overlay w-overlay--scrim w-overlay--contained open" role="presentation">
+        <div class="w-overlay-scrim" aria-hidden="true"></div>
+        <div class="w-overlay-content w-card" role="dialog" aria-modal="false" tabindex="-1">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Workspace ready</h3>
+            <p class="w-text-subtle mt-1">Review the deployment summary before continuing.</p>
+            <div class="w-row ga-2 mt-4">
+              <button class="w-btn w-btn-text">Cancel</button>
+              <button class="w-btn w-btn-filled">Continue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-overlay-stage">
+      <w-overlay label="Open overlay" open contained data-docs-overlay-demo>
+        <div class="w-card">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Workspace ready</h3>
+            <p class="w-text-subtle mt-1">Review the deployment summary before continuing.</p>
+            <div class="w-row ga-2 mt-4">
+              <button class="w-btn w-btn-text">Cancel</button>
+              <button class="w-btn w-btn-filled">Continue</button>
+            </div>
+          </div>
+        </div>
+      </w-overlay>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Activator</h2>
+<demo-compare class="docs-overlay-primitive-demo">
+  <div slot="css">
+    <div class="docs-overlay-stage docs-overlay-stage--compact">
+      <button class="w-btn w-btn-filled" type="button" aria-haspopup="dialog" aria-expanded="false">Show details</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-overlay-stage docs-overlay-stage--compact">
+      <w-overlay contained data-docs-overlay-demo>
+        <w-btn slot="activator" variant="filled">Show details</w-btn>
+        <div class="w-card">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Build details</h3>
+            <p class="w-text-subtle mt-1">Activator clicks open the overlay and Escape closes it.</p>
+          </div>
+        </div>
+      </w-overlay>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Persistent Scrim</h2>
+<demo-compare class="docs-overlay-primitive-demo">
+  <div slot="css">
+    <div class="docs-overlay-stage">
+      <button class="w-btn w-btn-outlined" type="button" aria-haspopup="dialog" aria-expanded="true">Persistent</button>
+      <div class="w-overlay w-overlay--scrim w-overlay--persistent w-overlay--contained open" style="--w-overlay-scrim: var(--w-primary); --w-overlay-opacity: 28%;" role="presentation">
+        <div class="w-overlay-scrim" aria-hidden="true"></div>
+        <div class="w-overlay-content w-card" role="dialog" aria-modal="false" tabindex="-1">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Required acknowledgement</h3>
+            <p class="w-text-subtle mt-1">Persistent overlays stay open when the scrim is clicked.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-overlay-stage">
+      <w-overlay label="Persistent" open contained persistent scrim="primary" opacity="0.28" data-docs-overlay-demo>
+        <div class="w-card">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Required acknowledgement</h3>
+            <p class="w-text-subtle mt-1">Persistent overlays stay open when the scrim is clicked.</p>
+          </div>
+        </div>
+      </w-overlay>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Location and Size</h2>
+<demo-compare class="docs-overlay-primitive-demo">
+  <div slot="css">
+    <div class="docs-overlay-stage">
+      <button class="w-btn w-btn-outlined" type="button" aria-haspopup="dialog" aria-expanded="true">Bottom end</button>
+      <div class="w-overlay w-overlay--scrim w-overlay--contained w-overlay--location-bottom-end open" role="presentation">
+        <div class="w-overlay-scrim" aria-hidden="true"></div>
+        <div class="w-overlay-content w-card" role="dialog" aria-modal="false" tabindex="-1" style="width: 16rem;">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Bottom end</h3>
+            <p class="w-text-subtle mt-1">Use location and width attributes for composed surfaces.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="docs-overlay-stage">
+      <w-overlay label="Bottom end" open contained location="bottom-end" width="16rem" data-docs-overlay-demo>
+        <div class="w-card">
+          <div class="w-card-body">
+            <h3 class="w-card-title">Bottom end</h3>
+            <p class="w-text-subtle mt-1">Use location and width attributes for composed surfaces.</p>
+          </div>
+        </div>
+      </w-overlay>
+    </div>
+  </div>
+</demo-compare>

@@ -1,0 +1,114 @@
+<h1>Timelines</h1>
+<p><code>w-timeline</code> arranges <code>w-timeline-item</code> entries along a connecting line. The default left-rail layout shows an opposite-side <code>time</code>, a dot, and the entry body. Per-item <code>dot-color</code>, <code>icon</code>, <code>fill-dot</code>, <code>hide-dot</code>, and <code>size</code> are supported.</p>
+
+<h2>Default (left rail)</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-timeline">
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">09:00</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled"></span></div>
+        <div class="w-timeline-content">
+          <div class="w-timeline-title">Kickoff</div>
+          <div class="w-timeline-body">Reviewed scope, owners, and release dependencies.</div>
+        </div>
+      </div>
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">11:30</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--outlined"></span></div>
+        <div class="w-timeline-content">
+          <div class="w-timeline-title">Design pass</div>
+          <div class="w-timeline-body">Aligned components with the docs surface and interaction states.</div>
+        </div>
+      </div>
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">14:00</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled"></span></div>
+        <div class="w-timeline-content">
+          <div class="w-timeline-title">Validation</div>
+          <div class="w-timeline-body">Checked keyboard flow and responsive spacing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-timeline>
+      <w-timeline-item time="09:00" title="Kickoff">Reviewed scope, owners, and release dependencies.</w-timeline-item>
+      <w-timeline-item time="11:30" title="Design pass" dot="outlined">Aligned components with the docs surface and interaction states.</w-timeline-item>
+      <w-timeline-item time="14:00" title="Validation">Checked keyboard flow and responsive spacing.</w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare>
+
+<h2>Alternating &amp; colored dots</h2>
+<p>Set <code>align="center"</code> for Vuetify&#8217;s alternating layout. Items accept <code>dot-color</code> and an <code>icon</code> inside the dot.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-timeline w-timeline--align-center">
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">Mon</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-success)"></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Shipped v1</div></div>
+      </div>
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">Wed</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-warning)"></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Hotfix</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-timeline align="center">
+      <w-timeline-item time="Mon" title="Shipped v1" dot-color="success"></w-timeline-item>
+      <w-timeline-item time="Wed" title="Hotfix" dot-color="warning"></w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare>
+
+<h2>Hide opposite (single rail)</h2>
+<p>Set <code>hide-opposite</code> on the timeline to drop every opposite column, or on a single <code>w-timeline-item</code> to hide just that one. Pair with <code>icon-color</code> to recolor the dot glyph.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-timeline w-timeline--hide-opposite">
+      <div class="w-timeline-item w-timeline-item--hide-opposite">
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled" style="--w-timeline-dot-color:var(--w-success)"><span class="w-timeline-dot__icon" style="--w-timeline-icon-color:var(--w-surface)">✓</span></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Deployed</div><div class="w-timeline-body">Rolled out to production.</div></div>
+      </div>
+      <div class="w-timeline-item w-timeline-item--hide-opposite">
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--outlined"></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Monitoring</div><div class="w-timeline-body">Watching error rates.</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-timeline hide-opposite>
+      <w-timeline-item title="Deployed" dot-color="success" icon="✓" icon-color="surface">Rolled out to production.</w-timeline-item>
+      <w-timeline-item title="Monitoring" dot="outlined">Watching error rates.</w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare>
+
+<h2>Justify center</h2>
+<p>Add <code>justify="center"</code> to give both sides of the rail equal width, centering the connecting line.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-timeline w-timeline--align-center w-timeline--justify-center">
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">Q1</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled"></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Plan</div></div>
+      </div>
+      <div class="w-timeline-item">
+        <div class="w-timeline-opposite">Q2</div>
+        <div class="w-timeline-divider-col"><span class="w-timeline-dot w-timeline-dot--filled"></span></div>
+        <div class="w-timeline-content"><div class="w-timeline-title">Build</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-timeline align="center" justify="center">
+      <w-timeline-item time="Q1" title="Plan"></w-timeline-item>
+      <w-timeline-item time="Q2" title="Build"></w-timeline-item>
+    </w-timeline>
+  </div>
+</demo-compare>

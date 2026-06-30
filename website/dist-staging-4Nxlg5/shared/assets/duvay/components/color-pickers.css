@@ -1,0 +1,174 @@
+/* DuVay — Color Pickers component styles. */
+@import "../core.css";
+
+/* ── Color Picker ─────────────────────────────────────────────────────────── */
+.w-color-picker {
+  display: grid;
+  gap: var(--w-space-4);
+  width: min(22rem, 100%);
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+  color: var(--w-text);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-color-picker-preview-row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--w-space-3);
+}
+
+.w-color-preview {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-md);
+  background:
+    linear-gradient(45deg, color-mix(in srgb, var(--w-text) 10%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--w-text) 10%, transparent) 75%),
+    linear-gradient(45deg, color-mix(in srgb, var(--w-text) 10%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--w-text) 10%, transparent) 75%);
+  background-position: 0 0, 0.5rem 0.5rem;
+  background-size: 1rem 1rem;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-surface) 56%, transparent);
+}
+
+.w-color-picker-edit {
+  display: block;
+  min-width: 0;
+}
+
+.w-color-picker-input {
+  width: 100%;
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container);
+  color: var(--w-text);
+  font: inherit;
+  font-family: var(--w-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  text-transform: uppercase;
+}
+
+.w-color-picker-input:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-color-picker-value {
+  width: max-content;
+  padding: var(--w-space-1) var(--w-space-2);
+  border-radius: var(--w-radius-sm);
+  background: var(--w-surface-container);
+  color: var(--w-text-muted);
+  font-size: var(--w-font-xs);
+}
+
+.w-color-picker-canvas {
+  position: relative;
+  height: 12rem;
+  border-radius: var(--w-radius-md);
+  background:
+    linear-gradient(to top, #000, transparent),
+    linear-gradient(to right, #fff, transparent),
+    var(--w-color-picker-hue-color, var(--w-primary));
+  cursor: crosshair;
+  touch-action: none;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-text) 22%, transparent);
+}
+
+.w-color-picker-canvas:focus-visible,
+.w-color-picker-slider:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 3px;
+}
+
+.w-color-picker-canvas-thumb,
+.w-color-picker-slider-thumb {
+  position: absolute;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid white;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.42), var(--w-shadow-sm);
+  pointer-events: none;
+}
+
+.w-color-picker-canvas-thumb {
+  transform: translate(-50%, -50%);
+}
+
+.w-color-picker-slider {
+  position: relative;
+  height: 0.875rem;
+  border-radius: var(--w-radius-pill);
+  cursor: pointer;
+  touch-action: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-text) 20%, transparent);
+}
+
+.w-color-picker-slider-thumb {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.w-color-picker-hue {
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+}
+
+.w-color-picker-alpha {
+  background:
+    linear-gradient(to right, transparent, var(--w-color-picker-current, var(--w-primary))),
+    repeating-conic-gradient(color-mix(in srgb, var(--w-text) 12%, transparent) 0 25%, transparent 0 50%) 0 / 0.75rem 0.75rem;
+}
+
+.w-color-picker-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
+  gap: var(--w-space-2);
+}
+
+.w-color-swatch {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: var(--w-color, var(--w-primary));
+  cursor: pointer;
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+  outline-offset: 2px;
+}
+
+.w-color-swatch:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-color, var(--w-primary)) 30%, transparent);
+}
+
+.w-color-swatch.selected {
+  border-color: var(--w-text);
+  box-shadow: 0 0 0 2px var(--w-surface), 0 0 0 4px var(--w-color, var(--w-primary));
+}
+
+.w-color-swatch:focus-visible {
+  outline: 2px solid var(--w-primary);
+}
+
+.w-color-swatch:disabled,
+.w-color-picker--readonly .w-color-swatch {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.w-color-picker--swatches-only {
+  width: max-content;
+  max-width: 100%;
+}

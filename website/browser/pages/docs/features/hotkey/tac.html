@@ -1,0 +1,87 @@
+<h1>Hotkeys</h1>
+<p><code>w-hotkey</code> displays a keyboard shortcut as styled <code>&lt;kbd&gt;</code> chips with platform-aware labels &#8212; <code>⌘</code> on macOS, <code>Ctrl</code> on Windows / Linux. Join simultaneous keys with <code>+</code> and separate sequential steps with <code>-</code>. It is presentational; register the actual listeners yourself (see <a href="#binding-the-shortcut">below</a>).</p>
+
+<h2>Basic</h2>
+<p>Use the <code>keys</code> attribute. By default the platform is detected from the browser.</p>
+<demo-compare>
+  <div slot="css">
+    <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">⌘</kbd><kbd class="w-kbd w-hotkey-key">K</kbd></span>
+  </div>
+  <div slot="wc">
+    <w-hotkey keys="cmd+k"></w-hotkey>
+  </div>
+</demo-compare>
+
+<h2>Platform</h2>
+<p>Force a platform with <code>platform="mac"</code> or <code>platform="pc"</code> &#8212; handy for documentation that shows both.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">⌘</kbd><kbd class="w-kbd w-hotkey-key">⇧</kbd><kbd class="w-kbd w-hotkey-key">P</kbd></span>
+      <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">Ctrl</kbd><kbd class="w-kbd w-hotkey-key">Shift</kbd><kbd class="w-kbd w-hotkey-key">P</kbd></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-hotkey keys="cmd+shift+p" platform="mac"></w-hotkey>
+      <w-hotkey keys="cmd+shift+p" platform="pc"></w-hotkey>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Display mode</h2>
+<p><code>display-mode</code> controls how modifier keys render: <code>icon</code> (default, platform-aware), <code>symbol</code> (always glyphs), or <code>text</code> (always words).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">⌃</kbd><kbd class="w-kbd w-hotkey-key">⌥</kbd><kbd class="w-kbd w-hotkey-key">S</kbd></span>
+      <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">Control</kbd><kbd class="w-kbd w-hotkey-key">Option</kbd><kbd class="w-kbd w-hotkey-key">S</kbd></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-hotkey keys="ctrl+alt+s" display-mode="symbol"></w-hotkey>
+      <w-hotkey keys="ctrl+option+s" display-mode="text"></w-hotkey>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sequences</h2>
+<p>Separate sequential steps with <code>-</code> to show a &#8220;then&#8221; chord, e.g. <code>ctrl+k-ctrl+s</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <span class="w-hotkey w-hotkey--contained"><kbd class="w-kbd w-hotkey-key">Ctrl</kbd><kbd class="w-kbd w-hotkey-key">K</kbd><span class="w-hotkey-then">then</span><kbd class="w-kbd w-hotkey-key">Ctrl</kbd><kbd class="w-kbd w-hotkey-key">S</kbd></span>
+  </div>
+  <div slot="wc">
+    <w-hotkey keys="ctrl+k-ctrl+s" platform="pc"></w-hotkey>
+  </div>
+</demo-compare>
+
+<h2>Variants &amp; states</h2>
+<p>Use <code>variant="plain"</code> for unboxed labels, or <code>disabled</code> for an unavailable shortcut. Named keys like <code>enter</code>, <code>esc</code>, <code>tab</code>, <code>space</code>, and the arrows are recognized.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <span class="w-hotkey w-hotkey--plain"><kbd class="w-kbd w-hotkey-key">⌘</kbd><kbd class="w-kbd w-hotkey-key">↵</kbd></span>
+      <span class="w-hotkey w-hotkey--contained w-hotkey--disabled" aria-disabled="true"><kbd class="w-kbd w-hotkey-key">⌘</kbd><kbd class="w-kbd w-hotkey-key">Z</kbd></span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-hotkey keys="cmd+enter" variant="plain" platform="mac"></w-hotkey>
+      <w-hotkey keys="cmd+z" disabled platform="mac"></w-hotkey>
+    </div>
+  </div>
+</demo-compare>
+
+<h2 id="binding-the-shortcut">Binding the shortcut</h2>
+<p><code>w-hotkey</code> only renders the keys &#8212; wire the behavior with a listener:</p>
+<pre class="code-block"><code>document.addEventListener('keydown', (e) =&gt; &#123;
+  if ((e.metaKey || e.ctrlKey) &amp;&amp; e.key.toLowerCase() === 'k') &#123;
+    e.preventDefault();
+    openSearch();
+  &#125;
+&#125;);</code></pre>
+
+<h2>Accessibility</h2>
+<p>Each <code>w-hotkey</code> carries a readable <code>aria-label</code> (e.g. &#8220;Control + K, then Control + S&#8221;). Document shortcuts in a help dialog, avoid overriding browser or screen-reader keys, and keep focus visible when a shortcut opens a layer.</p>

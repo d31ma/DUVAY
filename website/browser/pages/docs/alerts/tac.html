@@ -1,0 +1,131 @@
+<h1>Alerts</h1>
+<p>Contextual messages for feedback, warnings, and errors.</p>
+
+<h2>Types</h2>
+<p>Use <code>type</code> for contextual color and icon. Legacy <code>variant="success"</code> style syntax still works, but new alerts should prefer <code>type</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <div class="w-alert w-alert-info">
+        <div class="w-alert-prepend w-alert-icon">i</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Information</div>
+          <div class="w-alert-text">Something you should know about.</div>
+        </div>
+      </div>
+      <div class="w-alert w-alert-success">
+        <div class="w-alert-prepend w-alert-icon">OK</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Success</div>
+          <div class="w-alert-text">Your changes have been saved.</div>
+        </div>
+      </div>
+      <div class="w-alert w-alert-warning">
+        <div class="w-alert-prepend w-alert-icon">!</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Warning</div>
+          <div class="w-alert-text">Please review before continuing.</div>
+        </div>
+      </div>
+      <div class="w-alert w-alert-error">
+        <div class="w-alert-prepend w-alert-icon">x</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Error</div>
+          <div class="w-alert-text">Something went wrong. Please try again.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-alert type="info" title="Information" text="Something you should know about."></w-alert>
+      <w-alert type="success" title="Success" text="Your changes have been saved."></w-alert>
+      <w-alert type="warning" title="Warning" text="Please review before continuing."></w-alert>
+      <w-alert type="error" title="Error" text="Something went wrong. Please try again."></w-alert>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<p>Use <code>variant</code> for visual treatment: <code>flat</code>, <code>tonal</code>, <code>outlined</code>, <code>text</code>, <code>plain</code>, or <code>elevated</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <div class="w-alert w-alert-success w-alert--variant-flat">
+        <div class="w-alert-body"><div class="w-alert-title">Flat</div><div class="w-alert-text">Default filled treatment.</div></div>
+      </div>
+      <div class="w-alert w-alert-success w-alert--variant-tonal">
+        <div class="w-alert-body"><div class="w-alert-title">Tonal</div><div class="w-alert-text">Subtler filled treatment.</div></div>
+      </div>
+      <div class="w-alert w-alert-success w-alert--variant-outlined">
+        <div class="w-alert-body"><div class="w-alert-title">Outlined</div><div class="w-alert-text">Transparent surface with accent border.</div></div>
+      </div>
+      <div class="w-alert w-alert-success w-alert--variant-elevated">
+        <div class="w-alert-body"><div class="w-alert-title">Elevated</div><div class="w-alert-text">Raised with the DuVay shadow token.</div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-alert type="success" variant="flat" title="Flat" text="Default filled treatment."></w-alert>
+      <w-alert type="success" variant="tonal" title="Tonal" text="Subtler filled treatment."></w-alert>
+      <w-alert type="success" variant="outlined" title="Outlined" text="Transparent surface with accent border."></w-alert>
+      <w-alert type="success" variant="elevated" title="Elevated" text="Raised with the DuVay shadow token."></w-alert>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Density, Borders, and Icons</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <div class="w-alert w-alert-info w-alert--border w-alert--border-start w-alert--border-color-warning">
+        <div class="w-alert-border" aria-hidden="true"></div>
+        <div class="w-alert-prepend w-alert-icon">!</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Border color</div>
+          <div class="w-alert-text">Use a directional accent border.</div>
+        </div>
+      </div>
+      <div class="w-alert w-alert-warning w-alert--prominent">
+        <div class="w-alert-prepend w-alert-icon">!</div>
+        <div class="w-alert-body">
+          <div class="w-alert-title">Prominent</div>
+          <div class="w-alert-text">Larger icon and roomier vertical rhythm.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-alert type="info" border="start" border-color="warning" icon="!" title="Border color" text="Use a directional accent border."></w-alert>
+      <w-alert type="warning" prominent title="Prominent" text="Larger icon and roomier vertical rhythm."></w-alert>
+      <w-alert type="info" density="compact" icon="false" text="Compact alert without an icon."></w-alert>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Closable and Slots</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-alert w-alert-info">
+      <div class="w-alert-prepend w-alert-icon">i</div>
+      <div class="w-alert-body">
+        <div class="w-alert-title">Closable</div>
+        <div class="w-alert-text">Click the close button to hide this alert.</div>
+      </div>
+      <button class="w-alert-close" data-w-alert-dismiss aria-label="Close alert">x</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-alert type="info" title="Closable" text="Click the close button to hide this alert." closable></w-alert>
+      <w-alert type="success" closable close-label="Close upload alert">
+        <span slot="prepend">OK</span>
+        <span slot="title">Upload complete</span>
+        <span slot="text">All files are now available.</span>
+        <w-btn slot="append" variant="text" size="sm">View</w-btn>
+      </w-alert>
+    </div>
+  </div>
+</demo-compare>

@@ -1,0 +1,28 @@
+<h1>Application</h1>
+<p>Application components define a polymorphic shell: app root, persistent bars, responsive drawers, layout, and the main content region.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-app" style="max-height:280px">
+      <header class="w-app-bar"><strong class="w-app-bar-title">DuVay Console</strong><button class="w-btn w-btn-text w-btn-sm">Sync</button></header>
+      <div class="w-layout"><aside class="w-navigation-drawer open w-navigation-drawer--permanent"><div class="w-list w-list--nav"><button class="w-list-item active">Overview</button><button class="w-list-item">Reports</button></div></aside><main class="w-main pa-4">Application content</main></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-app>
+      <w-app-bar title="DuVay Console" sticky><w-btn variant="text" size="sm">Sync</w-btn></w-app-bar>
+      <w-layout><w-navigation-drawer open permanent><w-list nav><w-list-item active title="Overview"></w-list-item><w-list-item title="Reports"></w-list-item></w-list></w-navigation-drawer><w-main class="pa-4">Application content</w-main></w-layout>
+    </w-app>
+  </div>
+</demo-compare>
+<h2>Responsive navigation</h2>
+<p>Connect <code>&lt;w-app-bar-nav-icon&gt;</code> to a drawer with <code>for</code>. At 1024px and below, non-permanent drawers become off-canvas, add a scrim, close with Escape, and close after navigation.</p>
+<div class="code-block"><pre><code>&lt;w-app-bar&gt;
+  &lt;w-app-bar-nav-icon for="primary-navigation"&gt;&lt;/w-app-bar-nav-icon&gt;
+  &lt;w-app-bar-title&gt;DuVay Console&lt;/w-app-bar-title&gt;
+&lt;/w-app-bar&gt;
+&lt;w-layout&gt;
+  &lt;w-navigation-drawer id="primary-navigation" label="Primary navigation"&gt;
+    &lt;a href="/overview"&gt;Overview&lt;/a&gt;
+  &lt;/w-navigation-drawer&gt;
+  &lt;w-main&gt;Application content&lt;/w-main&gt;
+&lt;/w-layout&gt;</code></pre></div>

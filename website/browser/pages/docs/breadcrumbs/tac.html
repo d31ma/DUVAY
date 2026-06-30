@@ -1,0 +1,182 @@
+<h1>Breadcrumbs</h1>
+<p>Breadcrumbs show the user's location within a hierarchy and provide a path back to parent pages. DuVay breadcrumbs support a declarative items array, custom dividers, leading and per-item icons, color theming, density, and rounded containers.</p>
+<p>The separator between crumbs is drawn by CSS, so plain markup, the <code>items</code> array, and composed children all get automatic dividers. An explicit <code>&lt;w-breadcrumbs-divider&gt;</code> between two crumbs overrides the automatic one.</p>
+
+<h2>Basic</h2>
+<p>Mark the current page with the <code>active</code> class (or the <code>active</code> attribute), which renders a non-link crumb with <code>aria-current="page"</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb">
+      <a class="w-breadcrumb" href="/docs">Docs</a>
+      <a class="w-breadcrumb" href="/docs/components">Components</a>
+      <span class="w-breadcrumb active" aria-current="page">Breadcrumbs</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs>
+      <w-breadcrumb href="/docs">Docs</w-breadcrumb>
+      <w-breadcrumb href="/docs/components">Components</w-breadcrumb>
+      <w-breadcrumb active>Breadcrumbs</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Declarative items</h2>
+<p>For data-driven breadcrumbs, set an <code>items</code> array on <code>&lt;w-breadcrumbs&gt;</code> from JavaScript instead of composing children. Each entry is an object with a <code>title</code> (or <code>text</code>), an optional <code>href</code>, and optional <code>disabled</code> and <code>icon</code> values; the last entry becomes the current page automatically. The example below shows the equivalent written as composed children.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb">
+      <a class="w-breadcrumb" href="/"><span class="w-breadcrumb-icon">🏠</span>Home</a>
+      <a class="w-breadcrumb" href="/catalog">Catalog</a>
+      <span class="w-breadcrumb" aria-disabled="true">Phones</span>
+      <span class="w-breadcrumb active" aria-current="page">iPhone</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs>
+      <w-breadcrumb href="/" icon="🏠">Home</w-breadcrumb>
+      <w-breadcrumb href="/catalog">Catalog</w-breadcrumb>
+      <w-breadcrumb href="/catalog/phones" disabled>Phones</w-breadcrumb>
+      <w-breadcrumb active>iPhone</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Custom divider</h2>
+<p>Set the <code>divider</code> attribute to any string. With CSS classes, set the <code>--w-breadcrumb-divider</code> custom property on the wrapper.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" style="--w-breadcrumb-divider: '›'">
+      <a class="w-breadcrumb" href="/">Dashboard</a>
+      <a class="w-breadcrumb" href="/reports">Reports</a>
+      <span class="w-breadcrumb active" aria-current="page">Q2</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs divider="›">
+      <w-breadcrumb href="/">Dashboard</w-breadcrumb>
+      <w-breadcrumb href="/reports">Reports</w-breadcrumb>
+      <w-breadcrumb active>Q2</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Icons</h2>
+<p>Add a leading icon with the <code>icon</code> attribute on <code>&lt;w-breadcrumbs&gt;</code>, or a per-crumb icon with <code>icon</code> on <code>&lt;w-breadcrumb&gt;</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb">
+      <span class="w-breadcrumb-icon">🏠</span>
+      <a class="w-breadcrumb" href="/photos"><span class="w-breadcrumb-icon">📷</span>Photos</a>
+      <span class="w-breadcrumb active" aria-current="page">2024</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs icon="🏠">
+      <w-breadcrumb href="/photos" icon="📷">Photos</w-breadcrumb>
+      <w-breadcrumb active>2024</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Color and active color</h2>
+<p><code>color</code> sets the link color and <code>active-color</code> the current-page color, using DuVay palette tokens. With CSS classes, set the <code>--w-breadcrumb-color</code> and <code>--w-breadcrumb-active-color</code> custom properties.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb" style="--w-breadcrumb-color: var(--w-primary); --w-breadcrumb-active-color: var(--w-success)">
+      <a class="w-breadcrumb" href="/">Build</a>
+      <a class="w-breadcrumb" href="/deploy">Deploy</a>
+      <span class="w-breadcrumb active" aria-current="page">Live</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs color="primary" active-color="success">
+      <w-breadcrumb href="/">Build</w-breadcrumb>
+      <w-breadcrumb href="/deploy">Deploy</w-breadcrumb>
+      <w-breadcrumb active>Live</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Background and rounded</h2>
+<p>Give the strip a tinted, rounded container with <code>bg-color</code> (a palette token) and <code>rounded</code>. With CSS classes, add <code>w-breadcrumbs--rounded</code> and set <code>--w-breadcrumb-bg</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs w-breadcrumbs--rounded" aria-label="Breadcrumb" style="--w-breadcrumb-bg: var(--w-surface-container-high)">
+      <a class="w-breadcrumb" href="/">Root</a>
+      <a class="w-breadcrumb" href="/settings">Settings</a>
+      <span class="w-breadcrumb active" aria-current="page">Profile</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs bg-color="surface-container-high" rounded>
+      <w-breadcrumb href="/">Root</w-breadcrumb>
+      <w-breadcrumb href="/settings">Settings</w-breadcrumb>
+      <w-breadcrumb active>Profile</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Density</h2>
+<p>Use <code>density</code> (<code>comfortable</code> or <code>compact</code>) to adjust the vertical padding. With CSS classes, add <code>w-breadcrumbs--comfortable</code> or <code>w-breadcrumbs--compact</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs w-breadcrumbs--compact" aria-label="Breadcrumb">
+      <a class="w-breadcrumb" href="/">One</a>
+      <a class="w-breadcrumb" href="/two">Two</a>
+      <span class="w-breadcrumb active" aria-current="page">Three</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs density="compact">
+      <w-breadcrumb href="/">One</w-breadcrumb>
+      <w-breadcrumb href="/two">Two</w-breadcrumb>
+      <w-breadcrumb active>Three</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<p>Add <code>disabled</code> to a single <code>&lt;w-breadcrumb&gt;</code> to make it non-interactive, or to <code>&lt;w-breadcrumbs&gt;</code> to disable the whole strip.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb">
+      <a class="w-breadcrumb" href="/">Home</a>
+      <span class="w-breadcrumb" aria-disabled="true">Reports</span>
+      <span class="w-breadcrumb active" aria-current="page">Q2</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs>
+      <w-breadcrumb href="/">Home</w-breadcrumb>
+      <w-breadcrumb href="/reports" disabled>Reports</w-breadcrumb>
+      <w-breadcrumb active>Q2</w-breadcrumb>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Custom divider element</h2>
+<p>For a one-off divider — an icon, a different glyph per position — place <code>&lt;w-breadcrumbs-divider&gt;</code> between crumbs. It overrides the automatic separator for that gap; provide the divider content as its child.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-breadcrumbs" aria-label="Breadcrumb">
+      <a class="w-breadcrumb" href="/">Home</a>
+      <span class="w-breadcrumb-sep">»</span>
+      <a class="w-breadcrumb" href="/docs">Docs</a>
+      <span class="w-breadcrumb-sep">»</span>
+      <span class="w-breadcrumb active" aria-current="page">API</span>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-breadcrumbs>
+      <w-breadcrumbs-item href="/">Home</w-breadcrumbs-item>
+      <w-breadcrumbs-divider>»</w-breadcrumbs-divider>
+      <w-breadcrumbs-item href="/docs">Docs</w-breadcrumbs-item>
+      <w-breadcrumbs-divider>»</w-breadcrumbs-divider>
+      <w-breadcrumbs-item active>API</w-breadcrumbs-item>
+    </w-breadcrumbs>
+  </div>
+</demo-compare>
+
+<h2>Accessibility</h2>
+<p>Use <code>aria-label="Breadcrumb"</code> on the wrapper and <code>aria-current="page"</code> on the current item. The <code>&lt;w-breadcrumbs&gt;</code> component adds both automatically, marks disabled crumbs with <code>aria-disabled</code>, and renders icons as <code>aria-hidden</code>.</p>

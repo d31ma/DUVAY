@@ -1,0 +1,462 @@
+/* DuVay — Buttons component styles. */
+@import "../core.css";
+
+/* ── Button base ─────────────────────────────────────────────────────────── */
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--w-size-md);
+  min-width: 64px;
+  padding: 0 var(--w-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal), box-shadow var(--w-transition-normal);
+}
+
+.w-btn::before,
+.w-chip::before,
+.w-tab::before,
+.w-list-item::before,
+.w-bottom-nav-item::before,
+.w-fab::before,
+.w-page-item::before,
+.w-date-picker-day::before,
+.w-number-input-btn::before,
+.w-date-input-icon::before,
+.w-date-input-clear::before,
+.w-file-input-clear::before,
+.w-window-dot::before,
+.w-window-arrow::before,
+.w-expand-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, currentColor 0%, transparent 58%);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.45);
+  transition: opacity var(--w-transition-fast), transform var(--w-transition-normal);
+}
+
+.w-chip,
+.w-tab,
+.w-list-item,
+.w-bottom-nav-item,
+.w-fab,
+.w-page-item,
+.w-date-picker-day,
+.w-number-input-btn,
+.w-date-input-icon,
+.w-date-input-clear,
+.w-file-input-clear,
+.w-window-dot,
+.w-window-arrow,
+.w-expand-header {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.w-btn:not(:disabled):active::before,
+.w-chip:active::before,
+.w-tab:active::before,
+.w-list-item:active::before,
+.w-bottom-nav-item:not(:disabled):active::before,
+.w-fab:not(:disabled):active::before,
+.w-page-item:not(:disabled):active::before,
+.w-date-picker-day:not(:disabled):active::before,
+.w-number-input-btn:not(:disabled):active::before,
+.w-date-input-icon:not(:disabled):active::before,
+.w-date-input-clear:not(:disabled):active::before,
+.w-file-input-clear:not(:disabled):active::before,
+.w-window-dot:not(:disabled):active::before,
+.w-window-arrow:not(:disabled):active::before,
+.w-expand-header:not(:disabled):active::before {
+  opacity: 0.14;
+  transform: scale(1.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-btn::before,
+  .w-chip::before,
+  .w-tab::before,
+  .w-list-item::before,
+  .w-bottom-nav-item::before,
+  .w-fab::before,
+  .w-page-item::before,
+  .w-date-picker-day::before,
+  .w-number-input-btn::before,
+  .w-date-input-icon::before,
+  .w-date-input-clear::before,
+  .w-file-input-clear::before,
+  .w-window-dot::before,
+  .w-window-arrow::before,
+  .w-expand-header::before {
+    transition: none;
+  }
+}
+
+.w-btn:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Button variants */
+.w-btn-filled {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+
+.w-btn-filled:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+}
+
+.w-btn-tonal {
+  background: var(--w-secondary-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-btn-tonal:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-secondary-container) 82%, black);
+}
+
+.w-btn-outlined {
+  border-color: var(--w-border);
+  background: transparent;
+}
+
+.w-btn-outlined:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-text {
+  background: transparent;
+  min-width: 0;
+}
+
+.w-btn-text:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-icon {
+  min-width: var(--w-size-icon-md);
+  width: var(--w-size-icon-md);
+  padding: 0;
+  border-radius: var(--w-radius);
+}
+
+.w-btn-icon:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-leading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+/* Color modifiers for filled buttons (compound selectors for specificity) */
+.w-btn-filled.w-btn-primary {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+.w-btn-filled.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+}
+
+.w-btn-filled.w-btn-success {
+  background: var(--w-success);
+  color: var(--w-on-success);
+  border-color: var(--w-success);
+}
+.w-btn-filled.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 88%, black);
+}
+
+.w-btn-filled.w-btn-danger {
+  background: var(--w-error);
+  color: var(--w-on-error);
+  border-color: var(--w-error);
+}
+.w-btn-filled.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 88%, black);
+}
+
+.w-btn-filled.w-btn-warning {
+  background: var(--w-warning);
+  color: var(--w-on-warning);
+  border-color: var(--w-warning);
+}
+.w-btn-filled.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 88%, black);
+}
+
+/* Outlined color variants */
+.w-btn-outlined.w-btn-primary {
+  border-color: var(--w-primary);
+  color: var(--w-primary);
+}
+.w-btn-outlined.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-success {
+  border-color: var(--w-success);
+  color: var(--w-success);
+}
+.w-btn-outlined.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-danger {
+  border-color: var(--w-error);
+  color: var(--w-error);
+}
+.w-btn-outlined.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-warning {
+  border-color: var(--w-warning);
+  color: var(--w-warning);
+}
+.w-btn-outlined.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 10%, transparent);
+}
+
+/* Text/Ghost color variants */
+.w-btn-text.w-btn-primary,
+.w-btn-ghost.w-btn-primary {
+  color: var(--w-primary);
+}
+.w-btn-text.w-btn-primary:hover:not(:disabled),
+.w-btn-ghost.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 10%, transparent);
+}
+
+.w-btn-text.w-btn-success,
+.w-btn-ghost.w-btn-success {
+  color: var(--w-success);
+}
+.w-btn-text.w-btn-success:hover:not(:disabled),
+.w-btn-ghost.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 10%, transparent);
+}
+
+.w-btn-text.w-btn-danger,
+.w-btn-ghost.w-btn-danger {
+  color: var(--w-error);
+}
+.w-btn-text.w-btn-danger:hover:not(:disabled),
+.w-btn-ghost.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 10%, transparent);
+}
+
+.w-btn-text.w-btn-warning,
+.w-btn-ghost.w-btn-warning {
+  color: var(--w-warning);
+}
+.w-btn-text.w-btn-warning:hover:not(:disabled),
+.w-btn-ghost.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 10%, transparent);
+}
+
+/* Primary-text variant (colored text-only button, deprecated: use .w-btn-text.w-btn-primary) */
+.w-btn-primary-text {
+  color: var(--w-primary);
+  min-width: 0;
+}
+.w-btn-primary-text:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 14%, transparent);
+}
+
+/* Sizes — xs / sm / (default) / lg / xl (BEM + utility aliases) */
+.w-btn--xs,
+.w-btn-xs {
+  min-height: var(--w-size-xs);
+  min-width: 0;
+  padding: 0 var(--w-space-2);
+  gap: 0.25rem;
+  font-size: var(--w-font-xs);
+}
+
+.w-btn--xs.w-btn-icon,
+.w-btn-xs.w-btn-icon {
+  min-width: var(--w-size-icon-xs);
+  width: var(--w-size-icon-xs);
+}
+
+.w-btn--sm,
+.w-btn-sm {
+  min-height: var(--w-size-sm);
+  min-width: 0;
+  padding: 0 var(--w-space-sm);
+  font-size: var(--w-font-sm);
+}
+
+.w-btn--sm.w-btn-icon,
+.w-btn-sm.w-btn-icon {
+  min-width: var(--w-size-icon-sm);
+  width: var(--w-size-icon-sm);
+}
+
+.w-btn--lg,
+.w-btn-lg {
+  min-height: var(--w-size-lg);
+  padding: 0 var(--w-space-xl);
+  font-size: var(--w-font-md);
+}
+
+.w-btn--lg.w-btn-icon,
+.w-btn-lg.w-btn-icon {
+  min-width: var(--w-size-icon-lg);
+  width: var(--w-size-icon-lg);
+}
+
+.w-btn--xl,
+.w-btn-xl {
+  min-height: var(--w-size-xl);
+  padding: 0 var(--w-space-2xl);
+  font-size: var(--w-font-lg);
+}
+
+.w-btn--xl.w-btn-icon,
+.w-btn-xl.w-btn-icon {
+  min-width: var(--w-size-icon-xl);
+  width: var(--w-size-icon-xl);
+}
+
+/* Ghost variant (borderless, subtle hover) */
+.w-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.w-btn-ghost:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+/* Loading state */
+.w-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.w-btn-filled.w-loading {
+  --w-loading-color: var(--w-on-primary);
+}
+
+.w-btn-filled.w-btn-success {
+  --w-loading-color: var(--w-on-success);
+}
+
+.w-btn-filled.w-btn-danger {
+  --w-loading-color: var(--w-on-error);
+}
+
+.w-btn-filled.w-btn-warning {
+  --w-loading-color: var(--w-on-warning);
+}
+
+.w-btn-tonal.w-loading {
+  --w-loading-color: var(--w-on-secondary-container);
+}
+
+.w-btn-outlined.w-loading,
+.w-btn-text.w-loading,
+.w-btn-ghost.w-loading {
+  --w-loading-color: var(--w-primary);
+}
+
+.w-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+  border: 2px solid var(--w-loading-color, var(--w-primary));
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: w-spin 0.75s linear infinite;
+}
+@keyframes w-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Block / full-width */
+.w-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Stacked (icon above label) */
+.w-btn-stacked {
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 64px;
+}
+
+/* Append icon helper */
+.w-btn-append-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+/* Plain variant — subtle action with no hover background */
+.w-btn-plain {
+  background: transparent;
+  border-color: transparent;
+  opacity: 0.85;
+}
+.w-btn-plain:hover:not(:disabled) {
+  opacity: 1;
+}
+
+/* Elevated variant — filled primary with a shadow */
+.w-btn-elevated {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+  box-shadow: var(--w-shadow-sm);
+}
+.w-btn-elevated:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+  box-shadow: var(--w-shadow-md);
+}
+
+/* Standalone active / pressed state */
+.w-btn.active,
+.w-btn-active {
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+  border-color: color-mix(in srgb, var(--w-primary) 30%, transparent);
+}

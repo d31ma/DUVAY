@@ -1,0 +1,102 @@
+<h1>Confirm Edit</h1>
+<p><code>w-confirm-edit</code> keeps changes on a temporary copy of a value until the user commits (OK) or reverts (Cancel). OK stays disabled until the edit differs from the original. Edit with the built-in field, or wrap any control that exposes a <code>value</code> &#8212; a <a href="/docs/text-fields">text field</a>, <a href="/docs/textareas">textarea</a>, select, or a native input.</p>
+
+<h2>Basic</h2>
+<p>With no slotted editor, a built-in input is rendered from <code>label</code>. Type to enable OK.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-confirm-edit">
+      <div class="w-confirm-edit-body">
+        <label class="w-field"><span class="w-label">Name</span><input class="w-input" value="Launch review" /></label>
+      </div>
+      <div class="w-confirm-edit-actions">
+        <button class="w-btn w-btn-text" type="button">Cancel</button>
+        <button class="w-btn w-btn-filled" type="button" disabled>Save</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-confirm-edit label="Name" value="Launch review"></w-confirm-edit>
+  </div>
+</demo-compare>
+
+<h2>Custom action labels</h2>
+<p>Override the button text with <code>cancel-text</code> and <code>ok-text</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-confirm-edit">
+      <div class="w-confirm-edit-body">
+        <label class="w-field"><span class="w-label">Display name</span><input class="w-input" value="ada" /></label>
+      </div>
+      <div class="w-confirm-edit-actions">
+        <button class="w-btn w-btn-text" type="button">Discard</button>
+        <button class="w-btn w-btn-filled" type="button" disabled>Update</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-confirm-edit label="Display name" value="ada" cancel-text="Discard" ok-text="Update"></w-confirm-edit>
+  </div>
+</demo-compare>
+
+<h2>Custom editor</h2>
+<p>Drop any control into the default slot &#8212; it&#8217;s bound to <code>value</code>, and its changes drive the pristine state.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-confirm-edit">
+      <div class="w-confirm-edit-body">
+        <div class="w-text-field w-text-field--textarea w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><textarea class="w-text-field-input w-text-field-textarea" rows="3">Hello there, this is a longer note.</textarea><label class="w-text-field-label">Bio</label></span></div></div>
+      </div>
+      <div class="w-confirm-edit-actions">
+        <button class="w-btn w-btn-text" type="button">Cancel</button>
+        <button class="w-btn w-btn-filled" type="button" disabled>Save</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-confirm-edit value="Hello there, this is a longer note.">
+      <w-textarea label="Bio" rows="3" value="Hello there, this is a longer note."></w-textarea>
+    </w-confirm-edit>
+  </div>
+</demo-compare>
+
+<h2>Disabled</h2>
+<p>Add <code>disabled</code> to lock the editor and both actions.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-confirm-edit">
+      <div class="w-confirm-edit-body">
+        <label class="w-field"><span class="w-label">Name</span><input class="w-input" value="Read only" disabled /></label>
+      </div>
+      <div class="w-confirm-edit-actions">
+        <button class="w-btn w-btn-text" type="button" disabled>Cancel</button>
+        <button class="w-btn w-btn-filled" type="button" disabled>Save</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-confirm-edit label="Name" value="Read only" disabled></w-confirm-edit>
+  </div>
+</demo-compare>
+
+<h2>Custom actions</h2>
+<p>Provide your own buttons in the <code>actions</code> slot and mark them <code>data-save</code> / <code>data-cancel</code>; the component wires the rest. With <code>hide-actions</code> you can omit the buttons entirely and call <code>save()</code> / <code>cancel()</code> yourself.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-confirm-edit">
+      <div class="w-confirm-edit-body">
+        <label class="w-field"><span class="w-label">Title</span><input class="w-input" value="Q3 roadmap" /></label>
+      </div>
+      <div class="w-confirm-edit-actions">
+        <button class="w-btn w-btn-text" type="button">Undo</button>
+        <button class="w-btn w-btn-tonal" type="button">Apply</button>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-confirm-edit label="Title" value="Q3 roadmap">
+      <button slot="actions" data-cancel class="w-btn w-btn-text" type="button">Undo</button>
+      <button slot="actions" data-save class="w-btn w-btn-tonal" type="button">Apply</button>
+    </w-confirm-edit>
+  </div>
+</demo-compare>

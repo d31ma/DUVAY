@@ -1,0 +1,47 @@
+<h1>Skeleton loaders</h1>
+<p><code>w-skeleton-loader</code> (alias <code>w-skeleton</code>) renders shimmering placeholders while content loads. Use <code>type</code> to compose bone presets — basic bones (<code>text</code>, <code>heading</code>, <code>avatar</code>, <code>image</code>, <code>button</code>, <code>chip</code>, <code>divider</code>…), <code>@n</code> repeats, and composites like <code>list-item-avatar-two-line</code>, <code>article</code>, <code>actions</code>, or <code>card</code>.</p>
+
+<h2>Presets</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-4" style="align-items:flex-start">
+      <div class="w-skeleton-loader" style="max-width:280px">
+        <div class="w-skeleton-list-item">
+          <div class="w-skeleton w-skeleton-avatar"></div>
+          <div class="w-skeleton-list-item__content">
+            <div class="w-skeleton w-skeleton-text"></div>
+            <div class="w-skeleton w-skeleton-text" style="width:60%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="w-skeleton-card" style="max-width:280px">
+        <div class="w-skeleton w-skeleton-image"></div>
+        <div class="w-skeleton w-skeleton-heading"></div>
+        <div class="w-skeleton w-skeleton-text"></div>
+        <div class="w-skeleton w-skeleton-text"></div>
+        <div class="w-skeleton w-skeleton-text" style="width:60%"></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-4" style="align-items:flex-start">
+      <w-skeleton type="list-item-avatar-two-line" style="max-width:280px"></w-skeleton>
+      <w-skeleton type="card" style="max-width:280px"></w-skeleton>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Boilerplate</h2>
+<p>Add <code>boilerplate</code> to show the shapes without the shimmer animation.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-skeleton-loader w-skeleton--boilerplate" style="max-width:280px">
+      <div class="w-skeleton w-skeleton-text"></div>
+      <div class="w-skeleton w-skeleton-text"></div>
+      <div class="w-skeleton w-skeleton-text" style="width:60%"></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-skeleton type="paragraph" boilerplate style="max-width:280px"></w-skeleton>
+  </div>
+</demo-compare>

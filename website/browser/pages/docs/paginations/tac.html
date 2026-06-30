@@ -1,0 +1,197 @@
+<h1>Pagination</h1>
+<p>Navigate large data sets with page controls, truncation, and accessible navigation.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-pagination" aria-label="Pagination">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" disabled>‹</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 2">2</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 3">3</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 4">4</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 5">5</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-pagination length="5" page="1"></w-pagination>
+  </div>
+</demo-compare>
+
+<h2>Truncation with total-visible</h2>
+<p>When <code>length</code> exceeds <code>total-visible</code>, the middle is collapsed with an ellipsis.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-pagination" aria-label="Pagination">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page">‹</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 1">1</button>
+      <span class="w-page-ellipsis" aria-hidden="true">…</span>
+      <button class="w-page-item" type="button" aria-label="Go to page 9">9</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 10">10</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 11">11</button>
+      <span class="w-page-ellipsis" aria-hidden="true">…</span>
+      <button class="w-page-item" type="button" aria-label="Go to page 20">20</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-pagination length="20" page="10" total-visible="5"></w-pagination>
+  </div>
+</demo-compare>
+
+<h2>First and last buttons</h2>
+<p>Add <code>show-first-last-page</code> to render first («) and last (») navigation buttons.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-pagination" aria-label="Pagination">
+      <button class="w-page-item w-page-nav" type="button" aria-label="First page" disabled>«</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page" disabled>‹</button>
+      <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 2">2</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 3">3</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 4">4</button>
+      <button class="w-page-item" type="button" aria-label="Go to page 5">5</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Last page">»</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-pagination length="5" page="1" show-first-last-page></w-pagination>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<p>Choose from <code>text</code> (default), <code>flat</code>, <code>tonal</code>, <code>outlined</code>, and <code>elevated</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 3">3</button>
+        <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-item--flat w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--flat active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--flat" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--flat" type="button" aria-label="Go to page 3">3</button>
+        <button class="w-page-item w-page-item--flat w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-item--tonal w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--tonal active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--tonal" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--tonal" type="button" aria-label="Go to page 3">3</button>
+        <button class="w-page-item w-page-item--tonal w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-item--outlined w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--outlined active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--outlined" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--outlined" type="button" aria-label="Go to page 3">3</button>
+        <button class="w-page-item w-page-item--outlined w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-item--elevated w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--elevated active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--elevated" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--elevated" type="button" aria-label="Go to page 3">3</button>
+        <button class="w-page-item w-page-item--elevated w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-pagination length="3" page="1" variant="text"></w-pagination>
+      <w-pagination length="3" page="1" variant="flat"></w-pagination>
+      <w-pagination length="3" page="1" variant="tonal"></w-pagination>
+      <w-pagination length="3" page="1" variant="outlined"></w-pagination>
+      <w-pagination length="3" page="1" variant="elevated"></w-pagination>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<p>Vuetify-style sizes: <code>x-small</code>, <code>small</code>, <code>default</code>, <code>large</code>, <code>x-large</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <nav class="w-pagination w-pagination--x-small" aria-label="Pagination">
+        <button class="w-page-item w-page-item--x-small w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--x-small active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--x-small" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--x-small w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--small" aria-label="Pagination">
+        <button class="w-page-item w-page-item--small w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--small active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--small" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--small w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination" aria-label="Pagination">
+        <button class="w-page-item w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--large" aria-label="Pagination">
+        <button class="w-page-item w-page-item--large w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--large active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--large" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--large w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+      <nav class="w-pagination w-pagination--x-large" aria-label="Pagination">
+        <button class="w-page-item w-page-item--x-large w-page-nav" type="button" aria-label="Previous page">‹</button>
+        <button class="w-page-item w-page-item--x-large active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+        <button class="w-page-item w-page-item--x-large" type="button" aria-label="Go to page 2">2</button>
+        <button class="w-page-item w-page-item--x-large w-page-nav" type="button" aria-label="Next page">›</button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-pagination length="2" page="1" size="x-small"></w-pagination>
+      <w-pagination length="2" page="1" size="small"></w-pagination>
+      <w-pagination length="2" page="1" size="default"></w-pagination>
+      <w-pagination length="2" page="1" size="large"></w-pagination>
+      <w-pagination length="2" page="1" size="x-large"></w-pagination>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Rounded</h2>
+<p>Use <code>rounded="circle"</code> (or <code>rounded="pill"</code>) for fully rounded page buttons.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-pagination" aria-label="Pagination">
+      <button class="w-page-item w-page-item--pill w-page-nav" type="button" aria-label="Previous page">‹</button>
+      <button class="w-page-item w-page-item--pill active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+      <button class="w-page-item w-page-item--pill" type="button" aria-label="Go to page 2">2</button>
+      <button class="w-page-item w-page-item--pill" type="button" aria-label="Go to page 3">3</button>
+      <button class="w-page-item w-page-item--pill w-page-nav" type="button" aria-label="Next page">›</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-pagination length="3" page="1" rounded="circle"></w-pagination>
+  </div>
+</demo-compare>
+
+<h2>Color and active-color</h2>
+<p>Override the active page color with <code>color</code> or <code>active-color</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-pagination" aria-label="Pagination">
+      <button class="w-page-item w-page-nav" type="button" aria-label="Previous page">‹</button>
+      <button class="w-page-item w-page-item--color-success w-page-item--active-color-error active" type="button" aria-current="page" aria-label="Current page, page 1">1</button>
+      <button class="w-page-item w-page-item--color-success" type="button" aria-label="Go to page 2">2</button>
+      <button class="w-page-item w-page-item--color-success" type="button" aria-label="Go to page 3">3</button>
+      <button class="w-page-item w-page-nav" type="button" aria-label="Next page">›</button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-pagination length="3" page="1" color="success" active-color="error"></w-pagination>
+  </div>
+</demo-compare>

@@ -1,0 +1,82 @@
+/* DuVay — Fabs component styles. */
+@import "../core.css";
+
+/* ── Floating Action Button (FAB) ─────────────────────────────────────────── */
+.w-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-xl);
+  height: var(--w-size-xl);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  cursor: pointer;
+  box-shadow: var(--w-shadow-md);
+  transition: background var(--w-transition-normal), box-shadow var(--w-transition-normal), transform var(--w-transition-fast);
+}
+
+.w-fab:hover {
+  background: color-mix(in srgb, var(--w-primary-container) 82%, var(--w-primary));
+  box-shadow: var(--w-shadow-lg);
+}
+
+.w-fab:active {
+  transform: scale(0.96);
+}
+
+.w-fab svg {
+  width: 24px;
+  height: 24px;
+}
+
+.w-fab--sm {
+  width: var(--w-size-md);
+  height: var(--w-size-md);
+}
+
+.w-fab--sm svg {
+  width: 20px;
+  height: 20px;
+}
+
+.w-fab--lg {
+  width: 72px;
+  height: 72px;
+}
+
+.w-fab--lg svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Fixed position FAB */
+.w-fab--fixed {
+  position: fixed;
+  z-index: 30;
+}
+
+.w-fab--bottom-right {
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+.w-fab--bottom-left {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+/* Extended FAB (with label) */
+.w-fab--extended {
+  width: auto;
+  border-radius: var(--w-radius-pill);
+  padding: 0 var(--w-space-xl);
+  gap: 0.5rem;
+}
+
+.w-fab--extended svg {
+  width: 20px;
+  height: 20px;
+}

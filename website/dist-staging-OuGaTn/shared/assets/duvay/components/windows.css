@@ -1,0 +1,142 @@
+/* DuVay — Windows component styles. */
+@import "../core.css";
+
+/* ── Carousel / Window ───────────────────────────────────────────────────── */
+.w-window {
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+}
+
+.w-window:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-window-track {
+  display: flex;
+  min-height: inherit;
+  transition: transform var(--w-transition-slow);
+}
+
+.w-window--vertical .w-window-track {
+  flex-direction: column;
+}
+
+.w-window--crossfade .w-window-track {
+  transition: opacity var(--w-transition-normal);
+}
+
+.w-window-item {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.w-window-item > slot {
+  display: contents;
+}
+
+.w-window--vertical .w-window-item {
+  min-height: 100%;
+}
+
+/* Reserve horizontal space so panel content clears the edge-pinned arrows
+ * (40px wide at var(--w-space-3) inset). Only applies when arrows render. */
+.w-window:has(.w-window-arrow) .w-window-item {
+  padding-inline: calc(var(--w-space-3) + 2.5rem + var(--w-space-2));
+}
+
+.w-window-controls {
+  position: absolute;
+  right: 0;
+  bottom: var(--w-space-2);
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0 var(--w-space-md);
+  pointer-events: none;
+}
+
+.w-window-controls > * {
+  pointer-events: auto;
+}
+
+.w-window-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--w-divider);
+  cursor: pointer;
+  transition: background var(--w-transition-fast);
+}
+
+.w-window-dot.active {
+  background: var(--w-primary);
+}
+
+.w-window-dot:focus-visible,
+.w-window-arrow:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* `.w-window` scope raises specificity over the shared ripple rule in
+ * forms.css (which sets position:relative) so the arrows stay edge-pinned. */
+.w-window .w-window-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--w-border);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--w-surface) 92%, transparent);
+  color: var(--w-text);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background var(--w-transition-fast), opacity var(--w-transition-fast);
+}
+
+.w-window-arrow:hover:not(:disabled) {
+  background: var(--w-surface-container);
+}
+
+.w-window-arrow:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.w-window-arrow--prev {
+  left: var(--w-space-3);
+}
+
+.w-window-arrow--next {
+  right: var(--w-space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-window-track {
+    transition: none;
+  }
+}
+
+/* Disabled — dim and block interaction. */
+.w-window--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

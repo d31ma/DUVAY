@@ -1,0 +1,157 @@
+<h1>Checkboxes</h1>
+<p><code>w-checkbox</code> is a labelled checkbox supporting checked, indeterminate, and disabled states, colour and size variants, hints, validation, and custom model values.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-checkbox">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Email updates</span>
+      </label>
+      <label class="w-checkbox">
+        <input class="w-checkbox-input" type="checkbox" />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Product research</span>
+      </label>
+      <label class="w-checkbox">
+        <input class="w-checkbox-input" type="checkbox" data-demo-mixed />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Mixed state</span>
+      </label>
+      <label class="w-checkbox">
+        <input class="w-checkbox-input" type="checkbox" disabled />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Locked option</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-checkbox checked label="Email updates"></w-checkbox>
+      <w-checkbox label="Product research"></w-checkbox>
+      <w-checkbox indeterminate label="Mixed state"></w-checkbox>
+      <w-checkbox disabled label="Locked option"></w-checkbox>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Colors</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-checkbox w-checkbox--primary">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Primary</span>
+      </label>
+      <label class="w-checkbox w-checkbox--error">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Error</span>
+      </label>
+      <label class="w-checkbox w-checkbox--success">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Success</span>
+      </label>
+      <label class="w-checkbox w-checkbox--warning">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Warning</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-checkbox checked color="primary" label="Primary"></w-checkbox>
+      <w-checkbox checked color="error" label="Error"></w-checkbox>
+      <w-checkbox checked color="success" label="Success"></w-checkbox>
+      <w-checkbox checked color="warning" label="Warning"></w-checkbox>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-checkbox w-checkbox--xs">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Extra small</span>
+      </label>
+      <label class="w-checkbox w-checkbox--sm">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Small</span>
+      </label>
+      <label class="w-checkbox w-checkbox--md">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Medium</span>
+      </label>
+      <label class="w-checkbox w-checkbox--lg">
+        <input class="w-checkbox-input" type="checkbox" checked />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-label">Large</span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-checkbox checked size="xs" label="Extra small"></w-checkbox>
+      <w-checkbox checked size="sm" label="Small"></w-checkbox>
+      <w-checkbox checked size="md" label="Medium"></w-checkbox>
+      <w-checkbox checked size="lg" label="Large"></w-checkbox>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Validation and hints</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <label class="w-checkbox w-checkbox--error">
+        <input class="w-checkbox-input" type="checkbox" />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-text">
+          <span class="w-checkbox-label">I accept the terms</span>
+          <span class="w-checkbox-error">You must accept to continue.</span>
+        </span>
+      </label>
+      <label class="w-checkbox">
+        <input class="w-checkbox-input" type="checkbox" />
+        <span class="w-checkbox-box"></span>
+        <span class="w-checkbox-text">
+          <span class="w-checkbox-label">Subscribe</span>
+          <span class="w-checkbox-hint">We send one email per month.</span>
+        </span>
+      </label>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-checkbox error="You must accept to continue." label="I accept the terms"></w-checkbox>
+      <w-checkbox hint="We send one email per month." label="Subscribe"></w-checkbox>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Native state</h2>
+<p>Use the native <code>checked</code> state for selection and <code>value</code> for form submission.</p>
+<demo-compare>
+  <div slot="css">
+    <label class="w-checkbox">
+      <input class="w-checkbox-input" type="checkbox" data-demo-bool />
+      <span class="w-checkbox-box"></span>
+      <span class="w-checkbox-label">Enable notifications</span>
+    </label>
+    <p class="w-field-hint">Value: <code id="demo-bool-value-css">no</code></p>
+  </div>
+  <div slot="wc">
+    <w-checkbox data-demo-bool value="notifications" label="Enable notifications"></w-checkbox>
+    <p class="w-field-hint">Value: <code id="demo-bool-value-wc">no</code></p>
+  </div>
+</demo-compare>

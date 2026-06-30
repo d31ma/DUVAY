@@ -1,0 +1,146 @@
+<h1>Text fields</h1>
+<p><code>w-text-field</code> is the full single-line control, mirroring Vuetify&#8217;s <code>v-text-field</code>: a floating label, five variants, density, prefix/suffix, inner slots, clearable, a character counter, a loading bar, and the native HTML5 validation attributes. The web component writes the <code>.w-text-field-*</code> markup shown in the CSS panes. For a bare styled input, see <a href="/docs/inputs">inputs</a>.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--outlined w-text-field--density-default w-text-field--floating">
+      <div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" type="text" placeholder=" " /><label class="w-text-field-label">Name</label></span></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-text-field label="Name" placeholder="Jane Doe"></w-text-field>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<p>Set <code>variant</code> to <code>outlined</code> (default), <code>filled</code>, <code>underlined</code>, <code>plain</code>, or <code>solo</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Outlined" placeholder=" " /><label class="w-text-field-label">Outlined</label></span></div></div>
+      <div class="w-text-field w-text-field--filled w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Filled" placeholder=" " /><label class="w-text-field-label">Filled</label></span></div></div>
+      <div class="w-text-field w-text-field--underlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Underlined" placeholder=" " /><label class="w-text-field-label">Underlined</label></span></div></div>
+      <div class="w-text-field w-text-field--plain w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Plain" placeholder=" " /><label class="w-text-field-label">Plain</label></span></div></div>
+      <div class="w-text-field w-text-field--solo"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" placeholder="Solo (search)" aria-label="Solo (search)" /></span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-text-field variant="outlined" label="Outlined" value="Outlined"></w-text-field>
+      <w-text-field variant="filled" label="Filled" value="Filled"></w-text-field>
+      <w-text-field variant="underlined" label="Underlined" value="Underlined"></w-text-field>
+      <w-text-field variant="plain" label="Plain" value="Plain"></w-text-field>
+      <w-text-field variant="solo" label="Solo (search)"></w-text-field>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Input types</h2>
+<p>Set <code>type</code> to any native value &#8212; <code>email</code>, <code>password</code>, <code>url</code>, <code>tel</code>, and more.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" type="email" placeholder=" " /><label class="w-text-field-label">Email</label></span></div></div>
+  </div>
+  <div slot="wc">
+    <w-container fluid>
+      <w-row>
+        <w-col cols="12" md="6"><w-text-field label="Email" type="email" placeholder="you@example.com" hint="We'll never share your email." persistent-hint></w-text-field></w-col>
+        <w-col cols="12" md="6"><w-text-field label="Password" type="password" value="secret"></w-text-field></w-col>
+        <w-col cols="12" md="6"><w-text-field label="URL" type="url" value="https://delma.dev"></w-text-field></w-col>
+        <w-col cols="12" md="6"><w-text-field label="Phone" type="tel" placeholder="+1 555 0100"></w-text-field></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare>
+
+<h2>Density &amp; sizes</h2>
+<p><code>density</code> tightens vertical rhythm; <code>size</code> scales the whole control.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--outlined w-text-field--density-compact w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Compact" placeholder=" " /><label class="w-text-field-label">Compact</label></span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--lg w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Large" placeholder=" " /><label class="w-text-field-label">Large</label></span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-text-field density="compact" label="Compact"></w-text-field>
+      <w-text-field density="comfortable" label="Comfortable"></w-text-field>
+      <w-text-field label="Default"></w-text-field>
+      <w-text-field size="lg" label="Large"></w-text-field>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Prefix, suffix &amp; inner content</h2>
+<p>Add static <code>prefix</code> / <code>suffix</code> text, name icons with <code>prepend-inner-icon</code> / <code>append-inner-icon</code> (resolved through the icon registry), or drop arbitrary content into the <code>prepend-inner</code> / <code>append-inner</code> slots.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-affix w-text-field-prefix">$</span><span class="w-text-field-field"><input class="w-text-field-input" value="49.00" placeholder=" " /><label class="w-text-field-label">Amount</label></span><span class="w-text-field-affix w-text-field-suffix">USD</span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-prepend-inner"><span class="w-icon w-text-field-icon">🔍</span></span><span class="w-text-field-field"><input class="w-text-field-input" value="duvay" placeholder=" " /><label class="w-text-field-label">Search</label></span><span class="w-text-field-append-inner"><span class="w-icon w-text-field-icon">↗</span></span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-text-field label="Amount" prefix="$" suffix="USD" value="49.00"></w-text-field>
+      <w-text-field label="Search" value="duvay" prepend-inner-icon="🔍" append-inner-icon="↗"></w-text-field>
+      <w-text-field label="With slot" placeholder="Custom slotted content" variant="solo">
+        <span slot="prepend-inner" aria-hidden="true">🔍</span>
+      </w-text-field>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Clearable</h2>
+<p>Add <code>clearable</code> for a clear button that appears once there&#8217;s a value.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="design, css" placeholder=" " /><label class="w-text-field-label">Tags</label></span><button type="button" class="w-text-field-clear" tabindex="-1" aria-label="Clear">&times;</button></div></div>
+  </div>
+  <div slot="wc">
+    <w-text-field label="Tags" value="design, css" clearable></w-text-field>
+  </div>
+</demo-compare>
+
+<h2>Counter</h2>
+<p>Add <code>counter</code> (with <code>maxlength</code>) to show how many characters have been typed.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Designer &amp; developer" maxlength="50" placeholder=" " /><label class="w-text-field-label">Bio</label></span></div><div class="w-text-field-details"><span class="w-text-field-messages"></span><span class="w-text-field-counter">20 / 50</span></div></div>
+  </div>
+  <div slot="wc">
+    <w-text-field label="Bio" counter maxlength="50" value="Designer &amp; developer"></w-text-field>
+  </div>
+</demo-compare>
+
+<h2>Loading</h2>
+<p>Add <code>loading</code> to show an indeterminate bar along the bottom edge while a request is in flight.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-text-field w-text-field--outlined w-text-field--loading w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="duvay" placeholder=" " /><label class="w-text-field-label">Checking availability…</label></span><span class="w-text-field-loader" aria-hidden="true"></span></div></div>
+  </div>
+  <div slot="wc">
+    <w-text-field label="Checking availability…" value="duvay" loading></w-text-field>
+  </div>
+</demo-compare>
+
+<h2>States</h2>
+<p>Hints appear on focus (or always with <code>persistent-hint</code>); <code>error</code> tints the control and replaces the hint.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack">
+      <div class="w-text-field w-text-field--outlined w-text-field--disabled w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="Can't touch this" disabled placeholder=" " /><label class="w-text-field-label">Disabled</label></span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--error w-text-field--floating w-text-field--has-value"><div class="w-text-field-control"><span class="w-text-field-field"><input class="w-text-field-input" value="bad-email" aria-invalid="true" placeholder=" " /><label class="w-text-field-label">Email</label></span></div><div class="w-text-field-details"><span class="w-text-field-messages">Invalid email format.</span></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack">
+      <w-text-field label="Disabled" value="Can't touch this" disabled></w-text-field>
+      <w-text-field label="Read-only" value="Locked" readonly></w-text-field>
+      <w-text-field label="Email" value="bad-email" error="Invalid email format."></w-text-field>
+    </div>
+  </div>
+</demo-compare>
+

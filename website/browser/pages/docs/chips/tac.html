@@ -1,0 +1,138 @@
+<h1>Chips</h1>
+<p>Compact actions, filters, labels, and selections with Vuetify-style media, close, and group states.</p>
+
+<h2>Variants</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <span class="w-chip w-chip-tonal">Tonal</span>
+      <span class="w-chip w-chip-filled">Filled</span>
+      <span class="w-chip w-chip-outlined">Outlined</span>
+      <span class="w-chip w-chip-text">Text</span>
+      <span class="w-chip w-chip-plain">Plain</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-chip>Tonal</w-chip>
+      <w-chip variant="filled">Filled</w-chip>
+      <w-chip variant="outlined">Outlined</w-chip>
+      <w-chip variant="text">Text</w-chip>
+      <w-chip variant="plain">Plain</w-chip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Colors and Shape</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <span class="w-chip w-chip-filled w-chip-primary">Primary</span>
+      <span class="w-chip w-chip-tonal w-chip-success">Success</span>
+      <span class="w-chip w-chip-outlined w-chip-warning w-chip--label">Label</span>
+      <span class="w-chip w-chip-tonal w-chip-danger w-chip--pill">Danger</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-chip variant="filled" color="primary">Primary</w-chip>
+      <w-chip color="success">Success</w-chip>
+      <w-chip variant="outlined" color="warning" label>Label</w-chip>
+      <w-chip color="danger" pill>Danger</w-chip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Media</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <span class="w-chip w-chip-tonal">
+        <span class="w-chip__prepend"><span class="w-chip__icon">#</span></span>
+        <span class="w-chip__content">Tagged</span>
+      </span>
+      <span class="w-chip w-chip-tonal">
+        <span class="w-chip__prepend"><span class="w-avatar w-avatar--x-small"><img src="https://i.pravatar.cc/64?img=7" alt="" /></span></span>
+        <span class="w-chip__content">Ari Lane</span>
+      </span>
+      <span class="w-chip w-chip-tonal">
+        <span class="w-chip__content">Synced</span>
+        <span class="w-chip__append"><span class="w-chip__icon">✓</span></span>
+      </span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-chip prepend-icon="#">Tagged</w-chip>
+      <w-chip prepend-avatar="https://i.pravatar.cc/64?img=7">Ari Lane</w-chip>
+      <w-chip append-icon="✓">Synced</w-chip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Filter and Close</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <span class="w-chip w-chip-tonal w-chip--filter selected">
+        <span class="w-chip__filter">✓</span>
+        <span class="w-chip__content">Selected</span>
+      </span>
+      <span class="w-chip w-chip-tonal w-chip-removable">
+        <span class="w-chip__content">Closable</span>
+        <span class="w-chip__close w-chip-close" role="button" aria-label="Close">×</span>
+      </span>
+      <span class="w-chip w-chip-tonal w-chip--disabled">Disabled</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-chip filter selected value="selected">Selected</w-chip>
+      <w-chip closable value="closable">Closable</w-chip>
+      <w-chip disabled>Disabled</w-chip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Sizes and Density</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <span class="w-chip w-chip--x-small">X-small</span>
+      <span class="w-chip w-chip--small">Small</span>
+      <span class="w-chip">Default</span>
+      <span class="w-chip w-chip--large">Large</span>
+      <span class="w-chip w-chip--x-large">X-large</span>
+      <span class="w-chip w-chip--density-compact">Compact</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap align-center">
+      <w-chip size="x-small">X-small</w-chip>
+      <w-chip size="small">Small</w-chip>
+      <w-chip>Default</w-chip>
+      <w-chip size="large">Large</w-chip>
+      <w-chip size="x-large">X-large</w-chip>
+      <w-chip density="compact">Compact</w-chip>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Chip Group</h2>
+<p>Wrap chips in a <code>w-chip-group</code> to make them a single- or multi-select control. See <a href="/docs/chip-groups">Chip groups</a> for the full API (multiple, mandatory, max, filter, column).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-chip-group" role="group">
+      <span class="w-chip w-chip-tonal selected">Design</span>
+      <span class="w-chip w-chip-tonal">Code</span>
+      <span class="w-chip w-chip-tonal">Docs</span>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-chip-group value="design">
+      <w-chip value="design">Design</w-chip>
+      <w-chip value="code">Code</w-chip>
+      <w-chip value="docs">Docs</w-chip>
+    </w-chip-group>
+  </div>
+</demo-compare>

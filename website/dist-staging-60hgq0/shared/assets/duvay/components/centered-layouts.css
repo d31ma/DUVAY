@@ -1,0 +1,16 @@
+/* DuVay — Centered Layouts component styles. */
+@import "../core.css";
+
+/* ── Centered card layout ───────────────────────────────────────────────── */
+/* Full-viewport centered content — login screens, standalone cards. */
+.w-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  padding: var(--w-space-3xl);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--w-primary-container) 42%, transparent), transparent 38%),
+    var(--w-surface);
+}

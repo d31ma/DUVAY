@@ -1,0 +1,46 @@
+<h1>Progress linear</h1>
+<p><code>w-progress-linear</code> is a horizontal progress bar. Tune it with <code>color</code>, <code>bg-color</code>, <code>height</code>, <code>rounded</code>, <code>striped</code>, a <code>buffer-value</code>, <code>stream</code>, or <code>reverse</code>. Pass content for a centered label, or set <code>indeterminate</code> for an unknown duration.</p>
+
+<h2>Determinate</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <div class="w-progress"><div class="w-progress-bar" style="inline-size:60%"></div></div>
+      <div class="w-progress w-progress--rounded" style="--w-progress-height:10px;--w-progress-color:var(--w-success)">
+        <div class="w-progress-buffer" style="inline-size:80%"></div>
+        <div class="w-progress-bar" style="inline-size:45%"></div>
+      </div>
+      <div class="w-progress w-progress--striped" style="--w-progress-height:12px"><div class="w-progress-bar" style="inline-size:70%"></div></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-progress-linear value="60"></w-progress-linear>
+      <w-progress-linear value="45" buffer-value="80" color="success" height="10" rounded></w-progress-linear>
+      <w-progress-linear value="70" height="12" striped></w-progress-linear>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Indeterminate</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-progress w-progress--indeterminate" style="--w-progress-color:var(--w-warning)"><div class="w-progress-bar"></div></div>
+  </div>
+  <div slot="wc">
+    <w-progress-linear indeterminate color="warning"></w-progress-linear>
+  </div>
+</demo-compare>
+
+<h2>Animated on render</h2>
+<p>Add <code>tween</code> to animate a determinate value from zero when the bar first appears.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-progress">
+      <div class="w-progress-bar" style="width:0" data-w-tween data-w-tween-property="width" data-w-tween-from="0" data-w-tween-to="60"></div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-progress-linear value="60" tween></w-progress-linear>
+  </div>
+</demo-compare>

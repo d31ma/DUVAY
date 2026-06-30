@@ -1,0 +1,41 @@
+<h1>Snackbar</h1>
+<p>Transient notifications that appear at the bottom of the screen.</p>
+
+<h2>Variants</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-row ga-2 flex-wrap">
+      <button class="w-btn w-btn-filled" onclick="WToast('Changes saved')">Default Toast</button>
+      <button class="w-btn w-btn-filled w-btn-success" onclick="WToast('Profile updated', 4000)">Success Toast</button>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-row ga-2 flex-wrap">
+      <w-btn variant="filled" onclick="WToast('Changes saved')">Default Toast</w-btn>
+      <w-btn variant="filled" color="success" onclick="WToast('Profile updated', 4000)">Success Toast</w-btn>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Snackbar Component</h2>
+<p><code>w-snackbar</code> supports <code>color</code>, <code>variant</code>, <code>location</code> (<code>top</code>/<code>bottom</code> + <code>start</code>/<code>center</code>/<code>end</code>), <code>multi-line</code>, <code>vertical</code>, <code>rounded</code>, a <code>timer</code> countdown bar, and <code>timeout="-1"</code> to stay open until dismissed. Use <code>inline</code> to render it in normal flow (as below).</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-col ga-3">
+      <div class="w-snackbar w-snackbar--inline w-snackbar--bottom w-snackbar--center open">
+        <div class="w-snackbar-content"><span class="w-snackbar-msg">Item deleted</span></div>
+        <div class="w-snackbar-actions"><button class="w-snackbar-action" type="button">Undo</button></div>
+      </div>
+      <div class="w-snackbar w-snackbar--inline open" style="--w-snackbar-bg:var(--w-success-container);--w-snackbar-fg:var(--w-on-success-container);--w-snackbar-action:var(--w-success)">
+        <div class="w-snackbar-content"><span class="w-snackbar-msg">Profile updated successfully.</span></div>
+        <div class="w-snackbar-actions"><button class="w-snackbar-action" type="button">Dismiss</button></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-col ga-3">
+      <w-snackbar message="Item deleted" action="Undo" timeout="-1" open inline></w-snackbar>
+      <w-snackbar text="Profile updated successfully." action="Dismiss" color="success" timeout="-1" open inline></w-snackbar>
+    </div>
+  </div>
+</demo-compare>

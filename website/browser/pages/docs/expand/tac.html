@@ -1,0 +1,131 @@
+<h1>Expansion Panels</h1>
+<p>Collapsible sections for progressive disclosure of content. Panels support grouped selection, mandatory state, and Vuetify-style visual variants.</p>
+
+<h2>Basic Panel</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-accordion w-expansion-panels w-accordion--variant-default">
+      <div class="w-expand open">
+        <button class="w-expand-header" data-w-expand-toggle aria-expanded="true">
+          <span class="w-expand-title">What is DuVay?</span>
+          <span class="w-expansion-panel-title__icon">
+            <svg class="w-expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="w-expand-body">
+          <div class="w-expansion-panel-text__wrapper">
+            <p>DuVay is a zero-dependency CSS framework for building polished interfaces with tokens, utilities, and Light-DOM web components.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels value="intro">
+      <w-expansion-panel value="intro" title="What is DuVay?" text="DuVay is a zero-dependency CSS framework for building polished interfaces with tokens, utilities, and Light-DOM web components."></w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>
+
+<h2>Grouped Panels</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-accordion w-expansion-panels w-accordion--variant-accordion">
+      <div class="w-expand open">
+        <button class="w-expand-header" data-w-expand-toggle aria-expanded="true">
+          <span class="w-expand-title">Installation</span>
+          <span class="w-expansion-panel-title__icon"><svg class="w-expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Include duvay.css and optionally duvay-wc.js for the custom elements.</p></div></div>
+      </div>
+      <div class="w-expand">
+        <button class="w-expand-header" data-w-expand-toggle aria-expanded="false">
+          <span class="w-expand-title">Customization</span>
+          <span class="w-expansion-panel-title__icon"><svg class="w-expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Override CSS variables or theme attributes to tune color, density, radius, and elevation.</p></div></div>
+      </div>
+      <div class="w-expand">
+        <button class="w-expand-header" data-w-expand-toggle aria-expanded="false">
+          <span class="w-expand-title">Accessibility</span>
+          <span class="w-expansion-panel-title__icon"><svg class="w-expand-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Headers are buttons with visible focus states and expanded state communicated through ARIA.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels variant="accordion" value="install">
+      <w-expansion-panel value="install" title="Installation" text="Include duvay.css and optionally duvay-wc.js for the custom elements."></w-expansion-panel>
+      <w-expansion-panel value="customize" title="Customization" text="Override CSS variables or theme attributes to tune color, density, radius, and elevation."></w-expansion-panel>
+      <w-expansion-panel value="a11y" title="Accessibility" text="Headers are buttons with visible focus states and expanded state communicated through ARIA."></w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>
+
+<h2>Multiple Selection</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-accordion w-expansion-panels w-accordion--variant-default">
+      <div class="w-expand open">
+        <button class="w-expand-header" aria-expanded="true"><span class="w-expand-title">Planning</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Multiple panels can stay open together.</p></div></div>
+      </div>
+      <div class="w-expand open">
+        <button class="w-expand-header" aria-expanded="true"><span class="w-expand-title">Delivery</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Omit mandatory when every panel should be allowed to close.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels multiple value="planning,delivery">
+      <w-expansion-panel value="planning" title="Planning" text="Multiple panels can stay open together."></w-expansion-panel>
+      <w-expansion-panel value="delivery" title="Delivery" text="Omit mandatory when every panel should be allowed to close."></w-expansion-panel>
+      <w-expansion-panel value="handoff" title="Handoff" text="Use value attributes to synchronize selection state."></w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>
+
+<h2>Variants</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-accordion w-expansion-panels w-accordion--variant-popout" style="--w-expansion-gap:12px">
+      <div class="w-expand open">
+        <button class="w-expand-header" aria-expanded="true"><span class="w-expand-title">Popout panel</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Active popout panels expand to the full row width.</p></div></div>
+      </div>
+      <div class="w-expand">
+        <button class="w-expand-header" aria-expanded="false"><span class="w-expand-title">Inset panel</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Use inset when the open item should tuck inward.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels variant="popout" gap="12" value="popout">
+      <w-expansion-panel value="popout" title="Popout panel" text="Active popout panels expand to the full row width."></w-expansion-panel>
+      <w-expansion-panel value="inset" title="Inset panel" text="Use inset when the open item should tuck inward."></w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>
+
+<h2>Readonly and Disabled</h2>
+<demo-compare>
+  <div slot="css">
+    <div class="w-accordion w-expansion-panels w-accordion--variant-default">
+      <div class="w-expand open w-expand--readonly w-expand--hide-actions">
+        <button class="w-expand-header" aria-expanded="true" aria-readonly="true"><span class="w-expand-title">Readonly open panel</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Readonly panels communicate state without allowing toggles.</p></div></div>
+      </div>
+      <div class="w-expand w-expand--disabled">
+        <button class="w-expand-header" disabled aria-expanded="false"><span class="w-expand-title">Disabled panel</span></button>
+        <div class="w-expand-body"><div class="w-expansion-panel-text__wrapper"><p>Disabled titles are unavailable to interaction.</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-expansion-panels>
+      <w-expansion-panel title="Readonly open panel" text="Readonly panels communicate state without allowing toggles." open readonly hide-actions></w-expansion-panel>
+      <w-expansion-panel title="Disabled panel" text="Disabled titles are unavailable to interaction." disabled></w-expansion-panel>
+    </w-expansion-panels>
+  </div>
+</demo-compare>

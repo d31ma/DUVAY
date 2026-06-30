@@ -1,0 +1,96 @@
+<h1>Treeview</h1>
+<p>Treeviews display hierarchical data with expandable branches. Pass nested data through <code>items</code> (a JSON array of <code>&#123;&nbsp;title, value, children&nbsp;&#125;</code> nodes) or the shorthand <code>A&gt;B&gt;C</code> path syntax. Rows can be <strong>activatable</strong> (single highlight) or <strong>selectable</strong> (cascading checkboxes).</p>
+
+<h2>Basic</h2>
+<p><code>open-all</code> expands every branch; otherwise branches start collapsed and open on the toggle. Bind initial open branches with <code>opened</code>.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview" role="tree">
+      <ul class="w-treeview-list" role="presentation">
+        <li class="w-treeview-node open" role="treeitem" aria-expanded="true">
+          <div class="w-treeview-row"><button class="w-treeview-toggle" type="button">›</button><span class="w-treeview-label">Components</span></div>
+          <ul class="w-treeview-list" role="group">
+            <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Inputs</span></div></li>
+            <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Display</span></div></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview opened="[&#39;components&#39;]" items="[{&#39;title&#39;:&#39;Components&#39;,&#39;value&#39;:&#39;components&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Inputs&#39;,&#39;value&#39;:&#39;inputs&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Checkbox&#39;,&#39;value&#39;:&#39;checkbox&#39;},{&#39;title&#39;:&#39;Select&#39;,&#39;value&#39;:&#39;select&#39;}]},{&#39;title&#39;:&#39;Display&#39;,&#39;value&#39;:&#39;display&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Tables&#39;,&#39;value&#39;:&#39;tables&#39;},{&#39;title&#39;:&#39;Treeview&#39;,&#39;value&#39;:&#39;treeview&#39;}]}]}]"></w-treeview>
+  </div>
+</demo-compare>
+
+<h2>Activatable</h2>
+<p>With <code>activatable</code>, clicking a row highlights it and the treeview reports the value through a <code>change</code> event (<code>detail.name === &#39;activated&#39;</code>). Add <code>multiple-active</code> to keep more than one row active.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview w-treeview--activatable" role="tree">
+      <ul class="w-treeview-list" role="presentation">
+        <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row active"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Dashboard</span></div></li>
+        <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Reports</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview activatable open-all activated="[&#39;tables&#39;]" items="[{&#39;title&#39;:&#39;Components&#39;,&#39;value&#39;:&#39;components&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Inputs&#39;,&#39;value&#39;:&#39;inputs&#39;},{&#39;title&#39;:&#39;Tables&#39;,&#39;value&#39;:&#39;tables&#39;},{&#39;title&#39;:&#39;Treeview&#39;,&#39;value&#39;:&#39;treeview&#39;}]}]"></w-treeview>
+  </div>
+</demo-compare>
+
+<h2>Selectable &amp; selection types</h2>
+<p>With <code>selectable</code>, each row gets a checkbox and the treeview reports a <code>selected</code> array. <code>select-strategy</code> controls cascade behaviour:</p>
+<ul>
+  <li><code>leaf</code> (default) — only leaf values are stored; a branch checkbox is checked when all of its leaves are, and indeterminate when some are.</li>
+  <li><code>classic</code> — branches are stored too; selecting a branch selects it and every descendant.</li>
+  <li><code>independent</code> — every checkbox toggles on its own with no cascade.</li>
+</ul>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview w-treeview--selectable" role="tree">
+      <ul class="w-treeview-list" role="presentation">
+        <li class="w-treeview-node open" role="treeitem" aria-expanded="true">
+          <div class="w-treeview-row"><button class="w-treeview-toggle" type="button">›</button><span class="w-treeview-checkbox" role="checkbox" aria-checked="mixed"></span><span class="w-treeview-label">Inputs</span></div>
+          <ul class="w-treeview-list" role="group">
+            <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-checkbox" role="checkbox" aria-checked="true"></span><span class="w-treeview-label">Checkbox</span></div></li>
+            <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-checkbox" role="checkbox" aria-checked="false"></span><span class="w-treeview-label">Select</span></div></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview selectable open-all select-strategy="leaf" selected="[&#39;checkbox&#39;]" items="[{&#39;title&#39;:&#39;Inputs&#39;,&#39;value&#39;:&#39;inputs&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Checkbox&#39;,&#39;value&#39;:&#39;checkbox&#39;},{&#39;title&#39;:&#39;Select&#39;,&#39;value&#39;:&#39;select&#39;}]},{&#39;title&#39;:&#39;Display&#39;,&#39;value&#39;:&#39;display&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Tables&#39;,&#39;value&#39;:&#39;tables&#39;},{&#39;title&#39;:&#39;Treeview&#39;,&#39;value&#39;:&#39;treeview&#39;}]}]"></w-treeview>
+  </div>
+</demo-compare>
+
+<h2>Open on click</h2>
+<p><code>open-on-click</code> expands a branch when its row (not just the toggle) is clicked.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview" role="tree">
+      <ul class="w-treeview-list" role="presentation">
+        <li class="w-treeview-node" role="treeitem" aria-expanded="false"><div class="w-treeview-row"><button class="w-treeview-toggle" type="button">›</button><span class="w-treeview-label">Workspace</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview open-on-click items="[{&#39;title&#39;:&#39;Workspace&#39;,&#39;value&#39;:&#39;workspace&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;Projects&#39;,&#39;value&#39;:&#39;projects&#39;},{&#39;title&#39;:&#39;Members&#39;,&#39;value&#39;:&#39;members&#39;}]}]"></w-treeview>
+  </div>
+</demo-compare>
+
+<h2>Density, rounded &amp; hoverable</h2>
+<p><code>density="compact"</code> tightens row height, <code>rounded</code> pills the rows, and <code>hoverable</code> highlights rows on hover. <code>color</code> sets the active/selected accent.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-treeview w-treeview--compact w-treeview--rounded w-treeview--hoverable" role="tree">
+      <ul class="w-treeview-list" role="presentation">
+        <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row active"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Overview</span></div></li>
+        <li class="w-treeview-node" role="treeitem"><div class="w-treeview-row"><span class="w-treeview-leaf"></span><span class="w-treeview-label">Settings</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-treeview activatable density="compact" rounded hoverable color="var(--w-secondary)" activated="[&#39;overview&#39;]" items="[{&#39;title&#39;:&#39;Overview&#39;,&#39;value&#39;:&#39;overview&#39;},{&#39;title&#39;:&#39;Settings&#39;,&#39;value&#39;:&#39;settings&#39;,&#39;children&#39;:[{&#39;title&#39;:&#39;General&#39;,&#39;value&#39;:&#39;general&#39;},{&#39;title&#39;:&#39;Billing&#39;,&#39;value&#39;:&#39;billing&#39;}]}]"></w-treeview>
+  </div>
+</demo-compare>

@@ -1,0 +1,44 @@
+<h1>Virtual Tables</h1>
+<p><code>w-data-table-virtual</code> renders only the rows in (and near) the viewport, padding the rest with spacer rows so the scrollbar stays accurate. There&#8217;s no pagination &#8212; you scroll the whole, sorted dataset. Pair a fixed <code>height</code> with a uniform <code>item-height</code>. It shares <a href="/docs/components/data-tables/introduction">data table</a>&#8217;s headers, items, and sorting.</p>
+
+<h2>Basic</h2>
+<p>Thirty rows in a 240px window &#8212; only the visible slice (plus a small overscan) is in the DOM; the rest is one spacer row.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap w-table-wrap--fixed-header" style="height:240px;overflow:auto">
+      <table class="w-table">
+        <thead><tr><th>Name</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr style="height:40px"><td>Row 1</td><td>1</td></tr>
+          <tr style="height:40px"><td>Row 2</td><td>2</td></tr>
+          <tr aria-hidden="true" style="height:1000px"><td colspan="2"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table-virtual height="240px" item-height="40" headers="[Name,Value]"
+      items="[Row 1|1; Row 2|2; Row 3|3; Row 4|4; Row 5|5; Row 6|6; Row 7|7; Row 8|8; Row 9|9; Row 10|10; Row 11|11; Row 12|12; Row 13|13; Row 14|14; Row 15|15; Row 16|16; Row 17|17; Row 18|18; Row 19|19; Row 20|20; Row 21|21; Row 22|22; Row 23|23; Row 24|24; Row 25|25; Row 26|26; Row 27|27; Row 28|28; Row 29|29; Row 30|30]"></w-data-table-virtual>
+  </div>
+</demo-compare>
+
+<h2>Sortable</h2>
+<p>Sorting reorders the entire dataset, then re-windows from the top. Click <strong>Value</strong> twice for descending.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-table-wrap w-table-wrap--fixed-header" style="height:240px;overflow:auto">
+      <table class="w-table">
+        <thead><tr><th class="w-table-sortable"><button class="w-table-sort" type="button">Name</button></th><th class="w-table-sortable" aria-sort="descending"><button class="w-table-sort" type="button">Value<span class="w-table-sort-icon">↓</span></button></th></tr></thead>
+        <tbody><tr style="height:40px"><td>Row 30</td><td>30</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div slot="wc">
+    <w-data-table-virtual height="240px" item-height="40" headers="[Name,Value]"
+      items="[Row 1|1; Row 2|2; Row 3|3; Row 4|4; Row 5|5; Row 6|6; Row 7|7; Row 8|8; Row 9|9; Row 10|10; Row 11|11; Row 12|12; Row 13|13; Row 14|14; Row 15|15; Row 16|16; Row 17|17; Row 18|18; Row 19|19; Row 20|20; Row 21|21; Row 22|22; Row 23|23; Row 24|24; Row 25|25; Row 26|26; Row 27|27; Row 28|28; Row 29|29; Row 30|30]"></w-data-table-virtual>
+  </div>
+</demo-compare>
+
+<p>For large datasets, set <code>items</code> as a property in application code rather than inline:</p>
+<pre class="code-block"><code>const rows = Array.from(&#123; length: 10000 &#125;, (_, i) =&gt; (&#123; name: 'Row ' + i, value: i &#125;));
+document.querySelector('w-data-table-virtual').items = rows;</code></pre>

@@ -1,0 +1,214 @@
+<h1>Bottom Navigation</h1>
+<p><code>w-bottom-navigation</code> provides a mobile-friendly bottom navigation bar with active-item management, color theming, grow mode, shift animation, and density variants.</p>
+
+<h2>Basic</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">⭐</span>
+        <span class="w-bottom-nav-item__label">Favorites</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      <w-bottom-nav-item value="favorites" icon="⭐" label="Favorites"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Grow</h2>
+<p>Add <code>grow</code> to make items fill equal width.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation w-bottom-navigation--grow" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">⭐</span>
+        <span class="w-bottom-nav-item__label">Favorites</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home" grow>
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      <w-bottom-nav-item value="favorites" icon="⭐" label="Favorites"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Shift mode</h2>
+<p>Add <code>mode="shift"</code> for the Material Design shift animation where inactive labels fade and the active icon shifts up.</p>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation w-bottom-navigation--shift" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">⭐</span>
+        <span class="w-bottom-nav-item__label">Favorites</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home" mode="shift">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      <w-bottom-nav-item value="favorites" icon="⭐" label="Favorites"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Density</h2>
+<p>Choose <code>comfortable</code> or <code>compact</code> density.</p>
+<demo-compare>
+  <div slot="css">
+    <div class="w-stack ga-2">
+      <nav class="w-bottom-navigation w-bottom-navigation--comfortable" role="navigation" aria-label="Bottom navigation">
+        <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+          <span class="w-bottom-nav-item__label">Home</span>
+        </button>
+        <button class="w-bottom-nav-item" type="button">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+          <span class="w-bottom-nav-item__label">Search</span>
+        </button>
+      </nav>
+      <nav class="w-bottom-navigation w-bottom-navigation--compact" role="navigation" aria-label="Bottom navigation">
+        <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+          <span class="w-bottom-nav-item__label">Home</span>
+        </button>
+        <button class="w-bottom-nav-item" type="button">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+          <span class="w-bottom-nav-item__label">Search</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+  <div slot="wc">
+    <div class="w-stack ga-2">
+      <w-bottom-navigation value="home" density="comfortable">
+        <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+        <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      </w-bottom-navigation>
+      <w-bottom-navigation value="home" density="compact">
+        <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+        <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      </w-bottom-navigation>
+    </div>
+  </div>
+</demo-compare>
+
+<h2>Color and background</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation" style="--w-bottom-nav-color:var(--w-primary);--w-bottom-nav-bg:var(--w-surface)" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home" color="primary" bg-color="surface">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Elevation</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation elevation-4" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item" type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home" elevation="4">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>Disabled item</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation" role="navigation" aria-label="Bottom navigation">
+      <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </button>
+      <button class="w-bottom-nav-item w-bottom-nav-item--disabled" disabled type="button">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </button>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search" disabled></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>
+
+<h2>With href (link items)</h2>
+<demo-compare>
+  <div slot="css">
+    <nav class="w-bottom-navigation" role="navigation" aria-label="Bottom navigation">
+      <a class="w-bottom-nav-item w-bottom-nav-item--active" href="/home" aria-current="true">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+        <span class="w-bottom-nav-item__label">Home</span>
+      </a>
+      <a class="w-bottom-nav-item" href="/search">
+        <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+        <span class="w-bottom-nav-item__label">Search</span>
+      </a>
+    </nav>
+  </div>
+  <div slot="wc">
+    <w-bottom-navigation value="home">
+      <w-bottom-nav-item value="home" icon="🏠" label="Home" href="/home"></w-bottom-nav-item>
+      <w-bottom-nav-item value="search" icon="🔍" label="Search" href="/search"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  </div>
+</demo-compare>

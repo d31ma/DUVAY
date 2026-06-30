@@ -1,0 +1,55 @@
+<h1>Borders</h1>
+<p>Utilities for adding or removing hairline (1px) borders on an element. DuVay also ships divider helpers for separating content horizontally or vertically.</p>
+
+<h2>Usage</h2>
+
+<h3>All sides</h3>
+<p>Use <code>w-border</code> to add a 1px border around the whole element.</p>
+<div class="w-mb-md">
+  <div class="w-border pa-4 d-inline-block">w-border</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-border pa-4"&gt;Bordered&lt;/div&gt;</code></div>
+
+<h3>Individual sides</h3>
+<p>Apply a border to a single edge with <code>w-border-bottom</code>, <code>w-border-left</code>, or <code>w-border-right</code>.</p>
+<div class="w-row ga-3 w-mb-md">
+  <div class="w-border-bottom pa-4">bottom</div>
+  <div class="w-border-left pa-4">left</div>
+  <div class="w-border-right pa-4">right</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-border-bottom"&gt;Bottom border&lt;/div&gt;
+&lt;div class="w-border-left"&gt;Left border&lt;/div&gt;
+&lt;div class="w-border-right"&gt;Right border&lt;/div&gt;</code></div>
+
+<h3>Remove borders</h3>
+<p>Use <code>w-border-none</code> to remove borders from an element that inherits them from a parent or component style.</p>
+<div class="w-mb-md">
+  <div class="w-border w-border-none pa-4 d-inline-block">Border removed</div>
+</div>
+<div class="code-block"><code>&lt;div class="w-card w-border-none"&gt;No border&lt;/div&gt;</code></div>
+
+<h3>Dividers</h3>
+<p>Use <code>w-divider</code> for a full-width horizontal divider, <code>w-divider--vertical</code> for a vertical one, and <code>w-divider--inset</code> for an inset horizontal divider.</p>
+<div class="w-border pa-3 w-mb-md">
+  <p class="mb-2">Section above</p>
+  <hr class="w-divider mb-2" />
+  <p class="mb-0">Section below</p>
+</div>
+<div class="code-block"><code>&lt;hr class="w-divider"&gt;
+&lt;hr class="w-divider--vertical"&gt;
+&lt;hr class="w-divider--inset"&gt;</code></div>
+
+<h2>Reference</h2>
+<table class="w-table api-table">
+  <thead><tr><th>Class</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>w-border</code></td><td>1px solid border on all sides using <code>--w-border</code>.</td></tr>
+    <tr><td><code>w-border-bottom</code></td><td>1px solid border on the bottom edge only.</td></tr>
+    <tr><td><code>w-border-right</code></td><td>1px solid border on the right edge only.</td></tr>
+    <tr><td><code>w-border-left</code></td><td>1px solid border on the left edge only.</td></tr>
+    <tr><td><code>w-border-none</code></td><td>Removes all borders.</td></tr>
+    <tr><td><code>w-divider</code></td><td>Full-width 1px horizontal divider using <code>--w-divider</code>.</td></tr>
+    <tr><td><code>w-divider--vertical</code></td><td>1px vertical divider that stretches to its container height.</td></tr>
+    <tr><td><code>w-divider--inset</code></td><td>Horizontal divider inset from the leading edge.</td></tr>
+  </tbody>
+</table>

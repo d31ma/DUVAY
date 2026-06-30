@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tachyon</title>
+    <meta name="fylo-browser-path" content="/_fylo">
+    <script type="module" src="/spa-renderer.js"></script>
+    <script type="module" src="/imports.js"></script>
+
+    <link rel="stylesheet" href="/imports.css">
+</head>
+<body><div id="ty-6713e056-0" data-tac-scope="site-header" data-tac-module="/components/site/header/tac.js" ><w-app-bar sticky="" id="ty-628d8344-6713e056-0">
+  <w-container size="xl" class="w-row w-items-center w-gap-2 w-px-0" id="ty-13d81bd6-6713e056-0">
+    <a href="/" class="duvay-brand w-row w-items-center w-gap-2 w-mr-auto w-text-lg w-font-bold" id="ty-e456bada-6713e056-0">
+      <span class="logo-mark" aria-hidden="true" id="ty-91fd6339-6713e056-0">
+        <svg class="logo-mark-svg" viewbox="0 0 48 48" focusable="false" id="ty-9706ea80-6713e056-0">
+          <path class="logo-mark-duvet" d="m6 40 8-27q1-4 5 0l5 14 5-14q4-4 5 0l8 27q-9-4-18 0-9 4-18 0Z" id="ty-6dfc74f4-6713e056-0" />
+          <path class="logo-mark-stitch" d="M10 33q14-4 28 0" id="ty-ea1a80b6-6713e056-0" />
+        </svg>
+      </span>
+      <span id="ty-7624904a-6713e056-0">DuVay</span>
+    </a>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-docs-menu-toggle="" aria-label="Open documentation navigation" aria-controls="docs-sidebar" aria-expanded="false" hidden="" id="ty-29b414e9-6713e056-0">
+      <w-svg-icon path="M3 5h18v2H3V5Zm0 6h18v2H3v-2Zm0 6h18v2H3v-2Z" size="1.25rem" id="ty-d6f9f872-6713e056-0"></w-svg-icon>
+    </button>
+
+    <button class="w-btn w-btn-icon" type="button" data-w-search-open="" aria-label="Search documentation" aria-keyshortcuts="Meta+K Control+K" id="ty-a3a6bdf8-6713e056-0">
+      <w-svg-icon path="M9.5 3a6.5 6.5 0 1 0 3.98 11.64L19.85 21 21 19.85l-6.36-6.37A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z" id="ty-a4410c79-6713e056-0"></w-svg-icon>
+    </button>
+
+    <nav data-site-nav="" class="w-row w-items-center w-gap-1" aria-label="Primary navigation" id="ty-1819ab96-6713e056-0">
+      <w-btn class="w-hide-mobile" href="/docs" variant="text" size="sm" id="ty-236d7cb6-6713e056-0">Documentation</w-btn>
+      <w-btn class="w-hide-mobile" href="/docs/install" variant="text" size="sm" id="ty-feed8ba5-6713e056-0">Install</w-btn>
+      <w-btn variant="text" size="sm" data-w-theme-toggle="" aria-label="Switch color theme" id="ty-1e5e828e-6713e056-0">
+        <span data-w-theme-icon="" id="ty-d717c0c4-6713e056-0"></span>
+        <span class="w-hide-mobile" data-w-theme-label="" id="ty-6623802b-6713e056-0">Light</span>
+      </w-btn>
+      <a class="w-btn w-btn-icon w-btn-sm" href="https://github.com/d31ma/duvay" target="_blank" rel="noopener" aria-label="DuVay on GitHub" id="ty-aa787ad5-6713e056-0">
+        <w-svg-icon path="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" id="ty-01fe9eed-6713e056-0"></w-svg-icon>
+      </a>
+    </nav>
+  </w-container>
+</w-app-bar></div>
+<div class="docs-shell" id="ty-b00c2522-0">
+  <div id="ty-dc4360ed-0" data-tac-scope="doc-sidebar" data-tac-module="/components/doc/sidebar/tac.js" ><aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar="" aria-label="Documentation navigation">
+  <nav class="docs-sidebar-nav" aria-label="Docs" id="ty-8dd275ee-dc4360ed-0">
+    <a href="/docs" class="docs-sidebar-home" id="ty-7ecee31a-dc4360ed-0">Documentation home</a>
+
+    <section class="docs-sidebar-section" id="ty-562b2010-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-9ff88ec0-dc4360ed-0">Getting started</h3>
+      <ul class="docs-sidebar-list" id="ty-1c49f3aa-dc4360ed-0">
+        <li id="ty-d6e59b18-dc4360ed-0"><a href="/docs/introduction" id="ty-70bf461d-dc4360ed-0">Introduction</a></li>
+        <li id="ty-d2f235b9-dc4360ed-0"><a href="/docs/install" id="ty-5c444bd6-dc4360ed-0">Install</a></li>
+        <li id="ty-8926a03b-dc4360ed-0"><a href="/docs/getting-started" id="ty-9d0cc913-dc4360ed-0">Getting started</a></li>
+        <li id="ty-951cf5bc-dc4360ed-0"><a href="/docs/download" id="ty-88dd649c-dc4360ed-0">Download</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-fa907599-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-926792a5-dc4360ed-0">Concepts</h3>
+      <ul class="docs-sidebar-list" id="ty-319d4f94-dc4360ed-0">
+        <li id="ty-aa64781e-dc4360ed-0"><a href="/docs/common-concepts" id="ty-e4707084-dc4360ed-0">Common concepts</a></li>
+        <li id="ty-4bce4ad2-dc4360ed-0"><a href="/docs/features" id="ty-ee7eb778-dc4360ed-0">Features</a></li>
+        <li id="ty-667435c9-dc4360ed-0"><a href="/docs/features/icon-fonts" id="ty-6751e5ad-dc4360ed-0">Icons</a></li>
+        <li id="ty-369c816b-dc4360ed-0"><a href="/docs/grid" id="ty-46b3bbc5-dc4360ed-0">Grid</a></li>
+        <li id="ty-0cb8bc10-dc4360ed-0"><a href="/docs/navigation" id="ty-b032562d-dc4360ed-0">Navigation</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-1ac4d322-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-f0fd9cd0-dc4360ed-0">Components</h3>
+      <ul class="docs-sidebar-list" id="ty-b14a2ce2-dc4360ed-0">
+        <li id="ty-272d54f8-dc4360ed-0"><a href="/docs/components" id="ty-f9cfedc9-dc4360ed-0">Components overview</a></li>
+        <li id="ty-12551f4c-dc4360ed-0"><a href="/docs/alerts" id="ty-c0cf9bca-dc4360ed-0">Alerts</a></li>
+        <li id="ty-d69bf29f-dc4360ed-0"><a href="/docs/avatars" id="ty-3bcbcf4f-dc4360ed-0">Avatars</a></li>
+        <li id="ty-7838b9e9-dc4360ed-0"><a href="/docs/badges" id="ty-468f1386-dc4360ed-0">Badges</a></li>
+        <li id="ty-5e3231dc-dc4360ed-0"><a href="/docs/breadcrumbs" id="ty-9ece91e6-dc4360ed-0">Breadcrumbs</a></li>
+        <li id="ty-fba5e810-dc4360ed-0"><a href="/docs/buttons" id="ty-4fd40b34-dc4360ed-0">Buttons</a></li>
+        <li id="ty-04f1a00b-dc4360ed-0"><a href="/docs/cards" id="ty-7fa63777-dc4360ed-0">Cards</a></li>
+        <li id="ty-b5ca386a-dc4360ed-0"><a href="/docs/chips" id="ty-4d80b3cc-dc4360ed-0">Chips</a></li>
+        <li id="ty-8df0d545-dc4360ed-0"><a href="/docs/command" id="ty-39ae8bfa-dc4360ed-0">Command palette</a></li>
+        <li id="ty-73660605-dc4360ed-0"><a href="/docs/dialog" id="ty-103b0f64-dc4360ed-0">Dialog</a></li>
+        <li id="ty-88f9c40f-dc4360ed-0"><a href="/docs/expand" id="ty-50ff222d-dc4360ed-0">Expand</a></li>
+        <li id="ty-a95c72f0-dc4360ed-0"><a href="/docs/feedback" id="ty-aedaea22-dc4360ed-0">Feedback</a></li>
+        <li id="ty-9d1520a0-dc4360ed-0"><a href="/docs/inputs" id="ty-653ad017-dc4360ed-0">Inputs</a></li>
+        <li id="ty-8d80146c-dc4360ed-0"><a href="/docs/layout-primitives" id="ty-50b1e149-dc4360ed-0">Layout primitives</a></li>
+        <li id="ty-2d7f6fde-dc4360ed-0"><a href="/docs/lists" id="ty-02286895-dc4360ed-0">Lists</a></li>
+        <li id="ty-5490c418-dc4360ed-0"><a href="/docs/menus" id="ty-e0724c17-dc4360ed-0">Menus</a></li>
+        <li id="ty-e966f3db-dc4360ed-0"><a href="/docs/overlays" id="ty-283a909c-dc4360ed-0">Overlays</a></li>
+        <li id="ty-d9391628-dc4360ed-0"><a href="/docs/color-pickers" id="ty-4f11eebf-dc4360ed-0">Color Pickers</a></li>
+        <li id="ty-89f6677a-dc4360ed-0"><a href="/docs/date-pickers" id="ty-444b6bfc-dc4360ed-0">Date Pickers</a></li>
+        <li id="ty-b35a167e-dc4360ed-0"><a href="/docs/time-pickers" id="ty-a24ba0ca-dc4360ed-0">Time Pickers</a></li>
+        <li id="ty-c53dfda4-dc4360ed-0"><a href="/docs/slider" id="ty-eecddc38-dc4360ed-0">Slider</a></li>
+        <li id="ty-4063aca6-dc4360ed-0"><a href="/docs/snackbar" id="ty-2c394c8d-dc4360ed-0">Snackbar</a></li>
+        <li id="ty-f025ae78-dc4360ed-0"><a href="/docs/surfaces" id="ty-3974f99b-dc4360ed-0">Surfaces</a></li>
+        <li id="ty-c8e1c1fd-dc4360ed-0"><a href="/docs/tables" id="ty-5e30b5a9-dc4360ed-0">Tables</a></li>
+        <li id="ty-a29c1cde-dc4360ed-0"><a href="/docs/tabs" id="ty-ada4458e-dc4360ed-0">Tabs</a></li>
+        <li id="ty-408dc100-dc4360ed-0"><a href="/docs/tooltips" id="ty-dc097be4-dc4360ed-0">Tooltips</a></li>
+        <li id="ty-799590e2-dc4360ed-0"><a href="/docs/workflows" id="ty-c8299208-dc4360ed-0">Workflows</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ab848550-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-629f195f-dc4360ed-0">Styles &amp; motion</h3>
+      <ul class="docs-sidebar-list" id="ty-7800264e-dc4360ed-0">
+        <li id="ty-dd69446b-dc4360ed-0"><a href="/docs/themes" id="ty-31b16c38-dc4360ed-0">Themes</a></li>
+        <li id="ty-758b007b-dc4360ed-0"><a href="/docs/utilities" id="ty-9581b67a-dc4360ed-0">Utilities</a></li>
+        <li id="ty-0d797f1d-dc4360ed-0"><a href="/docs/styles-and-animations" id="ty-36f92405-dc4360ed-0">Styles and animations</a></li>
+        <li id="ty-351a4a4e-dc4360ed-0"><a href="/docs/animations" id="ty-da706df4-dc4360ed-0">Animations</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-ae1239b0-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-7a95dd38-dc4360ed-0">Reference</h3>
+      <ul class="docs-sidebar-list" id="ty-79b1f469-dc4360ed-0">
+        <li id="ty-dd38f503-dc4360ed-0"><a href="/docs/api" id="ty-fc42ab8b-dc4360ed-0">API</a></li>
+        <li id="ty-538daca0-dc4360ed-0"><a href="/docs/directives" id="ty-2b15a390-dc4360ed-0">Directives</a></li>
+        <li id="ty-3f949783-dc4360ed-0"><a href="/docs/labs" id="ty-2ae678f3-dc4360ed-0">Labs</a></li>
+        <li id="ty-fddaf8f5-dc4360ed-0"><a href="/docs/resources" id="ty-d8ca39ee-dc4360ed-0">Resources</a></li>
+        <li id="ty-7bd4be57-dc4360ed-0"><a href="/docs/roadmap" id="ty-fc933cfa-dc4360ed-0">Roadmap</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section" id="ty-e32d0df3-dc4360ed-0">
+      <h3 class="docs-sidebar-subhead" id="ty-702fe864-dc4360ed-0">About</h3>
+      <ul class="docs-sidebar-list" id="ty-a73a5156-dc4360ed-0">
+        <li id="ty-dc1e8c5c-dc4360ed-0"><a href="/docs/about" id="ty-58cb06f4-dc4360ed-0">About DuVay</a></li>
+      </ul>
+    </section>
+  </nav>
+</aside></div>
+  <button class="docs-sidebar-scrim" type="button" data-w-docs-menu-close="" aria-label="Close documentation navigation" hidden="" id="ty-4167c80d-0"></button>
+  <main class="docs-main" id="ty-d520551e-0">
+    <div class="docs-page-actions" data-w-page-actions="" id="ty-bf80f072-0"></div>
+    <article class="docs-page" data-w-page="" id="ty-eae99aa2-0">
+      <div id="ty-layout-slot"><h1 id="ty-0e0f1501-0">Text fields</h1><p id="ty-a0a41b71-0"><code id="ty-716558b9-0">w-text-field</code> is the full single-line control, mirroring Vuetify&#8217;s <code id="ty-6708fd28-0">v-text-field</code>: a floating label, five variants, density, prefix/suffix, inner slots, clearable, a character counter, a loading bar, and the native HTML5 validation attributes. The web component writes the <code id="ty-8c4578c8-0">.w-text-field-*</code> markup shown in the CSS panes. For a bare styled input, see <a href="/docs/inputs" id="ty-f1aca205-0">inputs</a>.</p><h2 id="ty-42866a38-0">Basic</h2><demo-compare >
+  <div slot="css" id="ty-d24db242-0">
+    <div class="w-text-field w-text-field--outlined w-text-field--density-default w-text-field--floating" id="ty-f2e2b3c7-0">
+      <div class="w-text-field-control" id="ty-4ba82b3f-0"><span class="w-text-field-field" id="ty-754ed77e-0"><input class="w-text-field-input" type="text" placeholder=" " id="ty-efd9790d-0" /><label class="w-text-field-label" id="ty-e2130013-0">Name</label></span></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-08df9d21-0">
+    <w-text-field label="Name" placeholder="Jane Doe" id="ty-7ec1ffbd-0"></w-text-field>
+  </div>
+</demo-compare><h2 id="ty-85b9e303-0">Variants</h2><p id="ty-1924ddd7-0">Set <code id="ty-5f3712da-0">variant</code> to <code id="ty-0903ffca-0">outlined</code> (default), <code id="ty-0ebafde6-0">filled</code>, <code id="ty-f4716bae-0">underlined</code>, <code id="ty-18ed8653-0">plain</code>, or <code id="ty-ce500552-0">solo</code>.</p><demo-compare >
+  <div slot="css" id="ty-a6351ba6-0">
+    <div class="w-stack" id="ty-220d2a05-0">
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value" id="ty-14ae0cb9-0"><div class="w-text-field-control" id="ty-bdcc07fe-0"><span class="w-text-field-field" id="ty-f3ce3781-0"><input class="w-text-field-input" value="Outlined" placeholder=" " id="ty-41998bf6-0" /><label class="w-text-field-label" id="ty-34138f85-0">Outlined</label></span></div></div>
+      <div class="w-text-field w-text-field--filled w-text-field--floating w-text-field--has-value" id="ty-9d55c114-0"><div class="w-text-field-control" id="ty-7cd7729b-0"><span class="w-text-field-field" id="ty-3cf9a1ae-0"><input class="w-text-field-input" value="Filled" placeholder=" " id="ty-3782bf83-0" /><label class="w-text-field-label" id="ty-8fa7b03b-0">Filled</label></span></div></div>
+      <div class="w-text-field w-text-field--underlined w-text-field--floating w-text-field--has-value" id="ty-b7e634fe-0"><div class="w-text-field-control" id="ty-62983095-0"><span class="w-text-field-field" id="ty-65eb33c3-0"><input class="w-text-field-input" value="Underlined" placeholder=" " id="ty-c6db5882-0" /><label class="w-text-field-label" id="ty-7f45d274-0">Underlined</label></span></div></div>
+      <div class="w-text-field w-text-field--plain w-text-field--floating w-text-field--has-value" id="ty-f932a800-0"><div class="w-text-field-control" id="ty-123d1c0a-0"><span class="w-text-field-field" id="ty-81864c49-0"><input class="w-text-field-input" value="Plain" placeholder=" " id="ty-ffd18e6b-0" /><label class="w-text-field-label" id="ty-6e532821-0">Plain</label></span></div></div>
+      <div class="w-text-field w-text-field--solo" id="ty-972d3841-0"><div class="w-text-field-control" id="ty-2596aeb9-0"><span class="w-text-field-field" id="ty-e0f7576b-0"><input class="w-text-field-input" placeholder="Solo (search)" aria-label="Solo (search)" id="ty-3e8ba28e-0" /></span></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-d06b10ee-0">
+    <div class="w-stack" id="ty-0cf662cd-0">
+      <w-text-field variant="outlined" label="Outlined" value="Outlined" id="ty-b940196c-0"></w-text-field>
+      <w-text-field variant="filled" label="Filled" value="Filled" id="ty-a0dafa35-0"></w-text-field>
+      <w-text-field variant="underlined" label="Underlined" value="Underlined" id="ty-fd13d49a-0"></w-text-field>
+      <w-text-field variant="plain" label="Plain" value="Plain" id="ty-1cdbb559-0"></w-text-field>
+      <w-text-field variant="solo" label="Solo (search)" id="ty-8f405a69-0"></w-text-field>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-2e485556-0">Input types</h2><p id="ty-0dacfc61-0">Set <code id="ty-b3aae117-0">type</code> to any native value &#8212; <code id="ty-f2e8c121-0">email</code>, <code id="ty-57e1c76a-0">password</code>, <code id="ty-2fa5cb42-0">url</code>, <code id="ty-4119766e-0">tel</code>, and more.</p><demo-compare >
+  <div slot="css" id="ty-069de4f5-0">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating" id="ty-a34fb1b3-0"><div class="w-text-field-control" id="ty-63706396-0"><span class="w-text-field-field" id="ty-d69ecc3f-0"><input class="w-text-field-input" type="email" placeholder=" " id="ty-c60aacf4-0" /><label class="w-text-field-label" id="ty-837c30ff-0">Email</label></span></div></div>
+  </div>
+  <div slot="wc" id="ty-ae39b6a8-0">
+    <w-container fluid="" id="ty-d514ac4a-0">
+      <w-row id="ty-c908e338-0">
+        <w-col cols="12" md="6" id="ty-70863b7b-0"><w-text-field label="Email" type="email" placeholder="you@example.com" hint="We'll never share your email." persistent-hint="" id="ty-f6d4e940-0"></w-text-field></w-col>
+        <w-col cols="12" md="6" id="ty-a9f2f79d-0"><w-text-field label="Password" type="password" value="secret" id="ty-3f7fa628-0"></w-text-field></w-col>
+        <w-col cols="12" md="6" id="ty-e6c00d47-0"><w-text-field label="URL" type="url" value="https://delma.dev" id="ty-66b70414-0"></w-text-field></w-col>
+        <w-col cols="12" md="6" id="ty-fe82ef43-0"><w-text-field label="Phone" type="tel" placeholder="+1 555 0100" id="ty-70ae9648-0"></w-text-field></w-col>
+      </w-row>
+    </w-container>
+  </div>
+</demo-compare><h2 id="ty-b245219e-0">Density &amp; sizes</h2><p id="ty-22a7bc58-0"><code id="ty-c56830cb-0">density</code> tightens vertical rhythm; <code id="ty-931f2e1c-0">size</code> scales the whole control.</p><demo-compare >
+  <div slot="css" id="ty-0d09e2be-0">
+    <div class="w-stack" id="ty-39226972-0">
+      <div class="w-text-field w-text-field--outlined w-text-field--density-compact w-text-field--floating w-text-field--has-value" id="ty-a7f6d969-0"><div class="w-text-field-control" id="ty-4d8b7975-0"><span class="w-text-field-field" id="ty-71d2bd8b-0"><input class="w-text-field-input" value="Compact" placeholder=" " id="ty-ef9f29eb-0" /><label class="w-text-field-label" id="ty-4da7072c-0">Compact</label></span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--lg w-text-field--floating w-text-field--has-value" id="ty-b27d9d83-0"><div class="w-text-field-control" id="ty-ebe77e89-0"><span class="w-text-field-field" id="ty-0d70d05b-0"><input class="w-text-field-input" value="Large" placeholder=" " id="ty-4b61ed5a-0" /><label class="w-text-field-label" id="ty-e78415d0-0">Large</label></span></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-31a99646-0">
+    <div class="w-stack" id="ty-40592216-0">
+      <w-text-field density="compact" label="Compact" id="ty-89b4d33f-0"></w-text-field>
+      <w-text-field density="comfortable" label="Comfortable" id="ty-cee6df78-0"></w-text-field>
+      <w-text-field label="Default" id="ty-4040b6a9-0"></w-text-field>
+      <w-text-field size="lg" label="Large" id="ty-4711f40e-0"></w-text-field>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-ac5b11a4-0">Prefix, suffix &amp; inner content</h2><p id="ty-d5d2a0ff-0">Add static <code id="ty-3e18ebbe-0">prefix</code> / <code id="ty-f96d944e-0">suffix</code> text, name icons with <code id="ty-9b7e8840-0">prepend-inner-icon</code> / <code id="ty-89c98916-0">append-inner-icon</code> (resolved through the icon registry), or drop arbitrary content into the <code id="ty-e5e06cfa-0">prepend-inner</code> / <code id="ty-966cd226-0">append-inner</code> slots.</p><demo-compare >
+  <div slot="css" id="ty-dfc72a49-0">
+    <div class="w-stack" id="ty-1caaee2f-0">
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value" id="ty-a1df4709-0"><div class="w-text-field-control" id="ty-3cc64f5c-0"><span class="w-text-field-affix w-text-field-prefix" id="ty-e339a4eb-0">$</span><span class="w-text-field-field" id="ty-985e66c8-0"><input class="w-text-field-input" value="49.00" placeholder=" " id="ty-59ec92de-0" /><label class="w-text-field-label" id="ty-acf348e7-0">Amount</label></span><span class="w-text-field-affix w-text-field-suffix" id="ty-ea5dd7ba-0">USD</span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value" id="ty-9f788d0a-0"><div class="w-text-field-control" id="ty-615e49fb-0"><span class="w-text-field-prepend-inner" id="ty-b2fa001a-0"><span class="w-icon w-text-field-icon" id="ty-87837e90-0">🔍</span></span><span class="w-text-field-field" id="ty-989adcc9-0"><input class="w-text-field-input" value="duvay" placeholder=" " id="ty-b957b0f6-0" /><label class="w-text-field-label" id="ty-c36970a3-0">Search</label></span><span class="w-text-field-append-inner" id="ty-4bca2a3c-0"><span class="w-icon w-text-field-icon" id="ty-200080b6-0">↗</span></span></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-2ee15c01-0">
+    <div class="w-stack" id="ty-e660c225-0">
+      <w-text-field label="Amount" prefix="$" suffix="USD" value="49.00" id="ty-42db4ac3-0"></w-text-field>
+      <w-text-field label="Search" value="duvay" prepend-inner-icon="🔍" append-inner-icon="↗" id="ty-68a8b345-0"></w-text-field>
+      <w-text-field label="With slot" placeholder="Custom slotted content" variant="solo" id="ty-31e48242-0">
+        <span slot="prepend-inner" aria-hidden="true" id="ty-482602c1-0">🔍</span>
+      </w-text-field>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-3699bd84-0">Clearable</h2><p id="ty-adf41949-0">Add <code id="ty-8a9359bb-0">clearable</code> for a clear button that appears once there&#8217;s a value.</p><demo-compare >
+  <div slot="css" id="ty-e87c94a9-0">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value" id="ty-053c14f6-0"><div class="w-text-field-control" id="ty-bc397ed4-0"><span class="w-text-field-field" id="ty-9c364269-0"><input class="w-text-field-input" value="design, css" placeholder=" " id="ty-526fcd49-0" /><label class="w-text-field-label" id="ty-d8e1e446-0">Tags</label></span><button type="button" class="w-text-field-clear" tabindex="-1" aria-label="Clear" id="ty-911538f8-0">&times;</button></div></div>
+  </div>
+  <div slot="wc" id="ty-15a502a5-0">
+    <w-text-field label="Tags" value="design, css" clearable="" id="ty-129157c6-0"></w-text-field>
+  </div>
+</demo-compare><h2 id="ty-a13a654d-0">Counter</h2><p id="ty-a20ba662-0">Add <code id="ty-89a95787-0">counter</code> (with <code id="ty-951c25f7-0">maxlength</code>) to show how many characters have been typed.</p><demo-compare >
+  <div slot="css" id="ty-dcfdb398-0">
+    <div class="w-text-field w-text-field--outlined w-text-field--floating w-text-field--has-value" id="ty-711bc711-0"><div class="w-text-field-control" id="ty-8e2728dd-0"><span class="w-text-field-field" id="ty-3ee302e1-0"><input class="w-text-field-input" value="Designer &amp; developer" maxlength="50" placeholder=" " id="ty-9b592be2-0" /><label class="w-text-field-label" id="ty-05254238-0">Bio</label></span></div><div class="w-text-field-details" id="ty-7bab5091-0"><span class="w-text-field-messages" id="ty-8f66639a-0"></span><span class="w-text-field-counter" id="ty-a86fa571-0">20 / 50</span></div></div>
+  </div>
+  <div slot="wc" id="ty-2351090e-0">
+    <w-text-field label="Bio" counter="" maxlength="50" value="Designer &amp; developer" id="ty-e6f78600-0"></w-text-field>
+  </div>
+</demo-compare><h2 id="ty-1b90c2fa-0">Loading</h2><p id="ty-8bb54eb7-0">Add <code id="ty-6b171683-0">loading</code> to show an indeterminate bar along the bottom edge while a request is in flight.</p><demo-compare >
+  <div slot="css" id="ty-53e9216f-0">
+    <div class="w-text-field w-text-field--outlined w-text-field--loading w-text-field--floating w-text-field--has-value" id="ty-f2bb3280-0"><div class="w-text-field-control" id="ty-a60936f6-0"><span class="w-text-field-field" id="ty-92a1d599-0"><input class="w-text-field-input" value="duvay" placeholder=" " id="ty-c74741da-0" /><label class="w-text-field-label" id="ty-223ce59d-0">Checking availability…</label></span><span class="w-text-field-loader" aria-hidden="true" id="ty-b50df240-0"></span></div></div>
+  </div>
+  <div slot="wc" id="ty-b357e46b-0">
+    <w-text-field label="Checking availability…" value="duvay" loading="" id="ty-50132f12-0"></w-text-field>
+  </div>
+</demo-compare><h2 id="ty-5370f366-0">States</h2><p id="ty-2d657daa-0">Hints appear on focus (or always with <code id="ty-a3ba6a30-0">persistent-hint</code>); <code id="ty-563186bc-0">error</code> tints the control and replaces the hint.</p><demo-compare >
+  <div slot="css" id="ty-fc4ab8c1-0">
+    <div class="w-stack" id="ty-9c75ed06-0">
+      <div class="w-text-field w-text-field--outlined w-text-field--disabled w-text-field--floating w-text-field--has-value" id="ty-7e5e4a4f-0"><div class="w-text-field-control" id="ty-26d51c18-0"><span class="w-text-field-field" id="ty-15e409d5-0"><input class="w-text-field-input" value="Can't touch this" disabled="" placeholder=" " id="ty-563efb84-0" /><label class="w-text-field-label" id="ty-251e8a68-0">Disabled</label></span></div></div>
+      <div class="w-text-field w-text-field--outlined w-text-field--error w-text-field--floating w-text-field--has-value" id="ty-cef3bf0a-0"><div class="w-text-field-control" id="ty-329d8536-0"><span class="w-text-field-field" id="ty-75d5b004-0"><input class="w-text-field-input" value="bad-email" aria-invalid="true" placeholder=" " id="ty-c0838a54-0" /><label class="w-text-field-label" id="ty-7e85ed19-0">Email</label></span></div><div class="w-text-field-details" id="ty-ef9de710-0"><span class="w-text-field-messages" id="ty-fbc9d0cc-0">Invalid email format.</span></div></div>
+    </div>
+  </div>
+  <div slot="wc" id="ty-3713b854-0">
+    <div class="w-stack" id="ty-a5f640bc-0">
+      <w-text-field label="Disabled" value="Can't touch this" disabled="" id="ty-74d7067d-0"></w-text-field>
+      <w-text-field label="Read-only" value="Locked" readonly="" id="ty-64a6a9e5-0"></w-text-field>
+      <w-text-field label="Email" value="bad-email" error="Invalid email format." id="ty-f33b825a-0"></w-text-field>
+    </div>
+  </div>
+</demo-compare><h2 id="ty-308a0541-0">Attributes</h2><table class="w-table api-table" id="ty-86d6eb53-0">
+  <thead id="ty-e4f2ab6a-0">
+    <tr id="ty-ab0c3219-0"><th id="ty-b63f42a6-0">Attribute</th><th id="ty-da3be09e-0">Type</th><th id="ty-b7b3d9e4-0">Default</th><th id="ty-bf07c7b7-0">Description</th></tr>
+  </thead>
+  <tbody id="ty-a3611aee-0">
+    <tr id="ty-3b91c348-0"><td id="ty-db1d841e-0"><code id="ty-510677c5-0">type</code></td><td id="ty-99caf364-0">string</td><td id="ty-e294d404-0"><code id="ty-311f56ca-0">text</code></td><td id="ty-fb1e93ac-0">Any native input type.</td></tr>
+    <tr id="ty-fc0c0d11-0"><td id="ty-e46f7efb-0"><code id="ty-348bc6ee-0">value</code></td><td id="ty-9423ef9b-0">string</td><td id="ty-61462711-0">&#8212;</td><td id="ty-985e7587-0">Current value (reflected; also a property).</td></tr>
+    <tr id="ty-8bff88f9-0"><td id="ty-091e3ea1-0"><code id="ty-a3ae0b4d-0">label</code></td><td id="ty-c21bf7a4-0">string</td><td id="ty-3bce2dce-0">&#8212;</td><td id="ty-d1f2cf6e-0">Floating label.</td></tr>
+    <tr id="ty-cff0bcea-0"><td id="ty-ab3d3628-0"><code id="ty-e714f5b5-0">placeholder</code></td><td id="ty-48ebd3e4-0">string</td><td id="ty-1c6b6e70-0">&#8212;</td><td id="ty-907cb29a-0">Placeholder text.</td></tr>
+    <tr id="ty-20f4010e-0"><td id="ty-ed74bcc5-0"><code id="ty-c0d68da8-0">variant</code></td><td id="ty-70069399-0">string</td><td id="ty-8759427b-0"><code id="ty-c56850f3-0">outlined</code></td><td id="ty-8b8584d1-0"><code id="ty-cc90bd69-0">outlined</code>, <code id="ty-75a04a6c-0">filled</code>, <code id="ty-766d6870-0">underlined</code>, <code id="ty-aa376d7c-0">plain</code>, or <code id="ty-54a3b3ba-0">solo</code>.</td></tr>
+    <tr id="ty-b577355b-0"><td id="ty-4931fdf8-0"><code id="ty-6b4c6b21-0">density</code></td><td id="ty-2c11fbbf-0">string</td><td id="ty-06ef27e8-0"><code id="ty-dabdf70a-0">default</code></td><td id="ty-acc350c0-0"><code id="ty-bfc4e1ff-0">default</code>, <code id="ty-01fb4502-0">comfortable</code>, or <code id="ty-b092fe05-0">compact</code>.</td></tr>
+    <tr id="ty-8962c760-0"><td id="ty-209bedde-0"><code id="ty-8b7f930c-0">size</code></td><td id="ty-7f13a334-0">string</td><td id="ty-1f1ba45d-0">&#8212;</td><td id="ty-a667e9b6-0"><code id="ty-7da65a95-0">xs</code>, <code id="ty-746816f7-0">sm</code>, <code id="ty-b236ba43-0">lg</code>, or <code id="ty-ba454b5d-0">xl</code>.</td></tr>
+    <tr id="ty-17a9e1a7-0"><td id="ty-9499a8c8-0"><code id="ty-8f9e40bb-0">color</code></td><td id="ty-d2d30ee9-0">string</td><td id="ty-0388fb4c-0"><code id="ty-67b6957b-0">primary</code></td><td id="ty-b0e34d60-0">Token color for the focus accent.</td></tr>
+    <tr id="ty-cc5d860b-0"><td id="ty-e354be24-0"><code id="ty-3a05c213-0">prefix</code>, <code id="ty-a6cb4086-0">suffix</code></td><td id="ty-342ff5de-0">string</td><td id="ty-da51959c-0">&#8212;</td><td id="ty-6a79dfd0-0">Static text inside the control.</td></tr>
+    <tr id="ty-6988f372-0"><td id="ty-d2b1e918-0"><code id="ty-111dc8fd-0">prepend-inner-icon</code>, <code id="ty-5842ba47-0">append-inner-icon</code></td><td id="ty-4f1b2445-0">string</td><td id="ty-d143f67d-0">&#8212;</td><td id="ty-9ee5b849-0">Icon names resolved through the icon registry, rendered inside the control.</td></tr>
+    <tr id="ty-ca3f2486-0"><td id="ty-5c217faf-0"><code id="ty-a98131a1-0">icon-set</code></td><td id="ty-d458d109-0">string</td><td id="ty-7ec3a461-0">&#8212;</td><td id="ty-446028cf-0">Icon set prefix for the icon attributes.</td></tr>
+    <tr id="ty-2b0bcbd9-0"><td id="ty-54c5b0e6-0"><code id="ty-ed54876f-0">clearable</code></td><td id="ty-c1b314d1-0">boolean</td><td id="ty-6f999a2a-0"><code id="ty-7df0fc9c-0">false</code></td><td id="ty-ffa0c7ee-0">Show a clear (×) button when non-empty.</td></tr>
+    <tr id="ty-923364af-0"><td id="ty-fb8898aa-0"><code id="ty-57bc85f1-0">counter</code></td><td id="ty-400f791b-0">boolean</td><td id="ty-dc50b18b-0"><code id="ty-ef2a26d8-0">false</code></td><td id="ty-2fe55af8-0">Show a character counter; pairs with <code id="ty-b2dda4b4-0">maxlength</code>.</td></tr>
+    <tr id="ty-5a70f709-0"><td id="ty-f87b5626-0"><code id="ty-210c46d8-0">loading</code></td><td id="ty-96214170-0">boolean</td><td id="ty-bb637469-0"><code id="ty-52a55987-0">false</code></td><td id="ty-ec75aa68-0">Show an indeterminate bar along the bottom edge.</td></tr>
+    <tr id="ty-a70fa1a4-0"><td id="ty-5232c0b6-0"><code id="ty-6d2dd423-0">hint</code></td><td id="ty-7d45bedd-0">string</td><td id="ty-118b669a-0">&#8212;</td><td id="ty-fb0d6e30-0">Helper text below the control.</td></tr>
+    <tr id="ty-2b0bbade-0"><td id="ty-fbb8a392-0"><code id="ty-a7eb825b-0">persistent-hint</code></td><td id="ty-3e94fa1b-0">boolean</td><td id="ty-4722536b-0"><code id="ty-c599a2a8-0">false</code></td><td id="ty-cb99022d-0">Keep the hint visible when not focused.</td></tr>
+    <tr id="ty-4ac03803-0"><td id="ty-f5278e34-0"><code id="ty-2e7c0824-0">error</code></td><td id="ty-21d458ec-0">string</td><td id="ty-953434f9-0">&#8212;</td><td id="ty-b5b278e2-0">Error text; tints the control and replaces the hint.</td></tr>
+    <tr id="ty-2fd0bad6-0"><td id="ty-f5d95ad0-0"><code id="ty-f614b5c2-0">rounded</code></td><td id="ty-eb7f2d15-0">boolean</td><td id="ty-b997e946-0"><code id="ty-8f8e7980-0">false</code></td><td id="ty-ccff574c-0">Pill-rounded control.</td></tr>
+    <tr id="ty-0dba1423-0"><td id="ty-6b2c7023-0"><code id="ty-4db9954e-0">single-line</code></td><td id="ty-6b1975e0-0">boolean</td><td id="ty-12c35d43-0"><code id="ty-687f0b72-0">false</code></td><td id="ty-85301135-0">No floating label; label becomes the placeholder.</td></tr>
+    <tr id="ty-ca17c4b1-0"><td id="ty-048efb27-0"><code id="ty-63d4bfe5-0">hide-details</code></td><td id="ty-a0ea5e08-0">boolean</td><td id="ty-137d1332-0"><code id="ty-ff87c1d8-0">false</code></td><td id="ty-92ea2fa7-0">Suppress the details row (hint / error / counter).</td></tr>
+    <tr id="ty-c9e1ce3d-0"><td id="ty-5690d91d-0"><code id="ty-278b28b1-0">disabled</code>, <code id="ty-905e3901-0">readonly</code></td><td id="ty-7f70fb86-0">boolean</td><td id="ty-71341c4c-0"><code id="ty-bf65ec78-0">false</code></td><td id="ty-757399c6-0">State flags.</td></tr>
+    <tr id="ty-e3472bee-0"><td id="ty-2932a642-0"><code id="ty-1b08d2a5-0">name</code></td><td id="ty-f4cabf20-0">string</td><td id="ty-ae18f7fe-0">&#8212;</td><td id="ty-564ef42e-0">Form field name.</td></tr>
+    <tr id="ty-a6225545-0"><td id="ty-f41fe9ad-0"><code id="ty-f5fd2640-0">required</code>, <code id="ty-30d8aa45-0">pattern</code>, <code id="ty-58d1c7bd-0">minlength</code>, <code id="ty-e0163521-0">maxlength</code>, <code id="ty-28fe1e3f-0">min</code>, <code id="ty-34e95c55-0">max</code>, <code id="ty-1aa8ca05-0">step</code></td><td id="ty-e8539bd4-0">&#8212;</td><td id="ty-cf676b98-0">&#8212;</td><td id="ty-653d2730-0">Native HTML5 validation attributes, forwarded to the input.</td></tr>
+  </tbody>
+</table><h2 id="ty-efbedfb1-0">Slots</h2><table class="w-table api-table" id="ty-876c36c5-0">
+  <thead id="ty-220f556c-0"><tr id="ty-bc99fa17-0"><th id="ty-379bfa94-0">Slot</th><th id="ty-4a0519a5-0">Description</th></tr></thead>
+  <tbody id="ty-e75a2895-0">
+    <tr id="ty-dea110bf-0"><td id="ty-02b2d9ad-0"><code id="ty-1b4a3457-0">prepend-inner</code></td><td id="ty-ee859c67-0">Content (e.g. an icon) inside the control, leading.</td></tr>
+    <tr id="ty-7457ca18-0"><td id="ty-2e848099-0"><code id="ty-5fa02867-0">append-inner</code></td><td id="ty-791a0568-0">Content inside the control, trailing.</td></tr>
+  </tbody>
+</table><h2 id="ty-9159d4de-0">Events</h2><table class="w-table api-table" id="ty-91b1585e-0">
+  <thead id="ty-ae999696-0"><tr id="ty-4a41306b-0"><th id="ty-237bdcb7-0">Event</th><th id="ty-71ebc32f-0">Detail</th><th id="ty-904c2388-0">Description</th></tr></thead>
+  <tbody id="ty-bfa20da6-0">
+    <tr id="ty-58233530-0"><td id="ty-c3f10846-0"><code id="ty-9a051f27-0">input</code></td><td id="ty-2d05cbab-0"><code id="ty-eaf48a9b-0">&#123; value, name &#125;</code></td><td id="ty-37730db9-0">Fired on every keystroke.</td></tr>
+    <tr id="ty-bb64fa20-0"><td id="ty-142130ef-0"><code id="ty-e5ae8b55-0">change</code></td><td id="ty-7bd81fbe-0"><code id="ty-58279b8a-0">&#123; value, name &#125;</code></td><td id="ty-0cab3aae-0">Fired when the value is committed.</td></tr>
+    <tr id="ty-89b8c83e-0"><td id="ty-91287aa2-0"><code id="ty-4385f42e-0">clear</code></td><td id="ty-554a4cc6-0"><code id="ty-c55c797c-0">&#123; name &#125;</code></td><td id="ty-9a557afc-0">Fired when cleared via the clear button.</td></tr>
+  </tbody>
+</table></div>
+    </article>
+    <nav class="docs-pager" data-w-pager="" aria-label="Pagination" id="ty-1087479d-0"></nav>
+  </main>
+  <aside class="docs-toc" data-w-toc="" aria-label="On this page" id="ty-88a1f264-0"></aside>
+</div>
+</body>
+</html>
+
