@@ -8,3 +8,6 @@ website/playwright-report/
 *.log
 .DS_Store
 .env
+.claude/
+graphify-out/
+graphify-*
