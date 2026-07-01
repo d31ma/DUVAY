@@ -1,0 +1,120 @@
+name: Publish Pages Assets
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build asset site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+        with:
+          path: source
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Read and validate version
+        id: version
+        working-directory: source
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          VERSION=$(bun -p "require('./package.json').version")
+          if [[ -n "$RELEASE_TAG" && "$RELEASE_TAG" != "v$VERSION" ]]; then
+            echo "Release tag $RELEASE_TAG does not match package version v$VERSION." >&2
+            exit 1
+          fi
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build DuVay
+        working-directory: source
+        run: bun run build
+
+      - name: Checkout persistent Pages branch
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages
+          path: site
+
+      - name: Stage current and versioned assets
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          rm -rf site/latest "site/versions/$VERSION"
+          mkdir -p site/latest "site/versions/$VERSION"
+          cp -R source/dist/. site/latest/
+          cp -R source/dist/. "site/versions/$VERSION/"
+
+          cat > site/index.html <<EOF
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>DuVay Assets</title>
+          </head>
+          <body>
+            <main>
+              <h1>DuVay Assets</h1>
+              <p>Current release: <a href="./versions/$VERSION/">$VERSION</a></p>
+              <p><a href="./latest/">Latest build</a></p>
+              <p><a href="https://github.com/${GITHUB_REPOSITORY}">Source and documentation</a></p>
+            </main>
+          </body>
+          </html>
+          EOF
+
+      - name: Preserve release on gh-pages
+        working-directory: site
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "Pages assets are already current."
+          else
+            git commit -m "publish: v$VERSION"
+            git push origin HEAD:gh-pages
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    name: Deploy asset site
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
