@@ -72,6 +72,7 @@ test('w-date-input supports multiple mode', async ({ mount, page }) => {
 });
 
 test('w-date-input supports range mode', async ({ mount, page }) => {
+  await page.clock.setFixedTime(new Date('2026-06-01T12:00:00'));
   await mount('<w-date-input id="di" mode="range"></w-date-input>');
 
   await page.locator('#di .w-date-input-icon').click();
