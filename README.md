@@ -31,8 +31,8 @@
 </p>
 
 ```html
-<link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css">
-<script type="module" src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js"></script>
+<link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css">
+<script type="module" src="https://d31ma.github.io/DUVAY/latest/duvay-wc.min.js"></script>
 
 <button class="w-btn w-btn-filled">Save</button>
 <w-alert variant="success" title="Done!">Your changes are saved.</w-alert>
@@ -56,14 +56,14 @@ DuVay also ships component-level CSS entrypoints. Import the full framework when
 ### Latest release (hosted)
 
 ```html
-<link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.css">
-<script src="https://duvay.del.ma/shared/assets/duvay/dist/duvay.min.js" defer></script>
+<link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css">
+<script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer></script>
 
 <!-- optional: motion transitions (enter/leave/expand/flip/etc.) -->
-<script src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-motion.min.js" defer></script>
+<script src="https://d31ma.github.io/DUVAY/latest/duvay-motion.min.js" defer></script>
 
 <!-- optional web components -->
-<script type="module" src="https://duvay.del.ma/shared/assets/duvay/dist/duvay-wc.min.js"></script>
+<script type="module" src="https://d31ma.github.io/DUVAY/latest/duvay-wc.min.js"></script>
 ```
 
 ### Selective CSS imports
@@ -83,14 +83,14 @@ Component CSS files import their required core layer, so this also works when yo
 
 ### Pin to a CalVer release
 
-Every release is permanently available under `/shared/assets/duvay/versions/<VERSION>/dist/`. Replace `VERSION` with the CalVer release you want to lock to:
+Every release is permanently available under `https://d31ma.github.io/DUVAY/versions/<VERSION>/`. Replace `VERSION` with the CalVer release you want to lock to:
 
 ```html
-<link rel="stylesheet" href="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.css">
-<script src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay.min.js" defer></script>
+<link rel="stylesheet" href="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.css">
+<script src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.js" defer></script>
 
 <!-- optional web components -->
-<script type="module" src="https://duvay.del.ma/shared/assets/duvay/versions/VERSION/dist/duvay-wc.min.js"></script>
+<script type="module" src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay-wc.min.js"></script>
 ```
 
 ## Project layout
