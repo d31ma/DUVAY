@@ -1,0 +1,127 @@
+/* DuVay — Footers component styles. */
+@import "../core.css";
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.w-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: var(--w-footer-height, 48px);
+  padding: var(--w-space-md) var(--w-space-xl);
+  border-top: 1px solid var(--w-divider);
+  background: var(--w-footer-bg, var(--w-surface));
+  color: var(--w-footer-color, var(--w-text-very-subtle));
+  font-size: var(--w-font-sm);
+  position: relative;
+}
+
+/* Border variant — adds border on all sides */
+.w-footer--border {
+  border: 1px solid var(--w-border);
+}
+
+/* App variant — sticks to bottom */
+.w-footer--app {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--w-z-sticky);
+}
+
+/* Elevation */
+.w-footer--elevation-1 {
+  box-shadow: var(--w-elevation-1, 0 -1px 2px var(--w-shadow-color));
+}
+.w-footer--elevation-2 {
+  box-shadow: var(--w-elevation-2, 0 -1px 4px var(--w-shadow-color));
+}
+.w-footer--elevation-3 {
+  box-shadow: var(--w-elevation-3, 0 -2px 8px var(--w-shadow-color));
+}
+.w-footer--elevation-4 {
+  box-shadow: var(--w-elevation-4, 0 -4px 16px var(--w-shadow-color));
+}
+.w-footer--elevation-5 {
+  box-shadow: var(--w-elevation-5, 0 -8px 24px var(--w-shadow-color));
+}
+
+/* Rounded */
+.w-footer--rounded {
+  border-radius: var(--w-radius, 0);
+}
+.w-footer--rounded-sm {
+  border-radius: var(--w-radius-sm, 0);
+}
+.w-footer--rounded-md {
+  border-radius: var(--w-radius-md, 0);
+}
+.w-footer--rounded-lg {
+  border-radius: var(--w-radius-lg, 0);
+}
+.w-footer--rounded-xl {
+  border-radius: var(--w-radius-xl, 0);
+}
+.w-footer--rounded-pill {
+  border-radius: var(--w-radius-pill, 999px);
+}
+
+/* Color variants — map to semantic tokens */
+.w-footer--color-primary {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+.w-footer--color-secondary {
+  background: var(--w-secondary);
+  color: var(--w-on-primary);
+  border-color: var(--w-secondary);
+}
+.w-footer--color-success {
+  background: var(--w-success);
+  color: var(--w-on-success);
+  border-color: var(--w-success);
+}
+.w-footer--color-warning {
+  background: var(--w-warning);
+  color: var(--w-on-warning);
+  border-color: var(--w-warning);
+}
+.w-footer--color-error {
+  background: var(--w-error);
+  color: var(--w-on-error);
+  border-color: var(--w-error);
+}
+.w-footer--color-surface {
+  background: var(--w-surface);
+  color: var(--w-text);
+  border-color: var(--w-divider);
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+  .w-footer {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--w-space-md);
+  }
+
+  .w-dialog-wrapper {
+    padding: var(--w-space-lg);
+  }
+
+  .w-dialog-header { padding: var(--w-space-lg) var(--w-space-lg) var(--w-space-sm); }
+  .w-dialog-body { padding: 0 var(--w-space-lg) var(--w-space-md); }
+  .w-dialog-footer { padding: var(--w-space-sm) var(--w-space-lg) var(--w-space-lg); }
+
+  .w-sheet-bottom {
+    padding: var(--w-space-lg);
+    max-height: 90dvh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-footer {
+    transition: none;
+  }
+}

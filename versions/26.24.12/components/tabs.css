@@ -1,0 +1,210 @@
+/* DuVay — Tabs component styles. */
+@import "../core.css";
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────────
+ *
+ * CSS-class usage:  <nav class="w-tabs"><button class="w-tab active">…</button></nav>
+ * Web component:    <w-tabs><w-tab>…</w-tab></w-tabs>
+ *
+ * The web component wraps authored tabs in a <slot> and the <w-tab> host; both
+ * are made transparent to layout (display:contents) so the `.w-tab` button is
+ * the flex child in either usage. Container modifiers (--align-*, --fixed,
+ * --grow, --stacked, --vertical) and the optional animated slider are emitted
+ * by tabs.js; every modifier also works on hand-authored markup.
+ *
+ * Local custom properties (set per-instance by tabs.js from attributes):
+ *   --w-tabs-color         active-tab text + default slider color  (color="…")
+ *   --w-tabs-slider-color  active-indicator color                  (slider-color="…")
+ *   --w-tabs-bg            strip background                         (bg-color="…")
+ *   --w-tab-max-width      fixed-tabs per-tab cap (default 18rem)
+ * ──────────────────────────────────────────────────────────────────────────── */
+.w-tabs {
+  --w-tab-max-width: 18rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-width: 0;
+  padding: 0 var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-tabs-bg, var(--w-surface));
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.w-tabs::-webkit-scrollbar { display: none; }
+
+/* Light-DOM passthrough: let slotted <w-tab>s lay out as `.w-tabs` flex children */
+.w-tabs > slot { display: contents; }
+w-tab { display: contents; }
+
+.w-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background var(--w-transition-normal), color var(--w-transition-normal), border-color var(--w-transition-normal);
+}
+
+.w-tab:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-tab.active {
+  background: transparent;
+  color: var(--w-tabs-color, var(--w-primary));
+  border-bottom-color: var(--w-tabs-color, var(--w-primary));
+}
+
+.w-tab:disabled,
+.w-tab[disabled],
+.w-tab.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Alignment — `start` is the natural flow, so only center/end need a rule */
+.w-tabs--align-center { justify-content: center; }
+.w-tabs--align-end    { justify-content: flex-end; }
+
+/* Equal-width tabs — `grow` fills the strip, `fixed` caps each tab and centers */
+.w-tabs--grow .w-tab { flex: 1 1 0; }
+.w-tabs--fixed { justify-content: center; }
+.w-tabs--fixed .w-tab { flex: 1 1 0; max-width: var(--w-tab-max-width); }
+
+/* Stacked — icon above label */
+.w-tabs--stacked .w-tab,
+.w-tab--stacked {
+  flex-direction: column;
+  gap: 0.125rem;
+  min-height: 4.5rem;
+  padding-block: var(--w-space-sm);
+}
+
+/* Density — the class lands on the <w-tabs> host via the base component */
+w-tabs.w-density-comfortable .w-tab,
+.w-tabs--comfortable .w-tab { min-height: 40px; }
+w-tabs.w-density-compact .w-tab,
+.w-tabs--compact .w-tab { min-height: 36px; font-size: var(--w-font-xs); }
+
+/* Vertical orientation — a rail with an inline-start indicator */
+.w-tabs--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  padding: var(--w-space-sm) 0;
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--w-border);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.w-tabs--vertical .w-tab {
+  justify-content: flex-start;
+  border-bottom: 0;
+  border-inline-start: 2px solid transparent;
+}
+.w-tabs--vertical .w-tab.active {
+  border-inline-start-color: var(--w-tabs-color, var(--w-primary));
+}
+
+/* Animated slider — emitted by tabs.js; supersedes the static border indicator.
+ * `.w-tabs` is the offset parent, so the slider scrolls with the tabs. */
+.w-tabs-slider {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--w-tabs-slider-color, var(--w-tabs-color, var(--w-primary)));
+  border-radius: var(--w-radius-pill);
+  transform: translateX(0);
+  transition: transform var(--w-transition-normal), width var(--w-transition-normal), height var(--w-transition-normal);
+  pointer-events: none;
+}
+.w-tabs--vertical .w-tabs-slider {
+  bottom: auto;
+  top: 0;
+  width: 2px;
+  height: 0;
+}
+.w-tabs--js-slider .w-tab.active,
+.w-tabs--no-slider .w-tab.active { border-color: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-tabs-slider { transition: none; }
+}
+
+/* Shell — wraps the strip with overflow-pagination arrows (web component only) */
+.w-tabs-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+.w-tabs-shell--vertical {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.w-tabs-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface);
+  color: var(--w-text);
+  cursor: pointer;
+  transition: background var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+.w-tabs-arrow:hover {
+  border-color: color-mix(in srgb, var(--w-primary) 42%, var(--w-border));
+  background: var(--w-hover);
+}
+.w-tabs-arrow:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Tab helpers & aliases ───────────────────────────────────────────────── */
+.w-tab-list {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-width: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.w-tab-panel {
+  padding: var(--w-space-lg) 0;
+}
+.w-tab-active {
+  background: transparent;
+  color: var(--w-tabs-color, var(--w-primary));
+  border-bottom-color: var(--w-tabs-color, var(--w-primary));
+}
+.w-tabs-pills .w-tab {
+  border-radius: var(--w-radius-pill);
+  min-height: 36px;
+  border: 1px solid transparent;
+  margin-block: 0.25rem;
+}
+.w-tabs-pills .w-tab.active,
+.w-tabs-pills .w-tab-active {
+  background: var(--w-secondary-container);
+  color: var(--w-on-secondary-container);
+  border-color: color-mix(in srgb, var(--w-primary) 30%, transparent);
+}

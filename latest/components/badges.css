@@ -1,0 +1,220 @@
+/* DuVay — Badges component styles. */
+@import "../core.css";
+
+/* ── Badge ───────────────────────────────────────────────────────────────── */
+.w-badge-wrap {
+  --w-badge-offset-x: 0px;
+  --w-badge-offset-y: 0px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-width: 100%;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.w-badge-wrap > slot {
+  display: contents;
+}
+
+.w-badge {
+  --w-badge-bg: var(--w-error);
+  --w-badge-fg: var(--w-on-error);
+  --w-badge-border-color: var(--w-surface);
+  --w-badge-dot-size: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 1.375rem;
+  min-width: 1.375rem;
+  padding: 0 var(--w-space-2);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-badge-bg);
+  color: var(--w-badge-fg);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+  text-indent: 0;
+  vertical-align: middle;
+  transition:
+    background var(--w-transition-fast),
+    border-color var(--w-transition-fast),
+    color var(--w-transition-fast),
+    opacity var(--w-transition-fast),
+    transform var(--w-transition-fast);
+}
+
+.w-badge--hidden {
+  display: none !important;
+}
+
+.w-badge-icon {
+  color: inherit;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.w-badge-content {
+  position: absolute;
+  top: calc(-1 * var(--w-badge-offset-y));
+  right: calc(-1 * var(--w-badge-offset-x));
+  transform: translate(50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.w-badge-wrap--top-start .w-badge-content {
+  right: auto;
+  left: calc(-1 * var(--w-badge-offset-x));
+  transform: translate(-50%, -50%);
+}
+
+.w-badge-wrap--bottom-end .w-badge-content {
+  top: auto;
+  bottom: calc(-1 * var(--w-badge-offset-y));
+  transform: translate(50%, 50%);
+}
+
+.w-badge-wrap--bottom-start .w-badge-content {
+  top: auto;
+  right: auto;
+  bottom: calc(-1 * var(--w-badge-offset-y));
+  left: calc(-1 * var(--w-badge-offset-x));
+  transform: translate(-50%, 50%);
+}
+
+.w-badge-wrap--floating .w-badge-content {
+  transform: translate(65%, -65%);
+}
+
+.w-badge-wrap--floating.w-badge-wrap--top-start .w-badge-content {
+  transform: translate(-65%, -65%);
+}
+
+.w-badge-wrap--floating.w-badge-wrap--bottom-end .w-badge-content {
+  transform: translate(65%, 65%);
+}
+
+.w-badge-wrap--floating.w-badge-wrap--bottom-start .w-badge-content {
+  transform: translate(-65%, 65%);
+}
+
+.w-badge-primary {
+  --w-badge-bg: var(--w-primary);
+  --w-badge-fg: var(--w-on-primary);
+}
+
+.w-badge-error {
+  --w-badge-bg: var(--w-error);
+  --w-badge-fg: var(--w-on-error);
+}
+
+.w-badge-success {
+  --w-badge-bg: var(--w-success);
+  --w-badge-fg: var(--w-on-success);
+}
+
+.w-badge-tertiary {
+  --w-badge-bg: var(--w-warning);
+  --w-badge-fg: var(--w-on-warning);
+}
+
+.w-badge-secondary {
+  --w-badge-bg: var(--w-text-subtle);
+  --w-badge-fg: var(--w-surface);
+}
+
+.w-badge-warning {
+  --w-badge-bg: var(--w-warning);
+  --w-badge-fg: var(--w-on-warning);
+}
+
+.w-badge-danger {
+  --w-badge-bg: var(--w-error);
+  --w-badge-fg: var(--w-on-error);
+}
+
+.w-badge-info {
+  --w-badge-bg: var(--w-primary);
+  --w-badge-fg: var(--w-on-primary);
+}
+
+.w-badge-filled {
+  background: var(--w-badge-bg);
+  color: var(--w-badge-fg);
+}
+
+.w-badge-tonal {
+  background: color-mix(in srgb, var(--w-badge-bg) 18%, transparent);
+  color: var(--w-badge-bg);
+}
+
+.w-badge-outlined {
+  background: transparent;
+  border: 1px solid currentColor;
+  color: var(--w-badge-bg);
+}
+
+.w-badge-text,
+.w-badge-plain {
+  min-width: auto;
+  min-height: auto;
+  padding: 0;
+  background: transparent;
+  color: var(--w-badge-bg);
+}
+
+.w-badge-plain {
+  opacity: var(--w-text-medium-emphasis-opacity);
+}
+
+.w-badge-dot {
+  width: var(--w-badge-dot-size);
+  height: var(--w-badge-dot-size);
+  min-width: var(--w-badge-dot-size);
+  min-height: var(--w-badge-dot-size);
+  padding: 0;
+  border-radius: 50%;
+}
+
+.w-badge-bordered::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid var(--w-badge-border-color);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.w-badge-text-primary { color: var(--w-primary); }
+.w-badge-text-secondary { color: var(--w-text-subtle); }
+.w-badge-text-tertiary,
+.w-badge-text-warning { color: var(--w-warning); }
+.w-badge-text-success { color: var(--w-success); }
+.w-badge-text-error,
+.w-badge-text-danger { color: var(--w-error); }
+
+.w-badge-rounded { border-radius: var(--w-radius-pill); }
+.w-badge-rounded-0,
+.w-badge-rounded-none { border-radius: 0; }
+.w-badge-rounded-sm { border-radius: var(--w-radius-sm); }
+.w-badge-rounded-md { border-radius: var(--w-radius-md); }
+.w-badge-rounded-lg { border-radius: var(--w-radius-lg); }
+.w-badge-rounded-xl { border-radius: var(--w-radius-xl); }
+.w-badge-rounded-pill { border-radius: var(--w-radius-pill); }
+
+.w-badge[role="status"] {
+  speak: normal;
+}
+
+/* Status label with uppercase */
+.w-badge-label {
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+}

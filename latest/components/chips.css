@@ -1,0 +1,296 @@
+/* DuVay — Chips component styles. */
+@import "../core.css";
+
+/* ── Chip ────────────────────────────────────────────────────────────────── */
+.w-chip {
+  --w-chip-bg: var(--w-secondary-container);
+  --w-chip-fg: var(--w-on-secondary-container);
+  --w-chip-accent: var(--w-primary);
+  --w-chip-border-color: color-mix(in srgb, var(--w-chip-accent) 18%, transparent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-1_5);
+  min-height: var(--w-size-sm);
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 var(--w-space-3);
+  border: 1px solid var(--w-chip-border-color);
+  border-radius: var(--w-radius-pill);
+  overflow: hidden;
+  position: relative;
+  background: var(--w-chip-bg);
+  color: var(--w-chip-fg);
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition:
+    background var(--w-transition-normal),
+    border-color var(--w-transition-normal),
+    box-shadow var(--w-transition-normal),
+    color var(--w-transition-normal),
+    opacity var(--w-transition-normal);
+}
+
+.w-chip:hover:not(:disabled):not(.w-chip--disabled) .w-chip__overlay {
+  opacity: 0.08;
+}
+
+.w-chip:focus-visible {
+  outline: 2px solid var(--w-focus-ring);
+  outline-offset: 2px;
+}
+
+.w-chip__overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-chip__content,
+.w-chip__filter,
+.w-chip__prepend,
+.w-chip__append,
+.w-chip__close {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.w-chip__content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w-chip__filter,
+.w-chip__prepend,
+.w-chip__append {
+  flex: 0 0 auto;
+}
+
+.w-chip__filter {
+  width: 0;
+  opacity: 0;
+  transform: translateX(-0.25rem) scale(0.8);
+  transition:
+    opacity var(--w-transition-fast),
+    transform var(--w-transition-fast),
+    width var(--w-transition-fast);
+}
+
+.w-chip.selected .w-chip__filter,
+.w-chip--selected .w-chip__filter {
+  width: 1em;
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.w-chip-outlined {
+  background: transparent;
+  border-color: var(--w-chip-accent);
+  color: var(--w-chip-accent);
+}
+
+.w-chip-filled {
+  background: var(--w-chip-accent);
+  border-color: transparent;
+  color: var(--w-on-primary);
+}
+
+.w-chip-filled.w-chip-success {
+  color: var(--w-on-success);
+}
+
+.w-chip-filled.w-chip-warning {
+  color: var(--w-on-warning);
+}
+
+.w-chip-filled.w-chip-error,
+.w-chip-filled.w-chip-danger {
+  color: var(--w-on-error);
+}
+
+.w-chip-tonal {
+  background: color-mix(in srgb, var(--w-chip-accent) 16%, var(--w-surface));
+  border-color: transparent;
+  color: var(--w-chip-accent);
+}
+
+.w-chip-text,
+.w-chip-plain {
+  background: transparent;
+  border-color: transparent;
+  color: var(--w-chip-accent);
+}
+
+.w-chip-plain {
+  opacity: var(--w-text-medium-emphasis-opacity);
+}
+
+.w-chip-elevated {
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-chip--border {
+  border-color: var(--w-chip-accent);
+}
+
+.w-chip-primary {
+  --w-chip-bg: var(--w-primary-container);
+  --w-chip-fg: var(--w-on-primary-container);
+  --w-chip-accent: var(--w-primary);
+}
+
+.w-chip-success {
+  --w-chip-bg: var(--w-success-container);
+  --w-chip-fg: var(--w-success);
+  --w-chip-accent: var(--w-success);
+}
+
+.w-chip-error,
+.w-chip-danger {
+  --w-chip-bg: var(--w-error-container);
+  --w-chip-fg: var(--w-error);
+  --w-chip-accent: var(--w-error);
+}
+
+.w-chip-warning {
+  --w-chip-bg: var(--w-warning-container);
+  --w-chip-fg: var(--w-on-warning-container);
+  --w-chip-accent: var(--w-warning);
+}
+
+.w-chip-secondary {
+  --w-chip-bg: var(--w-secondary-container);
+  --w-chip-fg: var(--w-on-secondary-container);
+  --w-chip-accent: var(--w-text-subtle);
+}
+
+.w-chip-tertiary {
+  --w-chip-bg: var(--w-tertiary-container);
+  --w-chip-fg: var(--w-on-tertiary-container);
+  --w-chip-accent: var(--w-warning);
+}
+
+.w-chip.selected {
+  border-color: color-mix(in srgb, var(--w-chip-accent) 48%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-chip-accent) 24%, transparent);
+}
+
+.w-chip svg,
+.w-chip__icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.w-chip--label {
+  border-radius: var(--w-radius-sm);
+}
+
+.w-chip--pill {
+  border-radius: var(--w-radius-pill);
+}
+
+.w-chip--link {
+  cursor: pointer;
+}
+
+.w-chip--disabled,
+.w-chip:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  pointer-events: none;
+  user-select: none;
+}
+
+.w-chip-removable,
+.w-chip--closable {
+  padding-inline-end: var(--w-space-2);
+}
+
+.w-chip-close,
+.w-chip__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  margin-inline-start: 0.125rem;
+  border-radius: var(--w-radius-pill);
+  color: currentColor;
+  font-size: var(--w-font-sm);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.w-chip-close:hover,
+.w-chip__close:hover {
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  opacity: 1;
+}
+
+.w-chip--rounded { border-radius: var(--w-radius); }
+.w-chip--rounded-0,
+.w-chip--rounded-none { border-radius: 0; }
+.w-chip--rounded-sm { border-radius: var(--w-radius-sm); }
+.w-chip--rounded-md { border-radius: var(--w-radius-md); }
+.w-chip--rounded-lg { border-radius: var(--w-radius-lg); }
+.w-chip--rounded-xl { border-radius: var(--w-radius-xl); }
+.w-chip--rounded-pill { border-radius: var(--w-radius-pill); }
+
+.w-chip--elevation-0 { box-shadow: none; }
+.w-chip--elevation-1 { box-shadow: var(--w-shadow-sm); }
+.w-chip--elevation-2,
+.w-chip--elevation-3 { box-shadow: var(--w-shadow-md); }
+.w-chip--elevation-4,
+.w-chip--elevation-5,
+.w-chip--elevation-6 { box-shadow: var(--w-shadow-lg); }
+
+/* Chip sizes — xs / sm / (default) / lg / xl */
+.w-chip--xs,
+.w-chip--x-small {
+  min-height: 20px;
+  padding: 0 var(--w-space-1);
+  gap: var(--w-space-1);
+  font-size: var(--w-font-xs);
+}
+
+.w-chip--sm,
+.w-chip--small {
+  min-height: 24px;
+  padding: 0 var(--w-space-2);
+  font-size: var(--w-font-xs);
+}
+
+.w-chip--lg,
+.w-chip--large {
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-4);
+  font-size: var(--w-font-base);
+}
+
+.w-chip--xl,
+.w-chip--x-large {
+  min-height: var(--w-size-lg);
+  padding: 0 var(--w-space-5);
+  font-size: var(--w-font-md);
+}
+
+.w-chip--density-compact {
+  min-height: 24px;
+  padding-inline: var(--w-space-2);
+}
+
+.w-chip--density-comfortable {
+  min-height: var(--w-size-sm);
+}

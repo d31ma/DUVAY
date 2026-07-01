@@ -1,0 +1,48 @@
+/* DuVay — Search Inputs component styles. */
+@import "../core.css";
+
+/* ── Search input ────────────────────────────────────────────────────────── */
+.w-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--w-space-sm);
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: color-mix(in srgb, var(--w-surface) 94%, var(--w-surface-container-high));
+}
+
+.w-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.w-search .w-input {
+  padding-right: 2.5rem;
+}
+
+.w-search-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-primary);
+  cursor: pointer;
+  transition: background var(--w-transition-normal);
+}
+
+.w-search-icon:hover {
+  background: color-mix(in srgb, var(--w-primary) 14%, transparent);
+}

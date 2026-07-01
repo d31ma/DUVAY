@@ -1,0 +1,150 @@
+/* DuVay — Command Palettes component styles. */
+@import "../core.css";
+
+/* ── Command palette ────────────────────────────────────────────────────── */
+.w-command {
+  display: grid;
+  gap: var(--w-space-2);
+  width: min(100%, 32rem);
+  overflow: hidden;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-command-input-wrap {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--w-space-2);
+  padding: var(--w-space-2) var(--w-space-3);
+  border-bottom: 1px solid var(--w-border);
+  color: var(--w-text-subtle);
+}
+
+.w-command-input {
+  min-width: 0;
+  min-height: 36px;
+  border: 0;
+  background: transparent;
+  color: var(--w-text);
+  font: inherit;
+  outline: none;
+}
+
+.w-command-input::placeholder {
+  color: var(--w-text-very-subtle);
+}
+
+.w-command-list {
+  display: grid;
+  gap: var(--w-space-1);
+  max-height: 20rem;
+  overflow: auto;
+  padding: var(--w-space-2);
+}
+
+.w-command-list > slot {
+  display: contents;
+}
+
+.w-command-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-3);
+  width: 100%;
+  min-height: 40px;
+  padding: var(--w-space-2) var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  text-align: left;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-command-item:hover:not(:disabled),
+.w-command-item:focus-visible,
+.w-command-item.active:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-command-item:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* Leading icon (optional) */
+.w-command-item-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  line-height: 1;
+  color: var(--w-text-subtle);
+}
+
+/* Title + optional subtitle stack */
+.w-command-item-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+.w-command-item-title,
+.w-command-item-subtitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-command-item-subtitle {
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+}
+
+/* Group rows (from the items array, type subheader/divider) */
+.w-command-subheader {
+  padding: var(--w-space-2) var(--w-space-3) var(--w-space-1);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--w-text-subtle);
+}
+
+.w-command-divider {
+  height: 1px;
+  margin: var(--w-space-1) 0;
+  background: var(--w-border);
+}
+
+/* Overlay mode — opened by `hotkey`/`open`; scrim + top-centered panel */
+.w-command-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--w-z-modal);
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12vh var(--w-space-4) var(--w-space-4);
+  background: var(--w-scrim);
+}
+
+.w-command-overlay.open {
+  display: flex;
+}
+
+.w-command-empty {
+  padding: 0 var(--w-space-4) var(--w-space-4);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}

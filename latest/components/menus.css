@@ -1,0 +1,259 @@
+/* DuVay — Menus component styles. */
+@import "../core.css";
+
+/* ── Topbar user menu ───────────────────────────────────────────────────── */
+.w-topbar-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.w-topbar-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 36px;
+  padding: 0.25rem 0.625rem 0.25rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  line-height: 1.2;
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal);
+}
+
+.w-topbar-menu-trigger:hover,
+.w-topbar-menu-trigger[aria-expanded="true"] {
+  background: var(--w-hover);
+  border-color: var(--w-divider);
+}
+
+.w-topbar-menu-caret {
+  flex: 0 0 auto;
+  opacity: 0.7;
+  transition: transform var(--w-transition-slow);
+}
+
+.w-topbar-menu-trigger[aria-expanded="true"] .w-topbar-menu-caret {
+  transform: rotate(180deg);
+}
+
+/* ── shadcn-style menu primitives ──────────────────────────────────────── */
+.w-dropdown-menu,
+.w-menubar-item,
+.w-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.w-dropdown-menu-content,
+.w-menubar-content,
+.w-popover-content,
+.w-hover-card-content {
+  min-width: 12rem;
+}
+
+.w-dropdown-menu-content,
+.w-menubar-content,
+.w-context-menu-content {
+  display: grid;
+  gap: var(--w-space-1);
+}
+
+.w-dropdown-menu.open .w-dropdown-menu-content,
+.w-menubar-item.open .w-menubar-content,
+.w-context-menu-content.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.w-dropdown-menu--inline,
+.w-menubar-item--inline {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--w-space-2);
+}
+
+.w-dropdown-menu--inline:not(.open) .w-dropdown-menu-content,
+.w-menubar-item--inline:not(.open) .w-menubar-content {
+  display: none;
+}
+
+.w-dropdown-menu--inline.open .w-dropdown-menu-content,
+.w-menubar-item--inline.open .w-menubar-content {
+  position: static;
+  inset: auto;
+  width: min(18rem, 100%);
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-dropdown-menu--bottom-end .w-dropdown-menu-content {
+  right: 0;
+  left: auto;
+}
+
+.w-dropdown-menu--top-start .w-dropdown-menu-content {
+  top: auto;
+  bottom: calc(100% + var(--w-space-2));
+}
+
+.w-dropdown-menu--top-end .w-dropdown-menu-content {
+  top: auto;
+  right: 0;
+  bottom: calc(100% + var(--w-space-2));
+  left: auto;
+}
+
+.w-menu-item,
+.w-menubar-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  min-height: 36px;
+  padding: 0 var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-menu-item {
+  display: flex;
+  width: 100%;
+  padding: var(--w-space-2) var(--w-space-3);
+}
+
+.w-menu-item:hover,
+.w-menu-item:focus-visible,
+.w-menubar-trigger:hover,
+.w-menubar-trigger:focus-visible {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-menu-label {
+  padding: var(--w-space-2) var(--w-space-3) var(--w-space-1);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-semibold);
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.w-menu-separator {
+  height: 1px;
+  margin: var(--w-space-2) calc(var(--w-space-2) * -1);
+  background: var(--w-divider);
+}
+
+.w-context-menu {
+  display: block;
+}
+
+.w-context-menu-content {
+  position: fixed;
+  top: var(--w-menu-y);
+  left: var(--w-menu-x);
+}
+
+.w-menubar {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-1);
+  width: max-content;
+  max-width: 100%;
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+}
+
+.w-menubar-content {
+  top: calc(100% + var(--w-space-1));
+  z-index: calc(var(--w-z-dropdown) + 1);
+}
+
+.w-navigation-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-1);
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+  overflow-x: auto;
+}
+
+.w-navigation-menu > slot {
+  display: contents;
+}
+
+.w-navigation-menu-item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius-sm);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-navigation-menu-item:hover,
+.w-navigation-menu-item:focus-visible {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-navigation-menu-item.active,
+.w-navigation-menu-item[aria-current="page"] {
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+}
+
+.w-sidebar-component {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--w-space-2);
+  width: var(--w-sidebar-width);
+  max-width: 100%;
+  min-height: auto;
+  padding: var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-sidebar);
+}
+
+.w-sidebar-component.w-sidebar--sticky {
+  position: sticky;
+  top: var(--w-space-4);
+}
+
+.w-sidebar-component.w-sidebar--rail {
+  width: 4.5rem;
+}
+
+.w-sidebar-component.w-sidebar--right {
+  margin-inline-start: auto;
+}

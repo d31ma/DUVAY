@@ -1,0 +1,112 @@
+/* DuVay — System Bars component styles. */
+@import "../core.css";
+
+/* ── System Bar ───────────────────────────────────────────────────────────── */
+/* Thin bar for status indicators (time, battery, wifi, notifications). */
+.w-system-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: var(--w-system-bar-height, 24px);
+  padding: 0 var(--w-space-lg);
+  background: var(--w-system-bar-bg, var(--w-inverse-surface));
+  color: var(--w-system-bar-color, var(--w-inverse-on-surface));
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-medium);
+  position: relative;
+}
+
+/* Window variant: taller status-bar style */
+.w-system-bar--window {
+  min-height: var(--w-system-bar-height, 32px);
+}
+
+/* Absolute positioning */
+.w-system-bar--absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--w-z-sticky);
+}
+
+/* Elevation */
+.w-system-bar--elevation-1 {
+  box-shadow: var(--w-elevation-1, 0 1px 2px var(--w-shadow-color));
+}
+.w-system-bar--elevation-2 {
+  box-shadow: var(--w-elevation-2, 0 1px 4px var(--w-shadow-color));
+}
+.w-system-bar--elevation-3 {
+  box-shadow: var(--w-elevation-3, 0 2px 8px var(--w-shadow-color));
+}
+.w-system-bar--elevation-4 {
+  box-shadow: var(--w-elevation-4, 0 4px 16px var(--w-shadow-color));
+}
+.w-system-bar--elevation-5 {
+  box-shadow: var(--w-elevation-5, 0 8px 24px var(--w-shadow-color));
+}
+
+/* Rounded */
+.w-system-bar--rounded {
+  border-radius: var(--w-radius, 0);
+}
+.w-system-bar--rounded-sm {
+  border-radius: var(--w-radius-sm, 0);
+}
+.w-system-bar--rounded-md {
+  border-radius: var(--w-radius-md, 0);
+}
+.w-system-bar--rounded-lg {
+  border-radius: var(--w-radius-lg, 0);
+}
+.w-system-bar--rounded-xl {
+  border-radius: var(--w-radius-xl, 0);
+}
+.w-system-bar--rounded-pill {
+  border-radius: var(--w-radius-pill, 999px);
+}
+
+/* Color variants — map to semantic tokens */
+.w-system-bar--color-primary {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+}
+.w-system-bar--color-secondary {
+  background: var(--w-secondary);
+  color: var(--w-on-primary);
+}
+.w-system-bar--color-success {
+  background: var(--w-success);
+  color: var(--w-on-success);
+}
+.w-system-bar--color-warning {
+  background: var(--w-warning);
+  color: var(--w-on-warning);
+}
+.w-system-bar--color-error {
+  background: var(--w-error);
+  color: var(--w-on-error);
+}
+.w-system-bar--color-surface {
+  background: var(--w-surface);
+  color: var(--w-text);
+}
+
+/* Spacer for pushing content to the right */
+.w-system-bar .w-system-bar-spacer {
+  margin-left: auto;
+}
+
+/* Ensure touch targets inside the bar meet minimum */
+.w-system-bar > * {
+  min-height: var(--w-touch-min);
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-system-bar {
+    transition: none;
+  }
+}

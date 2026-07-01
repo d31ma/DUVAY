@@ -1,0 +1,55 @@
+/* DuVay — Toggle Groups component styles. */
+@import "../core.css";
+
+/* ── Toggle group ───────────────────────────────────────────────────────── */
+.w-toggle-group {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container-low);
+  gap: var(--w-space-1);
+}
+
+.w-toggle-group > slot {
+  display: contents;
+}
+
+.w-toggle-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--w-size-sm);
+  min-width: var(--w-size-sm);
+  padding: 0 var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius-sm);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  white-space: nowrap;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-toggle-item:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-toggle-item.active,
+.w-toggle-item[aria-pressed="true"] {
+  background: var(--w-surface);
+  color: var(--w-primary);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-toggle-item:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
