@@ -126,7 +126,7 @@ export class WForm extends WElement {
   // Aggregate validity from only the fields that have been validated so far,
   // so untouched fields don't flip the form to valid prematurely.
   _refreshValidity() {
-    const states = this._fields().map((el) => el.dataset.wValidated);
+    const states = this._fields().map((el) => el.getAttribute('w-validated'));
     if (states.some((s) => s === 'invalid')) return this._setValidity(false);
     if (states.length && states.every((s) => s === 'valid')) return this._setValidity(true);
     this._setValidity(null);
@@ -136,9 +136,9 @@ export class WForm extends WElement {
   _mark(el, ok) {
     if (ok === null) {
       el.removeAttribute('aria-invalid');
-      delete el.dataset.wValidated;
+      el.removeAttribute('w-validated');
     } else {
-      el.dataset.wValidated = ok ? 'valid' : 'invalid';
+      el.setAttribute('w-validated', ok ? 'valid' : 'invalid');
       if (ok) el.removeAttribute('aria-invalid');
       else el.setAttribute('aria-invalid', 'true');
     }
@@ -154,7 +154,7 @@ export class WForm extends WElement {
   }
 
   // Cascade disabled/readonly onto contained native controls. We tag what the
-  // form imposed (data-w-form-*) so toggling the form back on never clobbers a
+  // form imposed (w-form-*) so toggling the form back on never clobbers a
   // control that was individually disabled/readonly.
   // ponytail: operates on native controls directly; a w-* child that re-renders
   // mid-session reapplies its own state, which is the desired precedence anyway.

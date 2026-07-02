@@ -54,9 +54,9 @@ test('w-alert supports custom icon, hidden icon, close label, and native hidden 
   await recordEvents(page, '#alert', ['close']);
 
   await expect(page.locator('#alert .w-alert-icon-text')).toHaveText('!');
-  await expect(page.locator('#alert [data-w-alert-close]')).toHaveAttribute('aria-label', 'Dismiss notification');
+  await expect(page.locator('#alert [w-alert-close]')).toHaveAttribute('aria-label', 'Dismiss notification');
 
-  await page.locator('#alert [data-w-alert-close]').click();
+  await page.locator('#alert [w-alert-close]').click();
 
   await expect(page.locator('#alert')).toHaveAttribute('hidden', '');
   await expect(page.locator('#alert .w-alert')).toBeHidden();
@@ -91,9 +91,9 @@ test('w-alert renders named slots for prepend, title, text, append, and close', 
   await expect(page.locator('#alert .w-alert-text .custom-text')).toHaveText('Slot text');
   await expect(page.locator('#alert .w-alert-body')).toContainText('Body slot');
   await expect(page.locator('#alert .w-alert-append .custom-append')).toHaveText('Action');
-  await expect(page.locator('#alert [data-w-alert-close] .custom-close')).toHaveText('Close');
+  await expect(page.locator('#alert [w-alert-close] .custom-close')).toHaveText('Close');
 
-  await page.locator('#alert [data-w-alert-close]').click();
+  await page.locator('#alert [w-alert-close]').click();
   expect(await readEvents(page, '#alert')).toEqual([
     { type: 'close', detail: { value: false } },
   ]);

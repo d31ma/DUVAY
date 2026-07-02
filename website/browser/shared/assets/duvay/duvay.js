@@ -1,6 +1,6 @@
 /* DuVay — Minimal JS behaviors (~5 KB target)
  *
- * Zero dependencies. Behaviors are wired through data-w-* attributes.
+ * Zero dependencies. Behaviors are wired through w-* attributes.
  * Motion hooks live in a separate duvay-motion.js add-on.
  * No build step required — import this file directly or inline it.
  */
@@ -11,7 +11,7 @@
   /* ── Theme ────────────────────────────────────────────────────────────── */
 
   const THEME_KEY = 'w-theme';
-  const THEME_ATTR = 'data-w-theme';
+  const THEME_ATTR = 'w-theme';
 
   function getStoredTheme() {
     try {
@@ -56,7 +56,7 @@
 
   // Wire theme toggle buttons
   document.addEventListener('click', function (e) {
-    const toggle = e.target.closest('[data-w-theme-toggle]');
+    const toggle = e.target.closest('[w-theme-toggle]');
     if (!toggle) return;
 
     const current = document.documentElement.getAttribute(THEME_ATTR) || 'light';
@@ -66,20 +66,20 @@
   /* ── Dropdown ─────────────────────────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    const trigger = e.target.closest('[data-w-dropdown-trigger]');
+    const trigger = e.target.closest('[w-dropdown-trigger]');
     if (!trigger) return;
 
     e.preventDefault();
     e.stopPropagation();
 
-    const targetId = trigger.getAttribute('aria-controls') || trigger.getAttribute('data-w-dropdown-trigger');
-    const dropdown = document.getElementById(targetId) || document.querySelector('[data-w-dropdown="' + targetId + '"]');
+    const targetId = trigger.getAttribute('aria-controls') || trigger.getAttribute('w-dropdown-trigger');
+    const dropdown = document.getElementById(targetId) || document.querySelector('[w-dropdown="' + targetId + '"]');
     if (!dropdown) return;
 
     const isOpen = dropdown.classList.contains('open');
 
     // Close all other dropdowns first
-    document.querySelectorAll('[data-w-dropdown].open').forEach(function (d) {
+    document.querySelectorAll('[w-dropdown].open').forEach(function (d) {
       if (d !== dropdown) {
         d.classList.remove('open');
         var t = document.querySelector('[aria-controls="' + d.id + '"]');
@@ -93,8 +93,8 @@
 
   // Close dropdowns on outside click
   document.addEventListener('click', function (e) {
-    if (!e.target.closest('[data-w-dropdown]') && !e.target.closest('[data-w-dropdown-trigger]')) {
-      document.querySelectorAll('[data-w-dropdown].open').forEach(function (d) {
+    if (!e.target.closest('[w-dropdown]') && !e.target.closest('[w-dropdown-trigger]')) {
+      document.querySelectorAll('[w-dropdown].open').forEach(function (d) {
         d.classList.remove('open');
         var t = document.querySelector('[aria-controls="' + d.id + '"]');
         if (t) t.setAttribute('aria-expanded', 'false');
@@ -105,7 +105,7 @@
   // Close dropdowns on Escape
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
-      document.querySelectorAll('[data-w-dropdown].open').forEach(function (d) {
+      document.querySelectorAll('[w-dropdown].open').forEach(function (d) {
         d.classList.remove('open');
         var t = document.querySelector('[aria-controls="' + d.id + '"]');
         if (t) {
@@ -119,7 +119,7 @@
   /* ── Collapsible sections ─────────────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    const header = e.target.closest('[data-w-section-toggle]');
+    const header = e.target.closest('[w-section-toggle]');
     if (!header) return;
 
     const section = header.closest('.w-sidebar-section') || header.parentElement;
@@ -157,7 +157,7 @@
   /* ── Sidebar overlay (for mobile) ─────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    var toggle = e.target.closest('[data-w-sidebar-toggle]');
+    var toggle = e.target.closest('[w-sidebar-toggle]');
     if (!toggle) return;
 
     var sidebar = document.querySelector('.w-sidebar');
@@ -176,7 +176,7 @@
       // Create overlay
       var ov = document.createElement('div');
       ov.className = 'w-sidebar-overlay';
-      ov.setAttribute('data-w-sidebar-overlay', '');
+      ov.setAttribute('w-sidebar-overlay', '');
       ov.addEventListener('click', function () {
         sidebar.classList.remove('open');
         document.body.classList.remove('w-sidebar-open');
@@ -192,20 +192,20 @@
   function getTargetEl(el, attr) {
     var targetId = el.getAttribute(attr);
     if (!targetId) return null;
-    return document.getElementById(targetId) || document.querySelector('[data-w-dialog="' + targetId + '"]') || document.querySelector('[data-w-sheet="' + targetId + '"]') || document.querySelector('[data-w-expand="' + targetId + '"]');
+    return document.getElementById(targetId) || document.querySelector('[w-dialog="' + targetId + '"]') || document.querySelector('[w-sheet="' + targetId + '"]') || document.querySelector('[w-expand="' + targetId + '"]');
   }
 
   // Open dialog/sheet
   document.addEventListener('click', function (e) {
-    var opener = e.target.closest('[data-w-dialog-open], [data-w-sheet-open]');
+    var opener = e.target.closest('[w-dialog-open], [w-sheet-open]');
     if (!opener) return;
 
-    var isDialog = opener.hasAttribute('data-w-dialog-open');
-    var targetEl = getTargetEl(opener, isDialog ? 'data-w-dialog-open' : 'data-w-sheet-open');
+    var isDialog = opener.hasAttribute('w-dialog-open');
+    var targetEl = getTargetEl(opener, isDialog ? 'w-dialog-open' : 'w-sheet-open');
     if (!targetEl) return;
 
     // Show overlay if present
-    var overlayId = targetEl.getAttribute('data-w-overlay');
+    var overlayId = targetEl.getAttribute('w-overlay');
     var overlay = overlayId ? document.getElementById(overlayId) : document.querySelector('.w-overlay');
     if (overlay) { overlay.classList.add('open'); }
 
@@ -223,11 +223,11 @@
 
   // Close dialog/sheet
   document.addEventListener('click', function (e) {
-    var closer = e.target.closest('[data-w-dialog-close], [data-w-sheet-close]');
+    var closer = e.target.closest('[w-dialog-close], [w-sheet-close]');
     if (!closer) return;
 
-    var isDialog = closer.hasAttribute('data-w-dialog-close');
-    var targetEl = getTargetEl(closer, isDialog ? 'data-w-dialog-close' : 'data-w-sheet-close');
+    var isDialog = closer.hasAttribute('w-dialog-close');
+    var targetEl = getTargetEl(closer, isDialog ? 'w-dialog-close' : 'w-sheet-close');
     if (!targetEl) {
       // Close the nearest open wrapper
       targetEl = closer.closest('.w-dialog-wrapper.open, .w-sheet-bottom.open');
@@ -238,7 +238,7 @@
     targetEl.setAttribute('aria-hidden', 'true');
 
     // Hide overlay
-    var overlayId = targetEl.getAttribute('data-w-overlay');
+    var overlayId = targetEl.getAttribute('w-overlay');
     var overlay = overlayId ? document.getElementById(overlayId) : document.querySelector('.w-overlay');
     if (overlay && !document.querySelector('.w-dialog-wrapper.open, .w-sheet-bottom.open')) {
       overlay.classList.remove('open');
@@ -268,7 +268,7 @@
     last.classList.remove('open');
     last.setAttribute('aria-hidden', 'true');
 
-    var overlayId = last.getAttribute('data-w-overlay');
+    var overlayId = last.getAttribute('w-overlay');
     var overlay = overlayId ? document.getElementById(overlayId) : document.querySelector('.w-overlay');
     if (overlay && !document.querySelector('.w-dialog-wrapper.open, .w-sheet-bottom.open')) {
       overlay.classList.remove('open');
@@ -278,13 +278,13 @@
   /* ── Expansion Panel ──────────────────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    var header = e.target.closest('[data-w-expand-toggle]');
+    var header = e.target.closest('[w-expand-toggle]');
     if (!header) return;
 
     var panel = header.closest('.w-expand');
     if (!panel) {
-      var targetId = header.getAttribute('data-w-expand-toggle');
-      panel = document.getElementById(targetId) || document.querySelector('[data-w-expand="' + targetId + '"]');
+      var targetId = header.getAttribute('w-expand-toggle');
+      panel = document.getElementById(targetId) || document.querySelector('[w-expand="' + targetId + '"]');
     }
     if (!panel) return;
 
@@ -300,7 +300,7 @@
   /* ── Speed Dial ───────────────────────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    var trigger = e.target.closest('[data-w-speed-dial]');
+    var trigger = e.target.closest('[w-speed-dial]');
     if (!trigger) return;
 
     var dial = trigger.closest('.w-speed-dial');
@@ -323,7 +323,7 @@
   /* ── Alert dismiss ────────────────────────────────────────────────────── */
 
   document.addEventListener('click', function (e) {
-    var dismiss = e.target.closest('[data-w-alert-dismiss]');
+    var dismiss = e.target.closest('[w-alert-dismiss]');
     if (!dismiss) return;
 
     var alert = dismiss.closest('.w-alert');
@@ -341,7 +341,7 @@
     // Cmd/Ctrl + K: focus search input
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
-      var searchInput = document.querySelector('[data-w-search]');
+      var searchInput = document.querySelector('[w-search]');
       if (searchInput) searchInput.focus();
     }
   });

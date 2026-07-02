@@ -111,7 +111,7 @@ class WTextarea extends WElement {
     const aria = !this.label && this.placeholder ? ` aria-label="${this._esc(this.placeholder)}"` : '';
     const invalid = this.error ? ' aria-invalid="true"' : '';
 
-    const textarea = `<textarea class="w-text-field-input w-text-field-textarea"${ph}${dis}${ro}${af}${nm}${rows}${aria}${invalid}${this._validationAttrs(['required', 'minlength', 'maxlength'])} data-w-tf-input>${this._esc(this.value)}</textarea>`;
+    const textarea = `<textarea class="w-text-field-input w-text-field-textarea"${ph}${dis}${ro}${af}${nm}${rows}${aria}${invalid}${this._validationAttrs(['required', 'minlength', 'maxlength'])} w-tf-input>${this._esc(this.value)}</textarea>`;
     const labelEl = this.label ? `<label class="w-text-field-label">${this._esc(this.label)}</label>` : '';
 
     const prefix = this.prefix ? `<span class="w-text-field-affix w-text-field-prefix">${this._esc(this.prefix)}</span>` : '';

@@ -2,7 +2,7 @@
  *
  * Attributes:
  *   theme           - light | dark | auto | high-contrast — scopes the theme via
- *                     data-w-theme so descendant tokens resolve to that palette.
+ *                     w-theme so descendant tokens resolve to that palette.
  *   with-background - paint the themed surface + text on the wrapper (otherwise
  *                     the provider is renderless and only scopes the tokens).
  *
@@ -16,7 +16,7 @@ export class WThemeProvider extends WElement {
 
   _template() {
     const cls = ['w-theme-provider', this._bool('with-background') ? 'w-theme-provider--with-background' : ''].filter(Boolean).join(' ');
-    const themeAttr = this.theme ? ` data-w-theme="${this._esc(this.theme)}"` : '';
+    const themeAttr = this.theme ? ` w-theme="${this._esc(this.theme)}"` : '';
     return `<div class="${cls}"${themeAttr}><slot></slot></div>`;
   }
 }

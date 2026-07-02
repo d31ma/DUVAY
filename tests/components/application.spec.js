@@ -4,7 +4,7 @@ test('w-app applies full-height by default and scopes a theme', async ({ mount, 
   await mount('<w-app id="a" theme="dark"><div>content</div></w-app>');
   const app = page.locator('#a .w-app');
   await expect(app).toHaveClass(/w-app--full-height/);
-  await expect(app).toHaveAttribute('data-w-theme', 'dark');
+  await expect(app).toHaveAttribute('w-theme', 'dark');
 });
 
 test('w-app full-height="false" opts out of full height', async ({ mount, page }) => {

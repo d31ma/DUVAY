@@ -154,7 +154,7 @@ export class WRating extends WElement {
       `aria-label="${this._esc(this.label)}"`,
       this.readonly ? 'aria-readonly="true"' : '',
       this.disabled ? 'aria-disabled="true"' : '',
-      theme ? `data-w-theme="${this._esc(theme)}"` : '',
+      theme ? `w-theme="${this._esc(theme)}"` : '',
       `data-value="${this._formatValue(selectedValue)}"`,
     ].filter(Boolean).join(' ');
 

@@ -73,11 +73,11 @@ class WDialog extends WElement {
 
     return `${activator}
       <div class="w-overlay${isOpen}${this.hasScrim ? ' w-overlay--scrim' : ''}" id="${overlayId}" aria-hidden="true"${this.open ? '' : ' hidden'}></div>
-      <div class="${classes}" id="${this._id}" data-w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${hasTitle ? ` aria-labelledby="${titleId}"` : ''}>
+      <div class="${classes}" id="${this._id}" w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${hasTitle ? ` aria-labelledby="${titleId}"` : ''}>
         <div class="${dialogClasses}" tabindex="-1"${style}>
           <div class="w-dialog-header">
             <h3 class="w-dialog-title" id="${titleId}">${titleAttr ? this._esc(titleAttr) + '<slot name="title" hidden></slot>' : '<slot name="title"></slot>'}</h3>
-            ${this._bool('hide-close') ? '' : `<button class="w-btn w-btn-icon w-btn--sm w-dialog-close" data-w-dialog-close aria-label="${this._esc(this.closeLabel)}">
+            ${this._bool('hide-close') ? '' : `<button class="w-btn w-btn-icon w-btn--sm w-dialog-close" w-dialog-close aria-label="${this._esc(this.closeLabel)}">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>`}
           </div>
@@ -96,7 +96,7 @@ class WDialog extends WElement {
   }
 
   _events() {
-    this._qAll('[data-w-dialog-close]').forEach((close) => {
+    this._qAll('[w-dialog-close]').forEach((close) => {
       close.addEventListener('click', () => this.close('action'));
       close.querySelectorAll?.('button, a').forEach((control) => {
         control.addEventListener('click', () => this.close('action'));

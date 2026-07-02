@@ -55,7 +55,7 @@ class WInput extends WElement {
     const input = `<input type="${t}"
       class="w-input${sizeClass}"
       ${ph}${val}${isDisabled}${isReadonly}${nameAttr}${this._validationAttrs()}
-      data-w-input>`;
+      w-input>`;
 
     const lbl = this.label;
     const hint = this.hint;

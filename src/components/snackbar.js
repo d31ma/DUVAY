@@ -75,12 +75,12 @@ class WSnackbar extends WElement {
     const actions = this._hasSlot('actions')
       ? '<slot name="actions"></slot>'
       : this.action
-        ? `<button class="w-snackbar-action" type="button" data-w-snackbar-action>${this._esc(this.action)}</button>`
+        ? `<button class="w-snackbar-action" type="button" w-snackbar-action>${this._esc(this.action)}</button>`
         : '';
 
     let html = `<div class="${classes}" role="status" aria-live="polite"${this._surfaceStyle()}>`;
     html += `<div class="w-snackbar-content"><span class="w-snackbar-msg">${msg ? this._esc(msg) : '<slot></slot>'}</span></div>`;
-    html += `<div class="w-snackbar-actions">${actions}<button class="w-snackbar-close" type="button" data-w-snackbar-close aria-label="Dismiss">${closeIcon}</button></div>`;
+    html += `<div class="w-snackbar-actions">${actions}<button class="w-snackbar-close" type="button" w-snackbar-close aria-label="Dismiss">${closeIcon}</button></div>`;
     if (this.hasAttribute('timer') && this.duration > 0) {
       html += `<div class="w-snackbar-timer" style="animation-duration:${this.duration}ms${this._timerColor()}"></div>`;
     }
@@ -90,9 +90,9 @@ class WSnackbar extends WElement {
 
   _events() {
     if (!this.open) return;
-    const action = this._q('[data-w-snackbar-action]');
+    const action = this._q('[w-snackbar-action]');
     if (action) action.addEventListener('click', () => this.close());
-    const close = this._q('[data-w-snackbar-close]');
+    const close = this._q('[w-snackbar-close]');
     if (close) close.addEventListener('click', () => this.close());
   }
 

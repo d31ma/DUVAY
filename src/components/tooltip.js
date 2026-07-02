@@ -85,7 +85,7 @@ class WTooltip extends WElement {
       hasFocusableActivator ? '' : 'tabindex="0"',
     ].filter(Boolean).join(' ');
     const contentClass = ['w-tooltip-content', this.contentClass].filter(Boolean).join(' ');
-    const fallback = hasContent ? '' : `<span data-w-tooltip-generated>${this._esc(this.text)}</span>`;
+    const fallback = hasContent ? '' : `<span w-tooltip-generated>${this._esc(this.text)}</span>`;
 
     return `<span class="${this._esc(classes)}"${this._style()}>
       <span ${triggerAttrs}></span>
@@ -244,7 +244,7 @@ class WTooltip extends WElement {
       }
       if (content) {
         Array.from(content.childNodes).forEach((node) => {
-          if (node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('data-w-tooltip-generated')) return;
+          if (node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('w-tooltip-generated')) return;
           groups.content.push(node);
         });
       }
@@ -262,13 +262,13 @@ class WTooltip extends WElement {
 
   _nodeSlot(node) {
     if (node.nodeType !== Node.ELEMENT_NODE) return null;
-    return node.getAttribute('data-w-slot') || node.getAttribute('slot');
+    return node.getAttribute('w-slot') || node.getAttribute('slot');
   }
 
   _normalizeSlotNode(node, slot) {
     if (node.nodeType !== Node.ELEMENT_NODE) return;
     if (node.getAttribute('slot') === slot) {
-      node.setAttribute('data-w-slot', slot);
+      node.setAttribute('w-slot', slot);
       node.removeAttribute('slot');
     }
   }

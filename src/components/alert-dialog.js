@@ -29,8 +29,8 @@ export class WAlertDialog extends WElement {
             </div>
             <div class="w-dialog-footer">
               <slot name="footer">
-                <button class="w-btn w-btn-text" type="button" data-w-alert-cancel>${this._esc(this.cancel)}</button>
-                <button class="w-btn w-btn-filled${this.destructive ? ' w-btn-danger' : ''}" type="button" data-w-alert-action>${this._esc(this.action)}</button>
+                <button class="w-btn w-btn-text" type="button" w-alert-cancel>${this._esc(this.cancel)}</button>
+                <button class="w-btn w-btn-filled${this.destructive ? ' w-btn-danger' : ''}" type="button" w-alert-action>${this._esc(this.action)}</button>
               </slot>
             </div>
           </div>
@@ -42,8 +42,8 @@ export class WAlertDialog extends WElement {
   _events() {
     const trigger = this._q('.w-alert-dialog-trigger');
     if (trigger) trigger.addEventListener('click', () => this.show());
-    const cancel = this._q('[data-w-alert-cancel]');
-    const action = this._q('[data-w-alert-action]');
+    const cancel = this._q('[w-alert-cancel]');
+    const action = this._q('[w-alert-action]');
     if (cancel) cancel.addEventListener('click', () => {
       this._emit('cancel', {});
       this.close('cancel');

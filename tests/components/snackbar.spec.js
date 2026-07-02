@@ -7,7 +7,7 @@ test('w-snackbar renders message and action with default bottom-center location'
   await expect(bar).toHaveClass(/w-snackbar--bottom/);
   await expect(bar).toHaveClass(/w-snackbar--center/);
   await expect(page.locator('#s .w-snackbar-msg')).toHaveText('Saved');
-  await expect(page.locator('#s [data-w-snackbar-action]')).toHaveText('Undo');
+  await expect(page.locator('#s [w-snackbar-action]')).toHaveText('Undo');
 });
 
 test('w-snackbar maps color, location, and timer', async ({ mount, page }) => {
@@ -22,7 +22,7 @@ test('w-snackbar close button hides it and emits update:model-value and close', 
   await mount('<w-snackbar id="s" text="Bye" timeout="-1" open inline></w-snackbar>');
   await recordEvents(page, '#s', ['update:model-value', 'close']);
 
-  await page.locator('#s [data-w-snackbar-close]').click();
+  await page.locator('#s [w-snackbar-close]').click();
 
   await expect(page.locator('#s')).not.toHaveAttribute('open', '');
   await expect(page.locator('#s .w-snackbar')).toHaveCount(0);

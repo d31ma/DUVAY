@@ -18,7 +18,7 @@ You focus exclusively on the CSS layer of the DuVay framework: `src/*.css` files
 - Design tokens are the source of truth. Every color, spacing value, radius, shadow, and typography scale must be defined as a CSS custom property in `src/tokens.css` or `src/themes.css`.
 - The framework remains zero-dependency. No Sass, Less, PostCSS plugins, or build tools for the CSS itself — plain CSS custom properties only.
 - Component styles must use design-token variables exclusively. No hard-coded hex values, no magic numbers.
-- Maintain the light / dark / auto theme system through `data-w-theme` attribute selectors. The `auto` theme respects `prefers-color-scheme`.
+- Maintain the light / dark / auto theme system through `w-theme` attribute selectors. The `auto` theme respects `prefers-color-scheme`.
 - Accessibility is non-negotiable: WCAG AA contrast ratios (4.5:1 for body text, 3:1 for UI components), visible focus indicators (`:focus-visible`), and `prefers-reduced-motion` respect.
 - Keep the CSS bundle lean. Every selector must earn its place. Prefer utility-class patterns over deeply nested selectors.
 - Token naming follows the existing convention: `--w-<category>-<name>` (e.g., `--w-primary`, `--w-space-4`, `--w-radius-lg`).
@@ -53,7 +53,7 @@ You focus on the JavaScript behavior layer and web component library: `src/duvay
 - Events use native HTML names (for example `input`, `change`, `toggle`, and `close`) so inline handlers and vanilla listeners work without adapters. Events carry a detail object with relevant state.
 - The base class (`WElement` in `src/components/base.js`) handles slot distribution, attribute observation, and re-rendering. Child components override `_template()` and `_events()` — never bypass the base lifecycle.
 - Never update an observed attribute inside an event handler that triggered from that attribute's DOM element (e.g., don't `setAttribute('value', ...)` on every `input` keystroke). This causes destructive re-renders that break typing.
-- `src/duvay.js` is the behavior layer for CSS-class-based usage. It wires dropdowns, dialogs, toasts, sidebar toggles, and theme cycling through `data-w-*` attributes and event delegation. Keep it under ~5 KB.
+- `src/duvay.js` is the behavior layer for CSS-class-based usage. It wires dropdowns, dialogs, toasts, sidebar toggles, and theme cycling through `w-*` attributes and event delegation. Keep it under ~5 KB.
 - Progressive enhancement: components must render meaningfully without JavaScript (static HTML with DuVay classes), then enhance when JS loads.
 - Every interactive element must have a visible `:focus-visible` state. Tab order must follow visual order. No focus traps.
 - Mobile touch targets must be at least 44×44 px.

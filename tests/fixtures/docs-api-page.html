@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" w-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DuVay API reference test page</title>
+    <link rel="stylesheet" href="/website/browser/shared/styles/app.css">
+  </head>
+  <body>
+    <div class="docs-main">
+      <main w-page>
+        <table class="api-table" data-manual-api>
+          <thead>
+            <tr><th>Attribute</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>value</code></td><td>Current value.</td></tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+    <script type="module">
+      const route = new URLSearchParams(location.search).get('route') || '/docs/images';
+      history.replaceState(null, '', route);
+      await import('/website/browser/shared/scripts/docs.js');
+    </script>
+  </body>
+</html>

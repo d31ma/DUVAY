@@ -55,7 +55,7 @@ class WEmpty extends WElement {
   }
 
   _events() {
-    const action = this._q('[data-w-empty-action]');
+    const action = this._q('[w-empty-action]');
     if (action && !this.href) action.addEventListener('click', () => this._emit('click:action', { value: true }));
   }
 
@@ -91,7 +91,7 @@ class WEmpty extends WElement {
     if (this.actionText) {
       const tag = this.href ? 'a' : 'button';
       const attrs = this.href ? ` href="${this._esc(this.href)}"` : ' type="button"';
-      return `<div class="w-empty-actions"><${tag} class="w-btn w-btn--tonal" data-w-empty-action${attrs}>${this._esc(this.actionText)}</${tag}></div>`;
+      return `<div class="w-empty-actions"><${tag} class="w-btn w-btn--tonal" w-empty-action${attrs}>${this._esc(this.actionText)}</${tag}></div>`;
     }
     return '';
   }

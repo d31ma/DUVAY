@@ -143,7 +143,7 @@ class WAlert extends WElement {
   }
 
   _events() {
-    const close = this._q('[data-w-alert-close]');
+    const close = this._q('[w-alert-close]');
     if (!close) return;
     close.addEventListener('click', () => this._close());
   }
@@ -177,7 +177,7 @@ class WAlert extends WElement {
       : this.closeIcon
         ? `<span class="w-alert-close-icon" aria-hidden="true">${this._esc(this.closeIcon)}</span>`
         : '<svg class="w-alert-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-    return `<button class="w-alert-dismiss w-alert-close" type="button" aria-label="${this._esc(this.closeLabel)}" data-w-alert-close>${content}</button>`;
+    return `<button class="w-alert-dismiss w-alert-close" type="button" aria-label="${this._esc(this.closeLabel)}" w-alert-close>${content}</button>`;
   }
 
   _iconMarkup() {

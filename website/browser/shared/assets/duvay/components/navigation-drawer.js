@@ -114,7 +114,7 @@ export class WNavigationDrawer extends WElement {
     if (drawer) {
       drawer.addEventListener('click', (event) => {
         if (!this.closeOnNavigation || !this._isCompact()) return;
-        if (event.target.closest('a[href], [data-w-drawer-close]')) this.close('navigation');
+        if (event.target.closest('a[href], [w-drawer-close]')) this.close('navigation');
       });
 
       // Expand on hover/focus for rail mode

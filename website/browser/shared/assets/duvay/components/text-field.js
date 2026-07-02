@@ -146,7 +146,7 @@ class WTextField extends WElement {
     const aria = ariaText ? ` aria-label="${this._esc(ariaText)}"` : '';
     const invalid = this.error ? ' aria-invalid="true"' : '';
 
-    const input = `<input class="w-text-field-input" type="${this._esc(this.type)}"${ph}${val}${dis}${ro}${af}${nm}${aria}${invalid}${this._validationAttrs()} data-w-tf-input>`;
+    const input = `<input class="w-text-field-input" type="${this._esc(this.type)}"${ph}${val}${dis}${ro}${af}${nm}${aria}${invalid}${this._validationAttrs()} w-tf-input>`;
     const labelEl = floating ? `<label class="w-text-field-label">${this._esc(this.label)}</label>` : '';
 
     const prefix = this.prefix ? `<span class="w-text-field-affix w-text-field-prefix">${this._esc(this.prefix)}</span>` : '';

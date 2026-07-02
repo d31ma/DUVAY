@@ -41,13 +41,13 @@
 ## What you get
 
 - **Design tokens** — colors, spacing (numeric + t-shirt scales), shape, elevation, motion. Every paint value is a CSS custom property.
-- **Themes** — light, dark, auto (follows `prefers-color-scheme`), and high-contrast. Switch with `data-w-theme` on `<html>`.
+- **Themes** — light, dark, auto (follows `prefers-color-scheme`), and high-contrast. Switch with `w-theme` on `<html>`.
 - **Utility classes** — Tailwind-style helpers for layout, spacing, type, border, radius, position.
 - **Component classes** — buttons, inputs, command palettes, menus, overlays, layout primitives, cards, lists, tables, tabs, feedback, typography, and workflow patterns, all token-driven.
 - **Web components** — Light-DOM `<w-*>` elements that render the same DuVay classes. Progressive-enhancement-friendly.
 - **Accessibility** — focus rings, keyboard nav, ARIA, reduced-motion respect, WCAG-AA contrast in default themes.
 
-Zero dependencies. Zero build step. Ships as a single CSS file (~307 KB readable / ~231 KB minified), a ~6.8 KB minified behavior layer, and an optional ~10 KB motion add-on. The web-component bundle is ~417 KB readable / ~291 KB minified.
+Zero dependencies. Zero build step. Ships as a single CSS file (~585 KB readable / ~454 KB minified), a ~6.5 KB minified behavior layer, and an optional ~10 KB minified motion add-on. The web-component bundle is ~663 KB readable / ~459 KB minified.
 
 DuVay also ships component-level CSS entrypoints. Import the full framework when you want everything, or import only the core layer and the components your app uses.
 

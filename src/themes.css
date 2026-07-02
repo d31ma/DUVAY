@@ -3,7 +3,7 @@
  * Themes redefine semantic color tokens. Components reference these by
  * name (e.g. var(--w-primary)) and never the underlying hex values.
  *
- * Themes are selected via the `data-w-theme` attribute on <html>:
+ * Themes are selected via the `w-theme` attribute on <html>:
  *   - light          (default)
  *   - dark
  *   - auto           (follows prefers-color-scheme)
@@ -12,7 +12,7 @@
 
 /* ── Light theme (default) ──────────────────────────────────────────── */
 :root,
-[data-w-theme="light"] {
+[w-theme="light"] {
   --w-primary:                 #1f6f8b;
   --w-on-primary:              #ffffff;
   --w-primary-container:       #d7edf4;
@@ -79,7 +79,7 @@
 }
 
 /* ── Dark theme ──────────────────────────────────────────────────────── */
-[data-w-theme="dark"] {
+[w-theme="dark"] {
   --w-primary:                 #83cde3;
   --w-on-primary:              #08323f;
   --w-primary-container:       rgba(131, 205, 227, 0.18);
@@ -147,7 +147,7 @@
 /* The light values are inherited from :root; only re-apply dark values
  * when the user's OS is in dark mode. */
 @media (prefers-color-scheme: dark) {
-  [data-w-theme="auto"] {
+  [w-theme="auto"] {
     --w-primary:                 #83cde3;
     --w-on-primary:              #08323f;
     --w-primary-container:       rgba(131, 205, 227, 0.18);
@@ -211,7 +211,7 @@
 /* ── High-contrast theme (accessibility) ─────────────────────────────── */
 /* WCAG AAA-leaning palette: stronger borders, near-pure surfaces, and
  * deep text. Works with either light or dark preference. */
-[data-w-theme="high-contrast"] {
+[w-theme="high-contrast"] {
   --w-primary:                 #003a4f;
   --w-on-primary:              #ffffff;
   --w-primary-container:       #b6e2ee;
@@ -276,6 +276,6 @@
 }
 
 /* Bump key borders so they remain visible at higher contrast. */
-[data-w-theme="high-contrast"] :where(.w-card, .w-input, .w-select, .w-textarea, .w-btn-outlined, .w-chip, .w-badge, .w-command, .w-popover-content, .w-hover-card-content, .w-scroll-area, .w-resizable-panel, .w-input-group, .w-navigation-menu, .w-menubar, .w-sidebar-component) {
+[w-theme="high-contrast"] :where(.w-card, .w-input, .w-select, .w-textarea, .w-btn-outlined, .w-chip, .w-badge, .w-command, .w-popover-content, .w-hover-card-content, .w-scroll-area, .w-resizable-panel, .w-input-group, .w-navigation-menu, .w-menubar, .w-sidebar-component) {
   border-width: 2px;
 }
