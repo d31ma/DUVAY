@@ -64,8 +64,8 @@
   function enter(el, name, options) {
     if (!el) return Promise.resolve();
     const opts = options || {};
-    const cls = transitionClass(name || el.getAttribute('data-w-transition') || 'fade');
-    const ms = duration(opts.duration || el.getAttribute('data-w-transition-duration'), 180);
+    const cls = transitionClass(name || el.getAttribute('w-transition') || 'fade');
+    const ms = duration(opts.duration || el.getAttribute('w-transition-duration'), 180);
 
     return new Promise((resolve) => {
       cleanTransition(el, cls);
@@ -94,8 +94,8 @@
   function leave(el, name, options) {
     if (!el) return Promise.resolve();
     const opts = options || {};
-    const cls = transitionClass(name || el.getAttribute('data-w-transition') || 'fade');
-    const ms = duration(opts.duration || el.getAttribute('data-w-transition-duration'), 180);
+    const cls = transitionClass(name || el.getAttribute('w-transition') || 'fade');
+    const ms = duration(opts.duration || el.getAttribute('w-transition-duration'), 180);
 
     return new Promise((resolve) => {
       cleanTransition(el, cls);
@@ -145,8 +145,8 @@
 
     const next = open == null ? !panel.classList.contains('open') : !!open;
     const opts = options || {};
-    const ms = duration(opts.duration || panel.getAttribute('data-w-expand-duration'), 180);
-    const header = panel.querySelector('.w-expand-header, [data-w-expand-toggle]');
+    const ms = duration(opts.duration || panel.getAttribute('w-expand-duration'), 180);
+    const header = panel.querySelector('.w-expand-header, [w-expand-toggle]');
 
     if (header) header.setAttribute('aria-expanded', String(next));
 
@@ -204,8 +204,8 @@
 
   function animateFlip(container, before, options) {
     const opts = options || {};
-    const selector = opts.selector || container.getAttribute('data-w-flip-items');
-    const ms = duration(opts.duration || container.getAttribute('data-w-flip-duration'), 260);
+    const selector = opts.selector || container.getAttribute('w-flip-items');
+    const ms = duration(opts.duration || container.getAttribute('w-flip-duration'), 260);
     const ease = easing(opts.easing, 'cubic-bezier(0.2, 0, 0, 1)');
     const after = readRects(container, selector);
 
@@ -234,7 +234,7 @@
   function flip(container, mutate, options) {
     if (!container) return Promise.resolve();
     const opts = options || {};
-    const selector = opts.selector || container.getAttribute('data-w-flip-items');
+    const selector = opts.selector || container.getAttribute('w-flip-items');
     const before = readRects(container, selector);
     if (typeof mutate === 'function') mutate();
     return new Promise((resolve) => {
@@ -247,7 +247,7 @@
   function watchFlip(container, options) {
     if (!container || flipState.has(container)) return;
     const opts = options || {};
-    const selector = opts.selector || container.getAttribute('data-w-flip-items');
+    const selector = opts.selector || container.getAttribute('w-flip-items');
     flipState.set(container, readRects(container, selector));
     const observer = new MutationObserver(() => {
       const before = flipState.get(container) || new Map();
@@ -325,14 +325,14 @@
   function tween(el, options) {
     if (!el) return Promise.resolve();
     const opts = options || {};
-    const from = Number(opts.from != null ? opts.from : el.getAttribute('data-w-tween-from') || 0);
-    const to = Number(opts.to != null ? opts.to : el.getAttribute('data-w-tween-to') || el.textContent || 0);
-    const ms = duration(opts.duration || el.getAttribute('data-w-tween-duration'), 600);
-    const property = opts.property || el.getAttribute('data-w-tween-property') || 'text';
-    const fmt = opts.format || el.getAttribute('data-w-tween-format') || 'integer';
-    const unit = opts.unit || el.getAttribute('data-w-tween-unit') || '';
-    const prefix = opts.prefix || el.getAttribute('data-w-tween-prefix') || '';
-    const suffix = opts.suffix || el.getAttribute('data-w-tween-suffix') || '';
+    const from = Number(opts.from != null ? opts.from : el.getAttribute('w-tween-from') || 0);
+    const to = Number(opts.to != null ? opts.to : el.getAttribute('w-tween-to') || el.textContent || 0);
+    const ms = duration(opts.duration || el.getAttribute('w-tween-duration'), 600);
+    const property = opts.property || el.getAttribute('w-tween-property') || 'text';
+    const fmt = opts.format || el.getAttribute('w-tween-format') || 'integer';
+    const unit = opts.unit || el.getAttribute('w-tween-unit') || '';
+    const prefix = opts.prefix || el.getAttribute('w-tween-prefix') || '';
+    const suffix = opts.suffix || el.getAttribute('w-tween-suffix') || '';
     const ease = opts.easingFn || ((t) => 1 - Math.pow(1 - t, 3));
 
     return new Promise((resolve) => {
@@ -356,12 +356,12 @@
   function spring(el, options) {
     if (!el) return Promise.resolve();
     const opts = options || {};
-    const from = Number(opts.from != null ? opts.from : el.getAttribute('data-w-spring-from') || 0);
-    const to = Number(opts.to != null ? opts.to : el.getAttribute('data-w-spring-to') || 1);
-    const property = opts.property || el.getAttribute('data-w-spring-property') || 'scale';
-    const unit = opts.unit || el.getAttribute('data-w-spring-unit') || '';
-    const stiffness = Number(opts.stiffness || el.getAttribute('data-w-spring-stiffness') || 0.14);
-    const damping = Number(opts.damping || el.getAttribute('data-w-spring-damping') || 0.76);
+    const from = Number(opts.from != null ? opts.from : el.getAttribute('w-spring-from') || 0);
+    const to = Number(opts.to != null ? opts.to : el.getAttribute('w-spring-to') || 1);
+    const property = opts.property || el.getAttribute('w-spring-property') || 'scale';
+    const unit = opts.unit || el.getAttribute('w-spring-unit') || '';
+    const stiffness = Number(opts.stiffness || el.getAttribute('w-spring-stiffness') || 0.14);
+    const damping = Number(opts.damping || el.getAttribute('w-spring-damping') || 0.76);
 
     return new Promise((resolve) => {
       if (prefersReducedMotion() || !Number.isFinite(from) || !Number.isFinite(to)) {
@@ -396,34 +396,34 @@
 
   function init(rootNode) {
     const scope = rootNode || document;
-    scope.querySelectorAll('[data-w-flip]').forEach((el) => watchFlip(el));
-    scope.querySelectorAll('[data-w-tween]').forEach((el) => {
-      if (el.dataset.wTweenReady) return;
-      el.dataset.wTweenReady = '1';
-      if (el.getAttribute('data-w-tween-auto') !== 'false') tween(el);
+    scope.querySelectorAll('[w-flip]').forEach((el) => watchFlip(el));
+    scope.querySelectorAll('[w-tween]').forEach((el) => {
+      if (el.hasAttribute('w-tween-ready')) return;
+      el.setAttribute('w-tween-ready', '1');
+      if (el.getAttribute('w-tween-auto') !== 'false') tween(el);
     });
-    scope.querySelectorAll('[data-w-spring]').forEach((el) => {
-      if (el.dataset.wSpringReady) return;
-      el.dataset.wSpringReady = '1';
-      if (el.getAttribute('data-w-spring-auto') !== 'false') spring(el);
+    scope.querySelectorAll('[w-spring]').forEach((el) => {
+      if (el.hasAttribute('w-spring-ready')) return;
+      el.setAttribute('w-spring-ready', '1');
+      if (el.getAttribute('w-spring-auto') !== 'false') spring(el);
     });
   }
 
   document.addEventListener('click', function (event) {
-    const transitionTrigger = event.target.closest('[data-w-transition-toggle]');
+    const transitionTrigger = event.target.closest('[w-transition-toggle]');
     if (transitionTrigger) {
-      const target = targetById(transitionTrigger.getAttribute('data-w-transition-toggle'));
-      const name = transitionTrigger.getAttribute('data-w-transition-name') || target?.getAttribute('data-w-transition') || 'fade';
+      const target = targetById(transitionTrigger.getAttribute('w-transition-toggle'));
+      const name = transitionTrigger.getAttribute('w-transition-name') || target?.getAttribute('w-transition') || 'fade';
       if (target) toggle(target, null, name);
       return;
     }
 
-    const flipTrigger = event.target.closest('[data-w-flip-reorder]');
+    const flipTrigger = event.target.closest('[w-flip-reorder]');
     if (flipTrigger) {
-      const container = targetById(flipTrigger.getAttribute('data-w-flip-reorder'));
+      const container = targetById(flipTrigger.getAttribute('w-flip-reorder'));
       if (!container) return;
-      const mode = flipTrigger.getAttribute('data-w-flip-mode') || 'reverse';
-      const selector = container.getAttribute('data-w-flip-items');
+      const mode = flipTrigger.getAttribute('w-flip-mode') || 'reverse';
+      const selector = container.getAttribute('w-flip-items');
       flip(container, () => {
         const items = flipItems(container, selector);
         const parent = items[0] && items[0].parentElement ? items[0].parentElement : container;
@@ -433,14 +433,14 @@
       return;
     }
 
-    const crossTrigger = event.target.closest('[data-w-crossfade]');
+    const crossTrigger = event.target.closest('[w-crossfade]');
     if (crossTrigger) {
-      const parts = crossTrigger.getAttribute('data-w-crossfade').split(/[:,\s]+/).filter(Boolean);
-      const first = document.querySelector('[data-w-crossfade-key="' + parts[0] + '"]');
-      const second = document.querySelector('[data-w-crossfade-key="' + parts[1] + '"]');
+      const parts = crossTrigger.getAttribute('w-crossfade').split(/[:,\s]+/).filter(Boolean);
+      const first = document.querySelector('[w-crossfade-key="' + parts[0] + '"]');
+      const second = document.querySelector('[w-crossfade-key="' + parts[1] + '"]');
       let from = first;
       let to = second;
-      if (crossTrigger.hasAttribute('data-w-crossfade-toggle') && first && second) {
+      if (crossTrigger.hasAttribute('w-crossfade-toggle') && first && second) {
         const firstHidden = first.hidden || first.classList.contains('w-transition-hidden');
         from = firstHidden ? second : first;
         to = firstHidden ? first : second;
@@ -452,7 +452,7 @@
         to.classList.remove('w-transition-hidden');
       }
       crossfade(from, to).then(() => {
-        if (crossTrigger.hasAttribute('data-w-crossfade-toggle')) {
+        if (crossTrigger.hasAttribute('w-crossfade-toggle')) {
           from.hidden = true;
           from.classList.add('w-transition-hidden');
         }
@@ -460,16 +460,16 @@
       return;
     }
 
-    const tweenTrigger = event.target.closest('[data-w-tween-start]');
+    const tweenTrigger = event.target.closest('[w-tween-start]');
     if (tweenTrigger) {
-      const target = targetById(tweenTrigger.getAttribute('data-w-tween-start'));
+      const target = targetById(tweenTrigger.getAttribute('w-tween-start'));
       if (target) tween(target);
       return;
     }
 
-    const springTrigger = event.target.closest('[data-w-spring-start]');
+    const springTrigger = event.target.closest('[w-spring-start]');
     if (springTrigger) {
-      const target = targetById(springTrigger.getAttribute('data-w-spring-start'));
+      const target = targetById(springTrigger.getAttribute('w-spring-start'));
       if (target) spring(target);
     }
   });

@@ -28,7 +28,7 @@ export const API_DATA = {
   '/docs/components/application': [{
     tag: 'w-app',
     attributes: [
-      ['theme', 'light | dark | auto | high-contrast', '—', 'Scopes the application theme via data-w-theme.'],
+      ['theme', 'light | dark | auto | high-contrast', '—', 'Scopes the application theme via w-theme.'],
       ['full-height', 'boolean', 'true', 'Fill the viewport height (set "false" to opt out).'],
     ],
     slots: [['default', 'The application shell: app bars, navigation drawers, w-main…']],
@@ -1963,7 +1963,7 @@ export const API_DATA = {
   '/docs/components/theme-providers': [{
     tag: 'w-theme-provider',
     attributes: [
-      ['theme', 'light | dark | auto | high-contrast', '—', 'Scopes a theme via data-w-theme so descendant tokens resolve to that palette.'],
+      ['theme', 'light | dark | auto | high-contrast', '—', 'Scopes a theme via w-theme so descendant tokens resolve to that palette.'],
       ['with-background', 'boolean', 'false', 'Paints the themed surface and text on the wrapper (otherwise renderless).'],
     ],
     slots: [['default', 'Content rendered within the theme scope.']],
@@ -2380,3 +2380,129 @@ export const API_DATA = {
     ],
   }],
 };
+
+const apiBlocks = (path, tags) => {
+  const selected = new Set(tags);
+  return (API_DATA[path] || []).filter((block) => selected.has(block.tag));
+};
+
+Object.assign(API_DATA, {
+  '/docs/bottom-sheets': [{
+    tag: 'w-bottom-sheet',
+    attributes: [
+      ['open', 'boolean', 'false', 'Shows the sheet at the bottom edge of the viewport.'],
+    ],
+    slots: [
+      ['default', 'Sheet heading, content, and actions.'],
+    ],
+  }],
+  '/docs/icon-buttons': apiBlocks('/docs/buttons', ['w-btn']),
+  '/docs/sheets': [{
+    tag: 'w-sheet',
+    attributes: [
+      ['bottom', 'boolean', 'false', 'Uses the fixed bottom-sheet presentation.'],
+      ['open', 'boolean', 'false', 'Shows the sheet when bottom presentation is enabled.'],
+    ],
+    slots: [
+      ['default', 'Sheet content.'],
+    ],
+  }],
+  '/docs/toolbars': apiBlocks(
+    '/docs/surfaces',
+    ['w-toolbar', 'w-toolbar-title', 'w-toolbar-items'],
+  ),
+  '/docs/components/data-tables/basics': apiBlocks(
+    '/docs/components/data-tables/introduction',
+    ['w-data-table'],
+  ),
+  '/docs/components/data-tables/data-and-display': apiBlocks(
+    '/docs/components/data-tables/introduction',
+    ['w-data-table'],
+  ),
+  '/docs/autocompletes': apiBlocks('/docs/inputs', ['w-autocomplete']),
+  '/docs/checkboxes': apiBlocks('/docs/inputs', ['w-checkbox']),
+  '/docs/color-inputs': apiBlocks('/docs/inputs', ['w-color-input']),
+  '/docs/combobox': apiBlocks('/docs/inputs', ['w-combobox']),
+  '/docs/date-inputs': apiBlocks('/docs/inputs', ['w-date-input']),
+  '/docs/file-inputs': apiBlocks('/docs/inputs', ['w-file-input']),
+  '/docs/aspect-ratios': apiBlocks('/docs/layout-primitives', ['w-aspect-ratio']),
+  '/docs/icons': apiBlocks('/docs/features/icon-fonts', ['w-icon']),
+
+  '/docs/file-upload': [{
+    tag: 'w-file-upload',
+    attributes: [
+      ['title', 'string', 'Upload files', 'Dropzone heading and accessible label.'],
+      ['subtitle', 'string', 'Drag and drop files here', 'Helper text below the browse button.'],
+      ['browse-text', 'string', 'Browse', 'Browse button label.'],
+      ['divider-text', 'string', 'or', 'Label between the drop target and browse button.'],
+      ['icon', 'string', '⬆', 'Dropzone icon content.'],
+      ['accept', 'JSON array | string', '[]', 'Accepted MIME types or extensions.'],
+      ['multiple', 'boolean', 'false', 'Appends multiple selected or dropped files.'],
+      ['disabled', 'boolean', 'false', 'Disables all file interactions.'],
+      ['readonly', 'boolean', 'false', 'Prevents changes without disabled styling.'],
+      ['clearable', 'boolean', 'false', 'Shows a remove control for each selected file.'],
+      ['show-size', 'boolean', 'false', 'Shows each selected file size.'],
+      ['density', 'default | comfortable | compact', 'default', 'Controls dropzone spacing.'],
+    ],
+    events: [
+      ['input', '{ files, value }', 'Fired after files are selected or dropped.'],
+      ['change', '{ files, value }', 'Fired after files are added or removed.'],
+    ],
+  }],
+
+  '/docs/images': [{
+    tag: 'w-img',
+    attributes: [
+      ['src', 'URL', '—', 'Image source URL.'],
+      ['alt', 'string', '—', 'Alternative text for the image.'],
+      ['cover', 'boolean', 'false', 'Crops the image to fill its box.'],
+      ['fit', 'cover | contain', '—', 'Legacy object-fit control; cover is preferred.'],
+      ['position', 'CSS object-position', '—', 'Positions the image within its box.'],
+      ['gradient', 'CSS gradient stops', '—', 'Overlays a linear gradient.'],
+      ['aspect-ratio', 'number | ratio', '—', 'Reserves layout space before the image loads.'],
+      ['width / height', 'CSS length', '—', 'Sets the image container dimensions.'],
+      ['min-width / min-height', 'CSS length', '—', 'Sets minimum dimensions.'],
+      ['max-width / max-height', 'CSS length', '—', 'Sets maximum dimensions.'],
+      ['lazy-src', 'URL', '—', 'Shows a blurred low-resolution placeholder while loading.'],
+      ['eager', 'boolean', 'false', 'Disables native lazy loading.'],
+      ['srcset / sizes', 'string', '—', 'Native responsive image source descriptors.'],
+      ['color', 'token | CSS color', '—', 'Placeholder background color.'],
+      ['rounded', 'boolean | radius name', 'false', 'Rounds the image container.'],
+      ['draggable', 'boolean', '—', 'Forwards the native draggable value.'],
+    ],
+    events: [
+      ['load', 'src', 'Fired when the full image loads.'],
+      ['error', 'src', 'Fired when the full image fails to load.'],
+    ],
+    slots: [
+      ['default', 'Content overlaid on the image.'],
+      ['placeholder', 'Custom content shown while loading.'],
+      ['error', 'Custom content shown after a load failure.'],
+    ],
+  }],
+
+  '/docs/parallax': [{
+    tag: 'w-parallax',
+    attributes: [
+      ['src', 'URL', '—', 'Background image source.'],
+      ['alt', 'string', '—', 'Alternative text for the image.'],
+      ['height', 'CSS length', '400px', 'Banner height.'],
+      ['scale', 'number (0–1)', '0.5', 'Parallax movement intensity.'],
+    ],
+    slots: [['default', 'Content centered over the parallax image.']],
+  }],
+
+  '/docs/workflows': [
+    ...apiBlocks('/docs/timelines', ['w-timeline', 'w-timeline-item']),
+    ...apiBlocks('/docs/steppers', ['w-stepper', 'w-step', 'w-stepper-item']),
+    ...apiBlocks('/docs/vertical-steppers', ['w-stepper-vertical', 'w-stepper-vertical-item']),
+  ],
+  '/docs/feedback': [
+    ...apiBlocks('/docs/progress-linear', ['w-progress-linear']),
+    ...apiBlocks('/docs/progress-circular', ['w-progress-circular']),
+    ...apiBlocks('/docs/skeleton-loaders', ['w-skeleton', 'w-skeleton-loader']),
+    ...apiBlocks('/docs/empty-states', ['w-empty', 'w-empty-state']),
+    ...apiBlocks('/docs/alerts', ['w-alert', 'w-alert-title']),
+    ...apiBlocks('/docs/snackbar', ['w-snackbar']),
+  ],
+});

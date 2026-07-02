@@ -4,19 +4,19 @@
 <h2>Dialog</h2>
 <demo-compare>
   <div slot="css">
-    <button class="w-btn w-btn-filled" data-w-dialog-open="demo-dialog">Open Dialog</button>
+    <button class="w-btn w-btn-filled" w-dialog-open="demo-dialog">Open Dialog</button>
     <div class="w-overlay w-overlay--scrim" id="demo-dialog-overlay"></div>
-    <div class="w-dialog-wrapper" id="demo-dialog" data-w-overlay="demo-dialog-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="w-dialog-wrapper" id="demo-dialog" w-overlay="demo-dialog-overlay" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="w-dialog">
         <div class="w-dialog-header">
           <h3 class="w-dialog-title">Confirm</h3>
-          <button class="w-btn w-btn-icon w-btn--sm" data-w-dialog-close aria-label="Close">&times;</button>
+          <button class="w-btn w-btn-icon w-btn--sm" w-dialog-close aria-label="Close">&times;</button>
         </div>
         <div class="w-dialog-body">
           <p>Are you sure you want to proceed?</p>
         </div>
         <div class="w-dialog-footer">
-          <button class="w-btn w-btn-text" data-w-dialog-close>Cancel</button>
+          <button class="w-btn w-btn-text" w-dialog-close>Cancel</button>
           <button class="w-btn w-btn-filled">Confirm</button>
         </div>
       </div>
@@ -27,8 +27,8 @@
       <w-btn slot="activator" variant="filled">Open Dialog</w-btn>
       Are you sure you want to proceed?
       <div slot="footer">
-        <w-btn variant="text" data-w-dialog-close>Cancel</w-btn>
-        <w-btn variant="filled" data-w-dialog-close>Confirm</w-btn>
+        <w-btn variant="text" w-dialog-close>Cancel</w-btn>
+        <w-btn variant="filled" w-dialog-close>Confirm</w-btn>
       </div>
     </w-dialog>
   </div>
@@ -54,8 +54,8 @@
       <w-btn slot="activator" variant="outlined">Persistent dialog</w-btn>
       Outside clicks keep this dialog open until the user chooses an action.
       <div slot="footer">
-        <w-btn variant="text" data-w-dialog-close>Cancel</w-btn>
-        <w-btn variant="filled" data-w-dialog-close>Save</w-btn>
+        <w-btn variant="text" w-dialog-close>Cancel</w-btn>
+        <w-btn variant="filled" w-dialog-close>Save</w-btn>
       </div>
     </w-dialog>
   </div>
@@ -84,7 +84,7 @@
       <w-btn slot="activator" variant="outlined">Open fullscreen</w-btn>
       <p>Scrollable dialogs keep the header and footer in place while the body carries longer content.</p>
       <p>Use fullscreen dialogs for complex mobile flows or focused editing states.</p>
-      <div slot="footer"><w-btn variant="filled" data-w-dialog-close>Done</w-btn></div>
+      <div slot="footer"><w-btn variant="filled" w-dialog-close>Done</w-btn></div>
     </w-dialog>
   </div>
 </demo-compare>
@@ -106,13 +106,13 @@
 <h2>Sheet</h2>
 <demo-compare>
   <div slot="css">
-    <button class="w-btn w-btn-outlined" data-w-sheet-open="demo-sheet">Open Sheet</button>
+    <button class="w-btn w-btn-outlined" w-sheet-open="demo-sheet">Open Sheet</button>
     <div class="w-overlay" id="demo-sheet-overlay"></div>
-    <div class="w-sheet-bottom" id="demo-sheet" data-w-overlay="demo-sheet-overlay" aria-hidden="true">
+    <div class="w-sheet-bottom" id="demo-sheet" w-overlay="demo-sheet-overlay" aria-hidden="true">
       <div class="w-sheet-handle"></div>
       <div class="w-dialog-header">
         <h3 class="w-dialog-title">Options</h3>
-        <button class="w-btn w-btn-icon w-btn--sm" data-w-sheet-close aria-label="Close">&times;</button>
+        <button class="w-btn w-btn-icon w-btn--sm" w-sheet-close aria-label="Close">&times;</button>
       </div>
       <div class="w-dialog-body">
         <p>Sheet content goes here.</p>

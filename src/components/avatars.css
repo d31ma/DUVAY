@@ -310,8 +310,8 @@
 .w-avatar-badge--danger { background: var(--w-error); color: var(--w-on-error); }
 
 /* Avatar initials fallback */
-.w-avatar[data-w-initials]::before {
-  content: attr(data-w-initials);
+.w-avatar[w-initials]::before {
+  content: attr(w-initials);
 }
 
 .w-avatar-group {

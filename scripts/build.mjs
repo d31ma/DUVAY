@@ -144,11 +144,11 @@ async function buildDist() {
   await copyFile(join(SRC, 'duvay.js'), join(DIST, 'duvay.js'));
   await $`bun build ${join(SRC, 'duvay.js')} --minify --outfile ${join(DIST, 'duvay.min.js')}`.quiet();
 
-  // Directives — optional add-on for data-w-* directive hooks.
+  // Directives — optional add-on for w-* directive hooks.
   await copyFile(join(SRC, 'duvay-directives.js'), join(DIST, 'duvay-directives.js'));
   await $`bun build ${join(SRC, 'duvay-directives.js')} --minify --outfile ${join(DIST, 'duvay-directives.min.js')}`.quiet();
 
-  // Motion runtime — optional add-on for data-w-* motion hooks.
+  // Motion runtime — optional add-on for w-* motion hooks.
   await copyFile(MOTION, join(DIST, 'duvay-motion.js'));
   await $`bun build ${MOTION} --minify --outfile ${join(DIST, 'duvay-motion.min.js')}`.quiet();
 

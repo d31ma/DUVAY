@@ -1,9 +1,9 @@
 <h1>Themes</h1>
-<p>DuVay ships with light, dark, auto, and high-contrast themes. Switch by setting <code>data-w-theme</code> on the root element.</p>
+<p>DuVay ships with light, dark, auto, and high-contrast themes. Switch by setting <code>w-theme</code> on the root element.</p>
 
 <h2>Switching themes</h2>
 <p>Set the attribute manually on the html element, or call the theme API exposed by <code>duvay.js</code>:</p>
-<pre class="code-block"><code>&lt;html data-w-theme="dark"&gt;
+<pre class="code-block"><code>&lt;html w-theme="dark"&gt;
 
 // or programmatically:
 WTheme.set('dark')          // light, dark, auto, high-contrast
@@ -36,7 +36,7 @@ WTheme.get()                // returns current theme</code></pre>
 
 <h2>Custom theme</h2>
 <p>Override any token under your own attribute or class — it cascades through the whole framework. Example pattern:</p>
-<pre class="code-block"><code>[data-w-theme="brand"] &#123;
+<pre class="code-block"><code>[w-theme="brand"] &#123;
   --w-primary: #5a31f4;
   --w-on-primary: #ffffff;
   --w-primary-container: #ebe4ff;

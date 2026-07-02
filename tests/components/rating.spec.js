@@ -30,7 +30,7 @@ test('w-rating reflects Vuetify-style visual, form, label, and layout attributes
   await expect(root).toHaveJSProperty('tagName', 'SECTION');
   await expect(root).toHaveAttribute('role', 'radiogroup');
   await expect(root).toHaveAttribute('aria-label', 'Release quality');
-  await expect(root).toHaveAttribute('data-w-theme', 'dark');
+  await expect(root).toHaveAttribute('w-theme', 'dark');
   await expect(root).toHaveClass(/w-rating--half-increments/);
   await expect(root).toHaveClass(/w-rating--hover/);
   await expect(root).toHaveClass(/w-rating--ripple/);

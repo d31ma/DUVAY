@@ -12,11 +12,11 @@ const DUVAY_FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 
 
 function applyFavicon() {
   const href = 'data:image/svg+xml,' + encodeURIComponent(DUVAY_FAVICON_SVG)
-  let link = document.querySelector('link[rel="icon"][data-w-favicon]')
+  let link = document.querySelector('link[rel="icon"][w-favicon]')
   if (!link) {
     link = document.createElement('link')
     link.setAttribute('rel', 'icon')
-    link.setAttribute('data-w-favicon', '')
+    link.setAttribute('w-favicon', '')
     document.head.appendChild(link)
   }
   link.setAttribute('type', 'image/svg+xml')
@@ -28,7 +28,7 @@ applyFavicon()
 // Apply the persisted theme as early as possible to avoid a flash of the
 // wrong palette. docs.js owns the full theme lifecycle after this.
 try {
-  document.documentElement.setAttribute('data-w-theme', localStorage.getItem('w-theme') || 'light')
+  document.documentElement.setAttribute('w-theme', localStorage.getItem('w-theme') || 'light')
 } catch (_) {
-  document.documentElement.setAttribute('data-w-theme', 'light')
+  document.documentElement.setAttribute('w-theme', 'light')
 }

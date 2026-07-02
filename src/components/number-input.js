@@ -91,7 +91,7 @@ export class WNumberInput extends WElement {
 
     const input = `<input class="w-input${sizeClass}" type="text" inputmode="decimal"`
       + ` value="${this._esc(this._format(this.model))}"${minAttr}${maxAttr} step="${this.step}"${ph}${nm}`
-      + `${this.disabled ? ' disabled' : ''}${this.readonly ? ' readonly' : ''} data-w-number-input>`;
+      + `${this.disabled ? ' disabled' : ''}${this.readonly ? ' readonly' : ''} w-number-input>`;
 
     const dec = this._btn('-1', variant === 'split' ? 'minus' : 'chevron-down');
     const inc = this._btn('1', variant === 'split' ? 'plus' : 'chevron-up');

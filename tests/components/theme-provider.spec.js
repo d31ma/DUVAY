@@ -1,13 +1,13 @@
 import { expect, test } from '../setup/component-test.js';
 
-test('w-theme-provider scopes a theme via data-w-theme', async ({ mount, page }) => {
+test('w-theme-provider scopes a theme via w-theme', async ({ mount, page }) => {
   await mount('<w-theme-provider id="tp" theme="dark"><span class="inner">x</span></w-theme-provider>');
-  await expect(page.locator('#tp .w-theme-provider')).toHaveAttribute('data-w-theme', 'dark');
+  await expect(page.locator('#tp .w-theme-provider')).toHaveAttribute('w-theme', 'dark');
 
   // Tokens inside the scope resolve to the dark palette.
   const ref = await page.evaluate(() => {
     const d = document.createElement('div');
-    d.setAttribute('data-w-theme', 'dark');
+    d.setAttribute('w-theme', 'dark');
     document.body.appendChild(d);
     const v = getComputedStyle(d).getPropertyValue('--w-surface').trim();
     d.remove();

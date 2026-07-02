@@ -17,7 +17,7 @@ const PAGES = [
   { path: '/docs/download',   title: 'Download',          group: 'Getting started',         keywords: 'download cdn jsdelivr unpkg minified full version head link script npm bundle' },
   { path: '/docs/styles-and-animations', title: 'Styles and animations', group: 'Styles and animations', keywords: 'styles animations motion transition elevation radius typography utility theme css reset' },
   { path: '/docs/animations', title: 'Animations',         group: 'Styles and animations',   keywords: 'animations motion transition expand flip crossfade tween spring vuetify svelte reduced motion' },
-  { path: '/docs/themes',     title: 'Themes',            group: 'Styles and animations',   keywords: 'theme dark light auto high contrast tokens colors data-w-theme' },
+  { path: '/docs/themes',     title: 'Themes',            group: 'Styles and animations',   keywords: 'theme dark light auto high contrast tokens colors w-theme' },
   { path: '/docs/utilities',  title: 'Utilities',         group: 'Styles and animations',   keywords: 'utility spacing margin padding flex display sizing text elevation shadow radius helpers' },
   { path: '/docs/grid',       title: 'Grid',              group: 'Common concepts',         keywords: 'grid container row column col responsive 12 columns offset gutter flex layout' },
   { path: '/docs/navigation', title: 'Navigation',        group: 'Common concepts',         keywords: 'topbar sidebar tabs breadcrumbs pagination drawer mobile shell' },
@@ -53,7 +53,9 @@ const PAGES = [
   { path: '/docs/components/sparklines', title: 'Sparklines', group: 'Components',           keywords: 'sparkline chart trend mini graph' },
   { path: '/docs/components/treeview', title: 'Treeview', group: 'Components',               keywords: 'treeview hierarchy tree nodes collapse expand' },
   { path: '/docs/components/virtual-scroller', title: 'Virtual Scroller', group: 'Components', keywords: 'virtual scroller virtual scroll long list performance' },
+  { path: '/docs/bottom-sheets', title: 'Bottom sheets', group: 'Components',                keywords: 'bottom sheet modal mobile actions overlay dialog' },
   { path: '/docs/buttons',    title: 'Buttons',           group: 'Components',      keywords: 'button btn filled outlined text ghost icon fab variant size loading' },
+  { path: '/docs/icon-buttons', title: 'Icon buttons',    group: 'Components',      keywords: 'icon button btn accessible label size loading disabled' },
   { path: '/docs/button-toggles', title: 'Button toggles', group: 'Components',    keywords: 'button toggle btn-toggle btn group segmented selection single multiple mandatory divided' },
   { path: '/docs/inputs',     title: 'Custom inputs',     group: 'Components',      keywords: 'input field input group addon label hint error messages density prefix suffix custom base wrapper' },
   { path: '/docs/autocompletes', title: 'Autocompletes',  group: 'Components',      keywords: 'autocomplete search dropdown filter items multiple chips clearable combobox select' },
@@ -75,6 +77,8 @@ const PAGES = [
   { path: '/docs/command',    title: 'Command',           group: 'Components',      keywords: 'command palette cmdk item action search shortcut collapsible shadcn' },
   { path: '/docs/menus',      title: 'Menus',             group: 'Components',      keywords: 'dropdown menu context menu menubar navigation menu actions shadcn' },
   { path: '/docs/overlays',   title: 'Overlay Primitives', group: 'Components',     keywords: 'alert dialog popover hover card sonner toast overlay shadcn' },
+  { path: '/docs/sheets',     title: 'Sheets',            group: 'Components',      keywords: 'sheet surface card bottom sheet container' },
+  { path: '/docs/toolbars',   title: 'Toolbars',          group: 'Components',      keywords: 'toolbar title items actions app header navigation' },
   { path: '/docs/layout-primitives', title: 'Layout Primitives', group: 'Components', keywords: 'aspect ratio scroll area resizable sidebar direction chart layout shadcn' },
   { path: '/docs/slider',     title: 'Slider',            group: 'Components',      keywords: 'slider range input track thumb value min max step' },
   { path: '/docs/chips',      title: 'Chips',             group: 'Components',      keywords: 'chip filter pill tag selectable size' },
@@ -240,9 +244,9 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Application', path: '/docs/components/application' },
       { type: 'separator' },
       { type: 'subhead', title: 'Containment' },
-      { type: 'item', title: 'Bottom sheets', path: '/docs/dialog#sheet' },
+      { type: 'item', title: 'Bottom sheets', path: '/docs/bottom-sheets' },
       { type: 'item', title: 'Buttons', path: '/docs/buttons' },
-      { type: 'item', title: 'Icon buttons', path: '/docs/features/icon-fonts#icon-buttons' },
+      { type: 'item', title: 'Icon buttons', path: '/docs/icon-buttons' },
       { type: 'item', title: 'Cards', path: '/docs/cards' },
       { type: 'item', title: 'Chips', path: '/docs/chips' },
       { type: 'item', title: 'Dialogs', path: '/docs/dialog' },
@@ -251,8 +255,8 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Lists', path: '/docs/lists' },
       { type: 'item', title: 'Menus', path: '/docs/menus' },
       { type: 'item', title: 'Overlays', path: '/docs/overlays' },
-      { type: 'item', title: 'Sheets', path: '/docs/dialog#sheet' },
-      { type: 'item', title: 'Toolbars', path: '/docs/surfaces#toolbar-and-system-bar' },
+      { type: 'item', title: 'Sheets', path: '/docs/sheets' },
+      { type: 'item', title: 'Toolbars', path: '/docs/toolbars' },
       { type: 'item', title: 'Tooltips', path: '/docs/tooltips' },
       { type: 'separator' },
       { type: 'subhead', title: 'Navigation' },
@@ -445,11 +449,11 @@ function sidebarItemHtml(item, depth) {
 
 function renderDocsSidebar() {
   const sidebar = $('[data-docs-sidebar]');
-  if (!sidebar || sidebar.dataset.wTaxonomyRendered) return;
+  if (!sidebar || sidebar.hasAttribute('w-taxonomy-rendered')) return;
 
   sidebar.innerHTML = `<div class="docs-sidebar-mobile-header">
       <strong>Documentation</strong>
-      <button type="button" data-w-docs-menu-close aria-label="Close documentation navigation">
+      <button type="button" w-docs-menu-close aria-label="Close documentation navigation">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
       </button>
     </div>` + HE_DOC_SECTIONS.map(section => {
@@ -460,7 +464,7 @@ function renderDocsSidebar() {
       <ul class="docs-sidebar-list">${items}</ul>
     </div>`;
   }).join('');
-  sidebar.dataset.wTaxonomyRendered = '1';
+  sidebar.setAttribute('w-taxonomy-rendered', '1');
 }
 
 /* ── Theme ──────────────────────────────────────────────────────────────── */
@@ -481,7 +485,7 @@ function getTheme() {
 }
 
 function applyTheme(theme) {
-  document.documentElement.setAttribute('data-w-theme', theme);
+  document.documentElement.setAttribute('w-theme', theme);
   try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
   syncThemeControls(theme);
 }
@@ -492,8 +496,8 @@ function cycleTheme() {
 }
 
 function syncThemeControls(theme) {
-  $$('[data-w-theme-icon]').forEach(el => { el.innerHTML = THEME_ICON[theme] || THEME_ICON.light; });
-  $$('[data-w-theme-label]').forEach(el => { el.textContent = THEME_LABEL[theme] || 'Light'; });
+  $$('[w-theme-icon]').forEach(el => { el.innerHTML = THEME_ICON[theme] || THEME_ICON.light; });
+  $$('[w-theme-label]').forEach(el => { el.textContent = THEME_LABEL[theme] || 'Light'; });
 }
 
 /* ── Active navigation ──────────────────────────────────────────────────── */
@@ -587,8 +591,8 @@ function enhanceSidebarSections() {
     if (!list.id) list.id = `docs-sidebar-${key}`;
     title.setAttribute('aria-controls', list.id);
 
-    if (!title.dataset.wSidebarBound) {
-      title.dataset.wSidebarBound = '1';
+    if (!title.hasAttribute('w-sidebar-bound')) {
+      title.setAttribute('w-sidebar-bound', '1');
       title.addEventListener('click', () => {
         setSidebarSectionCollapsed(section, !section.classList.contains('is-collapsed'), true);
       });
@@ -606,7 +610,7 @@ function docsCompactMedia() {
 
 function setDocsNavigationOpen(open, returnFocus = false) {
   const sidebar = $('[data-docs-sidebar]');
-  const toggle = $('[data-w-docs-menu-toggle]');
+  const toggle = $('[w-docs-menu-toggle]');
   const scrim = $('.docs-sidebar-scrim');
   if (!sidebar || !toggle || !scrim) return;
 
@@ -623,7 +627,7 @@ function setDocsNavigationOpen(open, returnFocus = false) {
   document.documentElement.classList.toggle('docs-nav-open', nextOpen);
 
   if (nextOpen) {
-    requestAnimationFrame(() => $('[data-w-docs-menu-close]', sidebar)?.focus());
+    requestAnimationFrame(() => $('[w-docs-menu-close]', sidebar)?.focus());
   } else if (returnFocus) {
     toggle.focus();
   }
@@ -671,8 +675,8 @@ async function copyFrom(block) {
 let spy = null;
 
 function buildTOC() {
-  const toc = $('[data-w-toc]');
-  const page = $('[data-w-page]') || $('.docs-main');
+  const toc = $('[w-toc]');
+  const page = $('[w-page]') || $('.docs-main');
   if (!toc || !page) return;
 
   const heads = $$('h2, h3', page);
@@ -682,7 +686,7 @@ function buildTOC() {
   const items = heads.map(h => {
     if (!h.id) h.id = slugify(h.textContent);
     const lvl = h.tagName.toLowerCase();
-    return `<li class="docs-toc-item docs-toc-${lvl}"><a href="#${h.id}" data-w-toc-link>${escapeHtml(h.textContent)}</a></li>`;
+    return `<li class="docs-toc-item docs-toc-${lvl}"><a href="#${h.id}" w-toc-link>${escapeHtml(h.textContent)}</a></li>`;
   }).join('');
   toc.innerHTML = `<p class="docs-toc-title">On this page</p><ul class="docs-toc-list">${items}</ul>`;
 
@@ -729,7 +733,7 @@ function pagerPages() {
 }
 
 function buildPager() {
-  const el = $('[data-w-pager]');
+  const el = $('[w-pager]');
   if (!el) return;
   const pages = pagerPages();
   const i = pages.findIndex(p => p.path === currentPath());
@@ -742,7 +746,7 @@ function buildPager() {
 
 /* ── Per-page action links (edit on GitHub, report a bug) ────────────────── */
 function buildPageActions() {
-  const el = $('[data-w-page-actions]');
+  const el = $('[w-page-actions]');
   if (!el) return;
   const name = currentPath().replace(/^\/docs\/?/, '');
   const file = name
@@ -846,12 +850,12 @@ function serializeAuthored(slot) {
 
 function enhanceDemos() {
   $$('demo-compare').forEach(demo => {
-    if (demo.dataset.wEnhanced) return;
-    if (demo.querySelector('.demo')) { demo.dataset.wEnhanced = '1'; return; }
+    if (demo.hasAttribute('w-enhanced')) return;
+    if (demo.querySelector('.demo')) { demo.setAttribute('w-enhanced', '1'); return; }
 
     const slotEls = $$(':scope > [slot]', demo);
     if (!slotEls.length) return;
-    demo.dataset.wEnhanced = '1';
+    demo.setAttribute('w-enhanced', '1');
 
     const slots = {};
     slotEls.forEach(s => { slots[s.getAttribute('slot')] = s; });
@@ -918,8 +922,8 @@ function enhanceMixedCheckboxes() {
 
 function enhanceCalendarDemos() {
   $$('[data-calendar-custom-content]').forEach(calendar => {
-    if (calendar.dataset.wCalendarContentReady) return;
-    calendar.dataset.wCalendarContentReady = '1';
+    if (calendar.hasAttribute('w-calendar-content-ready')) return;
+    calendar.setAttribute('w-calendar-content-ready', '1');
     calendar.dayHeaderContent = ({ present }) => present
       ? '<strong>Today</strong>'
       : '<strong>Focus day</strong>';
@@ -985,12 +989,12 @@ function targetFromAttr(trigger, attr) {
   const name = trigger.getAttribute(attr);
   if (!name) return null;
   return document.getElementById(name) ||
-    document.querySelector('[data-w-dialog="' + name + '"]') ||
-    document.querySelector('[data-w-sheet="' + name + '"]');
+    document.querySelector('[w-dialog="' + name + '"]') ||
+    document.querySelector('[w-sheet="' + name + '"]');
 }
 
 function openLayer(target) {
-  const overlayId = target && target.getAttribute('data-w-overlay');
+  const overlayId = target && target.getAttribute('w-overlay');
   const overlay = overlayId ? document.getElementById(overlayId) : null;
   if (overlay) overlay.classList.add('open');
   target.classList.add('open');
@@ -1001,13 +1005,13 @@ function closeLayer(target) {
   if (!target) return;
   target.classList.remove('open');
   target.setAttribute('aria-hidden', 'true');
-  const overlayId = target.getAttribute('data-w-overlay');
+  const overlayId = target.getAttribute('w-overlay');
   const overlay = overlayId ? document.getElementById(overlayId) : null;
-  if (overlay && !document.querySelector('[data-w-overlay="' + overlayId + '"].open')) overlay.classList.remove('open');
+  if (overlay && !document.querySelector('[w-overlay="' + overlayId + '"].open')) overlay.classList.remove('open');
 }
 
 function closeLayersForOverlay(overlay) {
-  const selector = overlay.id ? '[data-w-overlay="' + overlay.id + '"].open' : '.w-dialog-wrapper.open, .w-sheet-bottom.open';
+  const selector = overlay.id ? '[w-overlay="' + overlay.id + '"].open' : '.w-dialog-wrapper.open, .w-sheet-bottom.open';
   $$(selector).forEach(closeLayer);
   overlay.classList.remove('open');
 }
@@ -1069,14 +1073,14 @@ function bindGlobalOnce() {
   window.__wDocsBound = true;
 
   document.addEventListener('click', e => {
-    const docsMenuToggle = e.target.closest('[data-w-docs-menu-toggle]');
+    const docsMenuToggle = e.target.closest('[w-docs-menu-toggle]');
     if (docsMenuToggle) {
       const sidebar = $('[data-docs-sidebar]');
       setDocsNavigationOpen(!sidebar?.classList.contains('is-open'), true);
       return;
     }
 
-    if (e.target.closest('[data-w-docs-menu-close]')) {
+    if (e.target.closest('[w-docs-menu-close]')) {
       setDocsNavigationOpen(false, true);
       return;
     }
@@ -1087,14 +1091,14 @@ function bindGlobalOnce() {
 
     const copy = e.target.closest('.code-copy');
     if (copy) { copyFrom(copy.closest('.code-block')); return; }
-    if (e.target.closest('[data-w-theme-toggle]')) { cycleTheme(); return; }
-    if (e.target.closest('[data-w-search-open]')) { openSearch(); return; }
+    if (e.target.closest('[w-theme-toggle]')) { cycleTheme(); return; }
+    if (e.target.closest('[w-search-open]')) { openSearch(); return; }
 
-    const expandToggle = e.target.closest('[data-w-expand-toggle]');
+    const expandToggle = e.target.closest('[w-expand-toggle]');
     if (expandToggle) {
-      const key = expandToggle.getAttribute('data-w-expand-toggle');
+      const key = expandToggle.getAttribute('w-expand-toggle');
       const panel = key
-        ? document.getElementById(key) || document.querySelector('[data-w-expand="' + key + '"]')
+        ? document.getElementById(key) || document.querySelector('[w-expand="' + key + '"]')
         : expandToggle.closest('.w-expand');
       if (panel) {
         const open = !panel.classList.contains('open');
@@ -1108,23 +1112,23 @@ function bindGlobalOnce() {
       return;
     }
 
-    const wDialogOpen = e.target.closest('[data-w-dialog-open]');
+    const wDialogOpen = e.target.closest('[w-dialog-open]');
     if (wDialogOpen) {
-      const target = targetFromAttr(wDialogOpen, 'data-w-dialog-open');
+      const target = targetFromAttr(wDialogOpen, 'w-dialog-open');
       if (target) openLayer(target);
       return;
     }
 
-    const wSheetOpen = e.target.closest('[data-w-sheet-open]');
+    const wSheetOpen = e.target.closest('[w-sheet-open]');
     if (wSheetOpen) {
-      const target = targetFromAttr(wSheetOpen, 'data-w-sheet-open');
+      const target = targetFromAttr(wSheetOpen, 'w-sheet-open');
       if (target) openLayer(target);
       return;
     }
 
-    const wClose = e.target.closest('[data-w-dialog-close], [data-w-sheet-close]');
+    const wClose = e.target.closest('[w-dialog-close], [w-sheet-close]');
     if (wClose) {
-      const attr = wClose.hasAttribute('data-w-dialog-close') ? 'data-w-dialog-close' : 'data-w-sheet-close';
+      const attr = wClose.hasAttribute('w-dialog-close') ? 'w-dialog-close' : 'w-sheet-close';
       const target = targetFromAttr(wClose, attr) || wClose.closest('.w-dialog-wrapper.open, .w-sheet-bottom.open');
       closeLayer(target);
       return;
@@ -1178,7 +1182,7 @@ function bindGlobalOnce() {
       return;
     }
 
-    const tocLink = e.target.closest('[data-w-toc-link]');
+    const tocLink = e.target.closest('[w-toc-link]');
     if (tocLink) {
       e.preventDefault();
       const id = tocLink.getAttribute('href').slice(1);
@@ -1216,7 +1220,7 @@ function apiTable(title, head, rows) {
   const kind = slugify(title);
   return `<div class="api-group">
     <h4 class="api-group-title">${title}</h4>
-    <div class="api-table-wrap"><table class="api-table" data-api-kind="${kind}" aria-label="${escapeHtml(title)}">
+    <div class="api-table-wrap"><table class="w-table api-table" data-api-kind="${kind}" aria-label="${escapeHtml(title)}">
       <thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead>
       <tbody>${rows.map(r => `<tr>${r.map((c, i) =>
         `<td data-label="${escapeHtml(head[i] || '')}">${i === 0 ? `<code>${escapeHtml(c)}</code>` : escapeHtml(c)}</td>`).join('')}</tr>`).join('')}</tbody>
@@ -1225,10 +1229,10 @@ function apiTable(title, head, rows) {
 }
 
 function enhanceApiReference() {
-  const page = $('[data-w-page]');
+  const page = $('[w-page]');
   const path = currentPath();
   const blocks = API_DATA[path];
-  const existing = page && page.querySelector('[data-w-api]');
+  const existing = page && page.querySelector('[w-api]');
   // Same page already rendered → nothing to do (avoids mutation loops).
   if (existing && existing.dataset.path === path) return;
   if (existing) existing.remove();
@@ -1244,18 +1248,39 @@ function enhanceApiReference() {
     </section>`).join('');
 
   const wrap = document.createElement('div');
-  wrap.setAttribute('data-w-api', '');
+  wrap.setAttribute('w-api', '');
   wrap.dataset.path = path;
   wrap.innerHTML = `<h2 id="api-reference">API reference</h2>${sections}`;
   page.appendChild(wrap);
+}
+
+function enhanceApiTables() {
+  $$('table.api-table').forEach((table) => {
+    table.classList.add('w-table');
+    const labels = $$('thead th', table).map((header) => header.textContent.trim());
+    $$('tbody tr', table).forEach((row) => {
+      $$('td', row).forEach((cell, index) => {
+        if (!cell.hasAttribute('data-label')) {
+          cell.setAttribute('data-label', labels[index] || '');
+        }
+      });
+    });
+
+    if (!table.parentElement?.classList.contains('api-table-wrap')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'api-table-wrap';
+      table.before(wrapper);
+      wrapper.appendChild(table);
+    }
+  });
 }
 
 /* ── All Components catalog (/docs/components) ───────────────────────────── */
 /* Built from the sidebar's Components group so the catalog is always complete
    and ordered the same way as the navigation. */
 function enhanceComponentsCatalog() {
-  const mount = $('[data-w-components-catalog]');
-  if (!mount || mount.dataset.wBuilt) return;
+  const mount = $('[w-components-catalog]');
+  if (!mount || mount.hasAttribute('w-built')) return;
   const section = HE_DOC_SECTIONS.find(s => s.title === 'Components');
   if (!section) return;
 
@@ -1281,14 +1306,14 @@ function enhanceComponentsCatalog() {
     <div class="components-catalog-grid">
       ${g.items.map(i => `<a class="components-catalog-card" href="${i.path}">${escapeHtml(i.title)}</a>`).join('')}
     </div>`).join('');
-  mount.dataset.wBuilt = '1';
+  mount.setAttribute('w-built', '1');
 }
 
 /* ── API Explorer (/docs/components/explorer) ────────────────────────────── */
 /* Filterable browser over every component that has an API_DATA entry. */
 function enhanceApiExplorer() {
-  const mount = $('[data-w-api-explorer]');
-  if (!mount || mount.dataset.wBuilt) return;
+  const mount = $('[w-api-explorer]');
+  if (!mount || mount.hasAttribute('w-built')) return;
 
   const titleByPath = {};
   PAGES.forEach(p => { titleByPath[p.path] = p.title; });
@@ -1340,7 +1365,7 @@ function enhanceApiExplorer() {
   });
 
   render(entries[0].path);
-  mount.dataset.wBuilt = '1';
+  mount.setAttribute('w-built', '1');
 }
 
 /* ── Late-hydration safety net ──────────────────────────────────────────── */
@@ -1356,6 +1381,7 @@ function runContentEnhancers() {
   enhanceMixedCheckboxes();
   enhanceCalendarDemos();
   enhanceApiReference();
+  enhanceApiTables();
   enhanceCopyButtons();
   buildTOC();
   if (window.WMotion && typeof window.WMotion.init === 'function') {
@@ -1394,7 +1420,7 @@ function loadSizes() {
 
 async function fillDownloadSizes() {
   const links = document.querySelectorAll('a[download][href*="/dist/"]');
-  const markers = document.querySelectorAll('[data-w-size]');
+  const markers = document.querySelectorAll('[w-size]');
   if (!links.length && !markers.length) return;
   const sizes = await loadSizes();
   const kb = (bytes) => '~' + Math.round(bytes / 1024) + ' KB';
@@ -1408,7 +1434,7 @@ async function fillDownloadSizes() {
   });
   // Inline markers (e.g. the home "Lightweight" card): set the label outright.
   markers.forEach((el) => {
-    const bytes = sizes[el.getAttribute('data-w-size')];
+    const bytes = sizes[el.getAttribute('w-size')];
     if (bytes) el.textContent = kb(bytes);
   });
 }

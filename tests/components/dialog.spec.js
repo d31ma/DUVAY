@@ -5,7 +5,7 @@ test('w-dialog reflects open and title attributes and closes from all public int
     <button id="outside">Outside</button>
     <w-dialog id="dialog" title="Confirm" open>
       <p>Body</p>
-      <button slot="footer" data-w-dialog-close>OK</button>
+      <button slot="footer" w-dialog-close>OK</button>
     </w-dialog>
   `);
   await recordEvents(page, '#dialog', ['toggle', 'close']);
@@ -50,7 +50,7 @@ test('w-dialog supports activator slot, persistent mode, fullscreen, scrollable,
     <w-dialog id="dialog" title="Settings" persistent fullscreen scrollable width="640" max-width="720">
       <button slot="activator" id="activator">Open settings</button>
       <p>Settings body</p>
-      <button slot="footer" id="save" data-w-dialog-close>Save</button>
+      <button slot="footer" id="save" w-dialog-close>Save</button>
     </w-dialog>
   `);
   await recordEvents(page, '#dialog', ['toggle', 'close']);
@@ -88,7 +88,7 @@ test('w-dialog opens and closes from nested w-btn controls', async ({ mount, pag
     <w-dialog id="dialog" title="Nested controls">
       <w-btn slot="activator" id="activator" variant="filled">Open nested</w-btn>
       <p>Nested button body</p>
-      <w-btn slot="footer" id="close" data-w-dialog-close>Done</w-btn>
+      <w-btn slot="footer" id="close" w-dialog-close>Done</w-btn>
     </w-dialog>
   `);
 

@@ -763,6 +763,15 @@ body.cmdk-open {
 }
 
 /* API reference tables */
+[w-api] {
+  margin-top: var(--w-space-10);
+}
+
+[w-api] > h2 {
+  padding-bottom: var(--w-space-3);
+  border-bottom: 1px solid var(--w-border);
+}
+
 .api-component {
   margin-top: var(--w-space-8);
 }
@@ -773,8 +782,6 @@ body.cmdk-open {
 
 .api-group {
   margin-bottom: var(--w-space-6);
-  container-name: api-table;
-  container-type: inline-size;
 }
 
 .api-group-title {
@@ -785,6 +792,8 @@ body.cmdk-open {
 }
 
 .api-table-wrap {
+  container-name: api-table;
+  container-type: inline-size;
   overflow-x: auto;
   border: 1px solid var(--w-border);
   border-radius: var(--w-radius-lg);
@@ -840,10 +849,6 @@ table.api-table:not(.api-table-wrap table) {
 }
 
 @container api-table (max-width: 42rem) {
-  .api-table-wrap {
-    overflow: visible;
-  }
-
   .api-table {
     display: block;
     min-width: 0;

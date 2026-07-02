@@ -7,17 +7,17 @@ test('w-empty renders icon, title, text, and an action button', async ({ mount, 
   await expect(page.locator('#e .w-empty-icon')).toHaveText('X');
   await expect(page.locator('#e .w-empty-title')).toHaveText('No items');
   await expect(page.locator('#e .w-empty-subtitle')).toHaveText('Nothing here yet.');
-  await expect(page.locator('#e [data-w-empty-action]')).toHaveText('Add');
+  await expect(page.locator('#e [w-empty-action]')).toHaveText('Add');
 });
 
 test('w-empty fires click:action for a button, and renders a link when href is set', async ({ mount, page }) => {
   await mount('<w-empty id="e" title="T" action-text="Go"></w-empty>');
   await recordEvents(page, '#e', ['click:action']);
-  await page.locator('#e [data-w-empty-action]').click();
+  await page.locator('#e [w-empty-action]').click();
   expect(await readEvents(page, '#e')).toEqual([{ type: 'click:action', detail: { value: true } }]);
 
   await mount('<w-empty id="e2" title="T" action-text="Home" href="/home"></w-empty>');
-  await expect(page.locator('#e2 a[data-w-empty-action]')).toHaveAttribute('href', '/home');
+  await expect(page.locator('#e2 a[w-empty-action]')).toHaveAttribute('href', '/home');
 });
 
 test('w-empty renders a headline and an image override', async ({ mount, page }) => {

@@ -69,7 +69,7 @@
 <p>DuVay web components set appropriate <code>role</code>, <code>aria-*</code>, and label attributes. When you use CSS-only markup, add the equivalent ARIA attributes yourself. Reach for native semantics first &#8212; a real <code>&lt;button&gt;</code>, <code>&lt;nav&gt;</code>, or <code>&lt;dialog&gt;</code> needs less ARIA than a <code>&lt;div&gt;</code> retrofitted with roles. There is no first rule of ARIA quite like &#8220;don&#8217;t use ARIA when HTML will do,&#8221; and DuVay&#8217;s markup is designed to let you follow it.</p>
 
 <h2 id="color-contrast">Color and contrast</h2>
-<p>Theme colors are defined as design tokens and tuned to meet WCAG AA: 4.5:1 for body text and 3:1 for UI components and large text. The light, dark, and high-contrast themes each redefine these tokens so contrast holds across the <code>data-w-theme</code> modes, including the <code>auto</code> theme that respects <code>prefers-color-scheme</code>. Never communicate state with color alone &#8212; pair it with text, an icon, or a shape.</p>
+<p>Theme colors are defined as design tokens and tuned to meet WCAG AA: 4.5:1 for body text and 3:1 for UI components and large text. The light, dark, and high-contrast themes each redefine these tokens so contrast holds across the <code>w-theme</code> modes, including the <code>auto</code> theme that respects <code>prefers-color-scheme</code>. Never communicate state with color alone &#8212; pair it with text, an icon, or a shape.</p>
 
 <h2 id="reduced-motion">Reduced motion</h2>
 <p>All motion respects <code>prefers-reduced-motion</code>. Disable or soften custom animations the same way in your own styles:</p>

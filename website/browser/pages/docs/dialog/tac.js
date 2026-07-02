@@ -18,7 +18,7 @@ export default class extends Tac {
       if (overlay) overlay.classList.remove('open')
     }
 
-    const cssDialogOpener = document.querySelector('[data-w-dialog-open="demo-dialog"]')
+    const cssDialogOpener = document.querySelector('[w-dialog-open="demo-dialog"]')
     const cssDialog = document.getElementById('demo-dialog')
     const cssDialogOverlay = document.getElementById('demo-dialog-overlay')
     if (cssDialogOpener) {
@@ -31,7 +31,7 @@ export default class extends Tac {
         closeOverlay(cssDialog, cssDialogOverlay)
       })
     }
-    document.querySelectorAll('#demo-dialog [data-w-dialog-close]').forEach(function (btn) {
+    document.querySelectorAll('#demo-dialog [w-dialog-close]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         closeOverlay(cssDialog, cssDialogOverlay)
       })
@@ -53,7 +53,7 @@ export default class extends Tac {
       }
     })
 
-    const cssSheetOpener = document.querySelector('[data-w-sheet-open="demo-sheet"]')
+    const cssSheetOpener = document.querySelector('[w-sheet-open="demo-sheet"]')
     const cssSheet = document.getElementById('demo-sheet')
     const cssSheetOverlay = document.getElementById('demo-sheet-overlay')
 
@@ -67,7 +67,7 @@ export default class extends Tac {
         closeOverlay(cssSheet, cssSheetOverlay)
       })
     }
-    document.querySelectorAll('#demo-sheet [data-w-sheet-close]').forEach(function (btn) {
+    document.querySelectorAll('#demo-sheet [w-sheet-close]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         closeOverlay(cssSheet, cssSheetOverlay)
       })
