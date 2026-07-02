@@ -1,0 +1,103 @@
+/* DuVay — Breadcrumbs component styles. */
+@import "../core.css";
+
+/* ── Breadcrumbs ──────────────────────────────────────────────────────────────
+ *
+ * CSS-class usage:  <nav class="w-breadcrumbs"><a class="w-breadcrumb" href>…</a>…</nav>
+ * Web component:    <w-breadcrumbs items='[…]'>  or  <w-breadcrumbs><w-breadcrumb>…
+ *
+ * The separator between adjacent crumbs is drawn by CSS — not baked into items —
+ * so it works for the items API, plain markup, and manual composition alike. An
+ * explicit <w-breadcrumbs-divider> between two crumbs breaks the adjacency and
+ * suppresses the auto separator. Item hosts are display:contents (reset.css) so
+ * the `.w-breadcrumb` links are direct flex children in every usage mode.
+ *
+ * Local custom properties (set per-instance by breadcrumbs.js):
+ *   --w-breadcrumb-divider       separator string   (divider="…", default "/")
+ *   --w-breadcrumb-color         link color         (color="…")
+ *   --w-breadcrumb-active-color  current-page color (active-color="…")
+ *   --w-breadcrumb-bg            container bg        (bg-color="…")
+ * ──────────────────────────────────────────────────────────────────────────── */
+.w-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: var(--w-space-md) var(--w-space-lg);
+  font-size: var(--w-font-sm);
+  color: var(--w-text-very-subtle);
+  background: var(--w-breadcrumb-bg, transparent);
+  flex-wrap: wrap;
+}
+
+.w-breadcrumbs > slot {
+  display: contents;
+}
+
+.w-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--w-breadcrumb-color, var(--w-text-very-subtle));
+  text-decoration: none;
+  transition: color var(--w-transition-fast);
+}
+
+.w-breadcrumb:hover {
+  color: var(--w-breadcrumb-active-color, var(--w-primary));
+}
+
+.w-breadcrumb.active {
+  color: var(--w-breadcrumb-active-color, var(--w-text));
+  font-weight: var(--w-font-weight-medium);
+  pointer-events: none;
+}
+
+/* Auto separator between adjacent crumbs (parent-controlled string).
+ * Two selectors cover the two DOM shapes:
+ *   1. direct `.w-breadcrumb` siblings — items API and plain CSS markup.
+ *   2. adjacent <w-breadcrumb>/<w-breadcrumbs-item> hosts — composed usage,
+ *      where each crumb lives in its own (display:contents) host, so the inner
+ *      `.w-breadcrumb` boxes are layout-siblings but not DOM-siblings.
+ * An explicit <w-breadcrumbs-divider> between two crumbs breaks both adjacencies
+ * and therefore suppresses the auto separator. */
+.w-breadcrumb + .w-breadcrumb::before,
+:is(w-breadcrumb, w-breadcrumbs-item) + :is(w-breadcrumb, w-breadcrumbs-item) .w-breadcrumb::before {
+  content: var(--w-breadcrumb-divider, "/");
+  color: var(--w-divider);
+  user-select: none;
+}
+
+/* Leading / per-item icon */
+.w-breadcrumb-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* Disabled crumb — per item, or whole strip via the inert host */
+.w-breadcrumb[aria-disabled="true"],
+.w-breadcrumb.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Density */
+.w-breadcrumbs--comfortable { padding-block: var(--w-space-sm); }
+.w-breadcrumbs--compact {
+  padding-block: var(--w-space-xs);
+  font-size: var(--w-font-xs);
+}
+
+/* Rounded container (pairs with bg-color) */
+.w-breadcrumbs--rounded { border-radius: var(--w-radius-lg); }
+
+.w-breadcrumb-sep {
+  color: var(--w-divider);
+  user-select: none;
+}
+
+.w-breadcrumbs-divider {
+  color: var(--w-divider);
+  user-select: none;
+}

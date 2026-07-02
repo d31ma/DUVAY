@@ -1,0 +1,10 @@
+/* DuVay — Content Visibility component styles. */
+@import "../core.css";
+
+/* ── Content visibility optimization ─────────────────────────────────────── */
+/* Use on very long lists for render performance. */
+.w-list-row.w-virtual,
+.w-card.w-virtual {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 72px;
+}

@@ -1,0 +1,472 @@
+/* DuVay — Sliders component styles. */
+@import "../core.css";
+
+/* ── Slider (range input) ─────────────────────────────────────────────────── */
+.w-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  margin: var(--w-space-2) 0;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+  outline: none;
+  cursor: pointer;
+}
+
+.w-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--w-primary);
+  border: 2px solid var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--w-surface);
+  border-radius: 50%;
+  background: var(--w-primary);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+}
+
+.w-slider::-moz-range-track {
+  height: 4px;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+}
+
+.w-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+.w-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--w-primary) 25%, transparent);
+}
+
+.w-slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Slider sizes — xs / sm / (default 4px track, 16px thumb) / lg / xl */
+.w-slider--xs { height: 2px; }
+.w-slider--xs::-webkit-slider-thumb { width: 10px; height: 10px; }
+.w-slider--xs::-moz-range-thumb { width: 10px; height: 10px; }
+
+.w-slider--sm { height: 2px; }
+.w-slider--sm::-webkit-slider-thumb { width: 12px; height: 12px; }
+.w-slider--sm::-moz-range-thumb { width: 12px; height: 12px; }
+
+.w-slider--lg { height: 6px; }
+.w-slider--lg::-webkit-slider-thumb { width: 20px; height: 20px; }
+.w-slider--lg::-moz-range-thumb { width: 20px; height: 20px; }
+
+.w-slider--xl { height: 8px; }
+.w-slider--xl::-webkit-slider-thumb { width: 24px; height: 24px; }
+.w-slider--xl::-moz-range-thumb { width: 24px; height: 24px; }
+
+/* Optional filled track for the plain input: set `--w-slider-pct` to the
+   thumb's position (e.g. style="--w-slider-pct:40%") to colour the run behind
+   it. Defaults to 0% so an unset slider keeps the flat container colour. */
+.w-slider {
+  background:
+    linear-gradient(to right,
+      var(--w-primary) var(--w-slider-pct, 0%),
+      var(--w-surface-container-high) var(--w-slider-pct, 0%));
+}
+
+/* ── Slider (composed <w-slider>) ─────────────────────────────────────────── */
+.w-slider-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 16px;
+  margin: var(--w-space-2) 0;
+  --w-slider-color: var(--w-primary);
+  --w-slider-track-color: var(--w-surface-container-high);
+  --w-slider-track-size: 4px;
+}
+
+.w-slider-rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--w-slider-track-size);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-slider-track-color);
+}
+
+.w-slider-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--value, 0%);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-slider-color);
+}
+
+/* Native range overlaid on the rail; only the thumb catches the pointer. */
+.w-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.w-slider-input::-webkit-slider-runnable-track { height: 16px; background: transparent; }
+.w-slider-input::-moz-range-track { height: 16px; background: transparent; }
+
+.w-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--w-slider-thumb-size, 16px);
+  height: var(--w-slider-thumb-size, 16px);
+  /* WebKit top-aligns the thumb in the 16px track; recentre it so thumbs of
+     every size share one baseline aligned with the rail. */
+  margin-top: calc((16px - var(--w-slider-thumb-size, 16px)) / 2);
+  border-radius: 50%;
+  background: var(--w-slider-color);
+  border: 2px solid var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-slider-input::-moz-range-thumb {
+  width: var(--w-slider-thumb-size, 16px);
+  height: var(--w-slider-thumb-size, 16px);
+  border: 2px solid var(--w-surface);
+  border-radius: 50%;
+  background: var(--w-slider-color);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+}
+
+.w-slider-input:hover::-webkit-slider-thumb { transform: scale(1.12); }
+.w-slider-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--w-slider-color) 25%, transparent);
+}
+
+/* Sizes — track + thumb scale together. */
+.w-slider-field--xs .w-slider-control { --w-slider-track-size: 2px; --w-slider-thumb-size: 10px; }
+.w-slider-field--sm .w-slider-control { --w-slider-track-size: 2px; --w-slider-thumb-size: 12px; }
+.w-slider-field--lg .w-slider-control { --w-slider-track-size: 6px; --w-slider-thumb-size: 20px; }
+.w-slider-field--xl .w-slider-control { --w-slider-track-size: 8px; --w-slider-thumb-size: 24px; }
+
+.w-slider-field--disabled { opacity: 0.5; }
+.w-slider-field--disabled .w-slider-input,
+.w-slider-field--readonly .w-slider-input { pointer-events: none; }
+
+/* Reverse — fill anchors to the right and the input maps max→min. */
+.w-slider-field--reverse .w-slider-fill { left: auto; right: 0; }
+.w-slider-field--reverse .w-slider-input { direction: rtl; }
+
+/* Ticks */
+.w-slider-ticks { position: absolute; inset: 0; pointer-events: none; }
+.w-slider-tick {
+  position: absolute;
+  top: 50%;
+  left: var(--pos);
+  width: 2px;
+  height: 2px;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-text-subtle);
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+}
+.w-slider-tick-label {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+  white-space: nowrap;
+}
+.w-slider-control:has(.w-slider-ticks--labelled) { margin-bottom: var(--w-space-6); }
+
+/* Thumb value bubble */
+.w-slider-thumb-label {
+  position: absolute;
+  left: var(--pos);
+  bottom: 100%;
+  transform: translate(-50%, -0.375rem);
+  padding: 0.0625rem 0.375rem;
+  border-radius: var(--w-radius);
+  background: var(--w-slider-color);
+  color: var(--w-on-primary);
+  font-size: var(--w-font-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-slider-field--thumb-label .w-slider-control:hover .w-slider-thumb-label,
+.w-slider-field--thumb-label .w-slider-control:focus-within .w-slider-thumb-label,
+.w-slider-field--thumb-label-always .w-slider-thumb-label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-slider-thumb-label, .w-slider-input::-webkit-slider-thumb { transition: none; }
+}
+
+/* Vertical orientation */
+.w-slider-field--vertical .w-slider-control {
+  flex-direction: column;
+  width: 16px;
+  height: 12rem;
+}
+.w-slider-field--vertical .w-slider-rail {
+  left: 50%;
+  right: auto;
+  top: 0;
+  bottom: 0;
+  width: var(--w-slider-track-size);
+  height: auto;
+  transform: translateX(-50%);
+}
+.w-slider-field--vertical .w-slider-fill {
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  width: auto;
+  height: var(--value, 0%);
+}
+.w-slider-field--vertical.w-slider-field--reverse .w-slider-fill { bottom: auto; top: 0; }
+.w-slider-field--vertical .w-slider-input {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 16px;
+  height: 100%;
+}
+.w-slider-field--vertical .w-slider-input::-webkit-slider-runnable-track { width: 16px; height: 100%; }
+.w-slider-field--vertical .w-slider-tick {
+  top: auto;
+  left: 50%;
+  bottom: var(--pos);
+  transform: translate(-50%, 50%);
+}
+.w-slider-field--vertical .w-slider-tick-label { top: 50%; left: 0.75rem; transform: translateY(-50%); }
+.w-slider-field--vertical .w-slider-thumb-label {
+  left: 100%;
+  bottom: var(--pos);
+  transform: translate(0.375rem, 50%);
+}
+
+/* ── Range slider (dual thumb) ────────────────────────────────────────────── */
+.w-range-slider-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 16px;
+  margin: var(--w-space-2) 0;
+}
+
+.w-range-slider-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+}
+
+.w-range-slider-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--start, 0%);
+  width: calc(var(--end, 100%) - var(--start, 0%));
+  border-radius: var(--w-radius-pill);
+  background: var(--w-primary);
+}
+
+/* Two inputs overlaid on the same line; only their thumbs catch the pointer so
+   both remain draggable on a single shared track. */
+.w-range-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  outline: none;
+  pointer-events: none;
+}
+
+.w-range-slider-input::-webkit-slider-runnable-track {
+  height: 16px;
+  background: transparent;
+}
+
+.w-range-slider-input::-moz-range-track {
+  height: 16px;
+  background: transparent;
+}
+
+.w-range-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--w-primary);
+  border: 2px solid var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-range-slider-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--w-surface);
+  border-radius: 50%;
+  background: var(--w-primary);
+  box-shadow: var(--w-shadow-sm);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.w-range-slider-input:hover::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+.w-range-slider-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--w-primary) 25%, transparent);
+}
+
+.w-range-slider--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.w-range-slider--disabled .w-range-slider-input {
+  pointer-events: none;
+}
+
+/* ── Tick marks ───────────────────────────────────────────────────────────── */
+.w-range-slider-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.w-range-slider-tick {
+  position: absolute;
+  top: 50%;
+  left: var(--pos);
+  width: 2px;
+  height: 2px;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-text-subtle);
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Thumb value labels ───────────────────────────────────────────────────── */
+.w-range-slider-thumb-label {
+  position: absolute;
+  left: var(--pos);
+  bottom: 100%;
+  transform: translate(-50%, -0.375rem);
+  padding: 0.0625rem 0.375rem;
+  border-radius: var(--w-radius);
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  font-size: var(--w-font-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-range-slider--thumb-label .w-range-slider-control:hover .w-range-slider-thumb-label,
+.w-range-slider--thumb-label .w-range-slider-control:focus-within .w-range-slider-thumb-label,
+.w-range-slider--thumb-label-always .w-range-slider-thumb-label {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-range-slider-thumb-label { transition: none; }
+}
+
+/* ── Vertical orientation ─────────────────────────────────────────────────── */
+.w-range-slider--vertical .w-range-slider-control {
+  flex-direction: column;
+  width: 16px;
+  height: 12rem;
+}
+
+.w-range-slider--vertical .w-range-slider-track {
+  left: 50%;
+  right: auto;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.w-range-slider--vertical .w-range-slider-fill {
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: var(--start, 0%);
+  width: auto;
+  height: calc(var(--end, 100%) - var(--start, 0%));
+}
+
+.w-range-slider--vertical .w-range-slider-input {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 16px;
+  height: 100%;
+}
+
+.w-range-slider--vertical .w-range-slider-input::-webkit-slider-runnable-track {
+  width: 16px;
+  height: 100%;
+}
+
+.w-range-slider--vertical .w-range-slider-tick {
+  top: auto;
+  left: 50%;
+  bottom: var(--pos);
+  transform: translate(-50%, 50%);
+}
+
+.w-range-slider--vertical .w-range-slider-thumb-label {
+  left: 100%;
+  bottom: var(--pos);
+  transform: translate(0.375rem, 50%);
+}

@@ -1,0 +1,225 @@
+/* DuVay — Steppers component styles. */
+@import "../core.css";
+
+/* ── Stepper ─────────────────────────────────────────────────────────────── */
+.w-stepper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0;
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+}
+
+/* Slots distribute the header/window/actions (and steps) — let them participate
+   directly in the flex layout. */
+.w-stepper > slot,
+.w-stepper-header > slot {
+  display: contents;
+}
+
+/* The header, window, and actions each occupy their own full-width row. */
+.w-stepper w-stepper-header,
+.w-stepper w-stepper-window,
+.w-stepper w-stepper-actions {
+  flex: 1 0 100%;
+}
+
+.w-stepper w-stepper-window,
+.w-stepper w-stepper-actions {
+  margin-top: var(--w-space-4);
+}
+
+/* The stepper headers are the controls — neutralise the embedded window chrome. */
+.w-stepper w-stepper-window .w-window {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.w-stepper w-stepper-window .w-window-controls,
+.w-stepper w-stepper-window .w-window-arrow {
+  display: none;
+}
+
+.w-stepper-header {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.w-stepper-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+}
+
+.w-step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+/* The step host elements are the flex items that spread across the header row. */
+.w-stepper w-step,
+.w-stepper w-stepper-item {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.w-stepper w-step > .w-step,
+.w-stepper w-stepper-item > .w-step {
+  flex: 1;
+}
+
+.w-stepper--clickable .w-step.editable {
+  cursor: pointer;
+}
+
+.w-stepper--clickable .w-step.editable:hover .w-step-label {
+  color: var(--w-text);
+}
+
+.w-step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--w-surface-container-high);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-bold);
+  z-index: 1;
+  transition: background var(--w-transition-normal), color var(--w-transition-normal);
+  box-shadow: 0 0 0 4px var(--w-surface);
+}
+
+.w-step.active .w-step-indicator {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+}
+
+.w-step.done .w-step-indicator {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border: 1px solid color-mix(in srgb, var(--w-primary) 40%, transparent);
+}
+
+.w-step-connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 16px);
+  right: calc(-50% + 16px);
+  height: 2px;
+  background: var(--w-divider);
+  z-index: 0;
+}
+
+.w-step.done .w-step-connector {
+  background: var(--w-primary);
+}
+
+.w-step:last-child .w-step-connector {
+  display: none;
+}
+
+.w-step-label {
+  margin-top: 0.5rem;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+  color: var(--w-text-subtle);
+}
+
+.w-step-content {
+  min-width: 0;
+}
+
+.w-step.active .w-step-label {
+  color: var(--w-text);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-step.done .w-step-label {
+  color: var(--w-text-subtle);
+}
+
+.w-step-caption {
+  font-size: var(--w-font-xs);
+  color: var(--w-text-very-subtle);
+  margin-top: 0.125rem;
+}
+
+/* Vertical stepper */
+.w-stepper--vertical {
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+}
+
+.w-stepper--vertical .w-step {
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  gap: var(--w-space-md);
+  width: 100%;
+  padding-bottom: var(--w-space-xl);
+}
+
+.w-stepper--vertical .w-step-connector {
+  position: absolute;
+  top: 32px;
+  left: 16px;
+  right: auto;
+  bottom: 0;
+  width: 2px;
+  height: auto;
+}
+
+.w-stepper--vertical .w-step-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0 0 var(--w-space-1);
+}
+
+.w-stepper--vertical .w-step-label {
+  margin-top: 0.125rem;
+}
+
+/* Error state */
+.w-step.error .w-step-indicator {
+  background: var(--w-error);
+  color: var(--w-on-error);
+}
+
+.w-step.error .w-step-label {
+  color: var(--w-error);
+}
+
+/* alt-labels — labels beneath a slightly larger indicator row */
+.w-stepper--alt-labels .w-step-label {
+  margin-top: var(--w-space-2);
+}
+
+/* Vertical stepper interactive items (header + inline content) */
+.w-stepper--vertical .w-stepper-vertical-item {
+  position: relative;
+  width: 100%;
+}
+
+.w-stepper--vertical .w-stepper-vertical-content {
+  margin-left: calc(32px + var(--w-space-md));
+  padding: var(--w-space-1) 0 var(--w-space-4);
+}
+
+.w-stepper--vertical .w-stepper-vertical-item:last-child .w-step-connector {
+  display: none;
+}

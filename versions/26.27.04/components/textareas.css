@@ -1,0 +1,81 @@
+/* DuVay — Textareas component styles. */
+@import "../core.css";
+
+/* ── Textarea ────────────────────────────────────────────────────────────── */
+.w-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  padding: var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  line-height: 1.6;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--w-transition-fast);
+}
+
+.w-textarea:focus {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+/* ── Composed multiline field (<w-textarea>) ───────────────────────────────
+   Reuses the .w-text-field-* chrome from text-fields.css; these rules adapt it
+   for a <textarea>: top-aligned label, self-sizing height, resize handle. */
+.w-text-field--textarea .w-text-field-control {
+  align-items: flex-start;        /* label, icons, and clear align to the top */
+}
+
+.w-text-field--textarea .w-text-field-field {
+  display: block;                 /* let the textarea define the height */
+  width: 100%;
+}
+
+.w-text-field--textarea .w-text-field-textarea {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.w-text-field--textarea.w-text-field--no-resize .w-text-field-textarea { resize: none; }
+
+/* The label is always shown floated (a centred label looks wrong in a tall
+   box); reset the single-line centring rule and re-show the placeholder. */
+.w-text-field--textarea .w-text-field-label {
+  top: 0.6rem;
+  transform: none;
+  font-size: var(--w-font-xs);
+}
+.w-text-field--textarea .w-text-field-input:not(:focus)::placeholder {
+  color: var(--w-text-very-subtle);
+}
+
+/* Make room below the in-field label for non-outlined variants. */
+.w-text-field--textarea.w-text-field--floating:not(.w-text-field--outlined) .w-text-field-textarea {
+  padding-top: 1.7rem;
+}
+
+/* Outlined notches the label onto the top border, so the text can start high. */
+.w-text-field--textarea.w-text-field--outlined .w-text-field-label {
+  top: 0;
+  transform: translateY(-50%);
+  background: var(--w-surface);
+  padding: 0 0.25rem;
+  margin-left: -0.25rem;
+}
+
+/* Adornments ride the first line rather than the (tall) vertical centre. */
+.w-text-field--textarea .w-text-field-prepend-inner,
+.w-text-field--textarea .w-text-field-append-inner,
+.w-text-field--textarea .w-text-field-affix,
+.w-text-field--textarea .w-text-field-clear {
+  align-self: flex-start;
+  margin-top: 0.7rem;
+}

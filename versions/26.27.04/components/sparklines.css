@@ -1,0 +1,12 @@
+/* DuVay — Sparklines component styles. */
+@import "../core.css";
+
+/* ── Sparkline ───────────────────────────────────────────────────────────── */
+.w-sparkline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.w-sparkline svg {
+  display: block;
+}

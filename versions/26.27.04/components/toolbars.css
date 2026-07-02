@@ -1,0 +1,30 @@
+/* DuVay — Toolbars component styles. */
+@import "../core.css";
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────── */
+.w-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-height: 64px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface);
+}
+
+.w-toolbar-title {
+  min-width: 0;
+  color: var(--w-text);
+  font-size: var(--w-font-xl);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-toolbar-items {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  margin-left: auto;
+}

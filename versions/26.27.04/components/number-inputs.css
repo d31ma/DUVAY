@@ -1,0 +1,141 @@
+/* DuVay — Number Input component styles.
+ *
+ * Tokens: --w-border, --w-radius, --w-surface, --w-text, --w-hover, --w-primary,
+ * --w-space-*. Drives the <w-number-input> stepper layouts: default, stacked,
+ * split, hidden, plus the inset / hide-input / reverse modifiers.
+ */
+@import "../core.css";
+
+.w-number-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-xs);
+}
+
+/* ── Field shell ─────────────────────────────────────────────────────────── */
+.w-number-input-field {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  overflow: hidden;
+}
+
+.w-number-input-field:focus-within {
+  border-color: var(--w-primary);
+}
+
+.w-number-input-field .w-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ── Stepper buttons ─────────────────────────────────────────────────────── */
+.w-number-input-control {
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.w-number-input-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  padding: 0 var(--w-space-sm);
+  border: 0;
+  background: transparent;
+  color: var(--w-text-subtle);
+  line-height: 1;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-number-input-btn svg {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.w-number-input-btn:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-number-input-btn:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+.w-number-input-btn:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* ── default: dividers between control buttons and the input ─────────────── */
+.w-number-input--default .w-number-input-control,
+.w-number-input--split .w-number-input-btn {
+  border-inline-start: 1px solid var(--w-border);
+}
+
+.w-number-input--default .w-number-input-control .w-number-input-btn + .w-number-input-btn {
+  border-inline-start: 1px solid var(--w-border);
+}
+
+/* ── stacked: + over − at the field's end ────────────────────────────────── */
+.w-number-input--stacked .w-number-input-control {
+  flex-direction: column;
+  border-inline-start: 1px solid var(--w-border);
+}
+
+.w-number-input--stacked .w-number-input-btn {
+  flex: 1 1 0;
+  min-height: 1.1rem;
+  font-size: var(--w-font-sm);
+}
+
+.w-number-input--stacked .w-number-input-btn svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+
+.w-number-input--stacked .w-number-input-btn + .w-number-input-btn {
+  border-top: 1px solid var(--w-border);
+}
+
+/* ── split: − at the start, + at the end ─────────────────────────────────── */
+.w-number-input--split .w-number-input-btn[data-step="-1"] {
+  border-inline-start: 0;
+  border-inline-end: 1px solid var(--w-border);
+}
+
+.w-number-input--split .w-input {
+  text-align: center;
+}
+
+/* ── inset: no dividers, controls flush against the input ────────────────── */
+.w-number-input--inset .w-number-input-control,
+.w-number-input--inset .w-number-input-btn,
+.w-number-input--inset .w-number-input-control .w-number-input-btn + .w-number-input-btn {
+  border-color: transparent;
+}
+
+/* ── hide-input: stepper only ────────────────────────────────────────────── */
+.w-number-input--hide-input .w-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-number-input--hide-input .w-number-input-control {
+  border-inline-start: 0;
+}

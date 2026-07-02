@@ -1,0 +1,78 @@
+/* DuVay — Images component styles (Vuetify VImg parity).
+ * <w-img> renders a relatively-positioned container holding the image, an
+ * optional blurred placeholder, a gradient overlay, and slotted content. */
+@import "../core.css";
+
+/* ── Image container ──────────────────────────────────────────────────────── */
+.w-img {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.w-img__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.w-img__img--cover { object-fit: cover; }
+.w-img__img--contain { object-fit: contain; }
+
+/* Blurred low-res placeholder, faded out once the full image loads. */
+.w-img__placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity var(--w-transition, 0.2s ease);
+}
+.w-img__placeholder--lazy {
+  filter: blur(8px);
+  transform: scale(1.05);
+}
+.w-img--loaded .w-img__placeholder { opacity: 0; }
+
+/* Gradient overlay sits above the image, below slotted content. */
+.w-img__gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.w-img__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+/* Collapse the overlay when there's no slotted content so a plain image
+   keeps its natural inline height. */
+.w-img__content:empty { position: static; }
+
+.w-img__error {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Rounded variants ─────────────────────────────────────────────────────── */
+.w-img--rounded { border-radius: var(--w-radius); }
+.w-img--rounded-sm { border-radius: var(--w-radius-sm); }
+.w-img--rounded-lg { border-radius: var(--w-radius-lg); }
+.w-img--rounded-xl { border-radius: var(--w-radius-xl); }
+.w-img--rounded-pill { border-radius: var(--w-radius-pill, 999px); }
+.w-img--rounded-circle { border-radius: 50%; }
+.w-img--rounded-0 { border-radius: 0; }
+
+/* ── Legacy: plain <img class="w-img"> and host[fit] usage ────────────────── */
+img.w-img { display: block; max-width: 100%; height: auto; }
+img.w-img.w-img--cover { width: 100%; height: 100%; object-fit: cover; }
+img.w-img.w-img--contain { width: 100%; height: 100%; object-fit: contain; }
+img.w-img.w-img--rounded { border-radius: var(--w-radius); }

@@ -1,0 +1,58 @@
+/* DuVay — Otp Inputs component styles. */
+@import "../core.css";
+
+/* ── OTP Input ───────────────────────────────────────────────────────────── */
+.w-otp {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  justify-content: center;
+}
+
+.w-otp input {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-family: var(--w-font-family-mono);
+  font-size: var(--w-font-xl);
+  font-weight: var(--w-font-weight-medium);
+  text-align: center;
+  caret-color: var(--w-primary);
+  outline: none;
+  transition: border-color var(--w-transition-fast), box-shadow var(--w-transition-fast), background var(--w-transition-fast);
+}
+
+.w-otp input::placeholder {
+  color: var(--w-text-subtle);
+  opacity: var(--w-text-disabled-opacity);
+}
+
+.w-otp input:hover:not(:disabled):not(:focus) {
+  border-color: var(--w-text-subtle);
+}
+
+.w-otp input:focus {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-otp input:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  background: var(--w-surface-container-low);
+  cursor: not-allowed;
+}
+
+/* Divider between boxes (set via the `divider` attribute). */
+.w-otp-separator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--w-text-subtle);
+  font-family: var(--w-font-family-mono);
+  font-size: var(--w-font-lg);
+  -webkit-user-select: none;
+  user-select: none;
+}
