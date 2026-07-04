@@ -1,0 +1,244 @@
+/* DuVay — Tooltips component styles. */
+@import "../core.css";
+
+/* ── Tooltip ──────────────────────────────────────────────────────────────── */
+/* CSS-only tooltip: add w-tooltip="Your text" and .w-tooltip to any element. */
+.w-tooltip {
+  --w-tooltip-offset: 0.625rem;
+  --w-tooltip-bg: var(--w-inverse-surface);
+  --w-tooltip-fg: var(--w-inverse-on-surface);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.w-tooltip[w-tooltip]::after {
+  content: attr(w-tooltip);
+  position: absolute;
+  bottom: calc(100% + var(--w-tooltip-offset));
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--w-radius);
+  background: var(--w-tooltip-bg);
+  color: var(--w-tooltip-fg);
+  font-size: var(--w-font-xs);
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast), transform var(--w-transition-fast);
+  z-index: var(--w-z-dropdown);
+}
+
+.w-tooltip[w-tooltip]:hover::after,
+.w-tooltip[w-tooltip]:focus-visible::after,
+.w-tooltip[w-tooltip]:focus-within::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Tooltip placement variants */
+.w-tooltip--bottom::after,
+.w-tooltip[w-tooltip-position="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + var(--w-tooltip-offset));
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.w-tooltip--bottom:hover::after,
+.w-tooltip--bottom:focus-visible::after,
+.w-tooltip--bottom:focus-within::after,
+.w-tooltip[w-tooltip-position="bottom"]:hover::after,
+.w-tooltip[w-tooltip-position="bottom"]:focus-visible::after,
+.w-tooltip[w-tooltip-position="bottom"]:focus-within::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.w-tooltip--left::after,
+.w-tooltip--start::after,
+.w-tooltip[w-tooltip-position="left"]::after,
+.w-tooltip[w-tooltip-position="start"]::after {
+  bottom: auto;
+  left: auto;
+  right: calc(100% + var(--w-tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%) translateX(2px);
+}
+
+.w-tooltip--left:hover::after,
+.w-tooltip--left:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+.w-tooltip--right::after,
+.w-tooltip--end::after,
+.w-tooltip[w-tooltip-position="right"]::after,
+.w-tooltip[w-tooltip-position="end"]::after {
+  bottom: auto;
+  left: calc(100% + var(--w-tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.w-tooltip--right:hover::after,
+.w-tooltip--right:focus-visible::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+.w-tooltip-activator {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--w-radius-sm);
+}
+
+.w-tooltip-activator:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-tooltip-content {
+  position: absolute;
+  bottom: calc(100% + var(--w-tooltip-offset));
+  left: 50%;
+  z-index: var(--w-z-dropdown);
+  display: inline-block;
+  width: max-content;
+  max-width: min(20rem, calc(100vw - var(--w-space-8)));
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--w-radius);
+  background: var(--w-tooltip-bg);
+  box-shadow: var(--w-shadow-sm);
+  color: var(--w-tooltip-fg);
+  font-size: var(--w-font-xs);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-align: center;
+  pointer-events: none;
+  text-transform: initial;
+  opacity: 0;
+  transform: translateX(-50%) translateY(2px) scale(0.98);
+  transform-origin: bottom center;
+  transition:
+    opacity var(--w-transition-fast),
+    transform var(--w-transition-fast);
+}
+
+.w-tooltip-content[hidden],
+.w-tooltip--target-cursor:not(.w-tooltip--cursor-ready) .w-tooltip-content {
+  display: none;
+}
+
+.w-tooltip-content > slot {
+  display: contents;
+}
+
+.w-tooltip.open .w-tooltip-content,
+.w-tooltip--open .w-tooltip-content {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.w-tooltip--interactive .w-tooltip-content {
+  pointer-events: auto;
+}
+
+.w-tooltip--disabled {
+  pointer-events: none;
+}
+
+.w-tooltip--bottom .w-tooltip-content,
+.w-tooltip--bottom-center .w-tooltip-content {
+  top: calc(100% + var(--w-tooltip-offset));
+  bottom: auto;
+  transform: translateX(-50%) translateY(-2px) scale(0.98);
+  transform-origin: top center;
+}
+
+.w-tooltip--bottom.open .w-tooltip-content,
+.w-tooltip--bottom-center.open .w-tooltip-content {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.w-tooltip--left .w-tooltip-content,
+.w-tooltip--start .w-tooltip-content,
+.w-tooltip--center-left .w-tooltip-content,
+.w-tooltip--center-start .w-tooltip-content {
+  top: 50%;
+  right: calc(100% + var(--w-tooltip-offset));
+  bottom: auto;
+  left: auto;
+  transform: translateY(-50%) translateX(2px) scale(0.98);
+  transform-origin: center right;
+}
+
+.w-tooltip--left.open .w-tooltip-content,
+.w-tooltip--start.open .w-tooltip-content,
+.w-tooltip--center-left.open .w-tooltip-content,
+.w-tooltip--center-start.open .w-tooltip-content {
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.w-tooltip--right .w-tooltip-content,
+.w-tooltip--end .w-tooltip-content,
+.w-tooltip--center-right .w-tooltip-content,
+.w-tooltip--center-end .w-tooltip-content {
+  top: 50%;
+  bottom: auto;
+  left: calc(100% + var(--w-tooltip-offset));
+  transform: translateY(-50%) translateX(-2px) scale(0.98);
+  transform-origin: center left;
+}
+
+.w-tooltip--right.open .w-tooltip-content,
+.w-tooltip--end.open .w-tooltip-content,
+.w-tooltip--center-right.open .w-tooltip-content,
+.w-tooltip--center-end.open .w-tooltip-content {
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.w-tooltip--top-start .w-tooltip-content,
+.w-tooltip--bottom-start .w-tooltip-content {
+  right: auto;
+  left: 0;
+  transform: translateY(2px) scale(0.98);
+}
+
+.w-tooltip--top-end .w-tooltip-content,
+.w-tooltip--bottom-end .w-tooltip-content {
+  right: 0;
+  left: auto;
+  transform: translateY(2px) scale(0.98);
+}
+
+.w-tooltip--bottom-start .w-tooltip-content,
+.w-tooltip--bottom-end .w-tooltip-content {
+  top: calc(100% + var(--w-tooltip-offset));
+  bottom: auto;
+  transform: translateY(-2px) scale(0.98);
+  transform-origin: top center;
+}
+
+.w-tooltip--top-start.open .w-tooltip-content,
+.w-tooltip--top-end.open .w-tooltip-content,
+.w-tooltip--bottom-start.open .w-tooltip-content,
+.w-tooltip--bottom-end.open .w-tooltip-content {
+  transform: translateY(0) scale(1);
+}
+
+.w-tooltip--target-cursor .w-tooltip-content {
+  position: fixed;
+  top: calc(var(--w-tooltip-cursor-y, 0px) + var(--w-tooltip-offset));
+  bottom: auto;
+  left: calc(var(--w-tooltip-cursor-x, 0px) + var(--w-tooltip-offset));
+  z-index: calc(var(--w-z-dropdown) + 1);
+  transform: translateY(-2px) scale(0.98);
+  transform-origin: top left;
+}
+
+.w-tooltip--target-cursor.open .w-tooltip-content {
+  transform: translateY(0) scale(1);
+}

@@ -1,0 +1,40 @@
+/* DuVay — Fields component styles. */
+@import "../core.css";
+
+/* ── Field (label + input group) ─────────────────────────────────────────── */
+.w-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.w-field-label {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-field-hint {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+}
+
+.w-field-error .w-input,
+.w-field-error .w-select,
+.w-field-error .w-textarea {
+  border-color: var(--w-error);
+}
+
+.w-field-error .w-input:focus,
+.w-field-error .w-select:focus,
+.w-field-error .w-textarea:focus {
+  box-shadow: 0 0 0 1px var(--w-error);
+}
+
+.w-field-error .w-field-label {
+  color: var(--w-error);
+}
+
+.w-field-error .w-field-hint {
+  color: var(--w-error);
+}

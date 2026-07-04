@@ -1,0 +1,122 @@
+/* DuVay — Progress component styles (Vuetify v-progress-linear / -circular parity). */
+@import "../core.css";
+
+/* ── Linear ───────────────────────────────────────────────────────────────── */
+.w-progress {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: var(--w-progress-height, 4px);
+  background: var(--w-progress-bg, var(--w-surface-container-high));
+  overflow: hidden;
+}
+
+.w-progress--rounded,
+.w-progress--rounded .w-progress-bar { border-radius: var(--w-radius-pill); }
+
+.w-progress-bar {
+  height: 100%;
+  inline-size: 0;
+  background: var(--w-progress-color, var(--w-primary));
+  transition: inline-size 0.3s ease;
+}
+
+.w-progress--reverse { flex-direction: row-reverse; }
+
+/* Buffer sits behind the bar, ahead of the filled portion. */
+.w-progress-buffer {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  background: var(--w-progress-buffer-color, color-mix(in srgb, var(--w-progress-color, var(--w-primary)) 30%, transparent));
+  transition: inline-size 0.3s ease;
+}
+.w-progress--reverse .w-progress-buffer { inset-inline-start: auto; inset-inline-end: 0; }
+
+/* Stream — animated dots running ahead of the buffer. */
+.w-progress-stream {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  border-top: 2px dotted var(--w-progress-color, var(--w-primary));
+  opacity: 0.5;
+  animation: w-progress-stream 0.25s linear infinite;
+}
+@keyframes w-progress-stream { from { background-position-x: 0; } to { background-position-x: -8px; } }
+
+.w-progress--striped .w-progress-bar {
+  background-image: linear-gradient(45deg,
+    rgba(255, 255, 255, 0.25) 25%, transparent 25%,
+    transparent 50%, rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
+}
+
+.w-progress--indeterminate .w-progress-bar {
+  inline-size: 40%;
+  animation: w-progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes w-progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* Absolute positioning (e.g. pinned to the top of a card/toolbar). */
+.w-progress--absolute { position: absolute; inset-inline: 0; }
+.w-progress--top { top: 0; }
+.w-progress--bottom { bottom: 0; }
+
+.w-progress-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--w-font-xs);
+  color: var(--w-text);
+}
+
+/* ── Circular ─────────────────────────────────────────────────────────────── */
+.w-progress-circular {
+  position: relative;
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+}
+
+.w-progress-circular svg {
+  transform: rotate(calc(-90deg + var(--w-progress-rotate, 0deg)));
+}
+
+.w-progress-circular circle {
+  fill: none;
+  stroke-width: var(--w-progress-width, 4);
+  stroke-linecap: round;
+}
+
+.w-progress-circular .w-progress-track { stroke: var(--w-progress-bg, var(--w-surface-container-high)); }
+
+.w-progress-circular .w-progress-fill {
+  stroke: var(--w-progress-color, var(--w-primary));
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.w-progress-circular--indeterminate svg { animation: w-circular-rotate 1.4s linear infinite; }
+.w-progress-circular--indeterminate .w-progress-fill { animation: w-circular-dash 1.4s ease-in-out infinite; }
+
+@keyframes w-circular-rotate { 100% { transform: rotate(270deg); } }
+@keyframes w-circular-dash {
+  0%   { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 90, 200; stroke-dashoffset: -35; }
+  100% { stroke-dasharray: 90, 200; stroke-dashoffset: -124; }
+}
+
+.w-progress-circular .w-progress-content { font-size: var(--w-font-sm); }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-progress--indeterminate .w-progress-bar,
+  .w-progress-circular--indeterminate svg,
+  .w-progress-circular--indeterminate .w-progress-fill,
+  .w-progress-stream { animation-duration: 0s; }
+}

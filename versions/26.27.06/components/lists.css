@@ -1,0 +1,232 @@
+/* DuVay — Lists component styles. */
+@import "../core.css";
+
+/* ── List ─────────────────────────────────────────────────────────────────── */
+.w-list {
+  --w-list-indent: var(--w-space-2);
+  --w-list-prepend-gap: 1.5rem;
+  --w-list-item-active: var(--w-secondary-container);
+  --w-list-item-active-fg: var(--w-on-secondary-container);
+  --w-list-item-base: transparent;
+  --w-list-item-accent: var(--w-primary);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--w-space-2) 0;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+}
+
+.w-list > slot,
+.w-stepper > slot,
+.w-timeline > slot,
+.w-window-track > slot {
+  display: contents;
+}
+
+.w-list--nav {
+  gap: var(--w-space-1);
+  padding: var(--w-space-2);
+}
+
+.w-list--slim {
+  padding-block: var(--w-space-1);
+}
+
+.w-list-subheader {
+  padding: var(--w-space-2) var(--w-space-4);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.w-list-divider {
+  height: 1px;
+  margin: var(--w-space-2) 0;
+  background: var(--w-divider);
+}
+
+.w-list-item {
+  --w-list-item-active: var(--w-secondary-container);
+  --w-list-item-active-fg: var(--w-on-secondary-container);
+  --w-list-item-base: transparent;
+  --w-list-item-accent: var(--w-primary);
+  display: grid;
+  grid-template-columns: minmax(var(--w-list-prepend-gap), auto) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--w-space-3);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--w-space-2) var(--w-space-4);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  transition: background var(--w-transition-normal), color var(--w-transition-normal);
+}
+
+.w-list--nav .w-list-item,
+.w-list-item--nav,
+.w-list-item--rounded {
+  border-radius: var(--w-radius);
+}
+
+.w-list-item:hover {
+  background: var(--w-hover);
+}
+
+.w-list-item:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+.w-list-item.active,
+.w-list-item[aria-current="page"] {
+  background: var(--w-list-item-active);
+  color: var(--w-list-item-active-fg);
+}
+
+.w-list-item:disabled,
+.w-list-item.disabled,
+.w-list-item[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.w-list-item--variant-plain {
+  opacity: 0.72;
+}
+
+.w-list-item--variant-plain:hover,
+.w-list-item--variant-plain.active {
+  opacity: 1;
+}
+
+.w-list-item--variant-tonal {
+  background: color-mix(in srgb, var(--w-list-item-accent) 10%, transparent);
+}
+
+.w-list-item--variant-tonal.active,
+.w-list--variant-tonal .w-list-item.active {
+  background: color-mix(in srgb, var(--w-list-item-accent) 20%, var(--w-surface));
+  color: var(--w-text);
+}
+
+.w-list-item--variant-outlined {
+  border: 1px solid var(--w-border);
+}
+
+.w-list-item--border {
+  border: 1px solid var(--w-border);
+}
+
+.w-list-item--elevation-1 {
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-list-item--elevation-2,
+.w-list-item--elevation-3 {
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-list-item-prepend,
+.w-list-item-append {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  color: var(--w-text-subtle);
+  line-height: 1;
+}
+
+.w-list-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+}
+
+.w-list-item-avatar {
+  flex: 0 0 auto;
+}
+
+.w-list-item.active .w-list-item-prepend,
+.w-list-item.active .w-list-item-append,
+.w-list-item[aria-current="page"] .w-list-item-prepend,
+.w-list-item[aria-current="page"] .w-list-item-append {
+  color: currentColor;
+}
+
+.w-list-item-content {
+  min-width: 0;
+}
+
+.w-list-item-title {
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-list-item-subtitle {
+  display: block;
+  overflow: hidden;
+  margin-top: 0.125rem;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-list-item.active .w-list-item-subtitle,
+.w-list-item[aria-current="page"] .w-list-item-subtitle {
+  color: color-mix(in srgb, currentColor 78%, transparent);
+}
+
+.w-list--compact .w-list-item,
+.w-list-item--compact {
+  min-height: 40px;
+  padding-block: var(--w-space-1);
+}
+
+.w-list-item--slim,
+.w-list--slim .w-list-item {
+  min-height: 36px;
+  padding-block: var(--w-space-1);
+}
+
+.w-list--comfortable .w-list-item,
+.w-list-item--comfortable {
+  min-height: 56px;
+}
+
+.w-list--two-line .w-list-item,
+.w-list-item--two-line {
+  min-height: 64px;
+}
+
+.w-list--three-line .w-list-item,
+.w-list-item--three-line {
+  min-height: 88px;
+  align-items: start;
+}
+
+.w-list--three-line .w-list-item-prepend,
+.w-list--three-line .w-list-item-append,
+.w-list-item--three-line .w-list-item-prepend,
+.w-list-item--three-line .w-list-item-append {
+  padding-top: var(--w-space-2);
+}

@@ -1,0 +1,180 @@
+/* DuVay — File Inputs component styles. */
+@import "../core.css";
+
+/* ── File input ───────────────────────────────────────────────────────────── */
+.w-file-input {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-md);
+}
+
+.w-file-input input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-file-input-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-lg);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal);
+}
+
+.w-file-input-label:hover {
+  background: var(--w-hover);
+  border-color: var(--w-primary);
+}
+
+.w-file-input-name {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+/* Enhanced field layout (chips, counter, placeholder, clearable) */
+.w-file-input--field {
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  overflow: hidden;
+  transition: border-color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-file-input--field:focus-within {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-file-input-field {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--w-space-1);
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: var(--w-size-md);
+  padding: var(--w-space-1) var(--w-space-md);
+  cursor: pointer;
+}
+
+.w-file-input-field input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-file-input-placeholder {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-base);
+}
+
+.w-file-input-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-file-input-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-md);
+  min-height: var(--w-size-md);
+  padding: 0;
+  border: 0;
+  border-inline-start: 1px solid var(--w-border);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-file-input-clear:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-file-input-clear:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+/* Density variants */
+.w-file-input--density-compact .w-file-input-field,
+.w-file-input--density-compact .w-file-input-clear {
+  min-height: var(--w-size-sm);
+}
+
+.w-file-input--density-compact .w-file-input-clear {
+  width: var(--w-size-sm);
+}
+
+.w-file-input--density-comfortable .w-file-input-field,
+.w-file-input--density-comfortable .w-file-input-clear {
+  min-height: var(--w-size-md);
+}
+
+.w-file-input--density-comfortable .w-file-input-clear {
+  width: var(--w-size-md);
+}
+
+/* Validation and disabled states */
+.w-field-error .w-file-input--field {
+  border-color: var(--w-error);
+}
+
+.w-field-error .w-file-input--field:focus-within {
+  border-color: var(--w-error);
+  box-shadow: 0 0 0 1px var(--w-error);
+}
+
+.w-file-input--field:has(input:disabled),
+.w-file-input--field:has(input[readonly]) {
+  opacity: 0.5;
+  background: var(--w-surface-container-low);
+  cursor: not-allowed;
+}
+
+.w-file-input--field:has(input:disabled) .w-file-input-field,
+.w-file-input--field:has(input[readonly]) .w-file-input-field,
+.w-file-input--field:has(input:disabled) .w-file-input-clear,
+.w-file-input--field:has(input[readonly]) .w-file-input-clear {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Drag-over highlight */
+.w-file-input-field.w-file-input--dragover {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-file-input-label,
+  .w-file-input--field,
+  .w-file-input-clear {
+    transition: none;
+  }
+}

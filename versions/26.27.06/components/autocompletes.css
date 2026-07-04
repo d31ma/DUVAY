@@ -1,0 +1,205 @@
+/* DuVay — Autocompletes component styles. */
+@import "../core.css";
+
+/* ── Autocomplete ────────────────────────────────────────────────────────── */
+.w-autocomplete {
+  position: relative;
+  display: block;
+}
+
+.w-autocomplete-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--w-space-1);
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  transition: border-color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-autocomplete-wrap:focus-within {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-field-error .w-autocomplete-wrap {
+  border-color: var(--w-error);
+}
+
+.w-field-error .w-autocomplete-wrap:focus-within {
+  border-color: var(--w-error);
+  box-shadow: 0 0 0 1px var(--w-error);
+}
+
+.w-autocomplete-wrap:has(.w-input:disabled),
+.w-autocomplete-wrap:has(.w-input[readonly]) {
+  background: var(--w-surface-container-low);
+  cursor: not-allowed;
+}
+
+.w-autocomplete-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-autocomplete-chips:empty {
+  display: none;
+}
+
+.w-autocomplete-chip {
+  /* Inherits .w-chip styles */
+}
+
+.w-autocomplete-input {
+  /* flex-basis:0 (not auto) so the input grows into the leftover space rather
+   * than inheriting .w-input's width:100% and wrapping the clear button. */
+  flex: 1 1 0;
+  width: auto;
+  min-width: 3rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.w-autocomplete-input:focus {
+  box-shadow: none;
+}
+
+.w-autocomplete-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-size: var(--w-font-sm);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.w-autocomplete-clear:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-autocomplete-wrap.w-autocomplete-loading::after {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--w-border);
+  border-top-color: var(--w-primary);
+  border-radius: 50%;
+  animation: w-spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+.w-autocomplete-loading .w-autocomplete-clear {
+  display: none;
+}
+
+.w-autocomplete-list {
+  position: absolute;
+  top: calc(100% + var(--w-space-1));
+  left: 0;
+  right: 0;
+  z-index: var(--w-z-dropdown);
+  max-height: 20rem;
+  overflow: auto;
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-autocomplete-list[hidden] {
+  display: none;
+}
+
+.w-autocomplete-empty {
+  padding: var(--w-space-md) var(--w-space-3);
+  text-align: center;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-autocomplete-empty[hidden] {
+  display: none;
+}
+
+.w-autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  width: 100%;
+  min-height: var(--w-touch-min);
+  padding: var(--w-space-2) var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  text-align: left;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-autocomplete-item:hover:not(:disabled),
+.w-autocomplete-item:focus-visible,
+.w-autocomplete-item.active {
+  background: var(--w-hover);
+}
+
+.w-autocomplete-item[aria-selected='true'] {
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+}
+
+.w-autocomplete-item[aria-selected='true'] .w-autocomplete-item-subtitle {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.w-autocomplete-item:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-autocomplete-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+
+.w-autocomplete-item-title,
+.w-autocomplete-item-subtitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-autocomplete-item-subtitle {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+}
+
+/* Sizes */
+.w-autocomplete-wrap:has(.w-input--xs) { min-height: var(--w-size-xs); }
+.w-autocomplete-wrap:has(.w-input--sm) { min-height: var(--w-size-sm); }
+.w-autocomplete-wrap:has(.w-input--lg) { min-height: var(--w-size-lg); }
+.w-autocomplete-wrap:has(.w-input--xl) { min-height: var(--w-size-xl); }

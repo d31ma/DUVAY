@@ -1,0 +1,148 @@
+/* DuVay — Snackbars component styles (Vuetify v-snackbar parity). */
+@import "../core.css";
+
+/* ── Snackbar ─────────────────────────────────────────────────────────────── */
+.w-snackbar {
+  position: fixed;
+  z-index: var(--w-z-toast);
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-width: 344px;
+  max-width: min(672px, calc(100vw - 2rem));
+  padding: 0.75rem var(--w-space-lg);
+  border-radius: var(--w-radius);
+  background: var(--w-snackbar-bg, var(--w-inverse-surface));
+  color: var(--w-snackbar-fg, var(--w-inverse-on-surface));
+  font-size: var(--w-font-sm);
+  line-height: 1.4;
+  box-shadow: var(--w-shadow-lg);
+  overflow: hidden;
+  animation: w-toast-in 0.2s ease-out;
+}
+
+/* Vertical edge */
+.w-snackbar--bottom { bottom: 1rem; }
+.w-snackbar--top { top: 1rem; }
+
+/* Horizontal alignment */
+.w-snackbar--center { left: 50%; transform: translateX(-50%); }
+.w-snackbar--start { left: 1rem; }
+.w-snackbar--end { right: 1rem; }
+
+.w-snackbar--inline,
+.w-sonner--inline .w-snackbar {
+  position: static;
+  inset: auto;
+  z-index: auto;
+  width: min(28rem, 100%);
+  min-width: min(21.5rem, 100%);
+  max-width: 100%;
+  transform: none;
+}
+
+/* Multi-line — taller, top-aligned actions for longer copy. */
+.w-snackbar--multi-line {
+  min-height: 68px;
+  align-items: flex-start;
+}
+.w-snackbar--multi-line .w-snackbar-actions { padding-top: 0.125rem; }
+
+/* Vertical — actions drop below the message. */
+.w-snackbar--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+.w-snackbar--vertical .w-snackbar-actions { justify-content: flex-end; }
+
+.w-snackbar--rounded { border-radius: var(--w-radius-lg); }
+
+/* Variants */
+.w-snackbar--outlined {
+  background: transparent;
+  border: 1px solid currentColor;
+  box-shadow: none;
+}
+.w-snackbar--text { background: transparent; box-shadow: none; }
+.w-snackbar--elevated { box-shadow: var(--w-shadow-xl, var(--w-shadow-lg)); }
+
+.w-snackbar-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.w-snackbar-msg {
+  min-width: 0;
+}
+
+.w-snackbar-actions {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-snackbar-action {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-snackbar-action, var(--w-inverse-primary));
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--w-letter-spacing-wide);
+  padding: 0.25rem 0.5rem;
+  min-height: 32px;
+  transition: background var(--w-transition-fast);
+}
+
+.w-snackbar-action:hover {
+  background: color-mix(in srgb, var(--w-snackbar-fg, var(--w-inverse-on-surface)) 12%, transparent);
+}
+
+.w-snackbar-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--w-transition-fast), background var(--w-transition-fast);
+}
+
+.w-snackbar-close:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--w-snackbar-fg, var(--w-inverse-on-surface)) 12%, transparent);
+}
+
+/* Countdown timer bar. */
+.w-snackbar-timer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--w-snackbar-action, var(--w-inverse-primary));
+  transform-origin: left;
+  animation-name: w-snackbar-timer;
+  animation-timing-function: linear;
+}
+
+@keyframes w-snackbar-timer {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-snackbar { animation-duration: 0s; }
+  .w-snackbar-timer { animation: none; }
+}

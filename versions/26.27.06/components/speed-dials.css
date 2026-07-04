@@ -1,0 +1,155 @@
+/* DuVay — Speed Dials component styles. */
+@import "../core.css";
+
+/* ── Speed Dial ──────────────────────────────────────────────────────────── */
+.w-speed-dial {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+/* Trigger FAB */
+.w-speed-dial__trigger {
+  z-index: 2;
+}
+
+/* Actions container */
+.w-speed-dial__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  opacity: 0;
+  transform: scale(0.4);
+  pointer-events: none;
+  transition: opacity var(--w-motion-duration) var(--w-motion-ease-enter),
+              transform var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+/* Open state */
+.w-speed-dial--open .w-speed-dial__actions {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ── Vertical directions (top / bottom) ──────────────────────────────────── */
+.w-speed-dial--top,
+.w-speed-dial--bottom {
+  flex-direction: column;
+}
+
+.w-speed-dial--top .w-speed-dial__actions {
+  flex-direction: column-reverse;
+  margin-bottom: var(--w-space-2);
+}
+
+.w-speed-dial--bottom .w-speed-dial__actions {
+  flex-direction: column;
+  margin-top: var(--w-space-2);
+}
+
+/* ── Horizontal directions (left / right) ───────────────────────────────── */
+.w-speed-dial--left,
+.w-speed-dial--right {
+  flex-direction: row;
+}
+
+.w-speed-dial--left .w-speed-dial__actions {
+  flex-direction: row-reverse;
+  margin-right: var(--w-space-2);
+}
+
+.w-speed-dial--right .w-speed-dial__actions {
+  flex-direction: row;
+  margin-left: var(--w-space-2);
+}
+
+/* ── Alignment modifiers (start / end / center) ──────────────────────────── */
+/* For top/bottom, start/end controls horizontal alignment of actions */
+.w-speed-dial--top.w-speed-dial--start .w-speed-dial__actions,
+.w-speed-dial--bottom.w-speed-dial--start .w-speed-dial__actions {
+  align-self: flex-start;
+}
+
+.w-speed-dial--top.w-speed-dial--end .w-speed-dial__actions,
+.w-speed-dial--bottom.w-speed-dial--end .w-speed-dial__actions {
+  align-self: flex-end;
+}
+
+/* For left/right, start/end controls vertical alignment of actions */
+.w-speed-dial--left.w-speed-dial--start .w-speed-dial__actions,
+.w-speed-dial--right.w-speed-dial--start .w-speed-dial__actions {
+  align-self: flex-start;
+}
+
+.w-speed-dial--left.w-speed-dial--end .w-speed-dial__actions,
+.w-speed-dial--right.w-speed-dial--end .w-speed-dial__actions {
+  align-self: flex-end;
+}
+
+/* ── Transitions ─────────────────────────────────────────────────────────── */
+/* Scale (default) */
+.w-speed-dial--transition-scale .w-speed-dial__actions {
+  transform: scale(0.4);
+  transform-origin: center center;
+}
+.w-speed-dial--transition-scale.w-speed-dial--top .w-speed-dial__actions {
+  transform-origin: bottom center;
+}
+.w-speed-dial--transition-scale.w-speed-dial--bottom .w-speed-dial__actions {
+  transform-origin: top center;
+}
+.w-speed-dial--transition-scale.w-speed-dial--left .w-speed-dial__actions {
+  transform-origin: center right;
+}
+.w-speed-dial--transition-scale.w-speed-dial--right .w-speed-dial__actions {
+  transform-origin: center left;
+}
+
+/* Slide */
+.w-speed-dial--transition-slide .w-speed-dial__actions {
+  transform: translateY(0.75rem) scale(0.9);
+}
+.w-speed-dial--transition-slide.w-speed-dial--top .w-speed-dial__actions {
+  transform: translateY(0.75rem) scale(0.9);
+  transform-origin: bottom center;
+}
+.w-speed-dial--transition-slide.w-speed-dial--bottom .w-speed-dial__actions {
+  transform: translateY(-0.75rem) scale(0.9);
+  transform-origin: top center;
+}
+.w-speed-dial--transition-slide.w-speed-dial--left .w-speed-dial__actions {
+  transform: translateX(0.75rem) scale(0.9);
+  transform-origin: center right;
+}
+.w-speed-dial--transition-slide.w-speed-dial--right .w-speed-dial__actions {
+  transform: translateX(-0.75rem) scale(0.9);
+  transform-origin: center left;
+}
+.w-speed-dial--transition-slide.w-speed-dial--open .w-speed-dial__actions {
+  transform: translateY(0) scale(1);
+}
+
+/* Fade */
+.w-speed-dial--transition-fade .w-speed-dial__actions {
+  transform: none;
+  transition: opacity var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+/* ── Action items (child FABs) ───────────────────────────────────────────── */
+.w-speed-dial__actions .w-fab {
+  --w-fab-size: var(--w-size-md);
+}
+.w-speed-dial__actions .w-fab .w-icon,
+.w-speed-dial__actions .w-fab svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .w-speed-dial__actions {
+    transition: none !important;
+  }
+}

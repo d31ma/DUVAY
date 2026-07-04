@@ -1,0 +1,20 @@
+/* DuVay — Confirm-edit component styles (<w-confirm-edit>). */
+@import "../core.css";
+
+.w-confirm-edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-3);
+}
+
+.w-confirm-edit-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-2);
+}
+
+.w-confirm-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--w-space-2);
+}

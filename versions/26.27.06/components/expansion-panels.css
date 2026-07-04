@@ -1,0 +1,241 @@
+/* DuVay — Expansion Panels component styles. */
+@import "../core.css";
+
+/* ── Expansion Panel ─────────────────────────────────────────────────────── */
+.w-accordion {
+  --w-expansion-gap: var(--w-space-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+  width: 100%;
+}
+
+.w-accordion > slot {
+  display: contents;
+}
+
+.w-accordion .w-expand {
+  margin-bottom: 0;
+  border-width: 0 0 1px;
+  border-radius: 0;
+}
+
+.w-accordion .w-expand:last-child {
+  border-bottom: 0;
+}
+
+.w-expand {
+  flex: 1 0 100%;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  overflow: hidden;
+  background: var(--w-surface);
+  margin-bottom: var(--w-space-xs);
+  transition:
+    border-color var(--w-transition-normal),
+    border-radius var(--w-transition-normal),
+    box-shadow var(--w-transition-normal),
+    margin var(--w-transition-normal),
+    max-width var(--w-transition-normal);
+}
+
+.w-expand-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  width: 100%;
+  min-height: 52px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  text-align: left;
+  transition:
+    background var(--w-transition-fast),
+    color var(--w-transition-fast),
+    min-height var(--w-transition-normal);
+}
+
+.w-expand-header:hover {
+  background: var(--w-hover);
+}
+
+.w-expand-header:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+.w-expand-header:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.w-expand-chevron {
+  flex-shrink: 0;
+  transition: transform var(--w-transition-slow);
+  opacity: 0.6;
+}
+
+.w-expansion-panel-title__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+}
+
+.w-expand.open .w-expand-header {
+  min-height: 56px;
+  background: color-mix(in srgb, var(--w-primary) 8%, transparent);
+  color: var(--w-primary);
+}
+
+.w-expand.open .w-expand-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.w-expand-body {
+  display: none;
+  padding: var(--w-space-lg);
+  color: var(--w-text-subtle);
+  line-height: 1.6;
+  border-top: 1px solid transparent;
+}
+
+.w-expand.open .w-expand-body {
+  display: block;
+  border-top-color: var(--w-divider);
+}
+
+.w-expansion-panel-title {
+  /* Inherits .w-expand-header styles via template */
+  width: 100%;
+}
+
+.w-expansion-panel-text {
+  /* Inherits .w-expand-body styles via template */
+  width: 100%;
+}
+
+.w-expansion-panel-text__wrapper {
+  max-width: 100%;
+}
+
+.w-expansion-panel-text__wrapper > :first-child {
+  margin-top: 0;
+}
+
+.w-expansion-panel-text__wrapper > :last-child {
+  margin-bottom: 0;
+}
+
+.w-expand--disabled {
+  color: var(--w-text-muted);
+  opacity: 0.72;
+}
+
+.w-expand--readonly .w-expand-header {
+  cursor: default;
+}
+
+.w-expand--static .w-expand-header {
+  min-height: 48px;
+}
+
+.w-expand--hide-actions .w-expand-title {
+  padding-inline-end: 0;
+}
+
+.w-expand--tile,
+.w-accordion--tile,
+.w-accordion--tile .w-expand {
+  border-radius: 0;
+}
+
+.w-accordion--flat,
+.w-accordion--flat .w-expand {
+  box-shadow: none;
+}
+
+.w-accordion--flat {
+  border-color: transparent;
+}
+
+.w-accordion--no-divider .w-expand,
+.w-accordion--no-divider .w-expand.open .w-expand-body {
+  border-bottom-color: transparent;
+  border-top-color: transparent;
+}
+
+.w-accordion--variant-default {
+  gap: var(--w-expansion-gap);
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.w-accordion--variant-default .w-expand {
+  border-width: 1px;
+  border-radius: var(--w-radius);
+  margin-bottom: 0;
+}
+
+.w-accordion--variant-default .w-expand.open {
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-accordion--variant-accordion {
+  gap: 0;
+}
+
+.w-accordion--variant-popout,
+.w-accordion--variant-inset {
+  align-items: center;
+  gap: var(--w-expansion-gap);
+  overflow: visible;
+  border: 0;
+  background: transparent;
+}
+
+.w-accordion--variant-popout .w-expand,
+.w-accordion--variant-inset .w-expand {
+  width: 100%;
+  margin-bottom: 0;
+  border-width: 1px;
+  border-radius: var(--w-radius);
+}
+
+.w-accordion--variant-popout .w-expand {
+  max-width: calc(100% - var(--w-space-8));
+}
+
+.w-accordion--variant-popout .w-expand.open {
+  max-width: 100%;
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-accordion--variant-inset .w-expand {
+  max-width: 100%;
+}
+
+.w-accordion--variant-inset .w-expand.open {
+  max-width: calc(100% - var(--w-space-8));
+  box-shadow: var(--w-shadow-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-expand,
+  .w-expand-header,
+  .w-expand-chevron,
+  .w-collapsible-icon {
+    transition: none;
+  }
+}

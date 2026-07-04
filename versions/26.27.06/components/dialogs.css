@@ -1,0 +1,104 @@
+/* DuVay — Dialogs component styles. */
+@import "../core.css";
+
+/* ── Dialog / Modal ──────────────────────────────────────────────────────── */
+.w-dialog-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--w-space-2xl);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--w-transition-normal), visibility var(--w-transition-normal);
+}
+
+.w-dialog-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-dialog {
+  --w-dialog-width: 512px;
+  --w-dialog-max-width: calc(100dvw - 4rem);
+  box-sizing: border-box;
+  width: min(100%, var(--w-dialog-width));
+  max-width: var(--w-dialog-max-width);
+  max-height: calc(100dvh - 4rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-lg);
+  outline: 0;
+  transform: translateY(0) scale(1);
+  transition: transform var(--w-transition-normal), opacity var(--w-transition-normal);
+}
+
+.w-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  padding: var(--w-space-xl) var(--w-space-xl) var(--w-space-md);
+}
+
+.w-dialog-title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-dialog-body {
+  flex: 1;
+  padding: 0 var(--w-space-xl) var(--w-space-lg);
+  overflow-y: auto;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-base);
+  line-height: 1.6;
+}
+
+.w-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--w-space-sm);
+  padding: var(--w-space-md) var(--w-space-xl) var(--w-space-xl);
+}
+
+.w-dialog-wrapper--fullscreen {
+  padding: 0;
+}
+
+.w-dialog-wrapper--fullscreen .w-dialog,
+.w-dialog--fullscreen {
+  width: 100dvw;
+  max-width: 100dvw;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.w-dialog-wrapper--scrollable .w-dialog,
+.w-dialog--scrollable {
+  max-height: calc(100dvh - 4rem);
+}
+
+.w-dialog-wrapper--scrollable .w-dialog-body,
+.w-dialog--scrollable .w-dialog-body {
+  overflow-y: auto;
+}
+
+.w-dialog--shake {
+  animation: w-dialog-shake 150ms var(--w-ease-standard);
+}
+
+@keyframes w-dialog-shake {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}

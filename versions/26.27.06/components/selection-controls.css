@@ -1,0 +1,244 @@
+/* DuVay — Selection Controls component styles. */
+@import "../core.css";
+
+/* ── Checkbox & Radio ────────────────────────────────────────────────────── */
+.w-checkbox {
+  --w-checkbox-accent: var(--w-primary);
+  --w-checkbox-on-accent: var(--w-on-primary);
+  --w-checkbox-border: var(--w-border);
+  --w-checkbox-bg: var(--w-surface);
+  --w-checkbox-size: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  cursor: pointer;
+  font-size: var(--w-font-base);
+  color: var(--w-text);
+  vertical-align: middle;
+  position: relative;
+}
+
+/* Native input fallback for simple markup:
+   <label class="w-checkbox"><input type="checkbox"> Label</label> */
+.w-checkbox input[type="checkbox"],
+.w-checkbox input[type="radio"] {
+  width: var(--w-checkbox-size);
+  height: var(--w-checkbox-size);
+  accent-color: var(--w-checkbox-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Custom box markup:
+   <label class="w-checkbox">
+     <input class="w-checkbox-input" type="checkbox">
+     <span class="w-checkbox-box"></span>
+     <span class="w-checkbox-label">Label</span>
+   </label> */
+.w-checkbox:has(.w-checkbox-box) input[type="checkbox"],
+.w-checkbox:has(.w-checkbox-box) input[type="radio"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.w-checkbox-box {
+  width: var(--w-checkbox-size);
+  height: var(--w-checkbox-size);
+  border: 1px solid var(--w-checkbox-border);
+  border-radius: var(--w-radius-sm);
+  background: var(--w-checkbox-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  pointer-events: none;
+  transition:
+    background var(--w-transition-fast),
+    border-color var(--w-transition-fast);
+}
+
+/* Material-style state layer: a soft circular halo over the control that
+   fades in on hover / press, matching the rest of the system's feedback.
+   Sits above the box fill but below the check/dot (::after), so the mark
+   stays crisp. */
+.w-checkbox-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-checkbox-accent);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  transition: opacity var(--w-transition-fast), transform var(--w-transition-fast);
+  pointer-events: none;
+}
+
+.w-checkbox:hover:not(:has(input:disabled)) .w-checkbox-box::before {
+  opacity: 0.1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.w-checkbox:active:not(:has(input:disabled)) .w-checkbox-box::before {
+  opacity: 0.2;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-checkbox-box::before {
+    transition: opacity var(--w-transition-fast);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.w-radio .w-checkbox-box {
+  border-radius: var(--w-radius-pill);
+}
+
+.w-checkbox-box::after {
+  content: '';
+  display: block;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+/* Checked checkbox */
+.w-checkbox-input:checked + .w-checkbox-box {
+  background: var(--w-checkbox-accent);
+  border-color: var(--w-checkbox-accent);
+}
+
+.w-checkbox-input:checked + .w-checkbox-box::after {
+  width: 5px;
+  height: 10px;
+  border: solid var(--w-checkbox-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-1px);
+  opacity: 1;
+}
+
+/* Indeterminate */
+.w-checkbox-input:indeterminate + .w-checkbox-box {
+  background: var(--w-checkbox-accent);
+  border-color: var(--w-checkbox-accent);
+}
+
+.w-checkbox-input:indeterminate + .w-checkbox-box::after {
+  width: 10px;
+  height: 0;
+  border: solid var(--w-checkbox-on-accent);
+  border-width: 0 0 2px 0;
+  transform: none;
+  opacity: 1;
+}
+
+/* Checked radio */
+.w-radio .w-checkbox-input:checked + .w-checkbox-box {
+  background: var(--w-checkbox-bg);
+  border-color: var(--w-checkbox-accent);
+}
+
+.w-radio .w-checkbox-input:checked + .w-checkbox-box::after {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-checkbox-accent);
+  transform: none;
+  opacity: 1;
+}
+
+/* Focus */
+.w-checkbox-input:focus-visible + .w-checkbox-box {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled / readonly */
+.w-checkbox:has(input:disabled) {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-checkbox:has(input[readonly]) {
+  cursor: default;
+}
+
+/* Label + hint layout */
+.w-checkbox-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-1);
+}
+
+.w-checkbox-label {
+  line-height: var(--w-line-height-snug);
+}
+
+.w-checkbox-hint,
+.w-checkbox-error {
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+  line-height: var(--w-line-height-normal);
+}
+
+.w-checkbox--error .w-checkbox-error {
+  color: var(--w-error);
+}
+
+/* Color variants */
+.w-checkbox--primary {
+  --w-checkbox-accent: var(--w-primary);
+  --w-checkbox-on-accent: var(--w-on-primary);
+}
+
+.w-checkbox--error {
+  --w-checkbox-accent: var(--w-error);
+  --w-checkbox-on-accent: var(--w-on-error);
+}
+
+.w-checkbox--error .w-checkbox-box {
+  border-color: var(--w-error);
+}
+
+.w-checkbox--success {
+  --w-checkbox-accent: var(--w-success);
+  --w-checkbox-on-accent: var(--w-on-success);
+}
+
+.w-checkbox--warning {
+  --w-checkbox-accent: var(--w-warning);
+  --w-checkbox-on-accent: var(--w-on-warning);
+}
+
+/* Size / density variants */
+.w-checkbox--xs {
+  --w-checkbox-size: 14px;
+  font-size: var(--w-font-xs);
+}
+
+.w-checkbox--sm {
+  --w-checkbox-size: 16px;
+  font-size: var(--w-font-sm);
+}
+
+.w-checkbox--md {
+  --w-checkbox-size: 18px;
+  font-size: var(--w-font-base);
+}
+
+.w-checkbox--lg {
+  --w-checkbox-size: 22px;
+  font-size: var(--w-font-md);
+}

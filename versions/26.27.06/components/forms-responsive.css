@@ -1,0 +1,16 @@
+/* DuVay — Forms Responsive component styles. */
+@import "../core.css";
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .w-search {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .w-search .w-btn { display: none; }
+
+  .w-form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

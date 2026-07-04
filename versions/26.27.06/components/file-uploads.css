@@ -1,0 +1,184 @@
+/* DuVay — File Uploads component styles. */
+@import "../core.css";
+
+/* ── File upload ──────────────────────────────────────────────────────────── */
+.w-file-upload {
+  display: block;
+  width: 100%;
+}
+
+.w-file-upload-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-2);
+  min-height: 10rem;
+  padding: var(--w-space-xl);
+  border: 2px dashed var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+
+.w-file-upload-dropzone:hover:not(.w-file-upload-dropzone--disabled):not(.w-file-upload-dropzone--readonly) {
+  background: var(--w-hover);
+  border-color: var(--w-primary);
+}
+
+.w-file-upload-dropzone:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-file-upload-dropzone--dragover {
+  background: var(--w-primary-container);
+  border-color: var(--w-primary);
+  color: var(--w-on-primary-container);
+}
+
+.w-file-upload-dropzone--disabled,
+.w-file-upload-dropzone--readonly {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.w-file-upload-dropzone input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-file-upload-icon {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-3xl);
+  line-height: 1;
+}
+
+.w-file-upload-title {
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-file-upload-subtitle {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-md);
+  width: 100%;
+  max-width: 12.5rem;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-divider::before,
+.w-file-upload-divider::after {
+  content: '';
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--w-border);
+}
+
+.w-file-upload-browse {
+  /* Uses .w-btn.w-btn-tonal classes from markup */
+}
+
+.w-file-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-2);
+  margin-top: var(--w-space-md);
+}
+
+.w-file-upload-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: var(--w-size-md);
+  padding: var(--w-space-2) var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+}
+
+.w-file-upload-item-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-file-upload-item-size {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-item-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-file-upload-item-remove:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-file-upload-item-remove:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* Density variants */
+.w-file-upload-dropzone--density-compact {
+  flex-direction: row;
+  gap: var(--w-space-md);
+  min-height: var(--w-size-lg);
+  padding: var(--w-space-md) var(--w-space-lg);
+}
+
+.w-file-upload-dropzone--density-compact .w-file-upload-icon {
+  font-size: var(--w-font-xl);
+}
+
+.w-file-upload-dropzone--density-compact .w-file-upload-title,
+.w-file-upload-dropzone--density-compact .w-file-upload-subtitle,
+.w-file-upload-dropzone--density-compact .w-file-upload-divider {
+  display: none;
+}
+
+.w-file-upload-dropzone--density-comfortable {
+  min-height: 8rem;
+  padding: var(--w-space-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-file-upload-dropzone,
+  .w-file-upload-item-remove {
+    transition: none;
+  }
+}

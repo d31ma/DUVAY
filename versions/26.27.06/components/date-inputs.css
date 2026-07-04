@@ -1,0 +1,81 @@
+/* DuVay — Date Inputs component styles. */
+@import "../core.css";
+
+/* ── Date input ───────────────────────────────────────────────────────────── */
+.w-date-input {
+  position: relative;
+}
+
+.w-date-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.w-date-input-icon,
+.w-date-input-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-date-input-icon:hover:not(:disabled),
+.w-date-input-clear:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-date-input-icon:disabled,
+.w-date-input-clear:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-date-input-icon {
+  position: absolute;
+  left: 0.25rem;
+}
+
+.w-date-input-clear {
+  position: absolute;
+  right: 0.25rem;
+}
+
+.w-date-input-field {
+  padding-left: 2.5rem;
+}
+
+.w-date-input--clearable .w-date-input-field,
+.w-date-input-wrap:has(.w-date-input-clear) .w-date-input-field {
+  padding-right: 2.5rem;
+}
+
+.w-date-input-popup {
+  position: absolute;
+  top: calc(100% + var(--w-space-1));
+  left: 0;
+  z-index: var(--w-z-dropdown);
+  /* Hug the calendar instead of stretching to the (often full-width) field,
+     which left the picker crammed left with dead whitespace beside it. */
+  width: max-content;
+  max-width: min(20rem, 100vw);
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-date-input-popup[hidden] {
+  display: none;
+}
