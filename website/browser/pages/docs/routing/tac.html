@@ -20,16 +20,16 @@
 
 <h3>Vue Router example</h3>
 
-<div class="code-block"><code>&lt;!-- The router intercepts the native click and does a SPA navigation. --&gt;
+<pre class="code-block"><code>&lt;!-- The router intercepts the native click and does a SPA navigation. --&gt;
 &lt;RouterLink to="/docs/items" custom v-slot="&#123; href, navigate &#125;"&gt;
   &lt;w-btn variant="filled" &#58;href="href" &#64;click="navigate"&gt;
     Go to Items
   &lt;/w-btn&gt;
-&lt;/RouterLink&gt;</code></div>
+&lt;/RouterLink&gt;</code></pre>
 
 <h3>React Router example</h3>
 
-<div class="code-block"><code>import &#123; useNavigate &#125; from 'react-router-dom'
+<pre class="code-block"><code>import &#123; useNavigate &#125; from 'react-router-dom'
 
 function HomeLink() &#123;
   const navigate = useNavigate()
@@ -38,11 +38,11 @@ function HomeLink() &#123;
       Go to Items
     &lt;/w-btn&gt;
   )
-&#125;</code></div>
+&#125;</code></pre>
 
 <h3>Vanilla example</h3>
 
-<div class="code-block"><code>&lt;w-btn id="next" variant="filled" href="/docs/items"&gt;
+<pre class="code-block"><code>&lt;w-btn id="next" variant="filled" href="/docs/items"&gt;
   Go to Items
 &lt;/w-btn&gt;
 
@@ -54,7 +54,7 @@ function HomeLink() &#123;
       myRouter.navigate(e.target.href)
     &#125;
   &#125;)
-&lt;/script&gt;</code></div>
+&lt;/script&gt;</code></pre>
 
 <h2>Navigation components</h2>
 <p>App bars, bottom navigation, breadcrumbs, tabs, and lists all accept <code>href</code> (or an internal link child) so they participate in normal browser navigation. Use your router's link component as the child when you need framework-specific routing behavior.</p>
@@ -79,7 +79,7 @@ function HomeLink() &#123;
 <h2>Active state</h2>
 <p>DuVay leaves active-state logic to your router. Pass <code>active</code>, <code>value</code>, or an explicit active class based on the current route. The docs site uses the same pattern: the sidebar compares the current path to each link's <code>href</code> and adds the active class.</p>
 
-<div class="code-block"><code>&lt;w-bottom-navigation &#58;value="currentRoute"&gt;
+<pre class="code-block"><code>&lt;w-bottom-navigation &#58;value="currentRoute"&gt;
   &lt;w-bottom-nav-item value="/" href="/"&gt;Home&lt;/w-bottom-nav-item&gt;
   &lt;w-bottom-nav-item value="/docs" href="/docs"&gt;Docs&lt;/w-bottom-nav-item&gt;
-&lt;/w-bottom-navigation&gt;</code></div>
+&lt;/w-bottom-navigation&gt;</code></pre>

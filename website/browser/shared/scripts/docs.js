@@ -129,6 +129,10 @@ const PAGES = [
   { path: '/docs/frequently-asked-questions', title: 'Frequently asked questions', group: 'Getting started', keywords: 'faq questions zero dependency theme web component framework agnostic' },
   { path: '/docs/browser-support', title: 'Browser support', group: 'Getting started', keywords: 'browser support compatibility custom elements evergreen chrome firefox safari' },
   { path: '/docs/contributing', title: 'Contributing', group: 'Getting started', keywords: 'contributing build test conventions tokens pull request repo' },
+  { path: '/docs/wireframes', title: 'Wireframes', group: 'Getting started', keywords: 'wireframes layout scaffold starter app bar navigation drawer footer shell' },
+  { path: '/docs/unit-testing', title: 'Unit testing', group: 'Getting started', keywords: 'unit testing test bun vitest happy-dom light dom render microtask events' },
+  { path: '/docs/upgrade-guide', title: 'Upgrade guide', group: 'Getting started', keywords: 'upgrade guide calver version pin migrate breaking changes' },
+  { path: '/docs/release-notes', title: 'Release notes', group: 'Getting started', keywords: 'release notes changelog versions calver github releases history' },
   { path: '/docs/density-and-sizing', title: 'Density and sizing', group: 'Common concepts', keywords: 'density comfortable compact prominent size scale x-small x-large' },
   { path: '/docs/items', title: 'Items', group: 'Common concepts', keywords: 'items item group selection mandatory multiple' },
   { path: '/docs/variants', title: 'Variants', group: 'Common concepts', keywords: 'variant elevated flat tonal outlined text plain emphasis' },
@@ -176,10 +180,12 @@ const HE_DOC_SECTIONS = [
     title: 'Getting started',
     items: [
       { type: 'item', title: 'Installation', path: '/docs/install' },
-      { type: 'item', title: 'Getting started', path: '/docs/getting-started' },
-      { type: 'item', title: 'Download', path: '/docs/download' },
       { type: 'item', title: 'Frequently asked questions', path: '/docs/frequently-asked-questions' },
+      { type: 'item', title: 'Wireframes', path: '/docs/wireframes' },
+      { type: 'item', title: 'Unit testing', path: '/docs/unit-testing' },
       { type: 'item', title: 'Browser support', path: '/docs/browser-support' },
+      { type: 'item', title: 'Upgrade guide', path: '/docs/upgrade-guide' },
+      { type: 'item', title: 'Release notes', path: '/docs/release-notes' },
       { type: 'item', title: 'Contributing', path: '/docs/contributing' },
     ]
   },
@@ -404,6 +410,12 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// w-btn hosts render an inner native <button>/<a>; aria state and focus()
+// must target that element, not the custom-element host.
+function controlOf(el) {
+  return el && el.matches('w-btn') ? (el.querySelector('button, a') || el) : el;
+}
+
 function currentPath() {
   return (location.pathname.replace(/\/+$/, '') || '/');
 }
@@ -453,9 +465,9 @@ function renderDocsSidebar() {
 
   sidebar.innerHTML = `<div class="docs-sidebar-mobile-header">
       <strong>Documentation</strong>
-      <button type="button" w-docs-menu-close aria-label="Close documentation navigation">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
-      </button>
+      <w-btn variant="icon" w-docs-menu-close aria-label="Close documentation navigation">
+        <w-svg-icon path="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12Z" size="1.25rem"></w-svg-icon>
+      </w-btn>
     </div>` + HE_DOC_SECTIONS.map(section => {
     const key = slugify(section.title);
     const items = (section.items || []).map(item => sidebarItemHtml(item, 0)).join('');
@@ -525,7 +537,11 @@ function markActiveNav() {
 
   if (candidates.length) {
     candidates.sort((x, y) => y.score - x.score);
-    candidates[0].a.setAttribute('aria-current', 'page');
+    // Mark every link tied for best (e.g. the header "Install" button and the
+    // sidebar "Installation" item both point at /docs/install).
+    const best = candidates[0].score;
+    candidates.filter(c => c.score === best)
+      .forEach(c => c.a.setAttribute('aria-current', 'page'));
   }
 }
 
@@ -609,6 +625,12 @@ function docsCompactMedia() {
 }
 
 function setDocsNavigationOpen(open, returnFocus = false) {
+  // Deferred one microtask: w-btn renders its inner <button> in a microtask
+  // queued at connect time, and this can run in that same task on navigation.
+  queueMicrotask(() => setDocsNavigationOpenNow(open, returnFocus));
+}
+
+function setDocsNavigationOpenNow(open, returnFocus) {
   const sidebar = $('[data-docs-sidebar]');
   const toggle = $('[w-docs-menu-toggle]');
   const scrim = $('.docs-sidebar-scrim');
@@ -621,15 +643,17 @@ function setDocsNavigationOpen(open, returnFocus = false) {
   if ('inert' in sidebar) sidebar.inert = compact && !nextOpen;
 
   toggle.hidden = !compact;
-  toggle.setAttribute('aria-expanded', String(nextOpen));
-  toggle.setAttribute('aria-label', nextOpen ? 'Close documentation navigation' : 'Open documentation navigation');
+  const toggleBtn = controlOf(toggle);
+  toggleBtn.setAttribute('aria-controls', 'docs-sidebar');
+  toggleBtn.setAttribute('aria-expanded', String(nextOpen));
+  toggleBtn.setAttribute('aria-label', nextOpen ? 'Close documentation navigation' : 'Open documentation navigation');
   scrim.hidden = !nextOpen;
   document.documentElement.classList.toggle('docs-nav-open', nextOpen);
 
   if (nextOpen) {
-    requestAnimationFrame(() => $('[w-docs-menu-close]', sidebar)?.focus());
+    requestAnimationFrame(() => controlOf($('[w-docs-menu-close]', sidebar))?.focus());
   } else if (returnFocus) {
-    toggle.focus();
+    toggleBtn.focus();
   }
 }
 
@@ -940,6 +964,7 @@ let searchEls = null;
 let searchActive = -1;
 
 function buildSearchModal() {
+  queueMicrotask(() => controlOf($('[w-search-open]'))?.setAttribute('aria-keyshortcuts', 'Meta+K Control+K'));
   if (document.getElementById('w-search-modal')) {
     searchEls = {
       overlay: document.getElementById('w-search-modal'),

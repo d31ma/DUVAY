@@ -16,9 +16,9 @@
 
 <h2>Usage</h2>
 <p>Add the <code>w-tooltip</code> class and a <code>w-tooltip</code> attribute to any element. The text in <code>w-tooltip</code> is rendered through a CSS <code>::after</code> pseudo-element and revealed on <code>:hover</code>, <code>:focus-visible</code>, and <code>:focus-within</code>.</p>
-<div class="code-block"><code>&lt;button class="w-btn w-btn-text w-tooltip" w-tooltip="Save changes"&gt;
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-text w-tooltip" w-tooltip="Save changes"&gt;
   Save
-&lt;/button&gt;</code></div>
+&lt;/button&gt;</code></pre>
 
 <h2>Position</h2>
 <p>In Vuetify the location is passed as a directive argument. In DuVay you set placement with the <code>w-tooltip-position</code> attribute (or the equivalent class form). The default placement is <code>top</code>.</p>
@@ -33,13 +33,13 @@
     <tr><td><code>w-tooltip-position="right"</code></td><td><code>w-tooltip--right</code> (alias <code>w-tooltip--end</code>)</td><td>To the right of the element.</td></tr>
   </tbody>
 </table>
-<div class="code-block"><code>&lt;button class="w-btn w-tooltip" w-tooltip="Below" w-tooltip-position="bottom"&gt;Bottom&lt;/button&gt;
+<pre class="code-block"><code>&lt;button class="w-btn w-tooltip" w-tooltip="Below" w-tooltip-position="bottom"&gt;Bottom&lt;/button&gt;
 &lt;button class="w-btn w-tooltip" w-tooltip="Left" w-tooltip-position="left"&gt;Left&lt;/button&gt;
-&lt;button class="w-btn w-tooltip w-tooltip--right" w-tooltip="Right"&gt;Right (class form)&lt;/button&gt;</code></div>
+&lt;button class="w-btn w-tooltip w-tooltip--right" w-tooltip="Right"&gt;Right (class form)&lt;/button&gt;</code></pre>
 
 <h2>Tooltip text</h2>
 <p>Unlike Vuetify &#8212; where the directive falls back to the target element's <code>textContent</code> &#8212; the DuVay tooltip text always comes from the <code>w-tooltip</code> attribute. This keeps the visible label and the tooltip independent, so a button reading &#8220;Save&#8221; can show an explanatory &#8220;Save changes&#8221; on hover.</p>
-<div class="code-block"><code>&lt;span class="w-tooltip" w-tooltip="Copied to clipboard" tabindex="0"&gt;Copy&lt;/span&gt;</code></div>
+<pre class="code-block"><code>&lt;span class="w-tooltip" w-tooltip="Copied to clipboard" tabindex="0"&gt;Copy&lt;/span&gt;</code></pre>
 
 <h2>CSS-only &#8212; no JavaScript, no event</h2>
 <p>The directive is implemented entirely with CSS. There is no behavior-layer JavaScript and no event &#8212; the tooltip is a <code>::after</code> pseudo-element that fades in on <code>:hover</code>, <code>:focus-visible</code>, and <code>:focus-within</code>. Because it relies on focus, give non-focusable elements a <code>tabindex="0"</code> so keyboard users can reveal the tooltip too. The text is a single line (<code>white-space: nowrap</code>); keep it short.</p>
@@ -48,9 +48,9 @@
 <p>The CSS-only directive is ideal for short, static hints. For richer needs &#8212; interactive content that stays open while hovered, cursor-following tooltips, longer wrapping text, or full location control &#8212; reach for the <code>&lt;w-tooltip&gt;</code> web component documented on the <a href="/docs/tooltips">Tooltips</a> page.</p>
 
 <h2>Example</h2>
-<div class="code-block"><code>&lt;div class="w-stack"&gt;
+<pre class="code-block"><code>&lt;div class="w-stack"&gt;
   &lt;button class="w-btn w-tooltip" w-tooltip="Default placement is top"&gt;Top&lt;/button&gt;
   &lt;button class="w-btn w-tooltip" w-tooltip="Appears below" w-tooltip-position="bottom"&gt;Bottom&lt;/button&gt;
   &lt;button class="w-btn w-tooltip" w-tooltip="Appears to the left" w-tooltip-position="left"&gt;Left&lt;/button&gt;
   &lt;button class="w-btn w-tooltip" w-tooltip="Appears to the right" w-tooltip-position="right"&gt;Right&lt;/button&gt;
-&lt;/div&gt;</code></div>
+&lt;/div&gt;</code></pre>

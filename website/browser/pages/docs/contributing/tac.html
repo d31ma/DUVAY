@@ -19,16 +19,16 @@
 
 <h2>Building locally</h2>
 <p>Build the framework, then bundle the documentation site:</p>
-<div class="code-block"><code># Build the framework (CSS + JS bundles)
+<pre class="code-block"><code># Build the framework (CSS + JS bundles)
 bun run build
 
 # Bundle the documentation site
-bun run --cwd website bundle</code></div>
+bun run --cwd website bundle</code></pre>
 <p>Framework edits do not appear in the docs preview until both commands have run and the preview server has been restarted.</p>
 
 <h2>Running tests</h2>
 <p>Component behavior is covered by an automated suite:</p>
-<div class="code-block"><code>bun run test:components</code></div>
+<pre class="code-block"><code>bun run test:components</code></pre>
 <p>Run the tests before opening a pull request and make sure they pass.</p>
 
 <h2>Coding conventions</h2>

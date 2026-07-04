@@ -97,7 +97,7 @@
 
 <h2>Example</h2>
 <p>A live list that reacts whenever rows are inserted or removed. The observer watches the subtree for child-node changes and reports the affected nodes through <code>detail.mutations</code>.</p>
-<div class="code-block"><code>&lt;ul class="live-list" w-mutate w-mutate-child w-mutate-sub&gt;
+<pre class="code-block"><code>&lt;ul class="live-list" w-mutate w-mutate-child w-mutate-sub&gt;
   &lt;li&gt;First&lt;/li&gt;
   &lt;li&gt;Second&lt;/li&gt;
 &lt;/ul&gt;
@@ -115,4 +115,4 @@
   const li = document.createElement('li');
   li.textContent = 'Third';
   list.appendChild(li);
-&lt;/script&gt;</code></div>
+&lt;/script&gt;</code></pre>

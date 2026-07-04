@@ -43,7 +43,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;</code></pre>
 <p>Toggle <code>aria-expanded</code> between <code>"true"</code> and <code>"false"</code> as the menu opens and closes. The DuVay web components manage this lifecycle for you &#8212; the rendered trigger already carries the bound attributes, equivalent to Vuetify&#8217;s output:</p>
-<div class="code-block"><code>&lt;button aria-expanded="false" aria-haspopup="true" role="button" type="button"&gt;</code></div>
+<pre class="code-block"><code>&lt;button aria-expanded="false" aria-haspopup="true" role="button" type="button"&gt;</code></pre>
 
 <h2 id="menus">Menus and lists</h2>
 <p>Inside a menu, each item should carry <code>role="menuitem"</code> so assistive technology announces it correctly, and the container should be reachable with the up and down arrow keys. With CSS-only markup you add these roles yourself; the DuVay list and menu components apply them automatically. Disabled options use <code>aria-disabled="true"</code> rather than being removed, so they remain discoverable.</p>
@@ -73,12 +73,12 @@
 
 <h2 id="reduced-motion">Reduced motion</h2>
 <p>All motion respects <code>prefers-reduced-motion</code>. Disable or soften custom animations the same way in your own styles:</p>
-<div class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
+<pre class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
   .my-animation &#123;
     animation: none;
     transition: none;
   &#125;
-&#125;</code></div>
+&#125;</code></pre>
 
 <h2 id="standards">Standards and specifications</h2>
 <p>Beyond what DuVay supports by default, the underlying standards describe how to build accessible components and verify best practices. The W3C Web Accessibility Initiative publishes the Web Content Accessibility Guidelines (WCAG), and WAI-ARIA provides guidance for dynamic content and advanced UI controls. Use them as the source of truth when you extend DuVay with custom markup.</p>
