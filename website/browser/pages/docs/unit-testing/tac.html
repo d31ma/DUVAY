@@ -1,0 +1,48 @@
+<h1>Unit testing</h1>
+<p>DuVay components render into the Light DOM with plain DuVay class names, so they can be tested with any DOM testing setup. There is no Shadow DOM to pierce and no framework-specific test utilities to install.</p>
+
+<h2>Test environment</h2>
+<p>Any runner with a DOM implementation works: <code>bun test</code> or Vitest with <code>happy-dom</code> or <code>jsdom</code>. Register the components once by importing your vendored copy of the module (see <a href="/docs/download">Download</a>).</p>
+<pre class="code-block"><code>import "./vendor/duvay/duvay-wc.js";</code></pre>
+
+<h2>Waiting for the first render</h2>
+<p>Components render one microtask after they are connected. After inserting markup, flush the microtask queue before asserting on the generated DOM.</p>
+<pre class="code-block"><code>import &#123; test, expect &#125; from "bun:test";
+
+test("w-btn renders a native button", async () =&gt; &#123;
+  document.body.innerHTML = '&lt;w-btn variant="filled"&gt;Save&lt;/w-btn&gt;';
+  await Promise.resolve(); // flush the render microtask
+
+  const btn = document.querySelector("w-btn button");
+  expect(btn.className).toContain("w-btn-filled");
+  expect(btn.textContent).toContain("Save");
+&#125;);</code></pre>
+
+<h2>Asserting on state and attributes</h2>
+<p>Configuration is attribute-driven, so state changes are ordinary attribute assertions. Boolean attributes follow native HTML semantics.</p>
+<pre class="code-block"><code>test("disabled reflects to the inner button", async () =&gt; &#123;
+  document.body.innerHTML = '&lt;w-btn disabled&gt;Save&lt;/w-btn&gt;';
+  await Promise.resolve();
+
+  expect(document.querySelector("w-btn button").disabled).toBe(true);
+&#125;);</code></pre>
+
+<h2>Events</h2>
+<p>Components emit native event names (<code>input</code>, <code>change</code>, <code>toggle</code>, <code>close</code>) as bubbling <code>CustomEvent</code>s with a <code>detail</code> payload. Listen on the host element like any other DOM node.</p>
+<pre class="code-block"><code>test("w-switch emits change with its state", async () =&gt; &#123;
+  document.body.innerHTML = '&lt;w-switch label="Notify"&gt;&lt;/w-switch&gt;';
+  await Promise.resolve();
+
+  const host = document.querySelector("w-switch");
+  let detail;
+  host.addEventListener("change", (e) =&gt; &#123; detail = e.detail; &#125;);
+  host.querySelector("input").click();
+
+  expect(detail.checked).toBe(true);
+&#125;);</code></pre>
+
+<h2>Testing the CSS-class approach</h2>
+<p>Markup authored with DuVay classes is static HTML and needs no component registration at all. Import <code>duvay.js</code> only when a test exercises the behavior layer (dropdowns, dialogs, toasts, theme cycling).</p>
+
+<h2>Keyboard and accessibility checks</h2>
+<p>Because the rendered output is native elements, accessibility assertions are direct: query for <code>role</code> and <code>aria-*</code> attributes, dispatch keyboard events, and check <code>document.activeElement</code>. No wrappers or test ids are required.</p>

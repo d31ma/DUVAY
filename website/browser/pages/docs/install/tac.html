@@ -3,31 +3,31 @@
 
 <h2>Latest release</h2>
 <p>These GitHub Pages URLs always serve the newest CalVer build.</p>
-<div class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
-&lt;script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer&gt;&lt;/script&gt;</code></div>
+<pre class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
+&lt;script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer&gt;&lt;/script&gt;</code></pre>
 
 <h2>Pin to a version</h2>
 <p>Replace <code>VERSION</code> with any CalVer release you want to lock to (for example <code>26.24.12</code>). Versioned URLs never change.</p>
-<div class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.css"&gt;
-&lt;script src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.js" defer&gt;&lt;/script&gt;</code></div>
+<pre class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.css"&gt;
+&lt;script src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay.min.js" defer&gt;&lt;/script&gt;</code></pre>
 
 <h2>Web Components</h2>
 <p>To use the DuVay web component library, import the module after the stylesheet:</p>
-<div class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
+<pre class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
 &lt;script type="module" src="https://d31ma.github.io/DUVAY/latest/duvay-wc.min.js"&gt;&lt;/script&gt;
 
-&lt;w-btn variant="filled"&gt;Click me&lt;/w-btn&gt;</code></div>
+&lt;w-btn variant="filled"&gt;Click me&lt;/w-btn&gt;</code></pre>
 
 <h2>Selective CSS</h2>
 <p>For app bundles, import only the component CSS you use. Each component stylesheet imports the DuVay core layer.</p>
-<div class="code-block"><code>@import "duvay-css/components/buttons.css";
+<pre class="code-block"><code>@import "duvay-css/components/buttons.css";
 @import "duvay-css/components/cards.css";
-@import "duvay-css/components/dialogs.css";</code></div>
+@import "duvay-css/components/dialogs.css";</code></pre>
 
 <p>If you prefer an explicit dependency chain, import core once and then component files.</p>
-<div class="code-block"><code>@import "duvay-css/core.css";
+<pre class="code-block"><code>@import "duvay-css/core.css";
 @import "duvay-css/components/buttons.css";
-@import "duvay-css/components/cards.css";</code></div>
+@import "duvay-css/components/cards.css";</code></pre>
 
 <h2>Download</h2>
 <p>See <a href="/docs/download">Download</a> for full and minified files you can self-host, or grab the versioned URLs above.</p>

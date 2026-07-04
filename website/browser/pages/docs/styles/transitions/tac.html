@@ -12,25 +12,25 @@
 <div class="w-mb-md">
   <div class="token-demo w-bg-surface pa-4 rounded cursor-pointer d-inline-block">Hover to transition shadow</div>
 </div>
-<div class="code-block"><code>.my-card &#123;
+<pre class="code-block"><code>.my-card &#123;
   transition: box-shadow var(--w-transition-normal),
               transform var(--w-transition-fast);
 &#125;
 .my-card:hover &#123;
   box-shadow: var(--w-shadow-md);
-&#125;</code></div>
+&#125;</code></pre>
 
 <h3>Built-in named transitions</h3>
 <p>DuVay ships a set of named transition classes for common component animations. These are used internally by components such as expanders, dialogs, and snackbars.</p>
-<div class="code-block"><code>&lt;div class="w-fade-transition"&gt;...fade in/out...&lt;/div&gt;
+<pre class="code-block"><code>&lt;div class="w-fade-transition"&gt;...fade in/out...&lt;/div&gt;
 &lt;div class="w-expand-transition"&gt;...height expand...&lt;/div&gt;
-&lt;div class="w-slide-y-transition"&gt;...slide vertically...&lt;/div&gt;</code></div>
+&lt;div class="w-slide-y-transition"&gt;...slide vertically...&lt;/div&gt;</code></pre>
 
 <h3>Reduced motion</h3>
 <p>Wrap non-essential motion in a <code>prefers-reduced-motion</code> guard, or rely on DuVay's components which already disable transitions and animations when the user requests reduced motion.</p>
-<div class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
+<pre class="code-block"><code>@media (prefers-reduced-motion: reduce) &#123;
   * &#123; transition-duration: 0.01ms !important; &#125;
-&#125;</code></div>
+&#125;</code></pre>
 
 <h2>Tokens</h2>
 <table class="w-table api-table">

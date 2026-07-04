@@ -28,7 +28,7 @@
   <div class="w-bg-surface-high pa-2 mb-2" style="width: 12rem;">in normal flow</div>
   <div class="position-relative w-bg-primary-container pa-2" style="width: 12rem; left: 2rem;">position-relative, left offset</div>
 </div>
-<div class="code-block"><code>&lt;div class="position-relative" style="left: 2rem"&gt;Shifted&lt;/div&gt;</code></div>
+<pre class="code-block"><code>&lt;div class="position-relative" style="left: 2rem"&gt;Shifted&lt;/div&gt;</code></pre>
 
 <h3>Absolute</h3>
 <p><code>position-absolute</code> positions the element relative to its nearest positioned ancestor (here a <code>position-relative</code> container), removing it from normal flow.</p>
@@ -37,9 +37,9 @@
   <span class="position-absolute bottom-0 right-0 w-bg-primary-container pa-2">absolute · bottom-0 right-0</span>
   <span class="position-absolute top-0 left-0 w-bg-surface-high pa-2">top-0 left-0</span>
 </div>
-<div class="code-block"><code>&lt;div class="position-relative"&gt;
+<pre class="code-block"><code>&lt;div class="position-relative"&gt;
   &lt;span class="position-absolute bottom-0 right-0"&gt;Pinned&lt;/span&gt;
-&lt;/div&gt;</code></div>
+&lt;/div&gt;</code></pre>
 
 <h3>Sticky</h3>
 <p><code>position-sticky</code> keeps an element in flow until the scroll position crosses a threshold (e.g. <code>top-0</code>), then it sticks. Scroll the box below.</p>
@@ -52,11 +52,11 @@
     <p>End.</p>
   </div>
 </div>
-<div class="code-block"><code>&lt;div style="overflow: auto"&gt;
+<pre class="code-block"><code>&lt;div style="overflow: auto"&gt;
   &lt;div class="position-sticky top-0"&gt;Sticky header&lt;/div&gt;
   …
-&lt;/div&gt;</code></div>
+&lt;/div&gt;</code></pre>
 
 <h3>Fixed</h3>
 <p><code>position-fixed</code> pins an element relative to the viewport, so it stays put while the page scrolls — useful for back-to-top buttons, snackbars, and floating action buttons. (Not shown live, since a fixed element escapes this preview to the viewport.)</p>
-<div class="code-block"><code>&lt;button class="position-fixed bottom-0 right-0 ma-4"&gt;Back to top&lt;/button&gt;</code></div>
+<pre class="code-block"><code>&lt;button class="position-fixed bottom-0 right-0 ma-4"&gt;Back to top&lt;/button&gt;</code></pre>

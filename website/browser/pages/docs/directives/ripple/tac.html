@@ -15,7 +15,7 @@
 
 <h2>Usage</h2>
 <p>Enable basic ripple functionality by adding the <code>w-ripple</code> attribute to a component or HTML element. On pointer down (and on <code>Enter</code> / <code>Space</code> keydown) the behavior layer adds the class <code>w-ripple-host</code> to the element and appends a <code>.w-ripple-ink</code> span at the pointer position. The span removes itself when its animation ends.</p>
-<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple&gt;Press me&lt;/button&gt;</code></div>
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple&gt;Press me&lt;/button&gt;</code></pre>
 
 <h2>API</h2>
 <table class="w-table api-table">
@@ -46,21 +46,21 @@
 
 <h3>Options</h3>
 <p>By default the ripple originates from the pointer position. Add <code>w-ripple-center</code> so it always originates from the center of the target, mirroring Vuetify's <code>.center</code> modifier.</p>
-<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple w-ripple-center&gt;Centered&lt;/button&gt;</code></div>
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple w-ripple-center&gt;Centered&lt;/button&gt;</code></pre>
 
 <h3>Custom color</h3>
 <p>Use <code>w-ripple-color</code> to adjust the color of the ink. The value maps to a design token, so the tint stays theme-aware across light and dark.</p>
-<div class="code-block"><code>&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="primary"&gt;Primary ink&lt;/button&gt;
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="primary"&gt;Primary ink&lt;/button&gt;
 &lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="secondary"&gt;Secondary ink&lt;/button&gt;
-&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="surface"&gt;Surface ink&lt;/button&gt;</code></div>
+&lt;button class="w-btn w-btn-outline" w-ripple w-ripple-color="surface"&gt;Surface ink&lt;/button&gt;</code></pre>
 
 <h3>Disabling the ripple</h3>
 <p>Where a component opts into the ripple, set <code>w-ripple="false"</code> to turn it off for a single element without removing the styling.</p>
-<div class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple="false"&gt;No ripple&lt;/button&gt;</code></div>
+<pre class="code-block"><code>&lt;button class="w-btn w-btn-filled" w-ripple="false"&gt;No ripple&lt;/button&gt;</code></pre>
 
 <h3>Ripple on a custom surface</h3>
 <p>The directive is not limited to buttons. Apply it to any block-level element &#8212; a card or a list item &#8212; to add press feedback.</p>
-<div class="code-block"><code>&lt;article class="w-card" w-ripple&gt;
+<pre class="code-block"><code>&lt;article class="w-card" w-ripple&gt;
   &lt;h3 class="w-card-title"&gt;Tap me&lt;/h3&gt;
   &lt;p&gt;The whole card ripples on press.&lt;/p&gt;
 &lt;/article&gt;
@@ -68,7 +68,7 @@
 &lt;ul class="w-list"&gt;
   &lt;li class="w-list-item" w-ripple&gt;Inbox&lt;/li&gt;
   &lt;li class="w-list-item" w-ripple w-ripple-center&gt;Drafts&lt;/li&gt;
-&lt;/ul&gt;</code></div>
+&lt;/ul&gt;</code></pre>
 
 <h2>Accessibility</h2>
 <p>The ripple is decorative and adds no semantics, so it never interferes with assistive technology &#8212; keep the element's own <code>role</code>, label, and keyboard behavior intact. Because the effect also fires on <code>Enter</code> / <code>Space</code> keydown, keyboard users get the same feedback as pointer users.</p>

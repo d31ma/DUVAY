@@ -1,6 +1,6 @@
 {
   "name": "duvay-css",
-  "version": "26.27.04",
+  "version": "26.27.06",
   "description": "DuVay — A zero-dependency CSS framework with design tokens, theming, and accessible web components.",
   "type": "module",
   "main": "dist/duvay.css",
