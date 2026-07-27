@@ -1,14 +1,13 @@
 <h1>Installation</h1>
 <p>DuVay has zero dependencies and no build step. Paste a hosted URL into your HTML and go.</p>
 
-<h2>Package manager</h2>
-<pre class="code-block"><code>npm install @d31ma/duvay-css</code></pre>
-<p>The package was previously named <code>duvay-css</code>. Update existing package-manager installs and imports to the scoped name; hosted GitHub Pages URLs are unchanged.</p>
+<h2>No package manager</h2>
+<p>DuVay is not published to npm or any other package registry. It ships as hosted files on GitHub Pages. Link them directly, or vendor them into your own asset pipeline.</p>
 
 <p>Import the full stylesheet from CSS:</p>
-<pre class="code-block"><code>@import "@d31ma/duvay-css";</code></pre>
+<pre class="code-block"><code>@import "https://d31ma.github.io/DUVAY/latest/duvay.css";</code></pre>
 <p>When using web components, import the module from your JavaScript entrypoint:</p>
-<pre class="code-block"><code>import "@d31ma/duvay-css/duvay-wc.js";</code></pre>
+<pre class="code-block"><code>import "https://d31ma.github.io/DUVAY/latest/duvay-wc.js";</code></pre>
 
 <h2>Latest release</h2>
 <p>These GitHub Pages URLs always serve the newest CalVer build.</p>
@@ -29,14 +28,14 @@
 
 <h2>Selective CSS</h2>
 <p>For app bundles, import only the component CSS you use. Each component stylesheet imports the DuVay core layer.</p>
-<pre class="code-block"><code>@import "@d31ma/duvay-css/components/buttons.css";
-@import "@d31ma/duvay-css/components/cards.css";
-@import "@d31ma/duvay-css/components/dialogs.css";</code></pre>
+<pre class="code-block"><code>@import "https://d31ma.github.io/DUVAY/latest/components/buttons.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/cards.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/dialogs.css";</code></pre>
 
 <p>If you prefer an explicit dependency chain, import core once and then component files.</p>
-<pre class="code-block"><code>@import "@d31ma/duvay-css/core.css";
-@import "@d31ma/duvay-css/components/buttons.css";
-@import "@d31ma/duvay-css/components/cards.css";</code></pre>
+<pre class="code-block"><code>@import "https://d31ma.github.io/DUVAY/latest/core.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/buttons.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/cards.css";</code></pre>
 
 <h2>Download</h2>
 <p>See <a href="/docs/download">Download</a> for full and minified files you can self-host, or grab the versioned URLs above.</p>

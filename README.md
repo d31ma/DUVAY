@@ -53,15 +53,9 @@ DuVay also ships component-level CSS entrypoints. Import the full framework when
 
 ## Install
 
-### Package manager
-
-```sh
-npm install @d31ma/duvay-css
-```
-
-The package was previously published as `duvay-css`. Existing package-manager
-installs and imports must move to the scoped name; hosted GitHub Pages URLs did
-not change.
+DuVay is distributed as hosted files, not as a package-manager dependency.
+There is no `npm install` step — link the CSS and JS directly, or vendor the
+files into your own asset pipeline.
 
 ### Latest release (hosted)
 
@@ -79,17 +73,20 @@ not change.
 ### Selective CSS imports
 
 ```css
-@import "@d31ma/duvay-css/core.css";
-@import "@d31ma/duvay-css/components/buttons.css";
-@import "@d31ma/duvay-css/components/cards.css";
-@import "@d31ma/duvay-css/components/tooltips.css";
+@import "https://d31ma.github.io/DUVAY/latest/core.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/buttons.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/cards.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/tooltips.css";
 ```
 
 Component CSS files import their required core layer, so this also works when you want a single component in a small page:
 
 ```css
-@import "@d31ma/duvay-css/components/buttons.css";
+@import "https://d31ma.github.io/DUVAY/latest/components/buttons.css";
 ```
+
+If you vendor the files instead, the same entrypoints work from whatever local
+path you copy them to.
 
 ### Pin to a CalVer release
 
