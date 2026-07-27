@@ -290,7 +290,7 @@ jobs:
             exit 1
           fi
 
-      - name: Publish GitHub Packages beta when absent
+      - name: Publish GitHub Packages release when absent
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PACKAGE: "@d31ma/duvay-css"
@@ -314,55 +314,13 @@ jobs:
             fi
             echo "GitHub Packages already has the identical release; skipping."
             PUBLISHED_VERSION=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" version --registry=https://npm.pkg.github.com)
-            NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$PUBLISHED_VERSION" beta \
-              --registry=https://npm.pkg.github.com
-          elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
-            NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
-              --ignore-scripts \
-              --tag beta \
-              --registry=https://npm.pkg.github.com
-          else
-            cat "$ERROR_FILE" >&2
-            exit 1
-          fi
-
-      - name: Publish npm latest when absent
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          PACKAGE: "@d31ma/duvay-css"
-          VERSION: ${{ needs.preflight.outputs.version }}
-          TARBALL: ${{ needs.package.outputs.tarball }}
-          EXPECTED_INTEGRITY: ${{ needs.package.outputs.integrity }}
-        run: |
-          set -euo pipefail
-
-          if [[ -z "$NODE_AUTH_TOKEN" ]]; then
-            echo "::error::NPM_TOKEN is not configured."
-            exit 1
-          fi
-
-          NPMRC="$RUNNER_TEMP/npmrc-npmjs"
-          printf '%s\n' \
-            'registry=https://registry.npmjs.org' \
-            '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' \
-            'always-auth=true' > "$NPMRC"
-
-          ERROR_FILE="$RUNNER_TEMP/npmjs-view.err"
-          if ACTUAL=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" dist.integrity --registry=https://registry.npmjs.org 2>"$ERROR_FILE"); then
-            if [[ "$ACTUAL" != "$EXPECTED_INTEGRITY" ]]; then
-              echo "::error::npm already has $PACKAGE@$VERSION with different contents."
-              exit 1
-            fi
-            echo "npm already has the identical release; skipping."
-            PUBLISHED_VERSION=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" version --registry=https://registry.npmjs.org)
             NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$PUBLISHED_VERSION" latest \
-              --registry=https://registry.npmjs.org
+              --registry=https://npm.pkg.github.com
           elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
             NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
               --ignore-scripts \
-              --access public \
               --tag latest \
-              --registry=https://registry.npmjs.org
+              --registry=https://npm.pkg.github.com
           else
             cat "$ERROR_FILE" >&2
             exit 1

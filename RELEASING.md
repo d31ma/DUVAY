@@ -21,15 +21,17 @@ that exact commit. The workflow:
    `@d31ma/duvay-css`, and the version is valid CalVer;
 2. runs tooling tests, the sharded component suite, and the documentation build;
 3. builds one npm tarball and records its integrity;
-4. publishes that same tarball to GitHub Packages with the `beta` tag and to npm
-   with the `latest` tag;
-5. creates an annotated version tag only after both registries contain the
+4. publishes that same tarball to GitHub Packages with the `latest` tag;
+5. creates an annotated version tag only after the registry contains the
    expected artifact; and
 6. creates or repairs the matching GitHub release.
 
+DuVay does not publish to npmjs.org — the `@d31ma` scope is not registered
+there. GitHub Packages is the only package registry, and it authenticates with
+the workflow's built-in `GITHUB_TOKEN`; no `NPM_TOKEN` secret is required.
+
 Publishing is idempotent only when an existing registry version has the same
-integrity. A different artifact at the same version is a hard failure. The npm
-step requires the `NPM_TOKEN` repository secret.
+integrity. A different artifact at the same version is a hard failure.
 
 ## Pages assets
 
