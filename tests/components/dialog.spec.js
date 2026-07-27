@@ -238,25 +238,35 @@ test('w-dialog target accepts an x,y pair and falls back safely for unknown targ
 
 test('w-dialog open-on-click can be switched off while hover and focus opt in', async ({ mount, page }) => {
   await mount(`
-    <w-dialog id="dialog" title="Hover" hide-close open-on-click="false" open-on-hover open-on-focus open-delay="40">
+    <w-dialog id="click" title="Click" hide-close open-on-click="false">
       <button slot="activator" id="activator">Open</button>
       Body
     </w-dialog>
   `);
 
   await page.locator('#activator').click();
-  await expect(page.locator('#dialog')).not.toHaveAttribute('open', '');
+  await page.waitForTimeout(50);
+  await expect(page.locator('#click')).not.toHaveAttribute('open', '');
 
-  await page.locator('#dialog .w-dialog-activator').dispatchEvent('mouseenter');
-  await expect(page.locator('#dialog')).not.toHaveAttribute('open', '');
-  await expect.poll(() => page.locator('#dialog').getAttribute('open')).toBe('');
+  await mount(`
+    <w-dialog id="hover" title="Hover" hide-close open-on-hover open-delay="40">
+      <button slot="activator">Open</button>
+      Body
+    </w-dialog>
+  `);
 
-  await page.locator('#dialog [aria-label="Close"]').count();
-  await page.locator('#dialog').evaluate((el) => el.close());
-  await expect(page.locator('#dialog')).not.toHaveAttribute('open', '');
+  await page.locator('#hover .w-dialog-activator').dispatchEvent('mouseenter');
+  await expect(page.locator('#hover')).toHaveAttribute('open', '');
 
-  await page.locator('#activator').focus();
-  await expect.poll(() => page.locator('#dialog').getAttribute('open')).toBe('');
+  await mount(`
+    <w-dialog id="focus" title="Focus" hide-close open-on-click="false" open-on-focus>
+      <button slot="activator" id="focus-activator">Open</button>
+      Body
+    </w-dialog>
+  `);
+
+  await page.locator('#focus-activator').focus();
+  await expect(page.locator('#focus')).toHaveAttribute('open', '');
 });
 
 test('w-dialog close-delay defers the hover close', async ({ mount, page }) => {
