@@ -160,7 +160,7 @@ const PAGES = [
   { path: '/docs/about',      title: 'About',             group: 'About',           keywords: 'about project principles vuetify relationship zero dependency html first light dom' },
 ];
 
-const REPO = 'https://github.com/d31ma/duvay';
+const REPO = 'https://github.com/d31ma/DUVAY';
 const BRANCH = 'main';
 
 /* ── Docs sidebar ─────────────────────────────────────────────────────────

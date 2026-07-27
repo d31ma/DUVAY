@@ -55,11 +55,11 @@
   "license": "MIT",
   "homepage": "https://duvay.del.ma",
   "bugs": {
-    "url": "https://github.com/d31ma/duvay/issues"
+    "url": "https://github.com/d31ma/DUVAY/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/d31ma/duvay.git"
+    "url": "https://github.com/d31ma/DUVAY.git"
   },
   "engines": {
     "bun": ">=1.0.0"
