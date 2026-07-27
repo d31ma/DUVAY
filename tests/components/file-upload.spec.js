@@ -111,14 +111,12 @@ test('the dropzone opens the file chooser from the keyboard', async ({ mount, pa
   await mount('<w-file-upload id="fu" clearable></w-file-upload>');
   const dropzone = page.locator('#fu .w-file-upload-dropzone');
 
-  await dropzone.focus();
-  await page.keyboard.press('Escape'); // not a dropzone key — nothing happens
+  await dropzone.press('Escape'); // not a dropzone key — nothing happens
   await expect(page.locator('#fu .w-file-upload-item')).toHaveCount(0);
 
-  await dropzone.focus();
   const [chooser] = await Promise.all([
     page.waitForEvent('filechooser'),
-    page.keyboard.press('Enter'),
+    dropzone.press('Enter'),
   ]);
   expect(chooser.isMultiple()).toBe(false);
 
