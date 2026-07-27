@@ -313,6 +313,9 @@ jobs:
               exit 1
             fi
             echo "GitHub Packages already has the identical release; skipping."
+            PUBLISHED_VERSION=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" version --registry=https://npm.pkg.github.com)
+            NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$PUBLISHED_VERSION" beta \
+              --registry=https://npm.pkg.github.com
           elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
             NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
               --ignore-scripts \
@@ -322,8 +325,6 @@ jobs:
             cat "$ERROR_FILE" >&2
             exit 1
           fi
-          NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$VERSION" beta \
-            --registry=https://npm.pkg.github.com
 
       - name: Publish npm latest when absent
         env:
@@ -353,6 +354,9 @@ jobs:
               exit 1
             fi
             echo "npm already has the identical release; skipping."
+            PUBLISHED_VERSION=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" version --registry=https://registry.npmjs.org)
+            NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$PUBLISHED_VERSION" latest \
+              --registry=https://registry.npmjs.org
           elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
             NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
               --ignore-scripts \
@@ -363,8 +367,6 @@ jobs:
             cat "$ERROR_FILE" >&2
             exit 1
           fi
-          NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$VERSION" latest \
-            --registry=https://registry.npmjs.org
 
   tag:
     name: Tag published source
