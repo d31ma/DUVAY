@@ -11,6 +11,7 @@ test('w-native-select preserves native options and emits change', async ({ mount
 
   await expect(page.locator('#native select')).toHaveValue('pro');
   await expect(page.locator('#native select')).toHaveClass(/w-select--lg/);
+  await expect(page.locator('#native select')).toHaveAttribute('aria-label', 'Plan');
 
   await page.locator('#native select').selectOption('free');
   await expect(page.locator('#native')).toHaveAttribute('value', 'free');

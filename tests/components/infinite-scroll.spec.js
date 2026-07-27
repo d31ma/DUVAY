@@ -68,3 +68,36 @@ test('w-infinite-scroll applies color and horizontal direction', async ({ mount,
   await expect(page.locator('#c [data-infinite-scroll]')).toHaveAttribute('style', /--w-infinite-color:var\(--w-success/);
   await expect(page.locator('#h .w-infinite-scroll')).toHaveClass(/w-infinite-scroll--horizontal/);
 });
+
+const TALL = Array.from({ length: 40 }, (_, index) => `<div class="w-list-item" style="height:40px">Row ${index + 1}</div>`).join('');
+const WIDE = Array.from({ length: 40 }, (_, index) => `<div style="flex:0 0 120px">Cell ${index + 1}</div>`).join('');
+
+test('w-infinite-scroll loads the end side when the user scrolls the container to the bottom', async ({ mount, page }) => {
+  await mount(`<w-infinite-scroll id="s" height="120px" margin="4" empty-text="End of list"
+    @load="this.dataset.side = event.detail.side; event.detail.done('empty')"><div class="w-list">${TALL}</div></w-infinite-scroll>`);
+
+  // The end sentinel starts far below the viewport, so nothing has loaded yet.
+  await page.waitForTimeout(150);
+  await expect(page.locator('#s .w-infinite-scroll-empty')).toHaveCount(0);
+  await expect(page.locator('#s')).not.toHaveAttribute('data-side', 'end');
+
+  await page.locator('#s [data-infinite-scroll]').evaluate((el) => { el.scrollTop = el.scrollHeight; });
+  expect(await page.locator('#s [data-infinite-scroll]').evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+
+  await expect(page.locator('#s')).toHaveAttribute('data-side', 'end');
+  await expect(page.locator('#s .w-infinite-scroll-empty')).toHaveText('End of list');
+  await expect(page.locator('#s')).toHaveAttribute('status', 'empty');
+});
+
+test('w-infinite-scroll disabled stays quiet while a horizontal container is scrolled', async ({ mount, page }) => {
+  await mount(`<w-infinite-scroll id="h" direction="horizontal" side="both" height="240px" margin="4" disabled
+    @load="this.dataset.loads = '1'"><div style="display:flex">${WIDE}</div></w-infinite-scroll>`);
+
+  await page.locator('#h [data-infinite-scroll]').evaluate((el) => { el.scrollLeft = el.scrollWidth; });
+  expect(await page.locator('#h [data-infinite-scroll]').evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
+  await page.waitForTimeout(150);
+
+  await expect(page.locator('#h')).not.toHaveAttribute('data-loads', '1');
+  await expect(page.locator('#h .w-infinite-scroll-spinner')).toHaveCount(0);
+  await expect(page.locator('#h')).not.toHaveAttribute('status', 'loading');
+});

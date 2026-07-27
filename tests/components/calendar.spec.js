@@ -434,3 +434,133 @@ test('w-calendar exposes range, movement, time geometry, and refresh helpers', a
   expect(events.map((event) => event.type)).toEqual(['change', 'change', 'moved']);
   expect(events[2].detail).toMatchObject({ reason: 'move', value: '2026-06-17' });
 });
+
+test('w-calendar first-time reads clock strings, raw minutes, objects, and clamps out-of-range input', async ({ mount, page }) => {
+  await mount('<w-calendar id="calendar" type="day" value="2026-06-13" interval-count="2" first-interval="7" interval-minutes="60"></w-calendar>');
+  // Report the interval scope verbatim so the assertions do not depend on Intl.
+  await page.locator('#calendar').evaluate((calendar) => { calendar.intervalFormat = (interval) => interval.time; });
+  const labels = page.locator('#calendar .w-calendar-time-label');
+
+  // No first-time at all: fall back to first-interval * interval-minutes.
+  await expect(labels).toHaveText(['07:00', '08:00']);
+
+  const setAttr = (value) => page.locator('#calendar').evaluate((calendar, next) => calendar.setAttribute('first-time', next), value);
+
+  await setAttr('08:30');
+  await expect(labels).toHaveText(['08:30', '09:30']);
+
+  // A bare number is minutes past midnight.
+  await setAttr('90');
+  await expect(labels).toHaveText(['01:30', '02:30']);
+
+  // Negative minutes clamp to midnight.
+  await setAttr('-120');
+  await expect(labels).toHaveText(['00:00', '01:00']);
+
+  // 30:00 clamps to the 1440-minute ceiling, which normalizes back to midnight.
+  await setAttr('30:00');
+  await expect(labels).toHaveText(['00:00', '01:00']);
+
+  // Text that is neither a clock nor a number falls back to first-interval.
+  await setAttr('lunchtime');
+  await expect(labels).toHaveText(['07:00', '08:00']);
+
+  // An empty attribute is treated as absent.
+  await setAttr('05:00');
+  await expect(labels).toHaveText(['05:00', '06:00']);
+  await setAttr('');
+  await expect(labels).toHaveText(['07:00', '08:00']);
+
+  // Object form, including a missing hour defaulting to zero.
+  await page.locator('#calendar').evaluate((calendar) => { calendar.firstTime = { hour: 9, minute: 15 }; });
+  await expect(labels).toHaveText(['09:15', '10:15']);
+
+  await page.locator('#calendar').evaluate((calendar) => { calendar.firstTime = { minute: 45 }; });
+  await expect(labels).toHaveText(['00:45', '01:45']);
+
+  // A non-numeric object field falls back to first-interval as well.
+  await page.locator('#calendar').evaluate((calendar) => { calendar.firstTime = { hour: 'noon', minute: 0 }; });
+  await expect(labels).toHaveText(['07:00', '08:00']);
+});
+
+test('w-calendar resolves event timing from an explicit flag or a function accessor', async ({ mount, page }) => {
+  await mount('<w-calendar id="calendar" value="2026-06-13" locale="en-US"></w-calendar>');
+  await page.locator('#calendar').evaluate((calendar) => {
+    calendar.events = [
+      { name: 'Clock', start: '2026-06-13 09:00' },
+      { name: 'Flagged off', start: '2026-06-13 10:00', timed: false },
+    ];
+  });
+
+  // Timed events get a leading time in the month grid; all-day events do not.
+  const cell = page.locator('#calendar [data-date-cell="2026-06-13"] .w-calendar-event');
+  await expect(cell).toHaveText(['9 AM Clock', 'Flagged off']);
+
+  // A function accessor overrides both the flag and the parsed clock time.
+  await page.locator('#calendar').evaluate((calendar) => {
+    calendar.eventTimed = (source) => source.name === 'Flagged off';
+  });
+  await expect(cell).toHaveText(['Clock', '10 AM Flagged off']);
+});
+
+test('w-calendar reads custom event keys and function accessors and drops unparseable events', async ({ mount, page }) => {
+  await mount('<w-calendar id="calendar" value="2026-06-13" event-start="from" event-end="to"></w-calendar>');
+  await page.locator('#calendar').evaluate((calendar) => {
+    calendar.eventName = (source) => source.label.toUpperCase();
+    calendar.eventColor = (source) => (source.label === 'Kickoff' ? 'success' : 'warning');
+    calendar.eventTextColor = () => 'on-surface';
+    calendar.eventCategory = (source) => source.label;
+    calendar.events = [
+      { label: 'Kickoff', from: '2026-06-13', to: '2026-06-13' },
+      { label: 'Nonsense', from: 'not a date at all' },
+      // `to` is before `from`, so the span collapses back onto the start day.
+      { label: 'Backwards', from: '2026-06-13', to: '2026-06-11' },
+    ];
+  });
+
+  const events = page.locator('#calendar [data-date-cell="2026-06-13"] .w-calendar-event');
+  await expect(events).toHaveCount(2);
+  await expect(events).toHaveText(['KICKOFF', 'BACKWARDS']);
+  await expect(page.locator('#calendar [data-date-cell="2026-06-11"] .w-calendar-event')).toHaveCount(0);
+  await expect(page.locator('#calendar [data-date-cell="2026-06-12"] .w-calendar-event')).toHaveCount(0);
+
+  // Function colour accessors feed the per-event custom properties.
+  await expect(events.nth(0)).toHaveAttribute('style', /--w-calendar-event-color:var\(--w-success\)/);
+  await expect(events.nth(1)).toHaveAttribute('style', /--w-calendar-event-color:var\(--w-warning\)/);
+  await expect(events.nth(0)).toHaveAttribute('style', /--w-calendar-event-text:var\(--w-on-surface\)/);
+});
+
+test('w-calendar falls back to source keys and defaults when no accessor is a function', async ({ mount, page }) => {
+  await mount(`
+    <w-calendar
+      id="calendar"
+      value="2026-06-13"
+      event-name="label"
+      event-color="tone"
+      event-text-color="ink"
+      event-category="bucket"
+    ></w-calendar>
+  `);
+  await page.locator('#calendar').evaluate((calendar) => {
+    calendar.events = [
+      { label: 'From keys', tone: 'danger', ink: '#101010', bucket: 'Ops', start: '2026-06-13' },
+      // No matching keys: the colour accessors fall back to the attribute
+      // values themselves and the name falls back to an empty string.
+      { start: '2026-06-13' },
+    ];
+  });
+
+  const events = page.locator('#calendar [data-date-cell="2026-06-13"] .w-calendar-event');
+  await expect(events).toHaveCount(2);
+  await expect(events.nth(0)).toHaveText('From keys');
+  await expect(events.nth(0)).toHaveAttribute('style', /--w-calendar-event-color:var\(--w-danger\)/);
+  await expect(events.nth(0)).toHaveAttribute('style', /--w-calendar-event-text:#101010/);
+  await expect(events.nth(1)).toHaveText('');
+  await expect(events.nth(1)).toHaveAttribute('style', /--w-calendar-event-color:var\(--w-tone\)/);
+  // Missing keys resolve to the attribute value itself, not to the default.
+  await expect(events.nth(1)).toHaveAttribute('style', /--w-calendar-event-text:var\(--w-ink\)/);
+
+  // Drop event-text-color entirely and the event falls back to on-primary.
+  await page.locator('#calendar').evaluate((calendar) => calendar.removeAttribute('event-text-color'));
+  await expect(events.nth(1)).toHaveAttribute('style', /--w-calendar-event-text:var\(--w-on-primary\)/);
+});

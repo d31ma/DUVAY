@@ -5,7 +5,7 @@ const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
 
 const sidebarSource = async () => {
   const source = await readFile(
-    projectFile('website/browser/shared/scripts/docs.js'),
+    projectFile('website/client/shared/scripts/docs.js'),
     'utf8',
   );
   const sidebarStart = source.indexOf('const HE_DOC_SECTIONS');
@@ -34,7 +34,7 @@ test('sidebar items use dedicated documentation routes', async () => {
   });
 
   for (const { path } of items) {
-    await expect(access(projectFile(`website/browser/pages${path}/tac.html`)))
+    await expect(access(projectFile(`website/client/pages${path}/tac.html`)))
       .resolves.toBeUndefined();
   }
 });

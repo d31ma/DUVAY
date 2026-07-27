@@ -105,3 +105,59 @@ test('w-chip-group syncs single, multiple, mandatory, and disabled selection', a
   await page.locator('#group').evaluate((el) => el.setAttribute('disabled', ''));
   await expect(page.locator('w-chip[value="design"]')).toHaveAttribute('disabled', '');
 });
+
+test('w-chip toggles from the keyboard and closes when the close affordance is activated', async ({ mount, page }) => {
+  await mount('<w-chip id="chip" value="qa" filter closable>QA</w-chip>');
+  await recordEvents(page, '#chip', ['change', 'close']);
+  const chip = page.locator('#chip .w-chip');
+
+  // Keys the chip does not own are ignored.
+  await chip.focus();
+  await page.keyboard.press('a');
+  await expect(chip).toHaveAttribute('aria-pressed', 'false');
+
+  await chip.focus();
+  await page.keyboard.press('Enter');
+  await expect(chip).toHaveAttribute('aria-pressed', 'true');
+  await expect(chip).toHaveClass(/selected/);
+
+  await chip.focus();
+  await page.keyboard.press(' ');
+  await expect(chip).toHaveAttribute('aria-pressed', 'false');
+  await expect(chip).not.toHaveClass(/selected/);
+
+  // Enter on the close affordance closes instead of toggling selection.
+  await page.locator('#chip .w-chip__close').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#chip .w-chip')).toHaveCount(0);
+  await expect(page.locator('#chip')).toHaveAttribute('hidden', '');
+
+  const events = await readEvents(page, '#chip');
+  expect(events.map((event) => event.type)).toEqual(['change', 'change', 'close']);
+  expect(events.at(-1).detail).toEqual({ value: 'qa' });
+});
+
+test('w-chip space on the close affordance removes a removable chip', async ({ mount, page }) => {
+  await mount('<w-chip id="chip" value="tag" removable>Tag</w-chip>');
+  await page.locator('#chip .w-chip__close').focus();
+  await page.keyboard.press(' ');
+  await expect(page.locator('#chip')).toHaveCount(0);
+});
+
+test('w-chip selected-class follows the selection and active-class follows the route', async ({ mount, page }) => {
+  const here = new URL(page.url()).pathname;
+  await mount(`
+    <w-chip id="pick" value="qa" selected-class="is-picked">QA</w-chip>
+    <w-chip id="here" href="${here}" active-class="is-here">Here</w-chip>
+    <w-chip id="away" href="/somewhere-else" active-class="is-here">Away</w-chip>
+  `);
+
+  await expect(page.locator('#pick .w-chip')).not.toHaveClass(/is-picked/);
+  await page.locator('#pick .w-chip').click();
+  await expect(page.locator('#pick .w-chip')).toHaveClass(/is-picked/);
+  await page.locator('#pick .w-chip').click();
+  await expect(page.locator('#pick .w-chip')).not.toHaveClass(/is-picked/);
+
+  await expect(page.locator('#here .w-chip')).toHaveClass(/is-here/);
+  await expect(page.locator('#away .w-chip')).not.toHaveClass(/is-here/);
+});

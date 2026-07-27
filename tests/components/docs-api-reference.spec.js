@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { API_DATA } from '../../website/browser/shared/scripts/api-data.js';
+import { API_DATA } from '../../website/client/shared/scripts/api-data.js';
 import { expect, test } from '../setup/component-test.js';
 
 const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
@@ -19,7 +19,7 @@ function componentRoutes(source) {
 
 test('every component documentation route has a structured API reference', async () => {
   const docsSource = await readFile(
-    projectFile('website/browser/shared/scripts/docs.js'),
+    projectFile('website/client/shared/scripts/docs.js'),
     'utf8',
   );
   const routes = componentRoutes(docsSource);

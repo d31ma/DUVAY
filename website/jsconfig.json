@@ -13,8 +13,8 @@
   },
   "include": [
     "tachyon-env.d.ts",
-    "browser/**/*.js",
-    "browser/**/*.ts",
+    "client/**/*.js",
+    "client/**/*.ts",
     "server/**/*.js",
     "server/**/*.ts"
   ]

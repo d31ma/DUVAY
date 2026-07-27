@@ -152,6 +152,20 @@ test('w-rating clones item and item-label slots and responds to attribute change
   await expect(page.locator('#rating .custom-rating-label').last()).toHaveText('Four');
 });
 
+test('w-rating does not duplicate ids from cloned item and item-label slots', async ({ mount, page }) => {
+  await mount(`
+    <w-rating id="rating" value="2" length="3" item-labels='["Low","Medium","High"]'>
+      <span slot="item" id="custom-rating-icon">◆</span>
+      <strong slot="item-label" id="custom-rating-label">{{label}}</strong>
+    </w-rating>
+  `);
+
+  await expect(page.locator('#custom-rating-icon')).toHaveCount(1);
+  await expect(page.locator('#custom-rating-label')).toHaveCount(1);
+  await expect(page.locator('#rating .w-rating__icon span')).toHaveCount(6);
+  await expect(page.locator('#rating .w-rating__label strong')).toHaveCount(3);
+});
+
 test('w-rating accepts Vuetify size aliases, numeric sizes, CSS colors, and DuVay color aliases', async ({ mount, page }) => {
   await mount(`
     <w-rating id="named" value="2" size="x-large" active-color="danger"></w-rating>
@@ -168,4 +182,23 @@ test('w-rating accepts Vuetify size aliases, numeric sizes, CSS colors, and DuVa
     rating.value = 4;
   });
   await expect(page.locator('#named')).toHaveAttribute('value', '4');
+});
+
+test('w-rating ignores unhandled keys and modified arrow presses', async ({ mount, page }) => {
+  await mount('<w-rating id="rating" value="2"></w-rating>');
+  await recordEvents(page, '#rating', ['change']);
+
+  const current = page.locator('#rating .w-rating__control[data-value="2"]');
+  await current.focus();
+
+  await current.press('PageUp');
+  await current.press('a');
+  await expect(page.locator('#rating')).toHaveAttribute('value', '2');
+  await expect(current).toBeFocused();
+
+  await current.press('Control+ArrowRight');
+  await current.press('Alt+ArrowRight');
+  await expect(page.locator('#rating')).toHaveAttribute('value', '2');
+
+  expect(await readEvents(page, '#rating')).toEqual([]);
 });

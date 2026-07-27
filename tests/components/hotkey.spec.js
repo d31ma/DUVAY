@@ -5,6 +5,7 @@ test('w-hotkey renders a combo as kbd chips, platform-aware', async ({ mount, pa
 
   await expect(page.locator('#mac .w-hotkey-key')).toHaveText(['⌘', 'K']);
   await expect(page.locator('#pc .w-hotkey-key')).toHaveText(['Ctrl', 'K']);
+  await expect(page.locator('#mac .w-hotkey-key').first()).toHaveCSS('font-size', '12px');
 });
 
 test('w-hotkey renders sequential steps separated by "then"', async ({ mount, page }) => {
@@ -38,4 +39,33 @@ test('w-hotkey variant plain drops the chip box; disabled dims and flags', async
 test('w-hotkey exposes a readable aria-label', async ({ mount, page }) => {
   await mount('<w-hotkey id="a" keys="ctrl+k-ctrl+s" platform="pc"></w-hotkey>');
   await expect(page.locator('#a .w-hotkey')).toHaveAttribute('aria-label', 'Control + K, then Control + S');
+});
+
+test('w-hotkey key-map normalizes Vuetify map entries and ignores invalid ones', async ({ mount, page }) => {
+  await mount(`<w-hotkey id="custom" keys="save+letter+symbol+bad" platform="mac"
+    key-map='{
+      "save":{"default":{"text":"Save","symbol":"S"},"mac":{"text":"Save on Mac","symbol":"⌘S"}},
+      "letter":{"default":{"text":"Letter"}},
+      "symbol":{"mac":{"symbol":"◇"}},
+      "bad":null
+    }'></w-hotkey>`);
+  await expect(page.locator('#custom .w-hotkey-key')).toHaveText(['⌘S', 'Letter', '◇', 'Bad']);
+
+  const normalized = await page.evaluate(async () => {
+    const { wHotkeyDef } = await import('/src/components/hotkey.js');
+    return [
+      wHotkeyDef(null),
+      wHotkeyDef('bad'),
+      wHotkeyDef({ default: { symbol: 'S' } }),
+      wHotkeyDef({ mac: { text: 'Mac' } }),
+      wHotkeyDef({}),
+    ];
+  });
+  expect(normalized).toEqual([
+    null,
+    null,
+    { mac: 'S', pc: 'S', symbol: 'S', text: 'S' },
+    { mac: 'Mac', pc: 'Mac', symbol: 'Mac', text: 'Mac' },
+    null,
+  ]);
 });

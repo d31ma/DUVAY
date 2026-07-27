@@ -56,3 +56,46 @@ test('w-expansion-panel supports Vuetify-style title, text, value, readonly, and
   await expect(page.locator('#panel')).not.toHaveAttribute('open', '');
   expect(await readEvents(page, '#panel')).toEqual([]);
 });
+
+test('w-expansion-panel hover, focusable, ripple, and selected-class change the rendered panel', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panel id="panel" title="Details" hover focusable ripple selected-class="is-open">
+      <p>Panel content</p>
+    </w-expansion-panel>
+  `);
+
+  const root = page.locator('#panel .w-expand');
+  await expect(root).toHaveClass(/w-expand--hover/);
+  await expect(root).not.toHaveClass(/is-open/);
+  await expect(page.locator('#panel .w-expand-body')).toHaveAttribute('tabindex', '0');
+  await expect(page.locator('#panel .w-expand-header')).toHaveClass(/w-ripple-host/);
+
+  await page.locator('#panel .w-expand-header').click();
+  await expect(root).toHaveClass(/is-open/);
+
+  await page.locator('#panel .w-expand-header').click();
+  await expect(root).not.toHaveClass(/is-open/);
+});
+
+test('w-expansion-panel-title renders icons, hides actions, and reflects panel state', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panel-title id="collapsed" expand-icon="+" collapse-icon="-">Plain</w-expansion-panel-title>
+    <w-expansion-panel-title id="bare" hide-actions>Bare</w-expansion-panel-title>
+    <w-expansion-panel-title id="fancy" static hover focusable ripple>Fancy</w-expansion-panel-title>
+    <w-expansion-panel open title="Outer">
+      <w-expansion-panel-title id="inside" expand-icon="+" collapse-icon="-" slot="title">Inside</w-expansion-panel-title>
+    </w-expansion-panel>
+  `);
+
+  await expect(page.locator('#collapsed .w-expand-chevron')).toHaveText('+');
+  await expect(page.locator('#collapsed .w-expansion-panel-title')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#bare .w-expansion-panel-title__icon')).toHaveCount(0);
+  await expect(page.locator('#fancy .w-expansion-panel-title')).toHaveClass(/w-expand-header--static/);
+  await expect(page.locator('#fancy .w-expansion-panel-title')).toHaveClass(/w-expansion-panel-title--hover/);
+  await expect(page.locator('#fancy .w-expansion-panel-title')).toHaveClass(/w-expansion-panel-title--focusable/);
+  await expect(page.locator('#fancy .w-expansion-panel-title')).toHaveClass(/w-ripple-host/);
+
+  // Nested in an open panel, the title flips to the collapse icon.
+  await expect(page.locator('#inside .w-expand-chevron')).toHaveText('-');
+  await expect(page.locator('#inside .w-expansion-panel-title')).toHaveAttribute('aria-expanded', 'true');
+});

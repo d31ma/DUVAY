@@ -1,5 +1,54 @@
 # Changelog
 
+## 26.31.01 - 2026-07-27
+
+### Breaking
+
+- Renamed the npm package from `duvay-css` to `@d31ma/duvay-css`. Update
+  package-manager installs and CSS or JavaScript imports to use the scoped
+  package name. Hosted GitHub Pages URLs are unchanged.
+
+### Added
+
+- Expanded the Light DOM web-component APIs across application shells,
+  navigation, overlays, forms, selection controls, data display, date and time
+  inputs, file upload, and motion. Component documentation now pairs CSS-class
+  and web-component examples with structured attribute, event, slot, and method
+  references.
+- Added common `hover-elevation`, `theme`, `min-height`, and `max-height`
+  attributes to the web-component base API. `theme` scopes semantic tokens to a
+  component subtree without changing the document theme.
+- Added shared icon-glyph size tokens and automated component coverage, CRAP
+  scoring, and Vuetify-parity reporting for release validation.
+
+### Changed
+
+- Migrated the documentation app from `website/browser/` to the Tachyon
+  `website/client/` layout and broadened component, feature, style, directive,
+  accessibility, installation, and upgrade coverage.
+- Pinned the documentation build to a checksum-verified Tachyon release for
+  deterministic local and CI builds on supported macOS, Linux, and Windows
+  runners.
+- Raised the smallest text tokens to a 12px default floor and standardized
+  coarse-pointer controls on the shared 44px touch-target token.
+- Hardened release automation around one immutable `main` commit: CI validates
+  tooling, components, and docs; one integrity-checked tarball is published to
+  npm and GitHub Packages; and the annotated tag and GitHub release are created
+  only after registry publication succeeds.
+- Pages deployment now requires the annotated source tag, preserves immutable
+  version directories with source-SHA metadata, and updates `latest` only when
+  the deployed CalVer is not older than the current release.
+
+### Fixed
+
+- Escaped component-authored text and attributes consistently and hardened
+  high-risk URL, icon-adapter, and inline-style entry points. Button, FAB, and
+  file-upload links now reject unsupported schemes; upload previews use a
+  narrow image URL policy; and unsafe icon tags, class tokens, and style values
+  are ignored.
+- Kept visual-only hover cards out of the keyboard tab order while preserving
+  keyboard activation for cards explicitly configured as links.
+
 ## 26.27.06 - 2026-07-04
 
 ### Added

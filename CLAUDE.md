@@ -81,11 +81,11 @@ You focus on the documentation site (`website/`), package manifest (`package.jso
 
 - All work is scoped to `website/`, `package.json`, and repository-level tooling unless explicitly directed otherwise.
 - Do not modify files in `src/*.css` or `src/components/*.js`.
-- The documentation site is a Tac (Tachyon) frontend-only app. It lives in `website/browser/` with file-system routing.
+- The documentation site is a Tac (Tachyon) frontend-only app. It lives in `website/client/` with file-system routing.
 - The site must build cleanly with `bun run bundle` — zero errors, zero warnings. Static export goes to `website/dist/`.
-- Every framework component must have a corresponding docs page under `website/browser/pages/docs/`. Each page demonstrates both the CSS-class approach and the web-component approach side by side.
-- The `demo-compare` component (`website/browser/components/demo/compare/`) is the standard pattern for showing CSS vs WC. Use it consistently across all component docs.
-- The docs site imports `duvay.css` and `duvay-wc.js` from `website/browser/shared/assets/duvay/` — these are copies of the root framework files. When the framework changes, these copies must be updated (or automated).
+- Every framework component must have a corresponding docs page under `website/client/pages/docs/`. Each page demonstrates both the CSS-class approach and the web-component approach side by side.
+- The `demo-compare` component (`website/client/components/demo/compare/`) is the standard pattern for showing CSS vs WC. Use it consistently across all component docs.
+- The docs site imports `duvay.css` and `duvay-wc.js` from `website/client/shared/assets/duvay/` — these are copies of the root framework files. When the framework changes, these copies must be updated (or automated).
 - `package.json` must remain clean: name, version, description, `main`, `files`, keywords, license, and repository only. No spurious devDependencies at root.
 - The `files` array in `package.json` should include only what consumers need. The framework is zero-dependency — consumers import `src/duvay.css` and optionally `src/duvay-wc.js`.
 - Versioning follows CalVer (`YY.WW.DD`). Releases publish to npm. Pre-release validation includes: `bun run bundle` passes, all docs pages render, and the site preview loads without errors.

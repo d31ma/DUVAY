@@ -2,7 +2,7 @@
 // DuVay — build script
 //
 // 1. Resolves CSS imports into dist/duvay.css (the published bundle).
-// 2. Mirrors src/ into website/browser/shared/assets/duvay/ so the docs site
+// 2. Mirrors src/ into website/client/shared/assets/duvay/ so the docs site
 //    always renders against the live framework.
 // 3. Produces the distributable artifacts in dist/ — full + minified CSS,
 //    behaviour layer, and a single-file web-component bundle — and mirrors
@@ -20,7 +20,7 @@ const SRC = join(ROOT, 'src');
 const CSS_ENTRY = join(SRC, 'duvay.css');
 const CORE_ENTRY = join(SRC, 'core.css');
 const MOTION = join(SRC, 'components', 'duvay-motion.js');
-const WEB_ASSETS = join(ROOT, 'website', 'browser', 'shared', 'assets', 'duvay');
+const WEB_ASSETS = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay');
 const DIST = join(ROOT, 'dist');
 const WEB_DIST = join(WEB_ASSETS, 'dist');
 const VERSION = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8')).version;

@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Exact main commit SHA to publish
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -13,8 +18,110 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  preflight:
+    name: Validate release source
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      source_sha: ${{ steps.release.outputs.source_sha }}
+      version: ${{ steps.release.outputs.version }}
+
+    steps:
+      - name: Checkout requested source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.source_sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+
+      - name: Validate immutable main source and CalVer
+        id: release
+        env:
+          REQUESTED_SHA: ${{ github.event_name == 'workflow_dispatch' && inputs.source_sha || github.sha }}
+        run: |
+          set -euo pipefail
+
+          git fetch --force origin +refs/heads/main:refs/remotes/origin/main --tags
+          SOURCE_SHA=$(git rev-parse HEAD)
+          MAIN_SHA=$(git rev-parse origin/main)
+          VERSION=$(bun -p "require('./package.json').version")
+          PACKAGE=$(bun -p "require('./package.json').name")
+
+          if [[ ! "$REQUESTED_SHA" =~ ^[0-9a-f]{40}$ ]] || [[ "$SOURCE_SHA" != "$REQUESTED_SHA" ]]; then
+            echo "::error::Requested source is not the checked-out commit."
+            exit 1
+          fi
+          if [[ "$SOURCE_SHA" != "$MAIN_SHA" ]]; then
+            echo "::error::Only the current immutable main SHA may publish."
+            exit 1
+          fi
+          if [[ "$PACKAGE" != "@d31ma/duvay-css" ]]; then
+            echo "::error::Unexpected package name: $PACKAGE"
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$ ]]; then
+            echo "::error::Version must use YY.WW.DD CalVer."
+            exit 1
+          fi
+
+          IFS=. read -r _ WEEK DAY <<< "$VERSION"
+          if (( 10#$WEEK < 1 || 10#$WEEK > 53 || 10#$DAY < 1 || 10#$DAY > 7 )); then
+            echo "::error::Version has an invalid ISO week or weekday."
+            exit 1
+          fi
+
+          TAG="v$VERSION"
+          if git show-ref --verify --quiet "refs/tags/$TAG"; then
+            TAG_SHA=$(git rev-parse "refs/tags/$TAG^{}")
+            if [[ "$TAG_SHA" != "$SOURCE_SHA" ]]; then
+              echo "::error::Existing tag $TAG resolves to $TAG_SHA, not $SOURCE_SHA."
+              exit 1
+            fi
+            if [[ "$(git cat-file -t "refs/tags/$TAG")" != "tag" ]]; then
+              echo "::error::Existing tag $TAG is not annotated."
+              exit 1
+            fi
+          fi
+
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+  quality:
+    name: Tooling unit tests
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout release source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install website dependencies
+        run: cd website && bun install --frozen-lockfile
+
+      - name: Test pinned Tachyon wrapper
+        run: bun run --cwd website test:ty
+
+      - name: Test CRAP counter
+        run: bun scripts/crap.test.mjs
+
   test:
     name: Component tests (${{ matrix.shard }}/4)
+    needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -23,13 +130,15 @@ jobs:
         shard: [1, 2, 3, 4]
 
     steps:
-      - name: Checkout
+      - name: Checkout release source
         uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.11
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -48,17 +157,20 @@ jobs:
 
   docs:
     name: Build documentation
+    needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      - name: Checkout
+      - name: Checkout release source
         uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.3.11
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -72,83 +184,259 @@ jobs:
       - name: Build documentation site
         run: cd website && bun run bundle
 
-  version:
-    name: Read version
+  package:
+    name: Pack release artifact
+    needs: [preflight, quality, test, docs]
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
-      version: ${{ steps.read.outputs.version }}
-      tag_exists: ${{ steps.check.outputs.exists }}
+      artifact_name: ${{ steps.pack.outputs.artifact_name }}
+      integrity: ${{ steps.pack.outputs.integrity }}
+      tarball: ${{ steps.pack.outputs.tarball }}
 
     steps:
-      - name: Checkout
+      - name: Checkout release source
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          ref: ${{ needs.preflight.outputs.source_sha }}
 
-      - name: Read package version
-        id: read
-        run: |
-          VERSION=$(node -p "require('./package.json').version")
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Version: $VERSION"
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
 
-      - name: Check version tag
-        id: check
+      - name: Build framework
+        run: bun run build
+
+      - name: Pack exactly once
+        id: pack
         env:
-          TAG: v${{ steps.read.outputs.version }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+          SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
         run: |
-          if git rev-parse "refs/tags/$TAG" >/dev/null 2>&1; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-            echo "Tag $TAG already exists; skipping release."
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+
+          PACK_JSON=$(npm pack --json --ignore-scripts)
+          TARBALL=$(node -e 'const rows=JSON.parse(process.argv[1]); if(rows.length!==1) process.exit(1); process.stdout.write(rows[0].filename)' "$PACK_JSON")
+          COUNT=$(find . -maxdepth 1 -type f -name '*.tgz' | wc -l | tr -d ' ')
+          if [[ "$COUNT" != "1" ]] || [[ ! -f "$TARBALL" ]]; then
+            echo "::error::Expected exactly one npm tarball, found $COUNT."
+            exit 1
           fi
 
-  github-release:
-    name: Create GitHub release
+          INTEGRITY=$(node -e 'const {createHash}=require("node:crypto"); const {readFileSync}=require("node:fs"); process.stdout.write(`sha512-${createHash("sha512").update(readFileSync(process.argv[1])).digest("base64")}`)' "$TARBALL")
+          ARTIFACT_NAME="npm-package-$VERSION-$SOURCE_SHA"
+
+          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
+          echo "integrity=$INTEGRITY" >> "$GITHUB_OUTPUT"
+          echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
+
+      - name: Upload immutable package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pack.outputs.artifact_name }}
+          path: ${{ steps.pack.outputs.tarball }}
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish package registries
+    needs: [preflight, package]
     runs-on: ubuntu-latest
-    needs: [test, docs, version]
-    if: >-
-      ${{
-        always() &&
-        needs.test.result == 'success' &&
-        needs.docs.result == 'success' &&
-        needs.version.result == 'success' &&
-        needs.version.outputs.tag_exists == 'false'
-      }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout release source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
+          fetch-depth: 0
+
+      - name: Revalidate current main before publishing
+        env:
+          SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+
+          git fetch --force origin +refs/heads/main:refs/remotes/origin/main
+          if [[ "$(git rev-parse HEAD)" != "$SOURCE_SHA" ]] || [[ "$(git rev-parse origin/main)" != "$SOURCE_SHA" ]]; then
+            echo "::error::Main moved after validation; refusing to publish a stale SHA."
+            exit 1
+          fi
+
+      - name: Download immutable package artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: ${{ needs.package.outputs.artifact_name }}
+
+      - name: Verify downloaded tarball
+        env:
+          EXPECTED_TARBALL: ${{ needs.package.outputs.tarball }}
+          EXPECTED_INTEGRITY: ${{ needs.package.outputs.integrity }}
+        run: |
+          set -euo pipefail
+
+          COUNT=$(find . -maxdepth 1 -type f -name '*.tgz' | wc -l | tr -d ' ')
+          if [[ "$COUNT" != "1" ]] || [[ ! -f "$EXPECTED_TARBALL" ]]; then
+            echo "::error::Release artifact is missing or ambiguous."
+            exit 1
+          fi
+          ACTUAL_INTEGRITY=$(node -e 'const {createHash}=require("node:crypto"); const {readFileSync}=require("node:fs"); process.stdout.write(`sha512-${createHash("sha512").update(readFileSync(process.argv[1])).digest("base64")}`)' "$EXPECTED_TARBALL")
+          if [[ "$ACTUAL_INTEGRITY" != "$EXPECTED_INTEGRITY" ]]; then
+            echo "::error::Downloaded tarball integrity does not match the packed artifact."
+            exit 1
+          fi
+
+      - name: Publish GitHub Packages beta when absent
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE: "@d31ma/duvay-css"
+          VERSION: ${{ needs.preflight.outputs.version }}
+          TARBALL: ${{ needs.package.outputs.tarball }}
+          EXPECTED_INTEGRITY: ${{ needs.package.outputs.integrity }}
+        run: |
+          set -euo pipefail
+
+          NPMRC="$RUNNER_TEMP/npmrc-github"
+          printf '%s\n' \
+            '@d31ma:registry=https://npm.pkg.github.com' \
+            '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' \
+            'always-auth=true' > "$NPMRC"
+
+          ERROR_FILE="$RUNNER_TEMP/github-packages-view.err"
+          if ACTUAL=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" dist.integrity --registry=https://npm.pkg.github.com 2>"$ERROR_FILE"); then
+            if [[ "$ACTUAL" != "$EXPECTED_INTEGRITY" ]]; then
+              echo "::error::GitHub Packages already has $PACKAGE@$VERSION with different contents."
+              exit 1
+            fi
+            echo "GitHub Packages already has the identical release; skipping."
+          elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
+            NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
+              --ignore-scripts \
+              --tag beta \
+              --registry=https://npm.pkg.github.com
+          else
+            cat "$ERROR_FILE" >&2
+            exit 1
+          fi
+          NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$VERSION" beta \
+            --registry=https://npm.pkg.github.com
+
+      - name: Publish npm latest when absent
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PACKAGE: "@d31ma/duvay-css"
+          VERSION: ${{ needs.preflight.outputs.version }}
+          TARBALL: ${{ needs.package.outputs.tarball }}
+          EXPECTED_INTEGRITY: ${{ needs.package.outputs.integrity }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "$NODE_AUTH_TOKEN" ]]; then
+            echo "::error::NPM_TOKEN is not configured."
+            exit 1
+          fi
+
+          NPMRC="$RUNNER_TEMP/npmrc-npmjs"
+          printf '%s\n' \
+            'registry=https://registry.npmjs.org' \
+            '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}' \
+            'always-auth=true' > "$NPMRC"
+
+          ERROR_FILE="$RUNNER_TEMP/npmjs-view.err"
+          if ACTUAL=$(NPM_CONFIG_USERCONFIG="$NPMRC" npm view "$PACKAGE@$VERSION" dist.integrity --registry=https://registry.npmjs.org 2>"$ERROR_FILE"); then
+            if [[ "$ACTUAL" != "$EXPECTED_INTEGRITY" ]]; then
+              echo "::error::npm already has $PACKAGE@$VERSION with different contents."
+              exit 1
+            fi
+            echo "npm already has the identical release; skipping."
+          elif grep -Eq 'E404|404 Not Found' "$ERROR_FILE"; then
+            NPM_CONFIG_USERCONFIG="$NPMRC" npm publish "$TARBALL" \
+              --ignore-scripts \
+              --access public \
+              --tag latest \
+              --registry=https://registry.npmjs.org
+          else
+            cat "$ERROR_FILE" >&2
+            exit 1
+          fi
+          NPM_CONFIG_USERCONFIG="$NPMRC" npm dist-tag add "$PACKAGE@$VERSION" latest \
+            --registry=https://registry.npmjs.org
+
+  tag:
+    name: Tag published source
+    needs: [preflight, publish]
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout published source
         uses: actions/checkout@v7
         with:
+          ref: ${{ needs.preflight.outputs.source_sha }}
           fetch-depth: 0
 
-      - name: Create and push version tag
+      - name: Create or verify annotated tag
         env:
-          VERSION: ${{ needs.version.outputs.version }}
+          SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
+          VERSION: ${{ needs.preflight.outputs.version }}
         run: |
-          git fetch origin --tags
-          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
-            echo "Tag v$VERSION already exists; skipping."
+          set -euo pipefail
+
+          git fetch --force origin +refs/heads/main:refs/remotes/origin/main --tags
+          TAG="v$VERSION"
+          if git show-ref --verify --quiet "refs/tags/$TAG"; then
+            TAG_SHA=$(git rev-parse "refs/tags/$TAG^{}")
+            if [[ "$TAG_SHA" != "$SOURCE_SHA" ]]; then
+              echo "::error::Existing tag $TAG resolves to $TAG_SHA, not $SOURCE_SHA."
+              exit 1
+            fi
+            if [[ "$(git cat-file -t "refs/tags/$TAG")" != "tag" ]]; then
+              echo "::error::Existing tag $TAG is not annotated."
+              exit 1
+            fi
+            echo "Annotated tag $TAG already identifies the published source."
           else
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git tag -a "v$VERSION" -m "v$VERSION"
-            git push origin "v$VERSION"
+            git tag -a "$TAG" "$SOURCE_SHA" -m "$TAG"
+            git push origin "refs/tags/$TAG"
           fi
 
-      - name: Create GitHub release
+  github-release:
+    name: Create or repair GitHub release
+    needs: [preflight, tag]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: Create or repair release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ needs.version.outputs.version }}
+          SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
+          VERSION: ${{ needs.preflight.outputs.version }}
         run: |
-          if gh release view "v$VERSION" >/dev/null 2>&1; then
-            echo "Release v$VERSION already exists; skipping."
+          set -euo pipefail
+
+          TAG="v$VERSION"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release edit "$TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "$TAG" \
+              --draft=false \
+              --prerelease=false
           else
-            gh release create "v$VERSION" \
-              --title "v$VERSION" \
+            gh release create "$TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$SOURCE_SHA" \
+              --verify-tag \
+              --title "$TAG" \
               --generate-notes
           fi

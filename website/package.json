@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "yon.serve",
-    "bundle": "tac.bundle",
-    "preview": "tac.preview --watch"
+    "serve": "bun scripts/ty.mjs serve",
+    "bundle": "bun scripts/ty.mjs bundle",
+    "preview": "bun scripts/ty.mjs preview --watch",
+    "test:ty": "bun test scripts/ty.test.mjs"
   },
   "devDependencies": {
-    "@d31ma/tachyon": "^26.23.1",
     "@playwright/test": "^1.60.0"
   }
 }

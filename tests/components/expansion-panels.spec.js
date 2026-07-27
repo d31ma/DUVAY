@@ -81,3 +81,81 @@ test('w-expansion-panels reflects variants and supports header keyboard navigati
   await page.keyboard.press('End');
   await expect(page.locator('#second .w-expand-header')).toBeFocused();
 });
+
+test('w-expansion-panels accepts a JSON array value', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panels id="panels" multiple value='["one","three"]'>
+      <w-expansion-panel id="one" value="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="two" value="two" title="Two">Two content</w-expansion-panel>
+      <w-expansion-panel id="three" value="three" title="Three">Three content</w-expansion-panel>
+    </w-expansion-panels>
+  `);
+
+  await expect(page.locator('#one')).toHaveAttribute('open', '');
+  await expect(page.locator('#two')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#three')).toHaveAttribute('open', '');
+});
+
+test('w-expansion-panels falls back to a bracketed comma list when the value is not valid JSON', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panels id="panels" multiple value="[one, three]">
+      <w-expansion-panel id="one" value="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="two" value="two" title="Two">Two content</w-expansion-panel>
+      <w-expansion-panel id="three" value="three" title="Three">Three content</w-expansion-panel>
+    </w-expansion-panels>
+  `);
+
+  await expect(page.locator('#one')).toHaveAttribute('open', '');
+  await expect(page.locator('#two')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#three')).toHaveAttribute('open', '');
+});
+
+test('w-expansion-panels treats an empty value and an empty JSON array as no selection', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panels id="blank" multiple value="">
+      <w-expansion-panel id="blank-one" value="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="blank-two" value="two" title="Two">Two content</w-expansion-panel>
+    </w-expansion-panels>
+    <w-expansion-panels id="empty" multiple value="[]">
+      <w-expansion-panel id="empty-one" value="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="empty-two" value="two" title="Two">Two content</w-expansion-panel>
+    </w-expansion-panels>
+  `);
+
+  await expect(page.locator('w-expansion-panel[open]')).toHaveCount(0);
+});
+
+test('w-expansion-panels max caps how many panels stay open', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panels id="panels" multiple max="2">
+      <w-expansion-panel id="one" value="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="two" value="two" title="Two">Two content</w-expansion-panel>
+      <w-expansion-panel id="three" value="three" title="Three">Three content</w-expansion-panel>
+    </w-expansion-panels>
+  `);
+
+  await page.locator('#one .w-expand-header').click();
+  await page.locator('#two .w-expand-header').click();
+  await expect(page.locator('#panels')).toHaveAttribute('value', 'one,two');
+
+  await page.locator('#three .w-expand-header').click();
+  await expect(page.locator('#three')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#panels')).toHaveAttribute('value', 'one,two');
+});
+
+test('w-expansion-panels cascades presentation attributes to its panels', async ({ mount, page }) => {
+  await mount(`
+    <w-expansion-panels id="panels" static hide-actions hover focusable ripple selected-class="is-open" expand-icon="+" collapse-icon="-">
+      <w-expansion-panel id="one" title="One">One content</w-expansion-panel>
+      <w-expansion-panel id="two" title="Two" hide-actions="">Two content</w-expansion-panel>
+    </w-expansion-panels>
+  `);
+
+  await expect(page.locator('#one')).toHaveAttribute('hover', '');
+  await expect(page.locator('#one')).toHaveAttribute('selected-class', 'is-open');
+  await expect(page.locator('#one')).toHaveAttribute('expand-icon', '+');
+  await expect(page.locator('#one .w-expand')).toHaveClass(/w-expand--static/);
+  await expect(page.locator('#one .w-expand')).toHaveClass(/w-expand--hover/);
+  await expect(page.locator('#one .w-expand')).toHaveClass(/w-expand--hide-actions/);
+  await expect(page.locator('#one .w-expand-body')).toHaveAttribute('tabindex', '0');
+});

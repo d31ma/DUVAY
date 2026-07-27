@@ -1,6 +1,6 @@
 {
-  "name": "duvay-css",
-  "version": "26.27.06",
+  "name": "@d31ma/duvay-css",
+  "version": "26.31.01",
   "description": "DuVay — A zero-dependency CSS framework with design tokens, theming, and accessible web components.",
   "type": "module",
   "main": "dist/duvay.css",
@@ -36,7 +36,10 @@
     "prepublishOnly": "bun run build",
     "docs:dev": "bun run build && bun run --cwd website preview",
     "docs:build": "bun run build && bun run --cwd website bundle",
-    "test:components": "bun --cwd website playwright test --config ../playwright.config.js"
+    "test:components": "bun --cwd website playwright test --config ../playwright.config.js",
+    "test:coverage": "rm -rf coverage/raw && DUVAY_COVERAGE=1 bun run test:components",
+    "crap": "bun scripts/crap.mjs",
+    "parity": "bun scripts/vuetify-parity.mjs"
   },
   "keywords": [
     "css",
@@ -52,11 +55,11 @@
   "license": "MIT",
   "homepage": "https://duvay.del.ma",
   "bugs": {
-    "url": "https://github.com/d31ma/duvay/issues"
+    "url": "https://github.com/d31ma/DUVAY/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/d31ma/duvay.git"
+    "url": "https://github.com/d31ma/DUVAY.git"
   },
   "engines": {
     "bun": ">=1.0.0"

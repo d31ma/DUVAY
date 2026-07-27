@@ -74,3 +74,24 @@ test('w-data-iterator supports configurable title/subtitle/meta fields via array
   await expect(page.locator('#di .w-data-iterator-item span')).toHaveText('Ready');
   await expect(page.locator('#di .w-data-iterator-item small')).toHaveText('Owner: Maya');
 });
+
+test('w-data-iterator selection supports additive and single strategies', async ({ mount, page }) => {
+  await mount(`
+    <w-data-iterator id="multi" items="${ITEMS}" item-value="title"
+      items-per-page="2" show-select></w-data-iterator>
+    <w-data-iterator id="single" items="${ITEMS}" items-per-page="2"
+      item-value="title" show-select select-strategy="single"></w-data-iterator>
+  `);
+  const multi = page.locator('#multi [data-select]');
+  await multi.nth(0).click();
+  await multi.nth(1).click();
+  await expect(page.locator('#multi')).toHaveAttribute('selected', 'Alpha,Beta');
+  await multi.nth(0).click();
+  await expect(page.locator('#multi')).toHaveAttribute('selected', 'Beta');
+
+  const single = page.locator('#single [data-select]');
+  await single.nth(0).click();
+  await expect(page.locator('#single')).toHaveAttribute('selected', 'Alpha');
+  await single.nth(1).click();
+  await expect(page.locator('#single')).toHaveAttribute('selected', 'Beta');
+});
