@@ -1,0 +1,108 @@
+/* DuVay — Toolbars component styles. */
+@import "../core.css";
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────── */
+.w-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-height: 64px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface);
+}
+
+.w-toolbar-title {
+  min-width: 0;
+  color: var(--w-text);
+  font-size: var(--w-font-xl);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-toolbar-items {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  margin-left: auto;
+}
+
+/* ── <w-toolbar> variants ─────────────────────────────────────────────────
+ * flat / absolute / floating / image / collapse / extended mirror the Vuetify
+ * v-toolbar props of the same name.
+ */
+.w-toolbar--flat {
+  box-shadow: none;
+  border-bottom-color: transparent;
+}
+
+.w-toolbar--absolute {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  z-index: var(--w-z-sticky);
+}
+
+.w-toolbar--floating {
+  display: inline-flex;
+  width: auto;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+}
+
+.w-toolbar--image {
+  background-image: var(--w-toolbar-image);
+  background-position: center;
+  background-size: cover;
+}
+
+.w-toolbar--collapse {
+  width: max-content;
+  max-width: var(--w-toolbar-collapsed-width, 14rem);
+  border-end-end-radius: var(--w-radius);
+  overflow: hidden;
+}
+
+.w-toolbar--collapse.w-toolbar--collapse-end {
+  margin-inline-start: auto;
+  border-end-end-radius: 0;
+  border-end-start-radius: var(--w-radius);
+}
+
+.w-toolbar-extension {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-height: var(--w-toolbar-extension-height, 48px);
+  padding: 0 var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface);
+}
+
+/* ── <w-app-bar> layout variants ──────────────────────────────────────────
+ * The base app-bar rules live in application.css; these are qualified with the
+ * host element so they outrank it regardless of import order.
+ */
+w-app-bar .w-app-bar--absolute {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  z-index: var(--w-z-sticky);
+}
+
+w-app-bar .w-app-bar--floating {
+  display: inline-flex;
+  width: auto;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+}
+
+/* `collapse-position="end"` shrink-wraps the collapsed bar and parks it against
+   the inline end, leaving a plain `collapse` bar full-width as before. */
+w-app-bar .w-app-bar--collapse-end {
+  width: max-content;
+  max-width: 100%;
+  margin-inline-start: auto;
+}

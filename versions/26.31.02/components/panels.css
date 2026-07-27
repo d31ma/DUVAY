@@ -1,0 +1,76 @@
+/* DuVay — Panels component styles. */
+@import "../core.css";
+
+/* ── Panel box / Well ────────────────────────────────────────────────────── */
+/* Bordered/raised container (Bulma panel / Foundation callout). */
+.w-panel-box {
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-panel-box-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  padding: var(--w-space-3) var(--w-space-4);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface-container-low);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  color: var(--w-text);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-panel-box-body {
+  padding: var(--w-space-4);
+}
+
+.w-panel-box-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  padding: var(--w-space-3) var(--w-space-4);
+  border-top: 1px solid var(--w-border);
+  border-radius: 0 0 var(--w-radius) var(--w-radius);
+}
+
+.w-panel-box-primary {
+  border-color: var(--w-primary);
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+}
+
+.w-panel-box-primary .w-panel-box-header {
+  background: color-mix(in srgb, var(--w-primary) 12%, transparent);
+}
+
+.w-panel-box-success {
+  border-color: var(--w-success);
+  background: var(--w-success-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-panel-box-success .w-panel-box-header {
+  background: color-mix(in srgb, var(--w-success) 12%, transparent);
+}
+
+.w-panel-box-warning {
+  border-color: var(--w-warning);
+  background: var(--w-warning-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-panel-box-warning .w-panel-box-header {
+  background: color-mix(in srgb, var(--w-warning) 12%, transparent);
+}
+
+.w-panel-box-error {
+  border-color: var(--w-error);
+  background: var(--w-error-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-panel-box-error .w-panel-box-header {
+  background: color-mix(in srgb, var(--w-error) 12%, transparent);
+}
