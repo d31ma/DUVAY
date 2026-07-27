@@ -1,5 +1,23 @@
 # Changelog
 
+## 26.31.02 - 2026-07-27
+
+### Breaking
+
+- DuVay is no longer published to any package registry. The `@d31ma/duvay-css`
+  package has been removed from GitHub Packages and there is no `npm install`
+  path. Use the hosted GitHub Pages URLs, or vendor the files into your own
+  asset pipeline. Bare specifier imports such as
+  `@import "@d31ma/duvay-css/core.css"` must move to the hosted equivalent at
+  `https://d31ma.github.io/DUVAY/latest/core.css`.
+
+### Changed
+
+- The `Publish` workflow no longer packs a tarball or publishes to a registry.
+  It validates the release source, runs the full test and docs suite, then tags
+  and creates the GitHub release. Pages deployment is unchanged.
+- `package.json` is marked `private` so an accidental publish fails fast.
+
 ## 26.31.01 - 2026-07-27
 
 ### Breaking

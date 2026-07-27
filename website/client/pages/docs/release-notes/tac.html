@@ -1,12 +1,20 @@
 <h1>Release notes</h1>
 <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
 
+<h2>26.31.02</h2>
+<p><em>Released 2026-07-27</em></p>
+
+<h3>Breaking</h3>
+<ul>
+  <li>DuVay is no longer published to any package registry. There is no <code>npm install</code> path — use the hosted GitHub Pages URLs, or vendor the files. Bare imports such as <code>@import "@d31ma/duvay-css/core.css"</code> move to <code>@import "https://d31ma.github.io/DUVAY/latest/core.css"</code>.</li>
+</ul>
+
 <h2>26.31.01</h2>
 <p><em>Released 2026-07-27</em></p>
 
 <h3>Breaking</h3>
 <ul>
-  <li>The npm package is now <code>@d31ma/duvay-css</code>. Update installs and package imports from <code>duvay-css</code>; hosted GitHub Pages URLs are unchanged.</li>
+  <li>The npm package is now <code>@d31ma/duvay-css</code>. Update installs and package imports from <code>duvay-css</code>; hosted GitHub Pages URLs are unchanged. <em>(Superseded by 26.31.02.)</em></li>
 </ul>
 
 <h3>Highlights</h3>

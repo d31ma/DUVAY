@@ -19,7 +19,18 @@
 </ul>
 
 <h2>Recent breaking changes</h2>
+<h3>26.31.02 - no package registry</h3>
+<p>DuVay is no longer published to npm or GitHub Packages. Remove the dependency and switch every package import to a hosted URL, or vendor the files into your own asset pipeline. This supersedes the 26.31.01 rename below — there is no package to install under either name.</p>
+<pre class="code-block"><code># before
+npm uninstall @d31ma/duvay-css</code></pre>
+<pre class="code-block"><code>/* before */
+@import "@d31ma/duvay-css/core.css";
+
+/* after */
+@import "https://d31ma.github.io/DUVAY/latest/core.css";</code></pre>
+
 <h3>26.31.01 - scoped package name</h3>
+<p><em>Superseded by 26.31.02 — DuVay no longer publishes a package at all.</em></p>
 <p>The npm package moved from <code>duvay-css</code> to <code>@d31ma/duvay-css</code>. Update the dependency and every package import. Hosted GitHub Pages URLs did not change.</p>
 <pre class="code-block"><code># before
 npm uninstall duvay-css
