@@ -1,0 +1,14 @@
+/* DuVay — Filter Strips component styles. */
+@import "../core.css";
+
+/* ── Filter strip ───────────────────────────────────────────────────────── */
+.w-filter-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-sm);
+  min-width: 0;
+  padding: 0.625rem var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface);
+  flex-wrap: nowrap;
+}
