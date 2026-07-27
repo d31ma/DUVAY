@@ -31,3 +31,33 @@ test('w-icon applies color, custom size, and opacity via inline style', async ({
   await mount('<w-icon id="i2" name="check" size="small"></w-icon>');
   expect(await page.locator('#i2 .w-icon').getAttribute('style')).toBeNull();
 });
+
+test('w-icon treats icon names as data and rejects unsafe component tags and class tokens', async ({ mount, page }) => {
+  await mount('<w-icon id="text"></w-icon><w-icon id="ligature" icon-set="ligature"></w-icon>');
+  const payload = '<img src=x onerror="window.__iconInjected=true">';
+  await page.locator('#text').evaluate((el, value) => el.setAttribute('name', value), payload);
+  await page.locator('#ligature').evaluate((el, value) => el.setAttribute('name', value), payload);
+
+  await expect(page.locator('#text .w-icon')).toHaveText(payload);
+  await expect(page.locator('#ligature .w-icon')).toHaveText(payload);
+  await expect(page.locator('#text img, #ligature img')).toHaveCount(0);
+  expect(await page.evaluate(() => window.__iconInjected)).toBeUndefined();
+
+  await page.evaluate(() => {
+    window.WIcons.set('unsafe-class', { type: 'class', prefix: 'safe-prefix " onmouseover="bad' });
+  });
+  await mount('<w-icon id="classed" icon-set="unsafe-class" name="home"></w-icon>');
+  const classed = page.locator('#classed .w-icon');
+  await expect(classed).toHaveClass(/safe-prefix/);
+  await expect(classed).not.toHaveAttribute('onmouseover');
+
+  await mount(`
+    <w-icon id="valid-component" icon-set="component" name="safe-icon"></w-icon>
+    <w-icon id="invalid-component" icon-set="component"></w-icon>
+  `);
+  await page.locator('#invalid-component').evaluate((el) => {
+    el.setAttribute('name', 'safe-icon></safe-icon><img src=x onerror=alert(1)');
+  });
+  await expect(page.locator('#valid-component safe-icon')).toHaveCount(1);
+  await expect(page.locator('#invalid-component safe-icon, #invalid-component img')).toHaveCount(0);
+});

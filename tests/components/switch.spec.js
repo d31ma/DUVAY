@@ -95,3 +95,183 @@ test('w-switch supports default slot label and @change handler', async ({ mount,
   await page.locator('#switch .w-switch').click();
   await expect(page.locator('#switch')).toHaveAttribute('data-on', 'true');
 });
+
+test('w-switch type=radio backs the control with a radio input', async ({ mount, page }) => {
+  await mount('<w-switch id="a" name="mode" value="on" type="radio" label="A"></w-switch>');
+
+  await expect(page.locator('#a input.w-switch-input')).toHaveAttribute('type', 'radio');
+  await page.locator('#a .w-switch').click();
+  await expect(page.locator('#a input.w-switch-input')).toBeChecked();
+});
+
+test('w-switch indeterminate parks the thumb and reports a mixed state', async ({ mount, page }) => {
+  await mount('<w-switch id="off" size="md" label="A"></w-switch>'
+    + '<w-switch id="mid" size="md" label="B" indeterminate></w-switch>'
+    + '<w-switch id="on" size="md" label="C" checked></w-switch>');
+
+  await expect(page.locator('#mid .w-switch')).toHaveClass(/w-switch--indeterminate/);
+  await expect(page.locator('#mid input')).toHaveAttribute('aria-checked', 'mixed');
+  expect(await page.locator('#mid input').evaluate((el) => el.indeterminate)).toBe(true);
+
+  await page.waitForTimeout(250);
+  const offX = (await page.locator('#off .w-switch-thumb').boundingBox()).x;
+  const midX = (await page.locator('#mid .w-switch-thumb').boundingBox()).x;
+  const onX = (await page.locator('#on .w-switch-thumb').boundingBox()).x;
+  expect(midX - offX).toBeGreaterThan(0);
+  expect(onX - midX).toBeGreaterThan(0);
+});
+
+test('w-switch multiple posts an array-shaped field name', async ({ mount, page }) => {
+  await mount('<w-switch id="one" name="tags" value="a" label="A"></w-switch>'
+    + '<w-switch id="many" name="tags" value="a" label="A" multiple></w-switch>');
+
+  await expect(page.locator('#one input')).toHaveAttribute('name', 'tags');
+  await expect(page.locator('#many input.w-switch-input')).toHaveAttribute('name', 'tags[]');
+  await expect(page.locator('#many .w-switch')).toHaveClass(/w-switch--multiple/);
+});
+
+test('w-switch true-value and false-value drive the submitted and emitted value', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" name="notify" true-value="yes" false-value="no" label="Notify"></w-switch>');
+  await recordEvents(page, '#switch', ['change']);
+
+  // The companion hidden field is what carries `false-value` through a form post.
+  await expect(page.locator('#switch input[type="hidden"]')).toHaveAttribute('value', 'no');
+  await expect(page.locator('#switch input.w-switch-input')).toHaveAttribute('value', 'yes');
+
+  await page.locator('#switch .w-switch').click();
+  await page.locator('#switch .w-switch').click();
+
+  expect(await readEvents(page, '#switch')).toEqual([
+    { type: 'change', detail: { checked: true, name: 'notify', value: 'yes' } },
+    { type: 'change', detail: { checked: false, name: 'notify', value: 'no' } },
+  ]);
+});
+
+test('w-switch state icons render inside the thumb', async ({ mount, page }) => {
+  await mount('<w-switch id="off" label="A" true-icon="check" false-icon="close"></w-switch>'
+    + '<w-switch id="on" label="B" checked true-icon="check" false-icon="close"></w-switch>'
+    + '<w-switch id="mid" label="C" indeterminate indeterminate-icon="dash"></w-switch>');
+
+  await expect(page.locator('#off .w-switch-thumb .w-icon')).toHaveText('close');
+  await expect(page.locator('#on .w-switch-thumb .w-icon')).toHaveText('check');
+  await expect(page.locator('#mid .w-switch-thumb .w-icon')).toHaveText('dash');
+
+  // Toggling swaps the icon in place.
+  await page.locator('#off .w-switch').click();
+  await expect(page.locator('#off .w-switch-thumb .w-icon')).toHaveText('check');
+});
+
+test('w-switch prepend/append icons and icon-color', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A" prepend-icon="moon" append-icon="sun" icon-color="warning"></w-switch>');
+
+  await expect(page.locator('#switch .w-switch-prepend .w-icon')).toHaveText('moon');
+  await expect(page.locator('#switch .w-switch-append .w-icon')).toHaveText('sun');
+  await expect(page.locator('#switch .w-switch')).toHaveAttribute('style', /--w-switch-icon-color:var\(--w-warning\)/);
+  await expect(page.locator('#switch .w-switch-outer')).toHaveCount(1);
+});
+
+test('w-switch omits the icon row when no outside icon is set', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A"></w-switch>');
+  await expect(page.locator('#switch .w-switch-outer')).toHaveCount(0);
+});
+
+test('w-switch thumb-color repaints the thumb', async ({ mount, page }) => {
+  await mount('<w-switch id="token" label="A" thumb-color="error"></w-switch>'
+    + '<w-switch id="literal" label="B" thumb-color="#00ff00"></w-switch>');
+
+  await expect(page.locator('#token .w-switch')).toHaveAttribute('style', /--w-switch-thumb-color:var\(--w-error\)/);
+  await expect(page.locator('#literal .w-switch')).toHaveAttribute('style', /--w-switch-thumb-color:#00ff00/);
+  await expect(page.locator('#literal .w-switch-thumb')).toHaveCSS('background-color', 'rgb(0, 255, 0)');
+});
+
+test('w-switch direction=vertical stacks the control above its label', async ({ mount, page }) => {
+  await mount('<w-switch id="row" label="Horizontal"></w-switch>'
+    + '<w-switch id="col" label="Vertical" direction="vertical"></w-switch>');
+
+  await expect(page.locator('#col .w-switch')).toHaveClass(/w-switch--vertical/);
+  const track = await page.locator('#col .w-switch-track').boundingBox();
+  const label = await page.locator('#col .w-switch-label').boundingBox();
+  expect(label.y).toBeGreaterThan(track.y);
+
+  const rowTrack = await page.locator('#row .w-switch-track').boundingBox();
+  const rowLabel = await page.locator('#row .w-switch-label').boundingBox();
+  expect(Math.abs(rowLabel.y - rowTrack.y)).toBeLessThan(rowTrack.height);
+});
+
+test('w-switch inline lays the label and its hint on one row', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A" hint="Recommended" inline></w-switch>');
+
+  await expect(page.locator('#switch .w-switch')).toHaveClass(/w-switch--inline/);
+  const label = await page.locator('#switch .w-switch-label').boundingBox();
+  const hint = await page.locator('#switch .w-switch-hint').boundingBox();
+  expect(hint.x).toBeGreaterThan(label.x);
+});
+
+test('w-switch messages, error-messages, and max-errors', async ({ mount, page }) => {
+  await mount('<w-switch id="msg" label="A" messages="Applies at once"></w-switch>'
+    + '<w-switch id="err" label="B" error-messages="X,Y,Z" max-errors="2"></w-switch>');
+
+  await expect(page.locator('#msg .w-switch-messages')).toHaveText('Applies at once');
+  await expect(page.locator('#err .w-switch-error .w-switch-message')).toHaveText(['X', 'Y']);
+  await expect(page.locator('#err .w-switch')).toHaveClass(/w-switch--error/);
+  await expect(page.locator('#err input')).toHaveAttribute('aria-invalid', 'true');
+});
+
+test('w-switch validate-on defers error messages until the trigger fires', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A" error-messages="Nope" validate-on="blur"></w-switch>');
+
+  await expect(page.locator('#switch .w-switch-error')).toHaveCount(0);
+  await page.locator('#switch input').focus();
+  await page.locator('#switch input').blur();
+  await expect(page.locator('#switch .w-switch-error')).toHaveText('Nope');
+  await expect(page.locator('#switch .w-switch')).toHaveClass(/w-switch--error/);
+});
+
+test('w-switch required validates the state, and validation-value overrides it', async ({ mount, page }) => {
+  await mount('<w-switch id="empty" label="A" required></w-switch>'
+    + '<w-switch id="on" label="B" required checked></w-switch>'
+    + '<w-switch id="forced" label="C" required validation-value="ok"></w-switch>');
+
+  await expect(page.locator('#empty .w-switch-error')).toHaveText('This field is required.');
+  await expect(page.locator('#on .w-switch-error')).toHaveCount(0);
+  await expect(page.locator('#forced .w-switch-error')).toHaveCount(0);
+
+  // Toggling clears the error without a destructive re-render.
+  await page.locator('#empty .w-switch').click();
+  await expect(page.locator('#empty .w-switch-error')).toHaveCount(0);
+});
+
+test('w-switch persistent-hint keeps the hint beside the error', async ({ mount, page }) => {
+  await mount('<w-switch id="off" label="A" hint="Tip" error="Bad"></w-switch>'
+    + '<w-switch id="on" label="B" hint="Tip" error="Bad" persistent-hint></w-switch>');
+
+  await expect(page.locator('#off .w-switch-hint')).toHaveCount(0);
+  await expect(page.locator('#on .w-switch-hint')).toHaveText('Tip');
+  await expect(page.locator('#on .w-switch-error')).toHaveText('Bad');
+});
+
+test('w-switch hide-details=auto keeps the row only when it has something to say', async ({ mount, page }) => {
+  await mount('<w-switch id="bare" label="A" hide-details="auto"></w-switch>'
+    + '<w-switch id="full" label="B" hide-details="auto" hint="Tip"></w-switch>');
+
+  await expect(page.locator('#bare .w-switch-details')).toHaveCount(0);
+  await expect(page.locator('#full .w-switch-hint')).toHaveText('Tip');
+});
+
+test('w-switch ripple adds press feedback to the track', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A" ripple></w-switch>');
+
+  const track = page.locator('#switch .w-switch-track');
+  await expect(track).toHaveClass(/w-ripple-host/);
+  await track.dispatchEvent('pointerdown', { clientX: 5, clientY: 5 });
+  await expect(page.locator('#switch .w-ripple-ink')).toHaveCount(1);
+});
+
+test('w-switch center-affix, indent-details, and hide-spin-buttons become classes', async ({ mount, page }) => {
+  await mount('<w-switch id="switch" label="A" center-affix indent-details hide-spin-buttons></w-switch>');
+
+  const sw = page.locator('#switch .w-switch');
+  await expect(sw).toHaveClass(/w-switch--center-affix/);
+  await expect(sw).toHaveClass(/w-switch--indent-details/);
+  await expect(sw).toHaveClass(/w-switch--hide-spin-buttons/);
+});

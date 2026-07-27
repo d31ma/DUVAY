@@ -2,6 +2,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, test as base } from './playwright.js';
 import { startComponentTestServer } from './component-test-server.js';
+import { coverageEnabled, createCoverageAccumulator } from './coverage.js';
 
 const projectRoot = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 
@@ -14,7 +15,29 @@ export const test = base.extend({
     await server.close();
   }, { scope: 'worker' }],
 
-  mount: async ({ page, componentServer }, use) => {
+  coverageAccumulator: [async ({}, use, workerInfo) => {
+    const accumulator = createCoverageAccumulator();
+    await use(accumulator);
+    if (coverageEnabled) {
+      const directory = process.env.DUVAY_COVERAGE_DIR || `${projectRoot}/coverage/raw`;
+      // Playwright resets worker indexes for every invocation. Include the
+      // process id so a focused coverage run can augment, rather than overwrite,
+      // the files produced by the full suite.
+      await accumulator.write(directory, `worker-${process.pid}-${workerInfo.workerIndex}`);
+    }
+  }, { scope: 'worker' }],
+
+  coverage: [async ({ page, coverageAccumulator }, use) => {
+    if (!coverageEnabled) {
+      await use();
+      return;
+    }
+    await page.coverage.startJSCoverage({ resetOnNavigation: false });
+    await use();
+    coverageAccumulator.add(await page.coverage.stopJSCoverage());
+  }, { auto: true }],
+
+  mount: async ({ page, componentServer, coverage }, use) => {
     await page.goto(componentServer.url('/tests/fixtures/component-page.html'));
     await page.waitForFunction(() => customElements.get('w-btn') && customElements.get('w-window'));
 

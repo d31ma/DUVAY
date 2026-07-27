@@ -1,0 +1,44 @@
+<h1>Upgrade guide</h1>
+<p>DuVay uses CalVer (<code>YY.WW.DD</code>) versioning. Releases are frequent and small; upgrading is usually a one-line change.</p>
+
+<h2>Upgrading a CDN install</h2>
+<p>If you load DuVay from the <code>latest</code> URLs you always get the newest release automatically and there is nothing to do. If you pin to a version, bump the version segment:</p>
+<pre class="code-block"><code>&lt;!-- before --&gt;
+&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/versions/26.24.12/duvay.min.css"&gt;
+
+&lt;!-- after --&gt;
+&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/versions/26.27.04/duvay.min.css"&gt;</code></pre>
+
+<h2>Upgrading a downloaded copy</h2>
+<p>If you vendored the files from the <a href="/docs/download">Download</a> page, replace them with the newest build from the <code>latest</code> URLs (or a pinned version URL) and redeploy.</p>
+
+<h2>Before you upgrade</h2>
+<ul>
+  <li>Read the <a href="/docs/release-notes">release notes</a> for the versions between your pin and the target. Breaking changes are always listed under a <strong>Breaking</strong> heading.</li>
+  <li>Pinned version URLs never change, so you can upgrade one environment at a time and roll back by restoring the previous pin.</li>
+</ul>
+
+<h2>Recent breaking changes</h2>
+<h3>26.31.01 - scoped package name</h3>
+<p>The npm package moved from <code>duvay-css</code> to <code>@d31ma/duvay-css</code>. Update the dependency and every package import. Hosted GitHub Pages URLs did not change.</p>
+<pre class="code-block"><code># before
+npm uninstall duvay-css
+
+# after
+npm install @d31ma/duvay-css</code></pre>
+<pre class="code-block"><code>/* before */
+@import "duvay-css/core.css";
+
+/* after */
+@import "@d31ma/duvay-css/core.css";</code></pre>
+
+<h3>26.27.04 - attribute prefix rename</h3>
+<p>Every DuVay-owned <code>data&#45;w-*</code> attribute was renamed to the consistent <code>w-*</code> prefix. Applications using CSS-class components must rename their hooks:</p>
+<pre class="code-block"><code>&lt;!-- before --&gt;
+&lt;html data&#45;w-theme="dark"&gt;
+&lt;button data&#45;w-dialog-open="settings"&gt;Open&lt;/button&gt;
+
+&lt;!-- after --&gt;
+&lt;html w-theme="dark"&gt;
+&lt;button w-dialog-open="settings"&gt;Open&lt;/button&gt;</code></pre>
+<p>A project-wide search for <code>data&#45;w-</code> finds every affected attribute; the replacement is mechanical.</p>

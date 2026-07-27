@@ -5,7 +5,7 @@ const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
 
 test('calendar documentation covers every view with CSS and web-component examples', async () => {
   const markup = await readFile(
-    projectFile('website/browser/pages/docs/components/calendars/tac.html'),
+    projectFile('website/client/pages/docs/components/calendars/tac.html'),
     'utf8',
   );
   const comparisons = [...markup.matchAll(/<demo-compare>([\s\S]*?)<\/demo-compare>/g)]
@@ -26,11 +26,11 @@ test('calendar documentation covers every view with CSS and web-component exampl
 
 test('documentation demo serialization preserves JSON array attributes', async () => {
   const docsScript = await readFile(
-    projectFile('website/browser/shared/scripts/docs.js'),
+    projectFile('website/client/shared/scripts/docs.js'),
     'utf8',
   );
   const markup = await readFile(
-    projectFile('website/browser/pages/docs/components/calendars/tac.html'),
+    projectFile('website/client/pages/docs/components/calendars/tac.html'),
     'utf8',
   );
 

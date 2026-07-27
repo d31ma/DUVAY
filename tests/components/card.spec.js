@@ -30,6 +30,37 @@ test('w-card generates Vuetify-style image, item, text, actions, and plain body 
   await expect(page.locator('#card .w-card-actions w-btn')).toHaveCount(2);
 });
 
+test('w-card hover is visual-only while link remains keyboard actionable', async ({ mount, page }) => {
+  await mount(`
+    <button id="before">Before</button>
+    <w-card id="hover-card" hover title="Visual hover"></w-card>
+    <w-card id="action-card" link title="Card action"></w-card>
+  `);
+
+  const hoverCard = page.locator('#hover-card > .w-card');
+  const actionCard = page.locator('#action-card > .w-card');
+
+  await expect(hoverCard).toHaveClass(/w-card--hover/);
+  await expect(hoverCard).not.toHaveAttribute('role');
+  await expect(hoverCard).not.toHaveAttribute('tabindex');
+
+  await page.locator('#before').focus();
+  await page.keyboard.press('Tab');
+  await expect(actionCard).toBeFocused();
+
+  await page.locator('#action-card').evaluate((card) => {
+    card.dataset.activations = '0';
+    card.addEventListener('click', () => {
+      card.dataset.activations = String(Number(card.dataset.activations) + 1);
+    });
+  });
+
+  await actionCard.press('Enter');
+  await expect(page.locator('#action-card')).toHaveAttribute('data-activations', '1');
+  await actionCard.press(' ');
+  await expect(page.locator('#action-card')).toHaveAttribute('data-activations', '2');
+});
+
 test('w-card reflects link, disabled, hover, variant, color, rounded, border, density, elevation, and loading attrs', async ({ mount, page }) => {
   await mount(`
     <w-card

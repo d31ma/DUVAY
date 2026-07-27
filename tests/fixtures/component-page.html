@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DuVay component test page</title>
     <link rel="stylesheet" href="../../src/duvay.css">
+    <script>
+      // Records every tag the framework registers so smoke.spec.js can mount
+      // them all without re-deriving the list from source.
+      window.__wTags = [];
+      const wDefine = customElements.define.bind(customElements);
+      customElements.define = function (name, ...rest) {
+        window.__wTags.push(name);
+        return wDefine(name, ...rest);
+      };
+    </script>
     <script type="module" src="../../src/duvay-wc.js"></script>
     <script src="../../src/duvay-directives.js"></script>
     <style>

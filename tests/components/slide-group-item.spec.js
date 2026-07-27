@@ -10,3 +10,16 @@ test('w-slide-group-item reflects value and disabled state for selectable slide 
 
   await expect(page.locator('#item .w-slide-group-item')).not.toHaveAttribute('aria-disabled', 'true');
 });
+
+test('w-slide-group-item applies selected-class when it is already selected', async ({ mount, page }) => {
+  await mount('<w-slide-group-item id="item" value="alpha" selected selected-class="is-special"><button>A</button></w-slide-group-item>');
+
+  await expect(page.locator('#item')).toHaveClass(/is-special/);
+});
+
+test('w-slide-group-item without selected-class stays unstyled', async ({ mount, page }) => {
+  await mount('<w-slide-group-item id="item" value="alpha" selected><button>A</button></w-slide-group-item>');
+
+  await expect(page.locator('#item .w-slide-group-item')).toHaveCount(1);
+  await expect(page.locator('#item')).not.toHaveClass(/is-special/);
+});

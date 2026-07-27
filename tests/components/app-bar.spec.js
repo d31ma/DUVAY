@@ -163,3 +163,144 @@ test('w-app-bar emits scroll event', async ({ mount, page }) => {
   expect(events.length).toBeGreaterThan(0);
   expect(events[0]).toMatchObject({ scrolled: true, behavior: 'elevate' });
 });
+
+test('w-app-bar absolute and floating change how the bar is laid out', async ({ mount, page }) => {
+  await mount(`
+    <div style="position: relative; height: 200px">
+      <w-app-bar id="abs" absolute>Absolute</w-app-bar>
+    </div>
+    <w-app-bar id="floats" floating>Floating</w-app-bar>
+  `);
+
+  await expect(page.locator('#abs > .w-app-bar')).toHaveClass(/w-app-bar--absolute/);
+  await expect(page.locator('#abs > .w-app-bar')).toHaveCSS('position', 'absolute');
+
+  const floating = page.locator('#floats > .w-app-bar');
+  await expect(floating).toHaveClass(/w-app-bar--floating/);
+  await expect(floating).toHaveCSS('display', 'inline-flex');
+  const widths = await floating.evaluate((el) => ({
+    bar: el.getBoundingClientRect().width,
+    host: el.parentElement.getBoundingClientRect().width,
+  }));
+  expect(widths.bar).toBeLessThan(widths.host);
+});
+
+test('w-app-bar name and order reach the rendered header', async ({ mount, page }) => {
+  await mount(`<w-app-bar id="bar" name="primary" order="2">Named</w-app-bar>`);
+
+  await expect(page.locator('#bar > .w-app-bar')).toHaveAttribute('data-name', 'primary');
+  await expect(page.locator('#bar > .w-app-bar')).toHaveCSS('order', '2');
+});
+
+test('w-app-bar collapse-position attaches the collapsed bar to the chosen side', async ({ mount, page }) => {
+  await mount(`
+    <w-app-bar id="start" collapse>Start</w-app-bar>
+    <w-app-bar id="end" collapse collapse-position="end">End</w-app-bar>
+  `);
+
+  await expect(page.locator('#start > .w-app-bar')).not.toHaveClass(/w-app-bar--collapse-end/);
+  await expect(page.locator('#end > .w-app-bar')).toHaveClass(/w-app-bar--collapse-end/);
+
+  const offsets = await page.evaluate(() => ({
+    start: document.querySelector('#start > .w-app-bar').getBoundingClientRect().left,
+    end: document.querySelector('#end > .w-app-bar').getBoundingClientRect().left,
+  }));
+  expect(offsets.end).toBeGreaterThan(offsets.start);
+});
+
+test('w-app-bar scroll-target watches a scrolling element instead of the window', async ({ mount, page }) => {
+  await mount(`
+    <div id="scroller" style="height: 160px; overflow: auto">
+      <w-app-bar id="bar" scroll-behavior="elevate" scroll-threshold="10" scroll-target="#scroller">Scoped</w-app-bar>
+      <div style="height: 900px"></div>
+    </div>
+    <div style="height: 1600px"></div>
+  `);
+
+  const bar = page.locator('#bar > .w-app-bar');
+  await expect(bar).not.toHaveClass(/w-app-bar--scrolled/);
+
+  // Scrolling the window must not move a bar that watches a scoped element.
+  await page.evaluate(() => window.scrollTo(0, 400));
+  await expect(bar).not.toHaveClass(/w-app-bar--scrolled/);
+
+  await page.evaluate(() => {
+    const scroller = document.querySelector('#scroller');
+    scroller.scrollTop = 120;
+  });
+  await expect(bar).toHaveClass(/w-app-bar--scrolled/);
+});
+
+// <w-toolbar> is the app bar's sibling surface and shares the same set of
+// Vuetify layout props, so its coverage lives alongside the app bar's.
+test('w-toolbar renders a title and the flat, absolute and floating variants', async ({ mount, page }) => {
+  await mount(`
+    <w-toolbar id="plain" title="Inbox"><button>Action</button></w-toolbar>
+    <w-toolbar id="flat" flat></w-toolbar>
+    <div style="position: relative; height: 160px"><w-toolbar id="abs" absolute></w-toolbar></div>
+    <w-toolbar id="floats" floating></w-toolbar>
+  `);
+
+  await expect(page.locator('#plain .w-toolbar-title')).toHaveText('Inbox');
+  await expect(page.locator('#plain .w-toolbar')).toContainText('Action');
+
+  await expect(page.locator('#flat .w-toolbar')).toHaveClass(/w-toolbar--flat/);
+  await expect(page.locator('#flat .w-toolbar')).toHaveCSS('border-bottom-color', 'rgba(0, 0, 0, 0)');
+
+  await expect(page.locator('#abs .w-toolbar')).toHaveCSS('position', 'absolute');
+  await expect(page.locator('#floats .w-toolbar')).toHaveCSS('display', 'inline-flex');
+});
+
+test('w-toolbar image, collapse and collapse-position shape the bar', async ({ mount, page }) => {
+  await mount(`
+    <w-toolbar id="pic" image="https://example.com/bar.jpg"></w-toolbar>
+    <w-toolbar id="start" collapse></w-toolbar>
+    <w-toolbar id="end" collapse collapse-position="end"></w-toolbar>
+  `);
+
+  await expect(page.locator('#pic .w-toolbar')).toHaveClass(/w-toolbar--image/);
+  await expect(page.locator('#pic .w-toolbar')).toHaveCSS('background-image', 'url("https://example.com/bar.jpg")');
+
+  await expect(page.locator('#start .w-toolbar')).toHaveClass(/w-toolbar--collapse/);
+  await expect(page.locator('#end .w-toolbar')).toHaveClass(/w-toolbar--collapse-end/);
+
+  const offsets = await page.evaluate(() => ({
+    start: document.querySelector('#start .w-toolbar').getBoundingClientRect().left,
+    end: document.querySelector('#end .w-toolbar').getBoundingClientRect().left,
+  }));
+  expect(offsets.end).toBeGreaterThan(offsets.start);
+});
+
+test('w-toolbar extended reveals the extension slot at the requested height', async ({ mount, page }) => {
+  await mount(`
+    <w-toolbar id="bar" extended extension-height="72">
+      <span slot="extension" id="extra">Tabs</span>
+    </w-toolbar>
+    <w-toolbar id="plain">
+      <span slot="extension">Hidden</span>
+    </w-toolbar>
+  `);
+
+  const extension = page.locator('#bar > .w-toolbar-extension');
+  await expect(extension).toBeVisible();
+  await expect(extension).toContainText('Tabs');
+  await expect(extension).toHaveCSS('--w-toolbar-extension-height', '72px');
+  expect((await extension.boundingBox()).height).toBeGreaterThanOrEqual(72);
+
+  await expect(page.locator('#plain .w-toolbar-extension')).toHaveCount(0);
+});
+
+test('w-app-bar scroll-behavior fade-image dims the background image on scroll', async ({ mount, page }) => {
+  await mount(`
+    <w-app-bar id="bar" scroll-behavior="fade-image" scroll-threshold="10" image="https://example.com/bg.jpg">Faded</w-app-bar>
+    <div style="height: 1400px"></div>
+  `);
+  const bar = page.locator('#bar > .w-app-bar');
+  await expect(bar).not.toHaveClass(/w-app-bar--image-faded/);
+
+  await page.evaluate(() => window.scrollTo(0, 40));
+  await expect(bar).toHaveClass(/w-app-bar--image-faded/);
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(bar).not.toHaveClass(/w-app-bar--image-faded/);
+});

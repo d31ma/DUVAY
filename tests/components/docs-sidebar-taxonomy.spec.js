@@ -32,7 +32,7 @@ const vuetifyComponentTitles = [
 ];
 
 test('Components sidebar matches Vuetify labels, groups, and ordering', async () => {
-  const source = await readFile(projectFile('website/browser/shared/scripts/docs.js'), 'utf8');
+  const source = await readFile(projectFile('website/client/shared/scripts/docs.js'), 'utf8');
   const start = source.indexOf("type: 'group',\n    title: 'Components',\n    items: [");
   const end = source.indexOf("title: 'Directives'", start);
   const components = source.slice(start, end);

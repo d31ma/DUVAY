@@ -98,3 +98,17 @@ test('w-alert renders named slots for prepend, title, text, append, and close', 
     { type: 'close', detail: { value: false } },
   ]);
 });
+
+test('w-alert resolves named and custom icon sizes without accepting malformed maps', async ({ mount, page }) => {
+  await mount(`
+    <w-alert id="named" icon-size="small">Named</w-alert>
+    <w-alert id="custom" icon-size="hero"
+      icon-sizes='[["hero",48],["missing"],null,["bad","nope"]]'>Custom</w-alert>
+    <w-alert id="literal" icon-size="2rem" icon-sizes="not json">Literal</w-alert>
+    <w-alert id="object" icon-size="large" icon-sizes='{"large":99}'>Object</w-alert>
+  `);
+  await expect(page.locator('#named .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 16px/);
+  await expect(page.locator('#custom .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 48px/);
+  await expect(page.locator('#literal .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 2rem/);
+  await expect(page.locator('#object .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 28px/);
+});

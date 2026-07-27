@@ -150,3 +150,35 @@ test('directives tear down when their attribute is removed', async ({ mount, pag
   await page.locator('#rip').evaluate((el) => el.setAttribute('w-ripple', 'false'));
   await expect(page.locator('#rip')).not.toHaveClass(/w-ripple-host/);
 });
+
+test('w-ripple inks on Enter and Space keydown but not on other keys', async ({ mount, page }) => {
+  await mount('<button id="rip" w-ripple>press</button>');
+  await settle(page);
+  await expect(page.locator('#rip')).toHaveClass(/w-ripple-host/);
+
+  // One synchronous pass so no animationend can retire an ink mid-measurement.
+  const counts = await page.locator('#rip').evaluate((el) => {
+    const press = (key) => el.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+    const inks = () => el.querySelectorAll('.w-ripple-ink').length;
+    const seen = {};
+    press('Tab');
+    seen.afterTab = inks();
+    press('a');
+    seen.afterLetter = inks();
+    press('Enter');
+    seen.afterEnter = inks();
+    press(' ');
+    seen.afterSpace = inks();
+    press('Spacebar');
+    seen.afterLegacySpace = inks();
+    return seen;
+  });
+
+  expect(counts).toEqual({
+    afterTab: 0,
+    afterLetter: 0,
+    afterEnter: 1,
+    afterSpace: 2,
+    afterLegacySpace: 3,
+  });
+});

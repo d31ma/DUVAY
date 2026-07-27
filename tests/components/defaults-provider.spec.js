@@ -39,3 +39,45 @@ test('w-defaults-provider nests — nearest provider wins per key, others merge'
   await expect(page.locator('#inner')).toHaveAttribute('color', 'success');
   await expect(page.locator('#inner')).toHaveAttribute('variant', 'filled');
 });
+
+test('w-defaults-provider scoped prevents inheritance from parent providers', async ({ mount, page }) => {
+  await mount(`
+    <w-defaults-provider defaults='{"w-btn":{"variant":"filled","color":"primary"}}'>
+      <w-defaults-provider scoped defaults='{"w-btn":{"color":"success"}}'>
+        <w-btn id="inner">Inner</w-btn>
+      </w-defaults-provider>
+    </w-defaults-provider>
+  `);
+  await expect(page.locator('#inner')).toHaveAttribute('color', 'success');
+  await expect(page.locator('#inner')).not.toHaveAttribute('variant');
+});
+
+test('w-defaults-provider reset skips its own and ancestor scopes', async ({ mount, page }) => {
+  await mount(`
+    <w-defaults-provider defaults='{"w-btn":{"variant":"text"}}'>
+      <w-defaults-provider defaults='{"w-btn":{"color":"primary"}}'>
+        <w-defaults-provider reset="1" defaults='{"w-btn":{"size":"lg"}}'>
+          <w-btn id="inner">Inner</w-btn>
+        </w-defaults-provider>
+      </w-defaults-provider>
+    </w-defaults-provider>
+  `);
+  await expect(page.locator('#inner')).toHaveAttribute('variant', 'text');
+  await expect(page.locator('#inner')).not.toHaveAttribute('color');
+  await expect(page.locator('#inner')).not.toHaveAttribute('size');
+});
+
+test('w-defaults-provider root resolves from the outermost provider', async ({ mount, page }) => {
+  await mount(`
+    <w-defaults-provider defaults='{"w-btn":{"variant":"outlined"}}'>
+      <w-defaults-provider defaults='{"w-btn":{"color":"primary"}}'>
+        <w-defaults-provider root defaults='{"w-btn":{"size":"sm"}}'>
+          <w-btn id="inner">Inner</w-btn>
+        </w-defaults-provider>
+      </w-defaults-provider>
+    </w-defaults-provider>
+  `);
+  await expect(page.locator('#inner')).toHaveAttribute('variant', 'outlined');
+  await expect(page.locator('#inner')).not.toHaveAttribute('color');
+  await expect(page.locator('#inner')).not.toHaveAttribute('size');
+});

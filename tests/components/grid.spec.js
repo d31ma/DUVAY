@@ -47,6 +47,20 @@ test('w-row normalizes legacy justify aliases and handles gutters', async ({ mou
   await expect(page.locator('#f')).toHaveClass(/\bw-grid-row--flush\b/);
 });
 
+test('w-row size and gap accept numeric and scalable CSS lengths', async ({ mount, page }) => {
+  await mount('<w-row id="r" size="3" gap="8,1.5rem"><span>A</span><span>B</span></w-row>');
+  const row = page.locator('#r');
+  await expect(row).toHaveCSS('display', 'grid');
+  expect(await row.evaluate((element) => element.style.gridTemplateColumns))
+    .toBe('repeat(3, minmax(0px, 1fr))');
+  await expect(row).toHaveCSS('column-gap', '8px');
+  await expect(row).toHaveCSS('row-gap', '24px');
+
+  await row.evaluate((element) => element.setAttribute('gap', 'normal'));
+  await expect(row).toHaveCSS('column-gap', 'normal');
+  await expect(row).toHaveCSS('row-gap', 'normal');
+});
+
 test('w-container emits fluid, fill-height, and size classes', async ({ mount, page }) => {
   await mount(`<w-container id="ct" fluid fill-height size="md"></w-container>`);
   const ct = page.locator('#ct');

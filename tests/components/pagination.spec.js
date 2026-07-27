@@ -143,3 +143,31 @@ test('w-pagination start offset shifts page numbers', async ({ mount, page }) =>
   expect(items).toContain('5');
   expect(items).toContain('9');
 });
+
+const pageLabels = (page, id) => page.locator(`${id} nav`).evaluate((nav) => Array.from(nav.children)
+  .map((child) => child.textContent)
+  .slice(1, -1));
+
+test('w-pagination truncates near the start of the range', async ({ mount, page }) => {
+  await mount('<w-pagination id="p" length="20" page="2" total-visible="5"></w-pagination>');
+
+  expect(await pageLabels(page, '#p')).toEqual(['1', '2', '3', '4', '…', '20']);
+  await expect(page.locator('#p .w-page-ellipsis')).toHaveCount(1);
+  await expect(page.locator('#p .w-page-item.active')).toHaveText('2');
+});
+
+test('w-pagination truncates near the end of the range', async ({ mount, page }) => {
+  await mount('<w-pagination id="p" length="20" page="19" total-visible="5"></w-pagination>');
+
+  expect(await pageLabels(page, '#p')).toEqual(['1', '…', '17', '18', '19', '20']);
+  await expect(page.locator('#p .w-page-ellipsis')).toHaveCount(1);
+  await expect(page.locator('#p .w-page-item.active')).toHaveText('19');
+});
+
+test('w-pagination truncates with an even total-visible at both ends', async ({ mount, page }) => {
+  await mount('<w-pagination id="start" length="20" page="1" total-visible="6"></w-pagination>');
+  expect(await pageLabels(page, '#start')).toEqual(['1', '2', '3', '4', '5', '…', '20']);
+
+  await mount('<w-pagination id="end" length="20" page="20" total-visible="6"></w-pagination>');
+  expect(await pageLabels(page, '#end')).toEqual(['1', '…', '16', '17', '18', '19', '20']);
+});

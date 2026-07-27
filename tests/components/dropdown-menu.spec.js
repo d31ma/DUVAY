@@ -51,3 +51,57 @@ test('w-dropdown-menu supports outside close, content click persistence, and del
   await page.locator('#outside').click();
   await expect(page.locator('#menu')).not.toHaveAttribute('open', '');
 });
+
+test('w-dropdown-menu closes when Tab leaves the content and cycles items with ArrowUp/Home', async ({ mount, page }) => {
+  await mount(`
+    <w-dropdown-menu id="menu" label="Workspace">
+      <button role="menuitem">Profile</button>
+      <button role="menuitem">Settings</button>
+    </w-dropdown-menu>
+    <button id="after">After</button>
+  `);
+
+  await page.locator('#menu .w-dropdown-menu-trigger').focus();
+  await page.keyboard.press('ArrowUp');
+  await expect(page.locator('#menu')).toHaveAttribute('open', '');
+  await expect(page.locator('#menu [role="menuitem"]').filter({ hasText: 'Settings' })).toBeFocused();
+
+  await page.keyboard.press('ArrowUp');
+  await expect(page.locator('#menu [role="menuitem"]').filter({ hasText: 'Profile' })).toBeFocused();
+  await page.keyboard.press('ArrowDown');
+  await expect(page.locator('#menu [role="menuitem"]').filter({ hasText: 'Settings' })).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(page.locator('#menu [role="menuitem"]').filter({ hasText: 'Profile' })).toBeFocused();
+
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#menu')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#menu .w-dropdown-menu')).not.toHaveClass(/open/);
+});
+
+test('w-dropdown-menu submenu opens with ArrowRight and ArrowLeft returns focus to the trigger', async ({ mount, page }) => {
+  await mount(`
+    <w-dropdown-menu id="menu" submenu label="More">
+      <button role="menuitem">Archive</button>
+      <button role="menuitem">Delete</button>
+    </w-dropdown-menu>
+  `);
+  await recordEvents(page, '#menu', ['toggle', 'close']);
+
+  await expect(page.locator('#menu .w-dropdown-menu')).toHaveClass(/w-dropdown-menu--submenu/);
+  await expect(page.locator('#menu .w-dropdown-menu')).toHaveClass(/w-dropdown-menu--end/);
+
+  await page.locator('#menu .w-dropdown-menu-trigger').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#menu')).toHaveAttribute('open', '');
+  await expect(page.locator('#menu [role="menuitem"]').filter({ hasText: 'Archive' })).toBeFocused();
+
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#menu')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#menu .w-dropdown-menu-trigger')).toBeFocused();
+
+  expect((await readEvents(page, '#menu')).map((event) => event.type)).toEqual([
+    'toggle',
+    'toggle',
+    'close',
+  ]);
+});

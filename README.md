@@ -47,11 +47,21 @@
 - **Web components** — Light-DOM `<w-*>` elements that render the same DuVay classes. Progressive-enhancement-friendly.
 - **Accessibility** — focus rings, keyboard nav, ARIA, reduced-motion respect, WCAG-AA contrast in default themes.
 
-Zero dependencies. Zero build step. Ships as a single CSS file (~585 KB readable / ~454 KB minified), a ~6.5 KB minified behavior layer, and an optional ~10 KB minified motion add-on. The web-component bundle is ~663 KB readable / ~459 KB minified.
+Zero dependencies. Zero build step. Ships as a single CSS file (~716 KiB readable / ~550 KiB minified), a ~6.5 KiB minified behavior layer, and an optional ~10 KiB minified motion add-on. The web-component bundle is ~1.02 MiB readable / ~726 KiB minified.
 
 DuVay also ships component-level CSS entrypoints. Import the full framework when you want everything, or import only the core layer and the components your app uses.
 
 ## Install
+
+### Package manager
+
+```sh
+npm install @d31ma/duvay-css
+```
+
+The package was previously published as `duvay-css`. Existing package-manager
+installs and imports must move to the scoped name; hosted GitHub Pages URLs did
+not change.
 
 ### Latest release (hosted)
 
@@ -69,16 +79,16 @@ DuVay also ships component-level CSS entrypoints. Import the full framework when
 ### Selective CSS imports
 
 ```css
-@import "duvay-css/core.css";
-@import "duvay-css/components/buttons.css";
-@import "duvay-css/components/cards.css";
-@import "duvay-css/components/tooltips.css";
+@import "@d31ma/duvay-css/core.css";
+@import "@d31ma/duvay-css/components/buttons.css";
+@import "@d31ma/duvay-css/components/cards.css";
+@import "@d31ma/duvay-css/components/tooltips.css";
 ```
 
 Component CSS files import their required core layer, so this also works when you want a single component in a small page:
 
 ```css
-@import "duvay-css/components/buttons.css";
+@import "@d31ma/duvay-css/components/buttons.css";
 ```
 
 ### Pin to a CalVer release
@@ -110,7 +120,7 @@ src/
   themes.css        light / dark / auto / high-contrast
   typography.css    type scale & weight helpers
   utilities.css     utility classes (display, flex, gap, padding, ...)
-  duvay.js          ~6.8 KB minified behavior layer (theme, dropdowns, dialogs, ...)
+  duvay.js          ~6.5 KiB minified behavior layer (theme, dropdowns, dialogs, ...)
   duvay-wc.js       web-component barrel
   components/       individual <w-*> custom elements and component CSS files
     buttons.css
@@ -131,6 +141,7 @@ bun run docs:build  # static export to website/dist/
 ```
 
 After any change to `src/`, run `bun run build` so the docs site picks it up.
+Release operators should follow [RELEASING.md](RELEASING.md).
 
 ## License
 
