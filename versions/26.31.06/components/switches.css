@@ -1,0 +1,192 @@
+/* DuVay — Switches component styles. */
+@import "../core.css";
+
+/* ── Toggle switch ───────────────────────────────────────────────────────── */
+.w-switch {
+  /* Geometry — overridden by size + inset modifiers below.
+     travel = track width − thumb − 2×horizontal pad. */
+  --w-switch-track-w: 40px;
+  --w-switch-track-h: 14px;
+  --w-switch-thumb: 18px;
+  --w-switch-pad: 0px;
+  --w-switch-accent: var(--w-primary);
+  --w-switch-on-accent: var(--w-on-primary);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: var(--w-font-base);
+  color: var(--w-text);
+}
+
+.w-switch-track {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--w-switch-track-w);
+  height: var(--w-switch-track-h);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+  border: 1px solid var(--w-border);
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal);
+}
+
+.w-switch-thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--w-switch-pad);
+  width: var(--w-switch-thumb);
+  height: var(--w-switch-thumb);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--w-switch-thumb-color, var(--w-surface));
+  box-shadow: 0 1px 3px var(--w-shadow-color);
+  transform: translateY(-50%);
+  transition: transform var(--w-transition-normal), background var(--w-transition-normal);
+}
+
+/* State icon inside the thumb (true-icon / false-icon / indeterminate-icon). */
+.w-switch-icon {
+  font-size: calc(var(--w-switch-thumb) * 0.6);
+  line-height: 1;
+  color: var(--w-switch-accent);
+}
+
+.w-switch-input:checked + .w-switch-track {
+  background: var(--w-switch-accent);
+  border-color: var(--w-switch-accent);
+}
+
+.w-switch-input:checked + .w-switch-track .w-switch-thumb {
+  transform: translateY(-50%)
+    translateX(calc(var(--w-switch-track-w) - var(--w-switch-thumb) - 2 * var(--w-switch-pad)));
+}
+
+.w-switch-input:focus-visible + .w-switch-track {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* Visually-hidden native input. */
+.w-switch-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Inset — track grows to fully wrap the thumb ──────────────────────────── */
+/* Double-class so this wins over the equal-specificity size rules below
+   regardless of source order. */
+.w-switch.w-switch--inset {
+  --w-switch-pad: 3px;
+  --w-switch-track-h: calc(var(--w-switch-thumb) + 6px);
+}
+
+/* ── Flat — thumb without elevation ───────────────────────────────────────── */
+.w-switch--flat .w-switch-thumb {
+  box-shadow: none;
+  border: 1px solid var(--w-border);
+}
+
+/* ── Loading — spinner in the thumb ───────────────────────────────────────── */
+.w-switch-spinner {
+  width: calc(var(--w-switch-thumb) * 0.55);
+  height: calc(var(--w-switch-thumb) * 0.55);
+  border: 2px solid color-mix(in srgb, var(--w-switch-accent) 30%, transparent);
+  border-top-color: var(--w-switch-accent);
+  border-radius: 50%;
+  animation: w-spin 0.7s linear infinite;
+}
+
+.w-switch--loading { cursor: progress; }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-switch-thumb { transition: none; }
+  .w-switch-spinner { animation-duration: 1.4s; }
+}
+
+/* ── Color variants (track + thumb when on) ───────────────────────────────── */
+.w-switch--primary { --w-switch-accent: var(--w-primary); --w-switch-on-accent: var(--w-on-primary); }
+.w-switch--success { --w-switch-accent: var(--w-success); --w-switch-on-accent: var(--w-on-success); }
+.w-switch--warning { --w-switch-accent: var(--w-warning); --w-switch-on-accent: var(--w-on-warning); }
+.w-switch--error   { --w-switch-accent: var(--w-error);   --w-switch-on-accent: var(--w-on-error); }
+
+/* ── Sizes ────────────────────────────────────────────────────────────────── */
+.w-switch--xs { --w-switch-track-w: 30px; --w-switch-track-h: 12px; --w-switch-thumb: 14px; font-size: var(--w-font-xs); }
+.w-switch--sm { --w-switch-track-w: 36px; --w-switch-track-h: 13px; --w-switch-thumb: 16px; font-size: var(--w-font-sm); }
+.w-switch--md { --w-switch-track-w: 40px; --w-switch-track-h: 14px; --w-switch-thumb: 18px; font-size: var(--w-font-base); }
+.w-switch--lg { --w-switch-track-w: 48px; --w-switch-track-h: 16px; --w-switch-thumb: 22px; font-size: var(--w-font-md); }
+
+/* ── Disabled / readonly ──────────────────────────────────────────────────── */
+.w-switch:has(input:disabled) {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+.w-switch:has(input[readonly]) { cursor: default; }
+
+/* ── Label + hint/error layout ────────────────────────────────────────────── */
+.w-switch-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-1);
+}
+.w-switch-label { line-height: var(--w-line-height-snug); }
+.w-switch-hint,
+.w-switch-error,
+.w-switch-messages {
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+  line-height: var(--w-line-height-normal);
+}
+.w-switch--error .w-switch-error { color: var(--w-error); }
+
+.w-switch-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-1);
+}
+.w-switch-details:empty { display: none; }
+.w-switch-error,
+.w-switch-messages { display: flex; flex-direction: column; }
+
+/* ── Indeterminate — the thumb parks halfway across the track ─────────────── */
+.w-switch--indeterminate .w-switch-thumb {
+  transform: translateY(-50%)
+    translateX(calc((var(--w-switch-track-w) - var(--w-switch-thumb) - 2 * var(--w-switch-pad)) / 2));
+}
+.w-switch--indeterminate .w-switch-track {
+  background: color-mix(in srgb, var(--w-switch-accent) 45%, var(--w-surface-container-high));
+  border-color: color-mix(in srgb, var(--w-switch-accent) 45%, var(--w-border));
+}
+
+/* ── Direction / inline layout ────────────────────────────────────────────── */
+.w-switch--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--w-space-1);
+}
+.w-switch--inline .w-switch-text { flex-direction: row; align-items: baseline; gap: var(--w-space-2); }
+
+/* ── Outside prepend / append icons ───────────────────────────────────────── */
+.w-switch-outer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-3);
+}
+.w-switch-prepend,
+.w-switch-append {
+  display: inline-flex;
+  align-items: center;
+  color: var(--w-switch-icon-color, var(--w-text-subtle));
+}
+.w-switch--center-affix .w-switch-prepend,
+.w-switch--center-affix .w-switch-append { align-self: center; }
+
+/* Sliders/switches have no spin buttons; the modifier only tightens the affix
+   gutter so a switch lines up with the text fields beside it. */
+.w-switch--hide-spin-buttons .w-switch-outer { gap: var(--w-space-2); }
+.w-switch--indent-details .w-switch-details { padding-inline-start: var(--w-space-3); }

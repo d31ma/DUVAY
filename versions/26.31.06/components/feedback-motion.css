@@ -1,0 +1,19 @@
+/* DuVay — Feedback Motion component styles. */
+@import "../core.css";
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+/* The global rule in reset.css zeroes most animations; spinners and
+ * skeletons run forever so we silence them explicitly too. */
+@media (prefers-reduced-motion: reduce) {
+  .w-spinner,
+  .w-skeleton,
+  .w-progress--indeterminate .w-progress-bar,
+  .w-progress-circular--indeterminate .w-progress-fill {
+    animation: none;
+  }
+
+  .w-toast,
+  .w-snackbar {
+    animation: none;
+  }
+}

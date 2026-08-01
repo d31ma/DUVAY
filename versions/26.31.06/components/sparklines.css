@@ -1,0 +1,55 @@
+/* DuVay — Sparklines component styles. */
+@import "../core.css";
+
+/* ── Sparkline ───────────────────────────────────────────────────────────── */
+.w-sparkline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.w-sparkline svg {
+  display: block;
+}
+
+/* Coordinate tooltip shared by standalone and composed sparkline views. */
+.w-sparkline-tooltip-content {
+  position: fixed;
+  z-index: var(--w-z-overlay);
+  padding: var(--w-space-1) var(--w-space-2);
+  color: var(--w-inverse-on-surface);
+  background: var(--w-inverse-surface);
+  border-radius: var(--w-radius-sm);
+  box-shadow: var(--w-shadow-sm);
+  font-size: var(--w-font-sm);
+  line-height: var(--w-line-height-snug);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.w-sparkline-tooltip-content slot:not(:empty) + .w-sparkline-tooltip-default {
+  display: none;
+}
+
+.w-sparkline-tooltip--top {
+  left: var(--w-sparkline-tooltip-x);
+  top: var(--w-sparkline-tooltip-y);
+  transform: translate(-50%, calc(-100% - var(--w-sparkline-tooltip-offset)));
+}
+
+.w-sparkline-tooltip--bottom {
+  left: var(--w-sparkline-tooltip-x);
+  top: var(--w-sparkline-tooltip-y);
+  transform: translate(-50%, var(--w-sparkline-tooltip-offset));
+}
+
+.w-sparkline-tooltip--left {
+  left: var(--w-sparkline-tooltip-x);
+  top: var(--w-sparkline-tooltip-y);
+  transform: translate(calc(-100% - var(--w-sparkline-tooltip-offset)), -50%);
+}
+
+.w-sparkline-tooltip--right {
+  left: var(--w-sparkline-tooltip-x);
+  top: var(--w-sparkline-tooltip-y);
+  transform: translate(var(--w-sparkline-tooltip-offset), -50%);
+}

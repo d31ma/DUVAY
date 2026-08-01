@@ -1,0 +1,17 @@
+/* DuVay — Feedback component index. */
+@import "./components/badges.css";
+@import "./components/toasts.css";
+@import "./components/empty-states.css";
+@import "./components/spinners.css";
+@import "./components/skeleton-loaders.css";
+@import "./components/error-states.css";
+@import "./components/banners.css";
+@import "./components/feedback-motion.css";
+@import "./components/alerts.css";
+@import "./components/messages.css";
+@import "./components/tooltips.css";
+@import "./components/ripple.css";
+@import "./components/progress.css";
+@import "./components/snackbars.css";
+@import "./components/ratings.css";
+@import "./components/feedback-aliases.css";
