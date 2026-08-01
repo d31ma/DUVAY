@@ -9,7 +9,15 @@
  * Pick either; the t-shirt names are aliases of the numeric scale.
  */
 
-/* Token changelog — 2026-07-26
+/* Token changelog — 2026-08-01
+ * --w-command-*: command palette sizing, overlay offset, and compact text gap.
+ * --w-highlight-opacity: default highlight wash strength.
+ * --w-heatmap-hover-scale: hover emphasis for heatmap cells.
+ * --w-pie-size / --w-pie-hover-scale: pie chart geometry and hover emphasis.
+ * --w-video-*-width: seek and volume control sizing.
+ * Affected components: command palette, highlight, heatmap, pie, and video.
+ *
+ * Token changelog — 2026-07-26
  * --w-font-xs: raised to the 0.75rem legibility floor; affects compact labels,
  *   buttons, tabs, text fields, switches, and pagination.
  * --w-type-label-small-size: raised to the same floor; affects small label
@@ -140,6 +148,20 @@
   --w-size-icon-md: 40px;
   --w-size-icon-lg: 48px;
   --w-size-icon-xl: 56px;
+
+  /* Vuetify 4 data-display, command, and media component geometry. */
+  --w-command-max-width: 32rem;
+  --w-command-list-max-height: 20rem;
+  --w-command-input-min-height: 2.25rem;
+  --w-command-item-min-height: 2.5rem;
+  --w-command-content-gap: 0.0625rem;
+  --w-command-overlay-offset: 12vh;
+  --w-highlight-opacity: 0.35;
+  --w-heatmap-hover-scale: 1.08;
+  --w-pie-size: 12rem;
+  --w-pie-hover-scale: 1.02;
+  --w-video-seek-width: 4rem;
+  --w-video-volume-width: 5rem;
 
   /* Icon glyph size scale.
    * --w-icon-glyph-{xs,sm,md,lg,xl}: visible glyph dimensions independent

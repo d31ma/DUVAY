@@ -32,6 +32,7 @@ export class WCommand extends WElement {
   get label() { return this._attr('label', 'Command menu'); }
   get empty() { return this._attr('empty', 'No results found.'); }
   get _overlay() { return this.hasAttribute('hotkey') || this.hasAttribute('open'); }
+  get _expanded() { return !this._overlay || this.hasAttribute('open'); }
   get _listId() {
     if (!this.__listId) this.__listId = `w-command-list-${++commandUid}`;
     return this.__listId;
@@ -78,10 +79,10 @@ export class WCommand extends WElement {
   }
 
   _panel() {
-    return `<div class="w-command" role="combobox" aria-haspopup="listbox" aria-expanded="true" aria-label="${this._esc(this.label)}">
+    return `<div class="w-command">
       <div class="w-command-input-wrap">
         <span class="w-command-icon" aria-hidden="true">&#8981;</span>
-        <input class="w-command-input" type="search" placeholder="${this._esc(this.placeholder)}" autocomplete="off" aria-controls="${this._listId}" />
+        <input class="w-command-input" type="search" placeholder="${this._esc(this.placeholder)}" autocomplete="off" role="combobox" aria-haspopup="listbox" aria-expanded="${this._expanded}" aria-label="${this._esc(this.label)}" aria-controls="${this._listId}" />
       </div>
       <div class="w-command-list" id="${this._listId}" role="listbox">${this._listContent()}</div>
       <div class="w-command-empty" hidden>${this._esc(this.empty)}</div>
@@ -241,6 +242,7 @@ export class WCommand extends WElement {
     const open = this.hasAttribute('open');
     overlay.classList.toggle('open', open);
     const input = this._q('.w-command-input');
+    input?.setAttribute('aria-expanded', String(open));
     if (open) {
       this._lastFocus = document.activeElement;
       if (input) { input.value = ''; this._filter(); input.focus(); }

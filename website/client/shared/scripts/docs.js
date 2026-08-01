@@ -7,6 +7,7 @@
  */
 
 import { API_DATA } from './api-data.js';
+import { GENERATED_PAGE_INDEX } from './generated-api-data.js';
 
 /* ── Ordered docs index — single source of truth for prev/next + search ── */
 const PAGES = [
@@ -24,6 +25,7 @@ const PAGES = [
   { path: '/docs/breadcrumbs', title: 'Breadcrumbs',      group: 'Components',              keywords: 'breadcrumb navigation path hierarchy' },
   { path: '/docs/components', title: 'Components',        group: 'Components',              keywords: 'components catalog buttons inputs lists tables cards badges avatars dialogs overlays feedback' },
   { path: '/docs/components/explorer', title: 'API Explorer', group: 'Components',           keywords: 'api explorer browse components props events examples' },
+  { path: '/docs/vuetify-parity', title: 'Vuetify parity', group: 'Common concepts',          keywords: 'vuetify parity compatible props attributes audit version 4.1.7' },
   { path: '/docs/components/application', title: 'Application', group: 'Components',         keywords: 'application app shell app bar layout drawer main' },
   { path: '/docs/components/calendars', title: 'Calendars', group: 'Components',             keywords: 'calendar date month week day schedule' },
   { path: '/docs/components/carousels', title: 'Carousels', group: 'Components',             keywords: 'carousel slides image gallery selection' },
@@ -160,6 +162,9 @@ const PAGES = [
   { path: '/docs/about',      title: 'About',             group: 'About',           keywords: 'about project principles vuetify relationship zero dependency html first light dom' },
 ];
 
+const indexedPaths = new Set(PAGES.map((page) => page.path));
+PAGES.push(...GENERATED_PAGE_INDEX.filter((page) => !indexedPaths.has(page.path)));
+
 const REPO = 'https://github.com/d31ma/DUVAY';
 const BRANCH = 'main';
 
@@ -255,6 +260,7 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Icon buttons', path: '/docs/icon-buttons' },
       { type: 'item', title: 'Cards', path: '/docs/cards' },
       { type: 'item', title: 'Chips', path: '/docs/chips' },
+      { type: 'item', title: 'Command palettes', path: '/docs/components/command-palette' },
       { type: 'item', title: 'Dialogs', path: '/docs/dialog' },
       { type: 'item', title: 'Dividers', path: '/docs/components/dividers' },
       { type: 'item', title: 'Expansion panels', path: '/docs/expand' },
@@ -286,6 +292,7 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'File inputs', path: '/docs/file-inputs' },
       { type: 'item', title: 'File upload', path: '/docs/file-upload' },
       { type: 'item', title: 'Forms', path: '/docs/forms' },
+      { type: 'item', title: 'Mask inputs', path: '/docs/components/mask-input' },
       { type: 'item', title: 'Custom inputs', path: '/docs/inputs' },
       { type: 'item', title: 'Number inputs', path: '/docs/number-inputs' },
       { type: 'item', title: 'OTP Input', path: '/docs/otp-input' },
@@ -315,6 +322,9 @@ const HE_DOC_SECTIONS = [
         ]
       },
       { type: 'item', title: 'Hotkeys', path: '/docs/features/hotkey' },
+      { type: 'item', title: 'Heatmaps', path: '/docs/components/heatmap' },
+      { type: 'item', title: 'Highlights', path: '/docs/components/highlight' },
+      { type: 'item', title: 'Pie charts', path: '/docs/components/pie' },
       { type: 'item', title: 'Sparklines', path: '/docs/components/sparklines' },
       { type: 'item', title: 'Infinite scrollers', path: '/docs/components/infinite-scroller' },
       { type: 'item', title: 'Tables', path: '/docs/tables' },
@@ -342,6 +352,7 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Hover', path: '/docs/components/hover' },
       { type: 'item', title: 'Progress circular', path: '/docs/progress-circular' },
       { type: 'item', title: 'Progress linear', path: '/docs/progress-linear' },
+      { type: 'item', title: 'Progress', path: '/docs/components/progress' },
       { type: 'item', title: 'Ratings', path: '/docs/ratings' },
       { type: 'item', title: 'Skeleton loaders', path: '/docs/skeleton-loaders' },
       { type: 'item', title: 'Snackbars', path: '/docs/snackbar' },
@@ -351,13 +362,17 @@ const HE_DOC_SECTIONS = [
       { type: 'subhead', title: 'Images & icons' },
       { type: 'item', title: 'Aspect ratios', path: '/docs/aspect-ratios' },
       { type: 'item', title: 'Avatars', path: '/docs/avatars' },
+      { type: 'item', title: 'Avatar groups', path: '/docs/components/avatar-group' },
       { type: 'item', title: 'Icons', path: '/docs/icons' },
       { type: 'item', title: 'Images', path: '/docs/images' },
       { type: 'item', title: 'Parallax', path: '/docs/parallax' },
+      { type: 'item', title: 'Videos', path: '/docs/components/video' },
       { type: 'separator' },
       { type: 'subhead', title: 'Pickers' },
       { type: 'item', title: 'Color pickers', path: '/docs/color-pickers' },
       { type: 'item', title: 'Date pickers', path: '/docs/date-pickers' },
+      { type: 'item', title: 'Date range pickers', path: '/docs/components/date-range-picker' },
+      { type: 'item', title: 'Month pickers', path: '/docs/components/month-picker' },
       { type: 'item', title: 'Time pickers', path: '/docs/time-pickers' },
       { type: 'separator' },
       { type: 'subhead', title: 'Providers' },

@@ -1,5 +1,37 @@
 # Changelog
 
+## 26.31.06 - 2026-08-01
+
+### Added
+
+- Added the Vuetify 4.1.7 component additions: avatar groups, command palettes,
+  date-range and month pickers, heatmaps, highlights, mask inputs, pie charts,
+  unified progress, and video controls.
+- Added generated API inventory and fallback documentation pages so every
+  registered DuVay element and declared attribute has a website reference.
+- Added browser-level behavior coverage for the new components and strict
+  documentation inventory tests.
+
+### Changed
+
+- Pinned the parity audit to Vuetify 4.1.7 metadata and expanded the audit to
+  fail when a Vuetify component has no DuVay counterpart.
+- Added contained command-palette rendering for local demos and embedded user
+  interfaces.
+
+### Fixed
+
+- Limited source inspection to each JavaScript class body so API generation
+  and parity checks cannot credit a component with attributes read by a later
+  class in the same file.
+- Put command-palette combobox semantics and live expansion state on the search
+  input, and kept video-control focus stable during playback updates.
+- Ordered mask-input events after formatting and model synchronization, removed
+  conflicting legacy visualization selectors, and contained heatmap/video
+  controls on narrow screens.
+- Sanitized highlight, heatmap, and pie color inputs before they reach inline
+  custom properties.
+
 ## 26.31.02 - 2026-07-27
 
 ### Breaking

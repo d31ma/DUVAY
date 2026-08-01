@@ -47,7 +47,7 @@
 - **Web components** — Light-DOM `<w-*>` elements that render the same DuVay classes. Progressive-enhancement-friendly.
 - **Accessibility** — focus rings, keyboard nav, ARIA, reduced-motion respect, WCAG-AA contrast in default themes.
 
-Zero dependencies. Zero build step. Ships as a single CSS file (~716 KiB readable / ~550 KiB minified), a ~6.5 KiB minified behavior layer, and an optional ~10 KiB minified motion add-on. The web-component bundle is ~1.02 MiB readable / ~726 KiB minified.
+Zero dependencies. Zero build step. Ships as a single CSS file (~722 KiB readable / ~554 KiB minified), a ~6.5 KiB minified behavior layer, and an optional ~10 KiB minified motion add-on. The web-component bundle is ~1.05 MiB readable / ~754 KiB minified.
 
 DuVay also ships component-level CSS entrypoints. Import the full framework when you want everything, or import only the core layer and the components your app uses.
 
