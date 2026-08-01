@@ -49,7 +49,8 @@ import { wCssLength, wSafeColor } from './file-input.js';
 export class WProgress extends WElement {
 
   static attrs = [
-    'variant', 'value', 'model-value', 'max', 'indeterminate', 'color', 'bg-color', 'tween', 'reveal',
+    'variant', 'type', 'label', 'details-position', 'value-format', 'hide-label', 'hide-value',
+    'value', 'model-value', 'max', 'indeterminate', 'color', 'bg-color', 'tween', 'reveal',
     'height', 'buffer-value', 'buffer-color', 'striped', 'stream', 'reverse', 'rounded', 'absolute', 'location',
     'size', 'width', 'rotate',
     'active', 'opacity', 'bg-opacity', 'buffer-opacity', 'clickable', 'rounded-bar',
@@ -59,7 +60,7 @@ export class WProgress extends WElement {
   static tokens = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info', 'surface'];
   static sizes = { 'x-small': 16, small: 24, sm: 32, default: 32, large: 48, lg: 64, 'x-large': 64 };
 
-  get variant()       { return this._attr('variant', 'linear'); }
+  get variant()       { return this._attr('type', this._attr('variant', 'linear')); }
   get value()         { const mv = this._attr('model-value', null); return parseFloat(mv != null ? mv : this._attr('value', '0')) || 0; }
   get max()           { return parseFloat(this._attr('max', '100')) || 100; }
   get indeterminate() { return this._bool('indeterminate'); }
@@ -108,6 +109,7 @@ export class WProgress extends WElement {
       'w-progress--inactive': !this.active,
       'w-progress--clickable': this.clickable,
       'w-progress--chunked': this._chunked(),
+      [`w-progress--details-${this._attr('details-position', 'bottom')}`]: this.hasAttribute('details-position'),
       ['w-progress--' + location]: location,
     });
   }
@@ -158,7 +160,24 @@ export class WProgress extends WElement {
   }
 
   _contentMarkup() {
-    return this._hasContent() ? '<div class="w-progress-content"><slot></slot></div>' : '';
+    if (this._hasContent()) return '<div class="w-progress-content"><slot></slot></div>';
+    const label = this._bool('hide-label') ? '' : this._attr('label', '');
+    const value = this._bool('hide-value') ? '' : this._formattedValue();
+    if (!label && !value) return '';
+    return `<div class="w-progress-content">${label ? `<span>${this._esc(label)}</span>` : ''}${value ? `<strong>${this._esc(value)}</strong>` : ''}</div>`;
+  }
+
+  get valueFormat() { return this._valueFormatInput !== undefined ? this._valueFormatInput : this._attr('value-format', ''); }
+  set valueFormat(value) { this._valueFormatInput = value; if (this._rendered) { this._render(); this._events(); } }
+
+  _formattedValue() {
+    const context = { value: this.value, max: this.max, percent: this._pct() };
+    if (typeof this.valueFormat === 'function') {
+      try { return String(this.valueFormat(context)); } catch { return String(this.value); }
+    }
+    const format = String(this.valueFormat || '');
+    if (!format) return `${Math.round(context.percent)}%`;
+    return format.replaceAll('{value}', String(context.value)).replaceAll('{max}', String(context.max)).replaceAll('{percent}', String(Math.round(context.percent)));
   }
 
   _valueNowAttr() {
@@ -303,4 +322,8 @@ export class WProgress extends WElement {
   }
 
   static keySteps = { ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1 };
+}
+
+if (!customElements.get('w-progress')) {
+  customElements.define('w-progress', WProgress);
 }

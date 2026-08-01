@@ -1,0 +1,29 @@
+<h1>Vuetify parity</h1>
+<p>DuVay's automated inventory is pinned to Vuetify <strong>4.1.7</strong>. It pairs every published Vuetify component with a Light-DOM <code>w-*</code> element and compares every HTML-addressable prop with the attributes the element actually observes or reads.</p>
+
+<h2>Current result</h2>
+<ul>
+  <li><strong>206 / 206</strong> Vuetify component names have DuVay counterparts.</li>
+  <li><strong>0</strong> applicable attribute gaps remain.</li>
+  <li><strong>257</strong> DuVay custom elements are registered, including lower-level and DuVay-specific elements beyond Vuetify's public inventory.</li>
+</ul>
+
+<h2>What “applicable” means</h2>
+<p>DuVay is framework-independent, uses native DOM events, and has no Vue renderer or Vue Router. Props that only carry Vue components, router records, callback functions, or opaque objects cannot be represented faithfully as HTML attributes. They are audited explicitly rather than silently counted as supported. Use the component's documented native attribute, JavaScript property, method, slot, or event instead.</p>
+
+<h3>Vue rendering and internal state</h3>
+<p><code>tag</code>, <code>symbol</code>, <code>defaults-target</code>, <code>eager</code>, <code>focused</code>, <code>model-modifiers</code>, and component-specific <code>model-value</code> occurrences that have no distinct native state. DuVay uses semantic native roots, immediate Light-DOM rendering, <code>:focus</code>/<code>:focus-visible</code>, and the documented <code>value</code>, <code>open</code>, <code>active</code>, or <code>model-value</code> contract for each component.</p>
+
+<h3>Vue Router</h3>
+<p><code>to</code>, <code>replace</code>, and <code>exact</code>. Link-capable DuVay components use native <code>href</code>, <code>target</code>, and <code>rel</code>; application routers can intercept the resulting click event.</p>
+
+<h3>Callback and object configuration</h3>
+<p><code>rules</code>, <code>value-comparator</code>, <code>custom-filter</code>, <code>custom-key-filter</code>, <code>custom-key-sort</code>, <code>get-matches</code>, <code>counter-value</code>, <code>weekday-format</code>, <code>month-format</code>, <code>year-format</code>, <code>day-format</code>, <code>header-format</code>, <code>title-format</code>, <code>item-selectable</code>, <code>item-children</code>, <code>item-title</code>, <code>item-value</code>, <code>item-type</code>, <code>item-props</code>, <code>sort-func</code>, <code>filter</code>, <code>load-children</code>, <code>group-key</code>, <code>options</code>, <code>list-props</code>, <code>menu-props</code>, <code>header-props</code>, <code>row-props</code>, and <code>cell-props</code>. Components that expose a safe vanilla property form document it on their own API page; string and JSON attribute equivalents remain attributes.</p>
+
+<h3>Vue overlay strategies</h3>
+<p><code>attach</code>, <code>activator</code>, <code>activator-props</code>, <code>content-props</code>, <code>location-strategy</code>, <code>scroll-strategy</code>, and <code>transition-duration</code>. DuVay uses authored activator slots, native DOM targets, containment attributes, CSS transitions, and browser scrolling.</p>
+
+<h3>Inherited or internal-only occurrences</h3>
+<p><code>overlaps</code> is internal layout state. Calendar callback props <code>interval-format</code>, <code>interval-style</code>, and <code>show-interval-label</code> use DuVay's documented vanilla properties and CSS hooks. Vuetify's inherited <code>type</code> and <code>hide-spin-buttons</code> text-field props do not apply to the non-numeric select control.</p>
+
+<p>The deterministic source snapshot lives in <code>scripts/data/</code>. Run <code>bun run parity</code> to reproduce the release audit; set <code>DUVAY_STRICT_PARITY=1</code> to display the architecture-only exclusions as raw gaps.</p>

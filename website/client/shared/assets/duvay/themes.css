@@ -13,6 +13,8 @@
 /* ── Light theme (default) ──────────────────────────────────────────── */
 :root,
 [w-theme="light"] {
+  /* --w-highlight-color: semantic emphasis used by <w-highlight>. */
+  --w-highlight-color: var(--w-warning);
   --w-primary:                 #1f6f8b;
   --w-on-primary:              #ffffff;
   --w-primary-container:       #d7edf4;
@@ -80,6 +82,8 @@
 
 /* ── Dark theme ──────────────────────────────────────────────────────── */
 [w-theme="dark"] {
+  /* --w-highlight-color: semantic emphasis used by <w-highlight>. */
+  --w-highlight-color: var(--w-warning);
   --w-primary:                 #83cde3;
   --w-on-primary:              #08323f;
   --w-primary-container:       rgba(131, 205, 227, 0.18);
@@ -148,6 +152,8 @@
  * when the user's OS is in dark mode. */
 @media (prefers-color-scheme: dark) {
   [w-theme="auto"] {
+    /* --w-highlight-color: semantic emphasis used by <w-highlight>. */
+    --w-highlight-color: var(--w-warning);
     --w-primary:                 #83cde3;
     --w-on-primary:              #08323f;
     --w-primary-container:       rgba(131, 205, 227, 0.18);
@@ -212,6 +218,8 @@
 /* WCAG AAA-leaning palette: stronger borders, near-pure surfaces, and
  * deep text. Works with either light or dark preference. */
 [w-theme="high-contrast"] {
+  /* --w-highlight-color: semantic emphasis used by <w-highlight>. */
+  --w-highlight-color: var(--w-warning);
   --w-primary:                 #003a4f;
   --w-on-primary:              #ffffff;
   --w-primary-container:       #b6e2ee;

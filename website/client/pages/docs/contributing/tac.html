@@ -54,4 +54,4 @@ bun run --cwd website test:ty</code></pre>
 </ul>
 
 <h2>Release automation</h2>
-<p>Release pull requests set the UTC CalVer in <code>package.json</code> and move the changelog's <code>Unreleased</code> notes under that version. After merge, automation validates and publishes one immutable <code>main</code> commit, creates its annotated tag only after the package registries succeed, then deploys versioned assets to Pages. See the repository's <code>RELEASING.md</code> for the operator sequence and retry invariants.</p>
+<p>Release pull requests set the UTC CalVer in <code>package.json</code> and move the changelog's <code>Unreleased</code> notes under that version. After merge, automation validates one immutable <code>main</code> commit, creates its annotated tag and GitHub release only after every quality gate succeeds, then deploys versioned assets to Pages. DuVay does not publish to a package registry. See the repository's <code>RELEASING.md</code> for the operator sequence and retry invariants.</p>

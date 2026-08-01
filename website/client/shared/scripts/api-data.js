@@ -1,3 +1,5 @@
+import { GENERATED_API_DATA } from './generated-api-data.js';
+
 /* DuVay docs — Web Component API reference data.
  *
  * Centralised so every component page renders a consistent attributes /
@@ -2529,3 +2531,18 @@ Object.assign(API_DATA, {
     ...apiBlocks('/docs/snackbar', ['w-snackbar']),
   ],
 });
+
+// Preserve the hand-authored descriptions above, then fill every missing
+// component and accepted attribute from the generated source inventory.
+for (const [route, generatedBlocks] of Object.entries(GENERATED_API_DATA)) {
+  if (!API_DATA[route]) API_DATA[route] = [];
+  for (const generated of generatedBlocks) {
+    const authored = API_DATA[route].find((block) => block.tag === generated.tag);
+    if (!authored) {
+      API_DATA[route].push(generated);
+      continue;
+    }
+    const names = new Set((authored.attributes || []).flatMap((row) => row[0].split(/\s*\/\s*/)));
+    authored.attributes = [...(authored.attributes || []), ...(generated.attributes || []).filter((row) => !names.has(row[0]))];
+  }
+}

@@ -163,6 +163,45 @@
 .w-avatar--elevation-5,
 .w-avatar--elevation-6 { box-shadow: var(--w-shadow-lg); }
 
+/* ── Avatar group ──────────────────────────────────────────────────────── */
+.w-avatar-group {
+  --w-avatar-group-gap: calc(var(--w-space-2) * -1);
+  --w-avatar-group-size: var(--w-size-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-avatar-group-gap);
+}
+
+.w-avatar-group > w-avatar,
+.w-avatar-group > .w-avatar-group-overflow {
+  position: relative;
+  inline-size: var(--w-avatar-group-size);
+  block-size: var(--w-avatar-group-size);
+  transition: transform var(--w-transition-fast);
+}
+
+.w-avatar-group--reverse { flex-direction: row-reverse; }
+.w-avatar-group--vertical { flex-direction: column; }
+.w-avatar-group--vertical.w-avatar-group--reverse { flex-direction: column-reverse; }
+
+.w-avatar-group--hoverable > :is(w-avatar, .w-avatar-group-overflow):hover,
+.w-avatar-group--hoverable > :is(w-avatar, .w-avatar-group-overflow):focus-within {
+  z-index: 1;
+  transform: translateY(calc(var(--w-space-1) * -1));
+}
+
+.w-avatar-group-overflow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-surface-container-high);
+  color: var(--w-text);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+}
+
 .w-avatar--border {
   border-color: var(--w-avatar-accent);
 }
@@ -312,26 +351,4 @@
 /* Avatar initials fallback */
 .w-avatar[w-initials]::before {
   content: attr(w-initials);
-}
-
-.w-avatar-group {
-  display: inline-flex;
-  align-items: center;
-  isolation: isolate;
-  vertical-align: middle;
-}
-
-.w-avatar-group .w-avatar {
-  box-shadow: 0 0 0 2px var(--w-surface);
-}
-
-.w-avatar-group :where(w-avatar, .w-avatar) + :where(w-avatar, .w-avatar) {
-  margin-left: -0.625rem;
-}
-
-.w-avatar-group-more {
-  margin-left: -0.625rem;
-  background: var(--w-surface-container-high);
-  color: var(--w-text-subtle);
-  font-size: var(--w-font-sm);
 }

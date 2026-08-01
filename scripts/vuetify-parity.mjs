@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 // Vuetify → DuVay attribute parity report.
 //
-//   npm pack vuetify && tar xzf vuetify-*.tgz          # once, anywhere
-//   VUETIFY_ATTRIBUTES=<path>/package/dist/json/attributes.json bun run parity
+// The checked-in metadata snapshot makes this deterministic in CI. To audit a
+// different release, point VUETIFY_ATTRIBUTES at that package's attributes.json.
 //
 // Vuetify publishes every component prop, with type and description, in
 // `dist/json/attributes.json`. This script pairs each VComponent with the
@@ -19,7 +19,9 @@ import { fileURLToPath } from 'node:url';
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const componentDir = join(projectRoot, 'src/components');
 const attributesPath = process.env.VUETIFY_ATTRIBUTES
-  || join(projectRoot, 'node_modules/vuetify/dist/json/attributes.json');
+  || join(projectRoot, 'scripts/data/vuetify-attributes.json');
+const versionPath = join(projectRoot, 'scripts/data/vuetify-version.json');
+const strictProps = process.env.DUVAY_STRICT_PARITY === '1';
 
 // Props that cannot exist as an HTML attribute in a Light-DOM, zero-dependency
 // framework: they need Vue's render layer, vue-router, or a function/object
@@ -63,6 +65,7 @@ const kebab = (name) => name
   .toLowerCase();
 
 const vuetify = await readVuetify();
+const vuetifyVersion = await readVuetifyVersion();
 const duvay = await readDuvay();
 const { pairs, unpairedVuetify, unpairedDuvay } = pair(vuetify, duvay);
 
@@ -95,6 +98,12 @@ async function readVuetify() {
   return components;
 }
 
+async function readVuetifyVersion() {
+  if (process.env.VUETIFY_ATTRIBUTES) return process.env.VUETIFY_VERSION || 'external metadata';
+  try { return JSON.parse(await readFile(versionPath, 'utf8')).version || 'unknown'; }
+  catch { return 'unknown'; }
+}
+
 async function readDuvay() {
   const files = (await readdir(componentDir)).filter((name) => name.endsWith('.js'));
   const classes = new Map();
@@ -121,7 +130,7 @@ async function readDuvay() {
     }
     for (const match of source.matchAll(/(?:export\s+)?class\s+(\w+)\s+extends\s+(\w+)(\s*\(\s*(\w+))?/g)) {
       const [, name, parent, , mixinArg] = match;
-      classes.set(name, { file, parent, mixinArg, attrs: declaredAttrs(source.slice(match.index)) });
+      classes.set(name, { file, parent, mixinArg, attrs: declaredAttrs(classBody(source, match.index)) });
     }
     for (const match of source.matchAll(/customElements\.define\(\s*'([\w-]+)'\s*,\s*(\w+)/g)) {
       tagByClass.set(match[2], match[1]);
@@ -167,6 +176,46 @@ async function readDuvay() {
   }
   for (const entry of byTag.values()) COMMON.forEach((name) => entry.attrs.add(name));
   return byTag;
+}
+
+// Return one class declaration only. Scanning `source.slice(match.index)` would
+// accidentally assign attributes read by every later class in the same file to
+// the first class, producing false parity and misleading API documentation.
+function classBody(source, classIndex) {
+  const open = source.indexOf('{', classIndex);
+  if (open < 0) return '';
+  let depth = 0;
+  let quote = '';
+  let lineComment = false;
+  let blockComment = false;
+  let escaped = false;
+  for (let index = open; index < source.length; index += 1) {
+    const char = source[index];
+    const next = source[index + 1];
+    if (lineComment) {
+      if (char === '\n') lineComment = false;
+      continue;
+    }
+    if (blockComment) {
+      if (char === '*' && next === '/') { blockComment = false; index += 1; }
+      continue;
+    }
+    if (quote) {
+      if (escaped) { escaped = false; continue; }
+      if (char === '\\') { escaped = true; continue; }
+      if (char === quote) quote = '';
+      continue;
+    }
+    if (char === '/' && next === '/') { lineComment = true; index += 1; continue; }
+    if (char === '/' && next === '*') { blockComment = true; index += 1; continue; }
+    if (char === "'" || char === '"' || char === '`') { quote = char; continue; }
+    if (char === '{') depth += 1;
+    if (char === '}') {
+      depth -= 1;
+      if (depth === 0) return source.slice(open + 1, index);
+    }
+  }
+  return source.slice(open + 1);
 }
 
 // Attributes a class observes or reads. Observed ones come from `static attrs`;
@@ -218,6 +267,7 @@ function missingFor(entry) {
 }
 
 function notApplicable(entry, prop) {
+  if (strictProps) return false;
   return NOT_APPLICABLE.has(prop)
     || NOT_APPLICABLE_BY_COMPONENT.get(entry.component)?.has(prop);
 }
@@ -237,7 +287,7 @@ function summary() {
   const total = rows.reduce((sum, row) => sum + row.missing, 0);
   const complete = rows.filter((row) => !row.missing).length;
 
-  console.log(`Vuetify components ${vuetify.size} · DuVay elements ${duvay.size} · paired ${pairs.length}`);
+  console.log(`Vuetify ${vuetifyVersion} components ${vuetify.size} · DuVay elements ${duvay.size} · paired ${pairs.length}`);
   console.log(`At full parity: ${complete}/${pairs.length}   outstanding attributes: ${total}\n`);
   for (const row of rows) {
     if (!row.missing) continue;
@@ -246,7 +296,7 @@ function summary() {
   console.log(`\nVuetify components with no DuVay counterpart (${unpairedVuetify.length}): `
     + unpairedVuetify.map((entry) => entry.component).join(', '));
   console.log(`\nDuVay elements beyond Vuetify (${unpairedDuvay.length}): ${unpairedDuvay.join(', ')}`);
-  process.exitCode = total ? 1 : 0;
+  process.exitCode = total || unpairedVuetify.length ? 1 : 0;
 }
 
 function detail(tag) {
@@ -275,6 +325,7 @@ function markdown() {
   console.log(`- Paired components: **${rows.length}**`);
   console.log(`- At full parity: **${rows.filter((row) => !row.missing.length).length}**`);
   console.log(`- Outstanding attributes: **${total}**\n`);
+  console.log(`- Vuetify release: **${vuetifyVersion}**\n`);
   console.log('“N/A” counts props that need Vue’s render layer, vue-router, or a function value,');
   console.log('and therefore cannot exist as an HTML attribute. They are listed in');
   console.log('`scripts/vuetify-parity.mjs`.\n');
