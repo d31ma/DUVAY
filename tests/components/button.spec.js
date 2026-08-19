@@ -236,3 +236,43 @@ test('w-app-bar-nav-icon inherits the w-btn surface and keeps its hamburger defa
   await expect(page.locator('#link a')).toHaveAttribute('href', '/menu');
   await expect(page.locator('#link a')).toHaveAttribute('aria-expanded', 'false');
 });
+
+test('w-btn forwards authored ARIA state to the control that carries the role', async ({ mount, page }) => {
+  await mount(`
+    <w-btn id="toggle" aria-label="Show contact sidebar" aria-pressed="false"
+           aria-controls="sidebar" aria-haspopup="dialog" aria-describedby="hint">Contact</w-btn>
+  `);
+
+  const control = page.locator('#toggle button');
+  await expect(control).toHaveAttribute('aria-pressed', 'false');
+  await expect(control).toHaveAttribute('aria-controls', 'sidebar');
+  await expect(control).toHaveAttribute('aria-haspopup', 'dialog');
+  await expect(control).toHaveAttribute('aria-describedby', 'hint');
+  await expect(page.getByRole('button', { name: 'Show contact sidebar' })).toHaveAttribute('aria-pressed', 'false');
+
+  // The state stays in sync when the host attribute changes...
+  await page.locator('#toggle').evaluate((el) => el.setAttribute('aria-pressed', 'true'));
+  await expect(control).toHaveAttribute('aria-pressed', 'true');
+
+  // ...and survives a re-render triggered by an unrelated attribute.
+  await page.locator('#toggle').evaluate((el) => { el.variant = 'outlined'; });
+  await expect(control).toHaveClass(/w-btn-outlined/);
+  await expect(control).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('w-btn withholds button-only ARIA state from the link form', async ({ mount, page }) => {
+  await mount('<w-btn id="link" href="/docs" aria-pressed="true" aria-current="page">Docs</w-btn>');
+
+  const link = page.locator('#link a');
+  await expect(link).toHaveAttribute('aria-current', 'page');
+  await expect(link).not.toHaveAttribute('aria-pressed', /.*/);
+});
+
+test('w-btn escapes forwarded ARIA values instead of letting them close the tag', async ({ mount, page }) => {
+  await mount('<w-btn id="xss" aria-controls=\'x" onclick="window.__wPwned = true\'>Escape</w-btn>');
+
+  const control = page.locator('#xss button');
+  await expect(control).toHaveAttribute('aria-controls', 'x" onclick="window.__wPwned = true');
+  await expect(control).not.toHaveAttribute('onclick', /.*/);
+  expect(await page.evaluate(() => window.__wPwned)).toBeUndefined();
+});

@@ -304,6 +304,20 @@ class WElement extends HTMLElement {
     }).join('');
   }
 
+  // Collect host-authored `aria-*` attributes for the inner element that
+  // actually carries the role, so assistive technology sees the name and state
+  // the author wrote on the host. Each component passes the names its control
+  // legitimately supports: blanket forwarding would put button-only state such
+  // as aria-pressed on a link, which is invalid ARIA.
+  _ariaAttrs(names) {
+    const map = {};
+    names.forEach((name) => {
+      const value = this.getAttribute(name);
+      if (value) map[name] = value;
+    });
+    return map;
+  }
+
   _applyCommonProps() {
     const classes = this._commonClasses();
     (this._wCommonClasses || []).forEach((name) => this.classList.remove(name));

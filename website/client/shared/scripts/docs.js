@@ -16,6 +16,7 @@ const PAGES = [
   { path: '/docs/getting-started', title: 'Getting started', group: 'Getting started',       keywords: 'getting started start setup install download cdn npm entry point' },
   { path: '/docs/install',    title: 'Installation',      group: 'Getting started',         keywords: 'install npm cdn download setup import bun' },
   { path: '/docs/download',   title: 'Download',          group: 'Getting started',         keywords: 'download cdn jsdelivr unpkg minified full version head link script npm bundle' },
+  { path: '/docs/tailwind',   title: 'Using with Tailwind', group: 'Getting started',       keywords: 'tailwind utility cascade layer interop override preflight coexist' },
   { path: '/docs/styles-and-animations', title: 'Styles and animations', group: 'Styles and animations', keywords: 'styles animations motion transition elevation radius typography utility theme css reset' },
   { path: '/docs/animations', title: 'Animations',         group: 'Styles and animations',   keywords: 'animations motion transition expand flip crossfade tween spring vuetify svelte reduced motion' },
   { path: '/docs/themes',     title: 'Themes',            group: 'Styles and animations',   keywords: 'theme dark light auto high contrast tokens colors w-theme' },
@@ -185,6 +186,7 @@ const HE_DOC_SECTIONS = [
     title: 'Getting started',
     items: [
       { type: 'item', title: 'Installation', path: '/docs/install' },
+      { type: 'item', title: 'Using with Tailwind', path: '/docs/tailwind' },
       { type: 'item', title: 'Frequently asked questions', path: '/docs/frequently-asked-questions' },
       { type: 'item', title: 'Wireframes', path: '/docs/wireframes' },
       { type: 'item', title: 'Unit testing', path: '/docs/unit-testing' },

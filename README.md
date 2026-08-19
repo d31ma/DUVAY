@@ -100,6 +100,40 @@ Every release is permanently available under `https://d31ma.github.io/DUVAY/vers
 <script type="module" src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay-wc.min.js"></script>
 ```
 
+## Using with Tailwind
+
+DuVay and Tailwind coexist cleanly — use DuVay components for structure and
+Tailwind utilities for one-off tweaks. DuVay namespaces everything under `w-`
+and `<w-*>` elements, so there are no class collisions, and its reset only
+touches base elements Tailwind's Preflight already handles compatibly.
+
+The one thing to control is **override direction**: DuVay component classes and
+Tailwind utilities share the same specificity, so without help the winner
+depends on load order. Import DuVay into a lower [cascade
+layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) so Tailwind
+utilities always win:
+
+```css
+/* Tailwind v4 */
+@layer duvay, theme, base, components, utilities;
+@import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
+@import "tailwindcss";
+```
+
+```css
+/* Tailwind v3 */
+@layer duvay;
+@import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Now `<button class="w-btn w-btn-filled rounded-full">` takes DuVay's button
+styling and Tailwind's radius, regardless of source order. DuVay's few
+`!important` rules (`[hidden]`, reduced-motion) still hold, since `!important`
+inverts layer precedence.
+
 ## Project layout
 
 ```

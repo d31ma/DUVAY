@@ -203,3 +203,15 @@ test('w-progress-circular reveal animates from zero and accepts a duration', asy
   expect(reveals[0].duration).toBe(700);
   expect(reveals[1]).toEqual({ from: 0, to: 50, duration: 1200 });
 });
+
+test('w-progress names the progressbar element from the host in both variants', async ({ mount, page }) => {
+  await mount('<w-progress-circular id="p" indeterminate aria-label="Loading attachment preview"></w-progress-circular>');
+  await expect(page.locator('#p .w-progress-circular')).toHaveAttribute('aria-label', 'Loading attachment preview');
+  await expect(page.getByRole('progressbar', { name: 'Loading attachment preview' })).toHaveCount(1);
+
+  await mount('<w-progress-linear id="p" value="40" aria-label="Upload progress" aria-describedby="hint"></w-progress-linear>');
+  const bar = page.locator('#p .w-progress');
+  await expect(bar).toHaveAttribute('aria-label', 'Upload progress');
+  await expect(bar).toHaveAttribute('aria-describedby', 'hint');
+  await expect(bar).toHaveAttribute('aria-valuenow', '40');
+});

@@ -11,6 +11,9 @@
  *   bg-color      - token color for the track
  *   tween         - animates the determinate value from 0 on render
  *
+ * Forwarded ARIA — authored on the host, rendered on the progressbar element:
+ *   aria-label, aria-labelledby, aria-describedby.
+ *
  *   reveal        - alias for `tween`; an optional number sets the duration (ms)
  *
  * Linear-only:
@@ -55,7 +58,13 @@ export class WProgress extends WElement {
     'size', 'width', 'rotate',
     'active', 'opacity', 'bg-opacity', 'buffer-opacity', 'clickable', 'rounded-bar',
     'chunk-count', 'chunk-width', 'chunk-gap',
+    'aria-label', 'aria-labelledby', 'aria-describedby',
   ];
+
+  // The progressbar role sits on the rendered element, not the host, so a name
+  // authored on the host has to travel with it — otherwise the progressbar is
+  // unnamed to assistive technology.
+  static forwardedAria = ['aria-label', 'aria-labelledby', 'aria-describedby'];
 
   static tokens = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info', 'surface'];
   static sizes = { 'x-small': 16, small: 24, sm: 32, default: 32, large: 48, lg: 64, 'x-large': 64 };
@@ -91,7 +100,7 @@ export class WProgress extends WElement {
     const barStyle = this.indeterminate ? '' : ` style="inline-size: ${this._pct()}%"`;
     const content = this._contentMarkup();
 
-    return `<div class="${classes}" role="progressbar" aria-valuemin="0" aria-valuemax="${this.max}"${this._valueNowAttr()}${style}>
+    return `<div class="${classes}" role="progressbar" aria-valuemin="0" aria-valuemax="${this.max}"${this._valueNowAttr()}${this._nameAttrs()}${style}>
       ${buffer}${stream}<div class="w-progress-bar"${barStyle}></div>${content}
     </div>`;
   }
@@ -184,19 +193,29 @@ export class WProgress extends WElement {
     return this.indeterminate ? '' : ` aria-valuenow="${this.value}"`;
   }
 
-  _circularTemplate() {
-    const styles = [];
+  _nameAttrs() {
+    return this._attrs(this._ariaAttrs(WProgress.forwardedAria));
+  }
+
+  // The circular indicator is sized and coloured entirely through inline
+  // declarations, because the ring geometry is a per-instance value the
+  // stylesheet cannot know. Each entry drops out when its attribute is absent
+  // or fails validation, leaving the stylesheet default in place.
+  _circularStyle() {
     const size = this._resolveSize(this._attr('size', ''));
-    if (size) styles.push(`width: ${size}px`, `height: ${size}px`);
-    const fill = this._color(this._attr('color', ''));
-    if (fill) styles.push('--w-progress-color: ' + fill);
-    const bg = this._color(this._attr('bg-color', ''));
-    if (bg) styles.push('--w-progress-bg: ' + bg);
-    const width = this._number(this._attr('width', ''), { min: 0 });
-    if (width) styles.push('--w-progress-width: ' + width);
     const rotate = this._number(this._attr('rotate', ''));
-    if (rotate) styles.push('--w-progress-rotate: ' + rotate + 'deg');
-    const style = styles.length ? ` style="${this._esc(styles.join('; '))}"` : '';
+    return this._styleAttr({
+      width: size && `${size}px`,
+      height: size && `${size}px`,
+      '--w-progress-color': this._color(this._attr('color', '')),
+      '--w-progress-bg': this._color(this._attr('bg-color', '')),
+      '--w-progress-width': this._number(this._attr('width', ''), { min: 0 }),
+      '--w-progress-rotate': rotate && `${rotate}deg`,
+    });
+  }
+
+  _circularTemplate() {
+    const style = this._circularStyle();
 
     const indet = this.indeterminate ? ' w-progress-circular--indeterminate' : '';
     const radius = 20;
@@ -204,7 +223,7 @@ export class WProgress extends WElement {
     const offset = this.indeterminate ? '' : ` stroke-dashoffset="${circumference - (this._pct() / 100) * circumference}"`;
     const content = this._contentMarkup();
 
-    return `<div class="w-progress-circular${indet}" role="progressbar" aria-valuemin="0" aria-valuemax="${this.max}"${this._valueNowAttr()}${style}>
+    return `<div class="w-progress-circular${indet}" role="progressbar" aria-valuemin="0" aria-valuemax="${this.max}"${this._valueNowAttr()}${this._nameAttrs()}${style}>
       <svg viewBox="0 0 48 48" width="100%" height="100%">
         <circle class="w-progress-track" cx="24" cy="24" r="${radius}"></circle>
         <circle class="w-progress-fill" cx="24" cy="24" r="${radius}" stroke-dasharray="${circumference}"${offset}></circle>
