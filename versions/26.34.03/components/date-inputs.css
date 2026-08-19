@@ -1,0 +1,436 @@
+/* DuVay — Date Inputs component styles. */
+@import "../core.css";
+
+/* ── Date input ───────────────────────────────────────────────────────────── */
+.w-date-input {
+  position: relative;
+}
+
+.w-date-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+/* The control owns the absolutely-positioned toggle / clear buttons so that
+   prepend- and append-icon can sit outside it in the flex row. */
+.w-date-input-control {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: center;
+}
+
+.w-date-input-icon,
+.w-date-input-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-date-input-icon:hover:not(:disabled),
+.w-date-input-clear:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-date-input-icon:disabled,
+.w-date-input-clear:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-date-input-icon {
+  position: absolute;
+  left: 0.25rem;
+}
+
+.w-date-input-clear {
+  position: absolute;
+  right: 0.25rem;
+}
+
+.w-date-input-field {
+  padding-left: 2.5rem;
+}
+
+.w-date-input--clearable .w-date-input-field,
+.w-date-input-wrap:has(.w-date-input-clear) .w-date-input-field {
+  padding-right: 2.5rem;
+}
+
+.w-date-input-popup {
+  position: absolute;
+  top: calc(100% + var(--w-space-1));
+  left: 0;
+  z-index: var(--w-z-dropdown);
+  /* Hug the calendar instead of stretching to the (often full-width) field,
+     which left the picker crammed left with dead whitespace beside it. */
+  width: max-content;
+  max-width: min(20rem, 100vw);
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-date-input-popup[hidden] {
+  display: none;
+}
+
+/* ── Adornments: prepend / append icons, prefix / suffix ──────────────────── */
+.w-date-input-prepend,
+.w-date-input-append,
+.w-date-input-prepend-inner,
+.w-date-input-append-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 1.5rem;
+  color: var(--w-di-icon-color, var(--w-text-subtle));
+  opacity: 0.76;
+  transition: opacity var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-date-input-prepend-inner,
+.w-date-input-append-inner {
+  position: absolute;
+  z-index: 1;
+}
+
+.w-date-input-prepend-inner {
+  left: 2.25rem;
+}
+
+.w-date-input-append-inner {
+  right: 2.25rem;
+}
+
+.w-date-input-wrap:has(.w-date-input-prepend-inner) .w-date-input-field {
+  padding-left: 4rem;
+}
+
+.w-date-input-wrap:has(.w-date-input-append-inner) .w-date-input-field {
+  padding-right: 4rem;
+}
+
+.w-date-input-affix {
+  position: absolute;
+  z-index: 1;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.w-date-input-prefix {
+  left: 2.5rem;
+}
+
+.w-date-input-suffix {
+  right: 0.75rem;
+}
+
+.w-date-input-wrap:has(.w-date-input-prefix) .w-date-input-field {
+  padding-left: 4.25rem;
+}
+
+.w-date-input-wrap:has(.w-date-input-suffix) .w-date-input-field {
+  padding-right: 3.5rem;
+}
+
+/* `glow` lights the adornments up while the control has focus. */
+.w-date-input--glow .w-date-input-wrap:focus-within :is(
+  .w-date-input-prepend,
+  .w-date-input-append,
+  .w-date-input-prepend-inner,
+  .w-date-input-append-inner,
+  .w-date-input-icon
+) {
+  opacity: 1;
+  color: var(--w-di-icon-color, var(--w-primary));
+}
+
+.w-date-input--center-affix .w-date-input-affix,
+.w-date-input--center-affix .w-date-input-prepend-inner,
+.w-date-input--center-affix .w-date-input-append-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.w-date-input-icon {
+  color: var(--w-di-icon-color, var(--w-text-subtle));
+}
+
+/* ── Details row: hint / error messages and the counter ───────────────────── */
+.w-date-input-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+}
+
+.w-date-input-details:empty {
+  display: none;
+}
+
+.w-date-input-details .w-field-hint {
+  flex: 1 1 auto;
+}
+
+.w-date-input--indent-details .w-date-input-details {
+  padding-inline: var(--w-space-md);
+}
+
+.w-date-input-counter {
+  flex: 0 0 auto;
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-date-input-wrap:focus-within ~ .w-date-input-details .w-date-input-counter,
+.w-date-input--persistent-counter .w-date-input-counter {
+  opacity: 1;
+}
+
+/* ── Variants ─────────────────────────────────────────────────────────────── */
+.w-date-input--filled .w-date-input-field,
+.w-date-input--solo-filled .w-date-input-field {
+  border-color: transparent;
+  background: var(--w-surface-container-high);
+}
+
+.w-date-input--underlined .w-date-input-field {
+  border-width: 0 0 1px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.w-date-input--plain .w-date-input-field {
+  border-color: transparent;
+  background: transparent;
+}
+
+.w-date-input--plain .w-date-input-field:focus {
+  box-shadow: none;
+}
+
+.w-date-input--solo .w-date-input-field,
+.w-date-input--solo-filled .w-date-input-field,
+.w-date-input--solo-inverted .w-date-input-field {
+  border-color: transparent;
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-date-input--solo-inverted .w-date-input-field {
+  background: var(--w-surface-container-highest);
+}
+
+.w-date-input--flat .w-date-input-field,
+.w-date-input--flat .w-date-input-popup {
+  box-shadow: none;
+}
+
+/* ── Presentation flags ───────────────────────────────────────────────────── */
+.w-date-input--reverse .w-date-input-field {
+  direction: rtl;
+  text-align: right;
+}
+
+.w-date-input--active .w-date-input-field,
+.w-date-input--dirty .w-date-input-field {
+  border-color: var(--w-border-strong, var(--w-border));
+}
+
+.w-date-input--single-line .w-field-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.w-date-input--persistent-placeholder .w-date-input-field::placeholder {
+  opacity: 1;
+  color: var(--w-text-very-subtle);
+}
+
+.w-date-input--hide-spin-buttons .w-date-input-field::-webkit-inner-spin-button,
+.w-date-input--hide-spin-buttons .w-date-input-field::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.w-date-input--hide-spin-buttons .w-date-input-field {
+  appearance: textfield;
+}
+
+/* The clear button normally fades in on hover / focus; `persistent-clear`
+   pins it while the field holds a value. */
+.w-date-input-clear {
+  opacity: 0;
+}
+
+.w-date-input-wrap:hover .w-date-input-clear,
+.w-date-input-wrap:focus-within .w-date-input-clear,
+.w-date-input--persistent-clear .w-date-input-clear {
+  opacity: 1;
+}
+
+/* ── Popup header, actions, and layout modes ──────────────────────────────── */
+.w-date-input-header {
+  display: grid;
+  gap: var(--w-space-1);
+  padding: var(--w-space-3);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  background: var(--w-di-header-color, transparent);
+}
+
+.w-date-input-title {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-date-input-text {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-date-input-header-date {
+  font-size: var(--w-font-xl);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1.2;
+}
+
+.w-date-input-popup--divided .w-date-input-header {
+  border-bottom: 1px solid var(--w-divider);
+}
+
+.w-date-input-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--w-space-2);
+  padding: var(--w-space-2) var(--w-space-3);
+  border-top: 1px solid var(--w-divider);
+}
+
+.w-date-input-popup--landscape {
+  display: grid;
+  grid-template-columns: var(--w-di-header-width, 10rem) minmax(0, 1fr);
+  align-items: start;
+  max-width: min(34rem, 100vw);
+}
+
+.w-date-input-popup--landscape .w-date-input-actions {
+  grid-column: 1 / -1;
+}
+
+.w-date-input-popup--docked .w-date-picker-header,
+.w-date-input-popup--modal .w-date-picker-header {
+  min-height: var(--w-di-control-height, 2.5rem);
+}
+
+.w-date-input-popup--modal .w-date-picker-header {
+  grid-template-columns: minmax(0, 1fr) 2.5rem 2.5rem;
+}
+
+.w-date-input-popup--modal .w-date-picker-title {
+  order: -1;
+  text-align: left;
+}
+
+.w-date-input-popup--no-month-picker .w-date-picker-title {
+  font-variant-numeric: tabular-nums;
+}
+
+.w-date-input-popup .w-date-picker-title,
+.w-date-input-popup .w-date-picker-nav {
+  min-height: var(--w-di-control-height, 2.5rem);
+}
+
+.w-date-input-mode-icon {
+  margin-inline-start: var(--w-space-1);
+}
+
+/* Mobile presentation: the popup becomes a centred sheet. */
+.w-date-input-popup--mobile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: min(22rem, calc(100vw - 2rem));
+  box-shadow: var(--w-shadow-lg);
+}
+
+/* ── Calendar body decorations ────────────────────────────────────────────── */
+.w-date-input-cell-hidden {
+  display: none !important;
+}
+
+.w-date-input-popup--hide-weekdays .w-date-picker-weekday {
+  display: none;
+}
+
+.w-date-input-week {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.25rem;
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.w-date-input-events {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  display: flex;
+  gap: 0.125rem;
+  transform: translateX(-50%);
+}
+
+.w-date-picker-day:has(.w-date-input-events) {
+  position: relative;
+}
+
+.w-date-input-event {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+}
+
+.w-date-picker-day.w-date-input-preview {
+  box-shadow: inset 0 0 0 1px var(--w-primary);
+}
+
+.w-date-picker-day.w-date-input-preview-range {
+  border-radius: var(--w-radius-sm);
+  background: color-mix(in srgb, var(--w-primary) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-date-input-counter,
+  .w-date-input-clear {
+    transition: none;
+  }
+}

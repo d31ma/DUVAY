@@ -1,0 +1,93 @@
+/* DuVay — Banners component styles.
+ * Vuetify-style banner: a prominent message surface laid out as
+ * prepend | content | actions, with sticky, line-clamp, and stacked variants. */
+@import "../core.css";
+
+.w-banner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "prepend content actions";
+  align-items: center;
+  gap: var(--w-space-2) var(--w-space-4);
+  width: 100%;
+  padding: var(--w-space-4) var(--w-space-5);
+  background: var(--w-banner-bg, transparent);
+  color: var(--w-banner-fg, var(--w-text));
+  border-bottom: 1px solid var(--w-border);
+}
+
+.w-banner--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  /* Sticky banners need an opaque surface so scrolled content doesn't show through. */
+  background: var(--w-banner-bg, var(--w-surface));
+}
+
+.w-banner__prepend {
+  grid-area: prepend;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--w-banner-accent, var(--w-primary));
+}
+
+.w-banner__icon {
+  display: inline-flex;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.w-banner__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.w-banner__content {
+  grid-area: content;
+  min-width: 0;
+}
+
+.w-banner-text {
+  margin: 0;
+}
+
+.w-banner-actions {
+  grid-area: actions;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+/* ── Line clamp ─────────────────────────────────────────────────────────────
+ * `lines` clamps the message and aligns the prepend to the top for multi-line. */
+.w-banner--lines-one .w-banner-text,
+.w-banner--lines-two .w-banner-text,
+.w-banner--lines-three .w-banner-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.w-banner--lines-one .w-banner-text { -webkit-line-clamp: 1; }
+.w-banner--lines-two .w-banner-text { -webkit-line-clamp: 2; }
+.w-banner--lines-three .w-banner-text { -webkit-line-clamp: 3; }
+
+.w-banner--lines-two,
+.w-banner--lines-three {
+  align-items: start;
+}
+
+/* ── Stacked (mobile) — actions drop below the text, right-aligned ─────────── */
+.w-banner--stacked {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "prepend content"
+    "actions actions";
+  align-items: start;
+}
+
+.w-banner--stacked .w-banner-actions {
+  justify-self: end;
+  padding-top: var(--w-space-2);
+}

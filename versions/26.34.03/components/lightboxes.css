@@ -1,0 +1,81 @@
+/* DuVay — Lightboxes component styles. */
+@import "../core.css";
+
+/* ── Lightbox ────────────────────────────────────────────────────────────── */
+/* Image gallery overlay (UIKit). */
+.w-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--w-z-dialog);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--w-space-6);
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--w-transition-normal), visibility var(--w-transition-normal);
+}
+
+.w-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--w-radius);
+  box-shadow: var(--w-shadow-xl);
+}
+
+.w-lightbox-close {
+  position: absolute;
+  top: var(--w-space-4);
+  right: var(--w-space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-icon-md);
+  height: var(--w-size-icon-md);
+  border: 0;
+  border-radius: var(--w-radius-circle);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--w-transition-fast);
+}
+
+.w-lightbox-close:hover,
+.w-lightbox-close:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.w-lightbox-prev,
+.w-lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-size-icon-lg);
+  height: var(--w-size-icon-lg);
+  border: 0;
+  border-radius: var(--w-radius-circle);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--w-transition-fast);
+}
+
+.w-lightbox-prev:hover,
+.w-lightbox-prev:focus-visible,
+.w-lightbox-next:hover,
+.w-lightbox-next:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.w-lightbox-prev { left: var(--w-space-4); }
+.w-lightbox-next { right: var(--w-space-4); }

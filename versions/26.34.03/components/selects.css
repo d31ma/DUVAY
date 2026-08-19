@@ -1,0 +1,331 @@
+/* DuVay — Selects component styles. */
+@import "../core.css";
+
+/* ── Select ──────────────────────────────────────────────────────────────── */
+.w-select {
+  display: block;
+  width: 100%;
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--w-transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237b878c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+}
+
+.w-select:focus {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+/* ── Custom dropdown (<w-select>) ─────────────────────────────────────────── */
+.w-select-wrap {
+  position: relative;
+}
+
+/* The trigger reuses .w-select for sizing/theming, but lays its contents out
+   as a flex row and drops the native chevron background (drawn as an element). */
+.w-select-field {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-1);
+  padding: var(--w-space-1) var(--w-space-2);
+  background-image: none;
+}
+
+.w-select-field:focus-visible,
+.w-select-field[aria-expanded="true"] {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-field-error .w-select-field[aria-expanded="true"] {
+  box-shadow: 0 0 0 1px var(--w-error);
+}
+
+.w-select-field[aria-disabled="true"] {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-select-selection {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-select-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-select-placeholder {
+  color: var(--w-text-subtle);
+}
+
+.w-select-chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+  transition: transform var(--w-transition-fast);
+}
+
+.w-select-field[aria-expanded="true"] .w-select-chevron {
+  transform: rotate(180deg);
+}
+
+.w-select-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-select-clear:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+/* Menu (modeled on .w-autocomplete-list) */
+.w-select-list {
+  position: absolute;
+  top: calc(100% + var(--w-space-1));
+  left: 0;
+  right: 0;
+  z-index: var(--w-z-dropdown);
+  max-height: 20rem;
+  overflow: auto;
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-select-list[hidden] {
+  display: none;
+}
+
+.w-select-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  width: 100%;
+  min-height: var(--w-touch-min);
+  padding: var(--w-space-2) var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  text-align: left;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-select-item:hover:not(:disabled),
+.w-select-item.active {
+  background: var(--w-hover);
+}
+
+/* `item-color` sets --w-select-item-color on the menu; unset it falls back to
+   the selected-item token. */
+.w-select-item[aria-selected="true"] {
+  background: var(--w-selected);
+  color: var(--w-select-item-color, var(--w-selected-text));
+}
+
+.w-autocomplete-list .w-autocomplete-item[aria-selected='true'] {
+  color: var(--w-select-item-color, var(--w-selected-text));
+}
+
+.w-select-item:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-select-item-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-select-item-check {
+  display: none;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.w-select-item[aria-selected="true"] .w-select-item-check {
+  display: inline-flex;
+}
+
+/* ── Shared field surface (<w-select> + <w-combobox>) ─────────────────────
+   These modifiers land on whichever element is the control root — the trigger
+   for <w-select>, the input wrap for <w-combobox> — so every rule is written
+   class-only. Selectors are doubled where they must beat a component's own
+   single-class border/background rule that ships later in the cascade. */
+
+.w-field--variant-outlined.w-field--variant-outlined {
+  border: 1px solid var(--w-border);
+  background: var(--w-surface);
+}
+
+.w-field--variant-filled.w-field--variant-filled,
+.w-field--variant-underlined.w-field--variant-underlined {
+  border: 0;
+  border-bottom: 1px solid var(--w-border);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+}
+
+.w-field--variant-filled.w-field--variant-filled { background: var(--w-surface-container); }
+.w-field--variant-underlined.w-field--variant-underlined { background: transparent; }
+
+.w-field--variant-plain.w-field--variant-plain {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.w-field--variant-solo.w-field--variant-solo,
+.w-field--variant-solo-filled.w-field--variant-solo-filled,
+.w-field--variant-solo-inverted.w-field--variant-solo-inverted {
+  border: 0;
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-field--variant-solo-filled.w-field--variant-solo-filled { background: var(--w-surface-container); }
+
+.w-field--variant-solo-inverted.w-field--variant-solo-inverted:focus-within {
+  background: var(--w-primary-container);
+  color: var(--w-text);
+}
+
+/* `flat` drops the resting elevation but never the focus ring. */
+.w-field--flat:not(:focus-within):not(:focus-visible) { box-shadow: none; }
+
+.w-field--reverse {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.w-field--active.w-field--active { border-color: var(--w-primary); }
+
+.w-field--center-affix { align-items: center; }
+
+.w-field--center-affix :where(.w-field-affix, .w-field-prepend-inner, .w-field-append-inner, .w-select-chevron, .w-select-clear, .w-autocomplete-clear) {
+  align-self: center;
+}
+
+.w-field--glow:focus-within :where(.w-icon, .w-select-chevron, .w-select-clear, .w-autocomplete-clear) {
+  color: var(--w-primary);
+  opacity: 1;
+}
+
+.w-field--persistent-clear :where(.w-select-clear, .w-autocomplete-clear) { opacity: 1; }
+
+.w-field--hide-spin-buttons input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.w-field--hide-spin-buttons input::-webkit-outer-spin-button,
+.w-field--hide-spin-buttons input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Affixes and icons */
+.w-field-affix,
+.w-field-placeholder {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+}
+
+.w-field-prepend,
+.w-field-append,
+.w-field-prepend-inner,
+.w-field-append-inner,
+.w-select-chevron .w-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--w-field-icon-color, var(--w-text-subtle));
+}
+
+.w-select-chevron { color: var(--w-field-icon-color, var(--w-text-subtle)); }
+
+.w-combobox-chevron { cursor: pointer; }
+
+/* Details row: hint, extra messages, and the counter. */
+.w-field-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--w-space-2);
+}
+
+.w-field-message {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+}
+
+.w-field-message--error { color: var(--w-error); }
+
+.w-field-counter {
+  margin-inline-start: auto;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+}
+
+.w-field--indent-details { padding-inline: var(--w-space-3); }
+
+/* Outer prepend/append icons sit beside the control. */
+.w-select-outer,
+.w-autocomplete:has(> .w-field-prepend, > .w-field-append) {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-select-outer > .w-select-wrap,
+.w-autocomplete:has(> .w-field-prepend, > .w-field-append) > .w-autocomplete-wrap {
+  flex: 1 1 auto;
+}
+
+/* Empty menu message (`no-data-text`). */
+.w-select-empty {
+  padding: var(--w-space-md) var(--w-space-3);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-select-chevron { transition: none; }
+}
+
