@@ -1,6 +1,17 @@
 <h1>Release notes</h1>
 <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
 
+<h2>26.34.03</h2>
+<p><em>Released 2026-08-19</em></p>
+
+<h3>Highlights</h3>
+<ul>
+  <li>Restores the non-zero corner radius scale, so components render with rounded corners again instead of square ones.</li>
+  <li><code>w-btn</code> forwards authored ARIA state — <code>aria-pressed</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-haspopup</code>, <code>aria-current</code>, <code>aria-labelledby</code>, <code>aria-describedby</code> — to the rendered control, which is the element assistive technology exposes. <code>aria-pressed</code> is withheld from the link form, where it is not valid.</li>
+  <li>The progress components forward <code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> onto the element carrying <code>role="progressbar"</code>, so the indicator is no longer unnamed.</li>
+  <li>Adds a <a href="/docs/tailwind">Using with Tailwind</a> guide covering namespace safety and the cascade layer import that keeps Tailwind utilities winning.</li>
+</ul>
+
 <h2>26.31.06</h2>
 <p><em>Released 2026-08-01</em></p>
 

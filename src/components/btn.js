@@ -23,6 +23,10 @@
  *   ripple        - opt-in press-ripple visual (off by default)
  *   aria-label    - accessibility label (auto-used for icon buttons)
  *
+ * Forwarded ARIA — authored on the host, rendered on the inner control:
+ *   aria-label, aria-labelledby, aria-describedby, aria-expanded, aria-controls,
+ *   aria-haspopup, aria-current, and (button form only) aria-pressed.
+ *
  * Slots:
  *   default   - button label / icon content
  *
@@ -39,7 +43,15 @@ import { wSafeUrl } from './utils.js';
 
 export class WBtn extends WElement {
 
-  static attrs = ['variant', 'color', 'size', 'disabled', 'href', 'loading', 'icon', 'icon-set', 'prepend-icon', 'append-icon', 'block', 'stacked', 'active', 'aria-label', 'ripple', 'text', 'value', 'flat', 'slim', 'selected-class', 'spaced'];
+  static attrs = ['variant', 'color', 'size', 'disabled', 'href', 'loading', 'icon', 'icon-set', 'prepend-icon', 'append-icon', 'block', 'stacked', 'active', 'aria-label', 'ripple', 'text', 'value', 'flat', 'slim', 'selected-class', 'spaced',
+    'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-pressed'];
+
+  // ARIA state authored on the host is forwarded to the rendered control,
+  // because that control — not the host — is what the accessibility tree
+  // exposes. `aria-pressed` is a toggle-button state, so it is withheld from
+  // the anchor form, where it would be invalid.
+  static forwardedAria = ['aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current'];
+  static forwardedButtonAria = ['aria-pressed'];
 
   // Only string-valued attributes are reflected here. Boolean attributes
   // (disabled, loading, block, stacked, active) have explicit get/set pairs
@@ -155,10 +167,11 @@ export class WBtn extends WElement {
     const own = link
       ? { href: this.href }
       : { disabled: this.disabled, value: this.value };
+    const aria = WBtn.forwardedAria.concat(link ? [] : WBtn.forwardedButtonAria);
     return Object.assign(own, {
       'aria-busy': this.loading && 'true',
       'aria-label': this.getAttribute('aria-label'),
-    }, this._extraAttrs(link));
+    }, this._ariaAttrs(aria), this._extraAttrs(link));
   }
 
   _contentMarkup() {

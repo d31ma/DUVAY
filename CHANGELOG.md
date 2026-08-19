@@ -1,5 +1,33 @@
 # Changelog
 
+## 26.34.03 - 2026-08-19
+
+### Added
+
+- Added a "Using with Tailwind" guide covering namespace safety and the cascade
+  layer import that keeps Tailwind utilities winning over DuVay component
+  classes.
+- Documented the ARIA forwarding policy for `w-btn` and the progress components
+  in the API reference.
+
+### Changed
+
+- Restored the non-zero corner radius scale (`--w-radius-sm` through
+  `--w-radius-xl`), so components render with rounded corners again instead of
+  square ones.
+
+### Fixed
+
+- `w-btn` now forwards `aria-pressed`, `aria-expanded`, `aria-controls`,
+  `aria-haspopup`, `aria-current`, `aria-labelledby`, and `aria-describedby` to
+  the rendered control, which is the element the accessibility tree exposes.
+  `aria-pressed` is withheld from the link form, where it is not valid ARIA
+  (#9).
+- `w-progress-linear` and `w-progress-circular` now forward `aria-label`,
+  `aria-labelledby`, and `aria-describedby` onto the element carrying
+  `role="progressbar"`, so the indicator is no longer an unnamed progressbar
+  (#10).
+
 ## 26.31.06 - 2026-08-01
 
 ### Added

@@ -1412,10 +1412,52 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-current",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-current option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-expanded",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-expanded option."
+        ],
+        [
+          "aria-haspopup",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-haspopup option."
+        ],
+        [
           "aria-label",
           "string | number | boolean",
           "—",
           "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
+          "aria-pressed",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-pressed option."
         ],
         [
           "base-color",
@@ -16415,10 +16457,52 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-current",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-current option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-expanded",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-expanded option."
+        ],
+        [
+          "aria-haspopup",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-haspopup option."
+        ],
+        [
           "aria-label",
           "string | number | boolean",
           "—",
           "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
+          "aria-pressed",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-pressed option."
         ],
         [
           "base-color",
@@ -40806,10 +40890,52 @@ export const GENERATED_API_DATA = {
           "Sets the append-icon option."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-current",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-current option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-expanded",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-expanded option."
+        ],
+        [
+          "aria-haspopup",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-haspopup option."
+        ],
+        [
           "aria-label",
           "string | number | boolean",
           "—",
           "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
+          "aria-pressed",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-pressed option."
         ],
         [
           "base-color",
@@ -49782,6 +49908,24 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -50143,6 +50287,24 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -50496,6 +50658,24 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the active-color option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",

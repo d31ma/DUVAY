@@ -174,11 +174,11 @@
   --w-icon-glyph-xl: 1.75rem;
 
   /* ── Shape ──────────────────────────────────────────────────────────── */
-  --w-radius-sm:   0;
-  --w-radius:      0;
-  --w-radius-md:   0;
-  --w-radius-lg:   0;
-  --w-radius-xl:   0;
+  --w-radius-sm:   0.125rem;
+  --w-radius:      0.25rem;
+  --w-radius-md:   0.375rem;
+  --w-radius-lg:   0.5rem;
+  --w-radius-xl:   0.75rem;
   --w-radius-pill: 999px;
 
   /* ── Layout ─────────────────────────────────────────────────────────── */
