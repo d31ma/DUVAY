@@ -1,0 +1,131 @@
+<doc-layout>
+  <h1>Platform skins</h1>
+  <p>DuVay ships a skin for each of the five platforms it targets. A skin is selected with the <code>w-os</code> attribute on <code>&lt;html&gt;</code>, which is orthogonal to <code>w-theme</code>: every skin works in light, dark, auto, and high-contrast.</p>
+
+  <p>Write the operating-system name. Each platform vendor also has a name for its design language, and those are accepted as aliases — every skin rule matches both, so the two are interchangeable:</p>
+
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Platform skin attribute values">
+      <thead>
+        <tr><th>Platform</th><th>Write</th><th>Also accepted</th><th>Design language</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Platform">Web <span class="w-text-medium-emphasis">(no skin)</span></td>
+          <td data-label="Write"><code>w-os=""</code></td>
+          <td data-label="Also accepted">—</td>
+          <td data-label="Design language">DuVay's own</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">iOS</td>
+          <td data-label="Write"><code>w-os="ios"</code></td>
+          <td data-label="Also accepted">—</td>
+          <td data-label="Design language">Apple HIG</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Android</td>
+          <td data-label="Write"><code>w-os="android"</code></td>
+          <td data-label="Also accepted"><code>w-os="material"</code></td>
+          <td data-label="Design language">Material 3</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">macOS</td>
+          <td data-label="Write"><code>w-os="macos"</code></td>
+          <td data-label="Also accepted">—</td>
+          <td data-label="Design language">Apple HIG</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Windows</td>
+          <td data-label="Write"><code>w-os="windows"</code></td>
+          <td data-label="Also accepted"><code>w-os="fluent"</code></td>
+          <td data-label="Design language">Fluent 2</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Linux</td>
+          <td data-label="Write"><code>w-os="linux"</code></td>
+          <td data-label="Also accepted"><code>w-os="adwaita"</code></td>
+          <td data-label="Design language">libadwaita / GNOME</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Try it</h2>
+  <p>Switching the skin below rewrites <code>w-os</code> on this page. Typeface, motion, elevation and switch geometry change; control size, corner radius, the type scale and the palette stay put.</p>
+
+  <!-- Uses the site's own demo chrome so this reads like every other example.
+       The tab classes are page-specific (skin-switch-*) rather than the shared
+       demo-os-* ones because docs.js owns those: it scopes a skin to a single
+       preview, whereas this switcher rewrites w-os on <html> — which is what an
+       application actually does. -->
+  <div class="demo">
+    <div class="skin-switch-tabs" role="tablist" aria-label="Platform skin">
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="" aria-selected="true" tabindex="0">Web</button>
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="ios" aria-selected="false" tabindex="-1">iOS</button>
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="android" aria-selected="false" tabindex="-1">Android</button>
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="macos" aria-selected="false" tabindex="-1">macOS</button>
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="windows" aria-selected="false" tabindex="-1">Windows</button>
+      <button type="button" class="skin-switch-tab" role="tab" w-os-pick="linux" aria-selected="false" tabindex="-1">Linux</button>
+    </div>
+
+    <div class="demo-preview skin-switch-preview" role="tabpanel" aria-label="Skin preview">
+      <div class="skin-switch-row">
+        <button class="w-btn w-btn-filled">Filled</button>
+        <button class="w-btn w-btn-outlined">Outlined</button>
+        <button class="w-btn w-btn-text">Text</button>
+        <span class="w-chip">Chip</span>
+        <w-switch checked="checked"></w-switch>
+        <w-checkbox checked="checked" label="Checkbox"></w-checkbox>
+      </div>
+
+      <div class="skin-switch-field">
+        <w-text-field label="Text field" placeholder="Type here"></w-text-field>
+      </div>
+
+      <p class="skin-switch-readout">
+        Now applied: <code w-os-current>w-os=""</code>
+      </p>
+    </div>
+  </div>
+
+  <h2>Install one skin</h2>
+  <p>Applications import a single skin, not all five. Each entrypoint is the full framework plus one platform layer.</p>
+  <pre class="code-block"><code>&lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay-android.min.css"&gt;
+  &lt;script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer&gt;&lt;/script&gt;</code></pre>
+
+  <p>Or layer a skin onto an existing <code>duvay.css</code>:</p>
+  <pre class="code-block"><code>@import "https://d31ma.github.io/DUVAY/latest/duvay.css";
+  @import "https://d31ma.github.io/DUVAY/latest/platforms/macos.css";</code></pre>
+
+  <h2>Detection</h2>
+  <p><code>duvay.js</code> sets <code>w-os</code> from the user agent when the attribute is absent. An explicit attribute always wins, so you can pin a skin or opt out entirely:</p>
+  <pre class="code-block"><code>&lt;!-- pin the Android skin everywhere --&gt;
+  &lt;html w-os="android"&gt;
+
+  &lt;!-- opt out of skinning; base DuVay only --&gt;
+  &lt;html w-os=""&gt;</code></pre>
+
+  <h2>What a skin changes</h2>
+  <p>A skin may override <strong>platform tokens</strong>: font family, motion duration and easing, the elevation model, chrome heights, switch geometry, focus rings and scrollbars. It may also restructure individual components where platforms genuinely diverge — sheet corners, dialog action alignment, filled field shape.</p>
+  <p>A skin may <strong>not</strong> override <strong>brand tokens</strong>: colour, control size, the radius scale, or the type scale. Those are what keep an app recognisably the same product on every platform, and <code>bun run tokens:check</code> fails a skin that touches them.</p>
+  <p>This is a deliberate correction. The first version of these skins varied control height from 22&nbsp;px on macOS to 48&nbsp;px on Android — a 2.2&times; spread that read as five different design systems rather than one product with a native accent. Density is still available per app through DuVay's own size variants; it is just no longer decided by the operating system.</p>
+  <p>Keeping colour out of skins also means the WCAG AA guarantees verified by <code>tokens:check</code> hold for every skin &times; theme combination without re-validation.</p>
+
+  <h2>Density</h2>
+  <p>Control size is not something a skin decides — but it is something an application can. The <code>w-density</code> attribute rescales control geometry, orthogonal to both <code>w-theme</code> and <code>w-os</code>:</p>
+  <pre class="code-block"><code>&lt;html w-density="compact"&gt;   &lt;!-- 32px controls, pointer-first --&gt;
+  &lt;html w-density="comfortable"&gt;  &lt;!-- 40px controls, the default --&gt;</code></pre>
+  <p>It can also scope to a subtree, so a dense data table can sit inside a comfortable page:</p>
+  <pre class="code-block"><code>&lt;section w-density="compact"&gt;
+    &lt;table class="w-table"&gt;…&lt;/table&gt;
+  &lt;/section&gt;</code></pre>
+  <p><code>duvay.js</code> sets <code>w-density="compact"</code> automatically alongside <code>w-os="macos"</code>, because macOS controls genuinely are denser than the touch platforms'. As always, an explicit attribute wins — set <code>w-density="comfortable"</code> on <code>&lt;html&gt;</code> to opt out.</p>
+  <p>Compact drops <code>--w-touch-min</code> to 28&nbsp;px, below the 44&nbsp;px touch floor. That is deliberate — compact is for pointer input — and it still clears the 24&nbsp;px WCAG&nbsp;2.5.8 AA target-size minimum, which <code>bun run tokens:check</code> enforces for every density. Do not use compact on a touch-first surface.</p>
+  <p>The per-component modifiers (<code>.w-btn--density-compact</code> and friends) still work and compose with this: the attribute sets the floor, the class overrides one control.</p>
+
+  <h2>Liquid Glass</h2>
+  <p>The iOS and macOS skins ship translucency and vibrancy via <code>backdrop-filter</code>, gated behind <code>@supports</code> with an opaque fallback. They do not attempt Apple's Liquid Glass: the real implementation is a private CSS property, and the SVG-displacement recreations work in Chromium while falling back to plain blur in Safari and WKWebView — failing on the exact engine they imitate. True Liquid Glass is delivered by the SwiftUI implementation using the system materials API.</p>
+
+  <h2>Browser floor</h2>
+  <p>Anything past the WebKitGTK 4.1 baseline is gated behind <code>@supports</code>, testing both <code>backdrop-filter</code> and <code>-webkit-backdrop-filter</code>. The Linux skin avoids <code>backdrop-filter</code> entirely — GNOME chrome is flat anyway, so nothing is lost.</p>
+</doc-layout>

@@ -122,7 +122,9 @@ export class WTextField extends WElement {
   get rounded()     { return this._bool('rounded'); }
   get singleLine()  { return this._bool('single-line'); }
   get disabled()    { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly()    { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get maxlength()   { return this._attr('maxlength', ''); }
   get prependInnerIcon() { return this._attr('prepend-inner-icon', ''); }
   get appendInnerIcon()  { return this._attr('append-inner-icon', ''); }

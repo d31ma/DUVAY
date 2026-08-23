@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DuVayTheme drives the Compose colours; the Android theme only needs to
+         stay out of the way with no action bar. -->
+    <style name="Theme.DuVayGallery" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

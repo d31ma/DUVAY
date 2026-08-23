@@ -1,0 +1,76 @@
+{
+  "$description": "Layout",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 6,
+      "banner": "  /* ── Layout ─────────────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "topbar-height": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "sidebar-width": {
+    "$value": "232px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "drawer-width": {
+    "$value": "16rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9,
+        "before": [
+          "  /* Responsive navigation drawers: full, rail, and compact-screen widths. */"
+        ]
+      }
+    }
+  },
+  "drawer-rail-width": {
+    "$value": "4.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "drawer-compact-width": {
+    "$value": "min(20rem, 88vw)",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "mobile-nav-height": {
+    "$value": "64px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

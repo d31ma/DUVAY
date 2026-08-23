@@ -181,6 +181,17 @@
   --w-radius-xl:   0.75rem;
   --w-radius-pill: 999px;
 
+  /* Focus ring — tokenised so a platform skin can restyle it without adding
+   * a second `:focus-visible` rule. That matters: nine components opt out of
+   * the global ring with `outline: none` because their wrapper draws it, and
+   * a skin rule like `[w-os="ios"] :focus-visible` outranks that opt-out,
+   * producing a doubled border. One rule in reset.css, tokens per skin. */
+  --w-focus-ring-width: 2px;
+  --w-focus-ring-style: solid;
+  --w-focus-ring-color: var(--w-primary);
+  --w-focus-ring-offset: 2px;
+  --w-focus-ring-shadow: none;
+
   /* ── Layout ─────────────────────────────────────────────────────────── */
   --w-topbar-height:     56px;
   --w-sidebar-width:     232px;

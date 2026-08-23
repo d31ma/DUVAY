@@ -7,7 +7,7 @@
   width: 100%;
   min-height: var(--w-size-md);
   padding: 0 var(--w-space-md);
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
   border-radius: var(--w-radius);
   background: var(--w-surface);
   color: var(--w-text);
@@ -190,14 +190,14 @@
    single-class border/background rule that ships later in the cascade. */
 
 .w-field--variant-outlined.w-field--variant-outlined {
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
   background: var(--w-surface);
 }
 
 .w-field--variant-filled.w-field--variant-filled,
 .w-field--variant-underlined.w-field--variant-underlined {
   border: 0;
-  border-bottom: 1px solid var(--w-border);
+  border-bottom: 1px solid var(--w-outline);
   border-radius: var(--w-radius) var(--w-radius) 0 0;
 }
 

@@ -1,0 +1,46 @@
+{
+  "$description": "Elevation — shadow recipes",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 9,
+      "banner": "  /* ── Elevation — shadow recipes ─────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "shadow-sm": {
+    "$value": "0 1px 0 var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "  /* The shadow color is theme-defined (see themes.css). */"
+        ]
+      }
+    }
+  },
+  "shadow-md": {
+    "$value": "0 8px 24px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "shadow-lg": {
+    "$value": "0 20px 60px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

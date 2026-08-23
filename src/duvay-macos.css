@@ -1,0 +1,9 @@
+/* DuVay — full framework with the macOS skin preapplied.
+ *
+ * Equivalent to importing duvay.css and platforms/macos.css yourself. The skin
+ * only activates under `w-os="macos"`, which src/duvay.js sets automatically
+ * from the user agent unless the attribute is already present.
+ */
+@import "./duvay.css";
+@import "./platforms/macos.css";
+@import "./platforms/web.css";

@@ -119,6 +119,9 @@ jobs:
       - name: Test CRAP counter
         run: bun scripts/crap.test.mjs
 
+      - name: Verify tokens, specs, fixtures, and platform parity
+        run: bun run verify
+
   test:
     name: Component tests (${{ matrix.shard }}/4)
     needs: preflight

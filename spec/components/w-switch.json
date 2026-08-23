@@ -1,0 +1,274 @@
+{
+  "$description": "DuVay Switch — Core contract, tier 1.",
+  "name": "Switch",
+  "tier": 1,
+  "names": {
+    "web": "w-switch",
+    "apple": "DuVayToggle",
+    "android": "DuVaySwitch",
+    "windows": "DuVayToggleSwitch",
+    "linux": "duvay_switch"
+  },
+  "accessibility": {
+    "role": "switch",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ],
+    "keyboard": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center": {
+      "type": "string",
+      "description": "affix / indent-details / hide-spin-buttons - field surface modifiers"
+    },
+    "center-affix": {
+      "type": "string"
+    },
+    "checked": {
+      "type": "string",
+      "description": "whether the switch is on (reflected)"
+    },
+    "color": {
+      "type": "enum",
+      "description": "'primary' | 'error' | 'success' | 'warning'"
+    },
+    "density": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "enum",
+      "description": "'horizontal' (default) | 'vertical'"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "non-interactive and dimmed"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error": {
+      "type": "string",
+      "description": "error text; also tints the track red"
+    },
+    "error-messages": {
+      "type": "string",
+      "description": "error messages; also sets the error state"
+    },
+    "false-icon": {
+      "type": "string"
+    },
+    "false-value": {
+      "type": "string",
+      "description": "value submitted / emitted when unchecked; renders a companion hidden input so a form always carries one"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "thumb without elevation"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false,
+      "description": "suppresses hint/error text"
+    },
+    "hide-spin-buttons": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string",
+      "description": "helper text rendered below the label"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon-color": {
+      "type": "string",
+      "description": "colour for those icons"
+    },
+    "indent-details": {
+      "type": "string"
+    },
+    "indeterminate": {
+      "type": "boolean",
+      "default": false,
+      "description": "\"partially on\" state; the thumb parks in the middle"
+    },
+    "indeterminate-icon": {
+      "type": "number"
+    },
+    "inline": {
+      "type": "string",
+      "description": "lay the control and its label out in a row"
+    },
+    "inset": {
+      "type": "boolean",
+      "default": false,
+      "description": "track fully encloses the thumb"
+    },
+    "label": {
+      "type": "string",
+      "description": "label text (alternative to default slot)"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "shows a spinner in the thumb and blocks toggling"
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-errors": {
+      "type": "number",
+      "description": "how many error messages are shown (default 1)"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string",
+      "description": "helper messages below the control (comma or JSON list)"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false,
+      "description": "array model: the native name gains a `[]` suffix"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name"
+    },
+    "persistent-hint": {
+      "type": "string",
+      "description": "keep the hint visible while an error is shown"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend": {
+      "type": "string",
+      "description": "icon / append-icon - icons rendered outside the control"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false,
+      "description": "prevents toggling while keeping focus"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false,
+      "description": "press feedback on the control"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "enum",
+      "description": "'xs' | 'sm' | 'md' | 'lg'"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "thumb-color": {
+      "type": "string",
+      "description": "token colour (or CSS colour) for the thumb"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "true": {
+      "type": "string",
+      "description": "icon / false-icon / indeterminate-icon - icon shown inside the thumb"
+    },
+    "true-icon": {
+      "type": "string"
+    },
+    "true-value": {
+      "type": "string",
+      "description": "value submitted / emitted when checked (wins over value)"
+    },
+    "type": {
+      "type": "enum",
+      "description": "\"checkbox\" (default) | \"radio\" for the backing input"
+    },
+    "validate-on": {
+      "type": "enum",
+      "description": "eager (default) | lazy | blur | input | submit"
+    },
+    "validation-value": {
+      "type": "string",
+      "description": "value the `required` rule checks instead of the state"
+    },
+    "value": {
+      "type": "string",
+      "description": "native form value when checked (default \"on\")"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/switch.js",
+  "inheritsFrom": [
+    "src/components/selection-control.js",
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

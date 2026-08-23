@@ -1,0 +1,127 @@
+{
+  "$description": "DuVay Popover — Core contract, tier 2.",
+  "name": "Popover",
+  "tier": 2,
+  "names": {
+    "web": "w-popover",
+    "apple": "DuVayPopover",
+    "android": "DuVayPopup",
+    "windows": "DuVayFlyout",
+    "linux": "duvay_popover"
+  },
+  "accessibility": {
+    "role": "dialog",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "inline": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "open": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "side": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "trigger",
+    "default"
+  ],
+  "source": "src/components/popover.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

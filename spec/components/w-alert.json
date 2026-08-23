@@ -1,0 +1,215 @@
+{
+  "$description": "DuVay Alert — Core contract, tier 1.",
+  "name": "Alert",
+  "tier": 1,
+  "names": {
+    "web": "w-alert",
+    "apple": "DuVayBanner",
+    "android": "DuVayBanner",
+    "windows": "DuVayInfoBar",
+    "linux": "duvay_banner"
+  },
+  "accessibility": {
+    "role": "alert",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false,
+      "description": "true | start | end | top | bottom | left | right"
+    },
+    "border-color": {
+      "type": "string",
+      "description": "token color for the accent border"
+    },
+    "closable": {
+      "type": "string",
+      "description": "if set, shows a close button"
+    },
+    "close-icon": {
+      "type": "string",
+      "description": "close button text/icon fallback"
+    },
+    "close-label": {
+      "type": "string",
+      "description": "accessible close label"
+    },
+    "color": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "success",
+        "warning",
+        "error",
+        "danger"
+      ],
+      "description": "primary | secondary | tertiary | success | warning | error | danger"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "dismissible": {
+      "type": "boolean",
+      "default": false,
+      "description": "legacy alias for closable"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hidden": {
+      "type": "string",
+      "description": "hides the alert"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string",
+      "description": "custom icon text, or \"false\" to hide the icon"
+    },
+    "icon-size": {
+      "type": "enum",
+      "description": "CSS length, or one of the named sizes (x-small | small | default | large | x-large) resolved through `icon-sizes`"
+    },
+    "icon-sizes": {
+      "type": "number",
+      "description": "JSON array of [name, px] tuples overriding the named sizes, e.g. '[[\"small\",12],[\"large\",44]]'"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "model-value": {
+      "type": "string",
+      "description": "v-model visibility; \"false\" hides the alert (emits update:model-value)"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prominent": {
+      "type": "number",
+      "description": "larger icon and roomier layout"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "text": {
+      "type": "string",
+      "description": "body text"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string",
+      "description": "title text"
+    },
+    "type": {
+      "type": "enum",
+      "values": [
+        "success",
+        "info",
+        "warning",
+        "error"
+      ],
+      "description": "success | info | warning | error"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "flat",
+        "tonal",
+        "outlined",
+        "text",
+        "plain",
+        "success",
+        "warning"
+      ],
+      "description": "flat | tonal | outlined | text | plain | elevated Legacy contextual values still work: info | success | warning | error."
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "update:model-value",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default",
+    "prepend",
+    "title",
+    "text",
+    "append",
+    "close"
+  ],
+  "source": "src/components/alert.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

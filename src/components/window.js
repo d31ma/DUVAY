@@ -42,6 +42,7 @@ export class WWindow extends WElement {
   get reverse() { return wPrimitiveBoolAttr(this, 'reverse'); }
   get touch() { return wPrimitiveBoolAttr(this, 'touch', true); }
   get disabled() { return wPrimitiveBoolAttr(this, 'disabled', false); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get selectedClass() { return this._attr('selected-class', ''); }
   get prevIcon() { return this._attr('prev-icon', ''); }
   get nextIcon() { return this._attr('next-icon', ''); }

@@ -1,0 +1,210 @@
+{
+  "$description": "DuVay Chip — Core contract, tier 1.",
+  "name": "Chip",
+  "tier": 1,
+  "names": {
+    "web": "w-chip",
+    "apple": "DuVayChip",
+    "android": "DuVayChip",
+    "windows": "DuVayChip",
+    "linux": "duvay_chip"
+  },
+  "accessibility": {
+    "role": "button",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ],
+    "keyboard": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-class": {
+      "type": "string"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-avatar": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "closable": {
+      "type": "string"
+    },
+    "close-icon": {
+      "type": "string"
+    },
+    "close-label": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "draggable": {
+      "type": "string"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "filter": {
+      "type": "string"
+    },
+    "filter-icon": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hidden": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "href": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "pill": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-avatar": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rel": {
+      "type": "string"
+    },
+    "removable": {
+      "type": "string"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "selected": {
+      "type": "string"
+    },
+    "selected-class": {
+      "type": "string"
+    },
+    "size": {
+      "type": "number"
+    },
+    "target": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "close",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default",
+    "prepend",
+    "append",
+    "filter",
+    "close"
+  ],
+  "source": "src/components/chip.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

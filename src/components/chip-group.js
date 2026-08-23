@@ -12,8 +12,7 @@
  *   mobile            - force the touch-first layout: no arrows, native scrolling
  *   mobile-breakpoint - xs…xxl or a px width below which `mobile` applies
  */
-import { wBoolAttr } from './utils.js';
-
+import { wBoolAttr, wSetValue } from './utils.js';
 // Screen widths (px) behind the named `mobile-breakpoint` values.
 const W_CHIP_BREAKPOINTS = { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920, xxl: 2560 };
 
@@ -22,11 +21,13 @@ export class WChipGroup extends WElement {
     'direction', 'show-arrows', 'prev-icon', 'next-icon', 'center-active', 'scroll-to-active',
     'content-class', 'mobile', 'mobile-breakpoint'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get multiple() { return this._bool('multiple'); }
   get mandatory() { return this._bool('mandatory'); }
   get max() { return Math.max(0, parseInt(this._attr('max', '0'), 10) || 0); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get column() { return this._bool('column'); }
   get filter() { return this._bool('filter'); }
   get variant() { return this._attr('variant', ''); }

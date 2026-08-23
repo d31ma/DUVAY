@@ -1,0 +1,59 @@
+{
+  "$description": "DuVay EmptyState — Core contract, tier 2.",
+  "name": "EmptyState",
+  "tier": 2,
+  "names": {
+    "web": "w-empty-state",
+    "apple": "DuVayEmptyState",
+    "android": "DuVayEmptyState",
+    "windows": "DuVayEmptyState",
+    "linux": "duvay_status_page"
+  },
+  "accessibility": {
+    "role": "region",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {},
+  "events": [],
+  "slots": [],
+  "source": "src/components/empty-state.js",
+  "inheritedProps": [
+    "color",
+    "bg-color",
+    "base-color",
+    "active-color",
+    "density",
+    "elevation",
+    "hover-elevation",
+    "rounded",
+    "border",
+    "tile",
+    "theme",
+    "width",
+    "height",
+    "min-width",
+    "max-width",
+    "min-height",
+    "max-height",
+    "location",
+    "position",
+    "loading",
+    "disabled",
+    "readonly"
+  ]
+}

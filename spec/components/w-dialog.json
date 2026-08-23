@@ -1,0 +1,224 @@
+{
+  "$description": "DuVay Dialog — Core contract, tier 1.",
+  "name": "Dialog",
+  "tier": 1,
+  "names": {
+    "web": "w-dialog",
+    "apple": "DuVaySheet",
+    "android": "DuVayDialog",
+    "windows": "DuVayContentDialog",
+    "linux": "duvay_dialog"
+  },
+  "accessibility": {
+    "role": "dialog",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "capture-focus": {
+      "type": "string"
+    },
+    "close-delay": {
+      "type": "string"
+    },
+    "close-label": {
+      "type": "string"
+    },
+    "close-on-back": {
+      "type": "string"
+    },
+    "close-on-content-click": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "contained": {
+      "type": "string"
+    },
+    "content-class": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "fullscreen": {
+      "type": "string",
+      "description": "fills the viewport"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-close": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "no-click-animation": {
+      "type": "string"
+    },
+    "offset": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string"
+    },
+    "open": {
+      "type": "string",
+      "description": "visible state"
+    },
+    "open-delay": {
+      "type": "string"
+    },
+    "open-on-click": {
+      "type": "string"
+    },
+    "open-on-focus": {
+      "type": "string"
+    },
+    "open-on-hover": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false,
+      "description": "outside/Escape animate instead of closing"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "retain-focus": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrim": {
+      "type": "enum",
+      "values": [
+        "true",
+        "false"
+      ],
+      "description": "true | false | color token width/max-width  - content dimensions"
+    },
+    "scrollable": {
+      "type": "string",
+      "description": "keeps header/footer fixed while body scrolls"
+    },
+    "stick-to-target": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string",
+      "description": "generated header title"
+    },
+    "transition": {
+      "type": "string"
+    },
+    "viewport-margin": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "z-index": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default",
+    "footer",
+    "activator",
+    "title"
+  ],
+  "source": "src/components/dialog.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

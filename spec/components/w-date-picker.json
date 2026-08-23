@@ -1,0 +1,250 @@
+{
+  "$description": "DuVay DatePicker — Core contract, tier 2.",
+  "name": "DatePicker",
+  "tier": 2,
+  "names": {
+    "web": "w-date-picker",
+    "apple": "DuVayDatePicker",
+    "android": "DuVayDatePicker",
+    "windows": "DuVayCalendarDatePicker",
+    "linux": "duvay_date_picker"
+  },
+  "accessibility": {
+    "role": "application",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "allowed-dates": {
+      "type": "string"
+    },
+    "allowed-months": {
+      "type": "string"
+    },
+    "allowed-years": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "string"
+    },
+    "control-height": {
+      "type": "string"
+    },
+    "control-variant": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "divided": {
+      "type": "string"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "event-color": {
+      "type": "string"
+    },
+    "events": {
+      "type": "string"
+    },
+    "first-day-of-week": {
+      "type": "string"
+    },
+    "first-day-of-year": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "header-color": {
+      "type": "string"
+    },
+    "header-date-format": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-header": {
+      "type": "string"
+    },
+    "hide-title": {
+      "type": "string"
+    },
+    "hide-weekdays": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "landscape": {
+      "type": "string"
+    },
+    "landscape-header-width": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "mode-icon": {
+      "type": "string"
+    },
+    "month": {
+      "type": "string"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false
+    },
+    "next-icon": {
+      "type": "string"
+    },
+    "no-auto-navigation": {
+      "type": "string"
+    },
+    "no-month-picker": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prev-icon": {
+      "type": "string"
+    },
+    "preview-value": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "reverse-transition": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "show-adjacent-months": {
+      "type": "string"
+    },
+    "show-week": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "transition": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "view": {
+      "type": "string"
+    },
+    "view-mode": {
+      "type": "string"
+    },
+    "weekdays": {
+      "type": "string"
+    },
+    "weeks-in-month": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "delegatesToSystemPicker": [
+    "apple",
+    "android"
+  ],
+  "source": "src/components/date-picker.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

@@ -22,7 +22,7 @@
  *   change - { value } a new number was selected
  *   input  - { value } same, fired first
  */
-import { wBoolAttr, wNumberAttr, wNumberList } from './utils.js';
+import { wBoolAttr, wNumberAttr, wNumberList, wSetValue } from './utils.js';
 import { wPad } from './time-picker.js';
 
 export class WTimePickerClock extends WElement {
@@ -38,6 +38,7 @@ export class WTimePickerClock extends WElement {
   get scrollable() { return wBoolAttr(this, 'scrollable'); }
   get displayedValue() { return this._attr('displayed-value', ''); }
   get format() { return this._attr('format', this.ampm ? 'ampm' : '24hr') === 'ampm' ? 'ampm' : '24hr'; }
+  set value(v) { wSetValue(this, v); }
   get value() { return wNumberAttr(this, 'value', this.min); }
   get locked() { return this.hasAttribute('disabled') || this.hasAttribute('readonly'); }
 

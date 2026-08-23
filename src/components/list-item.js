@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-list-item> — List item web component
  *
  * Attributes:
@@ -62,6 +63,7 @@ class WListItem extends WElement {
 
   get itemTitle() { return this._attr('title', ''); }
   get subtitle() { return this._attr('subtitle', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.itemTitle); }
   get href() { return this._attr('href', this._attr('to', '')); }
   get target() { return this._attr('target', ''); }
@@ -87,6 +89,7 @@ class WListItem extends WElement {
   set active(v) { v ? this.setAttribute('active', '') : this.removeAttribute('active'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   // `active` carries the caller's own active-class list alongside the marker.
   get _activeClass() {
     if (!this.active) return '';

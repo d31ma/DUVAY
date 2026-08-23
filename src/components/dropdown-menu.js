@@ -19,6 +19,7 @@ export class WDropdownMenu extends WElement {
   get label() { return this._attr('label', 'Menu'); }
   get side() { return this._attr('side', this._attr('location', this.submenu ? 'end' : 'bottom-start')); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get inline() { return this._bool('inline'); }
   get persistent() { return this._bool('persistent'); }
   get closeOnContentClick() { return this._attr('close-on-content-click', 'true') !== 'false'; }

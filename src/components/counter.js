@@ -7,11 +7,11 @@
  *   active     - `active="false"` hides the counter without unmounting it
  *   transition - named reveal transition; `none` / `false` turns it off
  */
-import { wBoolAttr } from './utils.js';
-
+import { wBoolAttr, wSetValue } from './utils.js';
 export class WCounter extends WElement {
   static attrs = ['value', 'max', 'tween', 'active', 'transition'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', '0'); }
   get max() { return this._attr('max', ''); }
   get tween() { return this._bool('tween'); }

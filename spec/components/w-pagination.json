@@ -1,0 +1,193 @@
+{
+  "$description": "DuVay Pagination — Core contract, tier 2.",
+  "name": "Pagination",
+  "tier": 2,
+  "names": {
+    "web": "w-pagination",
+    "apple": "DuVayPagination",
+    "android": "DuVayPagination",
+    "windows": "DuVayPagination",
+    "linux": "duvay_pagination"
+  },
+  "accessibility": {
+    "role": "navigation",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "current-page-aria-label": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "ellipsis": {
+      "type": "string"
+    },
+    "first-aria-label": {
+      "type": "string"
+    },
+    "first-icon": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "last-aria-label": {
+      "type": "string"
+    },
+    "last-icon": {
+      "type": "string"
+    },
+    "length": {
+      "type": "number"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "next-aria-label": {
+      "type": "string"
+    },
+    "next-icon": {
+      "type": "string"
+    },
+    "page": {
+      "type": "string"
+    },
+    "page-aria-label": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prev-icon": {
+      "type": "string"
+    },
+    "previous-aria-label": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "show-first-last-page": {
+      "type": "string"
+    },
+    "size": {
+      "type": "number"
+    },
+    "start": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "total-visible": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "first",
+      "detail": "object"
+    },
+    {
+      "name": "last",
+      "detail": "object"
+    },
+    {
+      "name": "next",
+      "detail": "object"
+    },
+    {
+      "name": "prev",
+      "detail": "object"
+    },
+    {
+      "name": "update:modelValue",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/pagination.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

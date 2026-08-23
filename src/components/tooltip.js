@@ -64,6 +64,7 @@ class WTooltip extends WElement {
   get openOnFocus() { return this._enabledAttr('open-on-focus', !this.openOnClick); }
   get interactive() { return this._enabledAttr('interactive', false); }
   get disabled() { return this._enabledAttr('disabled', false); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get cursorTarget() { return this._attr('target', '') === 'cursor'; }
   get closeOnContentClick() { return this._enabledAttr('close-on-content-click', false); }
   get contentClass() { return this._attr('content-class', ''); }

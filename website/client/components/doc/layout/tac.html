@@ -1,0 +1,17 @@
+<!-- The documentation shell: header, sidebar, article, pager and TOC.
+     Every page under /docs composes this explicitly. Tachyon 26.33 no longer
+     applies a parent route's template as a layout for its children, so the
+     shell moved out of pages/docs/tac.html and became a component. -->
+<site-header />
+<div class="docs-shell">
+  <doc-sidebar />
+  <button class="docs-sidebar-scrim" type="button" w-docs-menu-close aria-label="Close documentation navigation" hidden></button>
+  <main class="docs-main">
+    <div class="docs-page-actions" w-page-actions></div>
+    <article class="docs-page" w-page>
+      <slot />
+    </article>
+    <nav class="docs-pager" w-pager aria-label="Pagination"></nav>
+  </main>
+  <aside class="docs-toc" w-toc aria-label="On this page"></aside>
+</div>

@@ -1,0 +1,317 @@
+{
+  "$description": "DuVay TextArea — Core contract, tier 1.",
+  "name": "TextArea",
+  "tier": 1,
+  "names": {
+    "web": "w-textarea",
+    "apple": "DuVayTextArea",
+    "android": "DuVayTextArea",
+    "windows": "DuVayTextArea",
+    "linux": "duvay_text_area"
+  },
+  "accessibility": {
+    "role": "textbox",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "append-inner-icon": {
+      "type": "string"
+    },
+    "auto-grow": {
+      "type": "string"
+    },
+    "autocomplete": {
+      "type": "string"
+    },
+    "autofocus": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center-affix": {
+      "type": "string"
+    },
+    "clear-icon": {
+      "type": "string"
+    },
+    "clearable": {
+      "type": "boolean",
+      "default": false,
+      "description": "show a clear (×) button when non-empty"
+    },
+    "color": {
+      "type": "string",
+      "description": "token color for the focus accent (e.g. \"success\") prefix, suffix  - static text inside the control, before / after the input"
+    },
+    "counter": {
+      "type": "number",
+      "description": "show a character counter; bare it pairs with maxlength, or pass an explicit maximum (counter=\"50\")"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "default",
+        "comfortable",
+        "compact"
+      ],
+      "description": "default | comfortable | compact"
+    },
+    "dirty": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error": {
+      "type": "string",
+      "description": "error text; tints the control and replaces the hint"
+    },
+    "error-messages": {
+      "type": "string"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false
+    },
+    "glow": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false,
+      "description": "suppress the details row (`auto` keeps it when non-empty) disabled, readonly, autofocus required, pattern, minlength, maxlength, min, max, step"
+    },
+    "hide-spin-buttons": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string",
+      "description": "helper text below the control"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon-color": {
+      "type": "string"
+    },
+    "icon-set": {
+      "type": "string"
+    },
+    "indent-details": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "description": "floating label"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "show an indeterminate bar along the bottom edge"
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-errors": {
+      "type": "number"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-rows": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "maxlength": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string"
+    },
+    "min": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "minlength": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name"
+    },
+    "no-resize": {
+      "type": "number"
+    },
+    "pattern": {
+      "type": "string"
+    },
+    "persistent-clear": {
+      "type": "string"
+    },
+    "persistent-counter": {
+      "type": "number"
+    },
+    "persistent-hint": {
+      "type": "string",
+      "description": "keep the hint visible even when not focused"
+    },
+    "persistent-placeholder": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "placeholder text"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "prepend-inner-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "required": {
+      "type": "string"
+    },
+    "reverse": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false,
+      "description": "pill-rounded control"
+    },
+    "rows": {
+      "type": "string"
+    },
+    "single-line": {
+      "type": "string",
+      "description": "no floating label; label is used as the placeholder"
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "xs",
+        "sm",
+        "lg",
+        "xl"
+      ],
+      "description": "xs | sm | lg | xl (omit for the default)"
+    },
+    "step": {
+      "type": "number"
+    },
+    "suffix": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "string",
+      "description": "native input type (text, email, password, search, …)"
+    },
+    "validate-on": {
+      "type": "string"
+    },
+    "validation-value": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string",
+      "description": "input value (reflected; also a property)"
+    },
+    "variant": {
+      "type": "enum",
+      "description": "outlined (default) | filled | underlined | plain | solo"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "clear",
+      "detail": "object"
+    },
+    {
+      "name": "input",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/textarea.js",
+  "inheritsFrom": [
+    "src/components/text-field.js",
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

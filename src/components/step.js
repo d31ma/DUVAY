@@ -22,6 +22,7 @@
  */
 
 import WIcons from '../icons.js';
+import { wSetValue } from './utils.js';
 
 export class WStep extends WElement {
   static attrs = ['label', 'title', 'caption', 'subtitle', 'state', 'value', 'complete',
@@ -31,6 +32,7 @@ export class WStep extends WElement {
   get label() { return this._attr('label', '') || this._attr('title', ''); }
   get caption() { return this._attr('caption', '') || this._attr('subtitle', ''); }
   get state() { return this._attr('state', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get icon() { return this._attr('icon', ''); }
   get focusable() { return this._bool('focusable'); }

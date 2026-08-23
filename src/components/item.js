@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-item> - generic action/list item
  *
  * Attributes:
@@ -14,7 +15,10 @@ export class WItem extends WElement {
   get icon() { return this._attr('icon', ''); }
   get shortcut() { return this._attr('shortcut', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
+  set selected(v) { this.toggleAttribute('selected', !!v); }
   get selected() { return this._bool('selected'); }
   get selectedClass() { return this._attr('selected-class', ''); }
 

@@ -295,10 +295,17 @@ w-slide-y-transition {
   display: contents;
 }
 
+/* The one and only focus-ring rule.
+ *
+ * Components that draw their own ring on a wrapper opt out with
+ * `outline: none`, which only works while this stays a single low-specificity
+ * rule. Platform skins therefore restyle the ring through the
+ * --w-focus-ring-* tokens rather than by adding a rule of their own. */
 :focus-visible {
-  outline: 2px solid var(--w-primary);
-  outline-offset: 2px;
+  outline: var(--w-focus-ring-width) var(--w-focus-ring-style) var(--w-focus-ring-color);
+  outline-offset: var(--w-focus-ring-offset);
   border-radius: var(--w-radius);
+  box-shadow: var(--w-focus-ring-shadow);
 }
 
 /* Honour reduced-motion globally: shorten or disable every transition and

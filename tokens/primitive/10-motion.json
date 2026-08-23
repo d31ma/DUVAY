@@ -1,0 +1,157 @@
+{
+  "$description": "Motion",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 10,
+      "banner": "  /* ── Motion ─────────────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "transition-fast": {
+    "$value": "120ms ease",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "transition-normal": {
+    "$value": "140ms ease",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "transition-slow": {
+    "$value": "160ms ease",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "motion-duration-fast": {
+    "$value": "120ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "motion-duration": {
+    "$value": "180ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "motion-duration-slow": {
+    "$value": "260ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "motion-ease-standard": {
+    "$value": "cubic-bezier(0.2, 0, 0, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "motion-ease-enter": {
+    "$value": "cubic-bezier(0, 0, 0.2, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "motion-ease-exit": {
+    "$value": "cubic-bezier(0.4, 0, 1, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "motion-distance-x": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "motion-distance-y": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "motion-scale-start": {
+    "$value": "0.92",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "motion-scale-end": {
+    "$value": "1",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "app-bar-backdrop-blur": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* --w-app-bar-backdrop-blur: frosted depth applied after sticky app bars scroll. */"
+        ]
+      }
+    }
+  }
+}

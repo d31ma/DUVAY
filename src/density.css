@@ -1,0 +1,86 @@
+/* DuVay — Density
+ *
+ * Density rescales control geometry without touching colour, shape or type.
+ * Selected with the `w-density` attribute, orthogonal to both `w-theme` and
+ * `w-os`:
+ *   - comfortable   (default) touch-first, 40px controls
+ *   - compact       pointer-first, 32px controls
+ *
+ * This is the supported way to get a denser UI. Platform skins deliberately
+ * cannot change control size — that kept the five skins one product — so a
+ * pointer-dense platform like macOS asks for density explicitly instead.
+ * duvay.js sets w-density="compact" alongside w-os="macos" when it detects
+ * a Mac, and an explicit attribute always wins.
+ *
+ * Per-component modifiers (.w-btn--density-compact and friends) still work
+ * and compose with this; they override a single control, this sets the floor.
+ */
+
+[w-density="comfortable"] {
+  /* The defaults, restated so a subtree can opt back in. */
+  --w-size-xs:            28px;
+  --w-size-sm:            32px;
+  --w-size-md:            40px;
+  --w-size-lg:            48px;
+  --w-size-xl:            56px;
+
+  --w-size-icon-xs:       28px;
+  --w-size-icon-sm:       32px;
+  --w-size-icon-md:       40px;
+  --w-size-icon-lg:       48px;
+  --w-size-icon-xl:       56px;
+
+  --w-touch-min:          2.75rem;   /* 44px — the HIG / Material touch floor */
+}
+
+[w-density="compact"] {
+  /* One step down across the scale. */
+  --w-size-xs:            24px;
+  --w-size-sm:            28px;
+  --w-size-md:            32px;
+  --w-size-lg:            40px;
+  --w-size-xl:            48px;
+
+  --w-size-icon-xs:       24px;
+  --w-size-icon-sm:       28px;
+  --w-size-icon-md:       32px;
+  --w-size-icon-lg:       40px;
+  --w-size-icon-xl:       48px;
+
+  /* 28px. Below the 44px touch floor on purpose — compact is for pointer
+   * input — but still clear of the 24px WCAG 2.5.8 AA minimum, which
+   * tokens:check enforces for every density. */
+  --w-touch-min:          1.75rem;
+}
+
+/* Compact is a pointer density. On a coarse pointer — touch, pen, a TV
+ * remote — it falls back to the comfortable scale rather than shrinking
+ * hit targets on a surface that cannot afford it.
+ *
+ * Compact's 32px controls do clear the 24px WCAG 2.5.8 AA minimum on their
+ * own, so this is not an AA fix; it restores the 44px HIG / Material
+ * recommendation, which is the figure that actually matters for touch.
+ * The visual scale has to come back with it: .w-btn and friends size from
+ * --w-size-*, so restoring --w-touch-min alone would leave a 32px button
+ * with a 44px hit area overlapping its neighbours.
+ *
+ * Consequence worth knowing: setting w-density="compact" on a phone is a
+ * no-op. That is the intent — compact cannot be used to defeat the touch
+ * floor by accident. */
+@media (pointer: coarse) {
+  [w-density="compact"] {
+    --w-size-xs:            28px;
+    --w-size-sm:            32px;
+    --w-size-md:            40px;
+    --w-size-lg:            48px;
+    --w-size-xl:            56px;
+
+    --w-size-icon-xs:       28px;
+    --w-size-icon-sm:       32px;
+    --w-size-icon-md:       40px;
+    --w-size-icon-lg:       48px;
+    --w-size-icon-xl:       56px;
+
+    --w-touch-min:          2.75rem;   /* back to the 44px touch floor */
+  }
+}

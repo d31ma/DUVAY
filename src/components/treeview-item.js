@@ -32,8 +32,7 @@
  *   change - fires on activation (detail: { value, title })
  */
 
-import { wValueList } from './utils.js';
-
+import { wSetValue, wValueList } from './utils.js';
 const TREEVIEW_LINE_KINDS = ['leaf', 'none', 'line', 'last-leaf', 'leaf-link'];
 
 export class WTreeviewItem extends WElement {
@@ -49,6 +48,7 @@ export class WTreeviewItem extends WElement {
 
   get itemTitle() { return this._attr('title', ''); }
   get subtitle() { return this._attr('subtitle', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.itemTitle); }
   get index() { return this._attr('index', ''); }
   get href() { return this._attr('href', this._attr('to', '')); }
@@ -68,6 +68,7 @@ export class WTreeviewItem extends WElement {
   get hideActions() { return this._bool('hide-actions'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get indentLines() {
     return wValueList(this._attr('indent-lines', ''))
       .filter((kind) => TREEVIEW_LINE_KINDS.includes(kind));

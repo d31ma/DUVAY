@@ -1,0 +1,264 @@
+{
+  "$description": "DuVay List — Core contract, tier 1.",
+  "name": "List",
+  "tier": 1,
+  "names": {
+    "web": "w-list",
+    "apple": "DuVayList",
+    "android": "DuVayList",
+    "windows": "DuVayListView",
+    "linux": "duvay_list_box"
+  },
+  "accessibility": {
+    "role": "list",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "activatable": {
+      "type": "string",
+      "description": "manages active state without implying form selection"
+    },
+    "activated": {
+      "type": "string",
+      "description": "activated value or JSON array"
+    },
+    "active-class": {
+      "type": "string",
+      "description": "extra class applied to the active item's control"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "active-strategy": {
+      "type": "enum",
+      "values": [
+        "leaf",
+        "independent",
+        "single-leaf",
+        "single-independent"
+      ],
+      "description": "leaf | independent | single-leaf | single-independent"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "collapse-icon": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "compact",
+        "comfortable"
+      ],
+      "description": "compact | comfortable (omit for default)"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disables selection management"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "expand-icon": {
+      "type": "string"
+    },
+    "filterable": {
+      "type": "string",
+      "description": "[space] never activates an item; it stays with the text input"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "indent": {
+      "type": "string"
+    },
+    "item-children": {
+      "type": "string",
+      "description": "item object key for nested children (default: children)"
+    },
+    "item-title": {
+      "type": "string",
+      "description": "item object key for title (default: title)"
+    },
+    "item-type": {
+      "type": "string"
+    },
+    "item-value": {
+      "type": "string",
+      "description": "item object key for value (default: value)"
+    },
+    "items": {
+      "type": "string",
+      "description": "JSON array of list items or a semicolon-delimited list"
+    },
+    "items-registration": {
+      "type": "enum",
+      "description": "render (default) | props skips collapsed group children"
+    },
+    "lines": {
+      "type": "enum",
+      "values": [
+        "one",
+        "two",
+        "three"
+      ],
+      "description": "one | two | three (omit for one-line default)"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "mandatory": {
+      "type": "string",
+      "description": "keeps at least one item selected/activated"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false
+    },
+    "nav": {
+      "type": "string",
+      "description": "applies navigation list styling"
+    },
+    "navigation-index": {
+      "type": "string",
+      "description": "the tracked item index when navigation-strategy=\"track\""
+    },
+    "navigation-strategy": {
+      "type": "enum",
+      "description": "focus (default) moves DOM focus | track keeps focus outside"
+    },
+    "open-strategy": {
+      "type": "enum",
+      "description": "multiple (default) | single | list"
+    },
+    "opened": {
+      "type": "string",
+      "description": "JSON array of open group values"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-gap": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "return-object": {
+      "type": "string",
+      "description": "change events carry the source item object"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "select-strategy": {
+      "type": "enum",
+      "values": [
+        "leaf",
+        "independent",
+        "classic",
+        "trunk",
+        "branch"
+      ],
+      "description": "leaf | independent | classic | trunk | branch | single-*"
+    },
+    "selectable": {
+      "type": "string",
+      "description": "manages selected state for child w-list-item elements"
+    },
+    "selected": {
+      "type": "string",
+      "description": "selected value or JSON array"
+    },
+    "slim": {
+      "type": "boolean",
+      "default": false
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "text",
+        "plain",
+        "tonal",
+        "outlined"
+      ],
+      "description": "text | plain | tonal | outlined"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "update:navigationIndex",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/list.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

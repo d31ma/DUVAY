@@ -69,6 +69,7 @@ class WPagination extends WElement {
 
   get length() { return parseInt(this._attr('length', '1'), 10) || 1; }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get totalVisible() { return parseInt(this._attr('total-visible', '0'), 10) || 0; }
   get start() { return parseInt(this._attr('start', '1'), 10) || 1; }
   get showFirstLastPage() { return this._bool('show-first-last-page'); }

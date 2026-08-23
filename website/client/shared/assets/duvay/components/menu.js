@@ -82,6 +82,7 @@ export class WMenu extends WElement {
   get open() { return this._bool('open'); }
   get location() { return this._attr('location', this._attr('side', this.submenu ? 'end' : 'bottom-start')); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get persistent() { return this._bool('persistent'); }
   get closeOnContentClick() { return this._attr('close-on-content-click', 'true') !== 'false'; }
   get openDelay() { return this._numberAttr('open-delay', 0); }

@@ -31,8 +31,7 @@
  *   update:mode - the mode switcher changed (detail: { mode })
  */
 import WIcons from '../icons.js';
-import { wClamp, wValueList } from './utils.js';
-
+import { wClamp, wSetValue, wValueList } from './utils.js';
 const HEX_RE = /^#?([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i;
 
 const EYE_DROPPER_SVG = '<svg class="w-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.35 4.65a2.2 2.2 0 0 0-3.11 0l-2.2 2.2-1.06-1.06-1.41 1.41 1.06 1.06-6.36 6.36V18h3.38l6.36-6.36 1.06 1.06 1.41-1.41-1.06-1.06 2.2-2.2a2.2 2.2 0 0 0 0-3.11ZM8.83 16H7.29v-1.54l6.36-6.36 1.54 1.54Z"/></svg>';
@@ -161,10 +160,12 @@ export class WColorPicker extends WElement {
     'swatches-max-height', 'landscape', 'hide-eye-dropper', 'eye-dropper-icon',
   ];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return normalizeHex(this._attr('value', '#6750a4')); }
   get hideCanvas() { return this._bool('hide-canvas'); }
   get showAlpha() { return this._bool('show-alpha'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get hideSliders() { return this._bool('hide-sliders'); }
   get hideInputs() { return this._bool('hide-inputs'); }
   get hideInputLabels() { return this._bool('hide-input-labels'); }

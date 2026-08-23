@@ -22,11 +22,11 @@
  * Events:
  *   change - fires on selection change with detail { value } (string single / array multiple)
  */
-import { wValueList, wNumberAttr } from './utils.js';
-
+import { wNumberAttr, wSetValue, wValueList } from './utils.js';
 export class WBtnToggle extends WElement {
   static attrs = ['value', 'multiple', 'mandatory', 'max', 'selected-class', 'disabled', 'divided', 'variant', 'color', 'density', 'direction'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get multiple() { return this._bool('multiple'); }
   get mandatory() {
@@ -37,6 +37,7 @@ export class WBtnToggle extends WElement {
   get max() { return Math.max(0, wNumberAttr(this, 'max', 0)); }
   get selectedClass() { return this._attr('selected-class', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get divided() { return this._bool('divided'); }
   get variant() { return this._attr('variant', ''); }
   get density() { return this._attr('density', ''); }

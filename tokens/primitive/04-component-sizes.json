@@ -1,0 +1,316 @@
+{
+  "$description": "Component sizes",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 4,
+      "banner": "  /* ── Component sizes ────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "touch-min": {
+    "$value": "2.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "  /* Minimum accessible touch target (44 CSS px at the default root size). */"
+        ]
+      }
+    }
+  },
+  "size-xs": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Button / input / icon heights. The default 40px maps to the t-shirt",
+          "     medium scale; xs/sm/lg/xl extend it for density variants. */"
+        ]
+      }
+    }
+  },
+  "size-sm": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-md": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-lg": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-xl": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-icon-xs": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Icon-only square controls (icon buttons, FABs, color swatches). */"
+        ]
+      }
+    }
+  },
+  "size-icon-sm": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-icon-md": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-icon-lg": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "size-icon-xl": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "command-max-width": {
+    "$value": "32rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Vuetify 4 data-display, command, and media component geometry. */"
+        ]
+      }
+    }
+  },
+  "command-list-max-height": {
+    "$value": "20rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "command-input-min-height": {
+    "$value": "2.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "command-item-min-height": {
+    "$value": "2.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "command-content-gap": {
+    "$value": "0.0625rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "command-overlay-offset": {
+    "$value": "12vh",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "highlight-opacity": {
+    "$value": "0.35",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "heatmap-hover-scale": {
+    "$value": "1.08",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "pie-size": {
+    "$value": "12rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "pie-hover-scale": {
+    "$value": "1.02",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "video-seek-width": {
+    "$value": "4rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "video-volume-width": {
+    "$value": "5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "icon-glyph-xs": {
+    "$value": "0.875rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Icon glyph size scale.",
+          "   * --w-icon-glyph-{xs,sm,md,lg,xl}: visible glyph dimensions independent",
+          "   *   from the control's touch target. Affected component: .w-icon-btn.",
+          "   */"
+        ]
+      }
+    }
+  },
+  "icon-glyph-sm": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "icon-glyph-md": {
+    "$value": "1.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "icon-glyph-lg": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "icon-glyph-xl": {
+    "$value": "1.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

@@ -55,7 +55,31 @@ class WElement extends HTMLElement {
     this._renderScheduled = false;
   }
 
+  /**
+   * Re-apply properties that were assigned before this element was defined.
+   *
+   * A framework that renders before the custom-element definition loads — Tac,
+   * React, Vue — writes `el.checked = true` onto the instance itself. That own
+   * property then shadows this class's accessor forever, so the setter never
+   * runs and the attribute is never reflected. Deleting it and re-assigning
+   * routes the value back through the accessor. This is the standard
+   * "lazy properties" upgrade from the custom-elements guidance.
+   */
+  _upgradeProperties() {
+    for (const attribute of this.constructor.observedAttributes || []) {
+      const property = this.constructor.props?.[attribute]
+        || attribute.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+      for (const name of new Set([attribute, property])) {
+        if (!Object.prototype.hasOwnProperty.call(this, name)) continue;
+        const value = this[name];
+        delete this[name];
+        this[name] = value;
+      }
+    }
+  }
+
   connectedCallback() {
+    this._upgradeProperties();
     if (this._rendered || this._renderScheduled) return;
 
     this._renderScheduled = true;

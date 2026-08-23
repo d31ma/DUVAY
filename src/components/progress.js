@@ -46,7 +46,7 @@
  *   input / change - fire when `clickable` moves the value
  */
 
-import { wBoolAttr, wClamp } from './utils.js';
+import { wBoolAttr, wClamp, wSetValue } from './utils.js';
 import { wCssLength, wSafeColor } from './file-input.js';
 
 export class WProgress extends WElement {
@@ -70,9 +70,11 @@ export class WProgress extends WElement {
   static sizes = { 'x-small': 16, small: 24, sm: 32, default: 32, large: 48, lg: 64, 'x-large': 64 };
 
   get variant()       { return this._attr('type', this._attr('variant', 'linear')); }
+  set value(v) { wSetValue(this, v); }
   get value()         { const mv = this._attr('model-value', null); return parseFloat(mv != null ? mv : this._attr('value', '0')) || 0; }
   get max()           { return parseFloat(this._attr('max', '100')) || 100; }
   get indeterminate() { return this._bool('indeterminate'); }
+  set indeterminate(value) { this.toggleAttribute('indeterminate', !!value); }
   get bufferValue()   { const v = parseFloat(this._attr('buffer-value', '100')); return Number.isFinite(v) ? v : 100; }
   get reverse()       { return this._bool('reverse'); }
   get striped()       { return this._bool('striped'); }

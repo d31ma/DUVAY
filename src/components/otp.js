@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-otp> — one-time-code input, mirroring Vuetify's <v-otp-input>.
  *
  * Renders one box per character for verification codes. Supports paste-to-fill
@@ -44,11 +45,13 @@ export class WOtp extends WElement {
   };
 
   get length() { return parseInt(this._attr('length', '6'), 10) || 6; }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get type() { const t = this._attr('type', 'text'); return ['text', 'number', 'password'].includes(t) ? t : 'text'; }
   get divider() { return this._attr('divider', ''); }
   get placeholder() { return this._attr('placeholder', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get error() { return this._bool('error'); }
   get variant() { return this._attr('variant', ''); }
   get label() { return this._attr('label', ''); }

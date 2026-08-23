@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-sparkline-tooltip> — coordinate-positioned sparkline value tooltip.
  *
  * Attributes:
@@ -14,6 +15,7 @@
 export class WSparklineTooltip extends WElement {
   static attrs = ['value', 'index', 'target', 'offset', 'location', 'content-class'];
 
+  set value(v) { wSetValue(this, v); }
   get value() {
     const value = Number(this._attr('value', '0'));
     return Number.isFinite(value) ? value : 0;

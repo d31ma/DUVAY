@@ -1,8 +1,10 @@
+import { wSetValue } from './utils.js';
 /* <w-native-select> - native option based select */
 
 export class WNativeSelect extends WElement {
   static attrs = ['value', 'name', 'label', 'hint', 'error', 'size', 'disabled', 'required'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get name() { return this._attr('name', ''); }
   get label() { return this._attr('label', ''); }
@@ -11,6 +13,7 @@ export class WNativeSelect extends WElement {
   get size() { return this._attr('size', ''); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _readOptions() {
     const options = Array.from(this.querySelectorAll('option')).map((option) => ({
       value: option.getAttribute('value') ?? option.textContent.trim(),

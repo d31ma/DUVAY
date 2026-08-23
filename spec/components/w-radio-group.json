@@ -1,0 +1,95 @@
+{
+  "$description": "DuVay RadioGroup — Core contract, tier 1.",
+  "name": "RadioGroup",
+  "tier": 1,
+  "names": {
+    "web": "w-radio-group",
+    "apple": "DuVayRadioGroup",
+    "android": "DuVayRadioGroup",
+    "windows": "DuVayRadioButtons",
+    "linux": "duvay_radio_group"
+  },
+  "accessibility": {
+    "role": "radiogroup",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disables every child"
+    },
+    "error": {
+      "type": "string",
+      "description": "manual error state (bare attribute) or error text"
+    },
+    "inline": {
+      "type": "string",
+      "description": "lay the options out in a row"
+    },
+    "label": {
+      "type": "string",
+      "description": "group label, also the radiogroup's accessible name"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name pushed onto children that lack one"
+    },
+    "required": {
+      "type": "string",
+      "description": "marks the group required; validated against `value`"
+    },
+    "value": {
+      "type": "string",
+      "description": "the selected child's value"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/radio-group.js",
+  "inheritedProps": [
+    "color",
+    "bg-color",
+    "base-color",
+    "active-color",
+    "density",
+    "elevation",
+    "hover-elevation",
+    "rounded",
+    "border",
+    "tile",
+    "theme",
+    "width",
+    "height",
+    "min-width",
+    "max-width",
+    "min-height",
+    "max-height",
+    "location",
+    "position",
+    "loading",
+    "readonly"
+  ]
+}

@@ -1,5 +1,17 @@
 @import url('../assets/duvay/dist/duvay.css');
 
+/* All five OS skins. The docs site is the one place that genuinely wants all
+ * of them: it auto-detects the visitor's platform and wears that skin, and the
+ * per-demo tabs can switch any example to any other. A real application imports
+ * one (duvay-android.css …). */
+@import url('../assets/duvay/dist/platforms/ios.css');
+@import url('../assets/duvay/dist/platforms/material.css');
+@import url('../assets/duvay/dist/platforms/macos.css');
+@import url('../assets/duvay/dist/platforms/fluent.css');
+@import url('../assets/duvay/dist/platforms/adwaita.css');
+/* Last: lets a demo preview opt out of the skin the page is wearing. */
+@import url('../assets/duvay/dist/platforms/web.css');
+
 /* The docs site itself styles a handful of marketing primitives (hero,
  * feature grid, code blocks, demo split). Every value is theme-aware
  * via the framework tokens — no hex codes here. */
@@ -18,9 +30,22 @@ body {
   --docs-header-height: 56px;
 }
 
-[data-tac-scope="site-header"] {
-  position: sticky;
-  top: 0;
+/* Tachyon 26.33 renders every component inside a <tachyon-component> boundary.
+ * That boundary is a compiler artefact, not a layout element, but it defaults
+ * to display:block — which made it the containing block for anything sticky
+ * inside a component. The site header is `position: sticky` and its boundary
+ * box is exactly the header's own height, so it had zero travel and never
+ * stuck. display:contents removes the box while keeping the element, which
+ * restores the pre-migration layout semantics for every component at once. */
+tachyon-component {
+  display: contents;
+}
+
+/* The header carries the framework's own sticky behaviour (w-app-bar[sticky]).
+ * All this adds is the docs site's stacking context, so overlays and the
+ * sidebar scrim land on the right side of it. The old selector keyed off
+ * data-tac-scope, which 26.33 no longer emits. */
+w-app-bar[sticky] {
   z-index: var(--w-z-sticky);
   isolation: isolate;
 }
@@ -473,6 +498,69 @@ w-bottom-sheet[data-docs-sheet-demo] .w-bottom-sheet {
 
 /* Most demos wrap their content (e.g. .w-row); when a demo drops bare
    inline elements as siblings, space them out so they don't touch. */
+/* ── Demo OS skin tabs ──────────────────────────────────────────────────── */
+/* A quiet strip above each preview. Deliberately styled with docs-site tokens
+ * rather than DuVay component classes: it sits inside the demo block but must
+ * not itself be re-skinned by the platform it is switching to. */
+.demo-os-tabs,
+.skin-switch-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  padding: 0.375rem 0.5rem 0;
+  border-bottom: 1px solid var(--w-divider);
+  background: var(--w-surface-container-low);
+}
+
+.demo-os-tab,
+.skin-switch-tab {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0.3125rem 0.625rem;
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  /* Reserve the selected weight so the strip does not reflow on switch. */
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.demo-os-tab:hover,
+.skin-switch-tab:hover { color: var(--w-text); }
+
+.demo-os-tab[aria-selected="true"],
+.skin-switch-tab[aria-selected="true"] {
+  color: var(--w-accent);
+  border-bottom-color: var(--w-accent);
+  font-weight: 600;
+}
+
+.demo-os-tab:focus-visible,
+.skin-switch-tab:focus-visible {
+  outline: 2px solid var(--w-accent);
+  outline-offset: -2px;
+}
+
+/* A skin sets --w-font-family, but only `body` ever consumes it — in a real
+ * app the skin lands on <html> and body inherits, so the typeface changes. A
+ * demo scopes the skin to a subtree instead, so the preview has to consume the
+ * token itself or the most recognisable platform signal would never show. */
+.demo-preview[w-os] {
+  font-family: var(--w-font-family);
+}
+
+/* The preview is the tab panel; keep its top edge flush with the strip. */
+.demo-os-tabs + .demo-preview,
+.skin-switch-tabs + .demo-preview {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 .demo-preview > * + * {
   margin-top: var(--w-space-3);
 }
@@ -1292,17 +1380,17 @@ table.api-table:not(.api-table-wrap table) {
 /* Keep compact chrome on precise pointers while giving touch users the full
    framework-standard hit area. Icon and label sizing remains unchanged. */
 @media (any-pointer: coarse), (max-width: 600px) {
-  [data-tac-scope="site-header"] w-btn[w-docs-menu-toggle] > .w-btn,
-  [data-tac-scope="site-header"] w-btn[w-search-open] > .w-btn,
-  [data-tac-scope="site-header"] w-btn[w-theme-toggle] > .w-btn,
-  [data-tac-scope="site-header"] .w-btn[aria-label="DuVay on GitHub"] {
+  w-app-bar[sticky] w-btn[w-docs-menu-toggle] > .w-btn,
+  w-app-bar[sticky] w-btn[w-search-open] > .w-btn,
+  w-app-bar[sticky] w-btn[w-theme-toggle] > .w-btn,
+  w-app-bar[sticky] .w-btn[aria-label="DuVay on GitHub"] {
     min-width: var(--w-touch-min);
     min-height: var(--w-touch-min);
   }
 
-  [data-tac-scope="site-header"] w-btn[w-docs-menu-toggle] > .w-btn,
-  [data-tac-scope="site-header"] w-btn[w-search-open] > .w-btn,
-  [data-tac-scope="site-header"] .w-btn-icon[aria-label="DuVay on GitHub"] {
+  w-app-bar[sticky] w-btn[w-docs-menu-toggle] > .w-btn,
+  w-app-bar[sticky] w-btn[w-search-open] > .w-btn,
+  w-app-bar[sticky] .w-btn-icon[aria-label="DuVay on GitHub"] {
     width: var(--w-touch-min);
   }
 
@@ -1419,4 +1507,32 @@ table.api-table:not(.api-table-wrap table) {
 @media (max-width: 860px) {
   .api-explorer { grid-template-columns: minmax(0, 1fr); }
   .api-explorer-nav { position: static; max-height: 18rem; }
+}
+
+/* ── Platform-skins page: the live switcher ────────────────────────────── */
+/* The preview inherits the skin from <html> rather than carrying w-os itself,
+ * so unlike .demo-preview[w-os] it does not need to re-consume the font token. */
+.skin-switch-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-4);
+}
+
+.skin-switch-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-3);
+}
+
+.skin-switch-field {
+  max-width: 22rem;
+}
+
+.skin-switch-readout {
+  margin: 0;
+  padding-top: var(--w-space-3);
+  border-top: 1px solid var(--w-divider);
+  font-size: var(--w-font-sm);
+  color: var(--w-text-subtle);
 }

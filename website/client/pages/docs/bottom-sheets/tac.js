@@ -1,4 +1,4 @@
-export default class extends Tac {
+export default class {
   setSheetOpen(name, open, component = false) {
     const prefix = component ? 'bottom-sheet' : 'sheet'
     const sheet = document.querySelector(`[data-${prefix}="${name}"]`)

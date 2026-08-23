@@ -1,0 +1,238 @@
+{
+  "$description": "DuVay NavigationDrawer — Core contract, tier 2.",
+  "name": "NavigationDrawer",
+  "tier": 2,
+  "names": {
+    "web": "w-navigation-drawer",
+    "apple": "DuVaySidebar",
+    "android": "DuVayNavigationDrawer",
+    "windows": "DuVayNavigationView",
+    "linux": "duvay_navigation_split_view"
+  },
+  "accessibility": {
+    "role": "navigation",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string",
+      "description": "boolean; position against the offset parent"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; adds border"
+    },
+    "capture-focus": {
+      "type": "string"
+    },
+    "close-delay": {
+      "type": "string",
+      "description": "ms before a hover collapse"
+    },
+    "close-on-navigation": {
+      "type": "string",
+      "description": "boolean; close on link click (default true)"
+    },
+    "color": {
+      "type": "string",
+      "description": "palette token for background color"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disable-resize-watcher": {
+      "type": "number",
+      "description": "boolean; never auto open/close on resize"
+    },
+    "disable-route-watcher": {
+      "type": "string",
+      "description": "boolean; opts out of close-on-navigation"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number",
+      "description": "0..N shadow level"
+    },
+    "expand-on-hover": {
+      "type": "string",
+      "description": "boolean; rail expands on hover/focus"
+    },
+    "floating": {
+      "type": "string",
+      "description": "boolean; removes border for floating style"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "image": {
+      "type": "string",
+      "description": "background image URL"
+    },
+    "label": {
+      "type": "string",
+      "description": "accessible label for the drawer"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "enum",
+      "description": "left (default) | right"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "mobile": {
+      "type": "string",
+      "description": "boolean; force mobile (compact) behaviour"
+    },
+    "mobile-breakpoint": {
+      "type": "enum",
+      "values": [
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "xxl"
+      ],
+      "description": "number or xs|sm|md|lg|xl|xxl"
+    },
+    "name": {
+      "type": "string",
+      "description": "layout registration name (mirrored to data-name)"
+    },
+    "open": {
+      "type": "string",
+      "description": "boolean; drawer visibility"
+    },
+    "open-delay": {
+      "type": "string",
+      "description": "ms before a hover expand"
+    },
+    "order": {
+      "type": "string",
+      "description": "layout order within its flex/grid parent"
+    },
+    "permanent": {
+      "type": "string",
+      "description": "boolean; always visible, cannot be closed"
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; scrim/Escape/swipe do not dismiss"
+    },
+    "position": {
+      "type": "string"
+    },
+    "rail": {
+      "type": "string",
+      "description": "boolean; collapsed rail mode"
+    },
+    "rail-width": {
+      "type": "string",
+      "description": "width used while `rail` is active"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "retain": {
+      "type": "string",
+      "description": "focus / capture-focus - keep Tab inside an open drawer"
+    },
+    "retain-focus": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrim": {
+      "type": "string",
+      "description": "boolean; show backdrop scrim (default true for temporary)"
+    },
+    "sticky": {
+      "type": "string",
+      "description": "boolean; stays visible when scrolling past the top"
+    },
+    "temporary": {
+      "type": "string",
+      "description": "boolean; modal overlay drawer"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "touchless": {
+      "type": "string",
+      "description": "boolean; disable swipe-to-close"
+    },
+    "width": {
+      "type": "string",
+      "description": "drawer width (number px or CSS value, default 256)"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/navigation-drawer.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

@@ -1,4 +1,4 @@
-export default class extends Tac {
+export default class {
   loadItems(event, limit, batchSize) {
     const list = event.currentTarget.querySelector('.w-list')
     const first = list.children.length + 1

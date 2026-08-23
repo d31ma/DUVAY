@@ -1,0 +1,151 @@
+{
+  "$description": "DuVay Icon — Core contract, tier 1.",
+  "name": "Icon",
+  "tier": 1,
+  "names": {
+    "web": "w-icon",
+    "apple": "DuVayIcon",
+    "android": "DuVayIcon",
+    "windows": "DuVayIcon",
+    "linux": "duvay_icon"
+  },
+  "accessibility": {
+    "role": "img",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string",
+      "description": "token (primary, success, …) or any CSS color"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "dim and disable pointer events start / end  - inline spacing helpers (before/after adjacent text)"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "end": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "icon-class": {
+      "type": "string",
+      "description": "override the rendered element class"
+    },
+    "icon-set": {
+      "type": "string",
+      "description": "registry set name (e.g. \"mdi\")"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string",
+      "description": "icon opacity (0–1)"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "x-small",
+        "small",
+        "default",
+        "large",
+        "x-large"
+      ],
+      "description": "x-small | small | default | large | x-large | xs..xl | CSS length"
+    },
+    "start": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/icon.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

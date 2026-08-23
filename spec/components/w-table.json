@@ -1,0 +1,159 @@
+{
+  "$description": "DuVay Table — Core contract, tier 2.",
+  "name": "Table",
+  "tier": 2,
+  "names": {
+    "web": "w-table",
+    "apple": "DuVayTable",
+    "android": "DuVayTable",
+    "windows": "DuVayDataGrid",
+    "linux": "duvay_column_view"
+  },
+  "accessibility": {
+    "role": "table",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "compact",
+        "comfortable"
+      ],
+      "description": "compact | comfortable (omit for default)"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "fixed-footer": {
+      "type": "string",
+      "description": "keeps a <tfoot> visible within the scroll area"
+    },
+    "fixed-header": {
+      "type": "string",
+      "description": "keeps the header visible within the scroll area"
+    },
+    "grid": {
+      "type": "string",
+      "description": "forces DuVay row / col presentation"
+    },
+    "gridlines": {
+      "type": "enum",
+      "description": "horizontal (default) | vertical | all | none — native <table> only"
+    },
+    "height": {
+      "type": "string",
+      "description": "max-height for fixed-header/footer tables (e.g. \"320px\")"
+    },
+    "hover": {
+      "type": "string",
+      "description": "enables row hover state"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "responsive": {
+      "type": "enum",
+      "values": [
+        "auto",
+        "stack",
+        "scroll"
+      ],
+      "description": "auto | stack | scroll (default: auto)"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "striped": {
+      "type": "enum",
+      "values": [
+        "odd",
+        "even"
+      ],
+      "description": "odd | even (bare attribute = even)"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "top",
+    "bottom",
+    "default"
+  ],
+  "source": "src/components/table.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

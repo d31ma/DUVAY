@@ -849,7 +849,10 @@ function meaningfulNodes(nodes) {
 }
 
 function authoredAttribute(attribute) {
-  if (attribute.value === '') return ` ${attribute.name}`;
+  // Re-emit a valueless attribute in its canonical form (`checked="checked"`).
+  // Tachyon 26.33 builds elements through DOM APIs, and a bare or empty
+  // boolean attribute does not take effect there — the canonical form does.
+  if (attribute.value === '') return ` ${attribute.name}="${attribute.name}"`;
   const quote = attribute.value.includes('"') && !attribute.value.includes("'") ? "'" : '"';
   const encoded = attribute.value
     .replace(/&/g, '&amp;')
@@ -901,12 +904,235 @@ function serializeAuthored(slot) {
   return meaningfulNodes([...slot.childNodes]).map(n => authored(n, '')).join('\n');
 }
 
+
+/* ── Demo OS skin tabs ──────────────────────────────────────────────────── */
+/* Each demo can be shown under any of the five platform skins. The skins are
+ * written as descendant selectors from `[w-os="…"]`, so setting the attribute
+ * on the preview element scopes a whole skin — tokens and component deltas —
+ * to that subtree, leaving the surrounding page chrome alone.
+ *
+ * Selection is page-wide: picking iOS on one example switches every example on
+ * the page and persists, so you can read a whole component doc in one skin
+ * rather than re-picking per demo. */
+
+/* Labelled by operating system, not by design language. `material`, `fluent`
+ * and `adwaita` are the attribute values — and the names Google, Microsoft and
+ * GNOME use — but most developers read "Android", "Windows" and "Linux" far
+ * faster. The attribute values are unchanged and documented on
+ * /docs/platform-skins, which maps each label to what you actually type. */
+const OS_TABS = [
+  { id: '', label: 'Web' },
+  { id: 'ios', label: 'iOS' },
+  { id: 'android', label: 'Android' },
+  { id: 'macos', label: 'macOS' },
+  { id: 'windows', label: 'Windows' },
+  { id: 'linux', label: 'Linux' },
+];
+const DEMO_OS_KEY = 'w-demo-os';
+let demoOsUid = 0;
+
+/* Default the examples to whatever skin the page is wearing — which duvay.js
+ * detected from the visitor's own OS. Landing on the docs and seeing your own
+ * platform is the most direct demonstration the site can give; the tabs are
+ * there to compare against the others. An explicit choice still wins. */
+function storedDemoOs() {
+  try {
+    const chosen = localStorage.getItem(DEMO_OS_KEY);
+    if (chosen !== null) return chosen;
+  } catch (_) { /* storage unavailable */ }
+  return document.documentElement.getAttribute('w-os') || '';
+}
+
+/** Apply a skin to every demo on the page and sync all the tab strips. */
+function applyDemoOs(os) {
+  try { localStorage.setItem(DEMO_OS_KEY, os); } catch (_) { /* storage unavailable */ }
+
+  $$('.demo-preview').forEach(preview => {
+    // macOS is a pointer-dense platform; the density attribute is what carries
+    // that, exactly as duvay.js pairs them when it detects a real Mac.
+    // Always set the attribute, including the empty value: the page itself may
+    // be wearing a skin, and a skin's custom properties inherit — so dropping
+    // the attribute would leave the preview skinned. platforms/web.css gives
+    // `w-os=""` a real reset.
+    preview.setAttribute('w-os', os);
+    preview.setAttribute('w-density', os === 'macos' ? 'compact' : 'comfortable');
+  });
+
+  $$('.demo-os-tab').forEach(tab => {
+    const selected = tab.dataset.os === os;
+    tab.setAttribute('aria-selected', String(selected));
+    // Roving tabindex: only the selected tab is in the tab order.
+    tab.tabIndex = selected ? 0 : -1;
+  });
+}
+
+function buildOsTabs(preview) {
+  const list = document.createElement('div');
+  list.className = 'demo-os-tabs';
+  list.setAttribute('role', 'tablist');
+  list.setAttribute('aria-label', 'Preview platform skin');
+
+  const panelId = 'demo-preview-' + (++demoOsUid);
+  preview.id = panelId;
+  preview.setAttribute('role', 'tabpanel');
+
+  OS_TABS.forEach(({ id, label }) => {
+    const tab = document.createElement('button');
+    tab.type = 'button';
+    tab.className = 'demo-os-tab';
+    tab.dataset.os = id;
+    tab.textContent = label;
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panelId);
+    tab.setAttribute('aria-selected', 'false');
+    tab.tabIndex = -1;
+    tab.addEventListener('click', () => applyDemoOs(id));
+    list.appendChild(tab);
+  });
+
+  // Arrow-key navigation, per the ARIA tabs pattern.
+  list.addEventListener('keydown', (e) => {
+    const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!keys.includes(e.key)) return;
+    e.preventDefault();
+    const tabs = $$('.demo-os-tab', list);
+    const current = tabs.indexOf(document.activeElement);
+    const last = tabs.length - 1;
+    const next = e.key === 'Home' ? 0
+      : e.key === 'End' ? last
+      : e.key === 'ArrowLeft' ? (current <= 0 ? last : current - 1)
+      : (current >= last ? 0 : current + 1);
+    applyDemoOs(tabs[next].dataset.os);
+    tabs[next].focus();
+  });
+
+  return list;
+}
+
+/* Tachyon 26.33 renders a component inside a <tachyon-component> boundary
+ * rather than leaving the authored tag in the DOM, and moves slotted children
+ * into the template's <slot>. Match both shapes so the enhancement works
+ * whichever way the page was compiled, and look for [slot] anywhere inside the
+ * boundary rather than only as a direct child. */
+const DEMO_SELECTOR = 'demo-compare, [data-tachyon-component="demo-compare"]';
+
+/* ── Inline SVG namespace repair ────────────────────────────────────────── */
+/* Tachyon 26.33 builds authored elements with createElement, which puts them in
+ * the XHTML namespace. An <svg> and its children created that way are unknown
+ * HTML elements: they occupy layout but never paint.
+ *
+ * This only affects SVG that a *component* renders. SVG authored in page HTML
+ * is parsed by the browser, which switches into foreign-content mode at <svg>
+ * and namespaces it correctly — those were never broken and are skipped here.
+ *
+ * Re-cloning the subtree through createElementNS fixes the namespace with one
+ * mechanism instead of hand-building each icon, and does not depend on the
+ * authored markup carrying an xmlns attribute (none of it does).
+ */
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+/* Components mount on their own schedule, so an SVG can appear after enhance()
+ * has run — the site header's logo does exactly that. This observer repairs
+ * whatever arrives late. It cannot loop: a repaired element is in the SVG
+ * namespace, so the next pass finds nothing and does no work. */
+let svgRepairScheduled = false;
+
+function watchForLateSvg() {
+  if (typeof MutationObserver !== 'function') return;
+  new MutationObserver((records) => {
+    if (svgRepairScheduled) return;
+    const addedElements = records.some((r) => [...r.addedNodes].some((n) => n.nodeType === 1));
+    if (!addedElements) return;
+    svgRepairScheduled = true;
+    requestAnimationFrame(() => {
+      svgRepairScheduled = false;
+      repairInlineSvg();
+    });
+  }).observe(document.documentElement, { childList: true, subtree: true });
+}
+
+/* setAttribute() on an HTML-namespace element lowercases the name, so a
+ * misplaced <svg> loses the case of every camelCase SVG attribute on the way
+ * in. XML is case-sensitive, so `viewbox` is simply ignored by the SVG layout
+ * algorithm — the element would still not paint even once its namespace was
+ * right. Only attributes that are actually camelCase need restoring; the
+ * hyphenated ones (stroke-width, clip-rule) are already lowercase by spec. */
+const SVG_ATTR_CASE = Object.fromEntries(
+  [
+    'viewBox', 'preserveAspectRatio', 'pathLength', 'gradientUnits', 'gradientTransform',
+    'spreadMethod', 'patternUnits', 'patternContentUnits', 'patternTransform',
+    'clipPathUnits', 'maskUnits', 'maskContentUnits', 'markerWidth', 'markerHeight',
+    'markerUnits', 'refX', 'refY', 'stdDeviation', 'textLength', 'lengthAdjust',
+    'startOffset', 'baseFrequency', 'numOctaves', 'diffuseConstant', 'surfaceScale',
+  ].map((name) => [name.toLowerCase(), name]),
+);
+
+/** Deep-clone `el` into the SVG namespace, restoring camelCase attribute names. */
+function toSvgNamespace(el) {
+  const out = document.createElementNS(SVG_NS, el.localName);
+  for (const { name, value } of el.attributes) {
+    // xmlns is implied by createElementNS; re-setting it throws in some engines.
+    if (name === 'xmlns') continue;
+    out.setAttribute(SVG_ATTR_CASE[name] ?? name, value);
+  }
+  for (const child of el.childNodes) {
+    out.appendChild(child.nodeType === 1 ? toSvgNamespace(child) : child.cloneNode(true));
+  }
+  return out;
+}
+
+function repairInlineSvg(root = document) {
+  const broken = [...root.querySelectorAll('svg')].filter((el) => el.namespaceURI !== SVG_NS);
+  let repaired = 0;
+  for (const el of broken) {
+    el.replaceWith(toSvgNamespace(el));
+    repaired += 1;
+  }
+  return repaired;
+}
+
+/* ── HTML entities in authored text ─────────────────────────────────────── */
+/* Tachyon 26.33 treats a page's text as literal: `&lt;` reaches the DOM as the
+ * four characters, not as `<`. These pages carry ~3k entities, almost all of
+ * them markup inside code samples, where an entity is the only way to show a
+ * tag without the compiler parsing it as a component.
+ *
+ * Decoding here — after render, into textContent — keeps the authored source
+ * valid for the compiler and shows the reader the character they expect.
+ * Writing through nodeValue means a decoded `<div>` stays text and is never
+ * reparsed as markup. */
+const ENTITY_PATTERN = /&(?:#\d+|#x[\da-f]+|[a-z][a-z\d]*);/i;
+let entityDecoder = null;
+
+function decodeEntities(text) {
+  if (!entityDecoder) entityDecoder = document.createElement('textarea');
+  entityDecoder.innerHTML = text;
+  return entityDecoder.value;
+}
+
+function decodeAuthoredEntities(root = document.querySelector('.docs-page')) {
+  if (!root) return;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      // Never touch executable or style content.
+      const tag = node.parentElement?.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+      return ENTITY_PATTERN.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    },
+  });
+  const pending = [];
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) pending.push(node);
+  for (const node of pending) node.nodeValue = decodeEntities(node.nodeValue);
+}
+
 function enhanceDemos() {
-  $$('demo-compare').forEach(demo => {
+  $$(DEMO_SELECTOR).forEach(demo => {
     if (demo.hasAttribute('w-enhanced')) return;
     if (demo.querySelector('.demo')) { demo.setAttribute('w-enhanced', '1'); return; }
 
-    const slotEls = $$(':scope > [slot]', demo);
+    // Stop at a nested component so one demo never claims another's slots.
+    const slotEls = $$('[slot]', demo).filter(el =>
+      el.closest('[data-tachyon-component], demo-compare') === demo);
     if (!slotEls.length) return;
     demo.setAttribute('w-enhanced', '1');
 
@@ -926,6 +1152,7 @@ function enhanceDemos() {
 
     const preview = document.createElement('div');
     preview.className = 'demo-preview';
+    block.appendChild(buildOsTabs(preview));
     if (previewSlot === slots.wc) {
       // Re-parse the authored source so components hydrate once and fresh.
       // Moving already-hydrated nodes re-fires connectedCallback and nests
@@ -964,6 +1191,8 @@ function enhanceDemos() {
     demo.innerHTML = '';
     demo.appendChild(block);
   });
+
+  applyDemoOs(storedDemoOs());
 }
 
 function enhanceMixedCheckboxes() {
@@ -1431,6 +1660,8 @@ let contentObserver = null;
 let contentRaf = 0;
 
 function runContentEnhancers() {
+  repairInlineSvg();
+  decodeAuthoredEntities();
   enhanceDemos();
   enhanceMixedCheckboxes();
   enhanceCalendarDemos();
@@ -1444,9 +1675,22 @@ function runContentEnhancers() {
 }
 
 function observeContent() {
-  const target = document.querySelector('.docs-main');
+  // Tac renders in the client, so .docs-main does not exist when this first
+  // runs. Fall back to <body> until the shell appears, then re-enhance against
+  // the real target — otherwise the observer never attaches and nothing on the
+  // page (demos, TOC, pager) is ever enhanced.
+  const target = document.querySelector('.docs-main') || document.body;
   if (contentObserver) contentObserver.disconnect();
   if (!target) return;
+  if (target === document.body) {
+    const shellObserver = new MutationObserver(() => {
+      if (!document.querySelector('.docs-main')) return;
+      shellObserver.disconnect();
+      enhance();
+    });
+    shellObserver.observe(document.body, { childList: true, subtree: true });
+    return;
+  }
   contentObserver = new MutationObserver(() => {
     cancelAnimationFrame(contentRaf);
     contentRaf = requestAnimationFrame(() => {
@@ -1494,6 +1738,7 @@ async function fillDownloadSizes() {
 }
 
 function enhance() {
+  repairInlineSvg();
   syncDocumentTitle();
   syncThemeControls(getTheme());
   renderDocsSidebar();
@@ -1513,7 +1758,11 @@ function enhance() {
 /* ── Boot ───────────────────────────────────────────────────────────────── */
 applyTheme(getTheme());
 bindGlobalOnce();
+watchForLateSvg();
 window.addEventListener('tachyon:navigate', enhance);
+// Tac re-renders a route in place; the previous enhancement is discarded with
+// the old DOM, so run again once the new subtree is live.
+window.addEventListener('tachyon:rerender', () => requestAnimationFrame(enhance));
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', enhance);
 } else {

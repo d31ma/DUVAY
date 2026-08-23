@@ -7,6 +7,7 @@ export class WCollapsible extends WElement {
   get header() { return this._attr('header', 'Details'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _template() {
     return `<div class="w-collapsible${this.open ? ' open' : ''}">
       <button class="w-collapsible-trigger" type="button" aria-expanded="${this.open}"${this.disabled ? ' disabled' : ''}>

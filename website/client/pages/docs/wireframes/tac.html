@@ -1,66 +1,68 @@
-<h1>Wireframes</h1>
-<p>Ready-made layout scaffolds to start a new application. Copy a wireframe, replace the placeholder content, and every region is already wired for responsive behavior and theming.</p>
+<doc-layout>
+  <h1>Wireframes</h1>
+  <p>Ready-made layout scaffolds to start a new application. Copy a wireframe, replace the placeholder content, and every region is already wired for responsive behavior and theming.</p>
 
-<h2>Blank</h2>
-<p>The minimal DuVay document: stylesheet, optional behavior layer, and a main region.</p>
-<pre class="code-block"><code>&lt;!doctype html&gt;
-&lt;html lang="en" w-theme="auto"&gt;
-&lt;head&gt;
-  &lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
-  &lt;script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
+  <h2>Blank</h2>
+  <p>The minimal DuVay document: stylesheet, optional behavior layer, and a main region.</p>
+  <pre class="code-block"><code>&lt;!doctype html&gt;
+  &lt;html lang="en" w-theme="auto"&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay.min.css"&gt;
+    &lt;script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;main class="w-main"&gt;
+      &lt;div class="w-container"&gt;Hello DuVay&lt;/div&gt;
+    &lt;/main&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+
+  <h2>App bar</h2>
+  <p>A sticky top bar above a scrolling content area.</p>
+  <pre class="code-block"><code>&lt;w-app-bar sticky&gt;
+    &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
+  &lt;/w-app-bar&gt;
+
   &lt;main class="w-main"&gt;
-    &lt;div class="w-container"&gt;Hello DuVay&lt;/div&gt;
+    &lt;w-container&gt;Content&lt;/w-container&gt;
+  &lt;/main&gt;</code></pre>
+
+  <h2>Side navigation</h2>
+  <p>An app bar plus a navigation drawer. The drawer collapses behind the nav icon on small screens.</p>
+  <pre class="code-block"><code>&lt;w-app-bar sticky&gt;
+    &lt;w-app-bar-nav-icon aria-label="Open navigation"&gt;&lt;/w-app-bar-nav-icon&gt;
+    &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
+  &lt;/w-app-bar&gt;
+
+  &lt;w-navigation-drawer&gt;
+    &lt;w-list&gt;
+      &lt;w-list-item href="/"&gt;Home&lt;/w-list-item&gt;
+      &lt;w-list-item href="/settings"&gt;Settings&lt;/w-list-item&gt;
+    &lt;/w-list&gt;
+  &lt;/w-navigation-drawer&gt;
+
+  &lt;main class="w-main"&gt;
+    &lt;w-container&gt;Content&lt;/w-container&gt;
+  &lt;/main&gt;</code></pre>
+
+  <h2>Baseline</h2>
+  <p>The full application shell: app bar, navigation drawer, content, and footer.</p>
+  <pre class="code-block"><code>&lt;w-app-bar sticky&gt;
+    &lt;w-app-bar-nav-icon aria-label="Open navigation"&gt;&lt;/w-app-bar-nav-icon&gt;
+    &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
+  &lt;/w-app-bar&gt;
+
+  &lt;w-navigation-drawer&gt;
+    &lt;w-list&gt;
+      &lt;w-list-item href="/"&gt;Home&lt;/w-list-item&gt;
+    &lt;/w-list&gt;
+  &lt;/w-navigation-drawer&gt;
+
+  &lt;main class="w-main"&gt;
+    &lt;w-container&gt;Content&lt;/w-container&gt;
   &lt;/main&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
 
-<h2>App bar</h2>
-<p>A sticky top bar above a scrolling content area.</p>
-<pre class="code-block"><code>&lt;w-app-bar sticky&gt;
-  &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
-&lt;/w-app-bar&gt;
+  &lt;w-footer&gt;Footer&lt;/w-footer&gt;</code></pre>
 
-&lt;main class="w-main"&gt;
-  &lt;w-container&gt;Content&lt;/w-container&gt;
-&lt;/main&gt;</code></pre>
-
-<h2>Side navigation</h2>
-<p>An app bar plus a navigation drawer. The drawer collapses behind the nav icon on small screens.</p>
-<pre class="code-block"><code>&lt;w-app-bar sticky&gt;
-  &lt;w-app-bar-nav-icon aria-label="Open navigation"&gt;&lt;/w-app-bar-nav-icon&gt;
-  &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
-&lt;/w-app-bar&gt;
-
-&lt;w-navigation-drawer&gt;
-  &lt;w-list&gt;
-    &lt;w-list-item href="/"&gt;Home&lt;/w-list-item&gt;
-    &lt;w-list-item href="/settings"&gt;Settings&lt;/w-list-item&gt;
-  &lt;/w-list&gt;
-&lt;/w-navigation-drawer&gt;
-
-&lt;main class="w-main"&gt;
-  &lt;w-container&gt;Content&lt;/w-container&gt;
-&lt;/main&gt;</code></pre>
-
-<h2>Baseline</h2>
-<p>The full application shell: app bar, navigation drawer, content, and footer.</p>
-<pre class="code-block"><code>&lt;w-app-bar sticky&gt;
-  &lt;w-app-bar-nav-icon aria-label="Open navigation"&gt;&lt;/w-app-bar-nav-icon&gt;
-  &lt;w-app-bar-title&gt;Application&lt;/w-app-bar-title&gt;
-&lt;/w-app-bar&gt;
-
-&lt;w-navigation-drawer&gt;
-  &lt;w-list&gt;
-    &lt;w-list-item href="/"&gt;Home&lt;/w-list-item&gt;
-  &lt;/w-list&gt;
-&lt;/w-navigation-drawer&gt;
-
-&lt;main class="w-main"&gt;
-  &lt;w-container&gt;Content&lt;/w-container&gt;
-&lt;/main&gt;
-
-&lt;w-footer&gt;Footer&lt;/w-footer&gt;</code></pre>
-
-<p>Every wireframe also works without JavaScript when authored with the CSS-class equivalents (<code>.w-app-bar</code>, <code>.w-navigation-drawer</code>, <code>.w-footer</code>); the web-component tags simply generate the same markup. See <a href="/docs/components/application">Application layout</a> for the full set of layout regions.</p>
+  <p>Every wireframe also works without JavaScript when authored with the CSS-class equivalents (<code>.w-app-bar</code>, <code>.w-navigation-drawer</code>, <code>.w-footer</code>); the web-component tags simply generate the same markup. See <a href="/docs/components/application">Application layout</a> for the full set of layout regions.</p>
+</doc-layout>

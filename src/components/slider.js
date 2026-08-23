@@ -80,7 +80,9 @@ export class WSliderBase extends WElement {
   get name()     { return this._attr('name', ''); }
   get size()     { return this._attr('size', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get vertical() { return this._attr('direction', '') === 'vertical' || this._bool('vertical'); }
   get reverse()  { return this._bool('reverse'); }
 

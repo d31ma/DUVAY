@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-list-group> — expandable list group */
 
 export class WListGroup extends WElement {
@@ -20,6 +21,7 @@ export class WListGroup extends WElement {
 
   get open() { return this._bool('open'); }
   get title() { return this._attr('title', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.title); }
   get rawId() { return this._attr('raw-id', this.value || this.title || 'group'); }
   get prependIcon() { return this._attr('prepend-icon', ''); }
@@ -31,6 +33,7 @@ export class WListGroup extends WElement {
   get fluid() { return this._bool('fluid'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _template() {
     const hasActivator = !!this.querySelector('[slot="activator"]');
     const id = 'w-list-group-' + this._classToken(this.rawId);

@@ -1,8 +1,10 @@
-<h1>Command Palette</h1>
-<p>An overlay command search with filtering, keyboard navigation, hotkeys, persistent mode, and <code>model-value</code> state. Selection emits <code>change</code>; visibility emits <code>update:modelValue</code>.</p>
+<doc-layout>
+  <h1>Command Palette</h1>
+  <p>An overlay command search with filtering, keyboard navigation, hotkeys, persistent mode, and <code>model-value</code> state. Selection emits <code>change</code>; visibility emits <code>update:modelValue</code>.</p>
 
-<h2>Example</h2>
-<demo-compare>
-  <div slot="css"><div class="w-command"><div class="w-command-input-wrap"><input class="w-command-input" value="Open" aria-label="Search commands" /></div><div class="w-command-list"><button class="w-command-item">Open file</button></div></div></div>
-  <div slot="wc"><div style="position: relative; min-height: 24rem"><w-command-palette model-value contained persistent placeholder="Search commands" items='[{"title":"Open file","value":"open"},{"title":"Save file","value":"save"}]'></w-command-palette></div></div>
-</demo-compare>
+  <h2>Example</h2>
+  <demo-compare>
+    <div slot="css"><div class="w-command"><div class="w-command-input-wrap"><input class="w-command-input" value="Open" aria-label="Search commands" /></div><div class="w-command-list"><button class="w-command-item">Open file</button></div></div></div>
+    <div slot="wc"><div style="position: relative; min-height: 24rem"><w-command-palette model-value contained persistent="persistent" placeholder="Search commands" items='[{"title":"Open file","value":"open"},{"title":"Save file","value":"save"}]'></w-command-palette></div></div>
+  </demo-compare>
+</doc-layout>

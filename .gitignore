@@ -16,3 +16,16 @@ website/playwright-report/
 .claude/
 graphify-out/
 graphify-*
+
+# Native platform build output (Phases 2-4).
+# Toolchain caches live on the ANNEX drive; see
+# /Volumes/ANNEX/toolchains/duvay-env.sh. These are the in-tree leftovers.
+apple/.build/
+android/.gradle/
+android/build/
+android/*/build/
+linux/target/
+linux/Cargo.lock
+windows/**/bin/
+windows/**/obj/
+android/local.properties

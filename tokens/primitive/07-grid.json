@@ -1,0 +1,35 @@
+{
+  "$description": "Grid",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 7,
+      "banner": "  /* ── Grid ───────────────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "grid-gutter": {
+    "$value": "var(--w-space-6)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 24px gutter between columns */"
+      }
+    }
+  },
+  "container-max": {
+    "$value": "75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "               /* 1200px default container */"
+      }
+    }
+  }
+}

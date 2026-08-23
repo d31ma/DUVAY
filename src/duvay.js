@@ -44,6 +44,51 @@
   const initialTheme = getStoredTheme() || 'light';
   applyTheme(initialTheme);
 
+  /* ── Platform skin ────────────────────────────────────────────────────── */
+
+  /* `w-os` selects an OS skin and is orthogonal to `w-theme`. Detection only
+   * fills in a default: an explicit attribute authored on <html> always wins,
+   * matching how Ionic's mode works. The skins live in separate entrypoints
+   * (duvay-ios.css …) — this only sets the attribute, so it is inert when no
+   * skin stylesheet is loaded.
+   *
+   * Detection emits the operating-system names (ios | android | macos |
+   * windows | linux). The vendors' design-language names — material, fluent,
+   * adwaita — remain fully supported aliases: every skin rule matches both, so
+   * authoring either value works. Only auto-detection picks a side, and it
+   * picks the one developers read faster. */
+
+  const OS_ATTR = 'w-os';
+
+  function detectOs() {
+    const data = navigator.userAgentData;
+    const platform = (data && data.platform) || '';
+    const ua = navigator.userAgent || '';
+    const touch = (data && data.mobile) || navigator.maxTouchPoints > 1;
+
+    if (/iPhone|iPad|iPod/.test(ua) || (platform === 'macOS' && touch)) return 'ios';
+    if (/Android/i.test(platform || ua)) return 'android';
+    if (/Win/i.test(platform) || /Windows/.test(ua)) return 'windows';
+    if (/macOS|Mac/i.test(platform) || /Mac OS X/.test(ua)) return 'macos';
+    if (/Linux|CrOS/i.test(platform) || /Linux|X11|CrOS/.test(ua)) return 'linux';
+    return null;
+  }
+
+  /* `w-density` rescales control geometry and is orthogonal to both of the
+   * above. Skins cannot change control size — that is what keeps the five of
+   * them one product — so a pointer-first platform asks for density instead.
+   * macOS is the only default: its controls really are denser than the touch
+   * platforms'. An explicit attribute always wins, here as everywhere. */
+  const DENSITY_ATTR = 'w-density';
+
+  if (!document.documentElement.hasAttribute(OS_ATTR)) {
+    const os = detectOs();
+    if (os) document.documentElement.setAttribute(OS_ATTR, os);
+    if (os === 'macos' && !document.documentElement.hasAttribute(DENSITY_ATTR)) {
+      document.documentElement.setAttribute(DENSITY_ATTR, 'compact');
+    }
+  }
+
   // Auto-theme: listen for system preference changes
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {

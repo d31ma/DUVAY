@@ -35,6 +35,7 @@
  */
 
 import WIcons from '../icons.js';
+import { wSetValue } from './utils.js';
 
 const W_TAB_SIZES = ['x-small', 'small', 'default', 'large', 'x-large'];
 const W_TAB_VARIANTS = ['flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'];
@@ -49,10 +50,12 @@ class WTab extends WElement {
     'hide-slider', 'slider-color', 'slider-transition', 'slider-transition-duration',
   ];
 
+  set value(v) { wSetValue(this, v); }
   get value()    { return this._attr('value', ''); }
   get active()   { return this._bool('active'); }
   set active(v)  { v ? this.setAttribute('active', '') : this.removeAttribute('active'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get stacked()  { return this.hasAttribute('stacked'); }
   get href()     { return this._attr('href', ''); }
   get text()     { return this._attr('text', ''); }

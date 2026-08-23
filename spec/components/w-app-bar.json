@@ -1,0 +1,194 @@
+{
+  "$description": "DuVay AppBar — Core contract, tier 2.",
+  "name": "AppBar",
+  "tier": 2,
+  "names": {
+    "web": "w-app-bar",
+    "apple": "DuVayNavigationBar",
+    "android": "DuVayTopAppBar",
+    "windows": "DuVayTitleBar",
+    "linux": "duvay_header_bar"
+  },
+  "accessibility": {
+    "role": "banner",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string",
+      "description": "palette token name for background"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; adds border"
+    },
+    "collapse": {
+      "type": "string",
+      "description": "boolean; collapses to icon-only width"
+    },
+    "collapse-position": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string",
+      "description": "palette token name (e.g. primary, surface)"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "prominent",
+        "comfortable",
+        "compact"
+      ],
+      "description": "prominent | comfortable | compact"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number",
+      "description": "0..N shadow level"
+    },
+    "extended": {
+      "type": "string",
+      "description": "boolean; renders an extension slot below the bar"
+    },
+    "extension-height": {
+      "type": "string",
+      "description": "height of extension area (default: 48px)"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; removes shadow/elevation"
+    },
+    "floating": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string",
+      "description": "explicit height (number or CSS value)"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "image": {
+      "type": "string",
+      "description": "background image URL"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "enum",
+      "description": "top (default) | bottom"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean or size (sm|md|lg|xl|pill)"
+    },
+    "scroll-behavior": {
+      "type": "enum",
+      "values": [
+        "hide",
+        "elevate",
+        "collapse",
+        "fade-image"
+      ],
+      "description": "hide | elevate | collapse | fade-image"
+    },
+    "scroll-target": {
+      "type": "string"
+    },
+    "scroll-threshold": {
+      "type": "string",
+      "description": "pixel scroll distance before behavior kicks in (default: 4)"
+    },
+    "sticky": {
+      "type": "string",
+      "description": "boolean; pins the bar on scroll"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string",
+      "description": "text title (rendered as .w-app-bar-title)"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "scroll",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "extension",
+    "default"
+  ],
+  "source": "src/components/app-bar.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

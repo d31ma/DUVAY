@@ -4,11 +4,14 @@
 /* ── Toggle switch ───────────────────────────────────────────────────────── */
 .w-switch {
   /* Geometry — overridden by size + inset modifiers below.
-     travel = track width − thumb − 2×horizontal pad. */
-  --w-switch-track-w: 40px;
-  --w-switch-track-h: 14px;
-  --w-switch-thumb: 18px;
-  --w-switch-pad: 0px;
+     travel = track width − thumb − 2×horizontal pad.
+     Each reads --w-skin-switch-* first so a platform skin can restyle the
+     control by setting an inherited custom property rather than a descendant
+     rule; that is what lets one skin sit inside a page wearing another. */
+  --w-switch-track-w: var(--w-skin-switch-track-w, 40px);
+  --w-switch-track-h: var(--w-skin-switch-track-h, 14px);
+  --w-switch-thumb: var(--w-skin-switch-thumb, 18px);
+  --w-switch-pad: var(--w-skin-switch-pad, 0px);
   --w-switch-accent: var(--w-primary);
   --w-switch-on-accent: var(--w-on-primary);
 
@@ -27,7 +30,7 @@
   height: var(--w-switch-track-h);
   border-radius: var(--w-radius-pill);
   background: var(--w-surface-container-high);
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
   transition: background var(--w-transition-normal), border-color var(--w-transition-normal);
 }
 
@@ -89,7 +92,7 @@
 /* ── Flat — thumb without elevation ───────────────────────────────────────── */
 .w-switch--flat .w-switch-thumb {
   box-shadow: none;
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
 }
 
 /* ── Loading — spinner in the thumb ───────────────────────────────────────── */
@@ -118,7 +121,15 @@
 /* ── Sizes ────────────────────────────────────────────────────────────────── */
 .w-switch--xs { --w-switch-track-w: 30px; --w-switch-track-h: 12px; --w-switch-thumb: 14px; font-size: var(--w-font-xs); }
 .w-switch--sm { --w-switch-track-w: 36px; --w-switch-track-h: 13px; --w-switch-thumb: 16px; font-size: var(--w-font-sm); }
-.w-switch--md { --w-switch-track-w: 40px; --w-switch-track-h: 14px; --w-switch-thumb: 18px; font-size: var(--w-font-base); }
+/* md is the default size and is applied even when no size is requested, so it
+   must defer to the platform skin the same way .w-switch does. The explicit
+   sizes below stay literal: asking for --lg should beat the skin. */
+.w-switch--md {
+  --w-switch-track-w: var(--w-skin-switch-track-w, 40px);
+  --w-switch-track-h: var(--w-skin-switch-track-h, 14px);
+  --w-switch-thumb: var(--w-skin-switch-thumb, 18px);
+  font-size: var(--w-font-base);
+}
 .w-switch--lg { --w-switch-track-w: 48px; --w-switch-track-h: 16px; --w-switch-thumb: 22px; font-size: var(--w-font-md); }
 
 /* ── Disabled / readonly ──────────────────────────────────────────────────── */
@@ -160,7 +171,7 @@
 }
 .w-switch--indeterminate .w-switch-track {
   background: color-mix(in srgb, var(--w-switch-accent) 45%, var(--w-surface-container-high));
-  border-color: color-mix(in srgb, var(--w-switch-accent) 45%, var(--w-border));
+  border-color: color-mix(in srgb, var(--w-switch-accent) 45%, var(--w-outline));
 }
 
 /* ── Direction / inline layout ────────────────────────────────────────────── */

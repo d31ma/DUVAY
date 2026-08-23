@@ -1,0 +1,10 @@
+/* DuVay — full framework with the Windows skin preapplied.
+ *
+ * Alias of duvay-fluent.css. The skin file is named for the design language
+ * (fluent), which is the name its vendor uses; this entrypoint is named for
+ * the operating system, which is the name most developers reach for. Both load
+ * the same stylesheet and both `w-os` values activate it.
+ */
+@import "./duvay.css";
+@import "./platforms/fluent.css";
+@import "./platforms/web.css";

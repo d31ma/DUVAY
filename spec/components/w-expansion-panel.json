@@ -1,0 +1,162 @@
+{
+  "$description": "DuVay ExpansionPanel — Core contract, tier 2.",
+  "name": "ExpansionPanel",
+  "tier": 2,
+  "names": {
+    "web": "w-expansion-panel",
+    "apple": "DuVayDisclosureGroup",
+    "android": "DuVayExpansionPanel",
+    "windows": "DuVayExpander",
+    "linux": "duvay_expander_row"
+  },
+  "accessibility": {
+    "role": "group",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "collapse-icon": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "expand-icon": {
+      "type": "string"
+    },
+    "focusable": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-actions": {
+      "type": "string"
+    },
+    "hover": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "open": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "selected-class": {
+      "type": "string"
+    },
+    "static": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "title",
+    "header",
+    "text",
+    "default"
+  ],
+  "source": "src/components/expansion-panel.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

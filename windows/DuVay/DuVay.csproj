@@ -1,0 +1,36 @@
+<!--
+  DuVay for Windows — the WinUI 3 control library.
+
+  Windows-only by necessity: the Windows App SDK cannot be built on macOS, so
+  this project is compiled and tested on a Windows host via
+  `bun scripts/windows-gate.mjs`. The platform-neutral half (tokens, behaviour,
+  conformance) lives in DuVay.Core and builds anywhere.
+
+  No Visual Studio required — `dotnet build` with the Windows SDK is enough for
+  a class library.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <UseWinUI>true</UseWinUI>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>DuVay</RootNamespace>
+    <!-- A library has no app manifest and needs no packaging. -->
+    <EnableMsixTooling>false</EnableMsixTooling>
+    <!--
+      MrtCore's PRI generation task lives in Visual Studio's AppxPackage
+      tooling, which a bare .NET SDK does not ship. This library declares no
+      .resw resources, so there is nothing to index — turning the step off is
+      what lets it build headlessly on a machine without Visual Studio.
+    -->
+    <EnableCoreMrtTooling>false</EnableCoreMrtTooling>
+    <EnableDefaultPriItems>false</EnableDefaultPriItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250228001" />
+    <ProjectReference Include="../DuVay.Core/DuVay.Core.csproj" />
+  </ItemGroup>
+</Project>

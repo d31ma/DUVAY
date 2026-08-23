@@ -123,6 +123,7 @@ export class WTreeview extends WElement {
   get hoverable() { return this._bool('hoverable'); }
   get rounded() { return this._bool('rounded'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get expandIcon() { return this._attr('expand-icon', '›'); }
   get loadingIcon() { return this._attr('loading-icon', '⟳'); }
   get search() { return this._attr('search', ''); }

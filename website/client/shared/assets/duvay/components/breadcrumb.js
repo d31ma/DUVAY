@@ -21,6 +21,7 @@ export class WBreadcrumb extends WElement {
   get href() { return this._attr('href', ''); }
   get active() { return this._bool('active'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get icon() { return this._attr('icon', ''); }
 
   _template() {

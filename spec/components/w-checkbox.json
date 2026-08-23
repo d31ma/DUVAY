@@ -1,0 +1,178 @@
+{
+  "$description": "DuVay Checkbox — Core contract, tier 1.",
+  "name": "Checkbox",
+  "tier": 1,
+  "names": {
+    "web": "w-checkbox",
+    "apple": "DuVayCheckbox",
+    "android": "DuVayCheckbox",
+    "windows": "DuVayCheckBox",
+    "linux": "duvay_checkbox"
+  },
+  "accessibility": {
+    "role": "checkbox",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ],
+    "keyboard": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "append-icon": {
+      "type": "string"
+    },
+    "center-affix": {
+      "type": "string"
+    },
+    "checked": {
+      "type": "string",
+      "description": "whether checked"
+    },
+    "color": {
+      "type": "enum",
+      "description": "'primary' | 'error' | 'success' | 'warning'"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disables the checkbox"
+    },
+    "error": {
+      "type": "string",
+      "description": "error text; a bare attribute just flags the error state"
+    },
+    "error-messages": {
+      "type": "string"
+    },
+    "false-icon": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false,
+      "description": "suppresses hint/error text ('auto' keeps it when non-empty)"
+    },
+    "hide-spin-buttons": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string",
+      "description": "helper text rendered below the label"
+    },
+    "icon-color": {
+      "type": "string"
+    },
+    "indent-details": {
+      "type": "string"
+    },
+    "indeterminate": {
+      "type": "boolean",
+      "default": false,
+      "description": "shows a mixed state"
+    },
+    "indeterminate-icon": {
+      "type": "number"
+    },
+    "inline": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string",
+      "description": "label text (alternative to default slot)"
+    },
+    "max-errors": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name"
+    },
+    "persistent-hint": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false,
+      "description": "prevents toggling while keeping focus"
+    },
+    "required": {
+      "type": "string"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "enum",
+      "description": "'xs' | 'sm' | 'md' | 'lg'"
+    },
+    "true-icon": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "validate-on": {
+      "type": "string"
+    },
+    "validation-value": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string",
+      "description": "native form value when checked"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/checkbox.js",
+  "inheritedProps": [
+    "bg-color",
+    "base-color",
+    "active-color",
+    "density",
+    "elevation",
+    "hover-elevation",
+    "rounded",
+    "border",
+    "tile",
+    "theme",
+    "width",
+    "height",
+    "min-width",
+    "max-width",
+    "min-height",
+    "max-height",
+    "location",
+    "position",
+    "loading"
+  ]
+}

@@ -1,9 +1,11 @@
+import { wSetValue } from './utils.js';
 /* <w-navigation-menu> - horizontal navigation */
 
 export class WNavigationMenu extends WElement {
   static attrs = ['label', 'value'];
 
   get label() { return this._attr('label', 'Primary'); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
 
   _template() {

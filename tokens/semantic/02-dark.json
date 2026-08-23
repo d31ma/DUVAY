@@ -1,0 +1,606 @@
+{
+  "$description": "dark theme",
+  "$extensions": {
+    "duvay": {
+      "target": "src/themes.css",
+      "order": 2,
+      "theme": "dark",
+      "open": [
+        "[w-theme=\"dark\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "before": [
+        "",
+        "/* ── Dark theme ──────────────────────────────────────────────────────── */"
+      ],
+      "after": [
+        "",
+        "  color-scheme: dark;"
+      ]
+    }
+  },
+  "highlight-color": {
+    "$value": "var(--w-warning)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "  /* --w-highlight-color: semantic emphasis used by <w-highlight>. */"
+        ]
+      }
+    }
+  },
+  "primary": {
+    "$value": "#83cde3",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "on-primary": {
+    "$value": "#08323f",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "primary-container": {
+    "$value": "rgba(131, 205, 227, 0.18)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-primary-container": {
+    "$value": "#e8f8fc",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "accent": {
+    "$value": "#83cde3",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 18,
+        "before": [
+          "",
+          "  /* Accent — split into fill and text roles (libadwaita model).",
+          "   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).",
+          "   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).",
+          "   * Conflating the two is the most common a11y failure in themed systems;",
+          "   * native platforms also supply them separately (system accent). */"
+        ]
+      }
+    }
+  },
+  "accent-bg": {
+    "$value": "#83cde3",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15
+      }
+    }
+  },
+  "on-accent": {
+    "$value": "#08323f",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15
+      }
+    }
+  },
+  "secondary": {
+    "$value": "#adc9c2",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15
+      }
+    }
+  },
+  "surface": {
+    "$value": "#1c2224",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "surface-container-low": {
+    "$value": "#161c1e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "surface-container": {
+    "$value": "rgba(255, 255, 255, 0.05)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "surface-container-high": {
+    "$value": "#222a2d",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "sidebar": {
+    "$value": "#161c1e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "toolbar": {
+    "$value": "#222a2d",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "app-bar-frosted": {
+    "$value": "rgba(28, 34, 36, 0.84)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "text": {
+    "$value": "#eeeeee",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 20,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "text-subtle": {
+    "$value": "rgba(255, 255, 255, 0.6)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 13
+      }
+    }
+  },
+  "text-very-subtle": {
+    "$value": "rgba(255, 255, 255, 0.55)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 8
+      }
+    }
+  },
+  "text-high-emphasis-opacity": {
+    "$value": "1",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-medium-emphasis-opacity": {
+    "$value": "0.7",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-disabled-opacity": {
+    "$value": "0.5",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "divider": {
+    "$value": "#313b3e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "border": {
+    "$value": "#3a464a",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 18
+      }
+    }
+  },
+  "outline": {
+    "$value": "#6c7b7f",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          "  /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).",
+          "   * Distinct from the decorative --w-border, mirroring Material 3's",
+          "   * outline / outline-variant split. Consumed by the form controls:",
+          "   * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,",
+          "   * .w-switch-track, .w-number-input-field. Internal separators between",
+          "   * sub-controls keep --w-border. */"
+        ]
+      }
+    }
+  },
+  "hover": {
+    "$value": "rgba(255, 255, 255, 0.05)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "selected": {
+    "$value": "rgba(131, 205, 227, 0.18)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 16
+      }
+    }
+  },
+  "selected-text": {
+    "$value": "#9fd8e6",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 11
+      }
+    }
+  },
+  "error": {
+    "$value": "#f2b8b5",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-error": {
+    "$value": "#410e0b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 16
+      }
+    }
+  },
+  "error-container": {
+    "$value": "#8c1d18",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "on-error-container": {
+    "$value": "#f9dedc",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "success": {
+    "$value": "#81c784",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-success": {
+    "$value": "#0b2e0e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "success-container": {
+    "$value": "#1b5e20",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-success-container": {
+    "$value": "#e8f5e9",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "warning": {
+    "$value": "#ffb86b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-warning": {
+    "$value": "#3d2200",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "warning-container": {
+    "$value": "#5a4630",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-warning-container": {
+    "$value": "#ffe2b8",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "secondary-container": {
+    "$value": "#2f3b3a",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-secondary-container": {
+    "$value": "#dce7e4",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "tertiary-container": {
+    "$value": "#5a4630",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "on-tertiary-container": {
+    "$value": "#ffe2b8",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "inverse-surface": {
+    "$value": "#f4eff4",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "inverse-on-surface": {
+    "$value": "#313033",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "inverse-primary": {
+    "$value": "#1f6f8b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "scrim": {
+    "$value": "rgba(0, 0, 0, 0.6)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "shadow-color": {
+    "$value": "rgba(0, 0, 0, 0.4)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "video-poster": {
+    "$value": "#000000",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "surface-raised": {
+    "$value": "var(--w-surface-container-high)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "text-muted": {
+    "$value": "var(--w-text-subtle)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "primary-muted": {
+    "$value": "var(--w-primary-container)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 11
+      }
+    }
+  }
+}

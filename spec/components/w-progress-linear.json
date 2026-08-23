@@ -1,0 +1,216 @@
+{
+  "$description": "DuVay ProgressLinear — Core contract, tier 1.",
+  "name": "ProgressLinear",
+  "tier": 1,
+  "names": {
+    "web": "w-progress-linear",
+    "apple": "DuVayProgressBar",
+    "android": "DuVayLinearProgress",
+    "windows": "DuVayProgressBar",
+    "linux": "duvay_progress_bar"
+  },
+  "accessibility": {
+    "role": "progressbar",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "bg-opacity": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "buffer-color": {
+      "type": "string"
+    },
+    "buffer-opacity": {
+      "type": "string"
+    },
+    "buffer-value": {
+      "type": "string"
+    },
+    "chunk-count": {
+      "type": "number"
+    },
+    "chunk-gap": {
+      "type": "string"
+    },
+    "chunk-width": {
+      "type": "string"
+    },
+    "clickable": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "details-position": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-label": {
+      "type": "string"
+    },
+    "hide-value": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "indeterminate": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "model-value": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "reveal": {
+      "type": "string"
+    },
+    "reverse": {
+      "type": "string"
+    },
+    "rotate": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded-bar": {
+      "type": "string"
+    },
+    "size": {
+      "type": "number"
+    },
+    "stream": {
+      "type": "string"
+    },
+    "striped": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "tween": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "value-format": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "input",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/progress-linear.js",
+  "inheritsFrom": [
+    "src/components/progress.js",
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

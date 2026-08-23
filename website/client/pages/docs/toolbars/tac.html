@@ -1,49 +1,51 @@
-<h1>Toolbars</h1>
-<p>Toolbars arrange a title and a concise set of actions along a stable horizontal axis.</p>
+<doc-layout>
+  <h1>Toolbars</h1>
+  <p>Toolbars arrange a title and a concise set of actions along a stable horizontal axis.</p>
 
-<h2>Title and actions</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-toolbar" style="position:relative">
-      <div class="w-toolbar-title">Inbox</div>
-      <div class="w-toolbar-items">
-        <button class="w-btn w-btn-icon" aria-label="Search">S</button>
-        <button class="w-btn w-btn-icon" aria-label="More options">&#8942;</button>
+  <h2>Title and actions</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-toolbar" style="position:relative">
+        <div class="w-toolbar-title">Inbox</div>
+        <div class="w-toolbar-items">
+          <button class="w-btn w-btn-icon" aria-label="Search">S</button>
+          <button class="w-btn w-btn-icon" aria-label="More options">&#8942;</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-toolbar style="position:relative">
-      <w-toolbar-title>Inbox</w-toolbar-title>
-      <w-toolbar-items>
-        <w-btn variant="icon" aria-label="Search">S</w-btn>
-        <w-btn variant="icon" aria-label="More options">&#8942;</w-btn>
-      </w-toolbar-items>
-    </w-toolbar>
-  </div>
-</demo-compare>
+    <div slot="wc">
+      <w-toolbar style="position:relative">
+        <w-toolbar-title>Inbox</w-toolbar-title>
+        <w-toolbar-items>
+          <w-btn variant="icon" aria-label="Search">S</w-btn>
+          <w-btn variant="icon" aria-label="More options">&#8942;</w-btn>
+        </w-toolbar-items>
+      </w-toolbar>
+    </div>
+  </demo-compare>
 
-<h2>Responsive actions</h2>
-<p>Keep the most important actions visible and move secondary commands into a menu on narrow screens.</p>
-<demo-compare>
-  <div slot="css">
-    <div class="w-toolbar" style="position:relative">
-      <button class="w-btn w-btn-icon" aria-label="Open navigation">&#9776;</button>
-      <div class="w-toolbar-title">Projects</div>
-      <div class="w-toolbar-items">
-        <button class="w-btn w-btn-text">Filter</button>
-        <button class="w-btn w-btn-filled">Create</button>
+  <h2>Responsive actions</h2>
+  <p>Keep the most important actions visible and move secondary commands into a menu on narrow screens.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-toolbar" style="position:relative">
+        <button class="w-btn w-btn-icon" aria-label="Open navigation">&#9776;</button>
+        <div class="w-toolbar-title">Projects</div>
+        <div class="w-toolbar-items">
+          <button class="w-btn w-btn-text">Filter</button>
+          <button class="w-btn w-btn-filled">Create</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-toolbar style="position:relative">
-      <w-btn variant="icon" aria-label="Open navigation">&#9776;</w-btn>
-      <w-toolbar-title>Projects</w-toolbar-title>
-      <w-toolbar-items>
-        <w-btn variant="text">Filter</w-btn>
-        <w-btn variant="filled">Create</w-btn>
-      </w-toolbar-items>
-    </w-toolbar>
-  </div>
-</demo-compare>
+    <div slot="wc">
+      <w-toolbar style="position:relative">
+        <w-btn variant="icon" aria-label="Open navigation">&#9776;</w-btn>
+        <w-toolbar-title>Projects</w-toolbar-title>
+        <w-toolbar-items>
+          <w-btn variant="text">Filter</w-btn>
+          <w-btn variant="filled">Create</w-btn>
+        </w-toolbar-items>
+      </w-toolbar>
+    </div>
+  </demo-compare>
+</doc-layout>

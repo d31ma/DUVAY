@@ -13,6 +13,7 @@ export class WListGroupActivator extends WElement {
   get controls() { return this._attr('controls', ''); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _template() {
     const hasCustomContent = this.childNodes.length > 0;
     const content = hasCustomContent

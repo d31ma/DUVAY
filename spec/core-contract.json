@@ -1,0 +1,632 @@
+{
+  "$description": "DuVay Core contract \u2014 the components that get native implementations on all five platforms.",
+  "$note": "Everything not listed here is web-only and stays web-only unless individually promoted. See CROSS-PLATFORM-PLAN.md.",
+  "platforms": [
+    "web",
+    "apple",
+    "android",
+    "windows",
+    "linux"
+  ],
+  "$statusNote": "What each platform CLAIMS. scripts/platform-parity.mjs fails if a claim exceeds what is actually implemented on disk. 'tier-1-code-complete' means every tier-1 component exists and builds; 'tier-1-complete' additionally requires the manual screen-reader pass and snapshot suite the plan mandates, and only that may be advertised as support.",
+  "status": {
+    "web": "tier-2-complete",
+    "apple": "tier-1-code-complete",
+    "android": "tier-1-code-complete",
+    "windows": "tier-1-code-complete",
+    "linux": "tier-1-code-complete"
+  },
+  "tiers": {
+    "1": "Every platform, non-negotiable, defines v1. Maps 1:1 onto an existing native widget on all four native toolkits.",
+    "2": "Ships after Tier 1 is green on all five. Several need composition rather than a direct native equivalent.",
+    "web-only": "Permanently web-only. Listed so the docs cannot imply native support."
+  },
+  "components": [
+    {
+      "name": "Button",
+      "tier": 1,
+      "source": "btn.js",
+      "tag": "w-btn",
+      "role": "button",
+      "native": {
+        "apple": "DuVayButton",
+        "android": "DuVayButton",
+        "windows": "DuVayButton",
+        "linux": "duvay_button"
+      }
+    },
+    {
+      "name": "IconButton",
+      "tier": 1,
+      "source": "icon-btn.js",
+      "tag": "w-icon-btn",
+      "role": "button",
+      "native": {
+        "apple": "DuVayIconButton",
+        "android": "DuVayIconButton",
+        "windows": "DuVayIconButton",
+        "linux": "duvay_icon_button"
+      }
+    },
+    {
+      "name": "TextField",
+      "tier": 1,
+      "source": "text-field.js",
+      "tag": "w-text-field",
+      "role": "textbox",
+      "native": {
+        "apple": "DuVayTextField",
+        "android": "DuVayTextField",
+        "windows": "DuVayTextField",
+        "linux": "duvay_text_field"
+      }
+    },
+    {
+      "name": "TextArea",
+      "tier": 1,
+      "source": "textarea.js",
+      "tag": "w-textarea",
+      "role": "textbox",
+      "native": {
+        "apple": "DuVayTextArea",
+        "android": "DuVayTextArea",
+        "windows": "DuVayTextArea",
+        "linux": "duvay_text_area"
+      }
+    },
+    {
+      "name": "Checkbox",
+      "tier": 1,
+      "source": "checkbox.js",
+      "tag": "w-checkbox",
+      "role": "checkbox",
+      "native": {
+        "apple": "DuVayCheckbox",
+        "android": "DuVayCheckbox",
+        "windows": "DuVayCheckBox",
+        "linux": "duvay_checkbox"
+      }
+    },
+    {
+      "name": "RadioGroup",
+      "tier": 1,
+      "source": "radio-group.js",
+      "tag": "w-radio-group",
+      "role": "radiogroup",
+      "native": {
+        "apple": "DuVayRadioGroup",
+        "android": "DuVayRadioGroup",
+        "windows": "DuVayRadioButtons",
+        "linux": "duvay_radio_group"
+      }
+    },
+    {
+      "name": "Switch",
+      "tier": 1,
+      "source": "switch.js",
+      "tag": "w-switch",
+      "role": "switch",
+      "native": {
+        "apple": "DuVayToggle",
+        "android": "DuVaySwitch",
+        "windows": "DuVayToggleSwitch",
+        "linux": "duvay_switch"
+      }
+    },
+    {
+      "name": "Select",
+      "tier": 1,
+      "source": "select.js",
+      "tag": "w-select",
+      "role": "combobox",
+      "native": {
+        "apple": "DuVayPicker",
+        "android": "DuVayDropdown",
+        "windows": "DuVayComboBox",
+        "linux": "duvay_combo_row"
+      }
+    },
+    {
+      "name": "Slider",
+      "tier": 1,
+      "source": "slider.js",
+      "tag": "w-slider",
+      "role": "slider",
+      "native": {
+        "apple": "DuVaySlider",
+        "android": "DuVaySlider",
+        "windows": "DuVaySlider",
+        "linux": "duvay_slider"
+      }
+    },
+    {
+      "name": "Card",
+      "tier": 1,
+      "source": "card.js",
+      "tag": "w-card",
+      "role": "group",
+      "native": {
+        "apple": "DuVayCard",
+        "android": "DuVayCard",
+        "windows": "DuVayCard",
+        "linux": "duvay_card"
+      }
+    },
+    {
+      "name": "List",
+      "tier": 1,
+      "source": "list.js",
+      "tag": "w-list",
+      "role": "list",
+      "native": {
+        "apple": "DuVayList",
+        "android": "DuVayList",
+        "windows": "DuVayListView",
+        "linux": "duvay_list_box"
+      }
+    },
+    {
+      "name": "ListItem",
+      "tier": 1,
+      "source": "list-item.js",
+      "tag": "w-list-item",
+      "role": "listitem",
+      "native": {
+        "apple": "DuVayListRow",
+        "android": "DuVayListItem",
+        "windows": "DuVayListItem",
+        "linux": "duvay_action_row"
+      }
+    },
+    {
+      "name": "Avatar",
+      "tier": 1,
+      "source": "avatar.js",
+      "tag": "w-avatar",
+      "role": "img",
+      "native": {
+        "apple": "DuVayAvatar",
+        "android": "DuVayAvatar",
+        "windows": "DuVayPersonPicture",
+        "linux": "duvay_avatar"
+      }
+    },
+    {
+      "name": "Badge",
+      "tier": 1,
+      "source": "badge.js",
+      "tag": "w-badge",
+      "role": "status",
+      "native": {
+        "apple": "DuVayBadge",
+        "android": "DuVayBadge",
+        "windows": "DuVayInfoBadge",
+        "linux": "duvay_badge"
+      }
+    },
+    {
+      "name": "Chip",
+      "tier": 1,
+      "source": "chip.js",
+      "tag": "w-chip",
+      "role": "button",
+      "native": {
+        "apple": "DuVayChip",
+        "android": "DuVayChip",
+        "windows": "DuVayChip",
+        "linux": "duvay_chip"
+      }
+    },
+    {
+      "name": "Icon",
+      "tier": 1,
+      "source": "icon.js",
+      "tag": "w-icon",
+      "role": "img",
+      "native": {
+        "apple": "DuVayIcon",
+        "android": "DuVayIcon",
+        "windows": "DuVayIcon",
+        "linux": "duvay_icon"
+      }
+    },
+    {
+      "name": "Divider",
+      "tier": 1,
+      "source": "divider.js",
+      "tag": "w-divider",
+      "role": "separator",
+      "native": {
+        "apple": "DuVayDivider",
+        "android": "DuVayDivider",
+        "windows": "DuVayDivider",
+        "linux": "duvay_separator"
+      }
+    },
+    {
+      "name": "Dialog",
+      "tier": 1,
+      "source": "dialog.js",
+      "tag": "w-dialog",
+      "role": "dialog",
+      "native": {
+        "apple": "DuVaySheet",
+        "android": "DuVayDialog",
+        "windows": "DuVayContentDialog",
+        "linux": "duvay_dialog"
+      }
+    },
+    {
+      "name": "AlertDialog",
+      "tier": 1,
+      "source": "alert-dialog.js",
+      "tag": "w-alert-dialog",
+      "role": "alertdialog",
+      "native": {
+        "apple": "DuVayAlert",
+        "android": "DuVayAlertDialog",
+        "windows": "DuVayContentDialog",
+        "linux": "duvay_alert_dialog"
+      }
+    },
+    {
+      "name": "Snackbar",
+      "tier": 1,
+      "source": "snackbar.js",
+      "tag": "w-snackbar",
+      "role": "status",
+      "native": {
+        "apple": "DuVayToast",
+        "android": "DuVaySnackbar",
+        "windows": "DuVayInfoBar",
+        "linux": "duvay_toast"
+      }
+    },
+    {
+      "name": "Alert",
+      "tier": 1,
+      "source": "alert.js",
+      "tag": "w-alert",
+      "role": "alert",
+      "native": {
+        "apple": "DuVayBanner",
+        "android": "DuVayBanner",
+        "windows": "DuVayInfoBar",
+        "linux": "duvay_banner"
+      }
+    },
+    {
+      "name": "Tooltip",
+      "tier": 1,
+      "source": "tooltip.js",
+      "tag": "w-tooltip",
+      "role": "tooltip",
+      "native": {
+        "apple": "DuVayTooltip",
+        "android": "DuVayTooltip",
+        "windows": "DuVayToolTip",
+        "linux": "duvay_tooltip"
+      }
+    },
+    {
+      "name": "Menu",
+      "tier": 1,
+      "source": "menu.js",
+      "tag": "w-menu",
+      "role": "menu",
+      "native": {
+        "apple": "DuVayMenu",
+        "android": "DuVayMenu",
+        "windows": "DuVayMenuFlyout",
+        "linux": "duvay_popover_menu"
+      }
+    },
+    {
+      "name": "ProgressLinear",
+      "tier": 1,
+      "source": "progress-linear.js",
+      "tag": "w-progress-linear",
+      "role": "progressbar",
+      "native": {
+        "apple": "DuVayProgressBar",
+        "android": "DuVayLinearProgress",
+        "windows": "DuVayProgressBar",
+        "linux": "duvay_progress_bar"
+      }
+    },
+    {
+      "name": "ProgressCircular",
+      "tier": 1,
+      "source": "progress-circular.js",
+      "tag": "w-progress-circular",
+      "role": "progressbar",
+      "native": {
+        "apple": "DuVayProgressRing",
+        "android": "DuVayCircularProgress",
+        "windows": "DuVayProgressRing",
+        "linux": "duvay_spinner"
+      }
+    },
+    {
+      "name": "AppBar",
+      "tier": 2,
+      "source": "app-bar.js",
+      "tag": "w-app-bar",
+      "role": "banner",
+      "native": {
+        "apple": "DuVayNavigationBar",
+        "android": "DuVayTopAppBar",
+        "windows": "DuVayTitleBar",
+        "linux": "duvay_header_bar"
+      }
+    },
+    {
+      "name": "Toolbar",
+      "tier": 2,
+      "source": "toolbar.js",
+      "tag": "w-toolbar",
+      "role": "toolbar",
+      "native": {
+        "apple": "DuVayToolbar",
+        "android": "DuVayToolbar",
+        "windows": "DuVayCommandBar",
+        "linux": "duvay_toolbar"
+      }
+    },
+    {
+      "name": "NavigationDrawer",
+      "tier": 2,
+      "source": "navigation-drawer.js",
+      "tag": "w-navigation-drawer",
+      "role": "navigation",
+      "native": {
+        "apple": "DuVaySidebar",
+        "android": "DuVayNavigationDrawer",
+        "windows": "DuVayNavigationView",
+        "linux": "duvay_navigation_split_view"
+      }
+    },
+    {
+      "name": "BottomNavigation",
+      "tier": 2,
+      "source": "bottom-navigation.js",
+      "tag": "w-bottom-navigation",
+      "role": "navigation",
+      "native": {
+        "apple": "DuVayTabBar",
+        "android": "DuVayNavigationBar",
+        "windows": "DuVayNavigationView",
+        "linux": "duvay_view_switcher_bar"
+      }
+    },
+    {
+      "name": "Tabs",
+      "tier": 2,
+      "source": "tabs.js",
+      "tag": "w-tabs",
+      "role": "tablist",
+      "native": {
+        "apple": "DuVayTabView",
+        "android": "DuVayTabRow",
+        "windows": "DuVayTabView",
+        "linux": "duvay_view_switcher"
+      }
+    },
+    {
+      "name": "Breadcrumbs",
+      "tier": 2,
+      "source": "breadcrumbs.js",
+      "tag": "w-breadcrumbs",
+      "role": "navigation",
+      "native": {
+        "apple": "DuVayBreadcrumbs",
+        "android": "DuVayBreadcrumbs",
+        "windows": "DuVayBreadcrumbBar",
+        "linux": "duvay_breadcrumbs"
+      }
+    },
+    {
+      "name": "Pagination",
+      "tier": 2,
+      "source": "pagination.js",
+      "tag": "w-pagination",
+      "role": "navigation",
+      "native": {
+        "apple": "DuVayPagination",
+        "android": "DuVayPagination",
+        "windows": "DuVayPagination",
+        "linux": "duvay_pagination"
+      }
+    },
+    {
+      "name": "Stepper",
+      "tier": 2,
+      "source": "stepper.js",
+      "tag": "w-stepper",
+      "role": "group",
+      "native": {
+        "apple": "DuVayStepper",
+        "android": "DuVayStepper",
+        "windows": "DuVayStepper",
+        "linux": "duvay_stepper"
+      }
+    },
+    {
+      "name": "ExpansionPanel",
+      "tier": 2,
+      "source": "expansion-panel.js",
+      "tag": "w-expansion-panel",
+      "role": "group",
+      "native": {
+        "apple": "DuVayDisclosureGroup",
+        "android": "DuVayExpansionPanel",
+        "windows": "DuVayExpander",
+        "linux": "duvay_expander_row"
+      }
+    },
+    {
+      "name": "DatePicker",
+      "tier": 2,
+      "source": "date-picker.js",
+      "tag": "w-date-picker",
+      "role": "application",
+      "native": {
+        "apple": "DuVayDatePicker",
+        "android": "DuVayDatePicker",
+        "windows": "DuVayCalendarDatePicker",
+        "linux": "duvay_date_picker"
+      },
+      "delegatesToSystemPicker": [
+        "apple",
+        "android"
+      ]
+    },
+    {
+      "name": "TimePicker",
+      "tier": 2,
+      "source": "time-picker.js",
+      "tag": "w-time-picker",
+      "role": "application",
+      "native": {
+        "apple": "DuVayTimePicker",
+        "android": "DuVayTimePicker",
+        "windows": "DuVayTimePicker",
+        "linux": "duvay_time_picker"
+      },
+      "delegatesToSystemPicker": [
+        "apple",
+        "android"
+      ]
+    },
+    {
+      "name": "Autocomplete",
+      "tier": 2,
+      "source": "autocomplete.js",
+      "tag": "w-autocomplete",
+      "role": "combobox",
+      "native": {
+        "apple": "DuVayAutocomplete",
+        "android": "DuVayAutocomplete",
+        "windows": "DuVayAutoSuggestBox",
+        "linux": "duvay_autocomplete"
+      }
+    },
+    {
+      "name": "FileInput",
+      "tier": 2,
+      "source": "file-input.js",
+      "tag": "w-file-input",
+      "role": "button",
+      "native": {
+        "apple": "DuVayFileImporter",
+        "android": "DuVayFilePicker",
+        "windows": "DuVayFilePicker",
+        "linux": "duvay_file_chooser"
+      }
+    },
+    {
+      "name": "Rating",
+      "tier": 2,
+      "source": "rating.js",
+      "tag": "w-rating",
+      "role": "radiogroup",
+      "native": {
+        "apple": "DuVayRating",
+        "android": "DuVayRating",
+        "windows": "DuVayRatingControl",
+        "linux": "duvay_rating"
+      }
+    },
+    {
+      "name": "NumberInput",
+      "tier": 2,
+      "source": "number-input.js",
+      "tag": "w-number-input",
+      "role": "spinbutton",
+      "native": {
+        "apple": "DuVayStepperField",
+        "android": "DuVayNumberField",
+        "windows": "DuVayNumberBox",
+        "linux": "duvay_spin_row"
+      }
+    },
+    {
+      "name": "OTP",
+      "tier": 2,
+      "source": "otp.js",
+      "tag": "w-otp",
+      "role": "group",
+      "native": {
+        "apple": "DuVayOTPField",
+        "android": "DuVayOTPField",
+        "windows": "DuVayOTPField",
+        "linux": "duvay_otp_field"
+      }
+    },
+    {
+      "name": "BottomSheet",
+      "tier": 2,
+      "source": "bottom-sheet.js",
+      "tag": "w-bottom-sheet",
+      "role": "dialog",
+      "native": {
+        "apple": "DuVayBottomSheet",
+        "android": "DuVayModalBottomSheet",
+        "windows": "DuVayBottomSheet",
+        "linux": "duvay_bottom_sheet"
+      }
+    },
+    {
+      "name": "Popover",
+      "tier": 2,
+      "source": "popover.js",
+      "tag": "w-popover",
+      "role": "dialog",
+      "native": {
+        "apple": "DuVayPopover",
+        "android": "DuVayPopup",
+        "windows": "DuVayFlyout",
+        "linux": "duvay_popover"
+      }
+    },
+    {
+      "name": "Table",
+      "tier": 2,
+      "source": "table.js",
+      "tag": "w-table",
+      "role": "table",
+      "native": {
+        "apple": "DuVayTable",
+        "android": "DuVayTable",
+        "windows": "DuVayDataGrid",
+        "linux": "duvay_column_view"
+      }
+    },
+    {
+      "name": "Skeleton",
+      "tier": 2,
+      "source": "skeleton-loader.js",
+      "tag": "w-skeleton-loader",
+      "role": "status",
+      "native": {
+        "apple": "DuVaySkeleton",
+        "android": "DuVaySkeleton",
+        "windows": "DuVaySkeleton",
+        "linux": "duvay_skeleton"
+      }
+    },
+    {
+      "name": "EmptyState",
+      "tier": 2,
+      "source": "empty-state.js",
+      "tag": "w-empty-state",
+      "role": "region",
+      "native": {
+        "apple": "DuVayEmptyState",
+        "android": "DuVayEmptyState",
+        "windows": "DuVayEmptyState",
+        "linux": "duvay_status_page"
+      }
+    }
+  ]
+}

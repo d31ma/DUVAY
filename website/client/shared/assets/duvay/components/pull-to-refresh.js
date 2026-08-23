@@ -23,6 +23,7 @@ export class WPullToRefresh extends WElement {
   }
   get disabled() { return wBoolAttr(this, 'disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   connectedCallback() {
     super.connectedCallback();
     if (wBoolAttr(this, 'refreshing') || wBoolAttr(this, 'model-value')) this.__refreshing = true;

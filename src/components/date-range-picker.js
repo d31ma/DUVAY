@@ -1,6 +1,7 @@
 /* <w-date-range-picker> — two-endpoint date selection built on w-date-picker. */
 
 import { WDatePicker } from './date-picker.js';
+import { wSetValue } from './utils.js';
 
 export class WDateRangePicker extends WDatePicker {
   static attrs = [
@@ -12,6 +13,7 @@ export class WDateRangePicker extends WDatePicker {
   ];
 
   get mode() { return 'range'; }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('model-value', this._attr('value', '')); }
 
   _select(date) {

@@ -39,8 +39,7 @@
  */
 
 import WIcons from '../icons.js';
-import { wSafeUrl } from './utils.js';
-
+import { wSafeUrl, wSetValue } from './utils.js';
 export class WBtn extends WElement {
 
   static attrs = ['variant', 'color', 'size', 'disabled', 'href', 'loading', 'icon', 'icon-set', 'prepend-icon', 'append-icon', 'block', 'stacked', 'active', 'aria-label', 'ripple', 'text', 'value', 'flat', 'slim', 'selected-class', 'spaced',
@@ -111,6 +110,7 @@ export class WBtn extends WElement {
   set active(v)  { v ? this.setAttribute('active', '') : this.removeAttribute('active'); }
 
   get text()     { return this._attr('text', ''); }
+  set value(v) { wSetValue(this, v); }
   get value()    { return this._attr('value', ''); }
   get flat()     { return this._bool('flat'); }
   get slim()     { return this._bool('slim'); }

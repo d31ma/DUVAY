@@ -1,0 +1,215 @@
+{
+  "$description": "DuVay Rating — Core contract, tier 2.",
+  "name": "Rating",
+  "tier": 2,
+  "names": {
+    "web": "w-rating",
+    "apple": "DuVayRating",
+    "android": "DuVayRating",
+    "windows": "DuVayRatingControl",
+    "linux": "duvay_rating"
+  },
+  "accessibility": {
+    "role": "radiogroup",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "clearable": {
+      "type": "boolean",
+      "default": false,
+      "description": "selecting the current value clears it"
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "default",
+        "comfortable",
+        "compact"
+      ],
+      "description": "default | comfortable | compact"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "empty": {
+      "type": "string",
+      "description": "icon/full-icon - icon registry name or text glyph color/active-color   - DuVay color token or safe CSS color"
+    },
+    "empty-icon": {
+      "type": "string"
+    },
+    "full-icon": {
+      "type": "string"
+    },
+    "half-increments": {
+      "type": "string",
+      "description": "expose half-step controls"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover": {
+      "type": "string",
+      "description": "preview values while pointing at an item readonly / disabled  - block changes while preserving readable state"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "item-aria-label": {
+      "type": "string",
+      "description": "item label template with {value} and {length}"
+    },
+    "item-label-position": {
+      "type": "enum",
+      "values": [
+        "top",
+        "bottom"
+      ],
+      "description": "top | bottom"
+    },
+    "item-labels": {
+      "type": "string",
+      "description": "JSON array of labels"
+    },
+    "label": {
+      "type": "string",
+      "description": "radiogroup accessible label"
+    },
+    "length": {
+      "type": "number",
+      "description": "number of rating items (default: 5)"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "model-value": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "hidden form input name"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false,
+      "description": "enable press feedback"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "description": "xs | sm | md | lg | xl | CSS length"
+    },
+    "tag": {
+      "type": "enum",
+      "values": [
+        "div",
+        "span",
+        "section"
+      ],
+      "description": "div | span | section"
+    },
+    "theme": {
+      "type": "string",
+      "description": "theme name forwarded to the rendered root"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string",
+      "description": "selected numeric value"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "update:model-value",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "item",
+    "item-label",
+    "default"
+  ],
+  "source": "src/components/rating.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

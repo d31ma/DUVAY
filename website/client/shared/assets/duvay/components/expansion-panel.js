@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-expansion-panel> — Vuetify VExpansionPanel equivalent
  *
  * Attributes:
@@ -41,11 +42,14 @@ export class WExpansionPanel extends WElement {
 
   get header() { return this._attr('title', this._attr('header', '')); }
   get panelText() { return this._attr('text', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get open() { return this._bool('open'); }
   set open(v) { v ? this.setAttribute('open', '') : this.removeAttribute('open'); }
   get disabled() { return !!(this._bool('disabled') || this.closest('w-expansion-panels')?._bool?.('disabled')); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return !!(this._bool('readonly') || this.closest('w-expansion-panels')?._bool?.('readonly')); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get isStatic() { return this._bool('static'); }
   get hideActions() { return this._bool('hide-actions'); }
   get hover() { return this._bool('hover'); }

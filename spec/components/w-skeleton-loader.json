@@ -1,0 +1,63 @@
+{
+  "$description": "DuVay Skeleton — Core contract, tier 2.",
+  "name": "Skeleton",
+  "tier": 2,
+  "names": {
+    "web": "w-skeleton-loader",
+    "apple": "DuVaySkeleton",
+    "android": "DuVaySkeleton",
+    "windows": "DuVaySkeleton",
+    "linux": "duvay_skeleton"
+  },
+  "accessibility": {
+    "role": "status",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "loading-text": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [],
+  "source": "src/components/skeleton-loader.js",
+  "inheritedProps": [
+    "color",
+    "bg-color",
+    "base-color",
+    "active-color",
+    "density",
+    "elevation",
+    "hover-elevation",
+    "rounded",
+    "border",
+    "tile",
+    "theme",
+    "width",
+    "height",
+    "min-width",
+    "max-width",
+    "min-height",
+    "max-height",
+    "location",
+    "position",
+    "loading",
+    "disabled",
+    "readonly"
+  ]
+}

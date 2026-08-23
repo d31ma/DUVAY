@@ -17,6 +17,20 @@ export function wValue(host, fallback = '') {
   return host.getAttribute('value') ?? fallback;
 }
 
+/* Reflect a value assignment back to the attribute the matching getter reads.
+ *
+ * Every `value` getter in the library is attribute-backed, so a component that
+ * only defines the getter throws on `el.value = x` — and a renderer that binds
+ * values as properties (Tachyon does, for `value`/`checked`/`selected`/
+ * `disabled`) takes the whole page down with it. Several getters prefer
+ * `model-value` over `value`, so write whichever one the getter would read,
+ * otherwise the assignment would be silently discarded. */
+export function wSetValue(host, value) {
+  const name = host.hasAttribute('model-value') ? 'model-value' : 'value';
+  if (value == null) host.removeAttribute(name);
+  else host.setAttribute(name, Array.isArray(value) ? value.join(',') : String(value));
+}
+
 // Link attributes accept ordinary web navigation only. Resolving against a
 // fixed HTTPS base handles relative and fragment URLs without trusting the
 // current document's protocol.

@@ -1,0 +1,277 @@
+{
+  "$description": "DuVay Snackbar — Core contract, tier 1.",
+  "name": "Snackbar",
+  "tier": 1,
+  "names": {
+    "web": "w-snackbar",
+    "apple": "DuVayToast",
+    "android": "DuVaySnackbar",
+    "windows": "DuVayInfoBar",
+    "linux": "duvay_toast"
+  },
+  "accessibility": {
+    "role": "status",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string",
+      "description": "position: absolute instead of fixed"
+    },
+    "action": {
+      "type": "string",
+      "description": "single action button label"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "closable": {
+      "type": "string",
+      "description": "show the dismiss button (default on)"
+    },
+    "close-delay": {
+      "type": "string"
+    },
+    "close-on-back": {
+      "type": "string",
+      "description": "the browser back button dismisses it"
+    },
+    "close-on-content-click": {
+      "type": "string",
+      "description": "clicking the message dismisses it"
+    },
+    "close-text": {
+      "type": "string",
+      "description": "dismiss button label"
+    },
+    "collapsed": {
+      "type": "string",
+      "description": "JSON {\"width\",\"height\"} for a snackbar sitting behind another"
+    },
+    "color": {
+      "type": "string",
+      "description": "token color for the surface"
+    },
+    "contained": {
+      "type": "string",
+      "description": "stay inside the nearest positioned ancestor"
+    },
+    "content-class": {
+      "type": "string",
+      "description": "extra class names on the surface"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "duration": {
+      "type": "string"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "inline": {
+      "type": "string",
+      "description": "render in normal flow instead of fixed to the viewport"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "enum",
+      "description": "\"top\" | \"bottom\" + \"start\" | \"center\" | \"end\" (e.g. \"top end\")"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "message": {
+      "type": "string"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "model-value": {
+      "type": "string",
+      "description": "Vuetify visibility alias"
+    },
+    "multi-line": {
+      "type": "string",
+      "description": "taller layout for longer messages"
+    },
+    "opacity": {
+      "type": "string",
+      "description": "surface opacity"
+    },
+    "open": {
+      "type": "string",
+      "description": "visibility (alias: model-value)"
+    },
+    "open-delay": {
+      "type": "string"
+    },
+    "open-on": {
+      "type": "string",
+      "description": "click / -hover / -focus, open-delay, close-delay - activator triggers, used with the `activator` slot"
+    },
+    "open-on-click": {
+      "type": "string"
+    },
+    "open-on-focus": {
+      "type": "string"
+    },
+    "open-on-hover": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-avatar": {
+      "type": "string",
+      "description": "leading avatar image URL or initials"
+    },
+    "prepend-icon": {
+      "type": "string",
+      "description": "leading icon glyph"
+    },
+    "queue-gap": {
+      "type": "string",
+      "description": "pixels between stacked snackbars"
+    },
+    "queue-index": {
+      "type": "string",
+      "description": "position in a stack, offsets the snackbar by queue-gap"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "reverse-timer": {
+      "type": "string",
+      "description": "the countdown bar fills up instead of depleting"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false,
+      "description": "pill / lg rounding"
+    },
+    "target": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "timeout": {
+      "type": "string",
+      "description": "auto-dismiss ms; -1 keeps it open (alias: duration, default 5000)"
+    },
+    "timer": {
+      "type": "string",
+      "description": "show a countdown bar (boolean or a token color)"
+    },
+    "timer-color": {
+      "type": "string",
+      "description": "explicit countdown bar color"
+    },
+    "title": {
+      "type": "string",
+      "description": "bold headline above the message"
+    },
+    "transition": {
+      "type": "string",
+      "description": "named enter animation, or false/none target, origin - pin the snackbar to an element instead of a viewport edge"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "flat",
+        "elevated",
+        "tonal",
+        "outlined",
+        "text"
+      ],
+      "description": "flat | elevated | tonal | outlined | text"
+    },
+    "vertical": {
+      "type": "string",
+      "description": "stack the actions below the text"
+    },
+    "width": {
+      "type": "string"
+    },
+    "z-index": {
+      "type": "string",
+      "description": "stacking order"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "update:model-value",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default",
+    "actions",
+    "activator"
+  ],
+  "source": "src/components/snackbar.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

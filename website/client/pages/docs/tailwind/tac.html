@@ -1,25 +1,27 @@
-<h1>Using with Tailwind</h1>
-<p>DuVay and Tailwind coexist cleanly. Use DuVay components for structure and Tailwind utilities for one-off tweaks — DuVay for rigidity, Tailwind for fluidity.</p>
+<doc-layout>
+  <h1>Using with Tailwind</h1>
+  <p>DuVay and Tailwind coexist cleanly. Use DuVay components for structure and Tailwind utilities for one-off tweaks — DuVay for rigidity, Tailwind for fluidity.</p>
 
-<h2>No class collisions</h2>
-<p>DuVay namespaces everything under the <code>w-</code> prefix and <code>&lt;w-*&gt;</code> custom elements, so its classes never clash with Tailwind utilities. Its reset only touches base elements that Tailwind's Preflight already handles compatibly, and its aggressive content resets are scoped to <code>.w-body</code>, <code>.w-app</code>, and <code>.w-reset</code> wrappers.</p>
+  <h2>No class collisions</h2>
+  <p>DuVay namespaces everything under the <code>w-</code> prefix and <code>&lt;w-*&gt;</code> custom elements, so its classes never clash with Tailwind utilities. Its reset only touches base elements that Tailwind's Preflight already handles compatibly, and its aggressive content resets are scoped to <code>.w-body</code>, <code>.w-app</code>, and <code>.w-reset</code> wrappers.</p>
 
-<h2>Control the override direction</h2>
-<p>DuVay component classes and Tailwind utilities share the same specificity, so without help the winner depends on load order. Import DuVay into a lower <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">cascade layer</a> so Tailwind utilities always win.</p>
+  <h2>Control the override direction</h2>
+  <p>DuVay component classes and Tailwind utilities share the same specificity, so without help the winner depends on load order. Import DuVay into a lower <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">cascade layer</a> so Tailwind utilities always win.</p>
 
-<p>Tailwind v4:</p>
-<pre class="code-block"><code>@layer duvay, theme, base, components, utilities;
-@import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
-@import "tailwindcss";</code></pre>
+  <p>Tailwind v4:</p>
+  <pre class="code-block"><code>@layer duvay, theme, base, components, utilities;
+  @import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
+  @import "tailwindcss";</code></pre>
 
-<p>Tailwind v3:</p>
-<pre class="code-block"><code>@layer duvay;
-@import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
-@tailwind base;
-@tailwind components;
-@tailwind utilities;</code></pre>
+  <p>Tailwind v3:</p>
+  <pre class="code-block"><code>@layer duvay;
+  @import "https://d31ma.github.io/DUVAY/latest/duvay.css" layer(duvay);
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;</code></pre>
 
-<h2>Result</h2>
-<p>Now a DuVay button takes DuVay's styling and Tailwind's radius, regardless of source order:</p>
-<pre class="code-block"><code>&lt;button class="w-btn w-btn-filled rounded-full"&gt;Save&lt;/button&gt;</code></pre>
-<p>DuVay's few <code>!important</code> rules (<code>[hidden]</code>, reduced-motion) still hold, since <code>!important</code> inverts layer precedence.</p>
+  <h2>Result</h2>
+  <p>Now a DuVay button takes DuVay's styling and Tailwind's radius, regardless of source order:</p>
+  <pre class="code-block"><code>&lt;button class="w-btn w-btn-filled rounded-full"&gt;Save&lt;/button&gt;</code></pre>
+  <p>DuVay's few <code>!important</code> rules (<code>[hidden]</code>, reduced-motion) still hold, since <code>!important</code> inverts layer precedence.</p>
+</doc-layout>

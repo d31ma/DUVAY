@@ -229,7 +229,9 @@ class WSelect extends WElement {
   get value() { return this._attr('value', ''); }
   set value(v) { this._silentSet('value', v == null ? '' : String(v)); this._syncValue(); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get name() { return this._attr('name', ''); }
   get label() { return this._attr('label', ''); }
   get hint() { return this._attr('hint', ''); }

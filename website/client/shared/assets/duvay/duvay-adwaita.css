@@ -1,0 +1,9 @@
+/* DuVay — full framework with the Adwaita (GNOME) skin preapplied.
+ *
+ * Equivalent to importing duvay.css and platforms/adwaita.css yourself. The skin
+ * only activates under `w-os="adwaita"`, which src/duvay.js sets automatically
+ * from the user agent unless the attribute is already present.
+ */
+@import "./duvay.css";
+@import "./platforms/adwaita.css";
+@import "./platforms/web.css";

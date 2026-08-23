@@ -1,6 +1,5 @@
 /* <w-time-picker> — DuVay component module */
-import { wBoolAttr, wNumberList, wValue } from './utils.js';
-
+import { wBoolAttr, wNumberList, wSetValue, wValue } from './utils.js';
 function parseTime(value) {
   const match = String(value || '').trim().toLowerCase().match(/^(\d{1,2})(?::(\d{1,2}))?(?::(\d{1,2}))?\s*([ap]m)?$/);
   const hour = match ? Math.max(0, Math.min(23, parseInt(match[1], 10) || 0)) : 12;
@@ -48,6 +47,7 @@ export class WTimePicker extends WElement {
     'divided', 'ampm-in-title', 'variant', 'disabled', 'readonly',
   ];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return wValue(this, '12:00'); }
   get label() { return this._attr('label', 'Time'); }
   get title() { return this._attr('title', 'Select time'); }
@@ -80,7 +80,9 @@ export class WTimePicker extends WElement {
   get divided() { return wBoolAttr(this, 'divided'); }
   get ampmInTitle() { return wBoolAttr(this, 'ampm-in-title'); }
   get disabled() { return wBoolAttr(this, 'disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return wBoolAttr(this, 'readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get color() { return this._attr('color', 'primary'); }
   get elevation() { return this._attr('elevation', ''); }
   get density() { return this._attr('density', ''); }

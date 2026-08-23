@@ -1,0 +1,231 @@
+{
+  "$description": "DuVay BottomSheet — Core contract, tier 2.",
+  "name": "BottomSheet",
+  "tier": 2,
+  "names": {
+    "web": "w-bottom-sheet",
+    "apple": "DuVayBottomSheet",
+    "android": "DuVayModalBottomSheet",
+    "windows": "DuVayBottomSheet",
+    "linux": "duvay_bottom_sheet"
+  },
+  "accessibility": {
+    "role": "dialog",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "capture-focus": {
+      "type": "string"
+    },
+    "close-delay": {
+      "type": "string"
+    },
+    "close-on-back": {
+      "type": "string",
+      "description": "the browser back button dismisses it"
+    },
+    "close-on-content-click": {
+      "type": "string",
+      "description": "a click inside the content closes it"
+    },
+    "color": {
+      "type": "string"
+    },
+    "contained": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "description": "class, width, height     - the content surface"
+    },
+    "content-class": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "fullscreen": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "inset": {
+      "type": "boolean",
+      "default": false
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "no-click-animation": {
+      "type": "string"
+    },
+    "offset": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string"
+    },
+    "open": {
+      "type": "string",
+      "description": "delay, close-delay          - hover/focus delays in ms"
+    },
+    "open-delay": {
+      "type": "string"
+    },
+    "open-on": {
+      "type": "string",
+      "description": "click / -hover / -focus  - activator triggers (click defaults on)"
+    },
+    "open-on-click": {
+      "type": "string"
+    },
+    "open-on-focus": {
+      "type": "string"
+    },
+    "open-on-hover": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "retain": {
+      "type": "string",
+      "description": "focus, capture-focus      - Tab focus trap (both default on)"
+    },
+    "retain-focus": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrim": {
+      "type": "string"
+    },
+    "scrollable": {
+      "type": "string"
+    },
+    "stick-to-target": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "transition": {
+      "type": "string",
+      "description": "named enter animation, or false/none target, origin, offset,"
+    },
+    "viewport": {
+      "type": "string",
+      "description": "margin, stick-to-target - connected placement against an element"
+    },
+    "viewport-margin": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "z-index": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "activator",
+    "default"
+  ],
+  "source": "src/components/bottom-sheet.js",
+  "inheritsFrom": [
+    "src/components/overlay.js",
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

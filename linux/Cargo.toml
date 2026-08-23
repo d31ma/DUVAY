@@ -1,0 +1,33 @@
+# DuVay for Linux — Phase 4 of CROSS-PLATFORM-PLAN.md.
+#
+# The crate is split so the contract-bearing code builds without GTK:
+#   default        tokens + behaviour only. `cargo test` runs the conformance
+#                  suite on any machine, including CI runners with no GTK.
+#   feature "gtk"  the gtk4-rs / libadwaita widget layer (GNOME).
+#
+# GTK4 is a heavy system dependency (pkg-config, glib, cairo, pango). Gating it
+# behind a feature means a token change can be verified everywhere, and only the
+# widget work needs the full stack.
+
+[package]
+name = "duvay"
+version = "26.34.3"
+edition = "2021"
+license = "MIT"
+description = "DuVay design system for GTK4 / libadwaita"
+repository = "https://github.com/d31ma/DUVAY"
+
+[features]
+default = []
+gtk = ["dep:gtk4", "dep:libadwaita"]
+
+[dependencies]
+# v4_12 unlocks gtk::accessible and CssProvider::load_from_string, which the contract needs to set accessible
+# names explicitly. GNOME 46 ships GTK 4.14, so this is a conservative floor.
+gtk4 = { version = "0.11", optional = true, features = ["v4_12"] }
+# v1_5 is the floor for AdwDialog / AdwAlertDialog (libadwaita 1.5, GNOME 46).
+libadwaita = { version = "0.9", optional = true, features = ["v1_5"] }
+
+[dev-dependencies]
+# The conformance runner walks a small, machine-generated JSON tree.
+serde_json = "1"

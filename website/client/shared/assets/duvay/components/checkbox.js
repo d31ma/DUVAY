@@ -43,8 +43,7 @@
  */
 
 import WIcons from '../icons.js';
-import { wValueList } from './utils.js';
-
+import { wSetValue, wValueList } from './utils.js';
 /* Shared VInput-style surface for selection controls: affix icons, the
  * hint / messages / error-messages details row, and the `validate-on` gate.
  * <w-checkbox> (plus <w-radio> and <w-checkbox-btn>, which extend it) and
@@ -217,9 +216,13 @@ export class WCheckbox extends wSelectionSurface(WElement) {
   get checked()       { return this._deriveChecked(); }
   set checked(v)      { v ? this.setAttribute('checked', '') : this.removeAttribute('checked'); }
   get indeterminate() { return this._bool('indeterminate'); }
+  set indeterminate(value) { this.toggleAttribute('indeterminate', !!value); }
   get disabled()      { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly()      { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get name()          { return this._attr('name', ''); }
+  set value(v) { wSetValue(this, v); }
   get value()         { return this._attr('value', 'on'); }
   get color()         { return this._attr('color', ''); }
   get size()          { return this._attr('size', 'md'); }

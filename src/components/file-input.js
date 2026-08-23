@@ -258,7 +258,9 @@ export class WFileInput extends WElement {
   get accept() { return wValueList(this._attr('accept', '')).join(','); }
   get multiple() { return this._bool('multiple'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get chips() { return this._bool('chips'); }
   get smallChips() { return this._bool('small-chips'); }
   get counter() { return this._bool('counter'); }

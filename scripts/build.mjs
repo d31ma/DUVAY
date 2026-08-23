@@ -36,6 +36,18 @@ const CSS_INDEXES = [
   'forms.css',
 ];
 
+// Five OS skins, each shipped as its own flattened entrypoint. Deliberately
+// NOT concatenated into duvay.css: at ~554 KB minified today, a five-skin
+// mega-bundle would be disqualifying. Consumers pick one.
+//
+// `android`, `windows` and `linux` are alias entrypoints for `material`,
+// `fluent` and `adwaita`: the skin files carry the vendor's design-language
+// name, but most developers look for the operating system. Both are built and
+// both `w-os` values activate the same skin.
+const PLATFORMS = ['ios', 'material', 'macos', 'fluent', 'adwaita'];
+const PLATFORM_ALIASES = ['android', 'windows', 'linux'];
+const ENTRYPOINTS = [...PLATFORMS, ...PLATFORM_ALIASES];
+
 const CSS_IMPORT_RE = /@import\s+(?:url\()?["']([^"']+)["']\)?\s*;/g;
 
 function resolveCssPath(from, specifier) {
@@ -72,6 +84,13 @@ async function copyCssEntrypoints() {
   for (const entry of await readdir(join(SRC, 'components'))) {
     if (!entry.endsWith('.css')) continue;
     await copyFile(join(SRC, 'components', entry), join(componentDist, entry));
+  }
+
+  // Platform skins, importable on their own alongside an existing duvay.css.
+  const platformDist = join(DIST, 'platforms');
+  await mkdir(platformDist, { recursive: true });
+  for (const os of [...PLATFORMS, 'web']) {
+    await copyFile(join(SRC, 'platforms', `${os}.css`), join(platformDist, `${os}.css`));
   }
 }
 
@@ -140,6 +159,13 @@ async function buildDist() {
   await $`bun build ${join(DIST, 'core.css')} --minify --outfile ${join(DIST, 'core.min.css')}`.quiet();
   await $`bun build ${join(DIST, 'duvay.css')} --minify --outfile ${join(DIST, 'duvay.min.css')}`.quiet();
 
+  // One flattened bundle per OS skin — full + minified.
+  for (const os of ENTRYPOINTS) {
+    const full = join(DIST, `duvay-${os}.css`);
+    await writeFile(full, await flattenCss(join(SRC, `duvay-${os}.css`)));
+    await $`bun build ${full} --minify --outfile ${join(DIST, `duvay-${os}.min.css`)}`.quiet();
+  }
+
   // Behaviour layer (duvay.js) — full + minified.
   await copyFile(join(SRC, 'duvay.js'), join(DIST, 'duvay.js'));
   await $`bun build ${join(SRC, 'duvay.js')} --minify --outfile ${join(DIST, 'duvay.min.js')}`.quiet();
@@ -177,6 +203,11 @@ async function buildDist() {
   }
   console.log(`✓ versioned release ${VERSION} mirrored → ${relative(ROOT, WEB_VERSIONED_DIST)}`);
 }
+
+// tokens/ is the source of truth — regenerate src/tokens.css and src/themes.css
+// before anything reads them, so a stale committed CSS file cannot leak into a
+// build. See scripts/tokens-build.mjs.
+await $`bun ${join(ROOT, 'scripts', 'tokens-build.mjs')}`;
 
 await syncWebAssets();
 await buildDist();

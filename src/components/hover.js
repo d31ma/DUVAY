@@ -6,6 +6,7 @@ export class WHover extends WElement {
 
   get active() { return wBoolAttr(this, 'active') || wBoolAttr(this, 'model-value'); }
   get disabled() { return wBoolAttr(this, 'disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get openDelay() { return wNumberAttr(this, 'open-delay', 0); }
   get closeDelay() { return wNumberAttr(this, 'close-delay', 0); }
 

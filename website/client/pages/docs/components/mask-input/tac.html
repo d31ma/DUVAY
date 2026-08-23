@@ -1,8 +1,10 @@
-<h1>Mask Input</h1>
-<p>A full text field with deterministic masking. Tokens are <code>#</code> for digits, <code>A</code> for letters, <code>N</code> for alphanumerics, and <code>X</code> for any character. Set <code>return-masked-value</code> when the model should keep literals.</p>
+<doc-layout>
+  <h1>Mask Input</h1>
+  <p>A full text field with deterministic masking. Tokens are <code>#</code> for digits, <code>A</code> for letters, <code>N</code> for alphanumerics, and <code>X</code> for any character. Set <code>return-masked-value</code> when the model should keep literals.</p>
 
-<h2>Example</h2>
-<demo-compare>
-  <div slot="css"><label class="w-text-field"><span class="w-text-field-label">Phone</span><input class="w-text-field-input" value="(416) 555-0199" /></label></div>
-  <div slot="wc"><w-mask-input label="Phone" mask="(###) ###-####" value="4165550199"></w-mask-input></div>
-</demo-compare>
+  <h2>Example</h2>
+  <demo-compare>
+    <div slot="css"><label class="w-text-field"><span class="w-text-field-label">Phone</span><input class="w-text-field-input" value="(416) 555-0199" /></label></div>
+    <div slot="wc"><w-mask-input label="Phone" mask="(###) ###-####" value="4165550199"></w-mask-input></div>
+  </demo-compare>
+</doc-layout>

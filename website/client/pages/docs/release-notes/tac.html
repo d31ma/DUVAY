@@ -1,93 +1,107 @@
-<h1>Release notes</h1>
-<p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
+<doc-layout>
+  <h1>Release notes</h1>
+  <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
 
-<h2>26.34.03</h2>
-<p><em>Released 2026-08-19</em></p>
+  <h2>26.34.07</h2>
+  <p><em>Released 2026-08-23</em></p>
 
-<h3>Highlights</h3>
-<ul>
-  <li>Restores the non-zero corner radius scale, so components render with rounded corners again instead of square ones.</li>
-  <li><code>w-btn</code> forwards authored ARIA state — <code>aria-pressed</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-haspopup</code>, <code>aria-current</code>, <code>aria-labelledby</code>, <code>aria-describedby</code> — to the rendered control, which is the element assistive technology exposes. <code>aria-pressed</code> is withheld from the link form, where it is not valid.</li>
-  <li>The progress components forward <code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> onto the element carrying <code>role="progressbar"</code>, so the indicator is no longer unnamed.</li>
-  <li>Adds a <a href="/docs/tailwind">Using with Tailwind</a> guide covering namespace safety and the cascade layer import that keeps Tailwind utilities winning.</li>
-</ul>
+  <h3>Highlights</h3>
+  <ul>
+    <li>Five platform skins selected with <code>w-os</code> on <code>&lt;html&gt;</code> — <code>ios</code>, <code>android</code>/<code>material</code>, <code>macos</code>, <code>windows</code>/<code>fluent</code>, <code>linux</code>/<code>adwaita</code> — each as its own entrypoint (<code>duvay-&lt;os&gt;.css</code>) or layered from <code>platforms/</code>. Auto-detected from the user agent; an explicit attribute always wins. See <a href="/docs/platform-skins">Platform skins</a>.</li>
+    <li><code>w-density</code> rescales control geometry orthogonally to theme and skin; compact stays above the WCAG 2.5.8 AA touch-target minimum.</li>
+    <li>The design tokens are now DTCG JSON under <code>tokens/</code>, generating <code>tokens.css</code> and <code>themes.css</code>, with automated contrast and skin-rule gates.</li>
+    <li>Every component gains property setters (<code>value</code>, <code>disabled</code>, <code>checked</code>, …), so frameworks that bind by property work without adapters.</li>
+    <li>Native Tier 1 libraries — SwiftUI, Jetpack Compose, WinUI 3, GTK4/libadwaita — pass a shared 116-vector conformance suite; the parity matrix only advertises human-verified support.</li>
+  </ul>
 
-<h2>26.31.06</h2>
-<p><em>Released 2026-08-01</em></p>
+  <h2>26.34.03</h2>
+  <p><em>Released 2026-08-19</em></p>
 
-<h3>Highlights</h3>
-<ul>
-  <li>Completes component-name coverage against the pinned Vuetify 4.1.7 inventory, including avatar groups, command palettes, range and month pickers, heatmaps, highlights, mask inputs, pie charts, unified progress, and video controls.</li>
-  <li>Adds a generated API inventory and fallback docs pages for every registered DuVay web component and every declared attribute.</li>
-  <li>Adds browser behavior tests for the new components and corrects the source scanner so parity and API documentation only count attributes implemented by the component being inspected.</li>
-  <li>Improves command-palette semantics, preserves keyboard focus while video controls update, keeps new visualizations contained on narrow screens, and hardens inline color inputs.</li>
-</ul>
+  <h3>Highlights</h3>
+  <ul>
+    <li>Restores the non-zero corner radius scale, so components render with rounded corners again instead of square ones.</li>
+    <li><code>w-btn</code> forwards authored ARIA state — <code>aria-pressed</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-haspopup</code>, <code>aria-current</code>, <code>aria-labelledby</code>, <code>aria-describedby</code> — to the rendered control, which is the element assistive technology exposes. <code>aria-pressed</code> is withheld from the link form, where it is not valid.</li>
+    <li>The progress components forward <code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> onto the element carrying <code>role="progressbar"</code>, so the indicator is no longer unnamed.</li>
+    <li>Adds a <a href="/docs/tailwind">Using with Tailwind</a> guide covering namespace safety and the cascade layer import that keeps Tailwind utilities winning.</li>
+  </ul>
 
-<h2>26.31.02</h2>
-<p><em>Released 2026-07-27</em></p>
+  <h2>26.31.06</h2>
+  <p><em>Released 2026-08-01</em></p>
 
-<h3>Breaking</h3>
-<ul>
-  <li>DuVay is no longer published to any package registry. There is no <code>npm install</code> path — use the hosted GitHub Pages URLs, or vendor the files. Bare imports such as <code>@import "@d31ma/duvay-css/core.css"</code> move to <code>@import "https://d31ma.github.io/DUVAY/latest/core.css"</code>.</li>
-</ul>
+  <h3>Highlights</h3>
+  <ul>
+    <li>Completes component-name coverage against the pinned Vuetify 4.1.7 inventory, including avatar groups, command palettes, range and month pickers, heatmaps, highlights, mask inputs, pie charts, unified progress, and video controls.</li>
+    <li>Adds a generated API inventory and fallback docs pages for every registered DuVay web component and every declared attribute.</li>
+    <li>Adds browser behavior tests for the new components and corrects the source scanner so parity and API documentation only count attributes implemented by the component being inspected.</li>
+    <li>Improves command-palette semantics, preserves keyboard focus while video controls update, keeps new visualizations contained on narrow screens, and hardens inline color inputs.</li>
+  </ul>
 
-<h2>26.31.01</h2>
-<p><em>Released 2026-07-27</em></p>
+  <h2>26.31.02</h2>
+  <p><em>Released 2026-07-27</em></p>
 
-<h3>Breaking</h3>
-<ul>
-  <li>The npm package is now <code>@d31ma/duvay-css</code>. Update installs and package imports from <code>duvay-css</code>; hosted GitHub Pages URLs are unchanged. <em>(Superseded by 26.31.02.)</em></li>
-</ul>
+  <h3>Breaking</h3>
+  <ul>
+    <li>DuVay is no longer published to any package registry. There is no <code>npm install</code> path — use the hosted GitHub Pages URLs, or vendor the files. Bare imports such as <code>@import "@d31ma/duvay-css/core.css"</code> move to <code>@import "https://d31ma.github.io/DUVAY/latest/core.css"</code>.</li>
+  </ul>
 
-<h3>Highlights</h3>
-<ul>
-  <li>Expanded Light DOM component behavior and API references across application, navigation, overlay, form, data-display, date and time, upload, and motion components.</li>
-  <li>Migrated the docs to the Tachyon <code>website/client/</code> layout and expanded component, feature, style, directive, accessibility, installation, and upgrade coverage.</li>
-  <li>Added common web-component sizing, hover elevation, and scoped-theme attributes.</li>
-  <li>Raised compact text to a 12px default floor and standardized coarse-pointer controls on a 44px minimum touch target.</li>
-  <li>Hardened rendered text and attributes plus high-risk button, FAB, upload, icon-adapter, and inline-style inputs.</li>
-  <li>Made documentation builds reproducible with a pinned, checksum-verified Tachyon binary.</li>
-  <li>Made registry publication, tagging, GitHub releases, and immutable Pages assets operate on one verified source commit.</li>
-</ul>
+  <h2>26.31.01</h2>
+  <p><em>Released 2026-07-27</em></p>
 
-<h2>26.27.06</h2>
-<p><em>Released 2026-07-04</em></p>
+  <h3>Breaking</h3>
+  <ul>
+    <li>The npm package is now <code>@d31ma/duvay-css</code>. Update installs and package imports from <code>duvay-css</code>; hosted GitHub Pages URLs are unchanged. <em>(Superseded by 26.31.02.)</em></li>
+  </ul>
 
-<h3>Added</h3>
-<ul>
-  <li>New documentation pages under Getting started: Wireframes, Unit testing, Upgrade guide, and Release notes.</li>
-</ul>
+  <h3>Highlights</h3>
+  <ul>
+    <li>Expanded Light DOM component behavior and API references across application, navigation, overlay, form, data-display, date and time, upload, and motion components.</li>
+    <li>Migrated the docs to the Tachyon <code>website/client/</code> layout and expanded component, feature, style, directive, accessibility, installation, and upgrade coverage.</li>
+    <li>Added common web-component sizing, hover elevation, and scoped-theme attributes.</li>
+    <li>Raised compact text to a 12px default floor and standardized coarse-pointer controls on a 44px minimum touch target.</li>
+    <li>Hardened rendered text and attributes plus high-risk button, FAB, upload, icon-adapter, and inline-style inputs.</li>
+    <li>Made documentation builds reproducible with a pinned, checksum-verified Tachyon binary.</li>
+    <li>Made registry publication, tagging, GitHub releases, and immutable Pages assets operate on one verified source commit.</li>
+  </ul>
 
-<h3>Changed</h3>
-<ul>
-  <li>The documentation sidebar's Getting started section now lists: Installation, Frequently asked questions, Wireframes, Unit testing, Browser support, Upgrade guide, Release notes, Contributing.</li>
-  <li>The documentation site chrome now uses DuVay web components consistently for its header and sidebar controls.</li>
-</ul>
+  <h2>26.27.06</h2>
+  <p><em>Released 2026-07-04</em></p>
 
-<h3>Fixed</h3>
-<ul>
-  <li>Multi-line code samples across the documentation now render with preserved line breaks.</li>
-  <li>The sidebar Installation item stays highlighted when it is the current page.</li>
-</ul>
+  <h3>Added</h3>
+  <ul>
+    <li>New documentation pages under Getting started: Wireframes, Unit testing, Upgrade guide, and Release notes.</li>
+  </ul>
 
-<h2>26.27.04</h2>
-<p><em>Released 2026-07-02</em></p>
+  <h3>Changed</h3>
+  <ul>
+    <li>The documentation sidebar's Getting started section now lists: Installation, Frequently asked questions, Wireframes, Unit testing, Browser support, Upgrade guide, Release notes, Contributing.</li>
+    <li>The documentation site chrome now uses DuVay web components consistently for its header and sidebar controls.</li>
+  </ul>
 
-<h3>Breaking</h3>
-<ul>
-  <li>Replaced every DuVay-owned <code>data&#45;w-*</code> attribute with the consistent <code>w-*</code> prefix across CSS, web components, motion helpers, documentation, examples, tests, and generated distribution assets. Applications using CSS-class components must rename hooks such as <code>data&#45;w-theme</code> to <code>w-theme</code> and <code>data&#45;w-dialog-open</code> to <code>w-dialog-open</code>.</li>
-</ul>
+  <h3>Fixed</h3>
+  <ul>
+    <li>Multi-line code samples across the documentation now render with preserved line breaks.</li>
+    <li>The sidebar Installation item stays highlighted when it is the current page.</li>
+  </ul>
 
-<h3>Changed</h3>
-<ul>
-  <li>Added uniform, responsive API references across component documentation.</li>
-  <li>Gave Bottom sheets, Icon buttons, Sheets, and Toolbars dedicated documentation routes instead of forwarding their sidebar entries to unrelated page anchors.</li>
-</ul>
+  <h2>26.27.04</h2>
+  <p><em>Released 2026-07-02</em></p>
 
-<h3>Added</h3>
-<ul>
-  <li>Added regression coverage that prevents legacy attribute prefixes, missing component API references, and broken sidebar destinations from returning.</li>
-</ul>
+  <h3>Breaking</h3>
+  <ul>
+    <li>Replaced every DuVay-owned <code>data&#45;w-*</code> attribute with the consistent <code>w-*</code> prefix across CSS, web components, motion helpers, documentation, examples, tests, and generated distribution assets. Applications using CSS-class components must rename hooks such as <code>data&#45;w-theme</code> to <code>w-theme</code> and <code>data&#45;w-dialog-open</code> to <code>w-dialog-open</code>.</li>
+  </ul>
 
-<h2>26.24.12</h2>
-<p><em>Initial published release.</em> Zero-dependency CSS framework with design tokens, light / dark / auto / high-contrast themes, the CSS-class component library, the Light DOM web component layer, and the documentation site.</p>
+  <h3>Changed</h3>
+  <ul>
+    <li>Added uniform, responsive API references across component documentation.</li>
+    <li>Gave Bottom sheets, Icon buttons, Sheets, and Toolbars dedicated documentation routes instead of forwarding their sidebar entries to unrelated page anchors.</li>
+  </ul>
+
+  <h3>Added</h3>
+  <ul>
+    <li>Added regression coverage that prevents legacy attribute prefixes, missing component API references, and broken sidebar destinations from returning.</li>
+  </ul>
+
+  <h2>26.24.12</h2>
+  <p><em>Initial published release.</em> Zero-dependency CSS framework with design tokens, light / dark / auto / high-contrast themes, the CSS-class component library, the Light DOM web component layer, and the documentation site.</p>
+</doc-layout>

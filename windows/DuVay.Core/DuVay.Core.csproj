@@ -1,0 +1,17 @@
+<!--
+  DuVay core for Windows — Phase 4 of CROSS-PLATFORM-PLAN.md.
+
+  Targets net9.0 (not net9.0-windows) on purpose: tokens and behaviour
+  carry the shared contract, and keeping them platform-neutral means
+  `dotnet test` runs the conformance suite on any CI runner. The WinUI 3
+  control library (windows/DuVay) is a separate, Windows-only project.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DuVay.Core</RootNamespace>
+  </PropertyGroup>
+</Project>

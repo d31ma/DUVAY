@@ -163,7 +163,9 @@ export class WDateInput extends WElement {
   get error() { return this._attr('error', ''); }
   get size() { return this._attr('size', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get name() { return this._attr('name', ''); }
   get min() { return this._attr('min', ''); }
   get max() { return this._attr('max', ''); }
