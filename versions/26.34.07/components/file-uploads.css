@@ -1,0 +1,366 @@
+/* DuVay — File Uploads component styles. */
+@import "../core.css";
+
+/* ── File upload ──────────────────────────────────────────────────────────── */
+.w-file-upload {
+  display: block;
+  width: 100%;
+}
+
+.w-file-upload-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-2);
+  min-height: 10rem;
+  padding: var(--w-space-xl);
+  border: 2px dashed var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+
+.w-file-upload-dropzone:hover:not(.w-file-upload-dropzone--disabled):not(.w-file-upload-dropzone--readonly) {
+  background: var(--w-hover);
+  border-color: var(--w-primary);
+}
+
+.w-file-upload-dropzone:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-file-upload-dropzone--dragover {
+  background: var(--w-primary-container);
+  border-color: var(--w-primary);
+  color: var(--w-on-primary-container);
+}
+
+/* `scrim` veils the dropzone while files hover it. `open-delay` / `close-delay`
+   hold the veil back on the way in and on the way out. */
+.w-file-upload-dropzone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--w-file-upload-scrim, var(--w-primary));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--w-transition-fast);
+  transition-delay: var(--w-file-upload-close-delay, 0ms);
+}
+
+.w-file-upload-dropzone--scrim.w-file-upload-dropzone--dragover::after {
+  opacity: 0.32;
+  transition-delay: var(--w-file-upload-open-delay, 0ms);
+}
+
+/* Error state: the manual `error` flag and any `error-messages`. */
+.w-field-error .w-file-upload-dropzone {
+  border-color: var(--w-error);
+}
+
+/* Label and details rows sit outside the dropzone. */
+.w-file-upload > .w-field-label {
+  display: block;
+  margin-bottom: var(--w-space-2);
+}
+
+.w-file-upload > .w-field-details {
+  margin-top: var(--w-space-2);
+}
+
+/* `prepend-icon` / `append-icon` sit beside the dropzone. */
+.w-file-upload-outer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-file-upload-outer > .w-file-upload-dropzone {
+  flex: 1 1 auto;
+}
+
+/* `inset-file-list` moves the list inside the dropzone. */
+.w-file-upload-dropzone--inset .w-file-upload-list {
+  width: 100%;
+  text-align: start;
+}
+
+.w-file-upload-dropzone--disabled,
+.w-file-upload-dropzone--readonly {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.w-file-upload-dropzone input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-file-upload-icon {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-3xl);
+  line-height: 1;
+}
+
+.w-file-upload-title {
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-file-upload-subtitle {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-md);
+  width: 100%;
+  max-width: var(--w-file-upload-divider-length, 12.5rem);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-divider::before,
+.w-file-upload-divider::after {
+  content: '';
+  flex: 1 1 auto;
+  height: var(--w-file-upload-divider-thickness, 1px);
+  background: var(--w-border);
+}
+
+.w-file-upload-browse {
+  /* Uses .w-btn.w-btn-tonal classes from markup */
+}
+
+.w-file-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-2);
+  margin-top: var(--w-space-md);
+}
+
+.w-file-upload-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: var(--w-size-md);
+  padding: var(--w-space-2) var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+}
+
+.w-file-upload-item-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-file-upload-item-size {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-item-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-file-upload-item-remove:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-file-upload-item-remove:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* Density variants */
+.w-file-upload-dropzone--density-compact {
+  flex-direction: row;
+  gap: var(--w-space-md);
+  min-height: var(--w-size-lg);
+  padding: var(--w-space-md) var(--w-space-lg);
+}
+
+.w-file-upload-dropzone--density-compact .w-file-upload-icon {
+  font-size: var(--w-font-xl);
+}
+
+.w-file-upload-dropzone--density-compact .w-file-upload-title,
+.w-file-upload-dropzone--density-compact .w-file-upload-subtitle,
+.w-file-upload-dropzone--density-compact .w-file-upload-divider {
+  display: none;
+}
+
+.w-file-upload-dropzone--density-comfortable {
+  min-height: 8rem;
+  padding: var(--w-space-lg);
+}
+
+/* ── File upload item ─────────────────────────────────────────────────────── */
+
+.w-file-upload-item-prepend,
+.w-file-upload-item-append {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.w-file-upload-item-prepend {
+  margin-inline-end: var(--w-file-upload-item-prepend-gap, 0px);
+}
+
+.w-file-upload-item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-file-upload-item-subtitle {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-file-upload-item-preview {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--w-radius-sm);
+  object-fit: cover;
+}
+
+a.w-file-upload-item {
+  color: inherit;
+  text-decoration: none;
+}
+
+.w-file-upload-item--link {
+  cursor: pointer;
+}
+
+.w-file-upload-item:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-file-upload-item--active,
+.w-file-upload-item--focused {
+  border-color: var(--w-primary);
+}
+
+.w-file-upload-item--active {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+}
+
+.w-file-upload-item--focused {
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-file-upload-item--nav {
+  border-radius: var(--w-radius-lg);
+  margin-inline: var(--w-space-2);
+}
+
+.w-file-upload-item--slim {
+  min-height: var(--w-size-sm);
+  padding-block: var(--w-space-1);
+}
+
+.w-file-upload-item--two-line { min-height: 4rem; }
+.w-file-upload-item--three-line { min-height: 5.5rem; }
+
+.w-file-upload-item--variant-tonal { background: var(--w-surface-container); }
+.w-file-upload-item--variant-text,
+.w-file-upload-item--variant-flat,
+.w-file-upload-item--variant-plain { border-color: transparent; }
+.w-file-upload-item--variant-plain { background: transparent; }
+.w-file-upload-item--variant-elevated {
+  border-color: transparent;
+  box-shadow: var(--w-shadow-sm);
+}
+
+/* ── File upload list ─────────────────────────────────────────────────────── */
+
+.w-file-upload-list--nav {
+  padding-inline: var(--w-space-2);
+}
+
+.w-file-upload-list--slim {
+  gap: var(--w-space-1);
+}
+
+.w-file-upload-list--two-line .w-file-upload-item { min-height: 4rem; }
+.w-file-upload-list--three-line .w-file-upload-item { min-height: 5.5rem; }
+
+.w-file-upload-list--nested {
+  margin-top: var(--w-space-2);
+  padding-inline-start: var(--w-file-upload-list-indent, var(--w-space-lg));
+}
+
+.w-file-upload-list-group-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  padding: var(--w-space-2) var(--w-space-md);
+  border-radius: var(--w-radius);
+  color: var(--w-text);
+  cursor: pointer;
+  font-weight: var(--w-font-weight-medium);
+  list-style: none;
+}
+
+.w-file-upload-list-group-header::-webkit-details-marker {
+  display: none;
+}
+
+.w-file-upload-list-group-header:hover {
+  background: var(--w-hover);
+}
+
+.w-file-upload-list-group-header:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-file-upload-list-group-icon {
+  color: var(--w-text-subtle);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-file-upload-dropzone,
+  .w-file-upload-dropzone::after,
+  .w-file-upload-item-remove {
+    transition: none;
+  }
+}
