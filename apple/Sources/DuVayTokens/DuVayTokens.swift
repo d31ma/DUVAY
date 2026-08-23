@@ -6,6 +6,14 @@ import SwiftUI
 public enum DuVayTokens {
 
     // MARK: - Dimensions (points)
+    public static let fontXs: CGFloat = 12
+    public static let fontSm: CGFloat = 12
+    public static let fontBase: CGFloat = 14
+    public static let fontMd: CGFloat = 15
+    public static let fontLg: CGFloat = 17
+    public static let fontXl: CGFloat = 20
+    public static let font2xl: CGFloat = 24
+    public static let font3xl: CGFloat = 36
     public static let space1: CGFloat = 4
     public static let space1_5: CGFloat = 6
     public static let space2: CGFloat = 8
@@ -24,17 +32,13 @@ public enum DuVayTokens {
     public static let space15: CGFloat = 60
     public static let space16: CGFloat = 64
     public static let space20: CGFloat = 80
-    public static let motionDistanceX: CGFloat = 24
-    public static let motionDistanceY: CGFloat = 12
-    public static let appBarBackdropBlur: CGFloat = 16
-    public static let radiusSm: CGFloat = 2
-    public static let radius: CGFloat = 4
-    public static let radiusMd: CGFloat = 6
-    public static let radiusLg: CGFloat = 8
-    public static let radiusXl: CGFloat = 12
-    public static let radiusPill: CGFloat = 999
-    public static let focusRingWidth: CGFloat = 2
-    public static let focusRingOffset: CGFloat = 2
+    public static let spaceXs: CGFloat = 4
+    public static let spaceSm: CGFloat = 8
+    public static let spaceMd: CGFloat = 12
+    public static let spaceLg: CGFloat = 16
+    public static let spaceXl: CGFloat = 20
+    public static let space2xl: CGFloat = 24
+    public static let space3xl: CGFloat = 32
     public static let touchMin: CGFloat = 44
     public static let sizeXs: CGFloat = 28
     public static let sizeSm: CGFloat = 32
@@ -59,28 +63,24 @@ public enum DuVayTokens {
     public static let iconGlyphMd: CGFloat = 20
     public static let iconGlyphLg: CGFloat = 24
     public static let iconGlyphXl: CGFloat = 28
-    public static let spaceXs: CGFloat = 4
-    public static let spaceSm: CGFloat = 8
-    public static let spaceMd: CGFloat = 12
-    public static let spaceLg: CGFloat = 16
-    public static let spaceXl: CGFloat = 20
-    public static let space2xl: CGFloat = 24
-    public static let space3xl: CGFloat = 32
+    public static let radiusSm: CGFloat = 2
+    public static let radius: CGFloat = 4
+    public static let radiusMd: CGFloat = 6
+    public static let radiusLg: CGFloat = 8
+    public static let radiusXl: CGFloat = 12
+    public static let radiusPill: CGFloat = 999
+    public static let focusRingWidth: CGFloat = 2
+    public static let focusRingOffset: CGFloat = 2
     public static let topbarHeight: CGFloat = 56
     public static let sidebarWidth: CGFloat = 232
     public static let drawerWidth: CGFloat = 256
     public static let drawerRailWidth: CGFloat = 72
     public static let mobileNavHeight: CGFloat = 64
-    public static let fontXs: CGFloat = 12
-    public static let fontSm: CGFloat = 12
-    public static let fontBase: CGFloat = 14
-    public static let fontMd: CGFloat = 15
-    public static let fontLg: CGFloat = 17
-    public static let fontXl: CGFloat = 20
-    public static let font2xl: CGFloat = 24
-    public static let font3xl: CGFloat = 36
     public static let gridGutter: CGFloat = 24
     public static let containerMax: CGFloat = 1200
+    public static let motionDistanceX: CGFloat = 24
+    public static let motionDistanceY: CGFloat = 12
+    public static let appBarBackdropBlur: CGFloat = 16
 
     // MARK: - Durations (seconds)
     public static let motionDurationFast: TimeInterval = 0.12

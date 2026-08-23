@@ -6,6 +6,14 @@ package ma.del.duvay
 object DuVayTokens {
 
     // Dimensions (dp)
+    const val fontXs: Double = 12.0
+    const val fontSm: Double = 12.0
+    const val fontBase: Double = 14.0
+    const val fontMd: Double = 15.0
+    const val fontLg: Double = 17.0
+    const val fontXl: Double = 20.0
+    const val font2xl: Double = 24.0
+    const val font3xl: Double = 36.0
     const val space1: Double = 4.0
     const val space1_5: Double = 6.0
     const val space2: Double = 8.0
@@ -24,17 +32,13 @@ object DuVayTokens {
     const val space15: Double = 60.0
     const val space16: Double = 64.0
     const val space20: Double = 80.0
-    const val motionDistanceX: Double = 24.0
-    const val motionDistanceY: Double = 12.0
-    const val appBarBackdropBlur: Double = 16.0
-    const val radiusSm: Double = 2.0
-    const val radius: Double = 4.0
-    const val radiusMd: Double = 6.0
-    const val radiusLg: Double = 8.0
-    const val radiusXl: Double = 12.0
-    const val radiusPill: Double = 999.0
-    const val focusRingWidth: Double = 2.0
-    const val focusRingOffset: Double = 2.0
+    const val spaceXs: Double = 4.0
+    const val spaceSm: Double = 8.0
+    const val spaceMd: Double = 12.0
+    const val spaceLg: Double = 16.0
+    const val spaceXl: Double = 20.0
+    const val space2xl: Double = 24.0
+    const val space3xl: Double = 32.0
     const val touchMin: Double = 44.0
     const val sizeXs: Double = 28.0
     const val sizeSm: Double = 32.0
@@ -59,28 +63,24 @@ object DuVayTokens {
     const val iconGlyphMd: Double = 20.0
     const val iconGlyphLg: Double = 24.0
     const val iconGlyphXl: Double = 28.0
-    const val spaceXs: Double = 4.0
-    const val spaceSm: Double = 8.0
-    const val spaceMd: Double = 12.0
-    const val spaceLg: Double = 16.0
-    const val spaceXl: Double = 20.0
-    const val space2xl: Double = 24.0
-    const val space3xl: Double = 32.0
+    const val radiusSm: Double = 2.0
+    const val radius: Double = 4.0
+    const val radiusMd: Double = 6.0
+    const val radiusLg: Double = 8.0
+    const val radiusXl: Double = 12.0
+    const val radiusPill: Double = 999.0
+    const val focusRingWidth: Double = 2.0
+    const val focusRingOffset: Double = 2.0
     const val topbarHeight: Double = 56.0
     const val sidebarWidth: Double = 232.0
     const val drawerWidth: Double = 256.0
     const val drawerRailWidth: Double = 72.0
     const val mobileNavHeight: Double = 64.0
-    const val fontXs: Double = 12.0
-    const val fontSm: Double = 12.0
-    const val fontBase: Double = 14.0
-    const val fontMd: Double = 15.0
-    const val fontLg: Double = 17.0
-    const val fontXl: Double = 20.0
-    const val font2xl: Double = 24.0
-    const val font3xl: Double = 36.0
     const val gridGutter: Double = 24.0
     const val containerMax: Double = 1200.0
+    const val motionDistanceX: Double = 24.0
+    const val motionDistanceY: Double = 12.0
+    const val appBarBackdropBlur: Double = 16.0
 
     // Durations (milliseconds)
     const val motionDurationFastMs: Int = 120

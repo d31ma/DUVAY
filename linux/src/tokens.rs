@@ -5,6 +5,14 @@
 
 /// Dimensions in logical pixels.
 pub mod dimension {
+    pub const FONT_XS: f64 = 12.0;
+    pub const FONT_SM: f64 = 12.0;
+    pub const FONT_BASE: f64 = 14.0;
+    pub const FONT_MD: f64 = 15.0;
+    pub const FONT_LG: f64 = 17.0;
+    pub const FONT_XL: f64 = 20.0;
+    pub const FONT_2XL: f64 = 24.0;
+    pub const FONT_3XL: f64 = 36.0;
     pub const SPACE_1: f64 = 4.0;
     pub const SPACE_1_5: f64 = 6.0;
     pub const SPACE_2: f64 = 8.0;
@@ -23,17 +31,13 @@ pub mod dimension {
     pub const SPACE_15: f64 = 60.0;
     pub const SPACE_16: f64 = 64.0;
     pub const SPACE_20: f64 = 80.0;
-    pub const MOTION_DISTANCE_X: f64 = 24.0;
-    pub const MOTION_DISTANCE_Y: f64 = 12.0;
-    pub const APP_BAR_BACKDROP_BLUR: f64 = 16.0;
-    pub const RADIUS_SM: f64 = 2.0;
-    pub const RADIUS: f64 = 4.0;
-    pub const RADIUS_MD: f64 = 6.0;
-    pub const RADIUS_LG: f64 = 8.0;
-    pub const RADIUS_XL: f64 = 12.0;
-    pub const RADIUS_PILL: f64 = 999.0;
-    pub const FOCUS_RING_WIDTH: f64 = 2.0;
-    pub const FOCUS_RING_OFFSET: f64 = 2.0;
+    pub const SPACE_XS: f64 = 4.0;
+    pub const SPACE_SM: f64 = 8.0;
+    pub const SPACE_MD: f64 = 12.0;
+    pub const SPACE_LG: f64 = 16.0;
+    pub const SPACE_XL: f64 = 20.0;
+    pub const SPACE_2XL: f64 = 24.0;
+    pub const SPACE_3XL: f64 = 32.0;
     pub const TOUCH_MIN: f64 = 44.0;
     pub const SIZE_XS: f64 = 28.0;
     pub const SIZE_SM: f64 = 32.0;
@@ -58,28 +62,24 @@ pub mod dimension {
     pub const ICON_GLYPH_MD: f64 = 20.0;
     pub const ICON_GLYPH_LG: f64 = 24.0;
     pub const ICON_GLYPH_XL: f64 = 28.0;
-    pub const SPACE_XS: f64 = 4.0;
-    pub const SPACE_SM: f64 = 8.0;
-    pub const SPACE_MD: f64 = 12.0;
-    pub const SPACE_LG: f64 = 16.0;
-    pub const SPACE_XL: f64 = 20.0;
-    pub const SPACE_2XL: f64 = 24.0;
-    pub const SPACE_3XL: f64 = 32.0;
+    pub const RADIUS_SM: f64 = 2.0;
+    pub const RADIUS: f64 = 4.0;
+    pub const RADIUS_MD: f64 = 6.0;
+    pub const RADIUS_LG: f64 = 8.0;
+    pub const RADIUS_XL: f64 = 12.0;
+    pub const RADIUS_PILL: f64 = 999.0;
+    pub const FOCUS_RING_WIDTH: f64 = 2.0;
+    pub const FOCUS_RING_OFFSET: f64 = 2.0;
     pub const TOPBAR_HEIGHT: f64 = 56.0;
     pub const SIDEBAR_WIDTH: f64 = 232.0;
     pub const DRAWER_WIDTH: f64 = 256.0;
     pub const DRAWER_RAIL_WIDTH: f64 = 72.0;
     pub const MOBILE_NAV_HEIGHT: f64 = 64.0;
-    pub const FONT_XS: f64 = 12.0;
-    pub const FONT_SM: f64 = 12.0;
-    pub const FONT_BASE: f64 = 14.0;
-    pub const FONT_MD: f64 = 15.0;
-    pub const FONT_LG: f64 = 17.0;
-    pub const FONT_XL: f64 = 20.0;
-    pub const FONT_2XL: f64 = 24.0;
-    pub const FONT_3XL: f64 = 36.0;
     pub const GRID_GUTTER: f64 = 24.0;
     pub const CONTAINER_MAX: f64 = 1200.0;
+    pub const MOTION_DISTANCE_X: f64 = 24.0;
+    pub const MOTION_DISTANCE_Y: f64 = 12.0;
+    pub const APP_BAR_BACKDROP_BLUR: f64 = 16.0;
 }
 
 /// Durations in milliseconds.

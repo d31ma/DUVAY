@@ -21,9 +21,11 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 
 export async function loadDocs(tokensDir) {
   const docs = [];
-  for (const group of await readdir(tokensDir, { withFileTypes: true })) {
+  // readdir order is filesystem-dependent (APFS ≠ ext4); sort both levels so
+  // every generator downstream emits identical output on every machine.
+  for (const group of (await readdir(tokensDir, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
     if (!group.isDirectory()) continue;
-    for (const file of await readdir(join(tokensDir, group.name))) {
+    for (const file of (await readdir(join(tokensDir, group.name))).sort()) {
       if (!file.endsWith('.json')) continue;
       const doc = JSON.parse(await readFile(join(tokensDir, group.name, file), 'utf8'));
       docs.push({ ...doc, $file: `${group.name}/${file}` });

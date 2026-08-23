@@ -97,7 +97,7 @@ async function model() {
   const docs = await loadDocs(join(ROOT, 'tokens'));
 
   const base = new Map();
-  for (const doc of docs.filter((d) => meta(d).target === 'src/tokens.css')) {
+  for (const doc of docs.filter((d) => meta(d).target === 'src/tokens.css').sort((a, b) => meta(a).order - meta(b).order)) {
     for (const [name, token] of tokenEntries(doc)) base.set(name, token.$value);
   }
 
