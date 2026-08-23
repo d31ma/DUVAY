@@ -1,40 +1,42 @@
-<h1>Icon buttons</h1>
-<p>Icon buttons provide compact actions for familiar symbols. Always include an accessible name.</p>
+<doc-layout>
+  <h1>Icon buttons</h1>
+  <p>Icon buttons provide compact actions for familiar symbols. Always include an accessible name.</p>
 
-<h2>Variants</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-row ga-2 align-center">
-      <button class="w-btn w-btn-icon w-btn-filled" aria-label="Add">+</button>
-      <button class="w-btn w-btn-icon w-btn-outlined" aria-label="Favorite">&#9734;</button>
-      <button class="w-btn w-btn-icon w-btn-text" aria-label="More options">&#8942;</button>
+  <h2>Variants</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-row ga-2 align-center">
+        <button class="w-btn w-btn-icon w-btn-filled" aria-label="Add">+</button>
+        <button class="w-btn w-btn-icon w-btn-outlined" aria-label="Favorite">&#9734;</button>
+        <button class="w-btn w-btn-icon w-btn-text" aria-label="More options">&#8942;</button>
+      </div>
     </div>
-  </div>
-  <div slot="wc">
-    <div class="w-row ga-2 align-center">
-      <w-btn variant="icon" color="primary" aria-label="Add">+</w-btn>
-      <w-btn variant="icon" aria-label="Favorite">&#9734;</w-btn>
-      <w-btn variant="icon" aria-label="More options">&#8942;</w-btn>
+    <div slot="wc">
+      <div class="w-row ga-2 align-center">
+        <w-btn variant="icon" color="primary" aria-label="Add">+</w-btn>
+        <w-btn variant="icon" aria-label="Favorite">&#9734;</w-btn>
+        <w-btn variant="icon" aria-label="More options">&#8942;</w-btn>
+      </div>
     </div>
-  </div>
-</demo-compare>
+  </demo-compare>
 
-<h2>Sizes and states</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-row ga-2 align-center">
-      <button class="w-btn w-btn-icon w-btn-sm" aria-label="Small add">+</button>
-      <button class="w-btn w-btn-icon" aria-label="Add">+</button>
-      <button class="w-btn w-btn-icon w-btn-lg" aria-label="Large add">+</button>
-      <button class="w-btn w-btn-icon" aria-label="Unavailable action" disabled>+</button>
+  <h2>Sizes and states</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-row ga-2 align-center">
+        <button class="w-btn w-btn-icon w-btn-sm" aria-label="Small add">+</button>
+        <button class="w-btn w-btn-icon" aria-label="Add">+</button>
+        <button class="w-btn w-btn-icon w-btn-lg" aria-label="Large add">+</button>
+        <button class="w-btn w-btn-icon" aria-label="Unavailable action" disabled="disabled">+</button>
+      </div>
     </div>
-  </div>
-  <div slot="wc">
-    <div class="w-row ga-2 align-center">
-      <w-btn variant="icon" size="sm" aria-label="Small add">+</w-btn>
-      <w-btn variant="icon" aria-label="Add">+</w-btn>
-      <w-btn variant="icon" size="lg" aria-label="Large add">+</w-btn>
-      <w-btn variant="icon" aria-label="Unavailable action" disabled>+</w-btn>
+    <div slot="wc">
+      <div class="w-row ga-2 align-center">
+        <w-btn variant="icon" size="sm" aria-label="Small add">+</w-btn>
+        <w-btn variant="icon" aria-label="Add">+</w-btn>
+        <w-btn variant="icon" size="lg" aria-label="Large add">+</w-btn>
+        <w-btn variant="icon" aria-label="Unavailable action" disabled="disabled">+</w-btn>
+      </div>
     </div>
-  </div>
-</demo-compare>
+  </demo-compare>
+</doc-layout>

@@ -1,0 +1,300 @@
+{
+  "$description": "DuVay NumberInput — Core contract, tier 2.",
+  "name": "NumberInput",
+  "tier": 2,
+  "names": {
+    "web": "w-number-input",
+    "apple": "DuVayStepperField",
+    "android": "DuVayNumberField",
+    "windows": "DuVayNumberBox",
+    "linux": "duvay_spin_row"
+  },
+  "accessibility": {
+    "role": "spinbutton",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "append-inner-icon": {
+      "type": "string"
+    },
+    "autocomplete": {
+      "type": "string"
+    },
+    "autofocus": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center-affix": {
+      "type": "string"
+    },
+    "clear-icon": {
+      "type": "string"
+    },
+    "clearable": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "control-variant": {
+      "type": "enum",
+      "values": [
+        "default",
+        "stacked",
+        "split",
+        "hidden"
+      ],
+      "description": "default | stacked | split | hidden"
+    },
+    "counter": {
+      "type": "number"
+    },
+    "decimal-separator": {
+      "type": "string",
+      "description": "single character override (default \".\")"
+    },
+    "density": {
+      "type": "string"
+    },
+    "dirty": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error": {
+      "type": "string"
+    },
+    "error-messages": {
+      "type": "string"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false
+    },
+    "glow": {
+      "type": "string"
+    },
+    "group-separator": {
+      "type": "string",
+      "description": "single character override (default \",\") label, placeholder, hint, error, name, size, disabled, readonly"
+    },
+    "grouping": {
+      "type": "enum",
+      "values": [
+        "true",
+        "always",
+        "auto"
+      ],
+      "description": "true | always | auto | min2 for thousands separators"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false
+    },
+    "hide-input": {
+      "type": "string",
+      "description": "show only the stepper (implies the stacked variant)"
+    },
+    "hide-spin-buttons": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon-color": {
+      "type": "string"
+    },
+    "indent-details": {
+      "type": "string"
+    },
+    "inset": {
+      "type": "boolean",
+      "default": false,
+      "description": "tuck the controls inside the field with no divider"
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-errors": {
+      "type": "number"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string"
+    },
+    "min": {
+      "type": "number"
+    },
+    "min-fraction-digits": {
+      "type": "number",
+      "description": "minimum decimals to keep"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string"
+    },
+    "persistent-clear": {
+      "type": "string"
+    },
+    "persistent-counter": {
+      "type": "number"
+    },
+    "persistent-hint": {
+      "type": "string"
+    },
+    "persistent-placeholder": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "precision": {
+      "type": "string",
+      "description": "decimal places to display (default 0; \"null\" = no rounding)"
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "prepend-inner-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "reverse": {
+      "type": "string",
+      "description": "place the controls before the input"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "single-line": {
+      "type": "string"
+    },
+    "size": {
+      "type": "number"
+    },
+    "step": {
+      "type": "number",
+      "description": "increment/decrement amount (default 1)"
+    },
+    "suffix": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "string"
+    },
+    "validate-on": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string",
+      "description": "current number (clamped to min/max) min, max             - bounds (default: safe-integer range)"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "input",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/number-input.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

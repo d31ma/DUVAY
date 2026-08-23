@@ -1,0 +1,196 @@
+{
+  "$description": "DuVay Tooltip — Core contract, tier 1.",
+  "name": "Tooltip",
+  "tier": 1,
+  "names": {
+    "web": "w-tooltip",
+    "apple": "DuVayTooltip",
+    "android": "DuVayTooltip",
+    "windows": "DuVayToolTip",
+    "linux": "duvay_tooltip"
+  },
+  "accessibility": {
+    "role": "tooltip",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "close-delay": {
+      "type": "string"
+    },
+    "close-on-back": {
+      "type": "string"
+    },
+    "close-on-content-click": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "contained": {
+      "type": "string"
+    },
+    "content-class": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "interactive": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "no-click-animation": {
+      "type": "string"
+    },
+    "offset": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string"
+    },
+    "open": {
+      "type": "string"
+    },
+    "open-delay": {
+      "type": "string"
+    },
+    "open-on-click": {
+      "type": "string"
+    },
+    "open-on-focus": {
+      "type": "string"
+    },
+    "open-on-hover": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrim": {
+      "type": "string"
+    },
+    "stick-to-target": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "tooltip-id": {
+      "type": "string"
+    },
+    "transition": {
+      "type": "string"
+    },
+    "viewport-margin": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "z-index": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/tooltip.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

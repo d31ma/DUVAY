@@ -253,6 +253,7 @@ export class WOverlay extends WElement {
   get label() { return this._attr('label', 'Open overlay'); }
   get persistent() { return this._bool('persistent'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get contained() { return this._bool('contained'); }
   get absolute() { return this._bool('absolute'); }
   get location() { return this._attr('location', 'center'); }

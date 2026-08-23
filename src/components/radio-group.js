@@ -22,6 +22,7 @@
  */
 
 import { wSelectionSurface } from './checkbox.js';
+import { wSetValue } from './utils.js';
 
 export class WRadioGroup extends wSelectionSurface(WElement) {
   static attrs = ['name', 'value', 'label', 'disabled', 'inline'];
@@ -30,9 +31,11 @@ export class WRadioGroup extends wSelectionSurface(WElement) {
   static childProps = ['type', 'ripple', 'true-icon', 'false-icon', 'indeterminate-icon', 'error'];
 
   get name() { return this._attr('name', 'w-radio-group'); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _currentValue() { return this.value; }
   _rootSelector() { return '.w-radio-group'; }
   _errorClass() { return 'w-radio-group--error'; }

@@ -85,6 +85,7 @@ class WDialog extends WElement {
   get persistent() { return this._bool('persistent'); }
   get closeLabel() { return this._attr('close-label', 'Close'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get hasScrim() {
     const scrim = this.getAttribute('scrim');
     return scrim == null || !['false', '0', 'none', 'off'].includes(String(scrim).toLowerCase());

@@ -1,0 +1,686 @@
+{
+  "$description": "Typography",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 1,
+      "header": [
+        "/* DuVay — Design tokens",
+        " *",
+        " * Single source of truth for typography, spacing, shape, layout, elevation,",
+        " * and motion. Every value the framework paints with is exposed here so",
+        " * consumers can theme without touching component CSS.",
+        " *",
+        " * Naming: --w-<category>-<name>. Spacing exposes both a numeric scale",
+        " * (1, 2, 3, …, 20 — 4px steps) and a t-shirt scale (xs/sm/md/lg/xl/2xl/3xl).",
+        " * Pick either; the t-shirt names are aliases of the numeric scale.",
+        " */",
+        "",
+        "/* Token changelog — 2026-08-01",
+        " * --w-command-*: command palette sizing, overlay offset, and compact text gap.",
+        " * --w-highlight-opacity: default highlight wash strength.",
+        " * --w-heatmap-hover-scale: hover emphasis for heatmap cells.",
+        " * --w-pie-size / --w-pie-hover-scale: pie chart geometry and hover emphasis.",
+        " * --w-video-*-width: seek and volume control sizing.",
+        " * Affected components: command palette, highlight, heatmap, pie, and video.",
+        " *",
+        " * Token changelog — 2026-07-26",
+        " * --w-font-xs: raised to the 0.75rem legibility floor; affects compact labels,",
+        " *   buttons, tabs, text fields, switches, and pagination.",
+        " * --w-type-label-small-size: raised to the same floor; affects small label",
+        " *   typography utilities at every responsive tier.",
+        " * --w-touch-min: expressed in rem while retaining a 44 CSS-pixel default;",
+        " *   affects interactive controls that opt into the shared touch target.",
+        " * --w-icon-glyph-{xs,sm,md,lg,xl}: added as the shared icon-button glyph",
+        " *   scale; affects named sizes and the default glyph fallback in .w-icon-btn.",
+        " */",
+        ""
+      ],
+      "open": [
+        ":root {"
+      ],
+      "banner": "  /* ── Typography ─────────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "font-xs": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "    /* 12px */"
+      }
+    }
+  },
+  "font-sm": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "    /* 12px */"
+      }
+    }
+  },
+  "font-base": {
+    "$value": "0.875rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "   /* 14px */"
+      }
+    }
+  },
+  "font-md": {
+    "$value": "0.9375rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "  /* 15px */"
+      }
+    }
+  },
+  "font-lg": {
+    "$value": "1.0625rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "  /* 17px */"
+      }
+    }
+  },
+  "font-xl": {
+    "$value": "1.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "    /* 20px */"
+      }
+    }
+  },
+  "font-2xl": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "     /* 24px */"
+      }
+    }
+  },
+  "font-3xl": {
+    "$value": "2.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "    /* 36px */"
+      }
+    }
+  },
+  "type-display-large-size": {
+    "$value": "3.5625rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Vuetify / Material-style typography role tokens.",
+          "     Used by .w-text-display-* / headline / title / body / label classes. */"
+        ]
+      }
+    }
+  },
+  "type-display-large-line-height": {
+    "$value": "1.12",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-display-medium-size": {
+    "$value": "2.8125rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-display-medium-line-height": {
+    "$value": "1.16",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-display-small-size": {
+    "$value": "2.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-display-small-line-height": {
+    "$value": "1.22",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-large-size": {
+    "$value": "2rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-large-line-height": {
+    "$value": "1.25",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-medium-size": {
+    "$value": "1.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-medium-line-height": {
+    "$value": "1.29",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-small-size": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-headline-small-line-height": {
+    "$value": "1.33",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-large-size": {
+    "$value": "1.375rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-large-line-height": {
+    "$value": "1.27",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-medium-size": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-medium-line-height": {
+    "$value": "1.5",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-small-size": {
+    "$value": "0.875rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-small-line-height": {
+    "$value": "1.43",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-large-size": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-large-line-height": {
+    "$value": "1.5",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-medium-size": {
+    "$value": "0.875rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-medium-line-height": {
+    "$value": "1.43",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-small-size": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-small-line-height": {
+    "$value": "1.33",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-large-size": {
+    "$value": "0.875rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-large-line-height": {
+    "$value": "1.43",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-medium-size": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-medium-line-height": {
+    "$value": "1.33",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-small-size": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-small-line-height": {
+    "$value": "1.45",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-display-weight": {
+    "$value": "400",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "type-headline-weight": {
+    "$value": "400",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-large-weight": {
+    "$value": "400",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-title-weight": {
+    "$value": "500",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-body-weight": {
+    "$value": "400",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-label-weight": {
+    "$value": "500",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "type-letter-spacing": {
+    "$value": "0",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "font-weight-thin": {
+    "$value": "100",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "font-weight-light": {
+    "$value": "300",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "font-weight-normal": {
+    "$value": "400",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "font-weight-medium": {
+    "$value": "500",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "font-weight-semibold": {
+    "$value": "600",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "font-weight-bold": {
+    "$value": "700",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "font-weight-black": {
+    "$value": "900",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5
+      }
+    }
+  },
+  "font-family": {
+    "$value": "'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "font-family-heading": {
+    "$value": "var(--w-font-family)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "font-family-mono": {
+    "$value": "'IBM Plex Mono', ui-monospace, 'SF Mono', monospace",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "letter-spacing-tight": {
+    "$value": "-0.01em",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "letter-spacing-normal": {
+    "$value": "0",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "letter-spacing-wide": {
+    "$value": "0.04em",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "line-height-snug": {
+    "$value": "1.35",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "line-height-normal": {
+    "$value": "1.6",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "line-height-relaxed": {
+    "$value": "1.75",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

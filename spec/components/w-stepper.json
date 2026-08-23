@@ -1,0 +1,209 @@
+{
+  "$description": "DuVay Stepper — Core contract, tier 2.",
+  "name": "Stepper",
+  "tier": 2,
+  "names": {
+    "web": "w-stepper",
+    "apple": "DuVayStepper",
+    "android": "DuVayStepper",
+    "windows": "DuVayStepper",
+    "linux": "duvay_stepper"
+  },
+  "accessibility": {
+    "role": "group",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "alt-labels": {
+      "type": "string",
+      "description": "place labels beneath the indicators"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "complete": {
+      "type": "string",
+      "description": "icon / edit-icon / error-icon - indicator glyphs mirrored onto every step"
+    },
+    "complete-icon": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "edit-icon": {
+      "type": "string"
+    },
+    "editable": {
+      "type": "string",
+      "description": "every step header is clickable"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error-icon": {
+      "type": "string"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "drop the surrounding border and elevation"
+    },
+    "focusable": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-actions": {
+      "type": "string",
+      "description": "hide the prev/next actions bar"
+    },
+    "hover": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "items": {
+      "type": "string",
+      "description": "JSON array of strings or { title, value, subtitle, icon, complete, error } records; generates the step headers"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "mandatory": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number",
+      "description": "with `multiple`, how many steps may stay active"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "mobile": {
+      "type": "string",
+      "description": "force the compact layout (indicators only)"
+    },
+    "mobile-breakpoint": {
+      "type": "string",
+      "description": "xs…xxl or a px width below which mobile applies"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false,
+      "description": "more than one step can be active at a time"
+    },
+    "next-text": {
+      "type": "string"
+    },
+    "non-linear": {
+      "type": "string",
+      "description": "steps may be visited in any order (headers clickable)"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prev": {
+      "type": "string",
+      "description": "text / next-text - labels for the actions bar buttons ripple / focusable / hover - mirrored onto every step header"
+    },
+    "prev-text": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "selected-class": {
+      "type": "string",
+      "description": "extra class applied to the active step header"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string",
+      "description": "the active step's value (defaults to the first step); a comma-separated list when `multiple` is set"
+    },
+    "vertical": {
+      "type": "string",
+      "description": "stack steps vertically"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/stepper.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

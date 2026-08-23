@@ -16,7 +16,7 @@
 .w-number-input-field {
   display: flex;
   align-items: stretch;
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
   border-radius: var(--w-radius);
   background: var(--w-surface);
   overflow: hidden;
@@ -294,7 +294,7 @@
 }
 
 .w-number-input--underlined .w-number-input-field {
-  border-bottom: 1px solid var(--w-border);
+  border-bottom: 1px solid var(--w-outline);
 }
 
 .w-number-input--underlined .w-number-input-field:focus-within {
@@ -303,7 +303,7 @@
 
 .w-number-input--filled .w-number-input-field {
   border-color: transparent;
-  border-bottom-color: var(--w-border);
+  border-bottom-color: var(--w-outline);
   border-radius: var(--w-radius) var(--w-radius) 0 0;
   background: var(--w-surface-container);
 }

@@ -7,7 +7,7 @@
   width: 100%;
   min-height: var(--w-size-md);
   padding: 0 var(--w-space-md);
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
   border-radius: var(--w-radius);
   background: var(--w-surface);
   color: var(--w-text);

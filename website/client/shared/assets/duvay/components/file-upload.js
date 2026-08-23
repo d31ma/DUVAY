@@ -89,7 +89,9 @@ export class WFileUpload extends WElement {
   get accept() { return wValueList(this._attr('accept', '')).join(','); }
   get multiple() { return this._bool('multiple'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get clearable() { return this._bool('clearable'); }
   get showSize() { return this._bool('show-size'); }
   get density() { return this._attr('density', ''); }

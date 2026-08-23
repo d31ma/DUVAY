@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-chip> — Chip / filter pill web component
  *
  * Attributes:
@@ -58,6 +59,8 @@ class WChip extends WElement {
   get selected()      { return this.hasAttribute('selected'); }
   set selected(value) { value ? this.setAttribute('selected', '') : this.removeAttribute('selected'); }
   get disabled()      { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
+  set value(v) { wSetValue(this, v); }
   get value()         { return this._attr('value', ''); }
   get text()          { return this._attr('text', ''); }
   get size()          { return this._attr('size', ''); }

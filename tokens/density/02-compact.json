@@ -1,0 +1,141 @@
+{
+  "$description": "compact density",
+  "$extensions": {
+    "duvay": {
+      "target": "src/density.css",
+      "order": 2,
+      "density": "compact",
+      "open": [
+        "[w-density=\"compact\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "before": [
+        ""
+      ]
+    }
+  },
+  "size-xs": {
+    "$value": "24px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12,
+        "before": [
+          "  /* One step down across the scale. */"
+        ]
+      }
+    }
+  },
+  "size-sm": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-md": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-lg": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-xl": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-icon-xs": {
+    "$value": "24px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "size-icon-sm": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-md": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-lg": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-xl": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "touch-min": {
+    "$value": "1.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10,
+        "before": [
+          "",
+          "  /* 28px. Below the 44px touch floor on purpose \u2014 compact is for pointer",
+          "   * input \u2014 but still clear of the 24px WCAG 2.5.8 AA minimum, which",
+          "   * tokens:check enforces for every density. */"
+        ]
+      }
+    }
+  }
+}

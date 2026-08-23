@@ -41,6 +41,7 @@ export class WConfirmEdit extends WElement {
   get cancelText() { return this._attr('cancel-text', 'Cancel'); }
   get okText()     { return this._attr('save-text', '') || this._attr('ok-text', 'Save'); }
   get disabled()   { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get hideActions(){ return this._bool('hide-actions'); }
 
   // Whether the author supplied their own editor / action buttons. Resolved on

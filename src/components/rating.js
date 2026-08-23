@@ -111,9 +111,13 @@ export class WRating extends WElement {
     return this._bool('readonly');
   }
 
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
+
   get disabled() {
     return this._bool('disabled');
   }
+
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
 
   get halfIncrements() {
     return this._bool('half-increments');

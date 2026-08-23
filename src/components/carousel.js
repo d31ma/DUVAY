@@ -28,7 +28,7 @@
  * Events:
  *   change - fires when the active slide changes (detail: { value })
  */
-import { wBoolAttr, wNumberAttr, wValue } from './utils.js';
+import { wBoolAttr, wNumberAttr, wSetValue, wValue } from './utils.js';
 import { wApplyItemTransition } from './window-item.js';
 
 export class WCarousel extends WElement {
@@ -41,6 +41,7 @@ export class WCarousel extends WElement {
   ];
 
   // `value` accepts an index or a slide's `value`.
+  set value(v) { wSetValue(this, v); }
   get value() {
     const raw = wValue(this, '');
     const named = this._indexOfValue(raw);

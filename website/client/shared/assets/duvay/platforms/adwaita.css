@@ -1,0 +1,101 @@
+/* DuVay — Adwaita (GNOME / Linux) skin
+ *
+ * Applied with `w-os="adwaita"` on <html>, orthogonal to `w-theme`.
+ *
+ * Adwaita is the platform whose accent model DuVay's own token split copies:
+ * libadwaita separates --accent-bg-color (fill) from --accent-color (text),
+ * which is why --w-accent-bg / --w-accent exist framework-wide.
+ *
+ * This skin avoids backdrop-filter entirely — WebKitGTK 4.1 is the floor for
+ * any GTK-hosted webview, and its backdrop-filter support is partial. Flat
+ * opaque chrome is also what Adwaita actually looks like, so nothing is lost.
+ *
+ * What a skin may change: font family, motion, elevation, chrome heights, the
+ * switch's geometry, the focus ring, scrollbars, and per-component structure.
+ *
+ * What it may not: colour, control size, the radius scale, and the type scale.
+ * Those are brand tokens — they are what keeps an app recognisably the same
+ * product on every platform, and `bun run tokens:check` fails a skin that
+ * overrides them.
+ */
+
+[w-os="linux"],
+[w-os="adwaita"] {
+  /* Switch — set as inherited variables so this skin still wins
+   * inside a page wearing a different one. */
+  --w-skin-switch-track-w: 44px;
+  --w-skin-switch-track-h: 26px;
+  --w-skin-switch-thumb: 22px;
+  --w-skin-switch-pad: 2px;
+
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --w-font-family: 'Adwaita Sans', Cantarell, 'Inter', system-ui, sans-serif;
+  --w-font-family-heading: 'Adwaita Sans', Cantarell, system-ui, sans-serif;
+  --w-font-family-mono: 'Adwaita Mono', 'Source Code Pro', ui-monospace, monospace;
+  --w-letter-spacing-normal: 0;
+  --w-line-height-normal: 1.5;
+
+  --w-topbar-height: 47px;           /* AdwHeaderBar */
+  --w-sidebar-width: 240px;
+
+  /* ── Elevation — GNOME is flat; depth comes from borders ──────────── */
+  --w-shadow-sm: 0 1px 0 var(--w-shadow-color);
+  --w-shadow-md: 0 1px 3px var(--w-shadow-color);
+  --w-shadow-lg: 0 6px 18px var(--w-shadow-color);
+
+  /* ── Motion — short and linear-ish, matching GTK ──────────────────── */
+  --w-motion-ease-standard: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --w-motion-ease-enter:    cubic-bezier(0, 0, 0.2, 1);
+  --w-motion-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --w-motion-duration-fast: 100ms;
+  --w-motion-duration:      200ms;
+  --w-motion-duration-slow: 300ms;
+  --w-transition-fast:   100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --w-transition-normal: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --w-transition-slow:   300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Focus — GNOME hugs the control with a solid accent outline. */
+  --w-focus-ring-color: var(--w-accent);
+  --w-focus-ring-offset: -1px;
+
+}
+
+[w-os="linux"] .w-btn,
+[w-os="adwaita"] .w-btn {
+  font-weight: var(--w-font-weight-bold);
+}
+
+
+[w-os="linux"] .w-switch-track,
+[w-os="adwaita"] .w-switch-track { border-radius: var(--w-radius-pill); }
+[w-os="linux"] .w-switch-thumb,
+[w-os="adwaita"] .w-switch-thumb {
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+/* AdwDialog: rounded window corners, actions split across the full width. */
+[w-os="linux"] .w-dialog,
+[w-os="adwaita"] .w-dialog {
+  border-radius: var(--w-radius-xl);
+  border: 1px solid var(--w-divider);
+}
+[w-os="linux"] .w-dialog-footer,
+[w-os="adwaita"] .w-dialog-footer {
+  justify-content: stretch;
+  gap: var(--w-space-2);
+}
+
+/* Boxy list rows — AdwPreferencesGroup style. */
+[w-os="linux"] .w-list,
+[w-os="adwaita"] .w-list {
+  border-radius: var(--w-radius-md);
+  border: 1px solid var(--w-divider);
+  overflow: hidden;
+}
+
+[w-os="linux"] :where(.w-scroll-area, .w-list, .w-table),
+[w-os="adwaita"] :where(.w-scroll-area, .w-list, .w-table) {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--w-text) 30%, transparent) transparent;
+}

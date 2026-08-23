@@ -1,8 +1,10 @@
-<h1>Heatmap</h1>
-<p>Render categorical row-and-column data as an accessible color grid. Use <code>thresholds</code> for value bands, or give individual items a color. Headers and every cell retain readable labels for assistive technology.</p>
+<doc-layout>
+  <h1>Heatmap</h1>
+  <p>Render categorical row-and-column data as an accessible color grid. Use <code>thresholds</code> for value bands, or give individual items a color. Headers and every cell retain readable labels for assistive technology.</p>
 
-<h2>Example</h2>
-<demo-compare>
-  <div slot="css"><div class="w-heatmap-grid" style="--w-heatmap-columns:2"><span class="w-heatmap-cell bg-primary"></span><span class="w-heatmap-cell bg-warning"></span><span class="w-heatmap-cell bg-success"></span><span class="w-heatmap-cell bg-error"></span></div></div>
-  <div slot="wc"><w-heatmap rows='["Mon","Tue"]' columns='["AM","PM"]' thresholds='[{"min":0,"color":"#d7edf4"},{"min":5,"color":"#1f6f8b"}]' items='[{"row":"Mon","column":"AM","value":2},{"row":"Mon","column":"PM","value":7},{"row":"Tue","column":"AM","value":4},{"row":"Tue","column":"PM","value":9}]' legend hover></w-heatmap></div>
-</demo-compare>
+  <h2>Example</h2>
+  <demo-compare>
+    <div slot="css"><div class="w-heatmap-grid" style="--w-heatmap-columns:2"><span class="w-heatmap-cell bg-primary"></span><span class="w-heatmap-cell bg-warning"></span><span class="w-heatmap-cell bg-success"></span><span class="w-heatmap-cell bg-error"></span></div></div>
+    <div slot="wc"><w-heatmap rows='["Mon","Tue"]' columns='["AM","PM"]' thresholds='[{"min":0,"color":"#d7edf4"},{"min":5,"color":"#1f6f8b"}]' items='[{"row":"Mon","column":"AM","value":2},{"row":"Mon","column":"PM","value":7},{"row":"Tue","column":"AM","value":4},{"row":"Tue","column":"PM","value":9}]' legend hover></w-heatmap></div>
+  </demo-compare>
+</doc-layout>

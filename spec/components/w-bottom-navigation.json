@@ -1,0 +1,174 @@
+{
+  "$description": "DuVay BottomNavigation — Core contract, tier 2.",
+  "name": "BottomNavigation",
+  "tier": 2,
+  "names": {
+    "web": "w-bottom-navigation",
+    "apple": "DuVayTabBar",
+    "android": "DuVayNavigationBar",
+    "windows": "DuVayNavigationView",
+    "linux": "duvay_view_switcher_bar"
+  },
+  "accessibility": {
+    "role": "navigation",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "absolute": {
+      "type": "string",
+      "description": "boolean; pin to the bottom of the offset parent"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "description": "visibility switch; `active=\"false\"` slides the bar away"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string",
+      "description": "palette token for background color"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string",
+      "description": "palette token for active item color (e.g. primary)"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "comfortable",
+        "compact"
+      ],
+      "description": "comfortable | compact"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number",
+      "description": "0..N shadow level"
+    },
+    "grow": {
+      "type": "string",
+      "description": "boolean; items fill equal width"
+    },
+    "height": {
+      "type": "string",
+      "description": "explicit height (number or CSS value)"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "mandatory": {
+      "type": "string",
+      "description": "true: keep at least one selected; \"force\": also select the first initially"
+    },
+    "max": {
+      "type": "number",
+      "description": "maximum number of selections (multiple mode)"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "mode": {
+      "type": "string",
+      "description": "shift (active item label shifts up, inactive labels hide)"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false,
+      "description": "allow more than one selected item"
+    },
+    "name": {
+      "type": "string",
+      "description": "layout registration name (mirrored to data-name)"
+    },
+    "order": {
+      "type": "string",
+      "description": "layout order within its flex/grid parent"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "selected-class": {
+      "type": "string",
+      "description": "extra class added to selected item hosts"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string",
+      "description": "the currently active item value (comma list when `multiple`)"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/bottom-navigation.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

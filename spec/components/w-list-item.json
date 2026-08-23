@@ -1,0 +1,188 @@
+{
+  "$description": "DuVay ListItem — Core contract, tier 1.",
+  "name": "ListItem",
+  "tier": 1,
+  "names": {
+    "web": "w-list-item",
+    "apple": "DuVayListRow",
+    "android": "DuVayListItem",
+    "windows": "DuVayListItem",
+    "linux": "duvay_action_row"
+  },
+  "accessibility": {
+    "role": "listitem",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active": {
+      "type": "boolean",
+      "default": false
+    },
+    "active-class": {
+      "type": "string"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-avatar": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "href": {
+      "type": "string"
+    },
+    "index": {
+      "type": "string"
+    },
+    "lines": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "nav": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-avatar": {
+      "type": "string"
+    },
+    "prepend-gap": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rel": {
+      "type": "string"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "slim": {
+      "type": "boolean",
+      "default": false
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "tabindex": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "to": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/list-item.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

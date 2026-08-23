@@ -65,6 +65,7 @@ class WSwitch extends WSelectionControlBase {
   get checked()     { return this.hasAttribute('checked'); }
   set checked(v)    { v ? this.setAttribute('checked', '') : this.removeAttribute('checked'); }
   get readonly()    { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get loading()     { return this._bool('loading'); }
   get color()       { return this._attr('color', ''); }
   get thumbColor()  { return this._attr('thumb-color', ''); }

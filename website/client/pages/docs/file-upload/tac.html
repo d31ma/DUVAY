@@ -1,80 +1,82 @@
-<h1>File upload</h1>
-<p><code>w-file-upload</code> is a drag-and-drop upload area inspired by Vuetify's <code>v-file-upload</code>. It supports <code>title</code>, <code>subtitle</code>, <code>browse-text</code>, <code>multiple</code>, <code>accept</code>, <code>show-size</code>, <code>clearable</code>, and <code>density</code>.</p>
+<doc-layout>
+  <h1>File upload</h1>
+  <p><code>w-file-upload</code> is a drag-and-drop upload area inspired by Vuetify's <code>v-file-upload</code>. It supports <code>title</code>, <code>subtitle</code>, <code>browse-text</code>, <code>multiple</code>, <code>accept</code>, <code>show-size</code>, <code>clearable</code>, and <code>density</code>.</p>
 
-<h2>Basic</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-file-upload">
-      <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-label="Upload files">
-        <input type="file" />
-        <div class="w-file-upload-icon">⬆</div>
-        <div class="w-file-upload-title">Upload files</div>
-        <div class="w-file-upload-divider"><span>or</span></div>
-        <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
-        <div class="w-file-upload-subtitle">Drag and drop files here</div>
+  <h2>Basic</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-file-upload">
+        <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-label="Upload files">
+          <input type="file" />
+          <div class="w-file-upload-icon">⬆</div>
+          <div class="w-file-upload-title">Upload files</div>
+          <div class="w-file-upload-divider"><span>or</span></div>
+          <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
+          <div class="w-file-upload-subtitle">Drag and drop files here</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-file-upload></w-file-upload>
-  </div>
-</demo-compare>
-
-<h2>Validation value</h2>
-<p>Add <code>required</code> to validate the selected files. When another component owns the real <code>FileList</code>, pass a serializable <code>validation-value</code>; empty arrays, <code>null</code>, <code>false</code>, and an empty string are treated as empty.</p>
-<demo-compare>
-  <div slot="css">
-    <div class="w-file-upload w-field-error">
-      <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-invalid="true">
-        <input type="file" required />
-        <div class="w-file-upload-title">Upload evidence</div>
-      </div>
-      <div class="w-field-details"><span class="w-field-hint">Please select a file.</span></div>
+    <div slot="wc">
+      <w-file-upload></w-file-upload>
     </div>
-  </div>
-  <div slot="wc">
-    <w-file-upload title="Upload evidence" required validation-value="[]"></w-file-upload>
-  </div>
-</demo-compare>
+  </demo-compare>
 
-<h2>API additions</h2>
-<ul>
-  <li><code>required</code> — require a selected file.</li>
-  <li><code>validation-value</code> — serializable stand-in used for required validation when a wrapper owns the actual files.</li>
-</ul>
-
-<h2>Multiple with size and clear</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-file-upload">
-      <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-label="Upload attachments">
-        <input type="file" accept="image/*" multiple />
-        <div class="w-file-upload-icon">⬆</div>
-        <div class="w-file-upload-title">Upload attachments</div>
-        <div class="w-file-upload-divider"><span>or</span></div>
-        <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
-        <div class="w-file-upload-subtitle">Images only, up to 5 MB each</div>
+  <h2>Validation value</h2>
+  <p>Add <code>required</code> to validate the selected files. When another component owns the real <code>FileList</code>, pass a serializable <code>validation-value</code>; empty arrays, <code>null</code>, <code>false</code>, and an empty string are treated as empty.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-file-upload w-field-error">
+        <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-invalid="true">
+          <input type="file" required="required" />
+          <div class="w-file-upload-title">Upload evidence</div>
+        </div>
+        <div class="w-field-details"><span class="w-field-hint">Please select a file.</span></div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-file-upload title="Upload attachments" subtitle="Images only, up to 5 MB each"
-      accept="image/*" multiple show-size clearable></w-file-upload>
-  </div>
-</demo-compare>
+    <div slot="wc">
+      <w-file-upload title="Upload evidence" required="required" validation-value="[]"></w-file-upload>
+    </div>
+  </demo-compare>
 
-<h2>Compact density</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-file-upload">
-      <div class="w-file-upload-dropzone w-file-upload-dropzone--density-compact" role="button" tabindex="0" aria-label="Attach file">
-        <input type="file" />
-        <div class="w-file-upload-icon">⬆</div>
-        <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
+  <h2>API additions</h2>
+  <ul>
+    <li><code>required</code> — require a selected file.</li>
+    <li><code>validation-value</code> — serializable stand-in used for required validation when a wrapper owns the actual files.</li>
+  </ul>
+
+  <h2>Multiple with size and clear</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-file-upload">
+        <div class="w-file-upload-dropzone" role="button" tabindex="0" aria-label="Upload attachments">
+          <input type="file" accept="image/*" multiple="multiple" />
+          <div class="w-file-upload-icon">⬆</div>
+          <div class="w-file-upload-title">Upload attachments</div>
+          <div class="w-file-upload-divider"><span>or</span></div>
+          <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
+          <div class="w-file-upload-subtitle">Images only, up to 5 MB each</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-file-upload title="Attach file" density="compact"></w-file-upload>
-  </div>
-</demo-compare>
+    <div slot="wc">
+      <w-file-upload title="Upload attachments" subtitle="Images only, up to 5 MB each"
+        accept="image/*" multiple="multiple" show-size clearable="clearable"></w-file-upload>
+    </div>
+  </demo-compare>
+
+  <h2>Compact density</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-file-upload">
+        <div class="w-file-upload-dropzone w-file-upload-dropzone--density-compact" role="button" tabindex="0" aria-label="Attach file">
+          <input type="file" />
+          <div class="w-file-upload-icon">⬆</div>
+          <button class="w-file-upload-browse w-btn w-btn-tonal" type="button">Browse</button>
+        </div>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-file-upload title="Attach file" density="compact"></w-file-upload>
+    </div>
+  </demo-compare>
+</doc-layout>

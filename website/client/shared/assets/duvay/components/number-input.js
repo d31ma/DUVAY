@@ -99,7 +99,9 @@ export class WNumberInput extends WElement {
   get name() { return this._attr('name', ''); }
   get size() { return this._attr('size', ''); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get controlsDisabled() { return this.disabled || this.readonly; }
 
   /* Field surface */

@@ -1,0 +1,131 @@
+{
+  "$description": "Shape",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 5,
+      "banner": "  /* \u2500\u2500 Shape \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "radius-sm": {
+    "$value": "0.125rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "radius": {
+    "$value": "0.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "radius-md": {
+    "$value": "0.375rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "radius-lg": {
+    "$value": "0.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "radius-xl": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "radius-pill": {
+    "$value": "999px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "focus-ring-width": {
+    "$value": "2px",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Focus ring \u2014 tokenised so a platform skin can restyle it without adding",
+          "   * a second `:focus-visible` rule. That matters: nine components opt out of",
+          "   * the global ring with `outline: none` because their wrapper draws it, and",
+          "   * a skin rule like `[w-os=\"ios\"] :focus-visible` outranks that opt-out,",
+          "   * producing a doubled border. One rule in reset.css, tokens per skin. */"
+        ]
+      }
+    }
+  },
+  "focus-ring-style": {
+    "$value": "solid",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "focus-ring-color": {
+    "$value": "var(--w-primary)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "focus-ring-offset": {
+    "$value": "2px",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "focus-ring-shadow": {
+    "$value": "none",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

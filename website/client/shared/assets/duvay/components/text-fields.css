@@ -128,7 +128,7 @@
 
 /* ── Variant: outlined (default) ─────────────────────────────────────────── */
 .w-text-field--outlined .w-text-field-control {
-  border: 1px solid var(--w-border);
+  border: 1px solid var(--w-outline);
 }
 .w-text-field--outlined .w-text-field-input:focus ~ * ,
 .w-text-field--outlined:focus-within .w-text-field-control {
@@ -151,7 +151,7 @@
 /* ── Variant: filled ─────────────────────────────────────────────────────── */
 .w-text-field--filled .w-text-field-control {
   background: var(--w-surface-container-high);
-  border-bottom: 1px solid var(--w-border);
+  border-bottom: 1px solid var(--w-outline);
   border-top-left-radius: var(--w-tf-radius);
   border-top-right-radius: var(--w-tf-radius);
 }
@@ -166,7 +166,7 @@
 /* ── Variant: underlined ─────────────────────────────────────────────────── */
 .w-text-field--underlined .w-text-field-control {
   background: transparent;
-  border-bottom: 1px solid var(--w-border);
+  border-bottom: 1px solid var(--w-outline);
   border-radius: 0;
   padding-inline: 0;
 }

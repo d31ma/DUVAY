@@ -114,7 +114,9 @@ export class WAutocomplete extends WElement {
   get size() { return this._attr('size', ''); }
   get noDataText() { return this._attr('no-data-text', 'No data available'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly() { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get multiple() { return this._bool('multiple'); }
   get chips() { return this._bool('chips'); }
   get closableChips() { return this._bool('closable-chips'); }

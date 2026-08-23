@@ -1,0 +1,9 @@
+/* DuVay — full framework with the Material (Android) skin preapplied.
+ *
+ * Equivalent to importing duvay.css and platforms/material.css yourself. The skin
+ * only activates under `w-os="material"`, which src/duvay.js sets automatically
+ * from the user agent unless the attribute is already present.
+ */
+@import "./duvay.css";
+@import "./platforms/material.css";
+@import "./platforms/web.css";

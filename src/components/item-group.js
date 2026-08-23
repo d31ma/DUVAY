@@ -1,16 +1,17 @@
 /* <w-item-group> — DuVay component module */
-import { wBoolAttr, wNumberAttr, wValue, wValueList } from './utils.js';
-
+import { wBoolAttr, wNumberAttr, wSetValue, wValue, wValueList } from './utils.js';
 export class WItemGroup extends WElement {
   static attrs = ['value', 'multiple', 'mandatory', 'max', 'selected-class', 'active-class', 'disabled'];
 
   // Arrow keys step by one; Home/End jump to an edge. Any other key is ignored.
   static navKeys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, Home: 'home', End: 'end' };
 
+  set value(v) { wSetValue(this, v); }
   get value() { return wValue(this, ''); }
   get multiple() { return wBoolAttr(this, 'multiple'); }
   get mandatory() { return wBoolAttr(this, 'mandatory'); }
   get disabled() { return wBoolAttr(this, 'disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get max() { return this.hasAttribute('max') ? wNumberAttr(this, 'max', Infinity) : Infinity; }
   get selectedClass() { return this._attr('active-class', this._attr('selected-class', 'active')); }
 

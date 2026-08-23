@@ -142,6 +142,7 @@ export class WDataTable extends WElement {
   get height() { return this._attr('height', ''); }
   get itemValue() { return this._attr('item-value', ''); }
 
+  set selected(v) { this.setAttribute('selected', Array.isArray(v) ? v.join(',') : v ?? ''); }
   get selected() { return wValueList(this._attr('selected', '')).map(String); }
   get expanded() { return wValueList(this._attr('expanded', '')).map(String); }
 

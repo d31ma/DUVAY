@@ -11,16 +11,7 @@
  * `allowed-months` / `allowed-years` receive the value Vuetify passes: a
  * zero-based month index (0 = January) and a full year number.
  */
-import {
-  wIsoDate,
-  wParseIsoDate,
-  wIsSameDate,
-  wDateInRange,
-  wDateBetween,
-  wFormatDate,
-  wNumberList,
-  wValueList,
-} from './utils.js';
+import { wDateBetween, wDateInRange, wFormatDate, wIsSameDate, wIsoDate, wNumberList, wParseIsoDate, wSetValue, wValueList } from './utils.js';
 import {
   wAllowedBy,
   wCalendarColor,
@@ -63,6 +54,7 @@ export class WDatePicker extends WElement {
     'columns',
   ];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get min() { return wParseIsoDate(this._attr('min', '')); }
   get max() { return wParseIsoDate(this._attr('max', '')); }

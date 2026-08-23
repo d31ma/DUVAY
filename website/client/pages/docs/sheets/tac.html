@@ -1,50 +1,52 @@
-<h1>Sheets</h1>
-<p>Sheets are neutral surfaces that group related content without prescribing a complex layout.</p>
+<doc-layout>
+  <h1>Sheets</h1>
+  <p>Sheets are neutral surfaces that group related content without prescribing a complex layout.</p>
 
-<h2>Basic sheet</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-card w-card-body">
-      <h3>Release notes</h3>
-      <p class="w-text-subtle">A lightweight surface for supporting content.</p>
-    </div>
-  </div>
-  <div slot="wc">
-    <w-sheet>
-      <div class="w-card-body">
+  <h2>Basic sheet</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-card w-card-body">
         <h3>Release notes</h3>
         <p class="w-text-subtle">A lightweight surface for supporting content.</p>
       </div>
-    </w-sheet>
-  </div>
-</demo-compare>
-
-<h2>Composed content</h2>
-<demo-compare>
-  <div slot="css">
-    <div class="w-card w-card-body">
-      <div class="w-row align-center ga-3">
-        <div class="w-avatar">DV</div>
-        <div>
-          <strong>DuVay</strong>
-          <div class="w-text-subtle">Framework update available</div>
-        </div>
-      </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-sheet>
-      <div class="w-card-body">
+    <div slot="wc">
+      <w-sheet>
+        <div class="w-card-body">
+          <h3>Release notes</h3>
+          <p class="w-text-subtle">A lightweight surface for supporting content.</p>
+        </div>
+      </w-sheet>
+    </div>
+  </demo-compare>
+
+  <h2>Composed content</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-card w-card-body">
         <div class="w-row align-center ga-3">
-          <w-avatar>DV</w-avatar>
+          <div class="w-avatar">DV</div>
           <div>
             <strong>DuVay</strong>
             <div class="w-text-subtle">Framework update available</div>
           </div>
         </div>
       </div>
-    </w-sheet>
-  </div>
-</demo-compare>
+    </div>
+    <div slot="wc">
+      <w-sheet>
+        <div class="w-card-body">
+          <div class="w-row align-center ga-3">
+            <w-avatar>DV</w-avatar>
+            <div>
+              <strong>DuVay</strong>
+              <div class="w-text-subtle">Framework update available</div>
+            </div>
+          </div>
+        </div>
+      </w-sheet>
+    </div>
+  </demo-compare>
 
-<p>For an interactive surface attached to the viewport edge, use <a href="/docs/bottom-sheets">Bottom sheets</a>.</p>
+  <p>For an interactive surface attached to the viewport edge, use <a href="/docs/bottom-sheets">Bottom sheets</a>.</p>
+</doc-layout>

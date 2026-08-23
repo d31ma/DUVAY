@@ -1,0 +1,66 @@
+{
+  "$description": "Z-index scale",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 11,
+      "banner": "  /* ── Z-index scale ──────────────────────────────────────────────────── */",
+      "close": [
+        "}"
+      ],
+      "footer": [
+        ""
+      ]
+    }
+  },
+  "z-sticky": {
+    "$value": "10",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "z-overlay": {
+    "$value": "50",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "z-modal": {
+    "$value": "55",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "z-dropdown": {
+    "$value": "60",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "z-toast": {
+    "$value": "9000",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  }
+}

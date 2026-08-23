@@ -1,0 +1,140 @@
+{
+  "$description": "DuVay Breadcrumbs — Core contract, tier 2.",
+  "name": "Breadcrumbs",
+  "tier": 2,
+  "names": {
+    "web": "w-breadcrumbs",
+    "apple": "DuVayBreadcrumbs",
+    "android": "DuVayBreadcrumbs",
+    "windows": "DuVayBreadcrumbBar",
+    "linux": "duvay_breadcrumbs"
+  },
+  "accessibility": {
+    "role": "navigation",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-class": {
+      "type": "string",
+      "description": "extra class(es) for the current-page crumb. Applied to `items` crumbs directly, and pushed down onto slotted <w-breadcrumbs-item> children that do not set their own."
+    },
+    "active-color": {
+      "type": "string",
+      "description": "palette token for the current-page crumb"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string",
+      "description": "palette token for the container background"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string",
+      "description": "palette token for the link color"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "comfortable",
+        "compact"
+      ],
+      "description": "comfortable | compact"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; disable all crumbs"
+    },
+    "divider": {
+      "type": "string",
+      "description": "separator string drawn between crumbs (default \"/\")"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string",
+      "description": "leading (prepend) icon glyph"
+    },
+    "items": {
+      "type": "enum",
+      "description": "JSON array of { title|text, href, disabled, icon } to render crumbs declaratively (the last item is the current page)"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; rounded container (pairs with bg-color)"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/breadcrumbs.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

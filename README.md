@@ -100,6 +100,102 @@ Every release is permanently available under `https://d31ma.github.io/DUVAY/vers
 <script type="module" src="https://d31ma.github.io/DUVAY/versions/VERSION/duvay-wc.min.js"></script>
 ```
 
+## Platform skins
+
+DuVay ships a skin per platform, selected with the `w-os` attribute on
+`<html>`, orthogonal to `w-theme` — so every skin works in light, dark, auto,
+and high-contrast. Write the OS name; each vendor's design-language name is
+accepted as an alias, and the two are fully interchangeable.
+
+| Platform | Write | Also accepted | Design language |
+|---|---|---|---|
+| Web (no skin) | `w-os=""` | — | DuVay's own |
+| iOS | `w-os="ios"` | — | Apple HIG |
+| Android | `w-os="android"` | `w-os="material"` | Material 3 |
+| macOS | `w-os="macos"` | — | Apple HIG |
+| Windows | `w-os="windows"` | `w-os="fluent"` | Fluent 2 |
+| Linux | `w-os="linux"` | `w-os="adwaita"` | libadwaita / GNOME |
+
+Entrypoints follow the same rule: `duvay-android.css` and `duvay-material.css`
+are the same stylesheet under two names.
+
+```html
+<link rel="stylesheet" href="https://d31ma.github.io/DUVAY/latest/duvay-android.min.css">
+<script src="https://d31ma.github.io/DUVAY/latest/duvay.min.js" defer></script>
+```
+
+Or layer a skin onto an existing `duvay.css`:
+
+```css
+@import "https://d31ma.github.io/DUVAY/latest/duvay.css";
+@import "https://d31ma.github.io/DUVAY/latest/platforms/macos.css";
+```
+
+`duvay.js` sets `w-os` from the user agent when the attribute is absent; an
+explicit attribute always wins (`<html w-os="material">` pins a skin,
+`<html w-os="">` opts out).
+
+Skins override **platform tokens** — font family, motion, elevation, chrome
+heights, switch geometry, focus rings — and never override **brand tokens**:
+colour, control size, the radius scale or the type scale. That split is what
+keeps an app recognisably the same product on every platform, and it means the
+WCAG AA guarantees hold for every skin without re-validation.
+`bun run tokens:check` enforces it.
+
+### Density
+
+Control size is an application's choice, not the skin's. `w-density` rescales
+control geometry, orthogonal to `w-theme` and `w-os`, and works on any subtree:
+
+```html
+<html w-density="compact">      <!-- 32px controls, pointer-first -->
+<section w-density="compact">   <!-- or scope it to one region -->
+```
+
+`duvay.js` sets `compact` automatically alongside `w-os="macos"`. Compact drops
+`--w-touch-min` to 28px — deliberate for pointer input, still clear of the 24px
+WCAG 2.5.8 AA minimum that `tokens:check` enforces. Don't use it on touch.
+
+See [Platform skins](https://duvay.del.ma/docs/platform-skins) for the live switcher.
+
+## Design tokens
+
+`tokens/` holds the design tokens as [DTCG](https://tr.designtokens.org/) JSON
+and is the **source of truth**; `src/tokens.css` and `src/themes.css` are
+generated from it by `bun run tokens:build` (a ~100-line Bun script — no Style
+Dictionary dependency, so the framework stays zero-dependency).
+
+```sh
+bun run tokens:build    # regenerate src/tokens.css + src/themes.css
+bun run tokens:check    # WCAG AA contrast + skin rules, fails CI on regression
+bun run verify          # every gate: tokens, spec, fixtures, parity
+```
+
+## Native platforms (in progress)
+
+DuVay is becoming a cross-platform UI that renders with each OS's own widgets —
+SwiftUI, Jetpack Compose, WinUI 3 and GTK4/libadwaita — rather than a webview
+shell. See [CROSS-PLATFORM-PLAN.md](CROSS-PLATFORM-PLAN.md) for scope and status.
+
+```
+tokens/    →  bun run tokens:native  →  apple/ android/ windows/ linux/
+spec/      →  the component contract + 116 conformance vectors
+```
+
+Behaviour is shared as **language-neutral JSON test vectors**, not a shared
+runtime. Each platform reimplements the logic idiomatically and must pass the
+same suite; four independent implementations (Swift, Kotlin, Rust, C#) currently
+agree with the JavaScript reference and each other.
+
+```sh
+source /Volumes/ANNEX/toolchains/duvay-env.sh   # toolchains live off-system
+bun run tokens:native                            # regenerate native tokens
+bun run native:verify                            # all four conformance suites
+```
+
+The component libraries themselves are early — `bun run platform-parity` prints
+the honest coverage matrix and CI fails if any platform claims more than it has.
+
 ## Using with Tailwind
 
 DuVay and Tailwind coexist cleanly — use DuVay components for structure and
@@ -137,9 +233,19 @@ inverts layer precedence.
 ## Project layout
 
 ```
+tokens/           DTCG JSON — source of truth for tokens.css + themes.css
+  primitive/        type, spacing, shape, sizing, layout, motion, z-index
+  semantic/         light / dark / auto / high-contrast palettes
+spec/             component contracts + conformance fixtures
+  core-contract.json  the 46 Core components and their per-platform names
+  components/       one contract per Core component (generated from src/)
+  fixtures/         language-neutral behaviour vectors for native ports
 src/
-  core.css          imports reset, tokens, themes, motion, typography, utilities
+  core.css          imports reset, tokens, themes, density, motion, type, utilities
+  density.css       w-density control scale (generated)
   duvay.css         full framework entrypoint
+  duvay-<os>.css    full framework + one OS skin (ios/material/macos/fluent/adwaita)
+  platforms/        the five OS skins, each scoped to [w-os="…"]
   grid.css          grid component index
   layout.css        layout component index
   navigation.css    navigation component index

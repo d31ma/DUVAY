@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-bottom-nav-item> — DuVay component module
  *
  * Attributes:
@@ -13,6 +14,7 @@
 export class WBottomNavItem extends WElement {
   static attrs = ['value', 'href', 'icon', 'label', 'active', 'disabled', 'color'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get href() { return this._attr('href', ''); }
   get icon() { return this._attr('icon', ''); }
@@ -23,6 +25,7 @@ export class WBottomNavItem extends WElement {
     else this.removeAttribute('active');
   }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get color() { return this._attr('color', ''); }
 
   _template() {

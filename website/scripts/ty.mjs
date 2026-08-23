@@ -3,29 +3,29 @@ import { chmod, mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promi
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const TACHYON_VERSION = '26.30.04';
+export const TACHYON_VERSION = '26.33.02';
 export const TACHYON_RELEASE = `https://github.com/d31ma/Tachyon/releases/download/v${TACHYON_VERSION}`;
 
 export const TACHYON_ASSETS = Object.freeze({
   'darwin-arm64': {
     name: 'ty-macos-arm64',
-    sha256: '3ebcf70c9b1a3ae1aae263dcf4d233f106514f63ca0fce676481353e394ebf82',
+    sha256: '08b90a516ccb665664c3b986e71769cdcc738960e45a0bd8c73ab691a0cda1cd',
   },
   'darwin-x64': {
     name: 'ty-macos-x64',
-    sha256: 'b6833bffa2080da731f616ce408e173ed3fbbf1bc1d33d85875833f39fa81feb',
+    sha256: 'b5fd0495a18a1923a132275d15358e170e66516e0f47b1f54f159031cec5d457',
   },
   'linux-arm64': {
     name: 'ty-linux-arm64',
-    sha256: 'faf99370b7943a1cfce2872b43a94984c220b244285f3243076caaef07be5bf9',
+    sha256: '2e78dd4b46a300196e64d6563cbf53b77aa4fc407e51834568f7dccc6167e293',
   },
   'linux-x64': {
     name: 'ty-linux-x64',
-    sha256: '0ccf5db78f196db3d9279b2a533a22e2413a146c91968775aa7c988d0c89f72d',
+    sha256: 'c662da31be584364b1d0554df232336a047b90ba66ab9bde9c87e248bb184616',
   },
   'win32-x64': {
     name: 'ty-windows-x64.exe',
-    sha256: 'e012364b06fb4b1e26f3ebdb5ad10093e5355db6d5e5835e6c9d40ef3ec5c885',
+    sha256: '00198a58534faff29f2373a2649c58f176e3305aa77242f59cee6530c7c371d5',
   },
 });
 

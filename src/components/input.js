@@ -64,7 +64,9 @@ class WInput extends WElement {
     this._syncDetails();
   }
   get disabled()    { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get readonly()    { return this._bool('readonly'); }
+  set readonly(value) { this.toggleAttribute('readonly', !!value); }
   get name()        { return this._attr('name', ''); }
   get label()       { return this._attr('label', ''); }
   get hint()        { return this._attr('hint', ''); }

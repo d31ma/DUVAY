@@ -1,0 +1,9 @@
+/* DuVay — full framework with the iOS skin preapplied.
+ *
+ * Equivalent to importing duvay.css and platforms/ios.css yourself. The skin
+ * only activates under `w-os="ios"`, which src/duvay.js sets automatically
+ * from the user agent unless the attribute is already present.
+ */
+@import "./duvay.css";
+@import "./platforms/ios.css";
+@import "./platforms/web.css";

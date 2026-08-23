@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-treeview-group> — an expandable branch (DuVay equivalent of Vuetify v-treeview-group)
  *
  * Attributes:
@@ -30,6 +31,7 @@ export class WTreeviewGroup extends WElement {
   static seq = 0;
 
   get groupTitle() { return this._attr('title', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.groupTitle); }
   get open() { return this._bool('open'); }
   get rawId() { return this._attr('raw-id', ''); }
@@ -41,6 +43,7 @@ export class WTreeviewGroup extends WElement {
   get fluid() { return this._bool('fluid'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   // Vuetify derives the root id from `raw-id`; without one we still need a
   // stable handle for aria-controls, so fall back to a per-instance token.
   get rootId() {

@@ -1,42 +1,44 @@
-<h1>Bottom sheets</h1>
-<p>Bottom sheets reveal focused actions and supporting content from the lower edge of the viewport.</p>
+<doc-layout>
+  <h1>Bottom sheets</h1>
+  <p>Bottom sheets reveal focused actions and supporting content from the lower edge of the viewport.</p>
 
-<h2>Basic sheet</h2>
-<p>Keep the trigger close to the task and provide an explicit close action inside the sheet.</p>
-<demo-compare>
-  <div slot="css">
-    <button class="w-btn w-btn-filled" on:click="setSheetOpen('css-sheet', true)">Open bottom sheet</button>
-    <div class="w-overlay" data-sheet-scrim="css-sheet"></div>
-    <div class="w-sheet-bottom" data-sheet="css-sheet" aria-hidden="true">
-      <div class="w-sheet-handle"></div>
-      <div class="w-dialog-header">
-        <h3 class="w-dialog-title">Choose an action</h3>
-        <button class="w-btn w-btn-icon" on:click="setSheetOpen('css-sheet', false)" aria-label="Close">&times;</button>
-      </div>
-      <div class="w-dialog-body">
-        <p>Bottom sheets work well for compact choices on touch screens.</p>
+  <h2>Basic sheet</h2>
+  <p>Keep the trigger close to the task and provide an explicit close action inside the sheet.</p>
+  <demo-compare>
+    <div slot="css">
+      <button class="w-btn w-btn-filled" on:click="setSheetOpen('css-sheet', true)">Open bottom sheet</button>
+      <div class="w-overlay" data-sheet-scrim="css-sheet"></div>
+      <div class="w-sheet-bottom" data-sheet="css-sheet" aria-hidden="true">
+        <div class="w-sheet-handle"></div>
+        <div class="w-dialog-header">
+          <h3 class="w-dialog-title">Choose an action</h3>
+          <button class="w-btn w-btn-icon" on:click="setSheetOpen('css-sheet', false)" aria-label="Close">&times;</button>
+        </div>
+        <div class="w-dialog-body">
+          <p>Bottom sheets work well for compact choices on touch screens.</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div slot="wc">
-    <w-btn variant="filled" on:click="setSheetOpen('component-sheet', true, true)">Open bottom sheet</w-btn>
-    <div class="w-overlay" data-bottom-sheet-scrim="component-sheet"></div>
-    <w-bottom-sheet data-bottom-sheet="component-sheet">
-      <div class="w-sheet-handle"></div>
-      <div class="w-dialog-header">
-        <h3 class="w-dialog-title">Choose an action</h3>
-        <w-btn variant="icon" on:click="setSheetOpen('component-sheet', false, true)" aria-label="Close">&times;</w-btn>
-      </div>
-      <div class="w-dialog-body">
-        <p>Toggle the native <code>open</code> attribute from plain JavaScript.</p>
-      </div>
-    </w-bottom-sheet>
-  </div>
-</demo-compare>
+    <div slot="wc">
+      <w-btn variant="filled" on:click="setSheetOpen('component-sheet', true, true)">Open bottom sheet</w-btn>
+      <div class="w-overlay" data-bottom-sheet-scrim="component-sheet"></div>
+      <w-bottom-sheet data-bottom-sheet="component-sheet">
+        <div class="w-sheet-handle"></div>
+        <div class="w-dialog-header">
+          <h3 class="w-dialog-title">Choose an action</h3>
+          <w-btn variant="icon" on:click="setSheetOpen('component-sheet', false, true)" aria-label="Close">&times;</w-btn>
+        </div>
+        <div class="w-dialog-body">
+          <p>Toggle the native <code>open</code> attribute from plain JavaScript.</p>
+        </div>
+      </w-bottom-sheet>
+    </div>
+  </demo-compare>
 
-<h2>Usage guidance</h2>
-<ul>
-  <li>Use a dialog for content that needs more vertical space or complex forms.</li>
-  <li>Return focus to the trigger after closing the sheet.</li>
-  <li>Keep primary actions visible without requiring scrolling.</li>
-</ul>
+  <h2>Usage guidance</h2>
+  <ul>
+    <li>Use a dialog for content that needs more vertical space or complex forms.</li>
+    <li>Return focus to the trigger after closing the sheet.</li>
+    <li>Keep primary actions visible without requiring scrolling.</li>
+  </ul>
+</doc-layout>

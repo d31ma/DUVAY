@@ -1,0 +1,279 @@
+{
+  "$description": "DuVay Slider — Core contract, tier 1.",
+  "name": "Slider",
+  "tier": 1,
+  "names": {
+    "web": "w-slider",
+    "apple": "DuVaySlider",
+    "android": "DuVaySlider",
+    "windows": "DuVaySlider",
+    "linux": "duvay_slider"
+  },
+  "accessibility": {
+    "role": "slider",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center-affix": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string",
+      "description": "token color name for the fill + thumb (e.g. \"success\")"
+    },
+    "density": {
+      "type": "string"
+    },
+    "direction": {
+      "type": "enum",
+      "description": "\"horizontal\" (default) | \"vertical\""
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "non-interactive and dimmed"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error": {
+      "type": "string",
+      "description": "manual error state"
+    },
+    "error-messages": {
+      "type": "string",
+      "description": "error messages; also sets the error state"
+    },
+    "glow": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false,
+      "description": "hide the message/value row (\"auto\" keeps it when non-empty)"
+    },
+    "hide-spin-buttons": {
+      "type": "string"
+    },
+    "hint": {
+      "type": "string",
+      "description": "helper text shown below; defaults to the current value"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon-color": {
+      "type": "string",
+      "description": "colour for those icons glow / center-affix / hide-spin-buttons - field surface modifiers"
+    },
+    "indent-details": {
+      "type": "string",
+      "description": "inset the details row to line up with the control"
+    },
+    "label": {
+      "type": "string",
+      "description": "field label"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-errors": {
+      "type": "number",
+      "description": "how many error messages are shown (default 1)"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string",
+      "description": "helper messages below the control (comma or JSON list)"
+    },
+    "min": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name"
+    },
+    "no-keyboard": {
+      "type": "string",
+      "description": "swallow keyboard interaction"
+    },
+    "persistent-hint": {
+      "type": "string",
+      "description": "keep the hint visible while an error is shown"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend": {
+      "type": "string",
+      "description": "icon / append-icon - icons rendered outside the control"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false,
+      "description": "non-interactive but not dimmed"
+    },
+    "reverse": {
+      "type": "string",
+      "description": "flip the track so the max is at the start"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false,
+      "description": "press feedback on the control"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "show-ticks": {
+      "type": "string",
+      "description": "show ticks on interaction; \"always\" keeps them visible"
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "xs",
+        "sm",
+        "lg",
+        "xl"
+      ],
+      "description": "xs | sm | lg | xl (omit for the default)"
+    },
+    "step": {
+      "type": "number",
+      "description": "increment (default 1)"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "thumb-color": {
+      "type": "string",
+      "description": "token colour (or CSS colour) for the thumb"
+    },
+    "thumb-label": {
+      "type": "string",
+      "description": "show a value bubble on interaction; \"always\" keeps it shown"
+    },
+    "thumb-size": {
+      "type": "number",
+      "description": "thumb diameter (bare number = px)"
+    },
+    "tick-labels": {
+      "type": "string",
+      "description": "pipe-separated labels placed at each step (implies ticks)"
+    },
+    "tick-size": {
+      "type": "number",
+      "description": "tick diameter (bare number = px)"
+    },
+    "ticks": {
+      "type": "string",
+      "description": "draw a tick at every step; also accepts a JSON array of values (`[0,25,50]`) or a JSON label map (`{\"0\":\"Low\"}`)"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "track-color": {
+      "type": "string",
+      "description": "token color name for the unfilled rail"
+    },
+    "track-fill-color": {
+      "type": "string",
+      "description": "token color name for the filled run (wins over color)"
+    },
+    "track-size": {
+      "type": "number",
+      "description": "rail thickness (bare number = px)"
+    },
+    "validate-on": {
+      "type": "enum",
+      "description": "eager (default) | lazy | blur | input | submit"
+    },
+    "validation-value": {
+      "type": "string",
+      "description": "value the range rule checks instead of the live value"
+    },
+    "value": {
+      "type": "string",
+      "description": "current value (default min)"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "input",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/slider.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

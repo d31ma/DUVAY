@@ -1,0 +1,184 @@
+{
+  "$description": "DuVay TimePicker — Core contract, tier 2.",
+  "name": "TimePicker",
+  "tier": 2,
+  "names": {
+    "web": "w-time-picker",
+    "apple": "DuVayTimePicker",
+    "android": "DuVayTimePicker",
+    "windows": "DuVayTimePicker",
+    "linux": "duvay_time_picker"
+  },
+  "accessibility": {
+    "role": "application",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "allowed-hours": {
+      "type": "string"
+    },
+    "allowed-minutes": {
+      "type": "number"
+    },
+    "allowed-seconds": {
+      "type": "string"
+    },
+    "ampm-in-title": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "divided": {
+      "type": "string"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "format": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-header": {
+      "type": "string"
+    },
+    "hide-title": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max": {
+      "type": "number"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "period": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrollable": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "use-seconds": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "string"
+    },
+    "view": {
+      "type": "string"
+    },
+    "view-mode": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "input",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "delegatesToSystemPicker": [
+    "apple",
+    "android"
+  ],
+  "source": "src/components/time-picker.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

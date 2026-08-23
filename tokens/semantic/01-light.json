@@ -1,0 +1,622 @@
+{
+  "$description": "light theme",
+  "$extensions": {
+    "duvay": {
+      "target": "src/themes.css",
+      "order": 1,
+      "theme": "light",
+      "open": [
+        ":root,",
+        "[w-theme=\"light\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "before": [
+        "/* DuVay — Theme system",
+        " *",
+        " * Themes redefine semantic color tokens. Components reference these by",
+        " * name (e.g. var(--w-primary)) and never the underlying hex values.",
+        " *",
+        " * Themes are selected via the `w-theme` attribute on <html>:",
+        " *   - light          (default)",
+        " *   - dark",
+        " *   - auto           (follows prefers-color-scheme)",
+        " *   - high-contrast  (WCAG AAA-leaning palette)",
+        " */",
+        "",
+        "/* ── Light theme (default) ──────────────────────────────────────────── */"
+      ],
+      "after": [
+        "",
+        "  color-scheme: light;"
+      ]
+    }
+  },
+  "highlight-color": {
+    "$value": "var(--w-warning)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "  /* --w-highlight-color: semantic emphasis used by <w-highlight>. */"
+        ]
+      }
+    }
+  },
+  "primary": {
+    "$value": "#1f6f8b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "on-primary": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "primary-container": {
+    "$value": "#d7edf4",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-primary-container": {
+    "$value": "#073544",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "accent": {
+    "$value": "#1f6f8b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 18,
+        "before": [
+          "",
+          "  /* Accent — split into fill and text roles (libadwaita model).",
+          "   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).",
+          "   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).",
+          "   * Conflating the two is the most common a11y failure in themed systems;",
+          "   * native platforms also supply them separately (system accent). */"
+        ]
+      }
+    }
+  },
+  "accent-bg": {
+    "$value": "#1f6f8b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15
+      }
+    }
+  },
+  "on-accent": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15
+      }
+    }
+  },
+  "secondary": {
+    "$value": "#4f635e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 15,
+        "before": [
+          "  /* --w-secondary: secondary component accents, including ratings. */"
+        ]
+      }
+    }
+  },
+  "surface": {
+    "$value": "#f8faf9",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "surface-container-low": {
+    "$value": "#f3f7f5",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "surface-container": {
+    "$value": "#edf3f1",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "surface-container-high": {
+    "$value": "#e5ece9",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "sidebar": {
+    "$value": "#eef3f1",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "toolbar": {
+    "$value": "#f1f5f4",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "app-bar-frosted": {
+    "$value": "rgba(248, 250, 249, 0.84)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "text": {
+    "$value": "#182125",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 20,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "text-subtle": {
+    "$value": "#526066",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 13
+      }
+    }
+  },
+  "text-very-subtle": {
+    "$value": "#7b878c",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 8
+      }
+    }
+  },
+  "text-high-emphasis-opacity": {
+    "$value": "0.87",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-medium-emphasis-opacity": {
+    "$value": "0.6",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-disabled-opacity": {
+    "$value": "0.38",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "divider": {
+    "$value": "#d8e0de",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "border": {
+    "$value": "#d0dbd8",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 18
+      }
+    }
+  },
+  "outline": {
+    "$value": "#7e8c88",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          "  /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).",
+          "   * Distinct from the decorative --w-border, mirroring Material 3's",
+          "   * outline / outline-variant split. Consumed by the form controls:",
+          "   * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,",
+          "   * .w-switch-track, .w-number-input-field. Internal separators between",
+          "   * sub-controls keep --w-border. */"
+        ]
+      }
+    }
+  },
+  "hover": {
+    "$value": "#eaf1ef",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "selected": {
+    "$value": "#dceff3",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 16
+      }
+    }
+  },
+  "selected-text": {
+    "$value": "#102f3a",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 11
+      }
+    }
+  },
+  "error": {
+    "$value": "#b3261e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-error": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 16
+      }
+    }
+  },
+  "error-container": {
+    "$value": "#f9dedc",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "on-error-container": {
+    "$value": "#410e0b",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "success": {
+    "$value": "#2e7d32",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-success": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "success-container": {
+    "$value": "#e8f5e9",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-success-container": {
+    "$value": "#1b5e20",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "warning": {
+    "$value": "#c47800",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-warning": {
+    "$value": "#2a1800",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "warning-container": {
+    "$value": "#f4e4c7",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "on-warning-container": {
+    "$value": "#493116",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4
+      }
+    }
+  },
+  "secondary-container": {
+    "$value": "#e6ece9",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "on-secondary-container": {
+    "$value": "#273733",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "tertiary-container": {
+    "$value": "#f4e4c7",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "on-tertiary-container": {
+    "$value": "#493116",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "inverse-surface": {
+    "$value": "#313033",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "inverse-on-surface": {
+    "$value": "#f4eff4",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6
+      }
+    }
+  },
+  "inverse-primary": {
+    "$value": "#83cde3",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 9
+      }
+    }
+  },
+  "scrim": {
+    "$value": "rgba(0, 0, 0, 0.4)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 19,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "shadow-color": {
+    "$value": "rgba(24, 33, 37, 0.12)",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "video-poster": {
+    "$value": "#000000",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "surface-raised": {
+    "$value": "var(--w-surface-container-high)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10,
+        "before": [
+          "",
+          "  /* Aliases retained for docs-site code paths */"
+        ]
+      }
+    }
+  },
+  "text-muted": {
+    "$value": "var(--w-text-subtle)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 14
+      }
+    }
+  },
+  "primary-muted": {
+    "$value": "var(--w-primary-container)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 11
+      }
+    }
+  }
+}

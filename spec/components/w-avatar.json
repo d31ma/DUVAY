@@ -1,0 +1,223 @@
+{
+  "$description": "DuVay Avatar — Core contract, tier 1.",
+  "name": "Avatar",
+  "tier": 1,
+  "names": {
+    "web": "w-avatar",
+    "apple": "DuVayAvatar",
+    "android": "DuVayAvatar",
+    "windows": "DuVayPersonPicture",
+    "linux": "duvay_avatar"
+  },
+  "accessibility": {
+    "role": "img",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "alt": {
+      "type": "string",
+      "description": "alt text for image or text fallback text/initials   - text fallback when no image/icon/default slot is set"
+    },
+    "badge": {
+      "type": "string",
+      "description": "true, color name, or status dot color"
+    },
+    "badge-color": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "success",
+        "warning",
+        "error",
+        "danger"
+      ],
+      "description": "primary | success | warning | error | danger"
+    },
+    "badge-content": {
+      "type": "string",
+      "description": "text inside the badge"
+    },
+    "badge-dot": {
+      "type": "string"
+    },
+    "badge-floating": {
+      "type": "string",
+      "description": "offset badge outside the avatar edge"
+    },
+    "badge-location": {
+      "type": "enum",
+      "values": [
+        "top-end",
+        "top-start",
+        "bottom-end",
+        "bottom-start"
+      ],
+      "description": "top-end | top-start | bottom-end | bottom-start"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "success",
+        "warning",
+        "error",
+        "danger"
+      ],
+      "description": "primary | secondary | tertiary | success | warning | error | danger"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "end": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon": {
+      "type": "string",
+      "description": "icon text/glyph fallback"
+    },
+    "image": {
+      "type": "string"
+    },
+    "initials": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "x-small",
+        "small",
+        "default",
+        "large",
+        "x-large",
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "description": "x-small | small | default | large | x-large | xs | sm | md | lg | xl | CSS length"
+    },
+    "src": {
+      "type": "string"
+    },
+    "start": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enum",
+      "values": [
+        "online",
+        "away"
+      ],
+      "description": "online | away | busy legacy status indicator start/end       - inline spacing helpers"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "flat",
+        "tonal",
+        "outlined",
+        "text",
+        "plain",
+        "elevated"
+      ],
+      "description": "flat | tonal | outlined | text | plain | elevated"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "default",
+    "badge"
+  ],
+  "source": "src/components/avatar.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

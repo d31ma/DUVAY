@@ -1,0 +1,221 @@
+{
+  "$description": "Spacing — numeric scale (4px steps)",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 2,
+      "banner": "  /* ── Spacing — numeric scale (4px steps) ─────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "space-0": {
+    "$value": "0",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3
+      }
+    }
+  },
+  "space-1": {
+    "$value": "0.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 4px  */"
+      }
+    }
+  },
+  "space-1_5": {
+    "$value": "0.375rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "  /* 6px  */"
+      }
+    }
+  },
+  "space-2": {
+    "$value": "0.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "    /* 8px  */"
+      }
+    }
+  },
+  "space-3": {
+    "$value": "0.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 12px */"
+      }
+    }
+  },
+  "space-4": {
+    "$value": "1rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "      /* 16px */"
+      }
+    }
+  },
+  "space-5": {
+    "$value": "1.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 20px */"
+      }
+    }
+  },
+  "space-6": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "    /* 24px */"
+      }
+    }
+  },
+  "space-7": {
+    "$value": "1.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 28px */"
+      }
+    }
+  },
+  "space-8": {
+    "$value": "2rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "      /* 32px */"
+      }
+    }
+  },
+  "space-9": {
+    "$value": "2.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": "   /* 36px */"
+      }
+    }
+  },
+  "space-10": {
+    "$value": "2.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "    /* 40px */"
+      }
+    }
+  },
+  "space-11": {
+    "$value": "2.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "   /* 44px */"
+      }
+    }
+  },
+  "space-12": {
+    "$value": "3rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "      /* 48px */"
+      }
+    }
+  },
+  "space-13": {
+    "$value": "3.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "   /* 52px */"
+      }
+    }
+  },
+  "space-14": {
+    "$value": "3.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "    /* 56px */"
+      }
+    }
+  },
+  "space-15": {
+    "$value": "3.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "   /* 60px */"
+      }
+    }
+  },
+  "space-16": {
+    "$value": "4rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "      /* 64px */"
+      }
+    }
+  },
+  "space-20": {
+    "$value": "5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2,
+        "trail": "      /* 80px */"
+      }
+    }
+  }
+}

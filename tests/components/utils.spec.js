@@ -71,3 +71,53 @@ test('wMaskValue stops as soon as the input runs out, trailing literals included
   expect(await mask(page, null, '###')).toBe('');
   expect(await mask(page, undefined, '(###)')).toBe('');
 });
+
+test('wSetValue writes whichever attribute the value getter reads', async ({ mount, page }) => {
+  await mount('<div id="host"></div>');
+
+  const states = await page.evaluate(async () => {
+    const { wSetValue } = await import('/src/components/utils.js');
+    const host = document.querySelector('#host');
+    const snapshot = () => ({ value: host.getAttribute('value'), model: host.getAttribute('model-value') });
+    const states = {};
+
+    wSetValue(host, '42');
+    states.plain = snapshot();
+
+    wSetValue(host, ['a', 'b', 'c']);
+    states.list = snapshot();
+
+    wSetValue(host, null);
+    states.cleared = snapshot();
+
+    // A host authored with model-value keeps receiving model-value.
+    host.setAttribute('model-value', '1');
+    wSetValue(host, 7);
+    states.model = snapshot();
+
+    wSetValue(host, undefined);
+    states.modelCleared = snapshot();
+
+    return states;
+  });
+
+  expect(states).toEqual({
+    plain: { value: '42', model: null },
+    list: { value: 'a,b,c', model: null },
+    cleared: { value: null, model: null },
+    model: { value: null, model: '7' },
+    modelCleared: { value: null, model: null },
+  });
+});
+
+test('setting .value on a component reaches the attribute its getter reads', async ({ mount, page }) => {
+  await mount('<w-chip id="chip">Tag</w-chip>');
+
+  const value = await page.evaluate(() => {
+    const chip = document.querySelector('#chip');
+    chip.value = 'archived';
+    return { prop: chip.value, attr: chip.getAttribute('value') };
+  });
+
+  expect(value).toEqual({ prop: 'archived', attr: 'archived' });
+});

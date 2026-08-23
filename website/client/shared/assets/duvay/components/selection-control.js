@@ -29,6 +29,7 @@
  */
 
 import WIcons from '../icons.js';
+import { wSetValue } from './utils.js';
 
 export class WSelectionControlBase extends WElement {
   static attrs = [
@@ -41,13 +42,17 @@ export class WSelectionControlBase extends WElement {
   get inputType()     { return this.type === 'radio' ? 'radio' : 'checkbox'; }
   get label()         { return this._attr('label', ''); }
   get name()          { return this._attr('name', ''); }
+  set value(v) { wSetValue(this, v); }
   get value()         { return this._attr('value', 'on'); }
   get trueValue()     { return this._attr('true-value', ''); }
   get falseValue()    { return this._attr('false-value', ''); }
   get checkedValue()  { return this.trueValue || this.value; }
   get checked()       { return this._bool('checked'); }
+  set checked(value) { this.toggleAttribute('checked', !!value); }
   get disabled()      { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get indeterminate() { return this._bool('indeterminate'); }
+  set indeterminate(value) { this.toggleAttribute('indeterminate', !!value); }
   get multiple()      { return this._bool('multiple'); }
   get inline()        { return this._bool('inline'); }
   get trueIcon()          { return this._attr('true-icon', ''); }

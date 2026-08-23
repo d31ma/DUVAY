@@ -1,0 +1,126 @@
+{
+  "$description": "Breakpoints",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 8,
+      "banner": "  /* ── Breakpoints ────────────────────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "bp-sm": {
+    "$value": "600px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "  /* Grid + utility responsive tiers (Vuetify-aligned): sm 600, md 960, lg 1280.",
+          "     The legacy app-shell visibility utilities use 761/1025 — see utilities.css. */"
+        ]
+      }
+    }
+  },
+  "bp-md": {
+    "$value": "960px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "bp-lg": {
+    "$value": "1280px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "bp-xl": {
+    "$value": "1920px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "bp-xxl": {
+    "$value": "2560px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "bp-tablet": {
+    "$value": "761px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "bp-desktop": {
+    "$value": "1025px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-high-emphasis-opacity": {
+    "$value": "0.87",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "before": [
+          "",
+          "  /* Text emphasis opacity tokens",
+          "   * --w-text-high-emphasis-opacity: primary text emphasis utility.",
+          "   * --w-text-medium-emphasis-opacity: hints, helper copy, secondary labels.",
+          "   * --w-text-disabled-opacity: disabled or unavailable text state.",
+          "   * Affected components: typography utilities and <w-typography color=\"...\">.",
+          "   */"
+        ]
+      }
+    }
+  },
+  "text-medium-emphasis-opacity": {
+    "$value": "0.6",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "text-disabled-opacity": {
+    "$value": "0.38",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

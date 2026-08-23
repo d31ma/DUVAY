@@ -19,6 +19,15 @@
   --w-on-primary:              #ffffff;
   --w-primary-container:       #d7edf4;
   --w-on-primary-container:    #073544;
+
+  /* Accent — split into fill and text roles (libadwaita model).
+   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).
+   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).
+   * Conflating the two is the most common a11y failure in themed systems;
+   * native platforms also supply them separately (system accent). */
+  --w-accent:                  #1f6f8b;
+  --w-accent-bg:               #1f6f8b;
+  --w-on-accent:               #ffffff;
   /* --w-secondary: secondary component accents, including ratings. */
   --w-secondary:               #4f635e;
 
@@ -39,6 +48,13 @@
 
   --w-divider:                 #d8e0de;
   --w-border:                  #d0dbd8;
+  /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).
+   * Distinct from the decorative --w-border, mirroring Material 3's
+   * outline / outline-variant split. Consumed by the form controls:
+   * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,
+   * .w-switch-track, .w-number-input-field. Internal separators between
+   * sub-controls keep --w-border. */
+  --w-outline:                 #7e8c88;
 
   --w-hover:                   #eaf1ef;
   --w-selected:                #dceff3;
@@ -55,7 +71,7 @@
   --w-on-success-container:    #1b5e20;
 
   --w-warning:                 #c47800;
-  --w-on-warning:              #ffffff;
+  --w-on-warning:              #2a1800;
   --w-warning-container:       #f4e4c7;
   --w-on-warning-container:    #493116;
 
@@ -88,6 +104,15 @@
   --w-on-primary:              #08323f;
   --w-primary-container:       rgba(131, 205, 227, 0.18);
   --w-on-primary-container:    #e8f8fc;
+
+  /* Accent — split into fill and text roles (libadwaita model).
+   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).
+   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).
+   * Conflating the two is the most common a11y failure in themed systems;
+   * native platforms also supply them separately (system accent). */
+  --w-accent:                  #83cde3;
+  --w-accent-bg:               #83cde3;
+  --w-on-accent:               #08323f;
   --w-secondary:               #adc9c2;
 
   --w-surface:                 #1c2224;
@@ -107,6 +132,13 @@
 
   --w-divider:                 #313b3e;
   --w-border:                  #3a464a;
+  /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).
+   * Distinct from the decorative --w-border, mirroring Material 3's
+   * outline / outline-variant split. Consumed by the form controls:
+   * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,
+   * .w-switch-track, .w-number-input-field. Internal separators between
+   * sub-controls keep --w-border. */
+  --w-outline:                 #6c7b7f;
 
   --w-hover:                   rgba(255, 255, 255, 0.05);
   --w-selected:                rgba(131, 205, 227, 0.18);
@@ -158,6 +190,15 @@
     --w-on-primary:              #08323f;
     --w-primary-container:       rgba(131, 205, 227, 0.18);
     --w-on-primary-container:    #e8f8fc;
+
+  /* Accent — split into fill and text roles (libadwaita model).
+   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).
+   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).
+   * Conflating the two is the most common a11y failure in themed systems;
+   * native platforms also supply them separately (system accent). */
+    --w-accent:                  #83cde3;
+    --w-accent-bg:               #83cde3;
+    --w-on-accent:               #08323f;
     --w-secondary:               #adc9c2;
 
     --w-surface:                 #1c2224;
@@ -177,6 +218,13 @@
 
     --w-divider:                 #313b3e;
     --w-border:                  #3a464a;
+    /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).
+     * Distinct from the decorative --w-border, mirroring Material 3's
+     * outline / outline-variant split. Consumed by the form controls:
+     * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,
+     * .w-switch-track, .w-number-input-field. Internal separators between
+     * sub-controls keep --w-border. */
+    --w-outline:                 #6c7b7f;
 
     --w-hover:                   rgba(255, 255, 255, 0.05);
     --w-selected:                rgba(131, 205, 227, 0.18);
@@ -224,6 +272,15 @@
   --w-on-primary:              #ffffff;
   --w-primary-container:       #b6e2ee;
   --w-on-primary-container:    #001820;
+
+  /* Accent — split into fill and text roles (libadwaita model).
+   * --w-accent-bg / --w-on-accent: accent fill and its label (>= 4.5:1).
+   * --w-accent: accent-coloured text drawn on a surface (>= 4.5:1).
+   * Conflating the two is the most common a11y failure in themed systems;
+   * native platforms also supply them separately (system accent). */
+  --w-accent:                  #003a4f;
+  --w-accent-bg:               #003a4f;
+  --w-on-accent:               #ffffff;
   --w-secondary:               #244d44;
 
   --w-surface:                 #ffffff;
@@ -243,6 +300,13 @@
 
   --w-divider:                 #6e7a80;
   --w-border:                  #4a5559;
+  /* --w-outline: boundary of an interactive control (>= 3:1, WCAG 1.4.11).
+   * Distinct from the decorative --w-border, mirroring Material 3's
+   * outline / outline-variant split. Consumed by the form controls:
+   * .w-input, .w-textarea, .w-select, .w-field, .w-text-field-control,
+   * .w-switch-track, .w-number-input-field. Internal separators between
+   * sub-controls keep --w-border. */
+  --w-outline:                 #4a5559;
 
   --w-hover:                   #d4e3e8;
   --w-selected:                #b6e2ee;

@@ -1,0 +1,212 @@
+{
+  "$description": "DuVay Menu — Core contract, tier 1.",
+  "name": "Menu",
+  "tier": 1,
+  "names": {
+    "web": "w-menu",
+    "apple": "DuVayMenu",
+    "android": "DuVayMenu",
+    "windows": "DuVayMenuFlyout",
+    "linux": "duvay_popover_menu"
+  },
+  "accessibility": {
+    "role": "menu",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "capture-focus": {
+      "type": "string"
+    },
+    "close-delay": {
+      "type": "string"
+    },
+    "close-on-back": {
+      "type": "string"
+    },
+    "close-on-content-click": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string"
+    },
+    "contained": {
+      "type": "string"
+    },
+    "content-class": {
+      "type": "string"
+    },
+    "content-id": {
+      "type": "string"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disable-initial-focus": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "no-click-animation": {
+      "type": "string"
+    },
+    "offset": {
+      "type": "string"
+    },
+    "opacity": {
+      "type": "string"
+    },
+    "open": {
+      "type": "string"
+    },
+    "open-delay": {
+      "type": "string"
+    },
+    "open-on-click": {
+      "type": "string"
+    },
+    "open-on-focus": {
+      "type": "string"
+    },
+    "open-on-hover": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "persistent": {
+      "type": "boolean",
+      "default": false
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "retain-focus": {
+      "type": "string"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrim": {
+      "type": "string"
+    },
+    "side": {
+      "type": "string"
+    },
+    "stick-to-target": {
+      "type": "string"
+    },
+    "submenu": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "transition": {
+      "type": "string"
+    },
+    "viewport-margin": {
+      "type": "string"
+    },
+    "width": {
+      "type": "string"
+    },
+    "z-index": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "close",
+      "detail": "object"
+    },
+    {
+      "name": "toggle",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "activator",
+    "default"
+  ],
+  "source": "src/components/menu.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

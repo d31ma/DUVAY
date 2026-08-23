@@ -46,8 +46,7 @@
  *   clear  - the clear button was pressed (detail: { value: '' })
  */
 import WIcons from '../icons.js';
-import { wValueList } from './utils.js';
-
+import { wSetValue, wValueList } from './utils.js';
 const PIP_LOCATIONS = ['prepend', 'append', 'prepend-inner', 'append-inner'];
 
 /* Attributes handed straight through to the nested <w-color-picker>. */
@@ -81,10 +80,12 @@ export class WColorInput extends WElement {
     'landscape', 'hide-eye-dropper', 'eye-dropper-icon',
   ];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', '#6750a4'); }
   get label() { return this._attr('label', 'Color'); }
   get mode() { return this._attr('mode', 'hex'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _swatches() { return wValueList(this.getAttribute('swatches')); }
   get _showSwatches() { return this.hasAttribute('show-swatches') || this._swatches().length > 0; }
 

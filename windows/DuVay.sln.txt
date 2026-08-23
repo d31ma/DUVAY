@@ -1,0 +1,3 @@
+Placeholder: the WinUI 3 control library (windows/DuVay) requires Windows to
+build and is not part of this solution on macOS. DuVay.Core and its tests are
+platform-neutral and build anywhere.

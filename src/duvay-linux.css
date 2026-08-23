@@ -1,0 +1,10 @@
+/* DuVay — full framework with the Linux skin preapplied.
+ *
+ * Alias of duvay-adwaita.css. The skin file is named for the design language
+ * (adwaita), which is the name its vendor uses; this entrypoint is named for
+ * the operating system, which is the name most developers reach for. Both load
+ * the same stylesheet and both `w-os` values activate it.
+ */
+@import "./duvay.css";
+@import "./platforms/adwaita.css";
+@import "./platforms/web.css";

@@ -82,6 +82,7 @@ class WList extends WElement {
   get selectable() { return this._bool('selectable'); }
   get activatable() { return this._bool('activatable'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get slim() { return this._bool('slim'); }
   get mandatory() { return this._bool('mandatory'); }
   get activeClass() { return this._attr('active-class', ''); }

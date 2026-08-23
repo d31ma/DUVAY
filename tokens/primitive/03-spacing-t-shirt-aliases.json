@@ -1,0 +1,83 @@
+{
+  "$description": "Spacing — t-shirt aliases",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 3,
+      "banner": "  /* ── Spacing — t-shirt aliases ──────────────────────────────────────── */",
+      "after": [
+        ""
+      ]
+    }
+  },
+  "space-xs": {
+    "$value": "var(--w-space-1)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "space-sm": {
+    "$value": "var(--w-space-2)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "space-md": {
+    "$value": "var(--w-space-3)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "space-lg": {
+    "$value": "var(--w-space-4)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "space-xl": {
+    "$value": "var(--w-space-5)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 2
+      }
+    }
+  },
+  "space-2xl": {
+    "$value": "var(--w-space-6)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "space-3xl": {
+    "$value": "var(--w-space-8)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

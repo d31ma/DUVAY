@@ -1,0 +1,332 @@
+{
+  "$description": "DuVay FileInput — Core contract, tier 2.",
+  "name": "FileInput",
+  "tier": 2,
+  "names": {
+    "web": "w-file-input",
+    "apple": "DuVayFileImporter",
+    "android": "DuVayFilePicker",
+    "windows": "DuVayFilePicker",
+    "linux": "duvay_file_chooser"
+  },
+  "accessibility": {
+    "role": "button",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ],
+    "keyboard": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "accept": {
+      "type": "string",
+      "description": "comma-separated accepted MIME types/extensions"
+    },
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "description": "render the highlighted/active state"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string"
+    },
+    "append-inner-icon": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center-affix": {
+      "type": "string",
+      "description": "vertically center the affixes / icons"
+    },
+    "chips": {
+      "type": "boolean",
+      "default": false,
+      "description": "display selected files as chips"
+    },
+    "clear-icon": {
+      "type": "string",
+      "description": "icon used for the clear button"
+    },
+    "clearable": {
+      "type": "boolean",
+      "default": false,
+      "description": "show a clear-all button"
+    },
+    "color": {
+      "type": "string"
+    },
+    "counter": {
+      "type": "number",
+      "description": "show file count and total size"
+    },
+    "counter-size-string": {
+      "type": "number",
+      "description": "counter template used with show-size; {1} is the total size"
+    },
+    "counter-string": {
+      "type": "number",
+      "description": "counter template; {0} is the file count"
+    },
+    "density": {
+      "type": "enum",
+      "values": [
+        "compact",
+        "comfortable",
+        "default"
+      ],
+      "description": "compact | comfortable | default"
+    },
+    "dirty": {
+      "type": "string",
+      "description": "force the dirty (has-value) styling"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disable the input"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "error": {
+      "type": "string",
+      "description": "error text; also adds error styling"
+    },
+    "error-messages": {
+      "type": "string",
+      "description": "error messages (string or JSON array); sets the error state"
+    },
+    "filter-by-type": {
+      "type": "string",
+      "description": "only accept files matching these type specifiers"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "drop the elevation of the solo variants"
+    },
+    "glow": {
+      "type": "string",
+      "description": "light the icons up while the field is focused"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-details": {
+      "type": "boolean",
+      "default": false,
+      "description": "suppress the details row (`auto` == the default)"
+    },
+    "hide-input": {
+      "type": "string",
+      "description": "icons only; the selected file names are not shown"
+    },
+    "hide-spin-buttons": {
+      "type": "string",
+      "description": "shared field-surface flag (numeric fields)"
+    },
+    "hint": {
+      "type": "string",
+      "description": "helper text below the field"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "icon-color": {
+      "type": "string",
+      "description": "color for the affix icons"
+    },
+    "icon-set": {
+      "type": "string",
+      "description": "icon set prefix for every *-icon attribute"
+    },
+    "indent-details": {
+      "type": "string",
+      "description": "inset the details row"
+    },
+    "label": {
+      "type": "string",
+      "description": "button / field label (default: \"Choose file\")"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-errors": {
+      "type": "number",
+      "description": "how many error messages to show (default 1)"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "messages": {
+      "type": "string",
+      "description": "extra messages (string or JSON array)"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false,
+      "description": "allow multiple file selection"
+    },
+    "name": {
+      "type": "string",
+      "description": "form field name"
+    },
+    "persistent-clear": {
+      "type": "string",
+      "description": "keep the clear button visible (it only shows on hover otherwise)"
+    },
+    "persistent-hint": {
+      "type": "string",
+      "description": "keep the hint visible alongside an error"
+    },
+    "placeholder": {
+      "type": "string",
+      "description": "placeholder text when no files are selected"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend": {
+      "type": "string",
+      "description": "icon, append-icon             - icons outside the control"
+    },
+    "prepend-icon": {
+      "type": "string"
+    },
+    "prepend-inner": {
+      "type": "string",
+      "description": "icon, append-inner-icon - icons inside the control"
+    },
+    "prepend-inner-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false,
+      "description": "make the input read-only"
+    },
+    "required": {
+      "type": "string",
+      "description": "require a file or a non-empty validation-value"
+    },
+    "reverse": {
+      "type": "string",
+      "description": "reverse the control's horizontal order"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "show-size": {
+      "type": "number",
+      "description": "show each file's size next to its name"
+    },
+    "single-line": {
+      "type": "string",
+      "description": "no label row; the label becomes the placeholder"
+    },
+    "small-chips": {
+      "type": "string",
+      "description": "display smaller chips"
+    },
+    "solo": {
+      "type": "enum",
+      "values": [
+        "filled",
+        "solo-inverted"
+      ],
+      "description": "filled | solo-inverted"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "truncate-length": {
+      "type": "number",
+      "description": "max characters for a file name (default 22)"
+    },
+    "validate-on": {
+      "type": "string",
+      "description": "`lazy` withholds errors until the field is used; a `blur` token makes blur (not selection) the trigger"
+    },
+    "validation-value": {
+      "type": "string",
+      "description": "serializable value used instead of the FileList for required validation and dirty state"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "outlined",
+        "filled",
+        "underlined",
+        "plain",
+        "solo"
+      ],
+      "description": "outlined | filled | underlined | plain | solo |"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    },
+    {
+      "name": "rejected",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/file-input.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

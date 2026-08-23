@@ -1,0 +1,247 @@
+{
+  "$description": "DuVay Tabs — Core contract, tier 2.",
+  "name": "Tabs",
+  "tier": 2,
+  "names": {
+    "web": "w-tabs",
+    "apple": "DuVayTabView",
+    "android": "DuVayTabRow",
+    "windows": "DuVayTabView",
+    "linux": "duvay_view_switcher"
+  },
+  "accessibility": {
+    "role": "tablist",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "align-tabs": {
+      "type": "enum",
+      "description": "`start` (default) | `center` | `end`"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string",
+      "description": "palette token name for the strip background"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "center-active": {
+      "type": "string",
+      "description": "boolean; keep the active tab scrolled to center"
+    },
+    "color": {
+      "type": "string",
+      "description": "palette token name for the active tab text + default slider"
+    },
+    "content-class": {
+      "type": "string",
+      "description": "extra classes applied to every <w-tab> host"
+    },
+    "density": {
+      "type": "enum",
+      "description": "`comfortable` | `compact`"
+    },
+    "direction": {
+      "type": "enum",
+      "description": "`horizontal` (default) | `vertical`"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; disable the whole strip"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "fixed-tabs": {
+      "type": "string",
+      "description": "boolean; equal-width tabs capped at --w-tab-max-width"
+    },
+    "grow": {
+      "type": "string",
+      "description": "boolean; equal-width tabs filling the strip (no cap)"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hide-slider": {
+      "type": "string",
+      "description": "boolean; remove the active indicator entirely"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "inset": {
+      "type": "boolean",
+      "default": false,
+      "description": "inset strip: full-height slider, spacing and rounding"
+    },
+    "inset-padding": {
+      "type": "string",
+      "description": "spacing between tabs in inset mode"
+    },
+    "inset-radius": {
+      "type": "string",
+      "description": "corner radius of the inset strip"
+    },
+    "items": {
+      "type": "string",
+      "description": "JSON array of strings or { text, value, disabled } records that generates the <w-tab> children"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "mandatory": {
+      "type": "string",
+      "description": "keep one tab active (default). `mandatory=\"false\"` lets a click on the active tab deselect it."
+    },
+    "max": {
+      "type": "number",
+      "description": "with `multiple`, the maximum number of active tabs"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "mobile-breakpoint": {
+      "type": "string"
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; allow several tabs to be active at once. `value` then reads/writes a JSON array and `change` carries one."
+    },
+    "next-icon": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prev": {
+      "type": "string",
+      "description": "icon / next-icon - custom glyphs for the pagination arrows"
+    },
+    "prev-icon": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "scroll-to-active": {
+      "type": "string",
+      "description": "keep the active tab visible when the strip resizes"
+    },
+    "selected-class": {
+      "type": "string",
+      "description": "extra class applied to the active <w-tab> host"
+    },
+    "show-arrows": {
+      "type": "string",
+      "description": "boolean; overflow pagination arrows"
+    },
+    "slider-color": {
+      "type": "string",
+      "description": "palette token name for the indicator (e.g. `primary`)"
+    },
+    "slider-transition": {
+      "type": "enum",
+      "values": [
+        "shift",
+        "grow",
+        "fade"
+      ],
+      "description": "shift | grow | fade"
+    },
+    "slider-transition-duration": {
+      "type": "string",
+      "description": "ms number or any CSS duration"
+    },
+    "spaced": {
+      "type": "enum",
+      "values": [
+        "start",
+        "end"
+      ],
+      "description": "start | end | both; propagated to every tab mobile / mobile-breakpoint - compact, scroll-first layout"
+    },
+    "stacked": {
+      "type": "boolean",
+      "default": false,
+      "description": "boolean; icon stacked above label"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string",
+      "description": "the currently active tab value"
+    },
+    "variant": {
+      "type": "string",
+      "description": "`pills` for the pill style (omit for the underline style)"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "change",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/tabs.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-command-item> — selectable command item
  *
  * Attributes:
@@ -14,12 +15,14 @@
 export class WCommandItem extends WElement {
   static attrs = ['value', 'subtitle', 'icon', 'prepend-icon', 'shortcut', 'disabled'];
 
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
   get subtitle() { return this._attr('subtitle', ''); }
   get icon() { return this._attr('icon', '') || this._attr('prepend-icon', ''); }
   get shortcut() { return this._attr('shortcut', ''); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _template() {
     const icon = this.icon
       ? `<span class="w-command-item-icon" aria-hidden="true">${this._esc(this.icon)}</span>`

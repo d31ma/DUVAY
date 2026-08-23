@@ -1,0 +1,147 @@
+{
+  "$description": "DuVay Divider — Core contract, tier 1.",
+  "name": "Divider",
+  "tier": 1,
+  "names": {
+    "web": "w-divider",
+    "apple": "DuVayDivider",
+    "android": "DuVayDivider",
+    "windows": "DuVayDivider",
+    "linux": "duvay_separator"
+  },
+  "accessibility": {
+    "role": "separator",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "string"
+    },
+    "content-offset": {
+      "type": "string",
+      "description": "spacing between the slotted content and the rules. A second value shifts the content down (or right, when vertical)."
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "gradient": {
+      "type": "string",
+      "description": "fade the rule out towards both ends"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "inset": {
+      "type": "boolean",
+      "default": false,
+      "description": "indent the rule from the leading edge"
+    },
+    "length": {
+      "type": "number",
+      "description": "length of the rule (width when horizontal, height when vertical); a bare number is px"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "opacity": {
+      "type": "string",
+      "description": "0–1 opacity for the rule"
+    },
+    "position": {
+      "type": "string"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "theme": {
+      "type": "string"
+    },
+    "thickness": {
+      "type": "string",
+      "description": "thickness of the rule; a bare number is px (default 1px)"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "variant": {
+      "type": "enum",
+      "description": "solid (default) | dashed | dotted | double border style"
+    },
+    "vertical": {
+      "type": "string",
+      "description": "draw the rule down the cross axis instead of across"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/divider.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

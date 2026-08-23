@@ -92,6 +92,7 @@ export class WHotkey extends WElement {
   get displayMode() { return this._attr('display-mode', 'icon'); }
   get variant() { return this._attr('variant', 'contained'); }
   get disabled() { return this._bool('disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get prefix() { return this._attr('prefix', ''); }
   get suffix() { return this._attr('suffix', ''); }
   get inline() { return this._bool('inline'); }

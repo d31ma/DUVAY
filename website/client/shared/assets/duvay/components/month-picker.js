@@ -1,6 +1,7 @@
 /* <w-month-picker> — month and year picker with single, multiple, and range modes. */
 
 import { WDatePicker } from './date-picker.js';
+import { wSetValue } from './utils.js';
 
 export class WMonthPicker extends WDatePicker {
   static attrs = [
@@ -14,6 +15,7 @@ export class WMonthPicker extends WDatePicker {
     const name = this.view === 'years' ? 'years-columns' : 'months-columns';
     return Math.max(1, Number.parseInt(this._attr(name, '3'), 10) || 3);
   }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('model-value', this._attr('value', '')); }
 
   _setView(view) {

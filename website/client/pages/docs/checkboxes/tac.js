@@ -1,4 +1,4 @@
-export default class extends Tac {
+export default class {
   onMount() {
     document.title = 'Checkboxes — DuVay Documentation'
 

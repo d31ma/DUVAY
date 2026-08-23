@@ -1,0 +1,156 @@
+{
+  "$description": "comfortable density",
+  "$extensions": {
+    "duvay": {
+      "target": "src/density.css",
+      "order": 1,
+      "density": "comfortable",
+      "open": [
+        "[w-density=\"comfortable\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "before": [
+        "/* DuVay \u2014 Density",
+        " *",
+        " * Density rescales control geometry without touching colour, shape or type.",
+        " * Selected with the `w-density` attribute, orthogonal to both `w-theme` and",
+        " * `w-os`:",
+        " *   - comfortable   (default) touch-first, 40px controls",
+        " *   - compact       pointer-first, 32px controls",
+        " *",
+        " * This is the supported way to get a denser UI. Platform skins deliberately",
+        " * cannot change control size \u2014 that kept the five skins one product \u2014 so a",
+        " * pointer-dense platform like macOS asks for density explicitly instead.",
+        " * duvay.js sets w-density=\"compact\" alongside w-os=\"macos\" when it detects",
+        " * a Mac, and an explicit attribute always wins.",
+        " *",
+        " * Per-component modifiers (.w-btn--density-compact and friends) still work",
+        " * and compose with this; they override a single control, this sets the floor.",
+        " */",
+        ""
+      ]
+    }
+  },
+  "size-xs": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12,
+        "before": [
+          "  /* The defaults, restated so a subtree can opt back in. */"
+        ]
+      }
+    }
+  },
+  "size-sm": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-md": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-lg": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-xl": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 12
+      }
+    }
+  },
+  "size-icon-xs": {
+    "$value": "28px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7,
+        "before": [
+          ""
+        ]
+      }
+    }
+  },
+  "size-icon-sm": {
+    "$value": "32px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-md": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-lg": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "size-icon-xl": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
+  "touch-min": {
+    "$value": "2.75rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10,
+        "before": [
+          ""
+        ],
+        "trail": "   /* 44px \u2014 the HIG / Material touch floor */"
+      }
+    }
+  }
+}

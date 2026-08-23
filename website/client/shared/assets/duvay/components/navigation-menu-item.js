@@ -1,3 +1,4 @@
+import { wSetValue } from './utils.js';
 /* <w-navigation-menu-item> - horizontal navigation item */
 
 export class WNavigationMenuItem extends WElement {
@@ -5,10 +6,12 @@ export class WNavigationMenuItem extends WElement {
 
   get href() { return this._attr('href', ''); }
   get label() { return this._attr('label', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.href || this.label); }
   get active() { return this._bool('active'); }
   get disabled() { return this._bool('disabled'); }
 
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   _template() {
     const disabled = this.disabled ? ' aria-disabled="true"' : '';
     const current = this.active ? ' aria-current="page"' : '';

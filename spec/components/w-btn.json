@@ -1,0 +1,238 @@
+{
+  "$description": "DuVay Button — Core contract, tier 1.",
+  "name": "Button",
+  "tier": 1,
+  "names": {
+    "web": "w-btn",
+    "apple": "DuVayButton",
+    "android": "DuVayButton",
+    "windows": "DuVayButton",
+    "linux": "duvay_button"
+  },
+  "accessibility": {
+    "role": "button",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ],
+    "keyboard": [
+      "Enter",
+      "Space"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active": {
+      "type": "boolean",
+      "default": false,
+      "description": "marks the button as selected in grouped controls"
+    },
+    "active-color": {
+      "type": "string"
+    },
+    "append-icon": {
+      "type": "string",
+      "description": "icon after the label",
+      "property": "appendIcon"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "block": {
+      "type": "boolean",
+      "default": false,
+      "description": "makes the button full-width"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "success",
+        "danger",
+        "warning"
+      ],
+      "description": "primary | success | danger | warning",
+      "property": "color"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disables the button"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "drops the box shadow without changing the variant"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "href": {
+      "type": "string",
+      "description": "if set, renders an <a> tag instead of <button>",
+      "property": "href"
+    },
+    "icon": {
+      "type": "string",
+      "description": "leading icon text / glyph (legacy alias for prepend-icon)",
+      "property": "icon"
+    },
+    "icon-set": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "shows a loading spinner and blocks pointer interaction"
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-icon": {
+      "type": "string",
+      "description": "icon before the label",
+      "property": "prependIcon"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false,
+      "description": "opt-in press-ripple visual (off by default)"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "selected-class": {
+      "type": "string",
+      "description": "extra class put on the control while it is active"
+    },
+    "size": {
+      "type": "enum",
+      "values": [
+        "xs",
+        "sm",
+        "lg",
+        "xl"
+      ],
+      "description": "xs | sm | lg | xl, or x-small | small | default | large | x-large",
+      "property": "size"
+    },
+    "slim": {
+      "type": "boolean",
+      "default": false,
+      "description": "collapses the horizontal padding to 0 0.5rem"
+    },
+    "spaced": {
+      "type": "enum",
+      "values": [
+        "start",
+        "end"
+      ],
+      "description": "start | end | both; pushes prepend/append icons to the edges"
+    },
+    "stacked": {
+      "type": "boolean",
+      "default": false,
+      "description": "stacks icon above the label"
+    },
+    "text": {
+      "type": "string",
+      "description": "label text, used instead of slotted content"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "value": {
+      "type": "string",
+      "description": "value carried by the button inside a group"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "filled",
+        "tonal",
+        "outlined",
+        "text",
+        "ghost",
+        "plain",
+        "elevated",
+        "icon",
+        "danger",
+        "primary-text"
+      ],
+      "description": "filled | tonal | outlined | text | ghost | plain | elevated | icon | danger | primary-text (\"flat\" aliases filled)",
+      "property": "variant"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [
+    {
+      "name": "blur",
+      "detail": "object"
+    },
+    {
+      "name": "focus",
+      "detail": "object"
+    }
+  ],
+  "slots": [
+    "default"
+  ],
+  "source": "src/components/btn.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

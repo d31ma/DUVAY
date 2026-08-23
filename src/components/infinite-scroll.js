@@ -34,6 +34,7 @@ export class WInfiniteScroll extends WElement {
   get height() { return this._attr('height', '260px'); }
   get margin() { return wNumberAttr(this, 'margin', wNumberAttr(this, 'threshold', 96)); }
   get disabled() { return wBoolAttr(this, 'disabled'); }
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get status() { return this._attr('status', 'idle'); }
   get loadMoreText() { return this._attr('load-more-text', 'Load more'); }
   get loadingText() { return this._attr('loading-text', 'Loading…'); }

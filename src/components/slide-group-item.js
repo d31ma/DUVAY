@@ -12,6 +12,8 @@ export class WSlideGroupItem extends WElement {
   static attrs = ['value', 'disabled', 'selected-class'];
 
   get disabled() { return wBoolAttr(this, 'disabled'); }
+
+  set disabled(value) { this.toggleAttribute('disabled', !!value); }
   get selectedClass() { return this._attr('selected-class', ''); }
 
   _template() {

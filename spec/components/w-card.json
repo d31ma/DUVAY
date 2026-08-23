@@ -1,0 +1,212 @@
+{
+  "$description": "DuVay Card — Core contract, tier 1.",
+  "name": "Card",
+  "tier": 1,
+  "names": {
+    "web": "w-card",
+    "apple": "DuVayCard",
+    "android": "DuVayCard",
+    "windows": "DuVayCard",
+    "linux": "duvay_card"
+  },
+  "accessibility": {
+    "role": "group",
+    "nameFrom": [
+      "label",
+      "text",
+      "slotted content",
+      "aria-label"
+    ]
+  },
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading",
+    "readonly",
+    "error"
+  ],
+  "props": {
+    "active-color": {
+      "type": "string"
+    },
+    "append-avatar": {
+      "type": "string",
+      "description": "trailing avatar URL"
+    },
+    "append-icon": {
+      "type": "string",
+      "description": "trailing icon text/glyph"
+    },
+    "base-color": {
+      "type": "string"
+    },
+    "bg-color": {
+      "type": "string"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "color": {
+      "type": "enum",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "success",
+        "warning",
+        "error",
+        "danger"
+      ],
+      "description": "primary | secondary | tertiary | success | warning | error | danger"
+    },
+    "density": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "disables link/click affordance"
+    },
+    "elevation": {
+      "type": "number"
+    },
+    "flat": {
+      "type": "boolean",
+      "default": false,
+      "description": "alias for variant=\"flat\""
+    },
+    "footer": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "hover": {
+      "type": "string",
+      "description": "hover elevation treatment"
+    },
+    "hover-elevation": {
+      "type": "number"
+    },
+    "href": {
+      "type": "string",
+      "description": "render card root as a link target/rel         - link attributes"
+    },
+    "image": {
+      "type": "string",
+      "description": "top image URL"
+    },
+    "link": {
+      "type": "string",
+      "description": "force clickable/card link styling"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "true or color token for top loader"
+    },
+    "location": {
+      "type": "string"
+    },
+    "max-height": {
+      "type": "number"
+    },
+    "max-width": {
+      "type": "number"
+    },
+    "min-height": {
+      "type": "number"
+    },
+    "min-width": {
+      "type": "number"
+    },
+    "position": {
+      "type": "string"
+    },
+    "prepend-avatar": {
+      "type": "string",
+      "description": "leading avatar URL"
+    },
+    "prepend-icon": {
+      "type": "string",
+      "description": "leading icon text/glyph"
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "rel": {
+      "type": "string"
+    },
+    "ripple": {
+      "type": "boolean",
+      "default": false,
+      "description": "press-ripple visual on a clickable card header/footer      - legacy generated header/footer support"
+    },
+    "rounded": {
+      "type": "boolean",
+      "default": false
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "tile": {
+      "type": "boolean",
+      "default": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enum",
+      "values": [
+        "elevated",
+        "flat",
+        "tonal",
+        "outlined",
+        "text",
+        "plain"
+      ],
+      "description": "elevated | flat | tonal | outlined | text | plain"
+    },
+    "width": {
+      "type": "string"
+    }
+  },
+  "events": [],
+  "slots": [
+    "loader",
+    "image",
+    "header",
+    "footer",
+    "prepend",
+    "append",
+    "title",
+    "subtitle",
+    "item",
+    "text",
+    "actions",
+    "default"
+  ],
+  "source": "src/components/card.js",
+  "inheritsFrom": [
+    "src/components/base.js"
+  ],
+  "inheritedProps": []
+}

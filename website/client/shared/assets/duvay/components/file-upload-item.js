@@ -32,8 +32,7 @@
  *   remove - the remove button was used (detail: { value, index, title })
  */
 import { formatSize, wCssLength, wIconHtml } from './file-input.js';
-import { wSafeImageUrl, wSafeUrl } from './utils.js';
-
+import { wSafeImageUrl, wSafeUrl, wSetValue } from './utils.js';
 // The `file` attribute carries a JSON record; the property carries the File.
 function wFileRecord(value) {
   const text = String(value == null ? '' : value).trim();
@@ -72,6 +71,7 @@ export class WFileUploadItem extends WElement {
 
   get itemTitle() { return this._attr('title', '') || this.fileName; }
   get subtitle() { return this._attr('subtitle', ''); }
+  set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', this.itemTitle); }
   get index() { return this._attr('index', ''); }
   get href() { return wSafeUrl(this._attr('href', '')); }
