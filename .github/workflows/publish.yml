@@ -31,6 +31,7 @@ jobs:
     outputs:
       source_sha: ${{ steps.release.outputs.source_sha }}
       version: ${{ steps.release.outputs.version }}
+      should_publish: ${{ steps.release.outputs.should_publish }}
 
     steps:
       - name: Checkout requested source
@@ -84,8 +85,16 @@ jobs:
           if git show-ref --verify --quiet "refs/tags/$TAG"; then
             TAG_SHA=$(git rev-parse "refs/tags/$TAG^{}")
             if [[ "$TAG_SHA" != "$SOURCE_SHA" ]]; then
-              echo "::error::Existing tag $TAG resolves to $TAG_SHA, not $SOURCE_SHA."
-              exit 1
+              # The version is already released from another commit, so this
+              # merge is not a release — tooling, docs, or CI changes landed
+              # on main without a version bump. Publishing nothing is the
+              # correct outcome, and it is not a failure: fail loudly here
+              # and every non-release merge paints main red.
+              echo "::notice::$TAG already released from $TAG_SHA; this merge is not a release. Skipping publish."
+              echo "should_publish=false" >> "$GITHUB_OUTPUT"
+              echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+              echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+              exit 0
             fi
             if [[ "$(git cat-file -t "refs/tags/$TAG")" != "tag" ]]; then
               echo "::error::Existing tag $TAG is not annotated."
@@ -93,11 +102,13 @@ jobs:
             fi
           fi
 
+          echo "should_publish=true" >> "$GITHUB_OUTPUT"
           echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
   quality:
     name: Tooling unit tests
+    if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -130,6 +141,7 @@ jobs:
 
   test:
     name: Component tests (${{ matrix.shard }}/4)
+    if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -166,6 +178,7 @@ jobs:
 
   docs:
     name: Build documentation
+    if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 20
