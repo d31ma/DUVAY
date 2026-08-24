@@ -10,6 +10,10 @@
 //      if — JavaScript ran. Linking it here keeps first paint styled.
 //   2. A per-route <title>. With no server-rendered subtree, crawlers and
 //      tab titles would otherwise see the generic shell title.
+//   3. The viewport meta. Without it a phone assumes a ~980px layout viewport
+//      and scales the whole page down to fit — the site rendered at 38% on a
+//      375px device, which reads as "zoomed out". The bootstrap document ships
+//      only <meta charset>, so this is the one place to add it.
 //
 // It also emits the redirect stubs listed below.
 
@@ -17,6 +21,9 @@ import { mkdir, readdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
 
 const STYLESHEET = '/shared/styles/app.css';
+// No `maximum-scale` or `user-scalable=no`: capping zoom breaks WCAG 1.4.4,
+// and a design system's own site is the last place to do that.
+const VIEWPORT = '<meta name="viewport" content="width=device-width, initial-scale=1">';
 const MARK = '<!--duvay-head-->';
 
 /**
@@ -93,6 +100,7 @@ function redirectHtml(from, to) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Moved to ${target}</title>
   <link rel="canonical" href="${target}">
   <meta name="robots" content="noindex">
@@ -117,12 +125,12 @@ export async function postBundle({ targetRoots }) {
     if (html.includes(MARK)) continue;
     html = html.replace(
       '</head>',
-      `    <link rel="stylesheet" href="${STYLESHEET}">\n    ${MARK}\n</head>`,
+      `    ${VIEWPORT}\n    <link rel="stylesheet" href="${STYLESHEET}">\n    ${MARK}\n</head>`,
     );
     await writeFile(file, html);
     patched += 1;
   }
-  console.log(`[duvay] linked ${STYLESHEET} into ${patched} route documents`);
+  console.log(`[duvay] linked ${STYLESHEET} + viewport into ${patched} route documents`);
 
   const scriptFile = path.join(webRoot, REDIRECT_SCRIPT_PATH.replace(/^\//, ''));
   await mkdir(path.dirname(scriptFile), { recursive: true });

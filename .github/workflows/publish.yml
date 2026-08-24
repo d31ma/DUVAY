@@ -70,12 +70,12 @@ jobs:
             echo "::error::Unexpected package name: $PACKAGE"
             exit 1
           fi
-          if [[ ! "$VERSION" =~ ^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$ ]]; then
+          if [[ ! "$VERSION" =~ ^[0-9]{2}\.[0-9]{2}\.[0-9]{2}(-[0-9]+)?$ ]]; then
             echo "::error::Version must use YY.WW.DD CalVer."
             exit 1
           fi
 
-          IFS=. read -r _ WEEK DAY <<< "$VERSION"
+          IFS=. read -r _ WEEK DAY <<< "${VERSION%%-*}"
           if (( 10#$WEEK < 1 || 10#$WEEK > 53 || 10#$DAY < 1 || 10#$DAY > 7 )); then
             echo "::error::Version has an invalid ISO week or weekday."
             exit 1
