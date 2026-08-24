@@ -49,6 +49,11 @@
 .w-heatmap-grid { grid-column: 2; }
 
 .w-heatmap-cell {
+  /* Containing block for the cell's own .w-sr-only label. Without it the
+     absolutely-positioned label resolves against the initial containing block,
+     escapes the heatmap's horizontal scroller, and extends the document's
+     scroll width on narrow screens. */
+  position: relative;
   display: inline-flex;
   inline-size: var(--w-heatmap-cell-size);
   block-size: var(--w-heatmap-cell-size);
@@ -128,7 +133,10 @@
   padding: var(--w-space-1) var(--w-space-2);
   border-radius: var(--w-radius);
   background: color-mix(in srgb, var(--w-scrim) 80%, transparent);
-  color: var(--w-on-primary);
+  /* The bar sits on the scrim, not on primary. --w-on-primary is dark in the
+     dark theme (primary is light there), which rendered the timecode at
+     1.37:1 over the black scrim. */
+  color: var(--w-on-scrim);
 }
 .w-video-controls > button {
   display: inline-grid;

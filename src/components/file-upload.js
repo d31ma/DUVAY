@@ -195,9 +195,14 @@ export class WFileUpload extends WElement {
 
   _dropzoneMarkup(insetList) {
     const subtitle = this.subtitle ? `<div class="w-file-upload-subtitle">${this._esc(this.subtitle)}</div>` : '';
+    /* `role="button"` may not contain focusable descendants, and the browse
+     * button is one. `group` is a container role, so it takes children legally
+     * while keeping the drop area named and the Enter/Space shortcut working.
+     * With browse hidden the dropzone really is the only control, so it stays a
+     * button — the clipped file input is not a tab stop either way. */
     const state = this._attrs({
       tabindex: this.disabled ? '-1' : '0',
-      role: 'button',
+      role: this.hideBrowse ? 'button' : 'group',
       'aria-label': this.title,
       'aria-invalid': this._hasError() && 'true',
     });
@@ -234,6 +239,12 @@ export class WFileUpload extends WElement {
       readonly: this.readonly,
       required: this.hasAttribute('required'),
       name: this.name,
+      // The input is clipped to 1x1 and opened by clicking the dropzone or the
+      // browse button, so it is an implementation detail rather than a tab
+      // stop. It still needs a name: a form control without one is announced
+      // as "edit blank", and it is what a screen reader lands on in forms mode.
+      tabindex: '-1',
+      'aria-label': this.label || this.title,
       'aria-invalid': this._hasError() && 'true',
     });
   }

@@ -179,7 +179,12 @@ export class WHotkey extends WElement {
       + steps.join('<span class="w-hotkey-then">then</span>')
       + this._affix('suffix', this.suffix);
     const disabled = this.disabled ? ' aria-disabled="true"' : '';
-    return `<span class="${cls}" role="img" aria-label="${this._esc(this._ariaLabel())}"${disabled}`
+    // An empty `keys` produces an empty label, and role="img" without a name is
+    // announced as an unlabelled image. With nothing to say, drop the role and
+    // let the chrome be decorative rather than a nameless landmark.
+    const name = this.getAttribute('aria-label') || this._ariaLabel();
+    const img = name ? ` role="img" aria-label="${this._esc(name)}"` : '';
+    return `<span class="${cls}"${img}${disabled}`
       + `${this._inlineStyle('root')}>${inner}</span>`;
   }
 }

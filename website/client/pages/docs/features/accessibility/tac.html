@@ -69,8 +69,65 @@
   <h2 id="aria">ARIA</h2>
   <p>DuVay web components set appropriate <code>role</code>, <code>aria-*</code>, and label attributes. When you use CSS-only markup, add the equivalent ARIA attributes yourself. Reach for native semantics first &#8212; a real <code>&lt;button&gt;</code>, <code>&lt;nav&gt;</code>, or <code>&lt;dialog&gt;</code> needs less ARIA than a <code>&lt;div&gt;</code> retrofitted with roles. There is no first rule of ARIA quite like &#8220;don&#8217;t use ARIA when HTML will do,&#8221; and DuVay&#8217;s markup is designed to let you follow it.</p>
 
+  <h2 id="guarantees">What is guaranteed, and what enforces it</h2>
+  <p>These are build gates, not review steps: a release fails when one regresses.</p>
+
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Accessibility guarantees and how each is enforced">
+      <thead>
+        <tr><th>Guarantee</th><th>Criterion</th><th>Enforced by</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Guarantee">Text contrast 4.5:1, UI boundaries 3:1</td>
+          <td data-label="Criterion">WCAG 1.4.3, 1.4.11</td>
+          <td data-label="Enforced by"><code>bun run tokens:check</code> — 100 pairs across four themes</td>
+        </tr>
+        <tr>
+          <td data-label="Guarantee">Targets at least 24&#215;24 px</td>
+          <td data-label="Criterion">WCAG 2.5.8</td>
+          <td data-label="Enforced by"><code>tokens:check</code> for densities, <code>bun run test:a11y</code> for components</td>
+        </tr>
+        <tr>
+          <td data-label="Guarantee">Touch targets at least 44 px</td>
+          <td data-label="Criterion">Apple HIG / Material</td>
+          <td data-label="Enforced by"><code>--w-touch-min</code>, held above the floor in every density</td>
+        </tr>
+        <tr>
+          <td data-label="Guarantee">Every control has a role, a name and a state</td>
+          <td data-label="Criterion">WCAG 4.1.2</td>
+          <td data-label="Enforced by"><code>test:a11y</code> — axe over every registered element</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><code>bun run test:a11y</code> mounts every registered element on its own and scans it with axe-core against WCAG 2.0, 2.1 and 2.2 at A and AA — <strong>once per platform skin</strong>, so a skin cannot introduce a defect the unskinned run would miss. All six runs produce identical results, which is the token architecture holding rather than a coincidence: a skin may not declare colour or control size, so the guarantees verified once carry to every skin by construction.</p>
+
+  <p>Two composition rules are skipped, <code>aria-required-parent</code> and <code>aria-required-children</code>, because they cannot be judged one element at a time — a command item mounted alone has no palette around it. The per-component tests cover those.</p>
+
+  <h2 id="sr-only">Screen-reader-only text</h2>
+  <p><code>.w-sr-only</code> takes content out of the visual layer while leaving it in the accessibility tree, for a control whose meaning is carried by an icon, a colour or a chart. It is not the same as hiding: <code>display: none</code> and <code>visibility: hidden</code> remove content from both layers, so a screen reader loses it too.</p>
+  <demo-compare>
+    <div slot="css">
+      <button class="w-btn w-btn-icon" type="button">
+        <span aria-hidden="true">&#9733;</span>
+        <span class="w-sr-only">Add to favourites</span>
+      </button>
+    </div>
+    <div slot="wc">
+      <w-btn variant="icon">
+        <span aria-hidden="true">&#9733;</span>
+        <span class="w-sr-only">Add to favourites</span>
+      </w-btn>
+    </div>
+  </demo-compare>
+  <p>Pair it with <code>aria-hidden</code> on the glyph so the control is announced once, with the right words. It is <code>position: absolute</code>, so give the immediate parent <code>position: relative</code> when it sits inside a scrolling container, or it can escape the scroller and widen the page.</p>
+
   <h2 id="color-contrast">Color and contrast</h2>
   <p>Theme colors are defined as design tokens and tuned to meet WCAG AA: 4.5:1 for body text and 3:1 for UI components and large text. The light, dark, and high-contrast themes each redefine these tokens so contrast holds across the <code>w-theme</code> modes, including the <code>auto</code> theme that respects <code>prefers-color-scheme</code>. Never communicate state with color alone &#8212; pair it with text, an icon, or a shape.</p>
+  <p>Content drawn over <code>--w-scrim</code> — video controls, image overlays — needs <code>--w-on-scrim</code>, not <code>--w-on-primary</code>. The scrim is black in every theme, so its foreground must stay light; <code>--w-on-primary</code> inverts with the palette and becomes unreadable in dark mode.</p>
+  <p>One case sits outside the guarantee by design. <code>&lt;w-heatmap-cell&gt;</code> is a colour swatch whose background comes from your data, so the framework cannot promise contrast for text placed over it — it did not choose the colour. The cell&#8217;s reading is carried by its <code>aria-label</code>, which is the intended way to expose the value.</p>
 
   <h2 id="reduced-motion">Reduced motion</h2>
   <p>All motion respects <code>prefers-reduced-motion</code>. Disable or soften custom animations the same way in your own styles:</p>
@@ -80,6 +137,9 @@
       transition: none;
     &#125;
   &#125;</code></pre>
+
+  <h2 id="native">Native platforms</h2>
+  <p>The same contract applies to the SwiftUI, Jetpack Compose, WinUI 3 and GTK4 libraries, but the web&#8217;s axe gate has no equivalent there: VoiceOver, TalkBack, Narrator and Orca each require a manual pass. Until that pass is signed for a platform, <a href="/docs/platform-parity">Platform parity</a> reports it as code-complete rather than supported, and the site will not advertise it as shipped.</p>
 
   <h2 id="standards">Standards and specifications</h2>
   <p>Beyond what DuVay supports by default, the underlying standards describe how to build accessible components and verify best practices. The W3C Web Accessibility Initiative publishes the Web Content Accessibility Guidelines (WCAG), and WAI-ARIA provides guidance for dynamic content and advanced UI controls. Use them as the source of truth when you extend DuVay with custom markup.</p>

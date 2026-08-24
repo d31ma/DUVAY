@@ -81,6 +81,10 @@ object DuVayTokens {
     const val motionDistanceX: Double = 24.0
     const val motionDistanceY: Double = 12.0
     const val appBarBackdropBlur: Double = 16.0
+    const val skinSwitchTrackW: Double = 40.0
+    const val skinSwitchTrackH: Double = 14.0
+    const val skinSwitchThumb: Double = 18.0
+    const val skinSwitchPad: Double = 0.0
 
     // Durations (milliseconds)
     const val motionDurationFastMs: Int = 120
@@ -126,6 +130,7 @@ object DuVayTokens {
         val onErrorContainer: Long,
         val onPrimary: Long,
         val onPrimaryContainer: Long,
+        val onScrim: Long,
         val onSecondaryContainer: Long,
         val onSuccess: Long,
         val onSuccessContainer: Long,
@@ -179,6 +184,7 @@ object DuVayTokens {
         onErrorContainer = 0xFF410E0BL,
         onPrimary = 0xFFFFFFFFL,
         onPrimaryContainer = 0xFF073544L,
+        onScrim = 0xFFFFFFFFL,
         onSecondaryContainer = 0xFF273733L,
         onSuccess = 0xFFFFFFFFL,
         onSuccessContainer = 0xFF1B5E20L,
@@ -232,6 +238,7 @@ object DuVayTokens {
         onErrorContainer = 0xFFF9DEDCL,
         onPrimary = 0xFF08323FL,
         onPrimaryContainer = 0xFFE8F8FCL,
+        onScrim = 0xFFFFFFFFL,
         onSecondaryContainer = 0xFFDCE7E4L,
         onSuccess = 0xFF0B2E0EL,
         onSuccessContainer = 0xFFE8F5E9L,
@@ -285,6 +292,7 @@ object DuVayTokens {
         onErrorContainer = 0xFFF9DEDCL,
         onPrimary = 0xFF08323FL,
         onPrimaryContainer = 0xFFE8F8FCL,
+        onScrim = 0xFFFFFFFFL,
         onSecondaryContainer = 0xFFDCE7E4L,
         onSuccess = 0xFF0B2E0EL,
         onSuccessContainer = 0xFFE8F5E9L,
@@ -338,6 +346,7 @@ object DuVayTokens {
         onErrorContainer = 0xFF2C0001L,
         onPrimary = 0xFFFFFFFFL,
         onPrimaryContainer = 0xFF001820L,
+        onScrim = 0xFFFFFFFFL,
         onSecondaryContainer = 0xFF0C1815L,
         onSuccess = 0xFFFFFFFFL,
         onSuccessContainer = 0xFF052807L,

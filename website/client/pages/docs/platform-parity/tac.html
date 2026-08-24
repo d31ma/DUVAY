@@ -1,0 +1,342 @@
+<doc-layout>
+  <h1>Platform parity</h1>
+  <p>DuVay's Core contract is the set of components that get native implementations on every platform. This page is generated from <code>spec/</code> by <code>scripts/platform-parity.mjs</code>, and a component is only marked as implemented when that platform actually declares it in source — never because a table said so.</p>
+
+  <h2>Status</h2>
+  <p>Implementation counts are not the same as shipped support. A platform reaches <strong>code-complete</strong> when every component in its tier exists and builds. It reaches <strong>complete</strong> only after the manual screen-reader pass and the snapshot suite the plan mandates, and only that may be advertised as support.</p>
+
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Per-platform implementation status">
+      <thead>
+        <tr><th>Platform</th><th>Status</th><th>Tier 1</th><th>All components</th><th>Published as support</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Platform">Web</td>
+          <td data-label="Status">Tier 2 complete</td>
+          <td data-label="Tier 1">25 / 25</td>
+          <td data-label="All components">46 / 46</td>
+          <td data-label="Published as support">Yes</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Apple</td>
+          <td data-label="Status">Tier 2 code-complete</td>
+          <td data-label="Tier 1">25 / 25</td>
+          <td data-label="All components">46 / 46</td>
+          <td data-label="Published as support">No</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Android</td>
+          <td data-label="Status">Tier 2 code-complete</td>
+          <td data-label="Tier 1">25 / 25</td>
+          <td data-label="All components">46 / 46</td>
+          <td data-label="Published as support">No</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Windows</td>
+          <td data-label="Status">Tier 2 code-complete</td>
+          <td data-label="Tier 1">25 / 25</td>
+          <td data-label="All components">46 / 46</td>
+          <td data-label="Published as support">No</td>
+        </tr>
+        <tr>
+          <td data-label="Platform">Linux</td>
+          <td data-label="Status">Tier 2 code-complete</td>
+          <td data-label="Tier 1">25 / 25</td>
+          <td data-label="All components">46 / 46</td>
+          <td data-label="Published as support">No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Tiers</h2>
+  <p><strong>Tier 1</strong> is the non-negotiable set that defines v1 — every platform implements all of it. <strong>Tier 2</strong> is added one component at a time across all five, so no single platform races ahead of the others. Anything absent from this table is web-only and stays web-only unless it is individually promoted.</p>
+
+  <h2>Coverage</h2>
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Component coverage by platform">
+      <thead>
+        <tr><th>Component</th><th>Tier</th><th>Web element</th><th>Web</th><th>Apple</th><th>Android</th><th>Windows</th><th>Linux</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Component">AlertDialog</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-alert-dialog</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Alert</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-alert</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">AppBar</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-app-bar</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Autocomplete</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-autocomplete</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Avatar</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-avatar</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Badge</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-badge</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">BottomNavigation</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-bottom-navigation</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">BottomSheet</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-bottom-sheet</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Breadcrumbs</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-breadcrumbs</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Button</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-btn</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Card</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-card</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Checkbox</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-checkbox</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Chip</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-chip</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">DatePicker</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-date-picker</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Dialog</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-dialog</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Divider</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-divider</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">EmptyState</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-empty-state</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">ExpansionPanel</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-expansion-panel</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">FileInput</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-file-input</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">IconButton</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-icon-btn</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Icon</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-icon</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">ListItem</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-list-item</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">List</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-list</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Menu</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-menu</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">NavigationDrawer</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-navigation-drawer</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">NumberInput</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-number-input</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">OTP</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-otp</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Pagination</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-pagination</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Popover</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-popover</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">ProgressCircular</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-progress-circular</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">ProgressLinear</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-progress-linear</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">RadioGroup</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-radio-group</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Rating</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-rating</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Select</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-select</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Skeleton</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-skeleton-loader</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Slider</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-slider</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Snackbar</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-snackbar</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Stepper</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-stepper</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Switch</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-switch</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Table</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-table</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Tabs</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-tabs</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">TextField</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-text-field</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">TextArea</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-textarea</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">TimePicker</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-time-picker</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Toolbar</td>
+          <td data-label="Tier">2</td>
+          <td data-label="Web element"><code>w-toolbar</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+        <tr>
+          <td data-label="Component">Tooltip</td>
+          <td data-label="Tier">1</td>
+          <td data-label="Web element"><code>w-tooltip</code></td>
+          <td data-label="Web"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Apple"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Android"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Windows"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td><td data-label="Linux"><span aria-hidden="true">✓</span><span class="w-sr-only">Implemented</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</doc-layout>

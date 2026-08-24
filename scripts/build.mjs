@@ -208,6 +208,20 @@ async function buildDist() {
 // before anything reads them, so a stale committed CSS file cannot leak into a
 // build. See scripts/tokens-build.mjs.
 await $`bun ${join(ROOT, 'scripts', 'tokens-build.mjs')}`;
+// The five skins' token blocks come from tokens/platform/**; the rest of each
+// stylesheet stays hand-authored, because a skin also restructures a few
+// components and that is real CSS, not token data.
+await $`bun ${join(ROOT, 'scripts', 'tokens-platform.mjs')}`.quiet();
 
 await syncWebAssets();
 await buildDist();
+
+// The parity matrix and its docs page are generated from spec/ for the same
+// reason: a hand-maintained copy would drift, and this is the artefact that
+// tells readers which platforms are actually supported.
+//
+// After syncWebAssets, not before: parity.json lands inside the assets
+// directory that sync deletes and repopulates from src/, so emitting earlier
+// would write it and then immediately throw it away.
+await $`bun ${join(ROOT, 'scripts', 'platform-parity.mjs')} --emit`.quiet();
+console.log('✓ parity matrix + docs page generated');

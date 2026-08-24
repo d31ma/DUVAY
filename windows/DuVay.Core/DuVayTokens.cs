@@ -82,6 +82,10 @@ public static class DuVayTokens
     public const double MotionDistanceX = 24;
     public const double MotionDistanceY = 12;
     public const double AppBarBackdropBlur = 16;
+    public const double SkinSwitchTrackW = 40;
+    public const double SkinSwitchTrackH = 14;
+    public const double SkinSwitchThumb = 18;
+    public const double SkinSwitchPad = 0;
 
     // Durations (milliseconds)
     public const int MotionDurationFastDuration = 120;
@@ -135,6 +139,7 @@ public sealed class DuVayPalette
     public required DuVayColor OnErrorContainer { get; init; }
     public required DuVayColor OnPrimary { get; init; }
     public required DuVayColor OnPrimaryContainer { get; init; }
+    public required DuVayColor OnScrim { get; init; }
     public required DuVayColor OnSecondaryContainer { get; init; }
     public required DuVayColor OnSuccess { get; init; }
     public required DuVayColor OnSuccessContainer { get; init; }
@@ -188,6 +193,7 @@ public sealed class DuVayPalette
         OnErrorContainer = new(65, 14, 11, 1),
         OnPrimary = new(255, 255, 255, 1),
         OnPrimaryContainer = new(7, 53, 68, 1),
+        OnScrim = new(255, 255, 255, 1),
         OnSecondaryContainer = new(39, 55, 51, 1),
         OnSuccess = new(255, 255, 255, 1),
         OnSuccessContainer = new(27, 94, 32, 1),
@@ -242,6 +248,7 @@ public sealed class DuVayPalette
         OnErrorContainer = new(249, 222, 220, 1),
         OnPrimary = new(8, 50, 63, 1),
         OnPrimaryContainer = new(232, 248, 252, 1),
+        OnScrim = new(255, 255, 255, 1),
         OnSecondaryContainer = new(220, 231, 228, 1),
         OnSuccess = new(11, 46, 14, 1),
         OnSuccessContainer = new(232, 245, 233, 1),
@@ -296,6 +303,7 @@ public sealed class DuVayPalette
         OnErrorContainer = new(249, 222, 220, 1),
         OnPrimary = new(8, 50, 63, 1),
         OnPrimaryContainer = new(232, 248, 252, 1),
+        OnScrim = new(255, 255, 255, 1),
         OnSecondaryContainer = new(220, 231, 228, 1),
         OnSuccess = new(11, 46, 14, 1),
         OnSuccessContainer = new(232, 245, 233, 1),
@@ -350,6 +358,7 @@ public sealed class DuVayPalette
         OnErrorContainer = new(44, 0, 1, 1),
         OnPrimary = new(255, 255, 255, 1),
         OnPrimaryContainer = new(0, 24, 32, 1),
+        OnScrim = new(255, 255, 255, 1),
         OnSecondaryContainer = new(12, 24, 21, 1),
         OnSuccess = new(255, 255, 255, 1),
         OnSuccessContainer = new(5, 40, 7, 1),

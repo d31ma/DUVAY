@@ -81,6 +81,10 @@ public enum DuVayTokens {
     public static let motionDistanceX: CGFloat = 24
     public static let motionDistanceY: CGFloat = 12
     public static let appBarBackdropBlur: CGFloat = 16
+    public static let skinSwitchTrackW: CGFloat = 40
+    public static let skinSwitchTrackH: CGFloat = 14
+    public static let skinSwitchThumb: CGFloat = 18
+    public static let skinSwitchPad: CGFloat = 0
 
     // MARK: - Durations (seconds)
     public static let motionDurationFast: TimeInterval = 0.12
@@ -127,6 +131,7 @@ public enum DuVayTokens {
         public let onErrorContainer: Color
         public let onPrimary: Color
         public let onPrimaryContainer: Color
+        public let onScrim: Color
         public let onSecondaryContainer: Color
         public let onSuccess: Color
         public let onSuccessContainer: Color
@@ -180,6 +185,7 @@ public enum DuVayTokens {
         onErrorContainer: Color(.sRGB, red: 0.2549, green: 0.0549, blue: 0.0431, opacity: 1),
         onPrimary: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.0275, green: 0.2078, blue: 0.2667, opacity: 1),
+        onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSecondaryContainer: Color(.sRGB, red: 0.1529, green: 0.2157, blue: 0.2, opacity: 1),
         onSuccess: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSuccessContainer: Color(.sRGB, red: 0.1059, green: 0.3686, blue: 0.1255, opacity: 1),
@@ -233,6 +239,7 @@ public enum DuVayTokens {
         onErrorContainer: Color(.sRGB, red: 0.9765, green: 0.8706, blue: 0.8627, opacity: 1),
         onPrimary: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.9098, green: 0.9725, blue: 0.9882, opacity: 1),
+        onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSecondaryContainer: Color(.sRGB, red: 0.8627, green: 0.9059, blue: 0.8941, opacity: 1),
         onSuccess: Color(.sRGB, red: 0.0431, green: 0.1804, blue: 0.0549, opacity: 1),
         onSuccessContainer: Color(.sRGB, red: 0.9098, green: 0.9608, blue: 0.9137, opacity: 1),
@@ -286,6 +293,7 @@ public enum DuVayTokens {
         onErrorContainer: Color(.sRGB, red: 0.9765, green: 0.8706, blue: 0.8627, opacity: 1),
         onPrimary: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.9098, green: 0.9725, blue: 0.9882, opacity: 1),
+        onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSecondaryContainer: Color(.sRGB, red: 0.8627, green: 0.9059, blue: 0.8941, opacity: 1),
         onSuccess: Color(.sRGB, red: 0.0431, green: 0.1804, blue: 0.0549, opacity: 1),
         onSuccessContainer: Color(.sRGB, red: 0.9098, green: 0.9608, blue: 0.9137, opacity: 1),
@@ -339,6 +347,7 @@ public enum DuVayTokens {
         onErrorContainer: Color(.sRGB, red: 0.1725, green: 0, blue: 0.0039, opacity: 1),
         onPrimary: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0, green: 0.0941, blue: 0.1255, opacity: 1),
+        onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSecondaryContainer: Color(.sRGB, red: 0.0471, green: 0.0941, blue: 0.0824, opacity: 1),
         onSuccess: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onSuccessContainer: Color(.sRGB, red: 0.0196, green: 0.1569, blue: 0.0275, opacity: 1),

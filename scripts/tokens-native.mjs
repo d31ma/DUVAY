@@ -332,6 +332,76 @@ function emitGtkCss({ themes }) {
   return L.join('\n');
 }
 
+/* ── Windows / XAML ──────────────────────────────────────────────────── */
+
+/**
+ * A WinUI ResourceDictionary of brushes and scalars.
+ *
+ * `DuVayTokens.cs` covers C#, but XAML markup cannot reach a static field:
+ * a template that wants the accent has to write `{StaticResource
+ * DuVayAccentBrush}`. This is the file that makes that possible, and it is why
+ * the plan's output table lists a ResourceDictionary alongside the class.
+ *
+ * Light and dark go in a ThemeDictionaries group so the framework swaps them
+ * when the system theme changes — the alternative, resolving the palette in
+ * code, would not repaint a running app. High-contrast is a WinUI-recognised
+ * key too, so it is emitted where the platform expects it. `auto` is deliberately
+ * absent: on Windows that decision belongs to the framework, not to us.
+ */
+function emitXaml({ scalars, themes }) {
+  const hex = (c) => '#'
+    + [c.a >= 1 ? 255 : Math.round(c.a * 255), c.r, c.g, c.b]
+      .map((x) => Math.round(x).toString(16).padStart(2, '0').toUpperCase())
+      .join('');
+
+  // WinUI's own names for the theme dictionaries; DuVay's `auto` has no slot
+  // because the framework performs that resolution itself.
+  const THEME_KEYS = { light: 'Light', dark: 'Dark', 'high-contrast': 'HighContrast' };
+
+  const L = [
+    '<!--',
+    '    DuVay design tokens — GENERATED, do not edit.',
+    '    Source of truth: tokens/**/*.json. Regenerate with `bun run tokens:native`.',
+    '-->',
+  ];
+  L.push('<ResourceDictionary');
+  L.push('    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"');
+  L.push('    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">');
+  L.push('');
+  L.push('    <ResourceDictionary.ThemeDictionaries>');
+
+  for (const [theme, key] of Object.entries(THEME_KEYS)) {
+    const colors = themes[theme];
+    if (!colors) continue;
+    L.push(`        <ResourceDictionary x:Key="${key}">`);
+    for (const [n, c] of Object.entries(colors)) {
+      // A token already ending in "Color" would otherwise become
+      // DuVayHighlightColorColor.
+      const base = `DuVay${pascal(n)}`;
+      const colorKey = base.endsWith('Color') ? base : `${base}Color`;
+      L.push(`            <Color x:Key="${colorKey}">${hex(c)}</Color>`);
+      L.push(`            <SolidColorBrush x:Key="${base}Brush" Color="{StaticResource ${colorKey}}" />`);
+    }
+    L.push('        </ResourceDictionary>');
+  }
+
+  L.push('    </ResourceDictionary.ThemeDictionaries>');
+  L.push('');
+  L.push('    <!-- Theme-independent scalars. x:Double so they bind straight to');
+  L.push('         Thickness, CornerRadius and FontSize without a converter. -->');
+  for (const [n, v] of scalars.dimensions) L.push(`    <x:Double x:Key="DuVay${pascal(n)}">${v}</x:Double>`);
+  for (const [n, v] of scalars.numbers) L.push(`    <x:Double x:Key="DuVay${pascal(n)}">${v}</x:Double>`);
+  L.push('');
+  L.push('    <!-- Durations, as the TimeSpan storyboards actually take. -->');
+  for (const [n, v] of scalars.durations) {
+    const ms = Math.round(v);
+    const seconds = (ms / 1000).toFixed(3);
+    L.push(`    <Duration x:Key="DuVay${pascal(n)}Duration">0:0:${seconds}</Duration>`);
+  }
+  L.push('</ResourceDictionary>');
+  return L.join('\n') + '\n';
+}
+
 /* ── Run ─────────────────────────────────────────────────────────────── */
 
 const data = await model();
@@ -359,6 +429,7 @@ const OUTPUTS = [
   ['windows/DuVay.Core/DuVayTokens.cs', emitCSharp(data)],
   ['linux/src/tokens.rs', emitRust(data)],
   ['linux/resources/tokens.css', emitGtkCss(data)],
+  ['windows/DuVay/Tokens.xaml', emitXaml(data)],
 ];
 
 const check = process.argv.includes('--check');

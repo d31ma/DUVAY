@@ -85,7 +85,11 @@
 }
 
 /* Sheets grab the top corners only and keep the home-indicator clear. */
-[w-os="ios"] .w-bottom-sheet {
+/* :not(--fullscreen) because a sheet that fills the screen has no top
+   corners to round. The skin selector and the base fullscreen rule are
+   both (0,2,0), so without this the later-loaded skin won on source
+   order and rounded a fullscreen sheet. */
+[w-os="ios"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen) {
   border-radius: var(--w-radius-xl) var(--w-radius-xl) 0 0;
   padding-bottom: max(var(--w-space-4), env(safe-area-inset-bottom));
 }
@@ -95,7 +99,9 @@
  * surface rather than rendering an unreadable transparent bar. */
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   [w-os="ios"] :where(.w-app-bar, .w-bottom-navigation, .w-toolbar) {
-    background: var(--w-app-bar-frosted);
+    /* background-color, not the shorthand: `background` resets
+       background-image, which silently wiped `.w-toolbar--image`. */
+    background-color: var(--w-app-bar-frosted);
     -webkit-backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.8);
     backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.8);
   }

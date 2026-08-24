@@ -83,7 +83,9 @@
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   [w-os="macos"] :where(.w-app-bar, .w-toolbar, .w-sidebar) {
-    background: var(--w-app-bar-frosted);
+    /* background-color, not the shorthand: `background` resets
+       background-image, which silently wiped `.w-toolbar--image`. */
+    background-color: var(--w-app-bar-frosted);
     -webkit-backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.6);
     backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.6);
   }

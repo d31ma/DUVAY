@@ -1,0 +1,605 @@
+{
+  "generated": "scripts/platform-parity.mjs",
+  "platforms": [
+    "web",
+    "apple",
+    "android",
+    "windows",
+    "linux"
+  ],
+  "total": 46,
+  "tier1Total": 25,
+  "totals": {
+    "web": 46,
+    "apple": 46,
+    "android": 46,
+    "windows": 46,
+    "linux": 46
+  },
+  "status": {
+    "web": {
+      "claim": "tier-2-complete",
+      "publishable": true,
+      "implemented": 46,
+      "tier1": 25
+    },
+    "apple": {
+      "claim": "tier-2-code-complete",
+      "publishable": false,
+      "implemented": 46,
+      "tier1": 25
+    },
+    "android": {
+      "claim": "tier-2-code-complete",
+      "publishable": false,
+      "implemented": 46,
+      "tier1": 25
+    },
+    "windows": {
+      "claim": "tier-2-code-complete",
+      "publishable": false,
+      "implemented": 46,
+      "tier1": 25
+    },
+    "linux": {
+      "claim": "tier-2-code-complete",
+      "publishable": false,
+      "implemented": 46,
+      "tier1": 25
+    }
+  },
+  "components": [
+    {
+      "name": "AlertDialog",
+      "tier": 1,
+      "web": "w-alert-dialog",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Alert",
+      "tier": 1,
+      "web": "w-alert",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "AppBar",
+      "tier": 2,
+      "web": "w-app-bar",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Autocomplete",
+      "tier": 2,
+      "web": "w-autocomplete",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Avatar",
+      "tier": 1,
+      "web": "w-avatar",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Badge",
+      "tier": 1,
+      "web": "w-badge",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "BottomNavigation",
+      "tier": 2,
+      "web": "w-bottom-navigation",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "BottomSheet",
+      "tier": 2,
+      "web": "w-bottom-sheet",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Breadcrumbs",
+      "tier": 2,
+      "web": "w-breadcrumbs",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Button",
+      "tier": 1,
+      "web": "w-btn",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Card",
+      "tier": 1,
+      "web": "w-card",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Checkbox",
+      "tier": 1,
+      "web": "w-checkbox",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Chip",
+      "tier": 1,
+      "web": "w-chip",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "DatePicker",
+      "tier": 2,
+      "web": "w-date-picker",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Dialog",
+      "tier": 1,
+      "web": "w-dialog",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Divider",
+      "tier": 1,
+      "web": "w-divider",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "EmptyState",
+      "tier": 2,
+      "web": "w-empty-state",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "ExpansionPanel",
+      "tier": 2,
+      "web": "w-expansion-panel",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "FileInput",
+      "tier": 2,
+      "web": "w-file-input",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "IconButton",
+      "tier": 1,
+      "web": "w-icon-btn",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Icon",
+      "tier": 1,
+      "web": "w-icon",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "ListItem",
+      "tier": 1,
+      "web": "w-list-item",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "List",
+      "tier": 1,
+      "web": "w-list",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Menu",
+      "tier": 1,
+      "web": "w-menu",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "NavigationDrawer",
+      "tier": 2,
+      "web": "w-navigation-drawer",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "NumberInput",
+      "tier": 2,
+      "web": "w-number-input",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "OTP",
+      "tier": 2,
+      "web": "w-otp",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Pagination",
+      "tier": 2,
+      "web": "w-pagination",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Popover",
+      "tier": 2,
+      "web": "w-popover",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "ProgressCircular",
+      "tier": 1,
+      "web": "w-progress-circular",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "ProgressLinear",
+      "tier": 1,
+      "web": "w-progress-linear",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "RadioGroup",
+      "tier": 1,
+      "web": "w-radio-group",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Rating",
+      "tier": 2,
+      "web": "w-rating",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Select",
+      "tier": 1,
+      "web": "w-select",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Skeleton",
+      "tier": 2,
+      "web": "w-skeleton-loader",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Slider",
+      "tier": 1,
+      "web": "w-slider",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Snackbar",
+      "tier": 1,
+      "web": "w-snackbar",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Stepper",
+      "tier": 2,
+      "web": "w-stepper",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Switch",
+      "tier": 1,
+      "web": "w-switch",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Table",
+      "tier": 2,
+      "web": "w-table",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Tabs",
+      "tier": 2,
+      "web": "w-tabs",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "TextField",
+      "tier": 1,
+      "web": "w-text-field",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "TextArea",
+      "tier": 1,
+      "web": "w-textarea",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "TimePicker",
+      "tier": 2,
+      "web": "w-time-picker",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Toolbar",
+      "tier": 2,
+      "web": "w-toolbar",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    },
+    {
+      "name": "Tooltip",
+      "tier": 1,
+      "web": "w-tooltip",
+      "platforms": {
+        "web": true,
+        "apple": true,
+        "android": true,
+        "windows": true,
+        "linux": true
+      }
+    }
+  ]
+}

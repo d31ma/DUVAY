@@ -8,6 +8,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("app.cash.paparazzi")
 }
 
 android {
@@ -35,4 +36,6 @@ dependencies {
     // that this maps DuVay semantics onto md.sys.* rather than redrawing them.
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-core")
+    // rememberLauncherForActivityResult, for the Storage Access Framework picker.
+    implementation("androidx.activity:activity-compose:1.9.3")
 }

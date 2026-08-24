@@ -1,0 +1,439 @@
+{
+  "$description": "Platform tokens for the adwaita skin.",
+  "$extensions": {
+    "duvay": {
+      "target": "src/platforms/adwaita.css",
+      "order": 6,
+      "selectors": [
+        "[w-os=\"linux\"]",
+        "[w-os=\"adwaita\"]"
+      ],
+      "open": [
+        "[w-os=\"linux\"],",
+        "[w-os=\"adwaita\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "entries": [
+        {
+          "kind": "comment",
+          "text": "  /* Switch — set as inherited variables so this skin still wins"
+        },
+        {
+          "kind": "comment",
+          "text": "   * inside a page wearing a different one. */"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-w"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-h"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-thumb"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-pad"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Type ─────────────────────────────────────────────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "font-family"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-heading"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-mono"
+        },
+        {
+          "kind": "token",
+          "name": "letter-spacing-normal"
+        },
+        {
+          "kind": "token",
+          "name": "line-height-normal"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "token",
+          "name": "topbar-height"
+        },
+        {
+          "kind": "token",
+          "name": "sidebar-width"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Elevation — GNOME is flat; depth comes from borders ──────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-sm"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-md"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-lg"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Motion — short and linear-ish, matching GTK ──────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-standard"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-enter"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-exit"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-fast"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-slow"
+        },
+        {
+          "kind": "token",
+          "name": "transition-fast"
+        },
+        {
+          "kind": "token",
+          "name": "transition-normal"
+        },
+        {
+          "kind": "token",
+          "name": "transition-slow"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* Focus — GNOME hugs the control with a solid accent outline. */"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-color"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-offset"
+        },
+        {
+          "kind": "blank"
+        }
+      ]
+    }
+  },
+  "skin-switch-track-w": {
+    "$value": "44px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-track-h": {
+    "$value": "26px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-thumb": {
+    "$value": "22px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-pad": {
+    "$value": "2px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family": {
+    "$value": "'Adwaita Sans', Cantarell, 'Inter', system-ui, sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-heading": {
+    "$value": "'Adwaita Sans', Cantarell, system-ui, sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-mono": {
+    "$value": "'Adwaita Mono', 'Source Code Pro', ui-monospace, monospace",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "letter-spacing-normal": {
+    "$value": "0",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "line-height-normal": {
+    "$value": "1.5",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "topbar-height": {
+    "$value": "47px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "           /* AdwHeaderBar */"
+      }
+    }
+  },
+  "sidebar-width": {
+    "$value": "240px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-sm": {
+    "$value": "0 1px 0 var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-md": {
+    "$value": "0 1px 3px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-lg": {
+    "$value": "0 6px 18px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-standard": {
+    "$value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-enter": {
+    "$value": "cubic-bezier(0, 0, 0.2, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-exit": {
+    "$value": "cubic-bezier(0.4, 0, 1, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-fast": {
+    "$value": "100ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration": {
+    "$value": "200ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-slow": {
+    "$value": "300ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-fast": {
+    "$value": "100ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "transition-normal": {
+    "$value": "200ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-slow": {
+    "$value": "300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-color": {
+    "$value": "var(--w-accent)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-offset": {
+    "$value": "-1px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  }
+}

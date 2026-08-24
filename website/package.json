@@ -9,6 +9,7 @@
     "test:ty": "bun test scripts/ty.test.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1.60.0"
+    "@playwright/test": "^1.60.0",
+    "axe-core": "^4.13.0"
   }
 }

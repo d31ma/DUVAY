@@ -12,7 +12,7 @@
         "}"
       ],
       "before": [
-        "/* DuVay \u2014 Density",
+        "/* DuVay — Density",
         " *",
         " * Density rescales control geometry without touching colour, shape or type.",
         " * Selected with the `w-density` attribute, orthogonal to both `w-theme` and",
@@ -21,7 +21,7 @@
         " *   - compact       pointer-first, 32px controls",
         " *",
         " * This is the supported way to get a denser UI. Platform skins deliberately",
-        " * cannot change control size \u2014 that kept the five skins one product \u2014 so a",
+        " * cannot change control size — that kept the five skins one product — so a",
         " * pointer-dense platform like macOS asks for density explicitly instead.",
         " * duvay.js sets w-density=\"compact\" alongside w-os=\"macos\" when it detects",
         " * a Mac, and an explicit attribute always wins.",
@@ -149,7 +149,7 @@
         "before": [
           ""
         ],
-        "trail": "   /* 44px \u2014 the HIG / Material touch floor */"
+        "trail": "   /* 44px — the HIG / Material touch floor */"
       }
     }
   }

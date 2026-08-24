@@ -1,25 +1,27 @@
 # DuVay → Cross-Platform Native UI
 
-> **Status: Phases 0–4 Tier 1 code-complete on all five platforms. Phase 5 blocked on manual accessibility passes.**
+> **Status: every component implemented on all five platforms. Phase 5 blocked only on the manual accessibility passes.**
 >
 > | Phase | Scope | State |
 > |---|---|---|
 > | 0 | Token pipeline, accent split, `spec/`, conformance fixtures | ✅ done |
 > | 1 | Five web skins, `w-os` detection, entrypoints, docs | ✅ done |
-> | 2 | Apple (SwiftUI) Tier 1 | 🟢 25/25 code-complete, builds iOS + macOS |
-> | 3 | Android (Compose) Tier 1 | 🟢 25/25 code-complete, Compose library builds |
-> | 4 | Windows (WinUI 3) + Linux (gtk4-rs) Tier 1 | 🟢 25/25 each, both build |
-> | 5 | v1 release, parity matrix published | blocked on the a11y passes below |
+> | 2 | Apple (SwiftUI) Tier 1 | 🟢 46/46 code-complete, builds iOS + macOS |
+> | 3 | Android (Compose) Tier 1 | 🟢 46/46 code-complete, Compose library builds |
+> | 4 | Windows (WinUI 3) + Linux (gtk4-rs) Tier 1 | 🟢 46/46 each, both build |
+> | 5 | v1 release, parity matrix published | matrix published; blocked on the a11y passes below |
 >
-> **Tier 1 is code-complete on all five platforms.**
+> **Every platform implements the whole Core contract.**
 >
 > ```
+> all:    web 46/46 · apple 46/46 · android 46/46 · windows 46/46 · linux 46/46
 > tier 1: web 25/25 · apple 25/25 · android 25/25 · windows 25/25 · linux 25/25
 > ```
 >
-> `tier-1-code-complete` is deliberately *not* `tier-1-complete`. The plan
+> `code-complete` is deliberately *not* `complete`. The plan
 > requires a manual screen-reader pass (VoiceOver, TalkBack, Narrator, Orca) and
-> a per-platform snapshot suite before a tier ships, and neither is automatable.
+> a per-platform snapshot suite before a tier ships. The snapshot suites now
+> exist on all five; the screen-reader passes are not automatable.
 > `scripts/platform-parity.mjs` refuses to publish a code-complete platform as
 > supported, so the docs cannot advertise what has not been verified by a human.
 >
@@ -68,12 +70,175 @@
 >   claim does.
 >
 > **What the remaining work is**
-> 1. **Manual accessibility passes** — VoiceOver, TalkBack, Narrator, Orca. Not
->    automatable; the plan says budget for it rather than assume it. This is what
->    stands between `tier-1-code-complete` and `tier-1-complete`.
-> 2. **Snapshot suites** per platform (XCTest, Paparazzi, WinAppDriver, a GTK
->    offscreen renderer). Currently only the web has one (Playwright, 1452 tests).
-> 3. **Tier 2** — the remaining 21 components across all five.
+> 1. **Manual accessibility passes** — VoiceOver, TalkBack, Narrator, Orca. The
+>    only item left. The web half *is* automated (`bun run test:a11y`); the four
+>    native platforms are not, and the gate now refuses a publishable status
+>    without a signed record.
+>
+>    `ACCESSIBILITY-PASS.md` is the runbook, including an AI handoff prompt. The
+>    split it draws is the important part: an agent can capture the accessibility
+>    tree on any platform, but the tree is what the automated gates already
+>    assert. What the manual pass adds is judgement no dump contains — whether
+>    the announcement is comprehensible, whether reading order matches visual
+>    order, where focus lands after an overlay closes, and whether verbosity is
+>    tolerable on a long list. So an agent produces the capture and a person
+>    signs it.
+>
+>    Two things were established by trying rather than assuming: `uiautomator
+>    dump` gives Android's full tree, and **TalkBack does not log its utterances**
+>    at default verbosity, so there is no speech transcript to scrape. Windows is
+>    harder still — the SSH gate has no interactive desktop, so Narrator needs
+>    someone at the machine.
+> 2. ~~**Tier 2**~~ — done. All 21 landed across the four native platforms in
+>    four batches of five, so no platform raced ahead. Every platform is now
+>    **46/46**.
+>
+>    Each wraps the primitive a native app would already reach for rather than
+>    redrawing it: `AdwStatusPage` for the GNOME empty state, `NumberBox` and
+>    `CalendarDatePicker` composed on Windows because they are sealed,
+>    `NavigationSplitView` on Apple for its own adaptive sidebar, and Material's
+>    `ModalBottomSheet` for its scrim and dismissal actions. Two recurring
+>    decisions are worth recording: a rating and a stepper are each **one**
+>    accessibility element carrying a value ("3 of 5", "Step 2 of 4"), because a
+>    row of five stars or four labels does not convey position; and an OTP field
+>    is **one** input, not N boxes, because the autofill hint is what surfaces
+>    the code from Messages and a row of single-character fields breaks both that
+>    and the screen reader.
+> 3. ~~**Deliverables named in the plan that were never built.**~~ — all four
+>    are now settled.
+>    - **`tokens/component/`** ✅ — the third level of the ontology exists. It
+>      holds the switch-geometry defaults, which is the one family that genuinely
+>      varies per platform. They were previously inline `var(…, 40px)` fallbacks
+>      repeated in two rules; the default now lives once and the call sites read
+>      the variable.
+>    - **A `platform` dimension inside `tokens/`** ✅ — `tokens/platform/**` holds
+>      159 tokens across the six skins, and `bun run tokens:platform` renders each
+>      skin's `[w-os="…"]` block from it. Extraction was proved lossless by
+>      byte-identical round-trip before any value moved, the same proof Phase 0
+>      used. Only the token block is generated: a skin also restructures a few
+>      components where platforms genuinely diverge, and that is real CSS with
+>      selectors, not token data.
+>    - **`Tokens.xaml`** ✅ — a WinUI ResourceDictionary of 153 brushes in
+>      `ThemeDictionaries`, plus scalars as `x:Double` and durations as
+>      `Duration`. This is not a duplicate of `DuVayTokens.cs`: XAML markup cannot
+>      reach a C# static field, so a template needs `{StaticResource
+>      DuVayAccentBrush}`. Verified to compile — the host produces `Tokens.xbf`.
+>      Theme dictionaries rather than resolved values, so a running app repaints
+>      when the system theme changes.
+>    - **Style Dictionary** ❌ — **decided against**, so it stops being an open
+>      question. It would replace the CSS variable emission and perhaps two of the
+>      six native targets; C#, Rust, the GTK stylesheet and the XAML dictionary
+>      have no built-in formats and would still need custom formatters. The cost
+>      is the repo's zero-dependency property, which is currently 0 dependencies
+>      and 0 devDependencies at the root, and the byte-equal round-trip proof —
+>      Style Dictionary reformats its output, which is exactly what makes that
+>      proof impossible. Revisit if a target appears that it has and we do not.
+>
+> **The web suite now runs once per skin.** `playwright.config.js` declares one
+> project per `w-os` value, so the 1455 component tests run six times — 8730 in
+> total — with the fixture page carrying all five skins and the runner setting
+> the attribute. This is what the plan's Verification section asked for, and it
+> paid for itself immediately by finding three defects that the unskinned run
+> could not see:
+> - `.w-switch--inset` hardcoded `thumb + 6px`, so on Material (32px track /
+>   24px thumb) and Fluent (20/12) — both already inset by design — the modifier
+>   *shrank* the track. Now `max()`, making it a no-op where the skin already
+>   satisfies it.
+> - The iOS and macOS skins set `background:` on `.w-toolbar`. The shorthand
+>   resets `background-image`, silently wiping `.w-toolbar--image`. Now
+>   `background-color`.
+> - The iOS and Material skins rounded the top corners of a **fullscreen** bottom
+>   sheet: their selector and the base fullscreen rule are both (0,2,0), so the
+>   later-loaded skin won on source order.
+>
+> **A publishable claim now has to be signed.** Code-completeness stopped being
+> the binding constraint the moment every platform reached 46/46: nothing but the
+> status field then stood between a port and the docs advertising it as
+> supported. `spec/core-contract.json` gained a `verification` block, and the
+> gate refuses a publishable status without one. `method` separates the two
+> kinds — the web's entry records the axe gate as `automated`, which is real but
+> is not a screen-reader pass, so an automated run cannot be filed as though a
+> human had driven VoiceOver.
+>
+> **Every platform now has a snapshot suite.** This was the second thing
+> standing between `tier-1-code-complete` and `tier-1-complete`; only the manual
+> screen-reader passes remain.
+> - **Apple** — SwiftUI `ImageRenderer` into a 16x16 RGB grid, no dependency.
+>   The first cut fingerprinted luminance and a deliberate accent-to-error swap
+>   went undetected, because the two colours have nearly the same luminance;
+>   colour is most of what a design system regresses, so the channels are kept
+>   apart.
+> - **Android** — Paparazzi, which renders Compose through layoutlib on the JVM,
+>   so it needs no emulator.
+> - **Linux** — a `duvay-snapshot` binary, not a `#[test]`: GTK must be
+>   initialised on the main thread and libtest runs tests on spawned ones. It
+>   captures the widget tree — type, CSS classes, accessible role — rather than
+>   pixels, because GTK's rasterisation depends on the theme and font stack,
+>   which are not the library's to control.
+> - **Windows** — a control-surface snapshot read from `DuVay.dll`'s metadata
+>   tables. WinAppDriver, which the plan names, drives a running app on a visible
+>   desktop; the gate reaches the host over SSH where `UserInteractive` is False,
+>   so a pixel suite cannot run there at all. This catches what this layer
+>   actually regresses: a control silently changing base type, or a property
+>   leaving the public API. It is not a substitute for the manual pass.
+>
+> All four were negative-tested by breaking something and confirming the suite
+> failed. Doing so exposed a real gate bug: the Windows build was incremental and
+> `tar` restores the archive's own timestamps, so MSBuild skipped the compile and
+> the gate validated a **stale binary** — it kept reporting a change that had
+> already been reverted. It now builds `--no-incremental`.
+>
+> **The parity matrix is published.** `/docs/platform-parity` is generated from
+> `spec/` by `scripts/platform-parity.mjs --emit` and checked for staleness by
+> `bun run verify`, the same way `src/tokens.css` is. It renders each platform's
+> claim next to its counts, so a reader cannot mistake 25/25 implemented for
+> shipped support.
+>
+> `bun run test:components` still runs the unskinned project alone for a fast
+> inner loop; `bun run test:skins` runs all six.
+>
+> **axe covers the web half of the accessibility gate.** `bun run test:a11y`
+> mounts every registered element on its own and scans it against WCAG 2.0/2.1/
+> 2.2 A and AA, once per skin. Composition rules (`aria-required-parent`,
+> `aria-required-children`) are skipped because they cannot be judged one element
+> at a time.
+>
+> It found 16 violations on introduction; 15 were real and are fixed:
+> - **Missing accessible names** — `w-pie` put the name on the `<figure>` while
+>   the `role="img"` child had none; `w-pie-segment`, `w-hotkey` and
+>   `w-hover-card` never forwarded the host's `aria-label` at all.
+> - **`w-file-upload`** — the `<input type="file">` had no name, and the dropzone
+>   was a `role="button"` wrapping focusable children. The dropzone is now a
+>   `role="group"` (a container role takes children legally), falling back to
+>   `button` only when `hide-browse` makes it the sole control.
+> - **WCAG 2.5.8 target size** — `minmax(0, 1fr)` let date-picker columns
+>   collapse below the 36px day button, so neighbouring days overlapped and ate
+>   each other's clickable area; range-slider inputs were 16px tall.
+> - **`w-calendar`** carried `aria-selected` on a `role="button"`, where it is
+>   invalid and ignored. It belongs on the `role="gridcell"` wrapper, which is
+>   what `w-date-picker` already did.
+> - **Two wrong-token contrast bugs** — `.w-video-controls` used
+>   `--w-on-primary` over a *scrim*, which is `#08323f` in the dark theme
+>   (1.37:1). There was no token for content on the scrim, so `--w-on-scrim` was
+>   added through the DTCG pipeline. Breadcrumb separators used `--w-divider`, a
+>   hairline colour, for glyphs (1.4:1).
+> - **`.w-sr-only` was defined only inside `.w-time-picker-field`**, so
+>   `w-heatmap` and `w-video` used the class with no styling at all and rendered
+>   screen-reader-only text visibly — a heatmap drew its label across every
+>   swatch. It is now a global utility, and `.w-heatmap-cell` is a containing
+>   block so the absolutely-positioned label cannot escape the heatmap's
+>   scroller and widen the document.
+>
+> One entry remains in the baseline and is a limit of the harness, not a defect:
+> `w-heatmap-cell` is a colour swatch whose documented API takes no children, so
+> the uniform `Body text` the harness slots into every element lands on a
+> background coloured from author data, where no contrast guarantee is possible.
+> The baseline may only shrink — an entry that stops failing is reported as
+> stale, so it cannot rot into a permanent exemption.
+>
+> All six skins produce **identical** axe results, which is the empirical proof
+> of the brand/platform token split: a skin cannot introduce an accessibility
+> defect because it is forbidden from declaring colour or control size.
 >
 > Run `bun run verify` for every static gate, `bun run native:verify` for the
 > four native conformance suites, and `bun run windows:gate` for the Windows host.
@@ -111,9 +276,10 @@
 >   and scrollbars. This follows the plan's own brand/platform split, which
 >   already listed radius scale and type ramp as brand — the first pass had
 >   contradicted it.
-> - `--w-outline` is defined and gated but **web components still use the
->   decorative `--w-border`**. Rewiring the ~20 form-control call sites is a
->   visible design change and was left as a follow-up, not done silently.
+> - `--w-outline` was defined and gated ahead of its call sites; the form
+>   controls have since been rewired onto it (14 call sites across inputs,
+>   number inputs, selects, switches, text fields and textareas). Decorative
+>   container edges still use `--w-border`, which is the intended split.
 > - Style Dictionary is still deferred, as the plan allows: the CSS target is a
 >   local Bun script, so the repo keeps its zero-dependency promise until the
 >   Swift/Kotlin targets exist.
@@ -167,7 +333,7 @@
 >
 > | | iOS Simulator (WebKit) | Android emulator (Chrome) |
 > |---|---|---|
-> | detected `w-os` | `ios` | `material` |
+> | detected `w-os` | `ios` | `android` |
 > | `--w-size-md` | 44px | 48px |
 > | `--w-touch-min` | 2.75rem (44pt HIG) | 3rem (48dp M3) |
 > | button font | `-apple-system` | `Roboto` |

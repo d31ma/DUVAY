@@ -1,0 +1,60 @@
+{
+  "$description": "Component-scoped token defaults — the third level of the primitive → semantic → component ontology. These are the values a skin overrides through the platform dimension; declaring them here rather than as inline var() fallbacks means the default lives in one place instead of being repeated at every call site.",
+  "$extensions": {
+    "duvay": {
+      "target": "src/tokens.css",
+      "order": 12,
+      "banner": "  /* ── Component defaults ────────────────────────────────────────── */",
+      "close": [
+        "}"
+      ],
+      "footer": [
+        ""
+      ]
+    }
+  },
+  "skin-switch-track-w": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$description": "Switch track width; overridden by every OS skin.",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "skin-switch-track-h": {
+    "$value": "14px",
+    "$type": "dimension",
+    "$description": "Switch track height.",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "skin-switch-thumb": {
+    "$value": "18px",
+    "$type": "dimension",
+    "$description": "Switch thumb diameter.",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  },
+  "skin-switch-pad": {
+    "$value": "0px",
+    "$type": "dimension",
+    "$description": "Inset between thumb and track edge.",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1
+      }
+    }
+  }
+}

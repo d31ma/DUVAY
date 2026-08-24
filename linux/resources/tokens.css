@@ -47,6 +47,7 @@
 @define-color duvay_light_inverse_on_surface #f4eff4;
 @define-color duvay_light_inverse_primary #83cde3;
 @define-color duvay_light_scrim rgba(0, 0, 0, 0.4);
+@define-color duvay_light_on_scrim #ffffff;
 @define-color duvay_light_shadow_color rgba(24, 33, 37, 0.12);
 @define-color duvay_light_video_poster #000000;
 @define-color duvay_light_surface_raised #e5ece9;
@@ -99,6 +100,7 @@
 @define-color duvay_dark_inverse_on_surface #313033;
 @define-color duvay_dark_inverse_primary #1f6f8b;
 @define-color duvay_dark_scrim rgba(0, 0, 0, 0.6);
+@define-color duvay_dark_on_scrim #ffffff;
 @define-color duvay_dark_shadow_color rgba(0, 0, 0, 0.4);
 @define-color duvay_dark_video_poster #000000;
 @define-color duvay_dark_surface_raised #222a2d;
@@ -151,6 +153,7 @@
 @define-color duvay_auto_inverse_on_surface #313033;
 @define-color duvay_auto_inverse_primary #1f6f8b;
 @define-color duvay_auto_scrim rgba(0, 0, 0, 0.6);
+@define-color duvay_auto_on_scrim #ffffff;
 @define-color duvay_auto_shadow_color rgba(0, 0, 0, 0.4);
 @define-color duvay_auto_video_poster #000000;
 
@@ -200,6 +203,7 @@
 @define-color duvay_high_contrast_inverse_on_surface #ffffff;
 @define-color duvay_high_contrast_inverse_primary #83cde3;
 @define-color duvay_high_contrast_scrim rgba(0, 0, 0, 0.6);
+@define-color duvay_high_contrast_on_scrim #ffffff;
 @define-color duvay_high_contrast_shadow_color rgba(0, 0, 0, 0.28);
 @define-color duvay_high_contrast_video_poster #000000;
 @define-color duvay_high_contrast_surface_raised #e5ebe9;

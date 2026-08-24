@@ -18,6 +18,7 @@
 
   <h2>Client-side routers</h2>
   <p>Most routers intercept clicks on internal links. Because DuVay renders native anchors, the router's global link handler works without adapters. If your router requires a special component (e.g. <code>&lt;RouterLink&gt;</code>), wrap DuVay components inside it.</p>
+  <p>When the router swaps content, any DuVay web components in the new markup upgrade on their own — they are standard custom elements, so the browser registers them as soon as they enter the document. There is nothing to re-initialise after a navigation.</p>
 
   <h3>Vue Router example</h3>
 
@@ -84,4 +85,11 @@
     &lt;w-bottom-nav-item value="/" href="/"&gt;Home&lt;/w-bottom-nav-item&gt;
     &lt;w-bottom-nav-item value="/docs" href="/docs"&gt;Docs&lt;/w-bottom-nav-item&gt;
   &lt;/w-bottom-navigation&gt;</code></pre>
+
+  <h2>Deep-linking state</h2>
+  <p>Where state should survive a reload or be shareable — the open tab, the selected filter, an expanded panel — keep it in the URL and let the component follow it. DuVay components emit native events, so the router can stay the source of truth rather than duplicating state beside it.</p>
+  <pre class="code-block"><code>&#47;&#47; the URL owns the tab; the component only reports intent
+  tabs.addEventListener('change', (event) =&gt; &#123;
+    router.replace(&#123; query: &#123; tab: event.target.value &#125; &#125;);
+  &#125;);</code></pre>
 </doc-layout>

@@ -104,14 +104,153 @@ const totals = Object.fromEntries(
   platformNames.map((p) => [p, matrix.filter((r) => r.platforms[p]).length]),
 );
 
-if (process.argv.includes('--json')) {
+/** Claims that may be advertised as shipped support on the docs site. */
+const PUBLISHABLE = new Set(['tier-1-complete', 'tier-2-complete']);
+
+/* ── Generated artefacts ─────────────────────────────────────────────── */
+
+const LABEL = { web: 'Web', apple: 'Apple', android: 'Android', windows: 'Windows', linux: 'Linux' };
+const CLAIM_TEXT = {
+  'not-started': 'Not started',
+  'in-progress': 'In progress',
+  'tier-1-code-complete': 'Tier 1 code-complete',
+  'tier-2-code-complete': 'Tier 2 code-complete',
+  'tier-1-complete': 'Tier 1 complete',
+  'tier-2-complete': 'Tier 2 complete',
+};
+
+const escapeHtml = (value) => String(value)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/**
+ * The docs page, rendered as static HTML at build time.
+ *
+ * Generated rather than authored for the same reason src/tokens.css is: a
+ * hand-maintained copy of this matrix would drift, and the one thing this page
+ * must never do is claim support a platform has not earned. `--check` fails the
+ * build when the committed page no longer matches the source of truth.
+ */
+function renderPage() {
+  const statusRows = platformNames.map((platform) => {
+    const claim = contract.status?.[platform] ?? 'not-started';
+    const publishable = PUBLISHABLE.has(claim);
+    const tier1Done = matrix.filter((r) => r.tier === 1 && r.platforms[platform]).length;
+    const tier1Total = matrix.filter((r) => r.tier === 1).length;
+    return `        <tr>
+          <td data-label="Platform">${LABEL[platform]}</td>
+          <td data-label="Status">${CLAIM_TEXT[claim]}</td>
+          <td data-label="Tier 1">${tier1Done} / ${tier1Total}</td>
+          <td data-label="All components">${totals[platform]} / ${matrix.length}</td>
+          <td data-label="Published as support">${publishable ? 'Yes' : 'No'}</td>
+        </tr>`;
+  }).join('\n');
+
+  const componentRows = matrix.map((row) => {
+    const cells = platformNames.map((platform) => {
+      const ok = row.platforms[platform];
+      // The glyph is decorative; the cell carries the real answer for a screen
+      // reader, which would otherwise hear a bare bullet.
+      return `<td data-label="${LABEL[platform]}"><span aria-hidden="true">${ok ? '✓' : '·'}</span>`
+        + `<span class="w-sr-only">${ok ? 'Implemented' : 'Not implemented'}</span></td>`;
+    }).join('');
+    return `        <tr>
+          <td data-label="Component">${escapeHtml(row.name)}</td>
+          <td data-label="Tier">${row.tier}</td>
+          <td data-label="Web element"><code>${escapeHtml(row.web)}</code></td>
+          ${cells}
+        </tr>`;
+  }).join('\n');
+
+  return `<doc-layout>
+  <h1>Platform parity</h1>
+  <p>DuVay's Core contract is the set of components that get native implementations on every platform. This page is generated from <code>spec/</code> by <code>scripts/platform-parity.mjs</code>, and a component is only marked as implemented when that platform actually declares it in source — never because a table said so.</p>
+
+  <h2>Status</h2>
+  <p>Implementation counts are not the same as shipped support. A platform reaches <strong>code-complete</strong> when every component in its tier exists and builds. It reaches <strong>complete</strong> only after the manual screen-reader pass and the snapshot suite the plan mandates, and only that may be advertised as support.</p>
+
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Per-platform implementation status">
+      <thead>
+        <tr><th>Platform</th><th>Status</th><th>Tier 1</th><th>All components</th><th>Published as support</th></tr>
+      </thead>
+      <tbody>
+${statusRows}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Tiers</h2>
+  <p><strong>Tier 1</strong> is the non-negotiable set that defines v1 — every platform implements all of it. <strong>Tier 2</strong> is added one component at a time across all five, so no single platform races ahead of the others. Anything absent from this table is web-only and stays web-only unless it is individually promoted.</p>
+
+  <h2>Coverage</h2>
+  <div class="api-table-wrap">
+    <table class="w-table api-table" aria-label="Component coverage by platform">
+      <thead>
+        <tr><th>Component</th><th>Tier</th><th>Web element</th>${platformNames.map((p) => `<th>${LABEL[p]}</th>`).join('')}</tr>
+      </thead>
+      <tbody>
+${componentRows}
+      </tbody>
+    </table>
+  </div>
+</doc-layout>
+`;
+}
+
+const PAGE = join(ROOT, 'website', 'client', 'pages', 'docs', 'platform-parity', 'tac.html');
+const JSON_OUT = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay', 'parity.json');
+
+if (process.argv.includes('--json') || process.argv.includes('--emit') || process.argv.includes('--check')) {
   const out = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay');
   await mkdir(out, { recursive: true });
-  await writeFile(
-    join(out, 'parity.json'),
-    JSON.stringify({ generated: 'scripts/platform-parity.mjs', totals, components: matrix }, null, 2) + '\n',
-  );
-  console.log(`✓ wrote website/client/shared/assets/duvay/parity.json`);
+  const tier1Rows = matrix.filter((r) => r.tier === 1);
+  // The docs page has to render the *claim* alongside the count, or a reader
+  // would take 25/25 as shipped support. `publishable` is the same set the gate
+  // below uses, so the page and the gate can never disagree.
+  const status = Object.fromEntries(platformNames.map((p) => {
+    const claim = contract.status?.[p] ?? 'not-started';
+    return [p, {
+      claim,
+      publishable: PUBLISHABLE.has(claim),
+      implemented: totals[p],
+      tier1: tier1Rows.filter((r) => r.platforms[p]).length,
+    }];
+  }));
+  const json = JSON.stringify({
+    generated: 'scripts/platform-parity.mjs',
+    platforms: platformNames,
+    total: matrix.length,
+    tier1Total: tier1Rows.length,
+    totals,
+    status,
+    components: matrix,
+  }, null, 2) + '\n';
+  const page = renderPage();
+
+  const artefacts = [
+    ['website/client/shared/assets/duvay/parity.json', JSON_OUT, json],
+    ['website/client/pages/docs/platform-parity/tac.html', PAGE, page],
+  ];
+
+  if (process.argv.includes('--check')) {
+    let stale = false;
+    for (const [label, path, content] of artefacts) {
+      const existing = await readFile(path, 'utf8').catch(() => null);
+      if (existing === content) {
+        console.log(`✓ ${label} up to date`);
+        continue;
+      }
+      console.error(`✗ ${label} is stale — run \`bun run parity:emit\``);
+      stale = true;
+    }
+    if (stale) process.exit(1);
+  } else {
+    await mkdir(dirname(PAGE), { recursive: true });
+    for (const [label, path, content] of artefacts) {
+      await writeFile(path, content);
+      console.log(`✓ wrote ${label}`);
+    }
+  }
 }
 
 /* ── Report ──────────────────────────────────────────────────────────── */
@@ -152,11 +291,12 @@ const CLAIMS = {
   'in-progress': () => [],
   'tier-1-code-complete': (m) => m.filter((r) => r.tier === 1 && !r.platforms[m.platform]),
   'tier-1-complete': (m) => m.filter((r) => r.tier === 1 && !r.platforms[m.platform]),
+  // Every component exists and builds, but the manual passes have not been done.
+  // Deliberately not publishable: the gap between this and `tier-2-complete` is
+  // a human on that platform's assistive tech, not more code.
+  'tier-2-code-complete': (m) => m.filter((r) => !r.platforms[m.platform]),
   'tier-2-complete': (m) => m.filter((r) => !r.platforms[m.platform]),
 };
-
-/** Claims that may be advertised as shipped support on the docs site. */
-const PUBLISHABLE = new Set(['tier-1-complete', 'tier-2-complete']);
 
 let failures = 0;
 console.log('\nclaimed status');
@@ -178,6 +318,32 @@ for (const platform of platformNames) {
       `✗ ${platform} claims "${status}" but is missing ${missing.length}: ` + missing.map((m) => m.name).join(', '),
     );
     failures++;
+  }
+
+  /* Code-completeness is no longer the binding constraint: every platform now
+   * implements all 46, so nothing but this stops someone moving the status to a
+   * publishable one and advertising support the plan says has not been earned.
+   *
+   * A publishable claim therefore has to name the manual passes — which screen
+   * reader, which version, who ran it, when. The gate cannot verify that a human
+   * really did it, but it can refuse to publish a claim that nobody signed. */
+  if (PUBLISHABLE.has(status)) {
+    const evidence = contract.verification?.[platform];
+    // `method` is required and the two values are not interchangeable: the web
+    // has axe, which is a real gate but not a screen-reader pass, and the four
+    // native platforms have no equivalent. Recording which one was done stops
+    // an automated run being filed as if a human had driven VoiceOver.
+    const fields = evidence?.method === 'automated'
+      ? ['method', 'tool', 'command', 'date']
+      : ['method', 'screenReader', 'version', 'verifiedBy', 'date'];
+    const absent = fields.filter((field) => !evidence?.[field]);
+    if (absent.length) {
+      console.error(
+        `✗ ${platform} claims the publishable status "${status}" without recorded verification`
+        + ` (missing ${absent.join(', ')} under contract.verification.${platform})`,
+      );
+      failures++;
+    }
   }
 }
 

@@ -1,0 +1,4 @@
+GtkSwitch [] role=Switch
+  GtkImage [] role=None
+  GtkImage [] role=None
+  GtkGizmo [] role=None

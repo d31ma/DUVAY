@@ -72,14 +72,19 @@
 [w-os="android"] .w-dialog,
 [w-os="material"] .w-dialog {
   border-radius: var(--w-radius-xl);
-  background: var(--w-surface-container-high);
+  /* background-color, so an author-supplied image survives the skin. */
+  background-color: var(--w-surface-container-high);
 }
 [w-os="android"] .w-dialog-footer,
 [w-os="material"] .w-dialog-footer { justify-content: flex-end; }
 
 /* Bottom sheets carry the M3 drag handle affordance. */
-[w-os="android"] .w-bottom-sheet,
-[w-os="material"] .w-bottom-sheet {
+/* :not(--fullscreen) because a sheet that fills the screen has no top
+   corners to round. The skin selector and the base fullscreen rule are
+   both (0,2,0), so without this the later-loaded skin won on source
+   order and rounded a fullscreen sheet. */
+[w-os="android"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen),
+[w-os="material"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen) {
   border-radius: var(--w-radius-xl) var(--w-radius-xl) 0 0;
   padding-bottom: max(var(--w-space-4), env(safe-area-inset-bottom));
 }

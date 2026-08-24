@@ -92,12 +92,16 @@
 /* Rounded container (pairs with bg-color) */
 .w-breadcrumbs--rounded { border-radius: var(--w-radius-lg); }
 
+/* --w-divider is a hairline colour, tuned for 1px rules rather than glyphs; on
+   the dark theme it rendered the separator at 1.4:1, effectively invisible. A
+   separator is decorative but it is still text, so it takes the muted text
+   colour, which is contrast-checked by `tokens:check`. */
 .w-breadcrumb-sep {
-  color: var(--w-divider);
+  color: var(--w-text-muted);
   user-select: none;
 }
 
 .w-breadcrumbs-divider {
-  color: var(--w-divider);
+  color: var(--w-text-muted);
   user-select: none;
 }

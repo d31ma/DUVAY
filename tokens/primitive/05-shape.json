@@ -4,7 +4,7 @@
     "duvay": {
       "target": "src/tokens.css",
       "order": 5,
-      "banner": "  /* \u2500\u2500 Shape \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */",
+      "banner": "  /* ── Shape ──────────────────────────────────────────────────────────── */",
       "after": [
         ""
       ]
@@ -79,7 +79,7 @@
         "pad": 1,
         "before": [
           "",
-          "  /* Focus ring \u2014 tokenised so a platform skin can restyle it without adding",
+          "  /* Focus ring — tokenised so a platform skin can restyle it without adding",
           "   * a second `:focus-visible` rule. That matters: nine components opt out of",
           "   * the global ring with `outline: none` because their wrapper draws it, and",
           "   * a skin rule like `[w-os=\"ios\"] :focus-visible` outranks that opt-out,",

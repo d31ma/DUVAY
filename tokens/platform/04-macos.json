@@ -1,0 +1,467 @@
+{
+  "$description": "Platform tokens for the macos skin.",
+  "$extensions": {
+    "duvay": {
+      "target": "src/platforms/macos.css",
+      "order": 4,
+      "selectors": [
+        "[w-os=\"macos\"]"
+      ],
+      "open": [
+        "[w-os=\"macos\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "entries": [
+        {
+          "kind": "comment",
+          "text": "  /* Switch — set as inherited variables so this skin still wins"
+        },
+        {
+          "kind": "comment",
+          "text": "   * inside a page wearing a different one. */"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-w"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-h"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-thumb"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-pad"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Type ─────────────────────────────────────────────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "font-family"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-heading"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-mono"
+        },
+        {
+          "kind": "token",
+          "name": "letter-spacing-tight"
+        },
+        {
+          "kind": "token",
+          "name": "line-height-normal"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "token",
+          "name": "topbar-height"
+        },
+        {
+          "kind": "token",
+          "name": "sidebar-width"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Elevation — thin hairlines, soft window shadow ───────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-sm"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-md"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-lg"
+        },
+        {
+          "kind": "token",
+          "name": "app-bar-backdrop-blur"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Motion — brisk; macOS animations are shorter than iOS ────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-standard"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-enter"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-exit"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-fast"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-slow"
+        },
+        {
+          "kind": "token",
+          "name": "transition-fast"
+        },
+        {
+          "kind": "token",
+          "name": "transition-normal"
+        },
+        {
+          "kind": "token",
+          "name": "transition-slow"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* Focus — macOS uses a wide, tinted halo hugging the control. */"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-width"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-color"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-offset"
+        },
+        {
+          "kind": "blank"
+        }
+      ]
+    }
+  },
+  "skin-switch-track-w": {
+    "$value": "38px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-track-h": {
+    "$value": "22px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-thumb": {
+    "$value": "20px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-pad": {
+    "$value": "1px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family": {
+    "$value": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-heading": {
+    "$value": "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-mono": {
+    "$value": "ui-monospace, 'SF Mono', Menlo, monospace",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "letter-spacing-tight": {
+    "$value": "-0.01em",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "line-height-normal": {
+    "$value": "1.35",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "topbar-height": {
+    "$value": "38px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "           /* unified toolbar */"
+      }
+    }
+  },
+  "sidebar-width": {
+    "$value": "220px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-sm": {
+    "$value": "0 0.5px 0 var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-md": {
+    "$value": "0 2px 8px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-lg": {
+    "$value": "0 16px 48px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "app-bar-backdrop-blur": {
+    "$value": "1.5rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-standard": {
+    "$value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-enter": {
+    "$value": "cubic-bezier(0, 0, 0.2, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-exit": {
+    "$value": "cubic-bezier(0.4, 0, 1, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-fast": {
+    "$value": "100ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration": {
+    "$value": "180ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-slow": {
+    "$value": "250ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-fast": {
+    "$value": "100ms cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "transition-normal": {
+    "$value": "180ms cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-slow": {
+    "$value": "250ms cubic-bezier(0.25, 0.1, 0.25, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-width": {
+    "$value": "3px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-color": {
+    "$value": "color-mix(in srgb, var(--w-accent) 55%, transparent)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-offset": {
+    "$value": "1px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  }
+}

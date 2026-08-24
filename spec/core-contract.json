@@ -1,5 +1,5 @@
 {
-  "$description": "DuVay Core contract \u2014 the components that get native implementations on all five platforms.",
+  "$description": "DuVay Core contract — the components that get native implementations on all five platforms.",
   "$note": "Everything not listed here is web-only and stays web-only unless individually promoted. See CROSS-PLATFORM-PLAN.md.",
   "platforms": [
     "web",
@@ -11,10 +11,10 @@
   "$statusNote": "What each platform CLAIMS. scripts/platform-parity.mjs fails if a claim exceeds what is actually implemented on disk. 'tier-1-code-complete' means every tier-1 component exists and builds; 'tier-1-complete' additionally requires the manual screen-reader pass and snapshot suite the plan mandates, and only that may be advertised as support.",
   "status": {
     "web": "tier-2-complete",
-    "apple": "tier-1-code-complete",
-    "android": "tier-1-code-complete",
-    "windows": "tier-1-code-complete",
-    "linux": "tier-1-code-complete"
+    "apple": "tier-2-code-complete",
+    "android": "tier-2-code-complete",
+    "windows": "tier-2-code-complete",
+    "linux": "tier-2-code-complete"
   },
   "tiers": {
     "1": "Every platform, non-negotiable, defines v1. Maps 1:1 onto an existing native widget on all four native toolkits.",
@@ -628,5 +628,15 @@
         "linux": "duvay_status_page"
       }
     }
-  ]
+  ],
+  "$verificationNote": "A publishable status additionally requires an entry here. method=\"manual\" records the screen-reader pass the plan mandates; method=\"automated\" records a gate that stands in for it. platform-parity.mjs cannot verify a human ran anything, but it refuses to publish a claim nobody signed, and it keeps the two kinds distinct.",
+  "verification": {
+    "web": {
+      "method": "automated",
+      "tool": "axe-core 4.13 (WCAG 2.0/2.1/2.2 A + AA)",
+      "command": "bun run test:a11y",
+      "date": "2026-08-23",
+      "note": "Runs once per w-os skin over every registered element. Not a screen-reader pass; the plan still lists one for the web."
+    }
+  }
 }

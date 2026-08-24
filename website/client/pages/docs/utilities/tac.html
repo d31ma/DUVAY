@@ -90,4 +90,22 @@
       </p>
     </div>
   </demo-compare>
+
+  <h2>Screen-reader-only text</h2>
+  <p><code>.w-sr-only</code> takes content out of the visual layer while leaving it in the accessibility tree — for labelling a control whose meaning is carried by an icon, a colour or a chart. It is not the same as hiding: <code>display: none</code> and <code>visibility: hidden</code> remove content from both layers, so a screen reader loses it too.</p>
+  <demo-compare>
+    <div slot="css">
+      <button class="w-btn w-btn-icon" type="button">
+        <span aria-hidden="true">★</span>
+        <span class="w-sr-only">Add to favourites</span>
+      </button>
+    </div>
+    <div slot="wc">
+      <w-btn variant="icon">
+        <span aria-hidden="true">★</span>
+        <span class="w-sr-only">Add to favourites</span>
+      </w-btn>
+    </div>
+  </demo-compare>
+  <p>Pair it with <code>aria-hidden</code> on the glyph, so the control is announced once with the right words rather than twice. It is <code>position: absolute</code>, so give the immediate parent <code>position: relative</code> when it sits inside a scrolling container. See <a href="/docs/features/accessibility">Accessibility</a>.</p>
 </doc-layout>
