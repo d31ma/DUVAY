@@ -28,6 +28,25 @@ hosted assets on GitHub Pages, so there is no tarball, no npm or GitHub
 Packages step, and no `NPM_TOKEN` secret. `package.json` is marked `private`
 to prevent an accidental publish.
 
+## Documentation site
+
+The docs site is an Amplify Hosting app (managed in `d31ma/PaaS` at
+`infra/duvay/amplify`) with one branch per environment rail:
+
+| Rail | Host |
+|---|---|
+| dev | `dev.duvay.del.ma` |
+| staging | `staging.duvay.del.ma` |
+| production | `duvay.del.ma` |
+
+A successful `Publish` run deploys its tagged release to the **dev** rail
+automatically (`Deploy Docs to Amplify` workflow). Promoting is manual and
+deliberate: dispatch the same workflow with the rail (`staging`, then
+`production`) and the tagged commit SHA. The workflow refuses any commit
+that is not on `main` and tagged `v<version>` by an annotated tag, and it
+authenticates via OIDC (`duvay-docs-deploy` role) — there are no stored AWS
+secrets in this repository.
+
 A release is immutable: an existing tag that resolves to a different commit is
 a hard failure. Because the tag is derived from the CalVer version, only one
 release per UTC day is possible without changing the version scheme.
