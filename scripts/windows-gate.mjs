@@ -13,9 +13,9 @@
 //   bun scripts/windows-gate.mjs --no-sync   test only, using what is there
 
 import { $ } from 'bun';
-import { dirname } from 'node:path';
+import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { stat } from 'node:fs/promises';
+import { rm, stat, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -86,11 +86,59 @@ if (test.code !== 0) {
 // gate exists at all. A compile is the meaningful check here: rendering needs
 // an interactive session, so it is not attempted over SSH.
 console.log(`\n→ building the WinUI 3 control library on ${HOST}`);
-const winui = await remote(`${env} && dotnet build DuVay\\DuVay.csproj --nologo -v m`);
+// --no-incremental because the sync extracts sources with the archive's own
+// timestamps, which can read as older than the remote's existing obj/ output.
+// MSBuild then skips the compile and the gate validates a stale binary — it
+// kept reporting a base-type change that had already been reverted.
+const winui = await remote(`${env} && dotnet build DuVay\\DuVay.csproj --nologo -v m --no-incremental`);
 
 console.log(winui.text.trim());
 if (winui.code !== 0) {
   console.error('\n✗ windows-gate — the WinUI 3 control library failed to build');
   process.exit(1);
 }
-console.log('\n✓ windows-gate — conformance passes and the WinUI 3 library builds');
+
+/* ── Control-surface snapshot ─────────────────────────────────────────────
+ *
+ * The built DLL comes back here rather than the snapshot tool going there: the
+ * tool reads metadata tables and never loads the assembly, so it runs happily
+ * on macOS, and keeping it local means the recording lives beside the rest of
+ * the repo instead of on a host we do not control.
+ *
+ * This is a structural snapshot, not a visual one — see DuVay.Snapshots for
+ * why a pixel suite cannot run over a non-interactive SSH session.
+ */
+console.log(`\n→ pulling DuVay.dll back from ${HOST} for the control-surface snapshot`);
+const dllPath = join(ROOT, '.duvay-winui.dll');
+
+// Ask the host where it put the DLL rather than hard-coding a configuration
+// and framework moniker that the SDK is free to change.
+const located = await remote(`cd ${REMOTE}\\windows && dir /s /b DuVay\\bin\\DuVay.dll`);
+const remoteDll = located.text.split('\n').map((l) => l.trim()).filter(Boolean)[0];
+if (located.code !== 0 || !remoteDll) {
+  console.error('\n✗ windows-gate — could not locate DuVay.dll on the host');
+  process.exit(1);
+}
+
+// scp resolves the remote path through the remote shell, which treats a
+// backslash as an escape. Windows accepts forward slashes everywhere.
+const scpPath = remoteDll.replace(/\\/g, '/');
+const pull = await $`scp -q -o BatchMode=yes ${`${HOST}:${scpPath}`} ${dllPath}`.quiet().nothrow();
+if (pull.exitCode !== 0) {
+  console.error(pull.stderr?.toString());
+  console.error('\n✗ windows-gate — could not retrieve DuVay.dll from the host');
+  process.exit(1);
+}
+
+const mode = process.env.DUVAY_RECORD_SNAPSHOTS === '1' ? '--record' : '--check';
+const snapshot = await $`dotnet run --project ${join(ROOT, 'windows', 'DuVay.Snapshots', 'DuVay.Snapshots.csproj')} -v q -- ${dllPath} ${mode}`
+  .quiet().nothrow();
+await rm(dllPath, { force: true });
+
+console.log(snapshot.text().trim() || snapshot.stderr.toString().trim());
+if (snapshot.exitCode !== 0) {
+  console.error('\n✗ windows-gate — the WinUI control surface changed');
+  process.exit(1);
+}
+
+console.log('\n✓ windows-gate — conformance passes, the WinUI 3 library builds, and its control surface matches');

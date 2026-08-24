@@ -9,6 +9,9 @@ const projectRoot = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 export { expect };
 
 export const test = base.extend({
+  // Set per project in playwright.config.js. Empty string means no skin.
+  duvayOs: ['', { option: true }],
+
   componentServer: [async ({}, use) => {
     const server = await startComponentTestServer(projectRoot);
     await use(server);
@@ -37,9 +40,15 @@ export const test = base.extend({
     coverageAccumulator.add(await page.coverage.stopJSCoverage());
   }, { auto: true }],
 
-  mount: async ({ page, componentServer, coverage }, use) => {
+  mount: async ({ page, componentServer, coverage, duvayOs }, use) => {
     await page.goto(componentServer.url('/tests/fixtures/component-page.html'));
     await page.waitForFunction(() => customElements.get('w-btn') && customElements.get('w-window'));
+
+    // Skins are attribute-scoped, so this is the whole switch. Set before the
+    // first mount so components see their final geometry on connect.
+    if (duvayOs) {
+      await page.evaluate((os) => document.documentElement.setAttribute('w-os', os), duvayOs);
+    }
 
     const mountComponent = async (html) => {
       await page.locator('#root').evaluate((root, nextHtml) => {

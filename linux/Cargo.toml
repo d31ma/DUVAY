@@ -21,6 +21,13 @@ repository = "https://github.com/d31ma/DUVAY"
 default = []
 gtk = ["dep:gtk4", "dep:libadwaita"]
 
+# The snapshot suite is a binary, not a #[test]: GTK must be initialised on the
+# main thread and libtest runs tests on spawned threads.
+[[bin]]
+name = "duvay-snapshot"
+path = "src/bin/snapshot.rs"
+required-features = ["gtk"]
+
 [dependencies]
 # v4_12 unlocks gtk::accessible and CssProvider::load_from_string, which the contract needs to set accessible
 # names explicitly. GNOME 46 ships GTK 4.14, so this is a conservative floor.

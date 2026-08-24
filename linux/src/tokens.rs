@@ -80,6 +80,10 @@ pub mod dimension {
     pub const MOTION_DISTANCE_X: f64 = 24.0;
     pub const MOTION_DISTANCE_Y: f64 = 12.0;
     pub const APP_BAR_BACKDROP_BLUR: f64 = 16.0;
+    pub const SKIN_SWITCH_TRACK_W: f64 = 40.0;
+    pub const SKIN_SWITCH_TRACK_H: f64 = 14.0;
+    pub const SKIN_SWITCH_THUMB: f64 = 18.0;
+    pub const SKIN_SWITCH_PAD: f64 = 0.0;
 }
 
 /// Durations in milliseconds.
@@ -130,6 +134,7 @@ pub struct Palette {
     pub on_error_container: Rgba,
     pub on_primary: Rgba,
     pub on_primary_container: Rgba,
+    pub on_scrim: Rgba,
     pub on_secondary_container: Rgba,
     pub on_success: Rgba,
     pub on_success_container: Rgba,
@@ -183,6 +188,7 @@ pub const LIGHT: Palette = Palette {
     on_error_container: Rgba { r: 65, g: 14, b: 11, a: 1.0000 },
     on_primary: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_primary_container: Rgba { r: 7, g: 53, b: 68, a: 1.0000 },
+    on_scrim: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_secondary_container: Rgba { r: 39, g: 55, b: 51, a: 1.0000 },
     on_success: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_success_container: Rgba { r: 27, g: 94, b: 32, a: 1.0000 },
@@ -236,6 +242,7 @@ pub const DARK: Palette = Palette {
     on_error_container: Rgba { r: 249, g: 222, b: 220, a: 1.0000 },
     on_primary: Rgba { r: 8, g: 50, b: 63, a: 1.0000 },
     on_primary_container: Rgba { r: 232, g: 248, b: 252, a: 1.0000 },
+    on_scrim: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_secondary_container: Rgba { r: 220, g: 231, b: 228, a: 1.0000 },
     on_success: Rgba { r: 11, g: 46, b: 14, a: 1.0000 },
     on_success_container: Rgba { r: 232, g: 245, b: 233, a: 1.0000 },
@@ -289,6 +296,7 @@ pub const AUTO: Palette = Palette {
     on_error_container: Rgba { r: 249, g: 222, b: 220, a: 1.0000 },
     on_primary: Rgba { r: 8, g: 50, b: 63, a: 1.0000 },
     on_primary_container: Rgba { r: 232, g: 248, b: 252, a: 1.0000 },
+    on_scrim: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_secondary_container: Rgba { r: 220, g: 231, b: 228, a: 1.0000 },
     on_success: Rgba { r: 11, g: 46, b: 14, a: 1.0000 },
     on_success_container: Rgba { r: 232, g: 245, b: 233, a: 1.0000 },
@@ -342,6 +350,7 @@ pub const HIGH_CONTRAST: Palette = Palette {
     on_error_container: Rgba { r: 44, g: 0, b: 1, a: 1.0000 },
     on_primary: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_primary_container: Rgba { r: 0, g: 24, b: 32, a: 1.0000 },
+    on_scrim: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_secondary_container: Rgba { r: 12, g: 24, b: 21, a: 1.0000 },
     on_success: Rgba { r: 255, g: 255, b: 255, a: 1.0000 },
     on_success_container: Rgba { r: 5, g: 40, b: 7, a: 1.0000 },

@@ -31,10 +31,31 @@ const PLATFORMS = [
     run: () => $`gradle :duvay-core:test --console=plain -q`.cwd(join(ROOT, 'android')).quiet(),
   },
   {
+    // Paparazzi renders through layoutlib on the JVM, so this needs no
+    // emulator — but it does need the Android SDK, which :duvay-core does not.
+    // Reported as skipped rather than failed when the SDK is absent: a suite
+    // that could not run is not a suite that passed.
+    name: 'android-snapshots',
+    tool: 'gradle',
+    cwd: 'android',
+    requiresEnv: ['ANDROID_HOME', 'ANDROID_SDK_ROOT'],
+    run: () => $`gradle :duvay-compose:verifyPaparazziDebug --console=plain -q`.cwd(join(ROOT, 'android')).quiet(),
+  },
+  {
     name: 'linux',
     tool: 'cargo',
     cwd: 'linux',
     run: () => $`cargo test --test conformance -q`.cwd(join(ROOT, 'linux')).quiet(),
+  },
+  {
+    // The widget layer is behind --features gtk and needs the GTK4 stack plus a
+    // display. Skipped, not failed, when either is absent — the conformance
+    // suite above is what runs everywhere.
+    name: 'linux-snapshots',
+    tool: 'pkg-config',
+    cwd: 'linux',
+    probe: () => $`pkg-config --exists gtk4 libadwaita-1`.quiet(),
+    run: () => $`cargo run --features gtk --bin duvay-snapshot -- --check`.cwd(join(ROOT, 'linux')).quiet(),
   },
   {
     name: 'windows',
@@ -58,6 +79,23 @@ for (const platform of PLATFORMS) {
   if (!(await available(platform.tool))) {
     results.push({ ...platform, status: 'skipped', note: `${platform.tool} not on PATH` });
     continue;
+  }
+  const missingEnv = (platform.requiresEnv ?? []).every((name) => !process.env[name]);
+  if (platform.requiresEnv && missingEnv) {
+    results.push({
+      ...platform,
+      status: 'skipped',
+      note: `set ${platform.requiresEnv.join(' or ')}`,
+    });
+    continue;
+  }
+  if (platform.probe) {
+    try {
+      await platform.probe();
+    } catch {
+      results.push({ ...platform, status: 'skipped', note: 'system libraries not present' });
+      continue;
+    }
   }
   const started = performance.now();
   try {

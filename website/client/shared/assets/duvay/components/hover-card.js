@@ -17,8 +17,16 @@ export class WHoverCard extends WElement {
 
     return `<span class="${classes}">
       <span class="w-hover-card-trigger" tabindex="0"><slot></slot></span>
-      <span class="w-hover-card-content" role="tooltip"><slot name="content"></slot></span>
+      <span class="w-hover-card-content" role="tooltip"${this._tooltipName()}><slot name="content"></slot></span>
     </span>`;
+  }
+
+  /* A tooltip normally takes its name from its own visible content. This lets
+   * the host name it explicitly, which is the only option when the content is
+   * an icon, a chart, or anything else with no text of its own. */
+  _tooltipName() {
+    const name = this.getAttribute('aria-label');
+    return name ? ` aria-label="${this._esc(name)}"` : '';
   }
 
   _events() {

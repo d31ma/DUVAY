@@ -5,13 +5,15 @@
 .w-switch {
   /* Geometry — overridden by size + inset modifiers below.
      travel = track width − thumb − 2×horizontal pad.
-     Each reads --w-skin-switch-* first so a platform skin can restyle the
-     control by setting an inherited custom property rather than a descendant
-     rule; that is what lets one skin sit inside a page wearing another. */
-  --w-switch-track-w: var(--w-skin-switch-track-w, 40px);
-  --w-switch-track-h: var(--w-skin-switch-track-h, 14px);
-  --w-switch-thumb: var(--w-skin-switch-thumb, 18px);
-  --w-switch-pad: var(--w-skin-switch-pad, 0px);
+     Each reads --w-skin-switch-*, an inherited custom property, so a platform
+     skin restyles the control by setting a variable rather than by writing a
+     descendant rule; that is what lets one skin sit inside a page wearing
+     another. The defaults come from tokens/component/, so the numbers are not
+     repeated at each call site. */
+  --w-switch-track-w: var(--w-skin-switch-track-w);
+  --w-switch-track-h: var(--w-skin-switch-track-h);
+  --w-switch-thumb: var(--w-skin-switch-thumb);
+  --w-switch-pad: var(--w-skin-switch-pad);
   --w-switch-accent: var(--w-primary);
   --w-switch-on-accent: var(--w-on-primary);
 
@@ -86,7 +88,16 @@
    regardless of source order. */
 .w-switch.w-switch--inset {
   --w-switch-pad: 3px;
-  --w-switch-track-h: calc(var(--w-switch-thumb) + 6px);
+  /* `inset` means the track encloses the thumb, so it can only ever grow.
+     Material (32px track / 24px thumb) and Fluent (20/12) are already inset by
+     design, and a bare calc() would have *shrunk* their tracks — max() makes
+     the modifier a no-op wherever the skin already satisfies it. It reads the
+     skin variable rather than --w-switch-track-h because a custom property
+     cannot reference itself. */
+  --w-switch-track-h: max(
+    var(--w-skin-switch-track-h),
+    calc(var(--w-switch-thumb) + 6px)
+  );
 }
 
 /* ── Flat — thumb without elevation ───────────────────────────────────────── */
@@ -125,9 +136,9 @@
    must defer to the platform skin the same way .w-switch does. The explicit
    sizes below stay literal: asking for --lg should beat the skin. */
 .w-switch--md {
-  --w-switch-track-w: var(--w-skin-switch-track-w, 40px);
-  --w-switch-track-h: var(--w-skin-switch-track-h, 14px);
-  --w-switch-thumb: var(--w-skin-switch-thumb, 18px);
+  --w-switch-track-w: var(--w-skin-switch-track-w);
+  --w-switch-track-h: var(--w-skin-switch-track-h);
+  --w-switch-thumb: var(--w-skin-switch-thumb);
   font-size: var(--w-font-base);
 }
 .w-switch--lg { --w-switch-track-w: 48px; --w-switch-track-h: 16px; --w-switch-thumb: 22px; font-size: var(--w-font-md); }

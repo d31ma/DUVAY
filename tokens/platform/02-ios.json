@@ -1,0 +1,452 @@
+{
+  "$description": "Platform tokens for the ios skin.",
+  "$extensions": {
+    "duvay": {
+      "target": "src/platforms/ios.css",
+      "order": 2,
+      "selectors": [
+        "[w-os=\"ios\"]"
+      ],
+      "open": [
+        "[w-os=\"ios\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "entries": [
+        {
+          "kind": "comment",
+          "text": "  /* Switch — set as inherited variables so this skin still wins"
+        },
+        {
+          "kind": "comment",
+          "text": "   * inside a page wearing a different one. */"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-w"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-h"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-thumb"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-pad"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Type ─────────────────────────────────────────────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "font-family"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-heading"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-mono"
+        },
+        {
+          "kind": "token",
+          "name": "letter-spacing-tight"
+        },
+        {
+          "kind": "token",
+          "name": "line-height-normal"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "token",
+          "name": "topbar-height"
+        },
+        {
+          "kind": "token",
+          "name": "mobile-nav-height"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Elevation — iOS leans on translucency, not drop shadows ──────── */"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-sm"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-md"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-lg"
+        },
+        {
+          "kind": "token",
+          "name": "app-bar-backdrop-blur"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Motion — the UIKit-style decelerating curve ──────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-standard"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-enter"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-exit"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-fast"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-slow"
+        },
+        {
+          "kind": "token",
+          "name": "transition-fast"
+        },
+        {
+          "kind": "token",
+          "name": "transition-normal"
+        },
+        {
+          "kind": "token",
+          "name": "transition-slow"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* Focus — iOS draws a soft halo rather than a hard ring. */"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-color"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-offset"
+        },
+        {
+          "kind": "blank"
+        }
+      ]
+    }
+  },
+  "skin-switch-track-w": {
+    "$value": "51px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-track-h": {
+    "$value": "31px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-thumb": {
+    "$value": "27px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-pad": {
+    "$value": "2px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family": {
+    "$value": "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-heading": {
+    "$value": "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-mono": {
+    "$value": "ui-monospace, 'SF Mono', Menlo, monospace",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "letter-spacing-tight": {
+    "$value": "-0.022em",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "line-height-normal": {
+    "$value": "1.29",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "topbar-height": {
+    "$value": "44px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "mobile-nav-height": {
+    "$value": "49px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": "       /* iOS tab bar, excluding the home indicator */"
+      }
+    }
+  },
+  "shadow-sm": {
+    "$value": "0 0.5px 0 var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-md": {
+    "$value": "0 4px 16px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-lg": {
+    "$value": "0 12px 40px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "app-bar-backdrop-blur": {
+    "$value": "1.25rem",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-standard": {
+    "$value": "cubic-bezier(0.32, 0.72, 0, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-enter": {
+    "$value": "cubic-bezier(0.32, 0.72, 0, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-exit": {
+    "$value": "cubic-bezier(0.4, 0, 0.6, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-fast": {
+    "$value": "200ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration": {
+    "$value": "350ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-slow": {
+    "$value": "500ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-fast": {
+    "$value": "200ms cubic-bezier(0.32, 0.72, 0, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "transition-normal": {
+    "$value": "350ms cubic-bezier(0.32, 0.72, 0, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-slow": {
+    "$value": "500ms cubic-bezier(0.32, 0.72, 0, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-color": {
+    "$value": "var(--w-accent)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-offset": {
+    "$value": "3px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  }
+}

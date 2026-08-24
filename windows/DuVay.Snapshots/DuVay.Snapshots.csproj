@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- Plain net9.0 with no project reference and no Windows target: the tool
+         reads DuVay.dll's metadata tables rather than loading it, so it needs
+         neither the Windows App SDK nor a desktop, and it runs on the same
+         machine as the rest of `bun run verify`. -->
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <RollForward>Major</RollForward>
+    <AssemblyName>duvay-snapshots</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />
+  </ItemGroup>
+</Project>

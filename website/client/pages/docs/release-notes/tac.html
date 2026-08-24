@@ -2,6 +2,43 @@
   <h1>Release notes</h1>
   <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
 
+  <h2>26.35.01</h2>
+  <p><em>Released 2026-08-24</em></p>
+
+  <h3>Cross-platform</h3>
+  <ul>
+    <li>Every component in the Core contract is now implemented on all five platforms — <strong>46/46</strong> on web, Apple, Android, Windows and Linux. The 21 Tier 2 components landed in batches across all four native platforms together, so none raced ahead. See <a href="/docs/platform-parity">Platform parity</a>.</li>
+    <li>Each native component wraps the primitive that platform already provides rather than redrawing it: <code>AdwStatusPage</code> for the GNOME empty state, <code>NavigationSplitView</code> on Apple for its adaptive sidebar, Material's <code>ModalBottomSheet</code> for its scrim and dismissal actions, and <code>NumberBox</code> composed on Windows because the WinUI type is sealed.</li>
+    <li>A new <a href="/docs/platform-parity">Platform parity</a> page, generated from <code>spec/</code>, showing which components each platform implements and — separately — whether that platform may be advertised as supported.</li>
+    <li>Every platform gained a snapshot suite. A publishable status now additionally requires a signed verification record, so a port cannot be advertised as supported without one.</li>
+  </ul>
+
+  <h3>Accessibility</h3>
+  <ul>
+    <li>A new <a href="/docs/features/accessibility">Accessibility</a> page describing what DuVay guarantees and how each guarantee is enforced.</li>
+    <li><code>bun run test:a11y</code> runs axe over every registered element against WCAG 2.0/2.1/2.2 A and AA, once per platform skin. All six runs produce identical results, which is the token architecture holding rather than a coincidence.</li>
+    <li>Fifteen accessibility defects fixed. The most consequential: <code>.w-sr-only</code> was only defined inside the time picker, so <code>w-heatmap</code> and <code>w-video</code> rendered screen-reader-only text <strong>visibly</strong>. It is now a documented global utility.</li>
+    <li><code>w-pie</code>, <code>w-pie-segment</code>, <code>w-hotkey</code> and <code>w-hover-card</code> now forward <code>aria-label</code> to the element carrying the ARIA role, so they can be given an accessible name at all.</li>
+    <li><code>w-file-upload</code>'s dropzone is a <code>group</code> rather than a <code>button</code> when it contains a browse button, since a button may not contain focusable children; its file input is now named.</li>
+    <li><code>w-calendar</code> moved <code>aria-selected</code> from the day button to the <code>gridcell</code>, where it is valid.</li>
+    <li>Date-picker day cells and range-slider thumbs now meet the WCAG 2.5.8 24×24 minimum; <code>w-virtual-scroll</code> is keyboard-reachable.</li>
+  </ul>
+
+  <h3>Tokens</h3>
+  <ul>
+    <li>New <code>--w-on-scrim</code>: the foreground for content over <code>--w-scrim</code>. Video controls previously used <code>--w-on-primary</code>, which inverts with the palette and rendered at 1.37:1 in dark mode.</li>
+    <li>The five platform skins are now generated from <code>tokens/platform/**</code>, so skin values are part of the token pipeline rather than hand-authored CSS.</li>
+    <li>A component level completes the primitive → semantic → component ontology.</li>
+    <li>Windows gains <code>Tokens.xaml</code>, a ResourceDictionary of themed brushes, so XAML markup can reach the palette through <code>{StaticResource}</code>.</li>
+  </ul>
+
+  <h3>Fixed</h3>
+  <ul>
+    <li><code>inset</code> on a switch could <em>shrink</em> the track on Material and Fluent, whose tracks already enclose the thumb. It now only ever grows.</li>
+    <li>The iOS and macOS skins used the <code>background</code> shorthand on toolbars, which silently wiped <code>.w-toolbar--image</code>.</li>
+    <li>The iOS and Material skins rounded the top corners of <em>fullscreen</em> bottom sheets.</li>
+  </ul>
+
   <h2>26.34.07</h2>
   <p><em>Released 2026-08-23</em></p>
 

@@ -1,5 +1,59 @@
 # Changelog
 
+## 26.35.01 - 2026-08-24
+
+### Added
+
+- Every component in the Core contract is implemented on all five platforms —
+  46/46 on web, Apple, Android, Windows and Linux. The 21 Tier 2 components
+  landed in batches across all four native platforms together, so no platform
+  raced ahead of the others.
+- A generated `/docs/platform-parity` page reporting per-platform coverage and,
+  separately, whether a platform may be advertised as supported.
+- A snapshot suite per platform: SwiftUI `ImageRenderer` on Apple, Paparazzi on
+  Android, a widget-tree binary on Linux, and a control-surface snapshot read
+  from assembly metadata on Windows.
+- `bun run test:a11y` — axe over every registered element against WCAG 2.0/2.1/
+  2.2 A and AA, once per platform skin.
+- `bun run test:skins` — the full component suite once per `w-os` value.
+- `.w-sr-only`, promoted from a time-picker-local rule to a documented global
+  utility.
+- `--w-on-scrim`, the foreground for content drawn over `--w-scrim`.
+- `windows/DuVay/Tokens.xaml`, a WinUI ResourceDictionary of themed brushes, so
+  XAML markup can reach the palette through `{StaticResource}`.
+- `tokens/platform/**` and `tokens/component/**`, completing the primitive →
+  semantic → component ontology and bringing the five skins into the pipeline.
+- A `verification` block in `spec/core-contract.json`; a publishable status is
+  now refused without a signed record of the manual accessibility pass.
+- `ACCESSIBILITY-PASS.md`, the runbook for that pass, including an AI handoff
+  prompt for the capture step.
+- A `/docs/accessibility` page describing every guarantee and its gate.
+
+### Fixed
+
+- `.w-sr-only` was defined only inside `.w-time-picker-field`, so `w-heatmap`
+  and `w-video` used the class with no styling at all and rendered
+  screen-reader-only text visibly.
+- `w-pie`, `w-pie-segment`, `w-hotkey` and `w-hover-card` did not forward
+  `aria-label` to the element carrying the ARIA role, so they could not be given
+  an accessible name.
+- `w-file-upload`'s dropzone was a `role="button"` containing focusable
+  children, and its file input had no accessible name.
+- `w-calendar` carried `aria-selected` on a `role="button"`, where it is invalid
+  and ignored; it belongs on the `gridcell`.
+- Date-picker day cells and range-slider thumbs fell below the WCAG 2.5.8
+  24x24 minimum.
+- `w-virtual-scroll` was not keyboard-reachable.
+- `.w-video-controls` used `--w-on-primary` over the scrim, rendering the
+  timecode at 1.37:1 in the dark theme.
+- Breadcrumb separators used `--w-divider`, a hairline colour, for glyphs.
+- `inset` on a switch shrank the track on Material and Fluent, whose tracks
+  already enclose the thumb.
+- The iOS and macOS skins used the `background` shorthand on toolbars, which
+  reset `background-image` and wiped `.w-toolbar--image`.
+- The iOS and Material skins rounded the top corners of fullscreen bottom
+  sheets.
+
 ## 26.34.07 - 2026-08-23
 
 ### Added

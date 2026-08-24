@@ -1,0 +1,12 @@
+AdwEntryRow [activatable entry] role=ListItem
+  GtkBox [header horizontal] role=Generic
+    GtkBox [horizontal prefixes] role=Generic
+    AdwGizmo [editable-area] role=Generic
+      GtkLabel [dimmed title] role=Label
+      GtkLabel [subtitle] role=Label
+      GtkText [] role=TextBox
+      GtkImage [indicator] role=Img
+      GtkButton [apply-button circular image-button suggested-action] role=Button
+        GtkImage [] role=Presentation
+      GtkImage [edit-icon] role=Presentation
+    GtkBox [horizontal suffixes] role=Generic

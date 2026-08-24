@@ -1,0 +1,3 @@
+GtkCheckButton [text-button] role=Checkbox
+  GtkBuiltinIcon [] role=Generic
+  GtkLabel [] role=Label

@@ -171,7 +171,7 @@ bun run tokens:check    # WCAG AA contrast + skin rules, fails CI on regression
 bun run verify          # every gate: tokens, spec, fixtures, parity
 ```
 
-## Native platforms (in progress)
+## Native platforms
 
 DuVay is becoming a cross-platform UI that renders with each OS's own widgets —
 SwiftUI, Jetpack Compose, WinUI 3 and GTK4/libadwaita — rather than a webview
@@ -193,8 +193,27 @@ bun run tokens:native                            # regenerate native tokens
 bun run native:verify                            # all four conformance suites
 ```
 
-The component libraries themselves are early — `bun run platform-parity` prints
-the honest coverage matrix and CI fails if any platform claims more than it has.
+All five platforms now implement the whole Core contract — **46/46** each. That
+is *implemented*, not *shipped*: a platform is only advertised as supported once
+someone has signed the manual screen-reader pass, and `platform-parity` refuses a
+publishable claim without that record. The live matrix is at
+[/docs/platform-parity](https://duvay.del.ma/docs/platform-parity).
+
+## Accessibility
+
+Contrast, target size and ARIA correctness are build gates rather than review
+steps:
+
+```sh
+bun run tokens:check    # 100 contrast pairs across four themes
+bun run test:a11y       # axe over every element, once per platform skin
+bun run test:skins      # the full component suite once per w-os value
+```
+
+All six skin runs produce identical axe results — a skin may not declare colour
+or control size, so the guarantees verified once carry to every skin by
+construction. Full detail at
+[/docs/features/accessibility](https://duvay.del.ma/docs/features/accessibility).
 
 ## Using with Tailwind
 

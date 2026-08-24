@@ -1,0 +1,184 @@
+DuVayAutoSuggestBox : ContentControl
+  prop Inner
+  method .ctor
+
+DuVayBottomSheet : ContentControl
+  prop Body
+  prop Inner
+  prop Title
+  method .ctor
+
+DuVayBreadcrumbBar : ContentControl
+  method .ctor
+  method SetItems
+
+DuVayButton : Button
+  prop Variant
+  method .ctor
+
+DuVayButtonVariant : Enum
+
+DuVayCalendarDatePicker : ContentControl
+  prop Date
+  prop Inner
+  prop Label
+  method .ctor
+
+DuVayCard : ContentControl
+  method .ctor
+
+DuVayCheckBox : CheckBox
+  method .ctor
+
+DuVayChip : ContentControl
+  method .ctor
+
+DuVayComboBox : ComboBox
+  method .ctor
+
+DuVayCommandBar : ContentControl
+  method .ctor
+  method AddCommand
+
+DuVayContentDialog : ContentDialog
+  method .ctor
+
+DuVayDataGrid : ContentControl
+  prop Rows
+  method .ctor
+  method SetColumns
+
+DuVayDivider : ContentControl
+  method .ctor
+
+DuVayEmptyState : ContentControl
+  prop Message
+  prop Title
+  method .ctor
+
+DuVayExpander : ContentControl
+  prop Body
+  prop Header
+  prop Inner
+  prop IsExpanded
+  method .ctor
+
+DuVayFilePicker : ContentControl
+  prop Inner
+  prop Label
+  method .ctor
+
+DuVayFlyout : Object
+  prop Body
+  prop Inner
+  method .ctor
+  method AttachTo
+  method ShowAt
+
+DuVayIcon : FontIcon
+  method .ctor
+
+DuVayIconButton : Button
+  prop Label
+  method .ctor
+
+DuVayInfoBadge : InfoBadge
+  method .ctor
+
+DuVayInfoBar : InfoBar
+  method .ctor
+
+DuVayListItem : ListViewItem
+  method .ctor
+
+DuVayListView : ListView
+  method .ctor
+
+DuVayMenuFlyout : MenuFlyout
+  method .ctor
+
+DuVayNavigationView : ContentControl
+  prop Inner
+  method .ctor
+  method AddDestination
+  method UseDrawer
+  method UseRail
+
+DuVayNumberBox : ContentControl
+  prop Inner
+  prop Label
+  prop Maximum
+  prop Minimum
+  prop Value
+  method .ctor
+
+DuVayOTPField : ContentControl
+  prop Code
+  prop Inner
+  prop Length
+  method .ctor
+
+DuVayPagination : ContentControl
+  prop Page
+  prop PageCount
+  method .ctor
+
+DuVayPersonPicture : PersonPicture
+  prop PersonName
+  method .ctor
+
+DuVayProgressBar : ProgressBar
+  method .ctor
+
+DuVayProgressRing : ProgressRing
+  method .ctor
+
+DuVayRadioButtons : RadioButtons
+  method .ctor
+
+DuVayRatingControl : ContentControl
+  prop Inner
+  prop MaxRating
+  prop Value
+  method .ctor
+
+DuVaySkeleton : ContentControl
+  method .ctor
+
+DuVaySlider : Slider
+  method .ctor
+
+DuVayStepper : ContentControl
+  prop Current
+  method .ctor
+  method SetSteps
+
+DuVayTabView : ContentControl
+  prop Inner
+  method .ctor
+  method AddTab
+
+DuVayTextArea : TextBox
+  method .ctor
+
+DuVayTextField : TextBox
+  method .ctor
+
+DuVayTimePicker : ContentControl
+  prop Inner
+  prop Label
+  prop Time
+  method .ctor
+
+DuVayTitleBar : ContentControl
+  prop Title
+  method .ctor
+  method AddAccessory
+
+DuVayToggleSwitch : ContentControl
+  prop Inner
+  prop IsOn
+  method .ctor
+
+DuVayToolTip : ToolTip
+  method .ctor

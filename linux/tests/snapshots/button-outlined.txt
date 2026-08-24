@@ -1,0 +1,2 @@
+GtkButton [duvay-button outline text-button] role=Button
+  GtkLabel [] role=Label

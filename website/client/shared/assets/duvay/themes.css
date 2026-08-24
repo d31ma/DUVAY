@@ -85,6 +85,7 @@
   --w-inverse-primary:         #83cde3;
 
   --w-scrim:                   rgba(0, 0, 0, 0.4);
+  --w-on-scrim:                #ffffff;
   --w-shadow-color:            rgba(24, 33, 37, 0.12);
   --w-video-poster:            #000000;
 
@@ -169,6 +170,7 @@
   --w-inverse-primary:         #1f6f8b;
 
   --w-scrim:                   rgba(0, 0, 0, 0.6);
+  --w-on-scrim:                #ffffff;
   --w-shadow-color:            rgba(0, 0, 0, 0.4);
   --w-video-poster:            #000000;
 
@@ -255,6 +257,7 @@
     --w-inverse-primary:         #1f6f8b;
 
     --w-scrim:                   rgba(0, 0, 0, 0.6);
+  --w-on-scrim:                #ffffff;
     --w-shadow-color:            rgba(0, 0, 0, 0.4);
     --w-video-poster:            #000000;
 
@@ -337,6 +340,7 @@
   --w-inverse-primary:         #83cde3;
 
   --w-scrim:                   rgba(0, 0, 0, 0.6);
+  --w-on-scrim:                #ffffff;
   --w-shadow-color:            rgba(0, 0, 0, 0.28);
   --w-video-poster:            #000000;
 

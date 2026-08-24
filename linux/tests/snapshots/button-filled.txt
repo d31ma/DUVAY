@@ -1,0 +1,2 @@
+GtkButton [duvay-button suggested-action text-button] role=Button
+  GtkLabel [] role=Label

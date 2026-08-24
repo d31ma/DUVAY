@@ -1,0 +1,458 @@
+{
+  "$description": "Platform tokens for the fluent skin.",
+  "$extensions": {
+    "duvay": {
+      "target": "src/platforms/fluent.css",
+      "order": 5,
+      "selectors": [
+        "[w-os=\"windows\"]",
+        "[w-os=\"fluent\"]"
+      ],
+      "open": [
+        "[w-os=\"windows\"],",
+        "[w-os=\"fluent\"] {"
+      ],
+      "close": [
+        "}"
+      ],
+      "entries": [
+        {
+          "kind": "comment",
+          "text": "  /* Switch — set as inherited variables so this skin still wins"
+        },
+        {
+          "kind": "comment",
+          "text": "   * inside a page wearing a different one. */"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-w"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-track-h"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-thumb"
+        },
+        {
+          "kind": "token",
+          "name": "skin-switch-pad"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Type ─────────────────────────────────────────────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "font-family"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-heading"
+        },
+        {
+          "kind": "token",
+          "name": "font-family-mono"
+        },
+        {
+          "kind": "token",
+          "name": "letter-spacing-normal"
+        },
+        {
+          "kind": "token",
+          "name": "line-height-normal"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "token",
+          "name": "topbar-height"
+        },
+        {
+          "kind": "token",
+          "name": "mobile-nav-height"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Elevation — Fluent's two-part ambient + key shadow ───────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-sm"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-md"
+        },
+        {
+          "kind": "token",
+          "name": "shadow-lg"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* ── Motion — Fluent decelerate / accelerate ──────────────────────── */"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-standard"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-enter"
+        },
+        {
+          "kind": "token",
+          "name": "motion-ease-exit"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-fast"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration"
+        },
+        {
+          "kind": "token",
+          "name": "motion-duration-slow"
+        },
+        {
+          "kind": "token",
+          "name": "transition-fast"
+        },
+        {
+          "kind": "token",
+          "name": "transition-normal"
+        },
+        {
+          "kind": "token",
+          "name": "transition-slow"
+        },
+        {
+          "kind": "blank"
+        },
+        {
+          "kind": "comment",
+          "text": "  /* Focus — Fluent's signature dual ring: a dark stroke with a light halo"
+        },
+        {
+          "kind": "comment",
+          "text": "   * behind it, so the indicator survives any background. */"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-color"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-offset"
+        },
+        {
+          "kind": "token",
+          "name": "focus-ring-shadow"
+        },
+        {
+          "kind": "blank"
+        }
+      ]
+    }
+  },
+  "skin-switch-track-w": {
+    "$value": "40px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-track-h": {
+    "$value": "20px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-thumb": {
+    "$value": "12px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "skin-switch-pad": {
+    "$value": "4px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family": {
+    "$value": "'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-heading": {
+    "$value": "'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "font-family-mono": {
+    "$value": "'Cascadia Code', 'Cascadia Mono', ui-monospace, monospace",
+    "$type": "fontFamily",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "letter-spacing-normal": {
+    "$value": "0",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "line-height-normal": {
+    "$value": "1.43",
+    "$type": "number",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "topbar-height": {
+    "$value": "48px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "mobile-nav-height": {
+    "$value": "56px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-sm": {
+    "$value": "0 1px 2px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-md": {
+    "$value": "0 2px 4px var(--w-shadow-color), 0 0 2px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "shadow-lg": {
+    "$value": "0 8px 16px var(--w-shadow-color), 0 0 2px var(--w-shadow-color)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-standard": {
+    "$value": "cubic-bezier(0.33, 0, 0.67, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-enter": {
+    "$value": "cubic-bezier(0.1, 0.9, 0.2, 1)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 4,
+        "trail": ""
+      }
+    }
+  },
+  "motion-ease-exit": {
+    "$value": "cubic-bezier(0.7, 0, 1, 0.5)",
+    "$type": "cubicBezier",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 5,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-fast": {
+    "$value": "150ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration": {
+    "$value": "250ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 6,
+        "trail": ""
+      }
+    }
+  },
+  "motion-duration-slow": {
+    "$value": "350ms",
+    "$type": "duration",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-fast": {
+    "$value": "150ms cubic-bezier(0.33, 0, 0.67, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "transition-normal": {
+    "$value": "250ms cubic-bezier(0.33, 0, 0.67, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "transition-slow": {
+    "$value": "350ms cubic-bezier(0.33, 0, 0.67, 1)",
+    "$type": "other",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 3,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-color": {
+    "$value": "var(--w-text)",
+    "$type": "reference",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-offset": {
+    "$value": "1px",
+    "$type": "dimension",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  },
+  "focus-ring-shadow": {
+    "$value": "0 0 0 4px var(--w-surface)",
+    "$type": "shadow",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 1,
+        "trail": ""
+      }
+    }
+  }
+}

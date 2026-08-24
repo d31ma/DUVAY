@@ -39,15 +39,28 @@ test('w-switch applies size, color, inset, and flat modifiers', async ({ mount, 
   await expect(sw).toHaveCSS('--w-switch-accent', /.+/);
 });
 
-test('w-switch inset grows the track to enclose the thumb', async ({ mount, page }) => {
+test('w-switch inset makes the track enclose the thumb and never shrinks it', async ({ mount, page }) => {
   await mount('<w-switch id="plain" size="md"></w-switch><w-switch id="inset" size="md" inset></w-switch>');
 
   const plainH = (await page.locator('#plain .w-switch-track').boundingBox()).height;
   const insetH = (await page.locator('#inset .w-switch-track').boundingBox()).height;
   const thumb = (await page.locator('#inset .w-switch-thumb').boundingBox()).height;
 
+  expect(insetH).toBeGreaterThanOrEqual(thumb);   // the point of inset
+  expect(insetH).toBeGreaterThanOrEqual(plainH);  // may grow, must never shrink
+});
+
+test('w-switch inset grows the default track, which does not enclose its thumb', async ({ mount, page }) => {
+  // Asserted unskinned only. Material (32px track / 24px thumb) and Fluent
+  // (20/12) are already inset by design, so there the modifier is a no-op —
+  // which is why the shared test above asserts the invariant, not the growth.
+  await page.evaluate(() => document.documentElement.removeAttribute('w-os'));
+  await mount('<w-switch id="plain" size="md"></w-switch><w-switch id="inset" size="md" inset></w-switch>');
+
+  const plainH = (await page.locator('#plain .w-switch-track').boundingBox()).height;
+  const insetH = (await page.locator('#inset .w-switch-track').boundingBox()).height;
+
   expect(insetH).toBeGreaterThan(plainH);
-  expect(insetH).toBeGreaterThanOrEqual(thumb); // track wraps the thumb
 });
 
 test('w-switch readonly and loading block toggling but keep the input present', async ({ mount, page }) => {
@@ -114,11 +127,18 @@ test('w-switch indeterminate parks the thumb and reports a mixed state', async (
   expect(await page.locator('#mid input').evaluate((el) => el.indeterminate)).toBe(true);
 
   await page.waitForTimeout(250);
-  const offX = (await page.locator('#off .w-switch-thumb').boundingBox()).x;
-  const midX = (await page.locator('#mid .w-switch-thumb').boundingBox()).x;
-  const onX = (await page.locator('#on .w-switch-thumb').boundingBox()).x;
-  expect(midX - offX).toBeGreaterThan(0);
-  expect(onX - midX).toBeGreaterThan(0);
+  // Measure each thumb against its own track. Absolute page x is not
+  // comparable across the three switches: a skin with a wider track (iOS is
+  // 51px against the default 40px) can wrap the row, putting the third switch
+  // back at the left margin and inverting the comparison.
+  const travel = async (id) => page.locator(`#${id} .w-switch-track`).evaluate((track) => {
+    const thumb = track.querySelector('.w-switch-thumb');
+    return thumb.getBoundingClientRect().x - track.getBoundingClientRect().x;
+  });
+
+  const [off, mid, on] = [await travel('off'), await travel('mid'), await travel('on')];
+  expect(mid - off).toBeGreaterThan(0);
+  expect(on - mid).toBeGreaterThan(0);
 });
 
 test('w-switch multiple posts an array-shaped field name', async ({ mount, page }) => {

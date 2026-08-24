@@ -401,7 +401,11 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: 16px;
+  /* 1.5rem is the WCAG 2.5.8 minimum. The visible track and thumb are drawn by
+     the sibling elements and the thumb pseudo-element, so this only grows the
+     control box that assistive tech and pointer hit-testing measure — the
+     slider looks the same. */
+  height: 1.5rem;
   margin: 0;
   background: transparent;
   outline: none;

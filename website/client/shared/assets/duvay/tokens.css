@@ -256,4 +256,9 @@
   --w-z-modal:    55;
   --w-z-dropdown: 60;
   --w-z-toast:    9000;
+  /* ── Component defaults ────────────────────────────────────────── */
+  --w-skin-switch-track-w: 40px;
+  --w-skin-switch-track-h: 14px;
+  --w-skin-switch-thumb: 18px;
+  --w-skin-switch-pad: 0px;
 }

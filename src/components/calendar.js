@@ -367,13 +367,15 @@ export class WCalendar extends WElement {
       events: dayEvents.map((event) => event.source),
     });
 
-    return `<div class="${classes}" role="gridcell" data-date-cell="${iso}">
+    // aria-selected belongs on the gridcell: it is not a valid attribute on
+    // role="button", so on the button it was both ignored by assistive tech and
+    // reported as invalid ARIA.
+    return `<div class="${classes}" role="gridcell" aria-selected="${selected}" data-date-cell="${iso}">
       <button
         class="w-calendar-day-button"
         type="button"
         data-date="${iso}"
         aria-label="${this._esc(this._formatDateLabel(date))}"
-        aria-selected="${selected}"
         tabindex="${selected ? '0' : '-1'}"
         ${disabled ? 'disabled' : ''}
       >${this._esc(label)}</button>

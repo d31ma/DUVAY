@@ -554,6 +554,17 @@
       }
     }
   },
+  "on-scrim": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$description": "Foreground for content drawn on --w-scrim, which is black in every theme.",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 16
+      }
+    }
+  },
   "shadow-color": {
     "$value": "rgba(0, 0, 0, 0.4)",
     "$type": "color",

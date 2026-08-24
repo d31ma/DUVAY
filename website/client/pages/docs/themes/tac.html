@@ -27,7 +27,10 @@
   --w-border, --w-divider, --w-hover, --w-selected, --w-selected-text
   --w-error, --w-success, --w-warning      (each has a -container / on-container pair)
   --w-inverse-surface, --w-inverse-on-surface, --w-inverse-primary
-  --w-scrim, --w-shadow-color</code></pre>
+  --w-scrim, --w-on-scrim, --w-shadow-color
+  --w-outline</code></pre>
+  <p><code>--w-on-scrim</code> is the foreground for content drawn over <code>--w-scrim</code> — video controls, image overlays. The scrim is black in every theme, so its foreground stays light regardless of the active theme; reaching for <code>--w-on-primary</code> there is a common mistake, because that one inverts with the palette and becomes unreadable in dark mode.</p>
+  <p><code>--w-outline</code> is the WCAG 1.4.11 control boundary, distinct from the decorative <code>--w-border</code>. Form controls use the former; container edges use the latter. See <a href="/docs/features/accessibility">Accessibility</a>.</p>
 
   <h3>Spacing</h3>
   <p>Both a numeric scale (<code>--w-space-1</code> through <code>--w-space-20</code>, 4 px steps) and a t-shirt scale (<code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, <code>2xl</code>, <code>3xl</code>) are exposed. Pick either — the t-shirt names are aliases.</p>

@@ -38,7 +38,12 @@ export class WPie extends WElement {
     const labels = entries.map((entry) => `<li><i style="--w-pie-color:${this._esc(entry.color)}"></i><span>${this._esc(entry.title)}</span><strong>${entry.value}</strong></li>`).join('');
     const legend = this.hasAttribute('legend') && this.getAttribute('legend') !== 'false' ? `<figcaption><ul class="w-pie-legend">${labels}</ul></figcaption>` : '';
     const accessible = entries.map((entry) => `${entry.title}: ${entry.value}`).join(', ');
-    return `<figure class="w-pie" aria-label="${this._esc(`${title}. ${accessible}`)}"><div class="w-pie-chart" role="img"${chartStyle}><span class="w-pie-center"><slot></slot></span></div>${legend}</figure>`;
+    // The name belongs on the element carrying role="img", not on the <figure>
+    // around it: a role="img" with no accessible name is announced as an
+    // unlabelled image. An author-supplied aria-label wins over the generated
+    // one, which is only as good as the data.
+    const name = this.getAttribute('aria-label') || `${title}. ${accessible}`;
+    return `<figure class="w-pie"><div class="w-pie-chart" role="img" aria-label="${this._esc(name)}"${chartStyle}><span class="w-pie-center"><slot></slot></span></div>${legend}</figure>`;
   }
 
   _entries() {
@@ -76,7 +81,10 @@ export class WPieSegment extends WElement {
     const color = wSafeColor(this._attr('color', '')) || 'var(--w-primary)';
     const rotate = Number(this._attr('rotate', '-90')) || -90;
     const styles = `--w-pie-fill:conic-gradient(${color} ${rotate}deg ${rotate + value * 3.6}deg,var(--w-surface-container-high) 0);`;
-    return `<span class="w-pie-chart w-pie-segment${this._bool('active') ? ' w-pie-segment--active' : ''}${this._bool('hide-slice') ? ' w-pie-segment--hidden' : ''}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}" style="${this._esc(styles)}"><slot></slot></span>`;
+    // role="progressbar" requires an accessible name. Fall back to the percentage
+    // so a segment is never announced as an unlabelled progress bar.
+    const name = this.getAttribute('aria-label') || `${value}%`;
+    return `<span class="w-pie-chart w-pie-segment${this._bool('active') ? ' w-pie-segment--active' : ''}${this._bool('hide-slice') ? ' w-pie-segment--hidden' : ''}" role="progressbar" aria-label="${this._esc(name)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}" style="${this._esc(styles)}"><slot></slot></span>`;
   }
 }
 

@@ -79,7 +79,12 @@
 
 .w-date-picker-grid {
   display: grid;
-  grid-template-columns: repeat(var(--w-date-picker-columns, 7), minmax(0, 1fr));
+  /* 1.5rem, not 0, is the floor: WCAG 2.5.8 asks for a 24x24 target, and with
+     minmax(0, 1fr) a narrow picker collapsed the columns to ~22px while the day
+     button stayed 2.25rem, so neighbouring days overlapped and the unobscured
+     area fell below the minimum. The picker now overflows rather than shrinking
+     its targets. */
+  grid-template-columns: repeat(var(--w-date-picker-columns, 7), minmax(1.5rem, 1fr));
   gap: 0.125rem;
 }
 
@@ -118,7 +123,9 @@
 
 .w-date-picker-day {
   position: relative;
-  width: 2.25rem;
+  /* Never wider than its own column, so a day can not overlap its neighbour
+     and eat into the adjacent target's clickable area. */
+  width: min(2.25rem, 100%);
   height: 2.25rem;
   justify-self: center;
   border-radius: 50%;

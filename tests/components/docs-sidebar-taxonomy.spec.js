@@ -3,8 +3,15 @@ import { expect, test } from '../setup/playwright.js';
 
 const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
 
+/* Vuetify's component taxonomy plus DuVay's own overview entries (Layout
+ * primitives, Surfaces, Feedback, Command, Workflows) after API Explorer.
+ * "Feedback" appears twice on purpose: once as the overview link, once as the
+ * Vuetify group subhead. The old duplicate "Grids" entry and the misplaced
+ * "Hotkeys" row were navigation defects, fixed with the docs-index gate. */
 const vuetifyComponentTitles = [
-  'All Components', 'API Explorer', 'Application',
+  'All Components', 'API Explorer',
+  'Layout primitives', 'Surfaces', 'Feedback', 'Command', 'Workflows',
+  'Application',
   'Containment', 'Bottom sheets', 'Buttons', 'Icon buttons', 'Cards', 'Chips', 'Command palettes',
   'Dialogs', 'Dividers', 'Expansion panels', 'Lists', 'Menus', 'Overlays',
   'Sheets', 'Toolbars', 'Tooltips',
@@ -17,9 +24,9 @@ const vuetifyComponentTitles = [
   'Range sliders', 'Selects', 'Sliders', 'Switches', 'Text fields', 'Textareas',
   'Data & display', 'Calendars', 'Confirm Edit', 'Data iterators', 'Data tables',
   'Introduction', 'Guide', 'Basics', 'Data and Display', 'Types',
-  'Server side tables', 'Virtual tables', 'Hotkeys', 'Heatmaps', 'Highlights', 'Pie charts', 'Sparklines',
+  'Server side tables', 'Virtual tables', 'Heatmaps', 'Highlights', 'Pie charts', 'Sparklines',
   'Infinite scrollers', 'Tables', 'Treeview', 'Virtual scrollers',
-  'Grids', 'Grids',
+  'Grids',
   'Selection', 'Button toggles', 'Carousels', 'Chip groups', 'Item groups',
   'Slide groups', 'Steppers', 'Steppers Vertical', 'Windows',
   'Feedback', 'Alerts', 'Badges', 'Banners', 'Empty states', 'Hover',

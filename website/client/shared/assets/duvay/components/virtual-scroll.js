@@ -58,14 +58,16 @@ export class WVirtualScroll extends WElement {
     this._items = this.itemList;
     this._keys = null;
     if (!this._items.length) {
-      return `<div class="w-virtual-scroll" style="max-height:${this._esc(this._heightStyle())}"><slot></slot></div>`;
+      // tabindex so a keyboard-only user can scroll the region; without it the
+      // content below the fold is unreachable without a pointer.
+      return `<div class="w-virtual-scroll" tabindex="0" style="max-height:${this._esc(this._heightStyle())}"><slot></slot></div>`;
     }
     this._initSizes();
     // `renderless` drops the scroll box: the parent element scrolls instead.
     if (this.renderless) {
       return `<div class="w-virtual-scroll-container" data-virtual-container role="list"></div>`;
     }
-    return `<div class="w-virtual-scroll" style="height:${this._esc(this._heightStyle())}" data-virtual-scroll role="list">
+    return `<div class="w-virtual-scroll" tabindex="0" style="height:${this._esc(this._heightStyle())}" data-virtual-scroll role="list">
       <div class="w-virtual-scroll-container" data-virtual-container></div>
     </div>`;
   }

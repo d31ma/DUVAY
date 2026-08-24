@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DuVay component test page</title>
     <link rel="stylesheet" href="../../src/duvay.css">
+    <!-- Every skin, loaded together. Each is scoped to its own [w-os="…"], so
+         they are inert until the attribute is set — which is exactly how the
+         docs site carries all five at once. The runner sets `w-os` per project,
+         so one page serves every skin without a fixture per platform. -->
+    <link rel="stylesheet" href="../../src/platforms/ios.css">
+    <link rel="stylesheet" href="../../src/platforms/material.css">
+    <link rel="stylesheet" href="../../src/platforms/macos.css">
+    <link rel="stylesheet" href="../../src/platforms/fluent.css">
+    <link rel="stylesheet" href="../../src/platforms/adwaita.css">
+    <link rel="stylesheet" href="../../src/platforms/web.css">
     <script>
       // Records every tag the framework registers so smoke.spec.js can mount
       // them all without re-deriving the list from source.
