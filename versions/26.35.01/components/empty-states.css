@@ -1,0 +1,75 @@
+/* DuVay — Empty States component styles (Vuetify v-empty-state parity). */
+@import "../core.css";
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.w-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-3);
+  padding: 3rem 2rem;
+  text-align: center;
+  min-height: 240px;
+  color: var(--w-empty-fg, var(--w-text-subtle));
+  background: var(--w-empty-bg, transparent);
+}
+
+.w-empty--start { align-items: flex-start; text-align: start; }
+.w-empty--center { align-items: center; text-align: center; }
+.w-empty--end { align-items: flex-end; text-align: end; }
+
+.w-empty-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--w-empty-accent, var(--w-text-subtle));
+}
+
+.w-empty-icon {
+  font-size: var(--w-empty-size, 3rem);
+  line-height: 1;
+}
+
+.w-empty-media svg {
+  width: var(--w-empty-size, 3rem);
+  height: var(--w-empty-size, 3rem);
+  opacity: 0.5;
+}
+
+.w-empty-image {
+  max-width: var(--w-empty-size, 12rem);
+  height: auto;
+}
+
+.w-empty-headline {
+  font-size: clamp(3rem, 12vw, 5rem);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1;
+  color: var(--w-empty-accent, var(--w-text));
+  opacity: 0.9;
+}
+
+.w-empty-content {
+  max-width: var(--w-empty-text-width, 31.25rem); /* Vuetify default 500px */
+}
+
+.w-empty-title {
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-medium);
+  color: var(--w-text);
+  margin: 0;
+}
+
+.w-empty-subtitle {
+  font-size: var(--w-font-sm);
+  color: var(--w-text-subtle);
+  margin: var(--w-space-1) 0 0;
+}
+
+.w-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--w-space-2);
+  margin-top: var(--w-space-2);
+}

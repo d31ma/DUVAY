@@ -1,0 +1,82 @@
+/* DuVay — Bottom Sheets component styles. */
+@import "../core.css";
+
+/* ── Bottom Sheet ────────────────────────────────────────────────────────── */
+.w-sheet-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  max-height: 80dvh;
+  overflow-y: auto;
+  padding: var(--w-space-xl);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  border-top: 1px solid var(--w-border);
+  background: var(--w-surface);
+  box-shadow: 0 -8px 32px var(--w-shadow-color);
+  transform: translateY(100%);
+  transition: transform var(--w-transition-slow);
+}
+
+.w-sheet-bottom.open {
+  transform: translateY(0);
+}
+
+.w-sheet-handle {
+  width: 32px;
+  height: 4px;
+  margin: 0 auto var(--w-space-lg);
+  border-radius: var(--w-radius-pill);
+  background: var(--w-divider);
+}
+
+/* ── <w-bottom-sheet> ─────────────────────────────────────────────────────── */
+/* The element is <w-overlay> with bottom-anchored content, so the shared
+   overlay modifiers have to reach the sheet as well as the scrim. Selectors
+   are compound because the base `.w-bottom-sheet` rules land in a later
+   stylesheet. */
+.w-overlay.w-bottom-sheet-overlay {
+  align-items: flex-end;
+  padding: 0;
+}
+
+.w-overlay--absolute .w-bottom-sheet,
+.w-overlay--contained .w-bottom-sheet {
+  position: absolute;
+}
+
+.w-overlay--connected .w-bottom-sheet {
+  position: absolute;
+  right: auto;
+  bottom: auto;
+  margin: 0;
+}
+
+.w-overlay--no-transition .w-bottom-sheet {
+  transition: none;
+}
+
+.w-bottom-sheet.w-bottom-sheet--inset {
+  max-width: 70%;
+}
+
+.w-bottom-sheet.w-bottom-sheet--scrollable {
+  max-height: 80dvh;
+  overflow-y: auto;
+}
+
+.w-bottom-sheet.w-bottom-sheet--fullscreen {
+  inset: 0;
+  max-width: none;
+  max-height: none;
+  height: 100dvh;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.w-bottom-sheet:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
