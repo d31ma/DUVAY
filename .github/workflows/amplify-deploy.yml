@@ -1,0 +1,192 @@
+name: Deploy Docs to Amplify
+
+# The docs site (duvay.del.ma) is an Amplify Hosting app managed in
+# d31ma/PaaS (infra/duvay/amplify), with one branch per environment rail:
+#
+#   dev        -> dev.duvay.del.ma
+#   staging    -> staging.duvay.del.ma
+#   production -> duvay.del.ma
+#
+# A successful Publish run deploys its tagged release to the dev rail
+# automatically. Promotion is a workflow_dispatch of the same tagged commit
+# one rail up — the build is reproducible from the SHA, so a promotion
+# rebuild yields the identical site.
+#
+# Credentials are OIDC only: the duvay-docs-deploy role in the PaaS stack
+# trusts exactly this repository's main ref. No stored secrets.
+
+on:
+  workflow_run:
+    workflows: [Publish]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      rail:
+        description: Which rail to deploy
+        required: true
+        type: choice
+        options: [dev, staging, production]
+      source_sha:
+        description: Exact tagged main commit SHA to deploy
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: amplify-deploy-${{ github.repository }}
+  cancel-in-progress: false
+
+env:
+  APP_ID: d13l2hvm60wv12
+  AWS_REGION: ca-central-1
+  DEPLOY_ROLE: arn:aws:iam::117469679339:role/duvay-docs-deploy
+
+jobs:
+  deploy:
+    name: Deploy ${{ github.event_name == 'workflow_dispatch' && inputs.rail || 'dev' }}
+    if: >-
+      ${{
+        (github.event_name == 'workflow_dispatch') ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_branch == 'main'
+        )
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout release source
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.source_sha || github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+
+      - name: Verify tagged release source
+        id: release
+        env:
+          REQUESTED_SHA: ${{ github.event_name == 'workflow_dispatch' && inputs.source_sha || github.event.workflow_run.head_sha }}
+          RAIL: ${{ github.event_name == 'workflow_dispatch' && inputs.rail || 'dev' }}
+        run: |
+          set -euo pipefail
+
+          git fetch --force origin +refs/heads/main:refs/remotes/origin/main --tags
+          SOURCE_SHA=$(git rev-parse HEAD)
+          VERSION=$(bun -p "require('./package.json').version")
+
+          if [[ ! "$REQUESTED_SHA" =~ ^[0-9a-f]{40}$ ]] || [[ "$SOURCE_SHA" != "$REQUESTED_SHA" ]]; then
+            echo "::error::Requested source is not the checked-out commit."
+            exit 1
+          fi
+          if ! git merge-base --is-ancestor "$SOURCE_SHA" origin/main; then
+            echo "::error::Source commit is not on main."
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[0-9]{2}\.[0-9]{2}\.[0-9]{2}$ ]]; then
+            echo "::error::Version must use YY.WW.DD CalVer."
+            exit 1
+          fi
+
+          TAG="v$VERSION"
+          if ! git show-ref --verify --quiet "refs/tags/$TAG"; then
+            echo "::error::Annotated release tag $TAG does not exist."
+            exit 1
+          fi
+          if [[ "$(git cat-file -t "refs/tags/$TAG")" != "tag" ]]; then
+            echo "::error::Release tag $TAG is not annotated."
+            exit 1
+          fi
+          TAG_SHA=$(git rev-parse "refs/tags/$TAG^{}")
+          if [[ "$TAG_SHA" != "$SOURCE_SHA" ]]; then
+            echo "::error::Release tag $TAG resolves to $TAG_SHA, not $SOURCE_SHA."
+            exit 1
+          fi
+
+          case "$RAIL" in
+            dev)        HOST="dev.duvay.del.ma" ;;
+            staging)    HOST="staging.duvay.del.ma" ;;
+            production) HOST="duvay.del.ma" ;;
+            *) echo "::error::Unknown rail $RAIL"; exit 1 ;;
+          esac
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "rail=$RAIL" >> "$GITHUB_OUTPUT"
+          echo "host=$HOST" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: |
+          bun install --frozen-lockfile
+          cd website && bun install --frozen-lockfile
+
+      - name: Build site
+        run: |
+          bun run build
+          cd website && bun run bundle
+
+      - name: Zip static export
+        run: |
+          cd website/dist/web
+          test -f index.html
+          zip -qr "$RUNNER_TEMP/duvay-site.zip" .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.DEPLOY_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to Amplify branch
+        env:
+          RAIL: ${{ steps.release.outputs.rail }}
+        run: |
+          set -euo pipefail
+
+          DEPLOYMENT=$(aws amplify create-deployment \
+            --app-id "$APP_ID" --branch-name "$RAIL" --region "$AWS_REGION")
+          JOB_ID=$(echo "$DEPLOYMENT" | jq -r .jobId)
+          UPLOAD_URL=$(echo "$DEPLOYMENT" | jq -r .zipUploadUrl)
+
+          curl -sSf -T "$RUNNER_TEMP/duvay-site.zip" "$UPLOAD_URL"
+
+          aws amplify start-deployment \
+            --app-id "$APP_ID" --branch-name "$RAIL" --job-id "$JOB_ID" \
+            --region "$AWS_REGION" >/dev/null
+
+          for i in $(seq 1 40); do
+            STATUS=$(aws amplify get-job \
+              --app-id "$APP_ID" --branch-name "$RAIL" --job-id "$JOB_ID" \
+              --region "$AWS_REGION" --query job.summary.status --output text)
+            echo "job $JOB_ID: $STATUS"
+            case "$STATUS" in
+              SUCCEED) exit 0 ;;
+              FAILED|CANCELLED) echo "::error::Amplify job $STATUS"; exit 1 ;;
+            esac
+            sleep 15
+          done
+          echo "::error::Timed out waiting for Amplify job $JOB_ID."
+          exit 1
+
+      - name: Verify the rail serves the release
+        env:
+          HOST: ${{ steps.release.outputs.host }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 10); do
+            if curl -sf "https://$HOST/docs/release-notes/" | grep -q "$VERSION"; then
+              echo "https://$HOST serves $VERSION"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::https://$HOST does not serve $VERSION after deployment."
+          exit 1

@@ -3,6 +3,12 @@ name: Publish
 on:
   push:
     branches: [main]
+    # Workflow-only changes are not releases: the version is already tagged
+    # at an earlier commit, so preflight's immutable-tag check would fail
+    # loudly on a merge that publishes nothing. Content changes still always
+    # trigger (paths-ignore skips only when every changed file matches).
+    paths-ignore:
+      - ".github/**"
   workflow_dispatch:
     inputs:
       source_sha:
