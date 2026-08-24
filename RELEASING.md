@@ -1,7 +1,9 @@
 # Releasing DuVay
 
 DuVay uses UTC CalVer in `YY.WW.DD` form, where `WW` is the ISO week and `DD`
-is the ISO weekday. A release commit must be merged to `main` before publishing.
+is the ISO weekday, both derived from UTC. A second release on the same UTC
+date appends `-1` (then `-2`, and so on): `26.35.01-1`. A release commit must
+be merged to `main` before publishing.
 
 ## Before merge
 

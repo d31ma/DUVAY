@@ -50,6 +50,27 @@ w-app-bar[sticky] {
   isolation: isolate;
 }
 
+/* The app bar is one 56px row by design, but `w-row` wraps by default. On a
+   375px screen the brand's `mr-auto` ate the free space and pushed the nav onto
+   a second line, making the bar 101px — which also broke every offset computed
+   from --docs-header-height, since the sticky tops and scroll padding all
+   assume 56.
+
+   Both halves are needed. `nowrap` alone only moves the problem: the items then
+   *shrink* instead, and the brand and the nav — each a flex row themselves —
+   wrap internally, leaving the bar just as tall. Refusing to shrink is what
+   keeps it one row. The content measures 320px against 343px available, so it
+   fits at its natural size; there was never a reason to compress it. */
+w-app-bar[sticky] .w-container {
+  flex-wrap: nowrap;
+}
+
+w-app-bar[sticky] .duvay-brand,
+w-app-bar[sticky] [data-site-nav] {
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
 /* ── DuVay brand artwork ───────────────────────────────────────────────── */
 .duvay-brand:has(.logo-mark) {
   min-height: var(--w-touch-min);
@@ -505,11 +526,32 @@ w-bottom-sheet[data-docs-sheet-demo] .w-bottom-sheet {
 .demo-os-tabs,
 .skin-switch-tabs {
   display: flex;
-  flex-wrap: wrap;
+  /* Scroll rather than wrap. Six tabs do not fit a 375px screen, and wrapping
+     put one lone tab on a second row, which reads as a separate control and
+     pushed the preview down. A strip that scrolls stays one strip. */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  /* Smooth, because the strip scrolls itself when selection moves to a tab
+     that is out of view; a jump would look like the content changed. */
+  scroll-behavior: smooth;
+  /* Matches the strip's own inline padding, so a tab scrolled into view stops
+     with the same gutter the others have rather than flush against the edge. */
+  scroll-padding-inline: 0.5rem;
+  /* The strip is short, and a persistent bar under six tabs costs more than it
+     tells you. Overlay scrollbars on macOS/iOS already behave this way; this
+     matches them where the scrollbar would otherwise be permanent. Horizontal
+     position is still discoverable by dragging, and every tab is reachable by
+     keyboard regardless. */
+  scrollbar-width: none;
   gap: 0.125rem;
   padding: 0.375rem 0.5rem 0;
   border-bottom: 1px solid var(--w-divider);
   background: var(--w-surface-container-low);
+}
+
+.demo-os-tabs::-webkit-scrollbar,
+.skin-switch-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .demo-os-tab,
@@ -527,6 +569,11 @@ w-bottom-sheet[data-docs-sheet-demo] .w-bottom-sheet {
   /* Reserve the selected weight so the strip does not reflow on switch. */
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
+  /* Hold the natural width: in a nowrap strip a flex item would otherwise
+     shrink and wrap its own label instead of overflowing the container, which
+     is the thing the scroll is meant to allow. */
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .demo-os-tab:hover,

@@ -905,6 +905,10 @@ function buildOsTabs(preview) {
       : (current >= last ? 0 : current + 1);
     applyDemoOs(tabs[next].dataset.os);
     tabs[next].focus();
+    // The strip scrolls horizontally, so the tab just selected may be outside
+    // it. Focus alone only scrolls far enough to satisfy the browser, which
+    // left the last tab clipped.
+    tabs[next].scrollIntoView({ inline: 'nearest', block: 'nearest' });
   });
 
   return list;

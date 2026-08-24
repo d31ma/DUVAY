@@ -1,5 +1,26 @@
 # Changelog
 
+## 26.35.01-1 - 2026-08-24
+
+Documentation-site-only release; the framework is unchanged from 26.35.01.
+
+### Fixed
+
+- The docs site now ships a viewport meta tag, so phones render it at
+  device width instead of scaling a ~980px layout down to fit. No zoom cap:
+  pinch-zoom stays available (WCAG 1.4.4).
+- The docs app bar stays one 56px row on narrow screens instead of wrapping
+  to two — which had also broken every offset computed from the header
+  height (sticky sidebars, scroll padding).
+- The platform-skin tab strip scrolls horizontally on narrow screens rather
+  than wrapping a lone tab onto a second row, and keyboard-cycling to an
+  off-screen tab scrolls it into view.
+
+### Changed
+
+- Release workflows accept the documented same-UTC-date CalVer suffix
+  (`YY.WW.DD-N`); previously the second release on a date failed validation.
+
 ## 26.35.01 - 2026-08-24
 
 ### Added
