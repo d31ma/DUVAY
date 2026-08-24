@@ -1,0 +1,427 @@
+/* DuVay — Date Pickers component styles. */
+@import "../core.css";
+
+/* ── Date Picker ──────────────────────────────────────────────────────────── */
+.w-date-picker {
+  display: inline-grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--w-space-3);
+  width: min(23rem, 100%);
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+  color: var(--w-text);
+  box-shadow: var(--w-shadow-sm);
+  user-select: none;
+}
+
+.w-date-picker-picker-title {
+  display: grid;
+  gap: var(--w-space-1);
+  padding: var(--w-space-2) var(--w-space-2) var(--w-space-3);
+  border-bottom: 1px solid var(--w-divider);
+}
+
+.w-date-picker-picker-title span {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-date-picker-picker-title strong {
+  font-size: var(--w-font-xl);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1.2;
+}
+
+.w-date-picker-header {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-date-picker-title,
+.w-date-picker-nav {
+  min-height: var(--w-date-picker-control-height, 2.5rem);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  transition: background var(--w-transition-fast), border-color var(--w-transition-fast);
+}
+
+.w-date-picker-title {
+  overflow: hidden;
+  padding: 0 var(--w-space-3);
+  font-weight: var(--w-font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-date-picker-title:hover,
+.w-date-picker-nav:hover {
+  background: var(--w-hover);
+  border-color: var(--w-border);
+}
+
+.w-date-picker-title:focus-visible,
+.w-date-picker-nav:focus-visible,
+.w-date-picker-day:focus-visible,
+.w-date-picker-month:focus-visible,
+.w-date-picker-year:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-date-picker-grid {
+  display: grid;
+  /* 1.5rem, not 0, is the floor: WCAG 2.5.8 asks for a 24x24 target, and with
+     minmax(0, 1fr) a narrow picker collapsed the columns to ~22px while the day
+     button stayed 2.25rem, so neighbouring days overlapped and the unobscured
+     area fell below the minimum. The picker now overflows rather than shrinking
+     its targets. */
+  grid-template-columns: repeat(var(--w-date-picker-columns, 7), minmax(1.5rem, 1fr));
+  gap: 0.125rem;
+}
+
+/* Rows exist for `role="row"` grid semantics only; the cells stay direct
+   participants of the surrounding grid. */
+.w-date-picker-row {
+  display: contents;
+}
+
+.w-date-picker-body {
+  min-width: 0;
+}
+
+.w-date-picker-weekday {
+  padding: 0.375rem 0;
+  text-align: center;
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-semibold);
+  color: var(--w-text-very-subtle);
+  text-transform: uppercase;
+}
+
+.w-date-picker-day,
+.w-date-picker-month,
+.w-date-picker-year {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-date-picker-day {
+  position: relative;
+  /* Never wider than its own column, so a day can not overlap its neighbour
+     and eat into the adjacent target's clickable area. */
+  width: min(2.25rem, 100%);
+  height: 2.25rem;
+  justify-self: center;
+  border-radius: 50%;
+  font-size: var(--w-font-sm);
+}
+
+.w-date-picker-day:hover,
+.w-date-picker-month:hover,
+.w-date-picker-year:hover {
+  background: var(--w-hover);
+}
+
+.w-date-picker-day.today {
+  box-shadow: inset 0 0 0 1px var(--w-primary);
+  color: var(--w-primary);
+}
+
+.w-date-picker-day.selected,
+.w-date-picker-month.selected,
+.w-date-picker-year.selected {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-date-picker-day.other-month {
+  color: var(--w-text-very-subtle);
+}
+
+.w-date-picker-day.disabled {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+.w-date-picker-day.in-range {
+  border-radius: var(--w-radius-sm);
+  background: color-mix(in srgb, var(--w-primary) 14%, transparent);
+  color: var(--w-text);
+}
+
+.w-date-picker-day.range-start,
+.w-date-picker-day.range-end {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+}
+
+.w-date-picker-spacer {
+  min-height: 2.25rem;
+}
+
+.w-date-picker-months,
+.w-date-picker-years {
+  display: grid;
+  grid-template-columns: repeat(var(--w-date-picker-columns, 3), minmax(0, 1fr));
+  gap: var(--w-space-2);
+  min-width: 0;
+}
+
+.w-date-picker-month,
+.w-date-picker-year {
+  min-height: 3rem;
+  border-radius: var(--w-radius);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-date-picker-month.disabled,
+.w-date-picker-year.disabled {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+/* <w-date-picker-month> reuses the class as its container, so the month-button
+   presentation has to be neutralised on the view wrapper. */
+.w-date-picker-month--view {
+  display: grid;
+  gap: var(--w-space-2);
+  min-height: 0;
+  border-radius: 0;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-normal);
+  cursor: default;
+}
+
+.w-date-picker-month--view:hover {
+  background: transparent;
+}
+
+/* ── Week numbers ─────────────────────────────────────────────────────────── */
+.w-date-picker-week,
+.w-date-picker-weekday--week {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-semibold);
+  color: var(--w-text-very-subtle);
+}
+
+/* ── Event dots ───────────────────────────────────────────────────────────── */
+.w-date-picker-events {
+  position: absolute;
+  bottom: 0.15rem;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.1rem;
+  width: 100%;
+  pointer-events: none;
+}
+
+.w-date-picker-event {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background: var(--w-date-picker-event-color, var(--w-primary));
+}
+
+.w-date-picker-day.selected .w-date-picker-event,
+.w-date-picker-day.range-start .w-date-picker-event,
+.w-date-picker-day.range-end .w-date-picker-event {
+  background: var(--w-on-primary);
+}
+
+/* ── Range preview (hover / preview-value) ────────────────────────────────── */
+.w-date-picker-day.in-preview {
+  border-radius: var(--w-radius-sm);
+  background: color-mix(in srgb, var(--w-primary) 8%, transparent);
+}
+
+.w-date-picker-day.preview-end {
+  box-shadow: inset 0 0 0 1px var(--w-primary);
+}
+
+/* ── Layout modifiers ─────────────────────────────────────────────────────── */
+.w-date-picker--divided .w-date-picker-header {
+  padding-top: var(--w-space-2);
+  border-top: 1px solid var(--w-divider);
+}
+
+.w-date-picker--landscape {
+  grid-template-columns: var(--w-date-picker-landscape-header-width, 10rem) minmax(0, 1fr);
+  width: min(34rem, 100%);
+  column-gap: var(--w-space-4);
+}
+
+.w-date-picker--landscape .w-date-picker-picker-title {
+  grid-row: 1 / span 2;
+  align-content: start;
+  border-bottom: 0;
+  border-inline-end: 1px solid var(--w-divider);
+}
+
+.w-date-picker--header-color .w-date-picker-picker-title {
+  padding: var(--w-space-3);
+  border-bottom: 0;
+  border-radius: var(--w-radius);
+  background: var(--w-date-picker-header-color, var(--w-primary));
+  color: var(--w-on-primary);
+}
+
+.w-date-picker--header-color .w-date-picker-picker-title span {
+  color: inherit;
+}
+
+.w-date-picker-text {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-date-picker--header-color .w-date-picker-text {
+  color: inherit;
+}
+
+.w-date-picker--control-modal .w-date-picker-header {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+.w-date-picker-header--modal .w-date-picker-title {
+  text-align: start;
+}
+
+.w-date-picker-header__nav {
+  display: inline-flex;
+  gap: var(--w-space-1);
+}
+
+.w-date-picker-mode {
+  min-height: var(--w-date-picker-control-height, 2.5rem);
+  min-width: 2.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+}
+
+.w-date-picker-mode:hover {
+  background: var(--w-hover);
+  border-color: var(--w-border);
+}
+
+.w-date-picker-mode:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+/* ── Controls bar ─────────────────────────────────────────────────────────── */
+.w-date-picker-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-date-picker-controls__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-1);
+  min-height: var(--w-date-picker-control-height, 2.5rem);
+  min-width: 2.75rem;
+  padding: 0 var(--w-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: var(--w-font-weight-semibold);
+  justify-content: center;
+}
+
+.w-date-picker-controls__btn:hover {
+  background: var(--w-hover);
+  border-color: var(--w-border);
+}
+
+.w-date-picker-controls__btn:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-date-picker-controls__btn.active {
+  color: var(--w-primary);
+}
+
+.w-date-picker-controls__btn--prev .w-date-picker-controls__mode,
+.w-date-picker-controls__btn--next .w-date-picker-controls__mode {
+  display: none;
+}
+
+.w-date-picker-controls__nav {
+  display: inline-flex;
+  gap: var(--w-space-1);
+  margin-inline-start: auto;
+}
+
+.w-date-picker-controls__text {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+/* ── Named view transitions ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .w-date-picker-body--transition-fade,
+  .w-date-picker-header--transition-fade {
+    animation: w-date-picker-fade var(--w-transition-normal) ease;
+  }
+
+  .w-date-picker-body--transition-slide-x,
+  .w-date-picker-header--transition-slide-x {
+    animation: w-date-picker-slide-x var(--w-transition-normal) ease;
+  }
+
+  .w-date-picker-body--transition-slide-x-reverse,
+  .w-date-picker-header--transition-slide-x-reverse {
+    animation: w-date-picker-slide-x-reverse var(--w-transition-normal) ease;
+  }
+}
+
+@keyframes w-date-picker-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes w-date-picker-slide-x {
+  from { opacity: 0; transform: translateX(1rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes w-date-picker-slide-x-reverse {
+  from { opacity: 0; transform: translateX(-1rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.w-date-input-popup .w-date-picker {
+  width: 20rem;
+  box-shadow: none;
+}

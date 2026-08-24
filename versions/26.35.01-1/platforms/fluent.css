@@ -1,0 +1,87 @@
+/* DuVay — Fluent (Windows) skin
+ *
+ * Applied with `w-os="fluent"` on <html>, orthogonal to `w-theme`.
+ * Takes Fluent 2's typography, layered depth shadows, decelerating motion and
+ * signature dual focus ring.
+ *
+ * What a skin may change: font family, motion, elevation, chrome heights, the
+ * switch's geometry, the focus ring, scrollbars, and per-component structure.
+ *
+ * What it may not: colour, control size, the radius scale, and the type scale.
+ * Those are brand tokens — they are what keeps an app recognisably the same
+ * product on every platform, and `bun run tokens:check` fails a skin that
+ * overrides them.
+ */
+
+[w-os="windows"],
+[w-os="fluent"] {
+  /* Switch — set as inherited variables so this skin still wins
+   * inside a page wearing a different one. */
+  --w-skin-switch-track-w: 40px;
+  --w-skin-switch-track-h: 20px;
+  --w-skin-switch-thumb: 12px;
+  --w-skin-switch-pad: 4px;
+
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --w-font-family: 'Segoe UI Variable Text', 'Segoe UI', system-ui, sans-serif;
+  --w-font-family-heading: 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif;
+  --w-font-family-mono: 'Cascadia Code', 'Cascadia Mono', ui-monospace, monospace;
+  --w-letter-spacing-normal: 0;
+  --w-line-height-normal: 1.43;
+
+  --w-topbar-height: 48px;
+  --w-mobile-nav-height: 56px;
+
+  /* ── Elevation — Fluent's two-part ambient + key shadow ───────────── */
+  --w-shadow-sm: 0 1px 2px var(--w-shadow-color);
+  --w-shadow-md: 0 2px 4px var(--w-shadow-color), 0 0 2px var(--w-shadow-color);
+  --w-shadow-lg: 0 8px 16px var(--w-shadow-color), 0 0 2px var(--w-shadow-color);
+
+  /* ── Motion — Fluent decelerate / accelerate ──────────────────────── */
+  --w-motion-ease-standard: cubic-bezier(0.33, 0, 0.67, 1);
+  --w-motion-ease-enter:    cubic-bezier(0.1, 0.9, 0.2, 1);
+  --w-motion-ease-exit:     cubic-bezier(0.7, 0, 1, 0.5);
+  --w-motion-duration-fast: 150ms;
+  --w-motion-duration:      250ms;
+  --w-motion-duration-slow: 350ms;
+  --w-transition-fast:   150ms cubic-bezier(0.33, 0, 0.67, 1);
+  --w-transition-normal: 250ms cubic-bezier(0.33, 0, 0.67, 1);
+  --w-transition-slow:   350ms cubic-bezier(0.33, 0, 0.67, 1);
+
+  /* Focus — Fluent's signature dual ring: a dark stroke with a light halo
+   * behind it, so the indicator survives any background. */
+  --w-focus-ring-color: var(--w-text);
+  --w-focus-ring-offset: 1px;
+  --w-focus-ring-shadow: 0 0 0 4px var(--w-surface);
+
+}
+
+[w-os="windows"] .w-btn,
+[w-os="fluent"] .w-btn {
+  font-weight: var(--w-font-weight-semibold);
+}
+
+
+[w-os="windows"] .w-switch-track,
+[w-os="fluent"] .w-switch-track {
+  border-radius: var(--w-radius-pill);
+  border: 1px solid var(--w-outline);
+}
+[w-os="windows"] .w-switch-thumb,
+[w-os="fluent"] .w-switch-thumb { border-radius: 50%; }
+
+/* Content dialogs are square-shouldered with a visible border. */
+[w-os="windows"] .w-dialog,
+[w-os="fluent"] .w-dialog {
+  border-radius: var(--w-radius-lg);
+  border: 1px solid var(--w-outline);
+}
+[w-os="windows"] .w-dialog-footer,
+[w-os="fluent"] .w-dialog-footer { justify-content: stretch; }
+
+/* Fluent keeps a conventional scrollbar rather than an overlay one. */
+[w-os="windows"] :where(.w-scroll-area, .w-list, .w-table),
+[w-os="fluent"] :where(.w-scroll-area, .w-list, .w-table) {
+  scrollbar-width: auto;
+  scrollbar-color: color-mix(in srgb, var(--w-text) 35%, transparent) transparent;
+}

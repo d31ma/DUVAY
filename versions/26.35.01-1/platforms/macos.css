@@ -1,0 +1,98 @@
+/* DuVay — macOS skin
+ *
+ * Applied with `w-os="macos"` on <html>, orthogonal to `w-theme`.
+ *
+ * Note the deliberate restraint: real macOS controls are far denser than
+ * DuVay's, but adopting that density would make the macOS build a visibly
+ * different product. Density is available per-app through DuVay's own size
+ * variants instead.
+ *
+ * As with the iOS skin, vibrancy is delivered with backdrop-filter behind an
+ * @supports gate — not a hand-rolled Liquid Glass recreation.
+ *
+ * What a skin may change: font family, motion, elevation, chrome heights, the
+ * switch's geometry, the focus ring, scrollbars, and per-component structure.
+ *
+ * What it may not: colour, control size, the radius scale, and the type scale.
+ * Those are brand tokens — they are what keeps an app recognisably the same
+ * product on every platform, and `bun run tokens:check` fails a skin that
+ * overrides them.
+ */
+
+[w-os="macos"] {
+  /* Switch — set as inherited variables so this skin still wins
+   * inside a page wearing a different one. */
+  --w-skin-switch-track-w: 38px;
+  --w-skin-switch-track-h: 22px;
+  --w-skin-switch-thumb: 20px;
+  --w-skin-switch-pad: 1px;
+
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --w-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --w-font-family-heading: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --w-font-family-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --w-letter-spacing-tight: -0.01em;
+  --w-line-height-normal: 1.35;
+
+  --w-topbar-height: 38px;           /* unified toolbar */
+  --w-sidebar-width: 220px;
+
+  /* ── Elevation — thin hairlines, soft window shadow ───────────────── */
+  --w-shadow-sm: 0 0.5px 0 var(--w-shadow-color);
+  --w-shadow-md: 0 2px 8px var(--w-shadow-color);
+  --w-shadow-lg: 0 16px 48px var(--w-shadow-color);
+  --w-app-bar-backdrop-blur: 1.5rem;
+
+  /* ── Motion — brisk; macOS animations are shorter than iOS ────────── */
+  --w-motion-ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --w-motion-ease-enter:    cubic-bezier(0, 0, 0.2, 1);
+  --w-motion-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --w-motion-duration-fast: 100ms;
+  --w-motion-duration:      180ms;
+  --w-motion-duration-slow: 250ms;
+  --w-transition-fast:   100ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --w-transition-normal: 180ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --w-transition-slow:   250ms cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* Focus — macOS uses a wide, tinted halo hugging the control. */
+  --w-focus-ring-width: 3px;
+  --w-focus-ring-color: color-mix(in srgb, var(--w-accent) 55%, transparent);
+  --w-focus-ring-offset: 1px;
+
+}
+
+/* macOS labels are lighter than DuVay's default. Padding and shape are left
+ * alone so control geometry matches every other skin. */
+[w-os="macos"] .w-btn {
+  font-weight: var(--w-font-weight-normal);
+}
+
+
+[w-os="macos"] .w-switch-track { border-radius: var(--w-radius-pill); }
+[w-os="macos"] .w-switch-thumb {
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+}
+
+/* Sheets descend from the titlebar: square top, rounded bottom. */
+[w-os="macos"] .w-dialog {
+  border-radius: var(--w-radius-lg);
+  box-shadow: var(--w-shadow-lg);
+}
+[w-os="macos"] .w-dialog-footer { justify-content: flex-end; }
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [w-os="macos"] :where(.w-app-bar, .w-toolbar, .w-sidebar) {
+    /* background-color, not the shorthand: `background` resets
+       background-image, which silently wiped `.w-toolbar--image`. */
+    background-color: var(--w-app-bar-frosted);
+    -webkit-backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.6);
+    backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.6);
+  }
+}
+
+/* Overlay scrollbars that only materialise while scrolling. */
+[w-os="macos"] :where(.w-scroll-area, .w-list, .w-table) {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--w-text) 28%, transparent) transparent;
+}

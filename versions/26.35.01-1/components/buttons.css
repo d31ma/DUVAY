@@ -1,0 +1,571 @@
+/* DuVay — Buttons component styles. */
+@import "../core.css";
+
+/* ── Button base ─────────────────────────────────────────────────────────── */
+.w-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--w-size-md);
+  min-width: 64px;
+  padding: 0 var(--w-space-md);
+  border: 1px solid transparent;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background var(--w-transition-normal), border-color var(--w-transition-normal), box-shadow var(--w-transition-normal);
+}
+
+.w-btn::before,
+.w-chip::before,
+.w-tab::before,
+.w-list-item::before,
+.w-bottom-nav-item::before,
+.w-fab::before,
+.w-page-item::before,
+.w-date-picker-day::before,
+.w-number-input-btn::before,
+.w-date-input-icon::before,
+.w-date-input-clear::before,
+.w-file-input-clear::before,
+.w-window-dot::before,
+.w-window-arrow::before,
+.w-expand-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, currentColor 0%, transparent 58%);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.45);
+  transition: opacity var(--w-transition-fast), transform var(--w-transition-normal);
+}
+
+.w-chip,
+.w-tab,
+.w-list-item,
+.w-bottom-nav-item,
+.w-fab,
+.w-page-item,
+.w-date-picker-day,
+.w-number-input-btn,
+.w-date-input-icon,
+.w-date-input-clear,
+.w-file-input-clear,
+.w-window-dot,
+.w-window-arrow,
+.w-expand-header {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.w-btn:not(:disabled):active::before,
+.w-chip:active::before,
+.w-tab:active::before,
+.w-list-item:active::before,
+.w-bottom-nav-item:not(:disabled):active::before,
+.w-fab:not(:disabled):active::before,
+.w-page-item:not(:disabled):active::before,
+.w-date-picker-day:not(:disabled):active::before,
+.w-number-input-btn:not(:disabled):active::before,
+.w-date-input-icon:not(:disabled):active::before,
+.w-date-input-clear:not(:disabled):active::before,
+.w-file-input-clear:not(:disabled):active::before,
+.w-window-dot:not(:disabled):active::before,
+.w-window-arrow:not(:disabled):active::before,
+.w-expand-header:not(:disabled):active::before {
+  opacity: 0.14;
+  transform: scale(1.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-btn::before,
+  .w-chip::before,
+  .w-tab::before,
+  .w-list-item::before,
+  .w-bottom-nav-item::before,
+  .w-fab::before,
+  .w-page-item::before,
+  .w-date-picker-day::before,
+  .w-number-input-btn::before,
+  .w-date-input-icon::before,
+  .w-date-input-clear::before,
+  .w-file-input-clear::before,
+  .w-window-dot::before,
+  .w-window-arrow::before,
+  .w-expand-header::before {
+    transition: none;
+  }
+}
+
+.w-btn:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Button variants */
+.w-btn-filled {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+
+.w-btn-filled:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+}
+
+.w-btn-tonal {
+  background: var(--w-secondary-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-btn-tonal:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-secondary-container) 82%, black);
+}
+
+.w-btn-outlined {
+  border-color: var(--w-border);
+  background: transparent;
+}
+
+.w-btn-outlined:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-text {
+  background: transparent;
+  min-width: 0;
+}
+
+.w-btn-text:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-icon {
+  min-width: var(--w-size-icon-md);
+  width: var(--w-size-icon-md);
+  padding: 0;
+  border-radius: var(--w-radius);
+}
+
+.w-btn-icon:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-btn-leading-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+/* Color modifiers for filled buttons (compound selectors for specificity) */
+.w-btn-filled.w-btn-primary {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+}
+.w-btn-filled.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+}
+
+.w-btn-filled.w-btn-success {
+  background: var(--w-success);
+  color: var(--w-on-success);
+  border-color: var(--w-success);
+}
+.w-btn-filled.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 88%, black);
+}
+
+.w-btn-filled.w-btn-danger {
+  background: var(--w-error);
+  color: var(--w-on-error);
+  border-color: var(--w-error);
+}
+.w-btn-filled.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 88%, black);
+}
+
+.w-btn-filled.w-btn-warning {
+  background: var(--w-warning);
+  color: var(--w-on-warning);
+  border-color: var(--w-warning);
+}
+.w-btn-filled.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 88%, black);
+}
+
+/* Outlined color variants */
+.w-btn-outlined.w-btn-primary {
+  border-color: var(--w-primary);
+  color: var(--w-primary);
+}
+.w-btn-outlined.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-success {
+  border-color: var(--w-success);
+  color: var(--w-success);
+}
+.w-btn-outlined.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-danger {
+  border-color: var(--w-error);
+  color: var(--w-error);
+}
+.w-btn-outlined.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 10%, transparent);
+}
+
+.w-btn-outlined.w-btn-warning {
+  border-color: var(--w-warning);
+  color: var(--w-warning);
+}
+.w-btn-outlined.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 10%, transparent);
+}
+
+/* Text/Ghost color variants */
+.w-btn-text.w-btn-primary,
+.w-btn-ghost.w-btn-primary {
+  color: var(--w-primary);
+}
+.w-btn-text.w-btn-primary:hover:not(:disabled),
+.w-btn-ghost.w-btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 10%, transparent);
+}
+
+.w-btn-text.w-btn-success,
+.w-btn-ghost.w-btn-success {
+  color: var(--w-success);
+}
+.w-btn-text.w-btn-success:hover:not(:disabled),
+.w-btn-ghost.w-btn-success:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-success) 10%, transparent);
+}
+
+.w-btn-text.w-btn-danger,
+.w-btn-ghost.w-btn-danger {
+  color: var(--w-error);
+}
+.w-btn-text.w-btn-danger:hover:not(:disabled),
+.w-btn-ghost.w-btn-danger:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-error) 10%, transparent);
+}
+
+.w-btn-text.w-btn-warning,
+.w-btn-ghost.w-btn-warning {
+  color: var(--w-warning);
+}
+.w-btn-text.w-btn-warning:hover:not(:disabled),
+.w-btn-ghost.w-btn-warning:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-warning) 10%, transparent);
+}
+
+/* Primary-text variant (colored text-only button, deprecated: use .w-btn-text.w-btn-primary) */
+.w-btn-primary-text {
+  color: var(--w-primary);
+  min-width: 0;
+}
+.w-btn-primary-text:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 14%, transparent);
+}
+
+/* Sizes — xs / sm / (default) / lg / xl (BEM + utility aliases) */
+.w-btn--xs,
+.w-btn-xs {
+  min-height: var(--w-size-xs);
+  min-width: 0;
+  padding: 0 var(--w-space-2);
+  gap: 0.25rem;
+  font-size: var(--w-font-xs);
+}
+
+.w-btn--xs.w-btn-icon,
+.w-btn-xs.w-btn-icon {
+  min-width: var(--w-size-icon-xs);
+  width: var(--w-size-icon-xs);
+}
+
+.w-btn--sm,
+.w-btn-sm {
+  min-height: var(--w-size-sm);
+  min-width: 0;
+  padding: 0 var(--w-space-sm);
+  font-size: var(--w-font-sm);
+}
+
+.w-btn--sm.w-btn-icon,
+.w-btn-sm.w-btn-icon {
+  min-width: var(--w-size-icon-sm);
+  width: var(--w-size-icon-sm);
+}
+
+.w-btn--lg,
+.w-btn-lg {
+  min-height: var(--w-size-lg);
+  padding: 0 var(--w-space-xl);
+  font-size: var(--w-font-md);
+}
+
+.w-btn--lg.w-btn-icon,
+.w-btn-lg.w-btn-icon {
+  min-width: var(--w-size-icon-lg);
+  width: var(--w-size-icon-lg);
+}
+
+.w-btn--xl,
+.w-btn-xl {
+  min-height: var(--w-size-xl);
+  padding: 0 var(--w-space-2xl);
+  font-size: var(--w-font-lg);
+}
+
+.w-btn--xl.w-btn-icon,
+.w-btn-xl.w-btn-icon {
+  min-width: var(--w-size-icon-xl);
+  width: var(--w-size-icon-xl);
+}
+
+/* Ghost variant (borderless, subtle hover) */
+.w-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.w-btn-ghost:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+/* Loading state */
+w-btn[loading].w-common-loading::after {
+  content: none;
+}
+
+.w-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.w-btn-filled.w-loading {
+  --w-loading-color: var(--w-on-primary);
+}
+
+.w-btn-filled.w-btn-success {
+  --w-loading-color: var(--w-on-success);
+}
+
+.w-btn-filled.w-btn-danger {
+  --w-loading-color: var(--w-on-error);
+}
+
+.w-btn-filled.w-btn-warning {
+  --w-loading-color: var(--w-on-warning);
+}
+
+.w-btn-tonal.w-loading {
+  --w-loading-color: var(--w-on-secondary-container);
+}
+
+.w-btn-outlined.w-loading,
+.w-btn-text.w-loading,
+.w-btn-ghost.w-loading {
+  --w-loading-color: var(--w-primary);
+}
+
+.w-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+  border: 2px solid var(--w-loading-color, var(--w-primary));
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: w-spin 0.75s linear infinite;
+}
+@keyframes w-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Block / full-width */
+.w-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Stacked (icon above label) */
+.w-btn-stacked {
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 64px;
+}
+
+/* Append icon helper */
+.w-btn-append-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 1;
+}
+
+/* Plain variant — subtle action with no hover background */
+.w-btn-plain {
+  background: transparent;
+  border-color: transparent;
+  opacity: 0.85;
+}
+.w-btn-plain:hover:not(:disabled) {
+  opacity: 1;
+}
+
+/* Elevated variant — filled primary with a shadow */
+.w-btn-elevated {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  border-color: var(--w-primary);
+  box-shadow: var(--w-shadow-sm);
+}
+.w-btn-elevated:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-primary) 88%, black);
+  box-shadow: var(--w-shadow-md);
+}
+
+/* Flat — drops the shadow without changing the variant. Pairs with any
+   variant, so it wins over the elevated variant's resting and hover shadow. */
+.w-btn--flat,
+.w-btn--flat:hover:not(:disabled) {
+  box-shadow: none;
+}
+
+/* Slim — Vuetify parity: horizontal padding collapses to one space step. */
+.w-btn--slim {
+  padding-inline: var(--w-space-2);
+  min-width: 0;
+}
+
+/* Spaced — pushes the prepend / append icons out to the button's edges so the
+   label keeps the middle. `start`, `end`, or `both`. */
+.w-btn--spaced-start .w-btn-leading-icon,
+.w-btn--spaced-both .w-btn-leading-icon {
+  margin-inline-end: auto;
+}
+
+.w-btn--spaced-end .w-btn-append-icon,
+.w-btn--spaced-both .w-btn-append-icon {
+  margin-inline-start: auto;
+}
+
+/* ── Icon button (<w-icon-btn>) ───────────────────────────────────────────── */
+/* A square button whose box and glyph are both driven by two custom properties,
+   so `size` / `sizes` / `icon-size` / `icon-sizes` can override either one
+   without a new class. Compound selector so the named sizes below and the
+   inline overrides both beat the .w-btn--xs.w-btn-icon size rules above. */
+.w-btn.w-icon-btn {
+  width: var(--w-icon-btn-size, var(--w-size-icon-md));
+  min-width: var(--w-icon-btn-size, var(--w-size-icon-md));
+  height: var(--w-icon-btn-size, var(--w-size-icon-md));
+  min-height: var(--w-icon-btn-size, var(--w-size-icon-md));
+  padding: 0;
+}
+
+.w-icon-btn--x-small, .w-icon-btn--xs {
+  --w-icon-btn-size: var(--w-size-icon-xs);
+  --w-icon-btn-icon: var(--w-icon-glyph-xs);
+}
+
+.w-icon-btn--small, .w-icon-btn--sm {
+  --w-icon-btn-size: var(--w-size-icon-sm);
+  --w-icon-btn-icon: var(--w-icon-glyph-sm);
+}
+
+.w-icon-btn--default, .w-icon-btn--md {
+  --w-icon-btn-size: var(--w-size-icon-md);
+  --w-icon-btn-icon: var(--w-icon-glyph-md);
+}
+
+.w-icon-btn--large, .w-icon-btn--lg {
+  --w-icon-btn-size: var(--w-size-icon-lg);
+  --w-icon-btn-icon: var(--w-icon-glyph-lg);
+}
+
+.w-icon-btn--x-large, .w-icon-btn--xl {
+  --w-icon-btn-size: var(--w-size-icon-xl);
+  --w-icon-btn-icon: var(--w-icon-glyph-xl);
+}
+
+.w-icon-btn > .w-icon,
+.w-icon-btn > svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: var(--w-icon-btn-icon, var(--w-icon-glyph-md));
+  height: var(--w-icon-btn-icon, var(--w-icon-glyph-md));
+  font-size: var(--w-icon-btn-icon, var(--w-icon-glyph-md));
+  line-height: 1;
+  color: var(--w-icon-btn-icon-color, inherit);
+  transform: rotate(var(--w-icon-btn-rotate, 0deg));
+  transition: transform var(--w-transition-normal);
+}
+
+/* hide-overlay — no hover tint and no press overlay. */
+.w-icon-btn--no-overlay::before {
+  content: none;
+}
+
+.w-icon-btn--no-overlay:hover:not(:disabled) {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-icon-btn > .w-icon,
+  .w-icon-btn > svg {
+    transition: none;
+  }
+}
+
+/* Preserve compact visual density for fine pointers while giving every button
+   and icon-button variant a full touch target on coarse-pointer devices. */
+@media (any-pointer: coarse) {
+  .w-btn,
+  .w-btn.w-btn-icon,
+  .w-btn.w-icon-btn {
+    min-width: var(--w-touch-min);
+    min-height: var(--w-touch-min);
+  }
+}
+
+/* Standalone active / pressed state */
+.w-btn.active,
+.w-btn-active {
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+  border-color: color-mix(in srgb, var(--w-primary) 30%, transparent);
+}

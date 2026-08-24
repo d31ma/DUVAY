@@ -1,0 +1,47 @@
+/* DuVay — Expansion Panel Helpers component styles. */
+@import "../core.css";
+
+/* ── Expansion panel helpers ─────────────────────────────────────────────── */
+.w-expand {
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  overflow: hidden;
+}
+.w-expand-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border: 0;
+  background: var(--w-surface);
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  font-weight: var(--w-font-weight-medium);
+  text-align: left;
+  transition: background var(--w-transition-normal);
+}
+.w-expand-header:hover {
+  background: var(--w-hover);
+}
+.w-expand-title {
+  flex: 1;
+  min-width: 0;
+}
+.w-expand-icon {
+  flex-shrink: 0;
+  transition: transform var(--w-transition-slow);
+}
+.w-expand.open .w-expand-icon {
+  transform: rotate(180deg);
+}
+.w-expand-body {
+  padding: var(--w-space-lg);
+  display: none;
+}
+.w-expand.open .w-expand-body {
+  display: block;
+}
