@@ -1,6 +1,6 @@
 ---
 dropins:
-  - /Users/iyor/Library/CloudStorage/Dropbox/INSTRUCTIONS.md
+  - ~/.claude/CLAUDE.md
 ---
 
 # Design Systems Engineer
