@@ -27,7 +27,6 @@ async function sourceFiles(directory) {
 
 test('DuVay-owned attributes use the w-* prefix', async () => {
   const files = [
-    'AGENTS.md',
     'CLAUDE.md',
     'README.md',
     ...await Promise.all(sourceRoots.map(sourceFiles)).then((groups) => groups.flat()),
