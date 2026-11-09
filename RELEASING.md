@@ -57,6 +57,12 @@ to `main`), and PaaS lets only that environment assume its role
 (`duvay-site-deploy-staging`, `duvay-site-deploy-production`). Probes and role
 names are in `.github/site-deploy.json`; headers belong to PaaS.
 
+`staging.duvay.del.ma` is reachable only on the tailnet. The staging probes
+therefore use the Amplify branch address `staging.d13l2hvm60wv12.amplifyapp.com`.
+They read the branch's basic-auth credentials at run time with
+`amplify:GetBranch`, mask them in the log, and send them with each request, so
+no password is stored in this repository.
+
 A release is immutable: an existing tag that resolves to a different commit is
 a hard failure. Because the tag is derived from the CalVer version, only one
 release per UTC day is possible without changing the version scheme.
