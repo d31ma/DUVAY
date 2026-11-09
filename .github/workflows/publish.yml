@@ -275,6 +275,8 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
+      id-token: write
+      attestations: write
 
     steps:
       - name: Create or repair release
@@ -306,6 +308,11 @@ jobs:
         with:
           name: duvay-site
           path: site
+
+      - name: Attest the site zip
+        uses: actions/attest-build-provenance@v4
+        with:
+          subject-path: site/duvay-site-*.zip
 
       - name: Attach the site zip to the release
         env:

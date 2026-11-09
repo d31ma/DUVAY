@@ -32,36 +32,32 @@ to prevent an accidental publish.
 
 ## Documentation site
 
-The docs site is an Amplify Hosting app (managed in `d31ma/PaaS` at
-`infra/duvay/amplify`) with two branches:
+Production (`duvay.del.ma`) is an Amplify Hosting app managed in `d31ma/PaaS`
+(`infra/duvay/amplify`). Staging (`staging.duvay.del.ma`) is hosted on Floci on
+kestrel and is reachable only on the tailnet and the CITADEL LAN.
 
-| Branch | Host |
-|---|---|
-| staging | `staging.duvay.del.ma` |
-| production | `duvay.del.ma` |
+`Publish` builds the site once. It attaches `duvay-site-<version>.zip` (with
+`site-version.json` at its root) and its `.sha256` to the GitHub release, and
+attests the zip. kestrel's pull deployer then deploys that zip to staging,
+probes it, and sets the commit status `site-staging/floci` on the release
+commit, with the description `<version> <first 12 hex of the zip SHA-256>`.
 
-`Publish` builds the site once and attaches `duvay-site-<version>.zip` and its
-`.sha256` to the GitHub release. When `Publish` succeeds on a release commit,
-`Site Deploy` deploys that zip to **staging**, probes it, then deploys the
-same zip to **production** and probes again. If the production probes fail,
-it redeploys the version production served before and fails the run. A merge
-that is not a release deploys nothing.
+When `Publish` succeeds on a release commit, `Site Deploy` checks the zip's
+SHA-256 and waits up to 20 minutes for that status to be `success` for exactly
+this zip. It stops at once on `failure` or `error`. It then deploys the same
+zip to Amplify **production** and probes it. If the production probes fail, it
+redeploys the version production served before and fails the run. A merge that
+is not a release deploys nothing.
 
-To roll back or redeploy, dispatch `Site Deploy` with a released `version`
-and target `production` (or `staging-then-production`). It deploys that
-release's zip after checking its SHA-256.
+To roll back or redeploy, dispatch `Site Deploy` with a released `version` and
+target `production`. It deploys that release's zip after checking its SHA-256,
+without waiting for staging.
 
-The workflow authenticates through OIDC with no stored AWS secrets. Each job
-runs in a GitHub environment (`site-staging`, `site-production`, both limited
-to `main`), and PaaS lets only that environment assume its role
-(`duvay-site-deploy-staging`, `duvay-site-deploy-production`). Probes and role
-names are in `.github/site-deploy.json`; headers belong to PaaS.
-
-`staging.duvay.del.ma` is reachable only on the tailnet. The staging probes
-therefore use the Amplify branch address `staging.d13l2hvm60wv12.amplifyapp.com`.
-They read the branch's basic-auth credentials at run time with
-`amplify:GetBranch`, mask them in the log, and send them with each request, so
-no password is stored in this repository.
+The workflow authenticates through OIDC with no stored AWS secrets. Its deploy
+job runs in GitHub environment `site-production` (limited to `main`), and PaaS
+lets only that environment assume `duvay-site-deploy-production`. It reads the
+commit status with its own token (`statuses: read`). The role and probes are in
+`.github/site-deploy.json`; headers belong to PaaS.
 
 A release is immutable: an existing tag that resolves to a different commit is
 a hard failure. Because the tag is derived from the CalVer version, only one
