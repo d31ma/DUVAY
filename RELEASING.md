@@ -33,21 +33,29 @@ to prevent an accidental publish.
 ## Documentation site
 
 The docs site is an Amplify Hosting app (managed in `d31ma/PaaS` at
-`infra/duvay/amplify`) with one branch per environment rail:
+`infra/duvay/amplify`) with two branches:
 
-| Rail | Host |
+| Branch | Host |
 |---|---|
-| dev | `dev.duvay.del.ma` |
 | staging | `staging.duvay.del.ma` |
 | production | `duvay.del.ma` |
 
-A successful `Publish` run deploys its tagged release to the **dev** rail
-automatically (`Deploy Docs to Amplify` workflow). Promoting is manual and
-deliberate: dispatch the same workflow with the rail (`staging`, then
-`production`) and the tagged commit SHA. The workflow refuses any commit
-that is not on `main` and tagged `v<version>` by an annotated tag, and it
-authenticates via OIDC (`duvay-docs-deploy` role) — there are no stored AWS
-secrets in this repository.
+`Publish` builds the site once and attaches `duvay-site-<version>.zip` and its
+`.sha256` to the GitHub release. When `Publish` succeeds on a release commit,
+`Site Deploy` deploys that zip to **staging**, probes it, then deploys the
+same zip to **production** and probes again. If the production probes fail,
+it redeploys the version production served before and fails the run. A merge
+that is not a release deploys nothing.
+
+To roll back or redeploy, dispatch `Site Deploy` with a released `version`
+and target `production` (or `staging-then-production`). It deploys that
+release's zip after checking its SHA-256.
+
+The workflow authenticates through OIDC with no stored AWS secrets. Each job
+runs in a GitHub environment (`site-staging`, `site-production`, both limited
+to `main`), and PaaS lets only that environment assume its role
+(`duvay-site-deploy-staging`, `duvay-site-deploy-production`). Probes and role
+names are in `.github/site-deploy.json`; headers belong to PaaS.
 
 A release is immutable: an existing tag that resolves to a different commit is
 a hard failure. Because the tag is derived from the CalVer version, only one

@@ -206,6 +206,26 @@ jobs:
       - name: Build documentation site
         run: cd website && bun run bundle
 
+      - name: Package the site zip deployed by Site Deploy
+        env:
+          SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+        run: |
+          set -euo pipefail
+          ZIP="duvay-site-$VERSION.zip"
+          mkdir -p "$RUNNER_TEMP/site"
+          SHA256=$(bun scripts/site-deploy.mjs package website/dist/web "$VERSION" "$SOURCE_SHA" "$RUNNER_TEMP/site/$ZIP")
+          echo "$SHA256  $ZIP" > "$RUNNER_TEMP/site/$ZIP.sha256"
+          echo "$ZIP $SHA256"
+
+      - name: Keep the site zip for the release
+        uses: actions/upload-artifact@v4
+        with:
+          name: duvay-site
+          path: ${{ runner.temp }}/site/
+          retention-days: 7
+          if-no-files-found: error
+
   tag:
     name: Tag published source
     needs: [preflight, quality, test, docs]
@@ -279,4 +299,24 @@ jobs:
               --verify-tag \
               --title "$TAG" \
               --generate-notes
+          fi
+
+      - name: Download the site zip
+        uses: actions/download-artifact@v4
+        with:
+          name: duvay-site
+          path: site
+
+      - name: Attach the site zip to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.preflight.outputs.version }}
+        run: |
+          set -euo pipefail
+          TAG="v$VERSION"
+          ZIP="duvay-site-$VERSION.zip"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | grep -qx "$ZIP"; then
+            echo "::notice::$TAG already has $ZIP; the released zip is kept."
+          else
+            gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" "site/$ZIP" "site/$ZIP.sha256"
           fi
