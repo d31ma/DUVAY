@@ -39,6 +39,25 @@
     </div>
   </demo-compare>
 
+  <h2>Accessible name</h2>
+  <p>Give a list a name with <code>aria-label</code>, or point <code>aria-labelledby</code> at a visible heading. Both are passed to the element that carries <code>role="list"</code> (or <code>role="listbox"</code> when the list is selectable), so several lists on one page can be told apart.</p>
+  <demo-compare>
+    <div slot="css">
+      <p id="list-name-css"><strong>Monday</strong></p>
+      <div class="w-list" role="list" aria-labelledby="list-name-css">
+        <div class="w-list-item" role="listitem">
+          <span class="w-list-item-content"><span class="w-list-item-title">Morning run</span></span>
+        </div>
+      </div>
+    </div>
+    <div slot="wc">
+      <p id="list-name-wc"><strong>Monday</strong></p>
+      <w-list aria-labelledby="list-name-wc">
+        <w-list-item title="Morning run" item-role="none"></w-list-item>
+      </w-list>
+    </div>
+  </demo-compare>
+
   <h2>Items API</h2>
   <p><code>items</code> accepts a JSON array with item, divider, subheader, and nested children entries. Selection attributes also accept JSON arrays for multi-value state.</p>
   <demo-compare>

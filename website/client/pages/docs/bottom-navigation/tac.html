@@ -213,4 +213,26 @@
       </w-bottom-navigation>
     </div>
   </demo-compare>
+  <h2>Accessible name</h2>
+  <p>The bar is a navigation landmark named "Bottom navigation" by default. Name it with <code>label</code> or <code>aria-label</code>, or point <code>aria-labelledby</code> at a visible heading. The name goes on the rendered <code>&lt;nav&gt;</code>; <code>aria-labelledby</code> wins over <code>aria-label</code>, and <code>aria-label</code> wins over <code>label</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <nav class="w-bottom-navigation" role="navigation" aria-label="Main">
+        <button class="w-bottom-nav-item w-bottom-nav-item--active" type="button" aria-current="true">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🏠</span>
+          <span class="w-bottom-nav-item__label">Home</span>
+        </button>
+        <button class="w-bottom-nav-item" type="button">
+          <span class="w-bottom-nav-item__icon" aria-hidden="true">🔍</span>
+          <span class="w-bottom-nav-item__label">Search</span>
+        </button>
+      </nav>
+    </div>
+    <div slot="wc">
+      <w-bottom-navigation value="home" aria-label="Main">
+        <w-bottom-nav-item value="home" icon="🏠" label="Home"></w-bottom-nav-item>
+        <w-bottom-nav-item value="search" icon="🔍" label="Search"></w-bottom-nav-item>
+      </w-bottom-navigation>
+    </div>
+  </demo-compare>
 </doc-layout>

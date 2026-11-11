@@ -22,6 +22,10 @@
  *   absolute       - boolean; pin to the bottom of the offset parent
  *   name           - layout registration name (mirrored to data-name)
  *   order          - layout order within its flex/grid parent
+ *   label          - accessible name of the navigation landmark
+ *                    (default "Bottom navigation")
+ *   aria-label     - accessible name; wins over label
+ *   aria-labelledby - id of the element that names the landmark; wins over both
  *
  * Events:
  *   change - fires when the selection changes (detail: { value })
@@ -32,6 +36,7 @@ export class WBottomNavigation extends WElement {
   static attrs = [
     'value', 'color', 'bg-color', 'grow', 'mode', 'density', 'elevation', 'height',
     'multiple', 'max', 'mandatory', 'selected-class', 'active', 'absolute', 'name', 'order',
+    'label', 'aria-label', 'aria-labelledby',
   ];
 
   get value() { return this._attr('value', ''); }
@@ -92,7 +97,12 @@ export class WBottomNavigation extends WElement {
     if (this.absolute) classes.push('w-bottom-navigation--absolute');
     if (!this.active) classes.push('w-bottom-navigation--inactive');
 
-    return `<nav class="${classes.join(' ')}" role="navigation" aria-label="Bottom navigation" aria-hidden="${this.active ? 'false' : 'true'}"${this._attrs({ 'data-name': this.name })}${this._styleAttr()}><slot></slot></nav>`;
+    return `<nav class="${classes.join(' ')}" role="navigation"${this._navName()} aria-hidden="${this.active ? 'false' : 'true'}"${this._attrs({ 'data-name': this.name })}${this._styleAttr()}><slot></slot></nav>`;
+  }
+
+  _navName() {
+    const label = this.getAttribute('aria-label') || this.getAttribute('label') || 'Bottom navigation';
+    return this._attrs({ 'aria-labelledby': this.getAttribute('aria-labelledby') || false, 'aria-label': label });
   }
 
   _styleAttr() {

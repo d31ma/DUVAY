@@ -1472,6 +1472,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-haspopup option."
         ],
         [
+          "aria-keyshortcuts",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-keyshortcuts option."
+        ],
+        [
           "aria-label",
           "string | number | boolean",
           "—",
@@ -15323,6 +15329,18 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -15393,6 +15411,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "loading",
@@ -16689,6 +16713,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the aria-haspopup option."
+        ],
+        [
+          "aria-keyshortcuts",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-keyshortcuts option."
         ],
         [
           "aria-label",
@@ -41340,6 +41370,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-haspopup option."
         ],
         [
+          "aria-keyshortcuts",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-keyshortcuts option."
+        ],
+        [
           "aria-label",
           "string | number | boolean",
           "—",
@@ -43590,6 +43626,18 @@ export const GENERATED_API_DATA = {
           "| 'single-leaf' | 'leaf' | 'independent' | 'single-independent' | ActiveStrategy | ((mandatory: boolean) => ActiveStrategy)",
           "—",
           "Affects how items with children behave when activated. If not specified, the **single-independent** strategy will be used. - **leaf:** Only leaf nodes (items without children) can be activated. - **single-leaf:** Similar as **leaf**, but only a single item can be activated at a time. - **independent:** All nodes can be activated whether they have children or not. - **single-independent:** Similar as **independent**, but only a single item can be activated at a time."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",

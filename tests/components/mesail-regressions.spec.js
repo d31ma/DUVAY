@@ -65,3 +65,79 @@ test('menu opens from an external activator', async ({ mount, page }) => {
   await expect(page.locator('#anchor')).toHaveAttribute('aria-expanded', 'true');
   await expect(page.getByText('Archive')).toBeVisible();
 });
+
+test('card with a divider child keeps every child after re-render', async ({ mount, page }) => {
+  await mount('<w-card id="c" variant="outlined"><div id="top">Top</div><w-divider id="line"></w-divider><div id="bottom">Bottom</div></w-card>');
+  await page.locator('#c').evaluate((el) => { el.setAttribute('elevation', '2'); el.setAttribute('variant', 'tonal'); });
+  await expect(page.locator('#top')).toBeVisible();
+  await expect(page.locator('#line')).toBeVisible();
+  await expect(page.locator('#bottom')).toBeVisible();
+  await expect(page.locator('#c slot[hidden] > *')).toHaveCount(0);
+});
+
+test('bottom navigation keeps its default name', async ({ mount, page }) => {
+  await mount('<w-bottom-navigation><w-bottom-nav-item icon="a" label="Inbox"></w-bottom-nav-item></w-bottom-navigation>');
+  await expect(page.getByRole('navigation', { name: 'Bottom navigation' })).toHaveCount(1);
+});
+
+test('bottom navigation takes its name from aria-label', async ({ mount, page }) => {
+  await mount('<w-bottom-navigation aria-label="Main"><w-bottom-nav-item icon="a" label="Inbox"></w-bottom-nav-item></w-bottom-navigation>');
+  await expect(page.getByRole('navigation', { name: 'Main' })).toHaveCount(1);
+});
+
+test('bottom navigation takes its name from label', async ({ mount, page }) => {
+  await mount('<w-bottom-navigation label="Main"><w-bottom-nav-item icon="a" label="Inbox"></w-bottom-nav-item></w-bottom-navigation>');
+  await expect(page.getByRole('navigation', { name: 'Main' })).toHaveCount(1);
+});
+
+test('bottom navigation takes its name from aria-labelledby', async ({ mount, page }) => {
+  await mount('<h2 id="nav-name">Sections</h2><w-bottom-navigation aria-labelledby="nav-name"><w-bottom-nav-item icon="a" label="Inbox"></w-bottom-nav-item></w-bottom-navigation>');
+  await expect(page.getByRole('navigation', { name: 'Sections' })).toHaveCount(1);
+});
+
+test('bottom navigation name follows a changed aria-label', async ({ mount, page }) => {
+  await mount('<w-bottom-navigation id="b" aria-label="Main"><w-bottom-nav-item icon="a" label="Inbox"></w-bottom-nav-item></w-bottom-navigation>');
+  await page.locator('#b').evaluate((el) => el.setAttribute('aria-label', 'Sections'));
+  await expect(page.getByRole('navigation', { name: 'Sections' })).toHaveCount(1);
+});
+
+test('btn forwards aria-keyshortcuts to its button', async ({ mount, page }) => {
+  await mount('<w-btn id="b" aria-keyshortcuts="Control+S">Save</w-btn>');
+  await expect(page.locator('#b button')).toHaveAttribute('aria-keyshortcuts', 'Control+S');
+});
+
+test('btn link form forwards aria-keyshortcuts', async ({ mount, page }) => {
+  await mount('<w-btn id="b" href="#home" aria-keyshortcuts="Alt+H">Home</w-btn>');
+  await expect(page.locator('#b a')).toHaveAttribute('aria-keyshortcuts', 'Alt+H');
+});
+
+test('icon btn forwards aria-keyshortcuts to its button', async ({ mount, page }) => {
+  await mount('<w-icon-btn id="b" icon="search" aria-label="Search" aria-keyshortcuts="Meta+K"></w-icon-btn>');
+  await expect(page.locator('#b button')).toHaveAttribute('aria-keyshortcuts', 'Meta+K');
+});
+
+test('btn aria-keyshortcuts follows an attribute change', async ({ mount, page }) => {
+  await mount('<w-btn id="b" aria-keyshortcuts="Control+S">Save</w-btn>');
+  await page.locator('#b').evaluate((el) => el.setAttribute('aria-keyshortcuts', 'Meta+S'));
+  await expect(page.locator('#b button')).toHaveAttribute('aria-keyshortcuts', 'Meta+S');
+});
+
+test('list takes its name from aria-label', async ({ mount, page }) => {
+  await mount('<w-list aria-label="Monday 10 November"><w-list-item title="Run"></w-list-item></w-list>');
+  await expect(page.getByRole('list', { name: 'Monday 10 November' })).toHaveCount(1);
+});
+
+test('list takes its name from aria-labelledby', async ({ mount, page }) => {
+  await mount('<h3 id="day">Tuesday</h3><w-list aria-labelledby="day"><w-list-item title="Swim"></w-list-item></w-list>');
+  await expect(page.getByRole('list', { name: 'Tuesday' })).toHaveCount(1);
+});
+
+test('selectable list passes aria-label to its listbox', async ({ mount, page }) => {
+  await mount('<w-list selectable aria-label="Workouts"><w-list-item title="Run" value="run"></w-list-item></w-list>');
+  await expect(page.getByRole('listbox', { name: 'Workouts' })).toHaveCount(1);
+});
+
+test('list without a name renders no aria-label', async ({ mount, page }) => {
+  await mount('<w-list id="l"><w-list-item title="Run"></w-list-item></w-list>');
+  await expect(page.locator('#l [role="list"]')).not.toHaveAttribute('aria-label', /.*/);
+});

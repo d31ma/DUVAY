@@ -30,8 +30,8 @@
  *
  * Forwarded ARIA — authored on the host, rendered on the inner control:
  *   aria-label, aria-labelledby, aria-describedby, aria-expanded, aria-controls,
- *   aria-haspopup, aria-current, aria-disabled, and (button form only)
- *   aria-pressed.
+ *   aria-haspopup, aria-current, aria-keyshortcuts, aria-disabled, and
+ *   (button form only) aria-pressed.
  *
  * Focusable disabled state — aria-disabled="true" on the host (without
  * `disabled`) keeps the control in the tab order and readable by screen
@@ -54,14 +54,14 @@ import { wSafeUrl, wSetValue } from './utils.js';
 export class WBtn extends WElement {
 
   static attrs = ['variant', 'color', 'size', 'disabled', 'href', 'loading', 'icon', 'icon-set', 'prepend-icon', 'append-icon', 'block', 'stacked', 'active', 'aria-label', 'ripple', 'text', 'value', 'flat', 'slim', 'selected-class', 'spaced',
-    'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-pressed',
+    'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-pressed', 'aria-keyshortcuts',
     'type', 'target', 'rel', 'aria-disabled'];
 
   // ARIA state authored on the host is forwarded to the rendered control,
   // because that control — not the host — is what the accessibility tree
   // exposes. `aria-pressed` is a toggle-button state, so it is withheld from
   // the anchor form, where it would be invalid.
-  static forwardedAria = ['aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current'];
+  static forwardedAria = ['aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-keyshortcuts'];
   static forwardedButtonAria = ['aria-pressed'];
 
   // Only string-valued attributes are reflected here. Boolean attributes

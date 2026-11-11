@@ -186,4 +186,18 @@
       </div>
     </div>
   </demo-compare>
+  <h2>Keyboard shortcuts</h2>
+  <p>Set <code>aria-keyshortcuts</code> on <code>w-btn</code> or <code>w-icon-btn</code> to tell assistive technology which keys activate the button. It is forwarded to the rendered <code>&lt;button&gt;</code> or link. The attribute only announces the shortcut; bind the keys yourself, for example with <code>w-hotkey</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-row ga-2 flex-wrap">
+        <button class="w-btn w-btn-filled" aria-keyshortcuts="Control+S">Save</button>
+      </div>
+    </div>
+    <div slot="wc">
+      <div class="w-row ga-2 flex-wrap">
+        <w-btn variant="filled" aria-keyshortcuts="Control+S">Save</w-btn>
+      </div>
+    </div>
+  </demo-compare>
 </doc-layout>

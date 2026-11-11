@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
+  `aria-labelledby` on the host and puts it on the rendered `<nav>`. The
+  default stays "Bottom navigation".
+- `w-btn` and `w-icon-btn` forward `aria-keyshortcuts` to the rendered
+  `<button>` (or link).
+- `w-list` passes a host `aria-label` and `aria-labelledby` to the element
+  with role="list" (or role="listbox"), so a list can have an accessible name.
+
+### Tests
+
+- `w-card` regression tests: plain children, and a `w-divider` child between
+  them, stay visible after a re-render (the fix shipped in 26.46.03).
+
 ## 26.46.03 - 2026-11-11
 
 ### Added

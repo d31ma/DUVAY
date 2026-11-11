@@ -25,6 +25,8 @@
  *   select-strategy     - leaf | independent | classic | trunk | branch | single-*
  *   open-strategy       - multiple (default) | single | list
  *   return-object       - change events carry the source item object
+ *   aria-label          - accessible name of the list (or listbox)
+ *   aria-labelledby     - id of the element that names the list; wins over aria-label
  *
  * Slots:
  *   default - w-list-item elements, dividers, and subheaders
@@ -35,6 +37,8 @@
  */
 
 class WList extends WElement {
+
+  static nameAttrs = ['aria-label', 'aria-labelledby'];
 
   static attrs = [
     'items',
@@ -68,6 +72,8 @@ class WList extends WElement {
     'select-strategy',
     'open-strategy',
     'return-object',
+    'aria-label',
+    'aria-labelledby',
   ];
 
   get itemsAttr() { return this._attr('items', ''); }
@@ -129,6 +135,7 @@ class WList extends WElement {
       // Track mode keeps DOM focus on the container (or an outside input) and
       // points at the active row with aria-activedescendant instead.
       tabindex: this.navigationStrategy === 'track' && '0',
+      ...this._ariaAttrs(WList.nameAttrs),
     });
     const generated = this.itemsAttr ? this._renderRoot() : '<slot></slot>';
 

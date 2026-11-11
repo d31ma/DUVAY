@@ -83,6 +83,10 @@
     "hover-elevation": {
       "type": "number"
     },
+    "label": {
+      "type": "string",
+      "description": "accessible name of the navigation landmark (default \"Bottom navigation\")"
+    },
     "loading": {
       "type": "boolean",
       "default": false
