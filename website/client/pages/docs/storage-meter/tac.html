@@ -1,0 +1,107 @@
+<doc-layout>
+  <h1>Storage meter</h1>
+  <p><code>w-storage-meter</code> shows how much space an app&#8217;s offline copy uses on the device. Give it <code>value</code> and <code>max</code> in bytes; it shows a label, a bar in the linear progress style, and &#8220;312 MB of 1 GB used&#8221;. From <code>warn-at</code> (default 0.8) it says &#8220;Almost full&#8221; with an icon and the warning colour; from <code>full-at</code> (default 0.95) it says &#8220;Full&#8221; with the error colour. The words are always shown, so the state never depends on colour alone. It is part of the <a href="https://github.com/d31ma/DUVAY/blob/develop/docs/offline-states.md">offline states</a>.</p>
+
+  <h2>Levels</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-col ga-4">
+        <div class="w-storage-meter" role="meter" aria-labelledby="css-meter-normal" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="312000000" aria-valuetext="312 MB of 1 GB used">
+          <div class="w-storage-meter-head"><span class="w-storage-meter-label" id="css-meter-normal">Space used on this device</span></div>
+          <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 31.2%"></div></div>
+          <div class="w-storage-meter-value">312 MB of 1 GB used</div>
+        </div>
+        <div class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-warn" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="850000000" aria-valuetext="850 MB of 1 GB used, Almost full">
+          <div class="w-storage-meter-head">
+            <span class="w-storage-meter-label" id="css-meter-warn">Space used on this device</span>
+            <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Almost full</span>
+          </div>
+          <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 85%"></div></div>
+          <div class="w-storage-meter-value">850 MB of 1 GB used</div>
+        </div>
+        <div class="w-storage-meter w-storage-meter--full" role="meter" aria-labelledby="css-meter-full" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="1000000000" aria-valuetext="1.2 GB of 1 GB used, Full">
+          <div class="w-storage-meter-head">
+            <span class="w-storage-meter-label" id="css-meter-full">Space used on this device</span>
+            <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Full</span>
+          </div>
+          <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 100%"></div></div>
+          <div class="w-storage-meter-value">1.2 GB of 1 GB used</div>
+        </div>
+      </div>
+    </div>
+    <div slot="wc">
+      <div class="w-col ga-4">
+        <w-storage-meter value="312000000" max="1000000000"></w-storage-meter>
+        <w-storage-meter value="850000000" max="1000000000"></w-storage-meter>
+        <w-storage-meter value="1200000000" max="1000000000"></w-storage-meter>
+      </div>
+    </div>
+  </demo-compare>
+
+  <h2>One meter per domain</h2>
+  <p>When the copy has several parts, show one meter per row, each with its own <code>label</code> and budget. A single bar split into coloured parts is not offered: it would need colour to tell the parts apart.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-col ga-4">
+        <div class="w-storage-meter" role="meter" aria-labelledby="css-meter-mail" aria-valuemin="0" aria-valuemax="2000000000" aria-valuenow="640000000" aria-valuetext="640 MB of 2 GB used">
+          <div class="w-storage-meter-head"><span class="w-storage-meter-label" id="css-meter-mail">Mail</span></div>
+          <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 32%"></div></div>
+          <div class="w-storage-meter-value">640 MB of 2 GB used</div>
+        </div>
+        <div class="w-storage-meter" role="meter" aria-labelledby="css-meter-files" aria-valuemin="0" aria-valuemax="500000000" aria-valuenow="120000000" aria-valuetext="120 MB of 500 MB used">
+          <div class="w-storage-meter-head"><span class="w-storage-meter-label" id="css-meter-files">Files</span></div>
+          <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 24%"></div></div>
+          <div class="w-storage-meter-value">120 MB of 500 MB used</div>
+        </div>
+      </div>
+    </div>
+    <div slot="wc">
+      <div class="w-col ga-4">
+        <w-storage-meter label="Mail" value="640000000" max="2000000000"></w-storage-meter>
+        <w-storage-meter label="Files" value="120000000" max="500000000"></w-storage-meter>
+      </div>
+    </div>
+  </demo-compare>
+
+  <h2>Without a budget</h2>
+  <p>With <code>max</code> 0 (the default) the meter shows only the space used, with an empty bar.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-storage-meter" role="meter" aria-labelledby="css-meter-nomax" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="312 MB">
+        <div class="w-storage-meter-head"><span class="w-storage-meter-label" id="css-meter-nomax">Space used on this device</span></div>
+        <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 0%"></div></div>
+        <div class="w-storage-meter-value">312 MB</div>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-storage-meter value="312000000"></w-storage-meter>
+    </div>
+  </demo-compare>
+
+  <h2>Translated text</h2>
+  <p>Every text can be replaced. <code>value-text</code> takes <code>{used}</code> and <code>{max}</code>; byte sizes follow the closest <code>lang</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <div lang="de" class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-de" aria-valuemin="0" aria-valuemax="12000000000" aria-valuenow="10500000000" aria-valuetext="11 GB von 12 GB belegt, Fast voll">
+        <div class="w-storage-meter-head">
+          <span class="w-storage-meter-label" id="css-meter-de">Belegter Speicher</span>
+          <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Fast voll</span>
+        </div>
+        <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 87.5%"></div></div>
+        <div class="w-storage-meter-value">11 GB von 12 GB belegt</div>
+      </div>
+    </div>
+    <div slot="wc">
+      <div lang="de">
+        <w-storage-meter label="Belegter Speicher" value="10500000000" max="12000000000" value-text="{used} von {max} belegt" warn-text="Fast voll" full-text="Voll"></w-storage-meter>
+      </div>
+    </div>
+  </demo-compare>
+
+  <h2>Accessibility</h2>
+  <ul>
+    <li>The rendered element has <code>role="meter"</code> with <code>aria-valuemin</code>, <code>aria-valuemax</code>, <code>aria-valuenow</code> (in bytes, never above <code>max</code>) and <code>aria-valuetext</code>, for example &#8220;850 MB of 1 GB used, Almost full&#8221;. Its name is the visible <code>label</code>.</li>
+    <li>It is not a live region and takes no focus. Changes are read when the user reaches the meter.</li>
+    <li>&#8220;Almost full&#8221; and &#8220;Full&#8221; are shown in words with an icon. The bar keeps 3:1 against its track, and the text 4.5:1, in the light, dark and high-contrast themes on every skin.</li>
+  </ul>
+</doc-layout>

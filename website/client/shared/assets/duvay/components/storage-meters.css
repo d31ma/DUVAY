@@ -1,0 +1,88 @@
+/* DuVay — Storage meter styles (<w-storage-meter>, docs/offline-states.md §5).
+ *
+ * The bar reuses the linear progress classes (.w-progress, .w-progress-bar).
+ * "Almost full" and "Full" are shown in words with an icon, never by colour
+ * alone.
+ *
+ * Component variables (not theme tokens):
+ *   --w-storage-meter-fill  the bar colour; primary, then warning, then error.
+ *                           The warning fill mixes in --w-on-warning-container
+ *                           so the bar keeps 3:1 against its track in the light
+ *                           theme, where plain --w-warning is under 3:1.
+ */
+@import "../core.css";
+@import "./progress.css";
+
+w-storage-meter {
+  display: block;
+}
+
+.w-storage-meter {
+  --w-storage-meter-fill: var(--w-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-xs);
+  inline-size: 100%;
+  min-inline-size: 0;
+  color: var(--w-text);
+  font-size: var(--w-font-sm);
+  line-height: var(--w-line-height-normal);
+}
+
+.w-storage-meter--warn {
+  --w-storage-meter-fill: color-mix(in srgb, var(--w-warning) 70%, var(--w-on-warning-container));
+}
+
+.w-storage-meter--full {
+  --w-storage-meter-fill: var(--w-error);
+}
+
+.w-storage-meter-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w-space-xs) var(--w-space-sm);
+}
+
+.w-storage-meter-label {
+  font-weight: var(--w-font-weight-medium);
+  overflow-wrap: anywhere;
+}
+
+.w-storage-meter-state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-xs);
+  padding-block: var(--w-space-0);
+  padding-inline: var(--w-space-sm);
+  border-radius: var(--w-radius-pill);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-semibold);
+}
+
+.w-storage-meter--warn .w-storage-meter-state {
+  background: var(--w-warning-container);
+  color: var(--w-on-warning-container);
+}
+
+.w-storage-meter--full .w-storage-meter-state {
+  background: var(--w-error-container);
+  color: var(--w-on-error-container);
+}
+
+.w-storage-meter-icon {
+  inline-size: 1em;
+  block-size: 1em;
+  flex: none;
+}
+
+.w-storage-meter-track {
+  --w-progress-height: var(--w-space-2);
+  --w-progress-color: var(--w-storage-meter-fill);
+}
+
+.w-storage-meter-value {
+  color: var(--w-text-subtle);
+  font-variant-numeric: tabular-nums;
+}

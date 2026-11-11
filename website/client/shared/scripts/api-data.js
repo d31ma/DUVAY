@@ -1959,6 +1959,21 @@ export const API_DATA = {
     },
   ],
 
+  '/docs/storage-meter': [
+    {
+      tag: 'w-storage-meter',
+      attributes: [
+        ['value', 'number (bytes)', '0', 'Space used.'],
+        ['max', 'number (bytes)', '0', 'The budget; 0 shows the value without a bar fill.'],
+        ['label', 'string', 'Space used on this device', 'Visible label and accessible name.'],
+        ['warn-at', 'number (0–1)', '0.8', 'From this share: warning colour and the warn text.'],
+        ['full-at', 'number (0–1)', '0.95', 'From this share: error colour and the full text. A value above max counts as full.'],
+        ['value-text', 'string with {used}, {max}', '{used} of {max} used', 'Value text, shown and spoken.'],
+        ['warn-text', 'string', 'Almost full', 'Words shown and spoken from warn-at.'],
+        ['full-text', 'string', 'Full', 'Words shown and spoken from full-at.'],
+      ],
+    },
+  ],
   '/docs/empty-states': [
     {
       tag: 'w-empty',
@@ -2595,6 +2610,7 @@ Object.assign(API_DATA, {
     ...apiBlocks('/docs/progress-circular', ['w-progress-circular']),
     ...apiBlocks('/docs/skeleton-loaders', ['w-skeleton', 'w-skeleton-loader']),
     ...apiBlocks('/docs/empty-states', ['w-empty', 'w-empty-state']),
+    ...apiBlocks('/docs/storage-meter', ['w-storage-meter']),
     ...apiBlocks('/docs/alerts', ['w-alert', 'w-alert-title']),
     ...apiBlocks('/docs/snackbar', ['w-snackbar']),
   ],

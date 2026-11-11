@@ -214,6 +214,7 @@ import './components/fade-transition.js';
 import './components/ligature-icon.js';
 import './components/list-group-activator.js';
 import './components/progress.js';
+import './components/storage-meter.js';
 import './components/heatmap.js';
 import './components/highlight.js';
 import './components/mask-input.js';

@@ -12,6 +12,7 @@
 @import "./components/tooltips.css";
 @import "./components/ripple.css";
 @import "./components/progress.css";
+@import "./components/storage-meters.css";
 @import "./components/snackbars.css";
 @import "./components/ratings.css";
 @import "./components/feedback-aliases.css";

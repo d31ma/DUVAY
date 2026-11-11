@@ -60130,6 +60130,229 @@ export const GENERATED_API_DATA = {
       ]
     }
   ],
+  "/docs/storage-meter": [
+    {
+      "tag": "w-storage-meter",
+      "attributes": [
+        [
+          "active-color",
+          "boolean | string",
+          "—",
+          "Sets the active-color option."
+        ],
+        [
+          "base-color",
+          "string | number | boolean",
+          "—",
+          "Sets the base-color option."
+        ],
+        [
+          "bg-color",
+          "string | number | boolean",
+          "—",
+          "Sets the bg-color option."
+        ],
+        [
+          "border",
+          "boolean | string",
+          "—",
+          "Sets the border option."
+        ],
+        [
+          "class",
+          "string | number | boolean",
+          "—",
+          "Sets the class option."
+        ],
+        [
+          "color",
+          "string | number | boolean",
+          "—",
+          "Sets the color option."
+        ],
+        [
+          "density",
+          "string | number | boolean",
+          "—",
+          "Sets the density option."
+        ],
+        [
+          "disabled",
+          "boolean | string",
+          "—",
+          "Sets the disabled option."
+        ],
+        [
+          "elevation",
+          "string | number | boolean",
+          "—",
+          "Sets the elevation option."
+        ],
+        [
+          "full-at",
+          "string | number | boolean",
+          "—",
+          "Sets the full-at option."
+        ],
+        [
+          "full-text",
+          "string | number | boolean",
+          "—",
+          "Sets the full-text option."
+        ],
+        [
+          "height",
+          "string | number | boolean",
+          "—",
+          "Sets the height option."
+        ],
+        [
+          "hover-elevation",
+          "boolean | string",
+          "—",
+          "Sets the hover-elevation option."
+        ],
+        [
+          "id",
+          "string | number | boolean",
+          "—",
+          "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
+        ],
+        [
+          "loading",
+          "boolean | string",
+          "—",
+          "Sets the loading option."
+        ],
+        [
+          "location",
+          "string | number | boolean",
+          "—",
+          "Sets the location option."
+        ],
+        [
+          "max",
+          "string | number | boolean",
+          "—",
+          "Sets the max option."
+        ],
+        [
+          "max-height",
+          "string | number | boolean",
+          "—",
+          "Sets the max-height option."
+        ],
+        [
+          "max-width",
+          "string | number | boolean",
+          "—",
+          "Sets the max-width option."
+        ],
+        [
+          "min-height",
+          "string | number | boolean",
+          "—",
+          "Sets the min-height option."
+        ],
+        [
+          "min-width",
+          "string | number | boolean",
+          "—",
+          "Sets the min-width option."
+        ],
+        [
+          "position",
+          "string | number | boolean",
+          "—",
+          "Sets the position option."
+        ],
+        [
+          "readonly",
+          "boolean | string",
+          "—",
+          "Sets the readonly option."
+        ],
+        [
+          "role",
+          "string | number | boolean",
+          "—",
+          "Sets the role option."
+        ],
+        [
+          "rounded",
+          "boolean | string",
+          "—",
+          "Sets the rounded option."
+        ],
+        [
+          "style",
+          "string | number | boolean",
+          "—",
+          "Sets the style option."
+        ],
+        [
+          "tabindex",
+          "string | number | boolean",
+          "—",
+          "Sets the tabindex option."
+        ],
+        [
+          "theme",
+          "string | number | boolean",
+          "—",
+          "Sets the theme option."
+        ],
+        [
+          "tile",
+          "boolean | string",
+          "—",
+          "Sets the tile option."
+        ],
+        [
+          "value",
+          "string | number | boolean",
+          "—",
+          "Sets the value option."
+        ],
+        [
+          "value-text",
+          "string | number | boolean",
+          "—",
+          "Sets the value-text option."
+        ],
+        [
+          "w-theme",
+          "string | number | boolean",
+          "—",
+          "Sets the w-theme option."
+        ],
+        [
+          "warn-at",
+          "string | number | boolean",
+          "—",
+          "Sets the warn-at option."
+        ],
+        [
+          "warn-text",
+          "string | number | boolean",
+          "—",
+          "Sets the warn-text option."
+        ],
+        [
+          "width",
+          "string | number | boolean",
+          "—",
+          "Sets the width option."
+        ]
+      ]
+    }
+  ],
   "/docs/tabs": [
     {
       "tag": "w-tab",

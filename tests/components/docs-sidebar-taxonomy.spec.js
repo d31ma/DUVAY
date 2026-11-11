@@ -31,7 +31,7 @@ const vuetifyComponentTitles = [
   'Slide groups', 'Steppers', 'Steppers Vertical', 'Windows',
   'Feedback', 'Alerts', 'Badges', 'Banners', 'Empty states', 'Hover',
   'Progress circular', 'Progress linear', 'Progress', 'Ratings', 'Skeleton loaders',
-  'Snackbars', 'Snackbar Queue', 'Timelines',
+  'Snackbars', 'Snackbar Queue', 'Storage meter', 'Timelines',
   'Images & icons', 'Aspect ratios', 'Avatars', 'Avatar groups', 'Icons', 'Images', 'Parallax', 'Videos',
   'Pickers', 'Color pickers', 'Date pickers', 'Date range pickers', 'Month pickers', 'Time pickers',
   'Providers', 'Defaults providers', 'Locale providers', 'Theme providers',

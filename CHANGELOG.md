@@ -12,6 +12,14 @@
   templates) and `WLiveAnnouncer` (`src/components/live-announcer.js`: one
   polite message line per page that groups a burst of changes into one
   announcement), and the conformance suite `spec/fixtures/offline.json`.
+- `w-storage-meter` (offline states, slice S3): the space an offline copy
+  uses on the device. `value` and `max` in bytes, `label`, `warn-at`
+  (default 0.8) and `full-at` (default 0.95). "Almost full" and "Full" are
+  shown in words with an icon, not only in colour. It renders
+  `role="meter"` with `aria-valuetext` such as "850 MB of 1 GB used,
+  Almost full", is not live and takes no focus. Every text can be replaced
+  (`value-text`, `warn-text`, `full-text`). Styles in
+  `components/storage-meters.css`; docs page `/docs/storage-meter`.
 
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The
