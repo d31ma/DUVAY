@@ -139,6 +139,10 @@
       "type": "boolean",
       "default": false
     },
+    "rel": {
+      "type": "string",
+      "description": "link relation (href form only); `noopener` is added whenever target=\"_blank\""
+    },
     "ripple": {
       "type": "boolean",
       "default": false,
@@ -181,6 +185,10 @@
       "default": false,
       "description": "stacks icon above the label"
     },
+    "target": {
+      "type": "string",
+      "description": "link target (href form only), e.g. _blank"
+    },
     "text": {
       "type": "string",
       "description": "label text, used instead of slotted content"
@@ -191,6 +199,15 @@
     "tile": {
       "type": "boolean",
       "default": false
+    },
+    "type": {
+      "type": "enum",
+      "values": [
+        "button",
+        "submit",
+        "reset"
+      ],
+      "description": "button | submit | reset, put on the inner <button>. Unset keeps the native default (submit inside a form)"
     },
     "value": {
       "type": "string",

@@ -66,6 +66,7 @@ export const API_DATA = {
     attributes: [
       ['for', 'element id', '—', 'Id of the navigation drawer to toggle.'],
       ['aria-label', 'string', 'Open navigation', 'Accessible label while the drawer is closed.'],
+      ['type / target / rel / aria-disabled', 'string', '—', 'Inherited from w-btn: button type, link target and relation (noopener added for _blank), and the focusable disabled state.'],
     ],
   }],
 
@@ -127,6 +128,9 @@ export const API_DATA = {
         ['aria-label', 'string', '—', 'Accessible label, required for icon-only buttons.'],
         ['aria-pressed', 'true | false | mixed', '—', 'Toggle state, forwarded to the rendered button. Omitted from the link form, where it is not valid.'],
         ['aria-expanded / aria-controls / aria-haspopup / aria-current / aria-labelledby / aria-describedby', 'string', '—', 'ARIA authored on the host is forwarded to the rendered control, which is what the accessibility tree exposes.'],
+        ['type', 'button | submit | reset', '—', 'Type of the rendered button. Unset keeps the native default (submit inside a form).'],
+        ['target / rel', 'string', '—', 'Link target and relation for the href form. target="_blank" always adds noopener to rel.'],
+        ['aria-disabled', 'true | false', '—', 'aria-disabled="true" keeps the button focusable and announced but blocks clicks, Enter, Space, form submit and navigation.'],
       ],
       events: [
         ['focus', '—', 'Fired when the control gains focus.'],
@@ -242,7 +246,7 @@ export const API_DATA = {
         ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
         ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry, rendered inside the control.'],
         ['icon-set', 'string', '—', 'Icon set prefix for the icon attributes.'],
-        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
         ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
         ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
         ['hint', 'string', '—', 'Helper text below the control.'],
@@ -291,7 +295,7 @@ export const API_DATA = {
         ['color', 'string', 'primary', 'Token color for the focus accent.'],
         ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
         ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry.'],
-        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
         ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
         ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
         ['hint / persistent-hint', 'string / boolean', '—', 'Helper text below the control.'],
@@ -2377,6 +2381,8 @@ export const API_DATA = {
   '/docs/text-fields': [{
     tag: 'w-text-field',
     attributes: [
+      ['inputmode / enterkeyhint', 'string', '—', 'Virtual keyboard hints, forwarded to the native control.'],
+      ['aria-label / aria-labelledby / aria-describedby / aria-controls / aria-details', 'string', '—', 'ARIA authored on the host is forwarded to the native control; aria-describedby is joined with the hint / error row.'],
       ['type', 'string', 'text', 'Any native input type.'],
       ['value', 'string', '—', 'Current value (reflected; also a property).'],
       ['label', 'string', '—', 'Floating label.'],
@@ -2388,7 +2394,7 @@ export const API_DATA = {
       ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
       ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry, rendered inside the control.'],
       ['icon-set', 'string', '—', 'Icon set prefix for the icon attributes.'],
-      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
       ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
       ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
       ['hint', 'string', '—', 'Helper text below the control.'],
@@ -2415,6 +2421,8 @@ export const API_DATA = {
   '/docs/textareas': [{
     tag: 'w-textarea',
     attributes: [
+      ['inputmode / enterkeyhint', 'string', '—', 'Virtual keyboard hints, forwarded to the native control.'],
+      ['aria-label / aria-labelledby / aria-describedby / aria-controls / aria-details', 'string', '—', 'ARIA authored on the host is forwarded to the native control; aria-describedby is joined with the hint / error row.'],
       ['value', 'string', '—', 'Current value (reflected; also a property).'],
       ['label', 'string', '—', 'Floating label.'],
       ['placeholder', 'string', '—', 'Placeholder text.'],
@@ -2428,7 +2436,7 @@ export const API_DATA = {
       ['color', 'string', 'primary', 'Token color for the focus accent.'],
       ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
       ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry.'],
-      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
       ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
       ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
       ['hint / persistent-hint', 'string / boolean', '—', 'Helper text below the control.'],

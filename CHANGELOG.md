@@ -45,6 +45,18 @@
   and tag; `filter-keys` accepts `snippet` and `tag`.
 - `w-bottom-nav-item` `icon-set`; `icon` now resolves through `WIcons`
   (`set:name` works). The default `text` set renders exactly as before.
+- `w-btn` takes `type` (button | submit | reset) for the inner `<button>`;
+  unset keeps the native default. An authored `type` also wins over the
+  `type="button"` default of `w-icon-btn` and `w-app-bar-nav-icon`.
+- `w-btn` link form takes `target` and `rel`; `target="_blank"` always adds
+  `noopener`.
+- `w-btn` forwards `aria-disabled`. `aria-disabled="true"` (without
+  `disabled`) is a focusable disabled state: the button stays in the tab
+  order but clicks, Enter, Space, form submit and link navigation are blocked.
+- `w-text-field` (and `w-textarea`) forward `inputmode`, `enterkeyhint`,
+  `aria-label`, `aria-labelledby`, `aria-describedby` (joined with the
+  field's hint / error row), `aria-controls` and `aria-details` to the
+  native control.
 
 ### Fixed
 
@@ -86,6 +98,20 @@
 - `w-avatar`: a status dot is no longer labelled "warning badge". The
   presence ("Online", "Away", ...) is part of the avatar's accessible name
   ("Ana Lee, Online") and the dot is hidden from assistive technology.
+- `w-text-field` clear button is now keyboard reachable (WCAG 2.1.1): it is
+  in the tab order and named "Clear <label>". It is disabled, and so out of
+  the tab order, while the field is empty or read-only.
+- `w-otp` / `w-otp-input` spread a whole code that autofill, a password
+  manager or the `one-time-code` suggestion writes into one box across the
+  boxes, and emit the usual `input` and `change` events. The boxes no longer
+  set `maxlength="1"`, which made browsers cut such a code to one character;
+  a typed key still replaces the box's character.
+
+### Changed
+
+- `w-text-field` long values: the single-line `<input>` cannot wrap. The
+  header docs now point to `<w-textarea rows="1" auto-grow>` for values that
+  must wrap; no new attribute was added.
 
 ## 26.35.01-1 - 2026-08-24
 

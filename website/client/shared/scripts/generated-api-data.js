@@ -1454,6 +1454,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -1640,6 +1646,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "boolean | { class: string; keys: string[] }",
           "—",
@@ -1700,6 +1712,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -1716,6 +1734,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -12208,6 +12232,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -12298,6 +12352,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -12374,6 +12434,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",
@@ -12669,6 +12735,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "auto-grow",
           "boolean",
           "—",
@@ -12765,6 +12861,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -12841,6 +12943,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",
@@ -16565,6 +16673,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -16745,6 +16859,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "boolean | { class: string; keys: string[] }",
           "—",
@@ -16805,6 +16925,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -16821,6 +16947,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -41136,6 +41268,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -41352,6 +41490,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "string | number | boolean",
           "—",
@@ -41424,6 +41568,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -41440,6 +41590,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -45962,6 +46118,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -46052,6 +46238,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -46128,6 +46320,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",

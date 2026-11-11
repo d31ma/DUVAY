@@ -6,6 +6,11 @@
  *   size          - xs | sm | lg | xl, or x-small | small | default | large | x-large
  *   color         - primary | success | danger | warning
  *   href          - if set, renders an <a> tag instead of <button>
+ *   type          - button | submit | reset, put on the inner <button>. Unset
+ *                   keeps the native default (submit inside a form)
+ *   target        - link target (href form only), e.g. _blank
+ *   rel           - link relation (href form only); `noopener` is added
+ *                   whenever target="_blank"
  *   disabled      - disables the button
  *   loading       - shows a loading spinner and blocks pointer interaction
  *   icon          - leading icon text / glyph (legacy alias for prepend-icon)
@@ -25,7 +30,13 @@
  *
  * Forwarded ARIA — authored on the host, rendered on the inner control:
  *   aria-label, aria-labelledby, aria-describedby, aria-expanded, aria-controls,
- *   aria-haspopup, aria-current, and (button form only) aria-pressed.
+ *   aria-haspopup, aria-current, aria-disabled, and (button form only)
+ *   aria-pressed.
+ *
+ * Focusable disabled state — aria-disabled="true" on the host (without
+ * `disabled`) keeps the control in the tab order and readable by screen
+ * readers, but blocks activation: clicks, Enter and Space do nothing, links do
+ * not navigate and forms do not submit.
  *
  * Slots:
  *   default   - button label / icon content
@@ -43,7 +54,8 @@ import { wSafeUrl, wSetValue } from './utils.js';
 export class WBtn extends WElement {
 
   static attrs = ['variant', 'color', 'size', 'disabled', 'href', 'loading', 'icon', 'icon-set', 'prepend-icon', 'append-icon', 'block', 'stacked', 'active', 'aria-label', 'ripple', 'text', 'value', 'flat', 'slim', 'selected-class', 'spaced',
-    'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-pressed'];
+    'aria-labelledby', 'aria-describedby', 'aria-expanded', 'aria-controls', 'aria-haspopup', 'aria-current', 'aria-pressed',
+    'type', 'target', 'rel', 'aria-disabled'];
 
   // ARIA state authored on the host is forwarded to the rendered control,
   // because that control — not the host — is what the accessibility tree
@@ -67,6 +79,8 @@ export class WBtn extends WElement {
   };
 
   // Vuetify spells the sizes out; DuVay's CSS uses the short scale.
+  static buttonTypes = ['button', 'submit', 'reset'];
+
   static sizeAliases = { 'x-small': 'xs', small: 'sm', default: '', large: 'lg', 'x-large': 'xl' };
 
   // Vuetify's "flat" variant is a filled button with no shadow; the shadow is
@@ -116,6 +130,18 @@ export class WBtn extends WElement {
   get slim()     { return this._bool('slim'); }
   get spaced()   { return this._attr('spaced', ''); }
   get selectedClass() { return this._attr('selected-class', ''); }
+  get type()     { return WBtn.buttonTypes.includes(this._attr('type', '')) ? this._attr('type', '') : ''; }
+  get target()   { return this._attr('target', ''); }
+
+  // `aria-disabled="true"` without `disabled` is the focusable disabled state.
+  get softDisabled() { return this._authoredAriaDisabled() === 'true'; }
+
+  // A new browsing context must not get a handle back to this page.
+  get rel() {
+    const tokens = this._attr('rel', '').split(/\s+/).filter(Boolean);
+    if (this.target === '_blank' && !tokens.includes('noopener')) tokens.push('noopener');
+    return tokens.join(' ');
+  }
 
   // Map variant to CSS class
   get _variantClass() {
@@ -162,16 +188,28 @@ export class WBtn extends WElement {
   }
 
   // Anchors take href; buttons take the form-ish attributes. Subclass extras
-  // are merged last so they can override anything above them.
+  // are merged after the shared ones so they can override them; an authored
+  // `type` is merged last so it also wins over a subclass default.
   _controlAttrs(link) {
-    const own = link
-      ? { href: this.href }
-      : { disabled: this.disabled, value: this.value };
+    const own = link ? this._linkAttrs() : this._buttonAttrs();
     const aria = WBtn.forwardedAria.concat(link ? [] : WBtn.forwardedButtonAria);
     return Object.assign(own, {
       'aria-busy': this.loading && 'true',
       'aria-label': this.getAttribute('aria-label'),
-    }, this._ariaAttrs(aria), this._extraAttrs(link));
+      'aria-disabled': this._authoredAriaDisabled(),
+    }, this._ariaAttrs(aria), this._extraAttrs(link), this._authoredType(link));
+  }
+
+  _linkAttrs() {
+    return { href: this.href, target: this.target, rel: this.rel };
+  }
+
+  _buttonAttrs() {
+    return { disabled: this.disabled, value: this.value };
+  }
+
+  _authoredType(link) {
+    return link || !this.type ? {} : { type: this.type };
   }
 
   _contentMarkup() {
@@ -199,12 +237,47 @@ export class WBtn extends WElement {
     const btn = this._q('button, a');
     if (!btn) return;
 
+    btn.addEventListener('click', (event) => this._blockSoftDisabled(event));
     if (this.hasAttribute('ripple')) this._attachRipple(btn);
 
     // Forward click to host — but only for programmatic listeners,
     // not re-dispatching. The native event bubbles already.
     btn.addEventListener('focus', () => this._emit('focus'));
     btn.addEventListener('blur', () => this._emit('blur'));
+  }
+
+  // Stop the activation at the control, before it reaches listeners on the
+  // host, the form's submit, or the link's navigation.
+  _blockSoftDisabled(event) {
+    if (!this.softDisabled) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+
+  // The base class mirrors `disabled` into the host's aria-disabled and clears
+  // it otherwise. Keep a value the author wrote instead; the skip flag stops
+  // the round trip from re-rendering.
+  _applyCommonProps() {
+    const authored = this._authoredAriaDisabled();
+    const skipping = this._skipRender;
+    this._skipRender = true;
+    try {
+      super._applyCommonProps();
+      this._restoreAriaDisabled(authored);
+    } finally {
+      this._skipRender = skipping;
+    }
+    this._ariaDisabledFromBase = this.disabled;
+  }
+
+  // A value the base class wrote for `disabled` is not the author's.
+  _authoredAriaDisabled() {
+    if (this.disabled || this._ariaDisabledFromBase) return null;
+    return this.getAttribute('aria-disabled');
+  }
+
+  _restoreAriaDisabled(authored) {
+    if (authored !== null) this.setAttribute('aria-disabled', authored);
   }
 }
 

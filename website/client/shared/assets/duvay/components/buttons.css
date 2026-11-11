@@ -115,7 +115,8 @@
   outline-offset: 2px;
 }
 
-.w-btn:disabled {
+.w-btn:disabled,
+.w-btn[aria-disabled="true"] {
   opacity: 0.38;
   cursor: not-allowed;
 }

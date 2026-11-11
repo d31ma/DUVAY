@@ -70,7 +70,7 @@
     "clearable": {
       "type": "boolean",
       "default": false,
-      "description": "show a clear (×) button when non-empty"
+      "description": "show a clear (×) button when non-empty; it is a real button in the tab order, named \"Clear <label>\""
     },
     "color": {
       "type": "string",
@@ -98,6 +98,10 @@
     },
     "elevation": {
       "type": "number"
+    },
+    "enterkeyhint": {
+      "type": "string",
+      "description": "label for the virtual keyboard's Enter key"
     },
     "error": {
       "type": "string",
@@ -139,6 +143,10 @@
     },
     "indent-details": {
       "type": "string"
+    },
+    "inputmode": {
+      "type": "string",
+      "description": "virtual keyboard hint (numeric, decimal, tel, email, …)"
     },
     "label": {
       "type": "string",
