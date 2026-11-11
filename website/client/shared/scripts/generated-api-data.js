@@ -15816,6 +15816,12 @@ export const GENERATED_API_DATA = {
           "Captures and keeps focus within the content element when using **Tab** and **Shift**+**Tab**. Recommended to be `false` when using external tools that require focus such as TinyMCE or vue-clipboard."
         ],
         [
+          "return-focus",
+          "string | number | boolean",
+          "—",
+          "Sets the return-focus option."
+        ],
+        [
           "role",
           "string | number | boolean",
           "—",
@@ -34568,6 +34574,12 @@ export const GENERATED_API_DATA = {
           "Captures and keeps focus within the content element when using **Tab** and **Shift**+**Tab**. Recommended to be `false` when using external tools that require focus such as TinyMCE or vue-clipboard."
         ],
         [
+          "return-focus",
+          "string | number | boolean",
+          "—",
+          "Sets the return-focus option."
+        ],
+        [
           "role",
           "string | number | boolean",
           "—",
@@ -48710,6 +48722,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Captures and keeps focus within the content element when using **Tab** and **Shift**+**Tab**. Recommended to be `false` when using external tools that require focus such as TinyMCE or vue-clipboard."
+        ],
+        [
+          "return-focus",
+          "string | number | boolean",
+          "—",
+          "Sets the return-focus option."
         ],
         [
           "role",

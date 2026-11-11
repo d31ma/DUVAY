@@ -11,6 +11,26 @@
   `<button>` (or link).
 - `w-list` passes a host `aria-label` and `aria-labelledby` to the element
   with role="list" (or role="listbox"), so a list can have an accessible name.
+- `return-focus="<id>"` on `w-dialog`, `w-overlay` and `w-bottom-sheet`: the
+  element that gets focus on close. Without it, or when no element has that
+  id, focus returns to the control that held it on open. (#18)
+
+### Fixed
+
+- `w-dialog` returns focus however it opened. A dialog opened by setting
+  `open`, or inserted with `open` already set, now remembers the control that
+  held focus, and gives focus back on Escape, the X, a `w-dialog-close`
+  control and `close()`. Removing `open` or removing an open dialog also gives
+  focus back, unless the app already moved focus elsewhere. Removing `open`
+  now also releases the page scroll lock. (#18)
+- `w-dialog` first focus goes to an `autofocus` element (or the input of an
+  `autofocus` component such as `w-text-field`), then the first control in the
+  body, and only then the close button. (#18)
+- `w-bottom-sheet` and `w-overlay` return focus to their built-in activator,
+  which is re-rendered on open and close, instead of to `<body>`. Opening
+  through the `open` attribute, or inserting the element open, now moves focus
+  into the content and back out on close, removal of `open`, or removal of the
+  element. An `autofocus` control in the content takes first focus. (#18)
 
 ### Tests
 

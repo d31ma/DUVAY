@@ -14,8 +14,18 @@
  *   close-on-content-click           - a click inside the content closes it
  *   close-on-back                    - the browser back button dismisses it
  *   retain-focus, capture-focus      - Tab focus trap (both default on)
+ *   return-focus                     - id of the element that gets focus on
+ *                                      close (default: the control that held
+ *                                      focus on open)
  *
  * Events: toggle, close
+ *
+ * Focus follows `open` however it changes (the activator, show(), close(), the
+ * `open` attribute, or the element being inserted open). Opening moves focus
+ * to an `autofocus` control in the content, else its first control, else the
+ * content itself. Closing, or removing the open element, gives focus back to
+ * the control that held it (the re-rendered activator when that was the
+ * built-in one), unless the app has already moved focus somewhere else.
  *
  * The helpers below are the shared overlay surface: <w-bottom-sheet> extends
  * this class outright, and <w-snackbar> / <w-snackbar-queue> import the pieces
@@ -195,6 +205,14 @@ export function wFocusable(root) {
   return Array.from(root.querySelectorAll(selector)).filter((element) => !element.hidden);
 }
 
+/* The control an `autofocus` attribute points at: the marked element itself,
+   or the first control inside a marked component host (w-text-field). */
+export function wAutofocusTarget(root) {
+  const marked = root?.querySelector('[autofocus]');
+  if (!marked) return null;
+  return wFocusable(root).find((element) => marked.contains(element)) || null;
+}
+
 /* Keep Tab and Shift+Tab inside `root`. */
 export function wTrapFocus(event, root) {
   if (event.key !== 'Tab') return;
@@ -242,6 +260,7 @@ export class WOverlay extends WElement {
     'close-delay',
     'retain-focus',
     'capture-focus',
+    'return-focus',
   ];
 
   constructor() {
@@ -310,6 +329,20 @@ export class WOverlay extends WElement {
       document.addEventListener('keydown', this.__wOverlayKeydown);
     }
     wBindCloseOnBack(this);
+    this._syncFocus();
+  }
+
+  // Runs after every render, so it sees each change of `open` once.
+  _syncFocus() {
+    if (this.open === !!this.__wFocusOpen) return;
+    this.__wFocusOpen = this.open;
+    if (this.open) this._enterFocus();
+    else this._leaveFocus();
+  }
+
+  _enterFocus() {
+    if (!this.__wReturnFocus) this._rememberFocus();
+    this._focusContent();
   }
 
   _bindContent(content) {
@@ -336,6 +369,8 @@ export class WOverlay extends WElement {
   }
 
   disconnectedCallback() {
+    if (this.open) this._leaveFocus();
+    this.__wFocusOpen = false;
     if (this.__wOverlayKeydown) document.removeEventListener('keydown', this.__wOverlayKeydown);
     wUnbindCloseOnBack(this);
     clearTimeout(this.__wActivationTimer);
@@ -366,14 +401,17 @@ export class WOverlay extends WElement {
     this._silentSet('open', open || null);
     this._render();
     this._events();
-    if (open) this._focusContent();
-    else this._returnFocus();
   }
 
   _beforeOpen() {
-    const active = document.activeElement;
-    if (active instanceof HTMLElement && this.contains(active)) this.__wReturnFocus = active;
+    this._rememberFocus();
     wPushBackState(this);
+  }
+
+  // Taken before the open render, which replaces the built-in activator.
+  _rememberFocus() {
+    const active = document.activeElement;
+    if (active instanceof HTMLElement && active !== document.body) this.__wReturnFocus = active;
   }
 
   _overlayClass() {
@@ -425,13 +463,38 @@ export class WOverlay extends WElement {
   _focusContent() {
     const content = this._q(this._contentSel());
     if (!content) return;
-    (wFocusable(content)[0] || content).focus?.({ preventScroll: true });
+    (wAutofocusTarget(content) || wFocusable(content)[0] || content).focus?.({ preventScroll: true });
   }
 
-  _returnFocus() {
-    const target = this.__wReturnFocus;
+  _leaveFocus() {
+    const target = this._returnTarget();
     this.__wReturnFocus = null;
-    if (target && target.isConnected) target.focus?.({ preventScroll: true });
+    if (target && this._focusWasLost()) target.focus({ preventScroll: true });
+  }
+
+  // Lost means on <body>, or still inside this element's old render; focus
+  // the app moved somewhere else is left there.
+  _focusWasLost() {
+    const active = document.activeElement;
+    return !(active instanceof HTMLElement) || active === document.body || this.contains(active);
+  }
+
+  _returnTarget() {
+    const remembered = this.__wReturnFocus;
+    const candidates = [this._namedReturnTarget(), remembered, this._renderedActivator(remembered)];
+    return candidates.find((element) => element instanceof HTMLElement && element.isConnected) || null;
+  }
+
+  _namedReturnTarget() {
+    const id = this.getAttribute('return-focus');
+    return id ? document.getElementById(id) : null;
+  }
+
+  // The built-in activator is re-rendered on every open and close, so the node
+  // that had focus is gone; its replacement takes focus instead.
+  _renderedActivator(remembered) {
+    if (!remembered?.matches?.(this._activatorSel())) return null;
+    return this._q(this._activatorSel());
   }
 
   _animateClick() {

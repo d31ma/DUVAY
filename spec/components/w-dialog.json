@@ -162,6 +162,9 @@
     "retain-focus": {
       "type": "string"
     },
+    "return-focus": {
+      "type": "string"
+    },
     "rounded": {
       "type": "boolean",
       "default": false

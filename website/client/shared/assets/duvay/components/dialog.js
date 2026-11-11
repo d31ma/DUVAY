@@ -40,6 +40,17 @@
  *   close-on-content-click - clicking the body closes
  *   close-on-back       - browser Back closes instead of navigating
  *   retain-focus / capture-focus - keep Tab inside the dialog (default true)
+ *   return-focus        - id of the element that gets focus when the dialog
+ *                         closes; without it (or when no element has that id)
+ *                         focus returns to the control that held it on open
+ *
+ * Focus: on open, focus moves to an `autofocus` element in the dialog (or the
+ * first control inside an `autofocus` component), else the first control in
+ * the body, else the close button or footer, else the panel. However the
+ * dialog opens (activator, show(), the `open` attribute, or inserted open), the
+ * control that held focus is remembered. Closing through close(), Escape, the
+ * X, a `w-dialog-close` control, removing `open`, or removing the dialog gives
+ * focus back, unless the app has already moved focus somewhere else.
  *
  * Slots:
  *   activator, title, default, footer
@@ -87,6 +98,16 @@ class WDialog extends WElement {
     'close-on-back',
     'retain-focus',
     'capture-focus',
+    'return-focus',
+  ];
+
+  static FOCUSABLE = [
+    'button:not([disabled])',
+    '[href]',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
   ];
 
   get open()  { return this._bool('open'); }
@@ -245,6 +266,20 @@ class WDialog extends WElement {
       return;
     }
     super.attributeChangedCallback(name, oldValue, newValue);
+    if (name === 'open') this._afterOpenAttribute(oldValue);
+  }
+
+  // The app removed `open`: undo what opening did, as close() would. close()
+  // itself changes the attribute silently and does this on its own.
+  _afterOpenAttribute(oldValue) {
+    if (!this._closedByAttribute(oldValue)) return;
+    this._releaseScrollBlock();
+    this._restoreLostFocus();
+  }
+
+  _closedByAttribute(oldValue) {
+    const wasOpen = oldValue !== null && this._rendered;
+    return wasOpen && !this.open && !this._skipRender;
   }
 
   // Move a host `title` into `heading` so no native tooltip covers the dialog.
@@ -345,6 +380,7 @@ class WDialog extends WElement {
   }
 
   disconnectedCallback() {
+    if (this.open) this._restoreLostFocus();
     if (this._keyHandler) document.removeEventListener('keydown', this._keyHandler);
     if (this.__wPopstate) window.removeEventListener('popstate', this.__wPopstate);
     this.__wPopstate = null;
@@ -426,12 +462,37 @@ class WDialog extends WElement {
   }
 
   _afterOpenRender() {
+    this._rememberOpener();
     this._blockScroll();
     this._applyAnchor();
-    requestAnimationFrame(() => {
-      const target = this._focusable()[0] || this._q('.w-dialog');
-      target?.focus?.({ preventScroll: true });
-    });
+    requestAnimationFrame(() => this._initialFocus()?.focus?.({ preventScroll: true }));
+  }
+
+  // A dialog opened through its `open` attribute has no activator event, so
+  // the control that holds focus outside the dialog is the one to return to.
+  _rememberOpener() {
+    if (this._opener) return;
+    if (this._outsideSurface(document.activeElement)) this._opener = document.activeElement;
+  }
+
+  _outsideSurface(element) {
+    if (!(element instanceof HTMLElement) || element === document.body) return false;
+    return !this._q('.w-dialog-wrapper')?.contains(element);
+  }
+
+  _initialFocus() {
+    return this._autofocusTarget()
+      || this._focusable('.w-dialog-body')[0]
+      || this._focusable()[0]
+      || this._q('.w-dialog');
+  }
+
+  // `autofocus` may sit on a component host (w-text-field), so the target is
+  // the first control inside the marked element.
+  _autofocusTarget() {
+    const marked = this._q('.w-dialog [autofocus]');
+    if (!marked) return null;
+    return this._focusable().find((element) => marked.contains(element)) || null;
   }
 
   // `target` pins the surface to an element, the activating pointer, or a raw
@@ -472,16 +533,29 @@ class WDialog extends WElement {
     }
   }
 
-  _focusable() {
-    return Array.from(this.querySelectorAll('.w-dialog button:not([disabled]), .w-dialog [href], .w-dialog input:not([disabled]), .w-dialog select:not([disabled]), .w-dialog textarea:not([disabled]), .w-dialog [tabindex]:not([tabindex="-1"])'))
+  _focusable(scope = '.w-dialog') {
+    const selector = WDialog.FOCUSABLE.map((item) => scope + ' ' + item).join(', ');
+    return Array.from(this.querySelectorAll(selector))
       .filter((el) => el instanceof HTMLElement && !el.hidden && el.offsetParent !== null);
   }
 
   _restoreFocus() {
-    if (this._opener && typeof this._opener.focus === 'function' && this._opener.isConnected) {
-      this._opener.focus({ preventScroll: true });
-    }
+    const target = this._returnTarget();
     this._opener = null;
+    target?.focus({ preventScroll: true });
+  }
+
+  // Focus the closed dialog took with it (now on <body>, or still inside the
+  // old surface) goes back; focus the app moved somewhere else stays there.
+  _restoreLostFocus() {
+    if (this._outsideSurface(document.activeElement)) this._opener = null;
+    else this._restoreFocus();
+  }
+
+  _returnTarget() {
+    const id = this.getAttribute('return-focus');
+    const named = id ? document.getElementById(id) : null;
+    return [named, this._opener].find((element) => element instanceof HTMLElement && element.isConnected) || null;
   }
 
   _animateClick() {

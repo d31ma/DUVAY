@@ -167,6 +167,10 @@
     "retain-focus": {
       "type": "string"
     },
+    "return-focus": {
+      "type": "string",
+      "description": "id of the element that gets focus on close (default: the control that held focus on open)"
+    },
     "rounded": {
       "type": "boolean",
       "default": false

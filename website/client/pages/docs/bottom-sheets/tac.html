@@ -38,7 +38,7 @@
   <h2>Usage guidance</h2>
   <ul>
     <li>Use a dialog for content that needs more vertical space or complex forms.</li>
-    <li>Return focus to the trigger after closing the sheet.</li>
+    <li>Focus returns to the trigger after the sheet closes, however it opened: its activator, <code>show()</code>, the <code>open</code> attribute, or inserting it open. Use <code>return-focus="&lt;id&gt;"</code> when your template re-creates the trigger. An <code>autofocus</code> control inside the sheet takes focus first.</li>
     <li>Keep primary actions visible without requiring scrolling.</li>
   </ul>
 </doc-layout>

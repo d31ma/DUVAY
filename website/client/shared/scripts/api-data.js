@@ -2029,6 +2029,7 @@ export const API_DATA = {
       ['heading-level', '1-6', '3', 'Heading level of the title.'],
       ['aria-describedby', 'id list', 'body', 'Ids that describe the dialog; empty turns it off. Defaults to the body when it has content.'],
       ['sheet', 'mobile', '—', 'Below 600px the dialog becomes a bottom sheet; it stays a modal dialog.'],
+      ['return-focus', 'id', 'opener', 'Id of the element that gets focus when the dialog closes. Default: the control that held focus when it opened.'],
     ],
     events: [['close', '—', 'Fired when the dialog is dismissed.']],
     slots: [['default', 'Dialog body content.'], ['footer', 'Footer actions, usually buttons.']],
@@ -2482,6 +2483,7 @@ Object.assign(API_DATA, {
     tag: 'w-bottom-sheet',
     attributes: [
       ['open', 'boolean', 'false', 'Shows the sheet at the bottom edge of the viewport.'],
+      ['return-focus', 'id', 'opener', 'Id of the element that gets focus when the sheet closes. Default: the control that held focus when it opened.'],
     ],
     slots: [
       ['default', 'Sheet heading, content, and actions.'],

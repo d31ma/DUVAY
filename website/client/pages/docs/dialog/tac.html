@@ -35,6 +35,10 @@
     </div>
   </demo-compare>
 
+  <h2>Focus</h2>
+  <p>When a dialog opens, focus moves to the element marked <code>autofocus</code> (on a component such as <code>&lt;w-text-field autofocus&gt;</code>, to its input), else to the first control in the body, else to the close button. This works however the dialog opens: from its activator, from <code>show()</code>, by setting the <code>open</code> attribute, or by inserting it already open.</p>
+  <p>The dialog remembers the control that had focus when it opened. Closing with Escape, the close button, a <code>w-dialog-close</code> control, <code>close()</code>, by removing <code>open</code>, or by removing the dialog gives focus back to that control. If your template re-creates that control, name the one to focus with <code>return-focus="&lt;id&gt;"</code>. If the app has already moved focus somewhere else, the dialog leaves it there.</p>
+
   <h2>Persistent</h2>
   <demo-compare>
     <div slot="css">

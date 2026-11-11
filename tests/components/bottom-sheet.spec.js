@@ -184,3 +184,86 @@ test('w-bottom-sheet disabled ignores activation', async ({ mount, page }) => {
   await expect(page.locator('#sheet')).not.toHaveAttribute('open', '');
   await expect(page.locator('#sheet .w-overlay-activator')).toHaveAttribute('tabindex', '-1');
 });
+
+test('w-bottom-sheet returns focus to its re-rendered activator', async ({ mount, page }) => {
+  await mount(`
+    <w-bottom-sheet id="sheet">
+      <span slot="activator">Open sheet</span>
+      <button id="inside">Confirm</button>
+    </w-bottom-sheet>
+  `);
+
+  await page.locator('#sheet .w-overlay-activator').focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#inside')).toBeFocused();
+
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#sheet')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#sheet .w-overlay-activator')).toBeFocused();
+});
+
+test('w-bottom-sheet opened through the open attribute moves focus in and back out', async ({ mount, page }) => {
+  await mount(`
+    <button id="opener">Menu</button>
+    <button id="elsewhere">Elsewhere</button>
+    <w-bottom-sheet id="sheet"><button id="inside">Confirm</button></w-bottom-sheet>
+  `);
+  const openFromButton = () => page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#sheet').setAttribute('open', '');
+  });
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#opener')).toBeFocused();
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#sheet').evaluate((sheet) => sheet.removeAttribute('open'));
+  await expect(page.locator('#opener')).toBeFocused();
+
+  // Focus the app moved elsewhere is left alone.
+  await openFromButton();
+  await page.locator('#elsewhere').focus();
+  await page.locator('#sheet').evaluate((sheet) => sheet.removeAttribute('open'));
+  await expect(page.locator('#elsewhere')).toBeFocused();
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#sheet').evaluate((sheet) => sheet.remove());
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-bottom-sheet inserted with open returns focus to the control that inserted it', async ({ mount, page }) => {
+  await mount('<button id="opener">Open</button>');
+  await page.locator('#opener').evaluate((button) => {
+    button.addEventListener('click', () => {
+      button.insertAdjacentHTML('afterend', '<w-bottom-sheet id="sheet" open><button id="inside">Inside</button></w-bottom-sheet>');
+    });
+  });
+
+  await page.locator('#opener').click();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-bottom-sheet first focus prefers autofocus and return-focus names the way back', async ({ mount, page }) => {
+  await mount(`
+    <button id="opener">Open</button>
+    <button id="row-action">Row action</button>
+    <w-bottom-sheet id="sheet" return-focus="row-action">
+      <button id="first">First</button>
+      <w-text-field id="name" label="Name" autofocus></w-text-field>
+    </w-bottom-sheet>
+  `);
+
+  await page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#sheet').setAttribute('open', '');
+  });
+  await expect(page.locator('#name input')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#row-action')).toBeFocused();
+});

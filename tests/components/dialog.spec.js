@@ -417,3 +417,127 @@ test('w-dialog sheet="mobile" docks to the bottom on phones and stays a modal di
   await page.setViewportSize({ width: 1024, height: 800 });
   await expect.poll(() => page.locator('#dialog .w-dialog').evaluate((el) => Math.round(el.getBoundingClientRect().width))).toBe(512);
 });
+
+test('w-dialog inserted with open returns focus to the control that inserted it', async ({ mount, page }) => {
+  await mount('<button id="opener">Open</button>');
+  await page.locator('#opener').evaluate((button) => {
+    button.addEventListener('click', () => {
+      button.insertAdjacentHTML('afterend', '<w-dialog id="dialog" open heading="Hi"><button id="inside">Inside</button></w-dialog>');
+    });
+  });
+
+  await page.locator('#opener').click();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.keyboard.press('Escape');
+
+  await expect(page.locator('#dialog')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-dialog opened through the open attribute returns focus from the X and from Cancel', async ({ mount, page }) => {
+  await mount(`
+    <button id="opener">Open</button>
+    <w-dialog id="dialog" heading="Hi">
+      <button id="inside">Inside</button>
+      <button slot="footer" id="cancel" w-dialog-close>Cancel</button>
+    </w-dialog>
+  `);
+  const openFromButton = () => page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#dialog').setAttribute('open', '');
+  });
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#dialog .w-dialog-close').click();
+  await expect(page.locator('#opener')).toBeFocused();
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#cancel').click();
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-dialog returns focus when the app removes open or removes the dialog', async ({ mount, page }) => {
+  await mount(`
+    <button id="opener">Open</button>
+    <button id="elsewhere">Elsewhere</button>
+    <w-dialog id="dialog" heading="Hi"><button id="inside">Inside</button></w-dialog>
+  `);
+  const openFromButton = () => page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#dialog').setAttribute('open', '');
+  });
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#dialog').evaluate((dialog) => dialog.removeAttribute('open'));
+  await expect(page.locator('#opener')).toBeFocused();
+  await expect(page.locator('html')).not.toHaveClass(/w-dialog-scroll-lock/);
+
+  // Focus the app moved elsewhere is left alone.
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#elsewhere').focus();
+  await page.locator('#dialog').evaluate((dialog) => dialog.removeAttribute('open'));
+  await expect(page.locator('#elsewhere')).toBeFocused();
+
+  await openFromButton();
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.locator('#dialog').evaluate((dialog) => dialog.remove());
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-dialog return-focus names the element that gets focus back', async ({ mount, page }) => {
+  await mount(`
+    <button id="opener">Open</button>
+    <button id="row-action">Row action</button>
+    <w-dialog id="dialog" heading="Hi" return-focus="row-action"><button id="inside">Inside</button></w-dialog>
+  `);
+
+  await page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#dialog').setAttribute('open', '');
+  });
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#row-action')).toBeFocused();
+
+  // An id that matches nothing falls back to the opener.
+  await page.locator('#dialog').evaluate((dialog) => dialog.setAttribute('return-focus', 'missing'));
+  await page.locator('#opener').evaluate((button) => {
+    button.focus();
+    document.querySelector('#dialog').show();
+  });
+  await expect(page.locator('#inside')).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#opener')).toBeFocused();
+});
+
+test('w-dialog first focus prefers autofocus, then the body, then the close button', async ({ mount, page }) => {
+  await mount(`
+    <w-dialog id="field" heading="Rename">
+      <button id="field-first">First</button>
+      <w-text-field id="name" label="Name" autofocus></w-text-field>
+    </w-dialog>
+    <w-dialog id="plain" heading="Plain">
+      <button id="plain-first">First</button>
+      <button slot="footer" id="plain-footer">Footer</button>
+    </w-dialog>
+    <w-dialog id="text" heading="Text">
+      <p>Nothing to focus in the body.</p>
+      <button slot="footer" id="text-footer">Footer</button>
+    </w-dialog>
+  `);
+
+  await page.locator('#field').evaluate((dialog) => dialog.setAttribute('open', ''));
+  await expect(page.locator('#name input')).toBeFocused();
+  await page.keyboard.press('Escape');
+
+  await page.locator('#plain').evaluate((dialog) => dialog.setAttribute('open', ''));
+  await expect(page.locator('#plain-first')).toBeFocused();
+  await page.keyboard.press('Escape');
+
+  await page.locator('#text').evaluate((dialog) => dialog.setAttribute('open', ''));
+  await expect(page.locator('#text .w-dialog-close')).toBeFocused();
+});
