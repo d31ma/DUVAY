@@ -541,3 +541,47 @@ test('w-dialog first focus prefers autofocus, then the body, then the close butt
   await page.locator('#text').evaluate((dialog) => dialog.setAttribute('open', ''));
   await expect(page.locator('#text .w-dialog-close')).toBeFocused();
 });
+
+const FOCUSED_FIELD_DIALOG = `
+  <w-dialog id="password" open heading="Change your password">
+    <w-text-field id="current" autofocus label="Current password" type="password"></w-text-field>
+  </w-dialog>
+`;
+
+const FOCUSED_FIELD_SHEET = `
+  <w-dialog id="password" open sheet="mobile" heading="Change your password">
+    <w-text-field id="current" autofocus label="Current password" type="password"></w-text-field>
+  </w-dialog>
+`;
+
+async function labelOverflowAboveBody(page) {
+  return page.locator('#password .w-dialog-body').evaluate(async (body) => {
+    await Promise.all(document.getAnimations().map((animation) => animation.finished));
+    const label = body.querySelector('.w-text-field-label');
+    return Math.round(body.getBoundingClientRect().top - label.getBoundingClientRect().top);
+  });
+}
+
+async function expectFocusedLabelInsideBody(page) {
+  await expect(page.locator('#current input')).toBeFocused();
+  await expect(page.locator('#current .w-text-field-label')).toHaveCSS('font-size', '12px');
+  expect(await labelOverflowAboveBody(page)).toBeLessThanOrEqual(0);
+}
+
+test('w-dialog body shows the whole floating label of a focused first field on desktop', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await mount(FOCUSED_FIELD_DIALOG);
+  await expectFocusedLabelInsideBody(page);
+});
+
+test('w-dialog body shows the whole floating label of a focused first field on a phone', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 375, height: 700 });
+  await mount(FOCUSED_FIELD_DIALOG);
+  await expectFocusedLabelInsideBody(page);
+});
+
+test('w-dialog sheet="mobile" body shows the whole floating label of a focused first field', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 375, height: 700 });
+  await mount(FOCUSED_FIELD_SHEET);
+  await expectFocusedLabelInsideBody(page);
+});

@@ -43,7 +43,7 @@
   display: flex;
   align-items: center;
   gap: var(--w-space-md);
-  padding: var(--w-space-xl) var(--w-space-xl) var(--w-space-md);
+  padding: var(--w-space-xl) var(--w-space-xl) 0;
 }
 
 .w-dialog-title {
@@ -53,9 +53,11 @@
   font-weight: var(--w-font-weight-bold);
 }
 
+/* The gap under the header is the body's top padding, because the scrolling
+   body clips what sticks out above it, such as a floating field label. */
 .w-dialog-body {
   flex: 1;
-  padding: 0 var(--w-space-xl) var(--w-space-lg);
+  padding: var(--w-space-md) var(--w-space-xl) var(--w-space-lg);
   overflow-y: auto;
   color: var(--w-text-subtle);
   font-size: var(--w-font-base);

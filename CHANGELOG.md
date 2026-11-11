@@ -31,6 +31,14 @@
   through the `open` attribute, or inserting the element open, now moves focus
   into the content and back out on close, removal of `open`, or removal of the
   element. An `autofocus` control in the content takes first focus. (#18)
+- `.w-dialog-body` no longer cuts off the floating label of an outlined field
+  that is the first thing in the body. The gap under the dialog header is now
+  the body's top padding (`--w-space-md`) instead of the header's bottom
+  padding, so the scrolling body has room for the half of the label that sits
+  above the field. On wide screens text sits where it did before; below 760px
+  the gap under the header grows from `--w-space-sm` to `--w-space-md`
+  (8px to 12px). A dialog written with the CSS classes that has a header and
+  a footer but no `.w-dialog-body` loses the header's bottom padding.
 
 ### Tests
 
