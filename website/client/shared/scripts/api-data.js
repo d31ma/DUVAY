@@ -140,6 +140,9 @@ export const API_DATA = {
     {
       tag: 'w-btn-toggle',
       attributes: [
+        ['label', 'string', '—', 'Accessible name of the group.'],
+        ['aria-label', 'string', '—', 'Accessible name of the group (same as label).'],
+        ['aria-labelledby', 'id list', '—', 'Ids of visible text that names the group; wins over label.'],
         ['value', 'string', '—', 'Selected value, or a comma-separated list when multiple.'],
         ['multiple', 'boolean', 'false', 'Allow more than one button to be selected.'],
         ['mandatory', 'boolean | "force"', 'false', 'Keep at least one selected; "force" also selects the first initially.'],
@@ -311,6 +314,9 @@ export const API_DATA = {
     {
       tag: 'w-select',
       attributes: [
+        ['aria-labelledby', 'id list', '—', 'Names the combobox by visible text; wins over every generated name.'],
+        ['aria-label', 'string', '—', 'Accessible name of the combobox.'],
+        ['aria-describedby', 'id list', '—', 'Ids of text that describes the combobox.'],
         ['value', 'string', '—', 'Selected option value.'],
         ['name', 'string', '—', 'Form field name.'],
         ['label / hint / error', 'string', '—', 'Field label, helper text, and error state.'],
@@ -763,6 +769,7 @@ export const API_DATA = {
     {
       tag: 'w-list-item',
       attributes: [
+        ['item-role', 'button | menuitem | menuitemradio | menuitemcheckbox | option | none', '—', 'What the row is when it is not a link; none is a static row.'],
         ['title', 'string', '—', 'Primary item text.'],
         ['subtitle', 'string', '—', 'Secondary item text.'],
         ['value', 'string', 'title', 'Value emitted in selection events.'],
@@ -1193,6 +1200,9 @@ export const API_DATA = {
     {
       tag: 'w-chip-group',
       attributes: [
+        ['label', 'string', '—', 'Accessible name of the group.'],
+        ['aria-label', 'string', '—', 'Accessible name of the group (same as label).'],
+        ['aria-labelledby', 'id list', '—', 'Ids of visible text that names the group; wins over label.'],
         ['value', 'string', '—', 'Selected value, or a comma list when multiple.'],
         ['multiple', 'boolean', 'false', 'Allow several chips selected.'],
         ['mandatory', 'boolean', 'false', 'Keep at least one chip selected.'],
@@ -1725,6 +1735,8 @@ export const API_DATA = {
     {
       tag: 'w-alert',
       attributes: [
+        ['live', 'assertive | polite | off', 'assertive', 'role="alert", role="status", or a static notice with no live role.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['variant', 'info | success | warning | error', 'info', 'Semantic style and icon.'],
         ['title', 'string', '—', 'Bold title above the body.'],
         ['dismissible', 'boolean', 'false', 'Shows a dismiss button.'],
@@ -1817,6 +1829,9 @@ export const API_DATA = {
     {
       tag: 'w-banner',
       attributes: [
+        ['label', 'string', 'Banner', 'Accessible name of the banner region.'],
+        ['live', 'polite | assertive', '—', 'Announce as role="status" or role="alert" instead of a region.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['text', 'string', '—', 'Banner message (or use the default / text slot).'],
         ['icon', 'string', '—', 'Leading icon text / glyph.'],
         ['avatar', 'string', '—', 'Leading avatar image URL (overrides icon).'],
@@ -1913,6 +1928,8 @@ export const API_DATA = {
     {
       tag: 'w-empty',
       attributes: [
+        ['heading-level', '1-6 | none', '2', 'Heading level of the title; none keeps a paragraph.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['headline', 'string', '—', 'Large display text shown above the media.'],
         ['title', 'string', '—', 'Bold title.'],
         ['text', 'string', '—', 'Body description (alias: subtitle).'],
@@ -1945,6 +1962,8 @@ export const API_DATA = {
   '/docs/snackbar': [{
     tag: 'w-snackbar',
     attributes: [
+        ['live', 'polite | assertive', 'polite', 'role="status", or role="alert" for errors.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve prepend-icon.'],
       ['text', 'string', '—', 'Message text (alias: message; or use the default slot).'],
       ['action', 'string', '—', 'Single action button label; omit for none.'],
       ['open', 'boolean', 'false', 'Whether the snackbar is visible (alias: model-value).'],

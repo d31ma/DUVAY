@@ -1,5 +1,44 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- `w-alert` `live="polite"` (role="status") and `live="off"` (a static notice
+  with no live role), so notices already on the page do not interrupt screen
+  readers. The default stays role="alert".
+- `w-snackbar` `live="assertive"` (role="alert") for errors; the default stays
+  role="status".
+- `w-banner` `label` (the region's accessible name, default "Banner") and
+  `live="polite" | "assertive"` (role="status" / role="alert" instead of a
+  region).
+- `w-select` passes a host `aria-labelledby`, `aria-label` and
+  `aria-describedby` to its combobox; `aria-labelledby` wins over every
+  generated name, so a visible label stays the name.
+- `w-list-item` `item-role`: `button` (a plain action, never aria-pressed),
+  `menuitem`, `menuitemradio`, `menuitemcheckbox` (`active` is aria-checked),
+  `option`, and `none` (a static, non-interactive row).
+- `w-btn-toggle`, `w-chip-group` and `w-avatar-group` take an accessible name
+  from `label`, `aria-label` or `aria-labelledby`.
+- `w-empty-state` / `w-empty` `heading-level` (1-6, default 2, or `none`).
+- `icon-set` on `w-alert`, `w-banner`, `w-snackbar` and `w-empty-state`.
+
+### Fixed
+
+- `w-alert` `icon`, `w-banner` `icon`, `w-snackbar` `prepend-icon` and
+  `w-empty-state` `icon` resolve through the icon registry (`WIcons`) like
+  `w-btn` does, instead of printing the name as text. With the default `text`
+  set the output is unchanged.
+- WCAG 1.3.1: `w-list-item` gets role="listitem" inside a `w-list` with
+  role="list", so the list's items are announced. A host role the author set
+  is kept.
+- WCAG 1.3.1: the `w-empty-state` title is a heading (role="heading",
+  aria-level 2 by default) instead of a plain paragraph. A slotted heading
+  element keeps its own level.
+- WCAG 4.1.2: `w-switch` is announced as a switch (role="switch") instead of a
+  checkbox. An indeterminate switch stays a checkbox, because the switch role
+  has no mixed state.
+
 ## 26.35.01-1 - 2026-08-24
 
 Documentation-site-only release; the framework is unchanged from 26.35.01.

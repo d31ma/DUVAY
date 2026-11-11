@@ -33,3 +33,15 @@ test('w-banner prepend slot overrides the icon, avatar renders an image', async 
   await mount('<w-banner id="b" text="Hi" avatar="/a.png"></w-banner>');
   await expect(page.locator('#b .w-banner__avatar img')).toHaveAttribute('src', '/a.png');
 });
+
+test('w-banner takes a region name, a live role and a registry icon', async ({ mount, page }) => {
+  await page.evaluate(() => window.WIcons.set('mdi', { type: 'class', prefix: 'mdi' }));
+  await mount('<w-banner id="named" label="Offline notice" icon="mdi:wifi-off" text="You are offline."></w-banner><w-banner id="live" live="polite" text="Synced."></w-banner><w-banner id="plain" text="Plain"></w-banner>');
+
+  await expect(page.locator('#named .w-banner')).toHaveAttribute('role', 'region');
+  await expect(page.locator('#named .w-banner')).toHaveAttribute('aria-label', 'Offline notice');
+  await expect(page.locator('#named .w-banner__icon .mdi.wifi-off')).toHaveCount(1);
+  await expect(page.locator('#live .w-banner')).toHaveAttribute('role', 'status');
+  await expect(page.locator('#live .w-banner')).not.toHaveAttribute('aria-label', /./);
+  await expect(page.locator('#plain .w-banner')).toHaveAttribute('aria-label', 'Banner');
+});

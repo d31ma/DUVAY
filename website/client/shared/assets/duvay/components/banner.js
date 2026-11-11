@@ -14,6 +14,10 @@
  *   color      - token color for the leading icon accent
  *   bg-color   - token color for the banner surface (primary | success | …)
  *   rounded / border / elevation / density — common surface props
+ *   label      - accessible name of the banner region (default "Banner")
+ *   live       - polite | assertive: announce the banner as role="status" or
+ *                role="alert" instead of a named region
+ *   icon-set   - icon registry set used to resolve `icon` (see WIcons)
  *
  * Slots:
  *   default / text - banner message
@@ -21,10 +25,12 @@
  *   actions        - trailing action buttons
  */
 
+import WIcons from '../icons.js';
 import { wMobileMode, wWatchMobile } from './data-table-row.js';
 
 class WBanner extends WElement {
-  static attrs = ['text', 'icon', 'avatar', 'lines', 'sticky', 'mobile', 'stacked', 'color', 'bg-color', 'mobile-breakpoint'];
+  static attrs = ['text', 'icon', 'avatar', 'lines', 'sticky', 'mobile', 'stacked', 'color', 'bg-color', 'mobile-breakpoint', 'label', 'live', 'icon-set'];
+  static liveRoles = { polite: 'status', assertive: 'alert' };
 
   static lines = ['one', 'two', 'three'];
   static tokens = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info', 'surface'];
@@ -55,7 +61,7 @@ class WBanner extends WElement {
     } else if (this.avatar) {
       prepend = `<div class="w-banner__prepend"><span class="w-avatar w-banner__avatar"><img src="${this._esc(this.avatar)}" alt=""></span></div>`;
     } else if (this.icon) {
-      prepend = `<div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">${this._esc(this.icon)}</span></div>`;
+      prepend = `<div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">${this._iconMarkup()}</span></div>`;
     }
 
     const textInner = this._hasSlot('text') ? '<slot name="text"></slot>'
@@ -67,7 +73,19 @@ class WBanner extends WElement {
       ? '<div class="w-banner-actions"><slot name="actions"></slot></div>'
       : '';
 
-    return `<div class="${classes}" role="region" aria-label="Banner"${this._surfaceStyle()}>${prepend}${content}${actions}</div>`;
+    return `<div class="${classes}" ${this._roleAttrs()}${this._surfaceStyle()}>${prepend}${content}${actions}</div>`;
+  }
+
+  _roleAttrs() {
+    const role = this.constructor.liveRoles[this._attr('live', '')];
+    const label = this._esc(this._attr('label', 'Banner'));
+    if (role) return ` role="${role}"${this.hasAttribute('label') ? ` aria-label="${label}"` : ''}`;
+    return ` role="region" aria-label="${label}"`;
+  }
+
+  _iconMarkup() {
+    const iconSet = this.getAttribute('icon-set') || '';
+    return WIcons.resolve(iconSet ? `${iconSet}:${this.icon}` : this.icon, { iconClass: 'w-icon' });
   }
 
   // Resolve color / bg-color to CSS custom properties on the inner surface.

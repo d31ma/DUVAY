@@ -8,7 +8,9 @@
  * Attributes:
  *   checked        - whether the switch is on (reflected)
  *   indeterminate  - "partially on" state; the thumb parks in the middle
- *   type           - "checkbox" (default) | "radio" for the backing input
+ *   type           - "checkbox" (default) | "radio" for the backing input;
+ *                    a checkbox-backed switch has role="switch" (except while
+ *                    indeterminate, which the switch role cannot express)
  *   multiple       - array model: the native name gains a `[]` suffix
  *   disabled       - non-interactive and dimmed
  *   readonly       - prevents toggling while keeping focus
@@ -199,6 +201,7 @@ class WSwitch extends WSelectionControlBase {
   _inputMarkup() {
     const attrs = this._attrs({
       type: this.inputType,
+      role: this._switchRole(),
       checked: this.checked,
       disabled: this.disabled,
       readonly: this.readonly,
@@ -210,6 +213,12 @@ class WSwitch extends WSelectionControlBase {
       'aria-busy': this.loading ? 'true' : '',
     });
     return `${this._falseValueHtml()}<input class="w-switch-input"${attrs}>`;
+  }
+
+  // A checkbox-backed switch is announced as a switch ("on"/"off"). The
+  // switch role has no mixed state, so an indeterminate switch stays a checkbox.
+  _switchRole() {
+    return this.inputType === 'checkbox' && !this.indeterminate ? 'switch' : '';
   }
 
   _detailsMarkup() {

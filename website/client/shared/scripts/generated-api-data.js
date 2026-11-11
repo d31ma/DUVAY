@@ -113,6 +113,12 @@ export const GENERATED_API_DATA = {
           "Apply a specific icon using the [v-icon](/components/icons/) component."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "icon-size",
           "string | number",
           "—",
@@ -129,6 +135,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",
@@ -656,6 +668,12 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the active-color option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
         ],
         [
           "base-color",
@@ -10843,6 +10861,24 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -13660,6 +13696,18 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -13742,6 +13790,12 @@ export const GENERATED_API_DATA = {
           "(string | Record<string, any>)[]",
           "—",
           "An array of strings or objects used for automatically generating children components."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "limit",
@@ -14232,16 +14286,34 @@ export const GENERATED_API_DATA = {
           "Apply a specific icon using the [v-icon](/components/icons/) component."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "id",
           "string | number | boolean",
           "—",
           "Sets the id option."
         ],
         [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
+        ],
+        [
           "lines",
           "'one' | 'two' | 'three'",
           "—",
           "The amount of visible lines of text before it truncates."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",
@@ -16967,6 +17039,18 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -17043,6 +17127,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "loading",
@@ -20687,6 +20777,18 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -20781,6 +20883,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "loading",
@@ -34972,6 +35080,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "heading-level",
+          "string | number | boolean",
+          "—",
+          "Sets the heading-level option."
+        ],
+        [
           "headline",
           "string | number | boolean",
           "—",
@@ -35000,6 +35114,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the icon option."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
         ],
         [
           "id",
@@ -40444,6 +40564,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -44019,6 +44145,12 @@ export const GENERATED_API_DATA = {
           "number",
           "—",
           "The index of the item within the list. Used internally for keyboard navigation and selection."
+        ],
+        [
+          "item-role",
+          "string | number | boolean",
+          "—",
+          "Sets the item-role option."
         ],
         [
           "lines",
@@ -49155,6 +49287,12 @@ export const GENERATED_API_DATA = {
           "Controls duration and easing of the expand/collapse and hover effect. Defaults to `easeInOutCubic` over 400ms."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -49442,6 +49580,12 @@ export const GENERATED_API_DATA = {
           "| boolean | { duration: number easing: | 'linear' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQua",
           "—",
           "Controls duration and easing of the expand/collapse and hover effect. Defaults to `easeInOutCubic` over 400ms."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
         ],
         [
           "base-color",
@@ -55742,6 +55886,12 @@ export const GENERATED_API_DATA = {
           "Sets the hover-elevation option."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "id",
           "string | number | boolean",
           "—",
@@ -55752,6 +55902,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the inline option."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",

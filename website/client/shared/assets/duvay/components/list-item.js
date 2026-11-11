@@ -19,6 +19,17 @@ import { wSetValue } from './utils.js';
  *   active-class - extra class when active
  *   active       - selected state
  *   disabled     - disables interaction
+ *   item-role    - what the row is, when it is not a link:
+ *                  (absent) a button that reports `active` as aria-pressed;
+ *                  button - a plain action button, never a toggle;
+ *                  menuitem | menuitemradio | menuitemcheckbox - a menu row
+ *                  (radio/checkbox rows report `active` as aria-checked; put
+ *                  them in an element with role="menu" or "group");
+ *                  option - a listbox row (`active` is aria-selected);
+ *                  none - a static, non-interactive row
+ *
+ * Inside a list (role="list") the host gets role="listitem", so the list's
+ * structure is announced. An author-set host `role` is never replaced.
  *
  * Slots:
  *   default - custom item content when title is omitted
@@ -59,7 +70,11 @@ class WListItem extends WElement {
     'ripple',
     'prepend-gap',
     'index',
+    'item-role',
   ];
+
+  static checkedRoles = ['menuitemradio', 'menuitemcheckbox'];
+  static ownedRoles = ['menuitem', 'menuitemradio', 'menuitemcheckbox', 'option'];
 
   get itemTitle() { return this._attr('title', ''); }
   get subtitle() { return this._attr('subtitle', ''); }
@@ -129,8 +144,43 @@ class WListItem extends WElement {
     return this._attrs({
       type: 'button',
       disabled: this.disabled,
-      'aria-pressed': this.active && 'true',
+      ...this._roleState(),
     });
+  }
+
+  get itemRole() { return this._attr('item-role', ''); }
+
+  _roleState() {
+    const role = this.itemRole;
+    const state = this.active ? 'true' : 'false';
+    if (this.constructor.checkedRoles.includes(role)) return { role, 'aria-checked': state };
+    if (role === 'option') return { role, 'aria-selected': state };
+    if (role === 'menuitem') return { role };
+    if (role === 'button') return {};
+    return { 'aria-pressed': this.active && 'true' };
+  }
+
+  // Keeps the host's own role in step with its container: a listitem inside a
+  // list, and no role of its own when the inner control is a menu row or an
+  // option. A role the author wrote on the host is left alone.
+  _syncHostRole() {
+    if (this.hasAttribute('role') && !this.__hostRole) return;
+    const role = this._wantedHostRole();
+    this.__hostRole = role;
+    if (role) this.setAttribute('role', role);
+    else this.removeAttribute('role');
+  }
+
+  _wantedHostRole() {
+    if (this.constructor.ownedRoles.includes(this.itemRole)) return 'none';
+    const container = this.parentElement && this.parentElement.closest('[role]');
+    return container && container.getAttribute('role') === 'list' ? 'listitem' : '';
+  }
+
+  _staticMarkup() {
+    return `<div class="${this._classes()}"${this._style()}>
+      ${this._adornment('prepend')}${this._contentMarkup()}${this._adornment('append')}
+    </div>`;
   }
 
   // An avatar wins over an icon on the same side.
@@ -159,6 +209,8 @@ class WListItem extends WElement {
   }
 
   _template() {
+    this._syncHostRole();
+    if (this.itemRole === 'none') return this._staticMarkup();
     const tag = this.href && !this.disabled ? 'a' : 'button';
     const attrs = this._controlAttrs(tag);
     const tabAttr = this._attrs({ tabindex: this.tabindex, 'aria-posinset': this.itemIndex });
@@ -171,7 +223,7 @@ class WListItem extends WElement {
 
   _events() {
     const control = this._q('.w-list-item');
-    if (!control || this.disabled) return;
+    if (!control || this.disabled || this.itemRole === 'none') return;
 
     if (this.hasAttribute('ripple')) this._attachRipple(control);
 

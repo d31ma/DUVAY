@@ -21,6 +21,11 @@
  *   border        - true | start | end | top | bottom | left | right
  *   border-color  - token color for the accent border
  *   hidden        - hides the alert
+ *   live          - assertive | polite | off. How a screen reader announces
+ *                   the alert: assertive (default) is role="alert"; polite is
+ *                   role="status"; off is a static notice with no live role,
+ *                   for messages that are already on the page when it loads
+ *   icon-set      - icon registry set used to resolve `icon` (see WIcons)
  *
  * Slots:
  *   default, prepend, title, text, append, close
@@ -28,6 +33,8 @@
  * Events:
  *   close
  */
+
+import WIcons from '../icons.js';
 
 class WAlert extends WElement {
 
@@ -49,6 +56,8 @@ class WAlert extends WElement {
     'border-color',
     'model-value',
     'hidden',
+    'live',
+    'icon-set',
   ];
 
   static contextualTypes = ['info', 'success', 'warning', 'error'];
@@ -111,10 +120,9 @@ class WAlert extends WElement {
 
     const type = this.contextualType;
     const borderSide = this.borderSide;
-    const live = type === 'error' ? 'assertive' : 'polite';
     const styles = this.iconSize ? ` style="--w-alert-icon-size: ${this._esc(this.iconSize)}"` : '';
 
-    let html = `<div class="${this._classes(type, borderSide)}" role="alert" aria-live="${live}"${styles}>`;
+    let html = `<div class="${this._classes(type, borderSide)}"${this._liveAttrs(type)}${styles}>`;
     if (borderSide) html += '<div class="w-alert-border" aria-hidden="true"></div>';
     html += this._renderPrepend();
     html += '<div class="w-alert-body w-alert-content">';
@@ -124,6 +132,13 @@ class WAlert extends WElement {
     html += this._renderClose();
     html += '</div>';
     return html;
+  }
+
+  _liveAttrs(type) {
+    const live = this._attr('live', 'assertive');
+    if (live === 'off') return '';
+    if (live === 'polite') return ' role="status" aria-live="polite"';
+    return ` role="alert" aria-live="${type === 'error' ? 'assertive' : 'polite'}"`;
   }
 
   _inactiveMarkup() {
@@ -205,7 +220,8 @@ class WAlert extends WElement {
     const icon = this.getAttribute('icon');
     if (icon != null) {
       if (['false', '0', 'none', 'off'].includes(String(icon).toLowerCase())) return '';
-      return `<span class="w-alert-icon-text">${this._esc(icon)}</span>`;
+      const iconSet = this.getAttribute('icon-set') || '';
+      return WIcons.resolve(iconSet ? `${iconSet}:${icon}` : icon, { iconClass: 'w-alert-icon-text' });
     }
 
     const icons = {

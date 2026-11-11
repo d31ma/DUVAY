@@ -24,7 +24,10 @@
  *   z-index        - stacking order
  *   closable       - show the dismiss button (default on)
  *   close-text     - dismiss button label
- *   prepend-icon   - leading icon glyph
+ *   prepend-icon   - leading icon, resolved through the icon registry
+ *   icon-set       - icon registry set used to resolve `prepend-icon` (see WIcons)
+ *   live           - polite (default, role="status") | assertive (role="alert",
+ *                    for errors that need immediate attention)
  *   prepend-avatar - leading avatar image URL or initials
  *   queue-index    - position in a stack, offsets the snackbar by queue-gap
  *   queue-gap      - pixels between stacked snackbars
@@ -50,6 +53,7 @@
  *   document.body.appendChild(s); s.show();
  */
 
+import WIcons from '../icons.js';
 import {
   wBindActivation,
   wBindCloseOnBack,
@@ -69,7 +73,7 @@ class WSnackbar extends WElement {
     'inline', 'color', 'variant', 'location', 'multi-line', 'vertical', 'rounded',
     'timer', 'timer-color', 'reverse-timer', 'closable', 'close-text',
     'absolute', 'contained', 'content-class', 'opacity', 'z-index',
-    'prepend-icon', 'prepend-avatar', 'queue-index', 'queue-gap', 'collapsed',
+    'prepend-icon', 'icon-set', 'live', 'prepend-avatar', 'queue-index', 'queue-gap', 'collapsed',
     'transition', 'origin', 'target', 'close-on-back',
     'open-on-click', 'open-on-hover', 'open-on-focus', 'close-on-content-click',
     'open-delay', 'close-delay',
@@ -110,7 +114,7 @@ class WSnackbar extends WElement {
     const activator = this._activatorMarkup();
     if (!this.open) return activator ? activator + '<span hidden><slot></slot><slot name="actions"></slot></span>' : '';
 
-    let html = `${activator}<div class="${this._esc(this._barClass())}" role="status" aria-live="polite"${this._barStyle()}>`;
+    let html = `${activator}<div class="${this._esc(this._barClass())}" ${this._liveAttrs()}${this._barStyle()}>`;
     html += `<div class="w-snackbar-content">${this._prependMarkup()}${this._titleMarkup()}<span class="w-snackbar-msg">${this._messageMarkup()}</span></div>`;
     html += `<div class="w-snackbar-actions">${this._actionsMarkup()}${this._closeMarkup()}</div>`;
     html += this._timerMarkup();
@@ -139,7 +143,17 @@ class WSnackbar extends WElement {
       return `<span class="w-avatar w-avatar-sm w-snackbar-avatar" role="img" aria-label="Avatar"><img class="w-avatar-image" src="${this._esc(avatar)}" alt=""></span>`;
     }
     const icon = this._attr('prepend-icon', '');
-    return icon ? `<span class="w-snackbar-icon" aria-hidden="true">${this._esc(icon)}</span>` : '';
+    return icon ? `<span class="w-snackbar-icon" aria-hidden="true">${this._iconMarkup(icon)}</span>` : '';
+  }
+
+  _iconMarkup(icon) {
+    const iconSet = this.getAttribute('icon-set') || '';
+    return WIcons.resolve(iconSet ? `${iconSet}:${icon}` : icon, { iconClass: 'w-icon' });
+  }
+
+  _liveAttrs() {
+    if (this._attr('live', 'polite') === 'assertive') return ' role="alert" aria-live="assertive"';
+    return ' role="status" aria-live="polite"';
   }
 
   _actionsMarkup() {

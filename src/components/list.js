@@ -337,6 +337,7 @@ class WList extends WElement {
       if (this.activeClass && !el.hasAttribute('active-class')) el.setAttribute('active-class', this.activeClass);
       const active = this._isItemActive(el, selected, activated);
       el.active = active;
+      if (typeof el._syncHostRole === 'function') el._syncHostRole();
       this._syncItemControl(el, active);
     });
     this._syncNavigation();

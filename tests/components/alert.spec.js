@@ -112,3 +112,21 @@ test('w-alert resolves named and custom icon sizes without accepting malformed m
   await expect(page.locator('#literal .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 2rem/);
   await expect(page.locator('#object .w-alert')).toHaveAttribute('style', /--w-alert-icon-size: 28px/);
 });
+
+test('w-alert live="polite" is a status and live="off" is a static notice', async ({ mount, page }) => {
+  await mount('<w-alert id="polite" type="info" live="polite">Saved</w-alert><w-alert id="off" type="info" live="off">Note</w-alert><w-alert id="default" type="info">Default</w-alert>');
+
+  await expect(page.locator('#polite .w-alert')).toHaveAttribute('role', 'status');
+  await expect(page.locator('#polite .w-alert')).toHaveAttribute('aria-live', 'polite');
+  await expect(page.locator('#off .w-alert')).not.toHaveAttribute('role', /./);
+  await expect(page.locator('#off .w-alert')).not.toHaveAttribute('aria-live', /./);
+  await expect(page.locator('#default .w-alert')).toHaveAttribute('role', 'alert');
+});
+
+test('w-alert resolves icon through the icon registry', async ({ mount, page }) => {
+  await page.evaluate(() => window.WIcons.set('mdi', { type: 'class', prefix: 'mdi' }));
+  await mount('<w-alert id="alert" type="info" icon="mdi:bell">Heads up</w-alert>');
+
+  await expect(page.locator('#alert .w-alert-icon .mdi.bell')).toHaveCount(1);
+  await expect(page.locator('#alert .w-alert-icon')).not.toContainText('mdi:bell');
+});

@@ -43,6 +43,10 @@
     "append-inner-icon": {
       "type": "string"
     },
+    "aria": {
+      "type": "string",
+      "description": "labelledby (e.g. the id of a visible label) wins over every generated name"
+    },
     "autocomplete": {
       "type": "string",
       "description": "`autocomplete` for the hidden input (`suppress` == off)"

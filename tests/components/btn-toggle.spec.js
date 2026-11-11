@@ -60,3 +60,8 @@ test('w-btn-toggle applies divided, propagates variant/color, and honours disabl
   await expect(page.locator('#d')).toHaveAttribute('value', 'day');
   await expect(page.locator('#d w-btn[value="day"]')).toHaveAttribute('disabled', '');
 });
+
+test('w-btn-toggle group takes an accessible name', async ({ mount, page }) => {
+  await mount('<w-btn-toggle label="Text size"><w-btn value="s">S</w-btn><w-btn value="l">L</w-btn></w-btn-toggle>');
+  await expect(page.getByRole('group', { name: 'Text size' })).toHaveCount(1);
+});
