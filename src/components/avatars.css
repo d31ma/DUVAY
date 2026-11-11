@@ -348,6 +348,29 @@
 .w-avatar-badge--error,
 .w-avatar-badge--danger { background: var(--w-error); color: var(--w-on-error); }
 
+/* Presence shapes, so colour is never the only cue (WCAG 1.4.1):
+   idle and offline are rings, dnd carries a bar. */
+.w-avatar-badge--status-idle,
+.w-avatar-badge--status-offline {
+  background: var(--w-surface);
+}
+
+.w-avatar-badge--status-idle {
+  box-shadow: inset 0 0 0 0.1875rem var(--w-warning), var(--w-shadow-sm);
+}
+
+.w-avatar-badge--status-offline {
+  box-shadow: inset 0 0 0 0.1875rem var(--w-text-subtle), var(--w-shadow-sm);
+}
+
+.w-avatar-badge--status-dnd::after {
+  content: "";
+  width: 55%;
+  height: 0.125rem;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-on-error);
+}
+
 /* Avatar initials fallback */
 .w-avatar[w-initials]::before {
   content: attr(w-initials);

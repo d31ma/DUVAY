@@ -100,3 +100,37 @@ test('w-avatar supports badge props, badge slot, and legacy status mapping', asy
   await expect(page.locator('#status-avatar .w-avatar-badge')).toHaveClass(/w-avatar-badge--error/);
   await expect(page.locator('#status-avatar .w-avatar-status')).toHaveCount(0);
 });
+
+test('w-avatar status names the presence in the avatar and hides the dot', async ({ mount, page }) => {
+  await mount(`
+    <w-avatar id="online" alt="Ana Lee" status="online"></w-avatar>
+    <w-avatar id="away" alt="Ana Lee" status="away"></w-avatar>
+    <w-avatar id="custom" alt="Ana Lee" status="busy" status-label="In a call"></w-avatar>
+  `);
+
+  await expect(page.locator('#online [role="img"]')).toHaveAccessibleName('Ana Lee, Online');
+  await expect(page.locator('#away [role="img"]')).toHaveAccessibleName('Ana Lee, Away');
+  await expect(page.locator('#custom [role="img"]')).toHaveAccessibleName('Ana Lee, In a call');
+  await expect(page.locator('#online .w-avatar-badge')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#online .w-avatar-badge')).not.toHaveAttribute('aria-label', /.*/);
+});
+
+test('w-avatar supports idle, dnd and offline presence with distinct shapes', async ({ mount, page }) => {
+  await mount(`
+    <w-avatar id="idle" alt="Ana" status="idle"></w-avatar>
+    <w-avatar id="dnd" alt="Ana" status="dnd"></w-avatar>
+    <w-avatar id="offline" alt="Ana" status="offline"></w-avatar>
+  `);
+
+  await expect(page.locator('#idle [role="img"]')).toHaveAccessibleName('Ana, Idle');
+  await expect(page.locator('#dnd [role="img"]')).toHaveAccessibleName('Ana, Do not disturb');
+  await expect(page.locator('#offline [role="img"]')).toHaveAccessibleName('Ana, Offline');
+  await expect(page.locator('#idle .w-avatar-badge')).toHaveClass(/w-avatar-badge--warning/);
+  await expect(page.locator('#dnd .w-avatar-badge')).toHaveClass(/w-avatar-badge--error/);
+  await expect(page.locator('#offline .w-avatar-badge')).toHaveClass(/w-avatar-badge--secondary/);
+  await expect(page.locator('#offline .w-avatar-badge')).toHaveClass(/w-avatar-badge--status-offline/);
+  const dndBar = await page.locator('#dnd .w-avatar-badge').evaluate((el) => getComputedStyle(el, '::after').content);
+  expect(dndBar).toBe('""');
+  const ring = await page.locator('#idle .w-avatar-badge').evaluate((el) => getComputedStyle(el).boxShadow);
+  expect(ring).toContain('inset');
+});

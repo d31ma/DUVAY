@@ -748,6 +748,12 @@ export const GENERATED_API_DATA = {
           "Sets the inline option."
         ],
         [
+          "interactive",
+          "string | number | boolean",
+          "—",
+          "Sets the interactive option."
+        ],
+        [
           "loading",
           "boolean | string",
           "—",
@@ -13633,6 +13639,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the status option."
+        ],
+        [
+          "status-label",
+          "string | number | boolean",
+          "—",
+          "Sets the status-label option."
         ],
         [
           "style",
@@ -34088,6 +34100,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -34182,6 +34200,18 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Changes layout for fullscreen display."
+        ],
+        [
+          "heading",
+          "string | number | boolean",
+          "—",
+          "Sets the heading option."
+        ],
+        [
+          "heading-level",
+          "string | number | boolean",
+          "—",
+          "Sets the heading-level option."
         ],
         [
           "height",
@@ -34344,6 +34374,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "When set to true, expects a `v-card` and a `v-card-text` component with a designated height. For more information, check out the [scrollable example](/components/dialogs#scrollable)."
+        ],
+        [
+          "sheet",
+          "string | number | boolean",
+          "—",
+          "Sets the sheet option."
         ],
         [
           "stick-to-target",
@@ -53744,6 +53780,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "announce",
+          "string | number | boolean",
+          "—",
+          "Sets the announce option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -53826,6 +53868,12 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the loading option."
+        ],
+        [
+          "loading-text",
+          "boolean | string",
+          "—",
+          "Sets the loading-text option."
         ],
         [
           "location",
@@ -54011,12 +54059,6 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Applies a loading animation with a on-hover loading cursor. A value of **false** will only work when there is content in the `default` slot."
-        ],
-        [
-          "loading-text",
-          "string",
-          "—",
-          "aria-label for the element in a loading state."
         ],
         [
           "location",

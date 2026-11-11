@@ -22,6 +22,21 @@
   from `label`, `aria-label` or `aria-labelledby`.
 - `w-empty-state` / `w-empty` `heading-level` (1-6, default 2, or `none`).
 - `icon-set` on `w-alert`, `w-banner`, `w-snackbar` and `w-empty-state`.
+- `w-dialog`: `heading` (preferred name for the title), `heading-level`
+  (1-6, default 3) and `sheet="mobile"`, which turns the dialog into a bottom
+  sheet below 600px while it stays a modal dialog with the same focus trap.
+  The dialog is described by its body when the body has content; a host
+  `aria-describedby` overrides that (empty turns it off).
+- `w-hover-card`: interactive mode (`interactive`, or automatic when the
+  content holds a focusable element). The content is a named non-modal
+  dialog; it opens on hover, focus or click, and the trigger gets
+  `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`. The closed
+  card is inert.
+- `w-avatar`: presence states `idle`, `dnd` (do not disturb) and `offline`,
+  and `status-label`. Idle and offline show as rings and dnd as a dot with a
+  bar (token-based CSS in `avatars.css`), so colour is not the only cue.
+- `w-skeleton` / `w-skeleton-loader`: opt-in `announce` adds one polite
+  status message (`loading-text`, default "Loading...").
 
 - `w-command-item` rich rows: `prepend-avatar` (alias `avatar`), `tag` with
   `tag-color`, a `snippet` line, and `prepend`/`append` slots. The same fields
@@ -46,7 +61,6 @@
 - WCAG 4.1.2: `w-switch` is announced as a switch (role="switch") instead of a
   checkbox. An indeterminate switch stays a checkbox, because the switch role
   has no mixed state.
-
 - `w-command-item` options are now named by their title only
   (`aria-labelledby`); subtitle, snippet, tag, append content and shortcut
   become the option's description (`aria-describedby`) instead of being read
@@ -58,6 +72,20 @@
   `<slot>`; before, the children moved into a hidden slot and the card showed
   empty. `slot="..."` on content inside a nested `w-*` component no longer
   counts as a card slot.
+- `w-dialog`: a host `title` no longer shows a browser tooltip over the whole
+  dialog. The value moves to `heading`; `title` and `el.title` still work.
+- `w-hover-card`: Escape closes the card (focus returns to the trigger when
+  it was in the card), and moving the pointer onto the card keeps it open
+  (WCAG 1.4.13).
+- `w-table`: a native `<table>` is no longer wrapped in a second
+  `role="table"`; there is exactly one table in the accessibility tree.
+- `w-skeleton` / `w-skeleton-loader`: the bones are no longer a live region
+  (`aria-live`/`aria-busy` removed) and are `aria-hidden`, so many loaders no
+  longer make many announcements. The page should own one loading status;
+  use `announce` on one loader when needed.
+- `w-avatar`: a status dot is no longer labelled "warning badge". The
+  presence ("Online", "Away", ...) is part of the avatar's accessible name
+  ("Ana Lee, Online") and the dot is hidden from assistive technology.
 
 ## 26.35.01-1 - 2026-08-24
 

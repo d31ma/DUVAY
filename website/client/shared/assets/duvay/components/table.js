@@ -11,6 +11,11 @@
  *   grid         - forces DuVay row / col presentation
  *   responsive   - auto | stack | scroll (default: auto)
  *
+ * Semantics:
+ *   A native <table> keeps its own table semantics and the wrapper has no
+ *   role. A w-row / w-col grid gets role="table", "row", "columnheader" and
+ *   "cell". Either way there is exactly one table in the accessibility tree.
+ *
  * Slots:
  *   default - a native <table>, or w-row elements containing w-col cells
  *   top     - content rendered above the table (toolbars, filters)
@@ -56,8 +61,14 @@ class WTable extends WElement {
     const bottom = this._hasSlotted('bottom') ? '<div class="w-table-bottom"><slot name="bottom"></slot></div>' : '';
 
     return `${top}<div class="${wrap.join(' ')}"${style}>
-      <div class="w-table-grid" role="table"><slot></slot></div>
+      <div class="w-table-grid"${this._gridRole()}><slot></slot></div>
     </div>${bottom}`;
+  }
+
+  // A native <table> already carries table semantics, so the wrapper stays a
+  // plain element; only the w-row / w-col grid needs role="table".
+  _gridRole() {
+    return this.querySelector('table') ? '' : ' role="table"';
   }
 
   _events() {
@@ -65,6 +76,7 @@ class WTable extends WElement {
     const grid = this._q('.w-table-grid');
 
     if (table) {
+      grid?.removeAttribute('role');
       table.classList.add('w-table');
       table.classList.remove('w-table--responsive-auto', 'w-table--responsive-stack');
       if (this.responsive !== 'scroll') table.classList.add('w-table--responsive-' + this.responsive);

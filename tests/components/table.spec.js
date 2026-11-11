@@ -75,3 +75,18 @@ test('w-table renders top and bottom slots around the table', async ({ mount, pa
   await expect(page.locator('#table > :nth-child(1)')).toHaveClass(/w-table-top/);
   await expect(page.locator('#table > :nth-child(3)')).toHaveClass(/w-table-bottom/);
 });
+
+test('w-table exposes exactly one table for a native table and for a grid', async ({ mount, page }) => {
+  await mount(`
+    <w-table id="native"><table><thead><tr><th>Name</th></tr></thead><tbody><tr><td>Ana</td></tr></tbody></table></w-table>
+    <w-table id="grid"><w-row header><w-col>Name</w-col></w-row><w-row><w-col>Ana</w-col></w-row></w-table>
+  `);
+
+  await expect(page.locator('#native [role="table"]')).toHaveCount(0);
+  await expect(page.locator('#native').getByRole('table')).toHaveCount(1);
+  await expect(page.locator('#grid [role="table"]')).toHaveCount(1);
+  await expect(page.locator('#grid').getByRole('table')).toHaveCount(1);
+
+  await page.locator('#native').evaluate((el) => el.setAttribute('striped', ''));
+  await expect(page.locator('#native').getByRole('table')).toHaveCount(1);
+});

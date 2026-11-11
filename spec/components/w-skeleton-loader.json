@@ -28,11 +28,7 @@
     "readonly",
     "error"
   ],
-  "props": {
-    "loading-text": {
-      "type": "string"
-    }
-  },
+  "props": {},
   "events": [],
   "slots": [],
   "source": "src/components/skeleton-loader.js",

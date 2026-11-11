@@ -140,6 +140,31 @@
   transform: none;
 }
 
+/* sheet="mobile": below the small breakpoint (--w-bp-sm, 600px) the dialog
+   docks to the bottom edge like <w-bottom-sheet>, with the same radius,
+   shadow and slide-up motion. It stays a modal dialog. The doubled class
+   outranks the phone padding that footers.css sets later. */
+@media (max-width: 599.98px) {
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile > .w-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: 80dvh;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    border-bottom: 0;
+    border-radius: var(--w-radius-lg) var(--w-radius-lg) 0 0;
+    transform: translateY(100%);
+  }
+
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile.open > .w-dialog {
+    transform: translateY(0);
+  }
+}
+
 w-dialog > .w-overlay.w-overlay--scrim {
   background: color-mix(
     in srgb,

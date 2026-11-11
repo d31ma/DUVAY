@@ -179,10 +179,16 @@
     "status": {
       "type": "enum",
       "values": [
-        "online",
-        "away"
+        "away",
+        "idle",
+        "busy",
+        "dnd"
       ],
-      "description": "online | away | busy legacy status indicator start/end       - inline spacing helpers"
+      "description": "presence dot: online | away | idle | busy | dnd (do not disturb) | offline. The dot has its own shape per state (idle and offline are rings, dnd has a bar), so colour is not the only cue."
+    },
+    "status-label": {
+      "type": "string",
+      "description": "overrides the spoken presence (\"Online\", \"Away\", ...)"
     },
     "text": {
       "type": "string"
