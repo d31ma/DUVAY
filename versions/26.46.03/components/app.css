@@ -1,0 +1,65 @@
+/* DuVay — App component styles. */
+@import "../core.css";
+
+/* ── App shell ──────────────────────────────────────────────────────────── */
+/* Full-viewport application frame: topbar + (sidebar | main). */
+.w-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: var(--w-topbar-height) minmax(0, 1fr);
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--w-surface);
+  color: var(--w-text);
+}
+
+.w-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-width: 0;
+  padding: 0 var(--w-space-lg) 0 var(--w-space-xl);
+  border-bottom: 1px solid var(--w-divider);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-sm);
+  z-index: 10;
+}
+
+/* Brand / logo area in the topbar */
+.w-topbar-brand {
+  flex: 0 0 auto;
+  color: var(--w-primary);
+  font-size: var(--w-font-lg);
+  font-weight: var(--w-font-weight-bold);
+  user-select: none;
+}
+
+/* Push content to the right side of the topbar */
+.w-topbar-spacer {
+  margin-left: auto;
+}
+
+.w-body {
+  display: grid;
+  grid-template-columns: var(--w-sidebar-width) minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+}
+
+.w-sidebar {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--w-divider);
+  background: var(--w-sidebar);
+  padding: 0.875rem var(--w-space-md);
+  user-select: none;
+}
+
+.w-main {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--w-surface-container-low);
+}

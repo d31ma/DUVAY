@@ -1,0 +1,30 @@
+/* DuVay — Content Responsive component styles. */
+@import "../core.css";
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .w-detail { padding: 1.5rem 1.75rem; }
+  .w-detail-header { padding: 1.5rem 1.75rem 1rem; }
+  .w-detail-body { padding: 1.5rem 1.75rem; }
+}
+
+@media (max-width: 760px) {
+  .w-panel {
+    width: 100%;
+    padding: var(--w-space-lg) max(var(--w-space-lg), env(safe-area-inset-right)) calc(var(--w-space-lg) + env(safe-area-inset-bottom)) max(var(--w-space-lg), env(safe-area-inset-left));
+  }
+
+  .w-list-row {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    padding: var(--w-space-md) 0.875rem;
+  }
+
+  .w-list-row-actions { display: none; }
+
+  .w-detail { padding: 1.25rem 1.125rem; }
+  .w-detail-header { padding: 1rem 1.125rem 0.875rem; }
+  .w-detail-body {
+    padding: 1.25rem 1.125rem;
+    max-width: none;
+  }
+}

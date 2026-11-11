@@ -1,0 +1,47 @@
+/* DuVay — Collapsibles component styles. */
+@import "../core.css";
+
+/* ── Collapsible ────────────────────────────────────────────────────────── */
+.w-collapsible {
+  overflow: hidden;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+}
+
+.w-collapsible-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w-space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--w-space-4);
+  border: 0;
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: var(--w-font-weight-medium);
+  text-align: left;
+}
+
+.w-collapsible-trigger:hover:not(:disabled) {
+  background: var(--w-hover);
+}
+
+.w-collapsible-icon {
+  display: block;
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+  transition: transform var(--w-transition-fast);
+}
+
+.w-collapsible.open .w-collapsible-icon {
+  transform: rotate(180deg);
+}
+
+.w-collapsible-content {
+  padding: var(--w-space-4);
+  border-top: 1px solid var(--w-border);
+}

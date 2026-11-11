@@ -1,0 +1,199 @@
+/* DuVay — Timelines component styles (Vuetify v-timeline parity).
+ * Layout per item: [opposite] [divider: dot + connecting line] [content].
+ * Slotted <w-timeline-item> hosts live inside the timeline's <slot>. */
+@import "../core.css";
+
+.w-timeline {
+  --w-timeline-opposite-width: 4.5rem;
+  --w-timeline-divider-width: 1.75rem;
+  --w-timeline-dot-size: 0.875rem;
+  --w-timeline-line-size: 2px;
+  --w-timeline-line-color: var(--w-divider);
+  --w-timeline-dot-color: var(--w-primary);
+  --w-timeline-icon-color: currentColor;
+  --w-timeline-line-inset: 0px;
+  display: block;
+  position: relative;
+  padding: var(--w-space-1) 0;
+}
+
+/* ── Item grid ───────────────────────────────────────────────────────────── */
+.w-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--w-timeline-opposite-width) var(--w-timeline-divider-width) minmax(0, 1fr);
+  column-gap: var(--w-space-3);
+  align-items: start;
+  min-height: 3.5rem;
+  padding-bottom: var(--w-space-4);
+}
+
+.w-timeline slot > w-timeline-item:last-child .w-timeline-item { min-height: 0; padding-bottom: var(--w-space-1); }
+
+/* ── Divider column: dot + connecting line ───────────────────────────────── */
+.w-timeline-divider-col {
+  position: relative;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.w-timeline-divider-col::before {
+  content: "";
+  position: absolute;
+  top: var(--w-timeline-line-inset);
+  bottom: calc(-1 * var(--w-timeline-line-inset));
+  left: 50%;
+  width: var(--w-timeline-line-size);
+  background: var(--w-timeline-line-color);
+  transform: translateX(-50%);
+}
+.w-timeline slot > w-timeline-item:last-child .w-timeline-divider-col::before { display: none; }
+
+.w-timeline-dot {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--w-timeline-dot-size);
+  height: var(--w-timeline-dot-size);
+  margin-top: 0.125rem;
+  border-radius: 50%;
+  border: 2px solid var(--w-timeline-dot-color);
+  background: var(--w-surface);
+  box-shadow: 0 0 0 4px var(--w-surface);
+}
+
+.w-timeline-dot--filled { background: var(--w-timeline-dot-color); color: var(--w-surface); }
+.w-timeline-dot--outlined { background: var(--w-surface); color: var(--w-timeline-dot-color); }
+
+/* Dots holding an icon grow to fit it. */
+.w-timeline-dot:has(.w-timeline-dot__icon) {
+  width: calc(var(--w-timeline-dot-size) + 1rem);
+  height: calc(var(--w-timeline-dot-size) + 1rem);
+}
+.w-timeline-dot__icon { font-size: 0.875rem; line-height: 1; color: var(--w-timeline-icon-color); }
+
+/* ── Opposite + content ──────────────────────────────────────────────────── */
+.w-timeline-opposite {
+  grid-column: 1;
+  justify-self: end;
+  padding-top: 0.125rem;
+  font-size: var(--w-font-xs);
+  color: var(--w-text-very-subtle);
+  line-height: 1.4;
+  text-align: right;
+}
+
+.w-timeline-content { grid-column: 3; min-width: 0; }
+
+.w-timeline-title {
+  font-weight: var(--w-font-weight-semibold);
+  color: var(--w-text);
+  line-height: 1.35;
+}
+
+.w-timeline-body {
+  margin-top: 0.25rem;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  line-height: 1.55;
+}
+
+/* ── Fill-dot (timeline-level) ───────────────────────────────────────────── */
+.w-timeline--fill-dot .w-timeline-dot--outlined { background: var(--w-timeline-dot-color); color: var(--w-surface); }
+
+/* ── Truncate line ───────────────────────────────────────────────────────── */
+.w-timeline--truncate-start slot > w-timeline-item:first-child .w-timeline-divider-col::before,
+.w-timeline--truncate-both slot > w-timeline-item:first-child .w-timeline-divider-col::before {
+  top: calc(var(--w-timeline-dot-size) / 2 + 0.125rem);
+}
+
+/* ── Align: center (alternating) ─────────────────────────────────────────── */
+.w-timeline--align-center .w-timeline-item {
+  grid-template-columns: minmax(0, 1fr) var(--w-timeline-divider-width) minmax(0, 1fr);
+}
+.w-timeline--align-center .w-timeline-opposite { grid-column: 1; text-align: right; }
+.w-timeline--align-center .w-timeline-content { grid-column: 3; }
+
+/* Even items flip to the other side. */
+.w-timeline--align-center slot > w-timeline-item:nth-of-type(even) .w-timeline-opposite { grid-column: 3; text-align: left; }
+.w-timeline--align-center slot > w-timeline-item:nth-of-type(even) .w-timeline-content { grid-column: 1; text-align: right; }
+
+/* Per-item forced side (overrides alternation). */
+.w-timeline--align-center .w-timeline-item--end .w-timeline-content { grid-column: 3; text-align: left; }
+.w-timeline--align-center .w-timeline-item--end .w-timeline-opposite { grid-column: 1; text-align: right; }
+.w-timeline--align-center .w-timeline-item--start .w-timeline-content { grid-column: 1; text-align: right; }
+.w-timeline--align-center .w-timeline-item--start .w-timeline-opposite { grid-column: 3; text-align: left; }
+
+/* Timeline-level forced side. */
+.w-timeline--side-end.w-timeline--align-center .w-timeline-content { grid-column: 3 !important; text-align: left; }
+.w-timeline--side-end.w-timeline--align-center .w-timeline-opposite { grid-column: 1 !important; text-align: right; }
+.w-timeline--side-start.w-timeline--align-center .w-timeline-content { grid-column: 1 !important; text-align: right; }
+.w-timeline--side-start.w-timeline--align-center .w-timeline-opposite { grid-column: 3 !important; text-align: left; }
+
+/* ── Density: compact (hide opposite, left rail) ─────────────────────────── */
+.w-timeline--density-compact .w-timeline-item {
+  grid-template-columns: var(--w-timeline-divider-width) minmax(0, 1fr);
+}
+.w-timeline--density-compact .w-timeline-opposite { display: none; }
+.w-timeline--density-compact .w-timeline-divider-col { grid-column: 1; }
+.w-timeline--density-compact .w-timeline-content { grid-column: 2; }
+
+/* ── Hide opposite ───────────────────────────────────────────────────────── */
+/* Timeline-level: collapse every item to a single rail (divider + content). */
+.w-timeline--hide-opposite .w-timeline-item,
+.w-timeline--hide-opposite.w-timeline--align-center .w-timeline-item {
+  grid-template-columns: var(--w-timeline-divider-width) minmax(0, 1fr);
+}
+.w-timeline--hide-opposite .w-timeline-opposite { display: none; }
+.w-timeline--hide-opposite .w-timeline-divider-col { grid-column: 1; }
+.w-timeline--hide-opposite .w-timeline-content { grid-column: 2; text-align: left; }
+/* Per-item: just drop that item's opposite content (column stays reserved). */
+.w-timeline-item--hide-opposite .w-timeline-opposite { display: none; }
+
+/* ── Justify: center (equal-width sides) ─────────────────────────────────── */
+.w-timeline--justify-center:not(.w-timeline--horizontal) .w-timeline-item {
+  grid-template-columns: minmax(0, 1fr) var(--w-timeline-divider-width) minmax(0, 1fr);
+}
+
+/* ── Direction: horizontal ───────────────────────────────────────────────── */
+.w-timeline--horizontal { display: flex; flex-direction: row; padding: 0; }
+.w-timeline--horizontal slot { display: contents; }
+.w-timeline--horizontal .w-timeline-item {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto var(--w-timeline-divider-width) auto;
+  min-height: 0;
+  min-width: 8rem;
+  padding: 0 var(--w-space-4) 0 0;
+  text-align: center;
+}
+.w-timeline--horizontal .w-timeline-opposite { grid-column: 1; grid-row: 1; justify-self: center; text-align: center; }
+.w-timeline--horizontal .w-timeline-divider-col { grid-column: 1; grid-row: 2; }
+.w-timeline--horizontal .w-timeline-content { grid-column: 1; grid-row: 3; text-align: center; }
+.w-timeline--horizontal .w-timeline-divider-col::before {
+  top: 50%; bottom: auto; left: var(--w-timeline-line-inset); right: calc(-1 * var(--w-timeline-line-inset));
+  width: auto; height: var(--w-timeline-line-size); transform: translateY(-50%);
+}
+
+/* ── Divider subcomponent (inline label between items) ───────────────────── */
+.w-timeline-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2;
+  color: var(--w-text-very-subtle);
+}
+
+@media (max-width: 599px) {
+  .w-timeline:not(.w-timeline--horizontal) { --w-timeline-opposite-width: 3.25rem; }
+  /* Collapse alternating layouts to a single left rail on small screens. */
+  .w-timeline--align-center .w-timeline-item {
+    grid-template-columns: var(--w-timeline-opposite-width) var(--w-timeline-divider-width) minmax(0, 1fr);
+  }
+  .w-timeline--align-center .w-timeline-opposite,
+  .w-timeline--align-center slot > w-timeline-item:nth-of-type(even) .w-timeline-opposite { grid-column: 1; text-align: right; }
+  .w-timeline--align-center .w-timeline-content,
+  .w-timeline--align-center slot > w-timeline-item:nth-of-type(even) .w-timeline-content { grid-column: 3; text-align: left; }
+}

@@ -1,0 +1,83 @@
+/* DuVay — Overlays component styles. */
+@import "../core.css";
+
+/* ── Overlay / Scrim ──────────────────────────────────────────────────────── */
+/* Reusable backdrop for modals, dialogs, bottom sheets, drawers. */
+.w-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--w-z-overlay);
+  background: var(--w-scrim);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--w-transition-normal), visibility var(--w-transition-normal);
+}
+
+.w-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.w-overlay--scrim {
+  background: color-mix(in srgb, var(--w-scrim) 56%, transparent);
+}
+
+.w-dialog-scroll-lock {
+  overflow: hidden;
+}
+
+/* ── Connected placement ──────────────────────────────────────────────────── */
+/* `target` pins the content to an element, so the centring flex box steps out
+   of the way and the component writes left/top inline. */
+.w-overlay.w-overlay--connected {
+  display: block;
+}
+
+.w-overlay--connected .w-overlay-content {
+  position: absolute;
+}
+
+/* ── Named transitions ────────────────────────────────────────────────────── */
+.w-overlay.w-overlay--no-transition,
+.w-overlay--no-transition .w-overlay-content {
+  transition: none;
+  animation: none;
+}
+
+.w-overlay--transition-fade .w-overlay-content {
+  animation: w-overlay-fade var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+.w-overlay--transition-scale .w-overlay-content {
+  animation: w-overlay-scale var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+.w-overlay--transition-slide-y .w-overlay-content {
+  animation: w-overlay-slide-y var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+.w-overlay--transition-slide-x .w-overlay-content {
+  animation: w-overlay-slide-x var(--w-motion-duration) var(--w-motion-ease-enter);
+}
+
+@keyframes w-overlay-fade {
+  from { opacity: 0; }
+}
+
+@keyframes w-overlay-scale {
+  from { opacity: 0; transform: scale(var(--w-motion-scale-start)); }
+}
+
+@keyframes w-overlay-slide-y {
+  from { opacity: 0; transform: translateY(var(--w-motion-distance-y)); }
+}
+
+@keyframes w-overlay-slide-x {
+  from { opacity: 0; transform: translateX(var(--w-motion-distance-x)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-overlay .w-overlay-content {
+    animation: none;
+  }
+}

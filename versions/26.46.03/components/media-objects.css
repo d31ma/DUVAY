@@ -1,0 +1,46 @@
+/* DuVay — Media Objects component styles. */
+@import "../core.css";
+
+/* ── Media object ────────────────────────────────────────────────────────── */
+/* Image/figure + content layout (Foundation / Semantic UI). */
+.w-media {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--w-space-3);
+  min-width: 0;
+}
+
+.w-media-figure {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.w-media-figure img,
+.w-media-figure svg,
+.w-media-figure video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--w-radius);
+}
+
+.w-media-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-media-body > :first-child { margin-top: 0; }
+.w-media-body > :last-child { margin-bottom: 0; }
+
+.w-media-reverse { flex-direction: row-reverse; }
+
+.w-media-center { align-items: center; }
+.w-media-bottom { align-items: flex-end; }
+
+.w-media-stack,
+.w-media-stack.w-media-reverse {
+  flex-direction: column;
+}

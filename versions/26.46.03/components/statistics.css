@@ -1,0 +1,44 @@
+/* DuVay — Statistics component styles. */
+@import "../core.css";
+
+/* ── Statistic ───────────────────────────────────────────────────────────── */
+/* Big number + label, inspired by Ant Design / Semantic UI / Primer. */
+.w-statistic {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--w-space-1);
+  min-width: 0;
+}
+
+.w-statistic-value {
+  color: var(--w-text);
+  font-size: var(--w-font-3xl);
+  font-weight: var(--w-font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: var(--w-letter-spacing-tight);
+}
+
+.w-statistic-label {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-statistic-secondary {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+}
+
+.w-statistic-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-1);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-statistic-trend-up   { color: var(--w-success); }
+.w-statistic-trend-down { color: var(--w-error); }
+
+.w-statistic-sm .w-statistic-value { font-size: var(--w-font-2xl); }
+.w-statistic-lg .w-statistic-value { font-size: 3rem; }

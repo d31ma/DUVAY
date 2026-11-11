@@ -1,0 +1,57 @@
+/* DuVay — Descriptions component styles. */
+@import "../core.css";
+
+/* ── Descriptions ────────────────────────────────────────────────────────── */
+/* Key-value list (Ant Design-style). */
+.w-descriptions {
+  display: grid;
+  grid-template-columns: repeat(var(--w-descriptions-cols, 1), minmax(0, 1fr));
+  gap: var(--w-space-3);
+}
+
+.w-descriptions-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-1);
+  min-width: 0;
+}
+
+.w-descriptions-label {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.w-descriptions-value {
+  color: var(--w-text);
+  font-size: var(--w-font-base);
+}
+
+.w-descriptions-bordered {
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  overflow: hidden;
+}
+
+.w-descriptions-bordered .w-descriptions-item {
+  flex-direction: row;
+  gap: 0;
+  padding: var(--w-space-3) var(--w-space-4);
+  border-bottom: 1px solid var(--w-border);
+}
+
+.w-descriptions-bordered .w-descriptions-label {
+  width: 40%;
+  max-width: 160px;
+  padding-right: var(--w-space-4);
+  color: var(--w-text-subtle);
+  font-weight: var(--w-font-weight-medium);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.w-descriptions-bordered .w-descriptions-value {
+  flex: 1 1 auto;
+}

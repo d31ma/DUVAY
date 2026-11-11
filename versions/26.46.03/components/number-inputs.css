@@ -1,0 +1,347 @@
+/* DuVay — Number Input component styles.
+ *
+ * Tokens: --w-border, --w-radius, --w-surface, --w-text, --w-hover, --w-primary,
+ * --w-space-*. Drives the <w-number-input> stepper layouts: default, stacked,
+ * split, hidden, plus the inset / hide-input / reverse modifiers.
+ */
+@import "../core.css";
+
+.w-number-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-xs);
+}
+
+/* ── Field shell ─────────────────────────────────────────────────────────── */
+.w-number-input-field {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--w-outline);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  overflow: hidden;
+}
+
+.w-number-input-field:focus-within {
+  border-color: var(--w-primary);
+}
+
+.w-number-input-field .w-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ── Stepper buttons ─────────────────────────────────────────────────────── */
+.w-number-input-control {
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+.w-number-input-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  padding: 0 var(--w-space-sm);
+  border: 0;
+  background: transparent;
+  color: var(--w-text-subtle);
+  line-height: 1;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-number-input-btn svg {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.w-number-input-btn:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-number-input-btn:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+.w-number-input-btn:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+/* ── default: dividers between control buttons and the input ─────────────── */
+.w-number-input--default .w-number-input-control,
+.w-number-input--split .w-number-input-btn {
+  border-inline-start: 1px solid var(--w-border);
+}
+
+.w-number-input--default .w-number-input-control .w-number-input-btn + .w-number-input-btn {
+  border-inline-start: 1px solid var(--w-border);
+}
+
+/* ── stacked: + over − at the field's end ────────────────────────────────── */
+.w-number-input--stacked .w-number-input-control {
+  flex-direction: column;
+  border-inline-start: 1px solid var(--w-border);
+}
+
+.w-number-input--stacked .w-number-input-btn {
+  flex: 1 1 0;
+  min-height: 1.1rem;
+  font-size: var(--w-font-sm);
+}
+
+.w-number-input--stacked .w-number-input-btn svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+
+.w-number-input--stacked .w-number-input-btn + .w-number-input-btn {
+  border-top: 1px solid var(--w-border);
+}
+
+/* ── split: − at the start, + at the end ─────────────────────────────────── */
+.w-number-input--split .w-number-input-btn[data-step="-1"] {
+  border-inline-start: 0;
+  border-inline-end: 1px solid var(--w-border);
+}
+
+.w-number-input--split .w-input {
+  text-align: center;
+}
+
+/* ── inset: no dividers, controls flush against the input ────────────────── */
+.w-number-input--inset .w-number-input-control,
+.w-number-input--inset .w-number-input-btn,
+.w-number-input--inset .w-number-input-control .w-number-input-btn + .w-number-input-btn {
+  border-color: transparent;
+}
+
+/* ── Outer icons (prepend / append) ──────────────────────────────────────── */
+.w-number-input-outer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-number-input-outer > .w-number-input-field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-number-input-prepend,
+.w-number-input-append,
+.w-number-input-prepend-inner,
+.w-number-input-append-inner {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-inline: var(--w-space-1);
+  color: var(--w-number-input-icon-color, var(--w-text-subtle));
+  opacity: var(--w-text-medium-emphasis-opacity);
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-number-input--glow:focus-within .w-number-input-prepend,
+.w-number-input--glow:focus-within .w-number-input-append,
+.w-number-input--glow:focus-within .w-number-input-prepend-inner,
+.w-number-input--glow:focus-within .w-number-input-append-inner {
+  opacity: 1;
+  color: var(--w-number-input-icon-color, var(--w-primary));
+}
+
+/* ── Affixes (prefix / suffix) ───────────────────────────────────────────── */
+.w-number-input-affix {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-inline: var(--w-space-1);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+}
+
+.w-number-input--center-affix .w-number-input-affix,
+.w-number-input--center-affix .w-number-input-prepend-inner,
+.w-number-input--center-affix .w-number-input-append-inner {
+  align-self: center;
+}
+
+/* ── Clear button ────────────────────────────────────────────────────────── */
+.w-number-input-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-number-input-clear[hidden] {
+  display: none;
+}
+
+.w-number-input-field:hover .w-number-input-clear,
+.w-number-input-field:focus-within .w-number-input-clear,
+.w-number-input--persistent-clear .w-number-input-clear {
+  opacity: 1;
+}
+
+.w-number-input-clear:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+}
+
+/* ── Placeholder / state modifiers ───────────────────────────────────────── */
+.w-number-input--persistent-placeholder .w-input::placeholder {
+  opacity: 1;
+  color: var(--w-text-subtle);
+}
+
+.w-number-input--active .w-number-input-field {
+  border-color: var(--w-primary);
+}
+
+/* Affixes surface once the field carries a value or focus, matching
+ * <v-number-input>; `dirty` forces that state on. */
+.w-number-input-affix {
+  visibility: hidden;
+}
+
+.w-number-input--dirty .w-number-input-affix,
+.w-number-input--persistent-placeholder .w-number-input-affix,
+.w-number-input-field:focus-within .w-number-input-affix {
+  visibility: visible;
+}
+
+/* The stepper replaces the native spinners; hide those too when asked. */
+.w-number-input--hide-spin-buttons .w-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.w-number-input--hide-spin-buttons .w-input::-webkit-outer-spin-button,
+.w-number-input--hide-spin-buttons .w-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Details row: messages + counter ─────────────────────────────────────── */
+.w-number-input-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+}
+
+.w-number-input--indent-details .w-number-input-details {
+  padding-inline: var(--w-space-md);
+}
+
+.w-number-input-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+
+.w-number-input-messages--error {
+  color: var(--w-error);
+}
+
+.w-number-input-counter {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  visibility: hidden;
+}
+
+.w-number-input:focus-within .w-number-input-counter,
+.w-number-input--persistent-counter .w-number-input-counter {
+  visibility: visible;
+}
+
+/* persistent-hint keeps the helper text next to the error text. */
+.w-number-input .w-field-hint--persistent {
+  color: var(--w-text-subtle);
+}
+
+/* ── Variants ────────────────────────────────────────────────────────────── */
+.w-number-input--plain .w-number-input-field,
+.w-number-input--underlined .w-number-input-field {
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+}
+
+.w-number-input--underlined .w-number-input-field {
+  border-bottom: 1px solid var(--w-outline);
+}
+
+.w-number-input--underlined .w-number-input-field:focus-within {
+  border-bottom-color: var(--w-primary);
+}
+
+.w-number-input--filled .w-number-input-field {
+  border-color: transparent;
+  border-bottom-color: var(--w-outline);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  background: var(--w-surface-container);
+}
+
+.w-number-input--solo .w-number-input-field,
+.w-number-input--solo-filled .w-number-input-field,
+.w-number-input--solo-inverted .w-number-input-field {
+  border-color: transparent;
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-number-input--solo-filled .w-number-input-field {
+  background: var(--w-surface-container-high);
+}
+
+.w-number-input--solo-inverted .w-number-input-field {
+  background: var(--w-inverse-surface);
+  color: var(--w-inverse-on-surface);
+}
+
+.w-number-input--solo-inverted .w-input {
+  color: inherit;
+}
+
+.w-number-input--flat .w-number-input-field {
+  box-shadow: none;
+}
+
+/* ── hide-input: stepper only ────────────────────────────────────────────── */
+.w-number-input--hide-input .w-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.w-number-input--hide-input .w-number-input-control {
+  border-inline-start: 0;
+}

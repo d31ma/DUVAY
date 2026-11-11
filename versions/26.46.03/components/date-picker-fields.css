@@ -1,0 +1,63 @@
+/* DuVay — Date Picker Fields component styles. */
+@import "../core.css";
+
+/* ── Date picker enhancements ─────────────────────────────────────────────── */
+.w-date-picker-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-size: var(--w-font-lg);
+  line-height: 1;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-date-picker-nav:hover:not(:disabled) {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-date-picker-nav:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.w-date-picker-title {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.w-date-picker-day.disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.w-date-picker-day.disabled:hover {
+  background: transparent;
+}
+
+.w-date-picker-day:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.w-date-picker-day.range-start,
+.w-date-picker-day.range-end {
+  background: var(--w-primary);
+  color: var(--w-on-primary);
+  font-weight: var(--w-font-weight-bold);
+}
+
+.w-date-picker-day.in-range {
+  background: var(--w-primary-container);
+  color: var(--w-on-primary-container);
+  border-radius: 0;
+}

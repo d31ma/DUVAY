@@ -1,0 +1,12 @@
+/* DuVay — Virtual Scroll component styles. */
+@import "../core.css";
+
+/* ── Virtual Scroll ───────────────────────────────────────────────────────── */
+.w-virtual-scroll {
+  overflow-y: auto;
+  contain: strict;
+}
+
+.w-virtual-scroll > * {
+  contain: content;
+}

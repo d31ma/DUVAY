@@ -1,0 +1,27 @@
+/* DuVay — Layout Helpers component styles. */
+@import "../core.css";
+
+/* ── Generic grid helpers ───────────────────────────────────────────────── */
+.w-row {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+}
+
+.w-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-space-md);
+}
+
+.w-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--w-space-lg);
+}
+
+.w-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--w-space-lg);
+}

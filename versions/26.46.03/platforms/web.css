@@ -1,0 +1,43 @@
+/* DuVay — the unskinned baseline
+ *
+ * `w-os=""` means "no platform skin". On its own that is a no-op — but a skin
+ * sets custom properties that INHERIT, so a subtree inside a skinned page does
+ * not fall back to the baseline by simply dropping the attribute. This file
+ * restates the base values under `[w-os=""]` so opting out actually opts out.
+ *
+ * GENERATED from the union of tokens the five skins override, by
+ * `bun run tokens:build`. Do not edit.
+ */
+
+[w-os=""] {
+  --w-app-bar-backdrop-blur:  1rem;
+  --w-focus-ring-color:       var(--w-primary);
+  --w-focus-ring-offset:      2px;
+  --w-focus-ring-shadow:      none;
+  --w-focus-ring-width:       2px;
+  --w-font-family:            'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --w-font-family-heading:    var(--w-font-family);
+  --w-font-family-mono:       'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+  --w-letter-spacing-normal:  0;
+  --w-letter-spacing-tight:   -0.01em;
+  --w-line-height-normal:     1.6;
+  --w-mobile-nav-height:      64px;
+  --w-motion-duration:        180ms;
+  --w-motion-duration-fast:   120ms;
+  --w-motion-duration-slow:   260ms;
+  --w-motion-ease-enter:      cubic-bezier(0, 0, 0.2, 1);
+  --w-motion-ease-exit:       cubic-bezier(0.4, 0, 1, 1);
+  --w-motion-ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --w-shadow-lg:              0 20px 60px var(--w-shadow-color);
+  --w-shadow-md:              0 8px 24px var(--w-shadow-color);
+  --w-shadow-sm:              0 1px 0 var(--w-shadow-color);
+  --w-sidebar-width:          232px;
+  --w-skin-switch-pad:        0px;
+  --w-skin-switch-thumb:      18px;
+  --w-skin-switch-track-h:    14px;
+  --w-skin-switch-track-w:    40px;
+  --w-topbar-height:          56px;
+  --w-transition-fast:        120ms ease;
+  --w-transition-normal:      140ms ease;
+  --w-transition-slow:        160ms ease;
+}

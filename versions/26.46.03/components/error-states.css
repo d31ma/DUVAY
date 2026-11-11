@@ -1,0 +1,13 @@
+/* DuVay — Error States component styles. */
+@import "../core.css";
+
+/* ── Error state ─────────────────────────────────────────────────────────── */
+.w-error-box {
+  padding: var(--w-space-md) 0.875rem;
+  border: 1px solid color-mix(in srgb, var(--w-error) 22%, transparent);
+  border-radius: var(--w-radius);
+  background: var(--w-error-container);
+  color: var(--w-error);
+  font-size: var(--w-font-base);
+  line-height: 1.5;
+}

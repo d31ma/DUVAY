@@ -1,0 +1,164 @@
+/* DuVay — data visualization and native media component styles. */
+@import "../core.css";
+
+/* Highlight */
+.w-highlight-mark {
+  border-radius: var(--w-radius-sm);
+  background: color-mix(in srgb, var(--w-highlight-color) calc(var(--w-highlight-opacity) * 100%), transparent);
+  color: inherit;
+}
+
+/* Heatmap */
+.w-heatmap {
+  --w-heatmap-cell-size: var(--w-size-md);
+  --w-heatmap-gap: var(--w-space-1);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--w-space-2);
+  margin: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  color: var(--w-text);
+}
+
+.w-heatmap-column-headers,
+.w-heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--w-heatmap-columns), var(--w-heatmap-cell-size));
+  gap: var(--w-heatmap-gap);
+}
+
+.w-heatmap-column-headers { grid-column: 2; }
+.w-heatmap-column-header,
+.w-heatmap-row-header {
+  overflow: hidden;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-heatmap-row-headers {
+  display: grid;
+  grid-template-rows: repeat(var(--w-heatmap-rows), var(--w-heatmap-cell-size));
+  gap: var(--w-heatmap-gap);
+}
+
+.w-heatmap-row-header { align-content: center; }
+.w-heatmap-grid { grid-column: 2; }
+
+.w-heatmap-cell {
+  /* Containing block for the cell's own .w-sr-only label. Without it the
+     absolutely-positioned label resolves against the initial containing block,
+     escapes the heatmap's horizontal scroller, and extends the document's
+     scroll width on narrow screens. */
+  position: relative;
+  display: inline-flex;
+  inline-size: var(--w-heatmap-cell-size);
+  block-size: var(--w-heatmap-cell-size);
+  border-radius: var(--w-radius-sm);
+  background: var(--w-heatmap-cell-color, var(--w-surface-container-high));
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-heatmap--hover .w-heatmap-cell:hover {
+  z-index: 1;
+  transform: scale(var(--w-heatmap-hover-scale));
+  box-shadow: var(--w-shadow-md);
+}
+.w-heatmap-cell--disabled { opacity: var(--w-text-disabled-opacity); }
+.w-heatmap-legend {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--w-space-3);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+}
+.w-heatmap-legend span { display: inline-flex; align-items: center; gap: var(--w-space-1); }
+.w-heatmap-legend i { inline-size: var(--w-space-3); block-size: var(--w-space-3); border-radius: var(--w-radius-sm); background: var(--w-heatmap-cell-color); }
+
+/* Pie */
+.w-pie { display: inline-grid; justify-items: center; gap: var(--w-space-3); margin: 0; color: var(--w-text); }
+.w-pie-chart {
+  --w-pie-inner-cut: 0%;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--w-pie-size);
+  aspect-ratio: 1;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-pie-fill);
+  transition: transform var(--w-transition-fast);
+}
+.w-pie-chart::after {
+  content: "";
+  position: absolute;
+  inset: var(--w-pie-inner-cut);
+  border-radius: inherit;
+  background: var(--w-surface);
+}
+.w-pie:hover .w-pie-chart { transform: scale(var(--w-pie-hover-scale)); }
+.w-pie-center { position: relative; z-index: 1; }
+.w-pie-legend { display: grid; gap: var(--w-space-1); min-inline-size: var(--w-pie-size); margin: 0; padding: 0; list-style: none; }
+.w-pie-legend li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: var(--w-space-2); }
+.w-pie-legend i { inline-size: var(--w-space-3); block-size: var(--w-space-3); border-radius: var(--w-radius-pill); background: var(--w-pie-color); }
+.w-pie-segment--active { transform: scale(var(--w-pie-hover-scale)); }
+.w-pie-segment--hidden { visibility: hidden; }
+.w-pie-tooltip { display: inline-flex; gap: var(--w-space-2); padding: var(--w-space-2) var(--w-space-3); border: 1px solid var(--w-border); border-radius: var(--w-radius); background: var(--w-surface); box-shadow: var(--w-shadow-md); color: var(--w-text); }
+
+/* Video */
+.w-video {
+  position: relative;
+  overflow: hidden;
+  inline-size: 100%;
+  aspect-ratio: var(--w-video-aspect-ratio, 16 / 9);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface-container-high);
+  color: var(--w-on-primary);
+}
+.w-video > video { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.w-video--background > video { object-fit: cover; }
+.w-video--floating { box-shadow: var(--w-shadow-lg); }
+.w-video-controls {
+  position: absolute;
+  inset-inline: var(--w-space-3);
+  inset-block-end: var(--w-space-3);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-2);
+  min-block-size: var(--w-touch-min);
+  padding: var(--w-space-1) var(--w-space-2);
+  border-radius: var(--w-radius);
+  background: color-mix(in srgb, var(--w-scrim) 80%, transparent);
+  /* The bar sits on the scrim, not on primary. --w-on-primary is dark in the
+     dark theme (primary is light there), which rendered the timecode at
+     1.37:1 over the black scrim. */
+  color: var(--w-on-scrim);
+}
+.w-video-controls > button {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: var(--w-touch-min);
+  min-block-size: var(--w-touch-min);
+  border: 0;
+  border-radius: var(--w-radius-pill);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.w-video-controls > button:hover { background: var(--w-hover); }
+.w-video-controls :focus-visible { outline: 1px solid var(--w-primary); outline-offset: var(--w-space-1); }
+.w-video-controls [data-video-action="seek"] { flex: 1; min-inline-size: var(--w-video-seek-width); }
+.w-video-time { font-variant-numeric: tabular-nums; font-size: var(--w-font-xs); white-space: nowrap; }
+.w-video-volume { display: inline-flex; align-items: center; gap: var(--w-space-1); min-block-size: var(--w-touch-min); }
+.w-video-volume input { inline-size: var(--w-video-volume-width); }
+.w-video-volume--vertical { flex-direction: column; }
+.w-video-volume--vertical input { writing-mode: vertical-lr; direction: rtl; inline-size: auto; block-size: var(--w-video-volume-width); }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-heatmap-cell,
+  .w-pie-chart { transition: none; }
+}

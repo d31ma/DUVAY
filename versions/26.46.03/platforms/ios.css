@@ -1,0 +1,114 @@
+/* DuVay — iOS skin
+ *
+ * Applied with `w-os="ios"` on <html>, orthogonal to `w-theme`.
+ *
+ * Liquid Glass is intentionally absent: Apple's implementation is a private
+ * CSS property, and the SVG-displacement recreations fail in WKWebView — the
+ * exact engine they imitate. This skin ships translucency + vibrancy via
+ * backdrop-filter and stops there. True Liquid Glass is the SwiftUI target's
+ * job, using the system materials API.
+ *
+ * What a skin may change: font family, motion, elevation, chrome heights, the
+ * switch's geometry, the focus ring, scrollbars, and per-component structure.
+ *
+ * What it may not: colour, control size, the radius scale, and the type scale.
+ * Those are brand tokens — they are what keeps an app recognisably the same
+ * product on every platform, and `bun run tokens:check` fails a skin that
+ * overrides them.
+ */
+
+[w-os="ios"] {
+  /* Switch — set as inherited variables so this skin still wins
+   * inside a page wearing a different one. */
+  --w-skin-switch-track-w: 51px;
+  --w-skin-switch-track-h: 31px;
+  --w-skin-switch-thumb: 27px;
+  --w-skin-switch-pad: 2px;
+
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --w-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  --w-font-family-heading: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --w-font-family-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --w-letter-spacing-tight: -0.022em;
+  --w-line-height-normal: 1.29;
+
+  --w-topbar-height: 44px;
+  --w-mobile-nav-height: 49px;       /* iOS tab bar, excluding the home indicator */
+
+  /* ── Elevation — iOS leans on translucency, not drop shadows ──────── */
+  --w-shadow-sm: 0 0.5px 0 var(--w-shadow-color);
+  --w-shadow-md: 0 4px 16px var(--w-shadow-color);
+  --w-shadow-lg: 0 12px 40px var(--w-shadow-color);
+  --w-app-bar-backdrop-blur: 1.25rem;
+
+  /* ── Motion — the UIKit-style decelerating curve ──────────────────── */
+  --w-motion-ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
+  --w-motion-ease-enter:    cubic-bezier(0.32, 0.72, 0, 1);
+  --w-motion-ease-exit:     cubic-bezier(0.4, 0, 0.6, 1);
+  --w-motion-duration-fast: 200ms;
+  --w-motion-duration:      350ms;
+  --w-motion-duration-slow: 500ms;
+  --w-transition-fast:   200ms cubic-bezier(0.32, 0.72, 0, 1);
+  --w-transition-normal: 350ms cubic-bezier(0.32, 0.72, 0, 1);
+  --w-transition-slow:   500ms cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Focus — iOS draws a soft halo rather than a hard ring. */
+  --w-focus-ring-color: var(--w-accent);
+  --w-focus-ring-offset: 3px;
+
+}
+
+/* iOS labels are heavier than DuVay's default. Shape is deliberately left
+ * alone: the radius scale is a brand token, identical on every skin. */
+[w-os="ios"] :where(.w-btn, .w-chip) {
+  font-weight: var(--w-font-weight-semibold);
+}
+
+/* The toggle thumb sits on the track rather than inside a rail. */
+
+[w-os="ios"] .w-switch-track { border-radius: var(--w-radius-pill); }
+[w-os="ios"] .w-switch-thumb {
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 0.15), 0 1px 1px rgb(0 0 0 / 0.16);
+}
+
+/* Alerts present as centred, heavily blurred cards. */
+[w-os="ios"] .w-dialog {
+  border-radius: var(--w-radius-lg);
+  text-align: center;
+}
+[w-os="ios"] .w-dialog-footer {
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border-top: 1px solid var(--w-divider);
+}
+
+/* Sheets grab the top corners only and keep the home-indicator clear. */
+/* :not(--fullscreen) because a sheet that fills the screen has no top
+   corners to round. The skin selector and the base fullscreen rule are
+   both (0,2,0), so without this the later-loaded skin won on source
+   order and rounded a fullscreen sheet. */
+[w-os="ios"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen) {
+  border-radius: var(--w-radius-xl) var(--w-radius-xl) 0 0;
+  padding-bottom: max(var(--w-space-4), env(safe-area-inset-bottom));
+}
+
+/* Overlay chrome is translucent — but only where the engine can actually
+ * blur. WebKitGTK 4.1 and older WKWebView builds fall back to the opaque
+ * surface rather than rendering an unreadable transparent bar. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [w-os="ios"] :where(.w-app-bar, .w-bottom-navigation, .w-toolbar) {
+    /* background-color, not the shorthand: `background` resets
+       background-image, which silently wiped `.w-toolbar--image`. */
+    background-color: var(--w-app-bar-frosted);
+    -webkit-backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.8);
+    backdrop-filter: blur(var(--w-app-bar-backdrop-blur)) saturate(1.8);
+  }
+}
+
+/* Momentum scrolling with the thin overlay indicator iOS uses. */
+[w-os="ios"] :where(.w-scroll-area, .w-list) {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}

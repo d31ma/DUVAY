@@ -1,0 +1,53 @@
+/* DuVay — Dropdowns component styles. */
+@import "../core.css";
+
+/* ── Dropdown ───────────────────────────────────────────────────────────── */
+.w-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 200px;
+  padding: 0.375rem;
+  border: 1px solid var(--w-divider);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-dropdown-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 36px;
+  padding: 0.375rem var(--w-space-md);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--w-font-base);
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--w-transition-normal);
+}
+
+.w-dropdown-item:hover {
+  background: var(--w-hover);
+}
+
+.w-dropdown-item svg {
+  flex: 0 0 auto;
+  opacity: 0.8;
+}
+
+.w-dropdown-divider {
+  height: 1px;
+  margin: 0.25rem;
+  background: var(--w-divider);
+}

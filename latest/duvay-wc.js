@@ -1161,7 +1161,11 @@ class WBtn extends WElement {
     "aria-controls",
     "aria-haspopup",
     "aria-current",
-    "aria-pressed"
+    "aria-pressed",
+    "type",
+    "target",
+    "rel",
+    "aria-disabled"
   ];
   static forwardedAria = ["aria-labelledby", "aria-describedby", "aria-expanded", "aria-controls", "aria-haspopup", "aria-current"];
   static forwardedButtonAria = ["aria-pressed"];
@@ -1174,6 +1178,7 @@ class WBtn extends WElement {
     "prepend-icon": "prependIcon",
     "append-icon": "appendIcon"
   };
+  static buttonTypes = ["button", "submit", "reset"];
   static sizeAliases = { "x-small": "xs", small: "sm", default: "", large: "lg", "x-large": "xl" };
   static variantAliases = { flat: "filled", default: "text" };
   get variant() {
@@ -1290,6 +1295,21 @@ class WBtn extends WElement {
   get selectedClass() {
     return this._attr("selected-class", "");
   }
+  get type() {
+    return WBtn.buttonTypes.includes(this._attr("type", "")) ? this._attr("type", "") : "";
+  }
+  get target() {
+    return this._attr("target", "");
+  }
+  get softDisabled() {
+    return this._authoredAriaDisabled() === "true";
+  }
+  get rel() {
+    const tokens = this._attr("rel", "").split(/\s+/).filter(Boolean);
+    if (this.target === "_blank" && !tokens.includes("noopener"))
+      tokens.push("noopener");
+    return tokens.join(" ");
+  }
   get _variantClass() {
     const variant = WBtn.variantAliases[this.variant] || this.variant;
     return this._cls({ ["w-btn-" + variant]: variant && variant !== "text" });
@@ -1327,12 +1347,22 @@ class WBtn extends WElement {
     return `<${tag} class="${this._classes()}"${attrs}${this._styleAttr()}>${this._contentMarkup()}</${tag}>`;
   }
   _controlAttrs(link) {
-    const own = link ? { href: this.href } : { disabled: this.disabled, value: this.value };
+    const own = link ? this._linkAttrs() : this._buttonAttrs();
     const aria = WBtn.forwardedAria.concat(link ? [] : WBtn.forwardedButtonAria);
     return Object.assign(own, {
       "aria-busy": this.loading && "true",
-      "aria-label": this.getAttribute("aria-label")
-    }, this._ariaAttrs(aria), this._extraAttrs(link));
+      "aria-label": this.getAttribute("aria-label"),
+      "aria-disabled": this._authoredAriaDisabled()
+    }, this._ariaAttrs(aria), this._extraAttrs(link), this._authoredType(link));
+  }
+  _linkAttrs() {
+    return { href: this.href, target: this.target, rel: this.rel };
+  }
+  _buttonAttrs() {
+    return { disabled: this.disabled, value: this.value };
+  }
+  _authoredType(link) {
+    return link || !this.type ? {} : { type: this.type };
   }
   _contentMarkup() {
     return this._iconMarkup(this.prependIcon, "w-icon w-btn-leading-icon") + this._labelMarkup() + this._iconMarkup(this.appendIcon, "w-icon w-btn-append-icon");
@@ -1357,10 +1387,38 @@ class WBtn extends WElement {
     const btn = this._q("button, a");
     if (!btn)
       return;
+    btn.addEventListener("click", (event) => this._blockSoftDisabled(event));
     if (this.hasAttribute("ripple"))
       this._attachRipple(btn);
     btn.addEventListener("focus", () => this._emit("focus"));
     btn.addEventListener("blur", () => this._emit("blur"));
+  }
+  _blockSoftDisabled(event) {
+    if (!this.softDisabled)
+      return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+  _applyCommonProps() {
+    const authored = this._authoredAriaDisabled();
+    const skipping = this._skipRender;
+    this._skipRender = true;
+    try {
+      super._applyCommonProps();
+      this._restoreAriaDisabled(authored);
+    } finally {
+      this._skipRender = skipping;
+    }
+    this._ariaDisabledFromBase = this.disabled;
+  }
+  _authoredAriaDisabled() {
+    if (this.disabled || this._ariaDisabledFromBase)
+      return null;
+    return this.getAttribute("aria-disabled");
+  }
+  _restoreAriaDisabled(authored) {
+    if (authored !== null)
+      this.setAttribute("aria-disabled", authored);
   }
 }
 if (!customElements.get("w-btn"))
@@ -1748,8 +1806,16 @@ class WTextField extends WElement {
     "error-messages",
     "max-errors",
     "validate-on",
-    "validation-value"
+    "validation-value",
+    "inputmode",
+    "enterkeyhint",
+    "aria-label",
+    "aria-labelledby",
+    "aria-describedby",
+    "aria-controls",
+    "aria-details"
   ];
+  static forwardedAria = ["aria-labelledby", "aria-controls", "aria-details"];
   get type() {
     return this._attr("type", "text");
   }
@@ -1941,9 +2007,12 @@ class WTextField extends WElement {
       disabled: this.disabled,
       readonly: this.readonly,
       autofocus: this._bool("autofocus"),
-      "aria-label": this._ariaLabel(),
+      inputmode: this.getAttribute("inputmode"),
+      enterkeyhint: this.getAttribute("enterkeyhint"),
+      "aria-label": this.getAttribute("aria-label") || this._ariaLabel(),
       "aria-invalid": this._hasError() && "true",
-      "aria-describedby": this._describedBy()
+      "aria-describedby": this._describedBy(),
+      ...this._ariaAttrs(WTextField.forwardedAria)
     };
   }
   _autocompleteValue() {
@@ -1955,7 +2024,8 @@ class WTextField extends WElement {
     return `${this.name || "field"}-${this._uid()}`;
   }
   _describedBy() {
-    return this._detailsHtml() ? this._detailsId() : "";
+    const own = this.getAttribute("aria-describedby") || "";
+    return [own, this._detailsHtml() ? this._detailsId() : ""].filter(Boolean).join(" ");
   }
   _icon(name) {
     if (!name)
@@ -1986,7 +2056,14 @@ class WTextField extends WElement {
     if (!this.clearable)
       return "";
     const glyph = this.clearIcon ? this._icon(this.clearIcon) : "&times;";
-    return `<button type="button" class="w-text-field-clear" tabindex="-1" aria-label="Clear">${glyph}</button>`;
+    const attrs = this._attrs({ "aria-label": this._clearName(), disabled: this._clearDisabled() });
+    return `<button type="button" class="w-text-field-clear"${attrs}>${glyph}</button>`;
+  }
+  _clearName() {
+    return this.label ? `Clear ${this.label}` : "Clear";
+  }
+  _clearDisabled() {
+    return this.readonly || this._controlValue() === "";
   }
   _loaderHtml() {
     return this.loading ? `<span class="w-text-field-loader" aria-hidden="true"></span>` : "";
@@ -2214,7 +2291,13 @@ class WTextField extends WElement {
     const root = this._q(".w-text-field");
     if (root)
       root.classList.toggle("w-text-field--has-value", this._isDirty());
+    this._syncClear();
     this._syncDetails();
+  }
+  _syncClear() {
+    const clearButton = this._q(".w-text-field-clear");
+    if (clearButton)
+      clearButton.disabled = this._clearDisabled();
   }
   _syncDetails() {
     const details = this._q(".w-text-field-details");
@@ -3128,6 +3211,7 @@ class WSwitch extends WSelectionControlBase {
   _inputMarkup() {
     const attrs = this._attrs({
       type: this.inputType,
+      role: this._switchRole(),
       checked: this.checked,
       disabled: this.disabled,
       readonly: this.readonly,
@@ -3139,6 +3223,9 @@ class WSwitch extends WSelectionControlBase {
       "aria-busy": this.loading ? "true" : ""
     });
     return `${this._falseValueHtml()}<input class="w-switch-input"${attrs}>`;
+  }
+  _switchRole() {
+    return this.inputType === "checkbox" && !this.indeterminate ? "switch" : "";
   }
   _detailsMarkup() {
     return this._errorMarkup() + this._hintMarkup() + this._messagesMarkup();
@@ -3387,7 +3474,10 @@ class WSelect extends WElement {
     "filter-mode",
     "hide-selected",
     "no-data-text",
-    "hide-no-data"
+    "hide-no-data",
+    "aria-label",
+    "aria-labelledby",
+    "aria-describedby"
   ];
   static openKeys = ["Enter", " ", "ArrowDown"];
   get value() {
@@ -3571,10 +3661,15 @@ class WSelect extends WElement {
     const menuText = this._menuText(open);
     const state = this._attrs({
       "aria-disabled": this.disabled ? "true" : "",
-      "aria-label": menuText || this.label || this.placeholderText || "Select option",
+      "aria-label": this._accessibleLabel(menuText),
       title: menuText
-    });
+    }) + this._attrs(this._ariaAttrs(["aria-labelledby", "aria-describedby"]));
     return `<div class="w-select w-select-field${classes}" role="combobox" tabindex="${this.disabled ? -1 : 0}"` + ` aria-haspopup="listbox" aria-expanded="${open ? "true" : "false"}" aria-controls="${listId}"` + `${state}${this._triggerStyle()}>` + wIconHtml(this, "prepend-inner-icon", "w-field-prepend-inner") + this._affixHtml("prefix") + `<span class="w-select-selection">${this._selectionHtml(values)}</span>` + this._affixHtml("suffix") + this._clearMarkup(values) + this._menuIconHtml() + wIconHtml(this, "append-inner-icon", "w-field-append-inner") + `</div>`;
+  }
+  _accessibleLabel(menuText) {
+    if (this.getAttribute("aria-labelledby"))
+      return "";
+    return this.getAttribute("aria-label") || menuText || this.label || this.placeholderText || "Select option";
   }
   _menuText(open) {
     return this._attr(open ? "open-text" : "close-text", "");
@@ -3932,7 +4027,8 @@ class WSelect extends WElement {
     const text = this._menuText(open);
     if (!text)
       return;
-    trigger.setAttribute("aria-label", text);
+    if (!this.getAttribute("aria-labelledby"))
+      trigger.setAttribute("aria-label", text);
     trigger.setAttribute("title", text);
   }
   _addOutsideListener() {
@@ -4101,7 +4197,16 @@ class WChip extends WElement {
     "draggable",
     "ripple",
     "selected-class",
-    "active-class"
+    "active-class",
+    "static",
+    "icon-set",
+    "aria-label",
+    "aria-labelledby",
+    "aria-describedby",
+    "aria-expanded",
+    "aria-controls",
+    "aria-current",
+    "aria-haspopup"
   ];
   static colors = ["primary", "secondary", "tertiary", "success", "warning", "error", "danger", "info"];
   static variants = ["tonal", "filled", "outlined", "text", "plain", "elevated"];
@@ -4193,40 +4298,85 @@ class WChip extends WElement {
   get active() {
     return !this.hasAttribute("hidden");
   }
+  static forwardedAria = ["aria-label", "aria-labelledby", "aria-describedby", "aria-expanded", "aria-controls", "aria-current"];
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (!WChip.forwardedAria.includes(name))
+      return super.attributeChangedCallback(name, oldValue, newValue);
+    this._syncAria(name, newValue);
+  }
+  _syncAria(name, value) {
+    const control = this._control();
+    if (!control || control.localName === "span")
+      return;
+    if (value)
+      control.setAttribute(name, value);
+    else
+      control.removeAttribute(name);
+  }
   _template() {
     if (!this.active)
       return '<span class="w-chip-preserve" hidden><slot></slot><slot name="prepend"></slot><slot name="append"></slot><slot name="filter"></slot><slot name="close"></slot></span>';
-    const tag = this.href && !this.disabled ? "a" : "button";
-    const rootAttrs = this._rootAttrs(tag);
-    return `<${tag} class="${this._chipClass()}"${rootAttrs}>
-      <span class="w-chip__overlay" aria-hidden="true"></span>
-      ${this._filterTemplate()}
-      ${this._mediaTemplate("prepend")}
-      <span class="w-chip__content">${this._contentTemplate()}</span>
-      ${this._mediaTemplate("append")}
-      ${this._closeTemplate()}
-    </${tag}>`;
+    if (this._split())
+      return this._splitTemplate();
+    const tag = this._tag();
+    const inner = this._overlay() + this._bodyTemplate() + this._closeTemplate();
+    return this._element(tag, this._chipClass(), this._controlAttrs(tag) + this._dragAttr(), inner);
   }
-  _rootAttrs(tag) {
-    const attrs = [];
-    if (tag === "button") {
-      attrs.push(' type="button"');
-      if (this.disabled)
-        attrs.push(" disabled");
-    } else {
-      attrs.push(` href="${this._esc(this.href)}"`);
-      if (this.target)
-        attrs.push(` target="${this._esc(this.target)}"`);
-      if (this.rel)
-        attrs.push(` rel="${this._esc(this.rel)}"`);
-    }
-    if (this.disabled)
-      attrs.push(' aria-disabled="true"');
-    if (!this.disabled && !this.href)
-      attrs.push(` aria-pressed="${this.selected ? "true" : "false"}"`);
-    if (this._bool("draggable"))
-      attrs.push(' draggable="true"');
-    return attrs.join("");
+  _splitTemplate() {
+    const tag = this._tag();
+    const action = this._element(tag, "w-chip__action", this._controlAttrs(tag), this._bodyTemplate());
+    return this._element("span", this._chipClass(), this._dragAttr(), WChip.overlay + action + this._closeTemplate());
+  }
+  static overlay = '<span class="w-chip__overlay" aria-hidden="true"></span>';
+  _overlay() {
+    return this._mode() === "static" ? "" : WChip.overlay;
+  }
+  _element(tag, className, attrs, inner) {
+    return `<${tag} class="${className}"${attrs}>${inner}</${tag}>`;
+  }
+  _split() {
+    return this._hasClose() && this._mode() !== "static";
+  }
+  _mode() {
+    if (this._bool("static"))
+      return "static";
+    if (this.href && !this.disabled)
+      return "link";
+    if (this.hasAttribute("aria-haspopup"))
+      return "action";
+    return "toggle";
+  }
+  _tag() {
+    const tags = { static: "span", link: "a" };
+    return tags[this._mode()] || "button";
+  }
+  _controlAttrs(tag) {
+    if (tag === "span")
+      return "";
+    const own = tag === "a" ? this._linkAttrs() : this._buttonAttrs();
+    return this._attrs(Object.assign(own, this._ariaAttrs(WChip.forwardedAria.concat("aria-haspopup"))));
+  }
+  _linkAttrs() {
+    return { href: this.href, target: this.target, rel: this.rel };
+  }
+  _buttonAttrs() {
+    return {
+      type: "button",
+      disabled: this.disabled,
+      "aria-disabled": this.disabled && "true",
+      "aria-pressed": this._pressedState()
+    };
+  }
+  _pressedState() {
+    if (this.disabled || this._mode() !== "toggle")
+      return "";
+    return this.selected ? "true" : "false";
+  }
+  _dragAttr() {
+    return this._bool("draggable") ? ' draggable="true"' : "";
+  }
+  _bodyTemplate() {
+    return this._filterTemplate() + this._mediaTemplate("prepend") + `<span class="w-chip__content">${this._contentTemplate()}</span>` + this._mediaTemplate("append");
   }
   _chipClass() {
     return "w-chip" + this._cls(this._chipModifiers());
@@ -4245,6 +4395,7 @@ class WChip extends WElement {
       "w-chip--filter": this._bool("filter"),
       "w-chip--link": this.href || this._bool("link"),
       "w-chip--disabled": this.disabled,
+      "w-chip--static": this._mode() === "static",
       [this._roundedClass()]: this.hasAttribute("rounded"),
       "w-chip--border": this.hasAttribute("border"),
       ["w-chip--elevation-" + elevation]: elevation,
@@ -4255,27 +4406,47 @@ class WChip extends WElement {
   _filterTemplate() {
     if (!this._bool("filter") && !this._hasSlot("filter"))
       return "";
-    return `<span class="w-chip__filter" aria-hidden="true">${this._hasSlot("filter") ? '<slot name="filter"></slot>' : this._esc(this.filterIcon)}</span>`;
+    return `<span class="w-chip__filter" aria-hidden="true">${this._hasSlot("filter") ? '<slot name="filter"></slot>' : this._glyph("filter-icon", "✓")}</span>`;
   }
   _mediaTemplate(side) {
-    const avatar = side === "prepend" ? this.prependAvatar : this.appendAvatar;
-    const icon = side === "prepend" ? this.prependIcon : this.appendIcon;
+    const media = this._mediaMarkup(side);
     const slot = this._hasSlot(side) ? `<slot name="${side}"></slot>` : "";
-    if (!avatar && !icon && !slot)
+    if (!media && !slot)
       return "";
-    const media = avatar ? `<span class="w-avatar w-avatar--x-small"><img src="${this._esc(avatar)}" alt=""></span>` : icon ? `<span class="w-chip__icon" aria-hidden="true">${this._esc(icon)}</span>` : "";
     return `<span class="w-chip__${side}">${media}${slot}</span>`;
+  }
+  _mediaMarkup(side) {
+    const avatar = this.getAttribute(side + "-avatar");
+    if (avatar)
+      return `<span class="w-avatar w-avatar--x-small"><img src="${this._esc(avatar)}" alt=""></span>`;
+    return this._iconMarkup(this.getAttribute(side + "-icon"));
+  }
+  _iconMarkup(name) {
+    if (!name)
+      return "";
+    const iconSet = this.getAttribute("icon-set") || "";
+    return icons_default.resolve(iconSet ? `${iconSet}:${name}` : name, { iconClass: "w-chip__icon" });
+  }
+  _glyph(name, fallback) {
+    return this.hasAttribute(name) ? this._iconMarkup(this.getAttribute(name)) : this._esc(fallback);
   }
   _contentTemplate() {
     if (this.text)
       return `${this._esc(this.text)}<slot hidden></slot>`;
     return "<slot></slot>";
   }
+  _hasClose() {
+    return this.closable || this._hasSlot("close");
+  }
   _closeTemplate() {
-    if (!this.closable && !this._hasSlot("close"))
+    if (!this._hasClose())
       return "";
-    const content = this._hasSlot("close") ? '<slot name="close"></slot>' : this._esc(this.closeIcon);
-    return `<span class="w-chip__close w-chip-close" role="button" tabindex="-1" aria-label="${this._esc(this.closeLabel)}">${content}</span>`;
+    const content = this._hasSlot("close") ? '<slot name="close"></slot>' : this._glyph("close-icon", "×");
+    const attrs = this._attrs({ type: "button", "aria-label": this.closeLabel, disabled: this.disabled });
+    return `<button class="w-chip__close w-chip-close"${attrs}>${content}</button>`;
+  }
+  _control() {
+    return this._q(".w-chip__action") || this._q(".w-chip");
   }
   _events() {
     const chip = this._q(".w-chip");
@@ -4283,26 +4454,22 @@ class WChip extends WElement {
       return;
     if (this.hasAttribute("ripple"))
       this._attachRipple(chip);
-    chip.addEventListener("click", (event) => {
-      const target = event.target instanceof Element ? event.target : null;
-      if (target?.closest(".w-chip__close")) {
-        event.preventDefault();
-        event.stopPropagation();
-        this._close(event);
-        return;
-      }
+    chip.addEventListener("click", (event) => this._onClick(event));
+  }
+  _onClick(event) {
+    const target = event.target instanceof Element ? event.target : null;
+    if (target?.closest(".w-chip__close"))
+      return this._onClose(event);
+    if (this._selectable() && this._control()?.contains(target))
       this._toggleSelected();
-    });
-    chip.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ")
-        return;
-      event.preventDefault();
-      const target = event.target instanceof Element ? event.target : null;
-      if (target?.closest(".w-chip__close"))
-        this._close(event);
-      else
-        this._toggleSelected();
-    });
+  }
+  _selectable() {
+    return this._mode() === "toggle" || this._mode() === "link";
+  }
+  _onClose(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this._close(event);
   }
   _toggleSelected() {
     const selected = !this.selected;
@@ -4311,8 +4478,13 @@ class WChip extends WElement {
     chip?.classList.toggle("selected", selected);
     chip?.classList.toggle("w-chip--selected", selected);
     this._toggleTokens(chip, this.selectedClass, selected);
-    chip?.setAttribute("aria-pressed", selected ? "true" : "false");
+    this._syncPressed(selected);
     this._dispatch("change", { selected, value: this.value });
+  }
+  _syncPressed(selected) {
+    const control = this._control();
+    if (control?.hasAttribute("aria-pressed"))
+      control.setAttribute("aria-pressed", selected ? "true" : "false");
   }
   _toggleTokens(el, value, on) {
     if (!el || !value)
@@ -5533,7 +5705,8 @@ class WCard extends WElement {
     return this.constructor.colors.includes(token) ? token : "primary";
   }
   _hasSlot(name) {
-    return !!this.querySelector('[slot="' + name + '"]');
+    const nodes = Array.from(this.querySelectorAll('[slot="' + name + '"]'));
+    return nodes.some((node) => this._ownerComponent(node) === this);
   }
   _hasDefaultSlot() {
     return this._defaultNodes().some((node) => this._hasMeaningfulNode(node));
@@ -5549,12 +5722,23 @@ class WCard extends WElement {
     });
   }
   _defaultNodes() {
-    const currentSlot = this.querySelector("slot:not([name])");
+    const currentSlot = this._ownDefaultSlot();
     if (currentSlot)
       return Array.from(currentSlot.childNodes);
     return Array.from(this.childNodes).filter((node) => {
       return !(node.nodeType === Node.ELEMENT_NODE && node.hasAttribute("slot"));
     });
+  }
+  _ownDefaultSlot() {
+    const slots = Array.from(this.querySelectorAll("slot:not([name])"));
+    return slots.find((slot) => this._ownerComponent(slot) === this) || null;
+  }
+  _ownerComponent(node) {
+    let parent = node.parentElement;
+    while (parent && parent !== this && parent.tagName.toLowerCase().indexOf("w-") !== 0) {
+      parent = parent.parentElement;
+    }
+    return parent;
   }
   _hasMeaningfulNode(node) {
     return node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE && node.textContent.trim();
@@ -6378,8 +6562,11 @@ class WListItem extends WElement {
     "elevation",
     "ripple",
     "prepend-gap",
-    "index"
+    "index",
+    "item-role"
   ];
+  static checkedRoles = ["menuitemradio", "menuitemcheckbox"];
+  static ownedRoles = ["menuitem", "menuitemradio", "menuitemcheckbox", "option"];
   get itemTitle() {
     return this._attr("title", "");
   }
@@ -6493,8 +6680,45 @@ class WListItem extends WElement {
     return this._attrs({
       type: "button",
       disabled: this.disabled,
-      "aria-pressed": this.active && "true"
+      ...this._roleState()
     });
+  }
+  get itemRole() {
+    return this._attr("item-role", "");
+  }
+  _roleState() {
+    const role = this.itemRole;
+    const state = this.active ? "true" : "false";
+    if (this.constructor.checkedRoles.includes(role))
+      return { role, "aria-checked": state };
+    if (role === "option")
+      return { role, "aria-selected": state };
+    if (role === "menuitem")
+      return { role };
+    if (role === "button")
+      return {};
+    return { "aria-pressed": this.active && "true" };
+  }
+  _syncHostRole() {
+    if (this.hasAttribute("role") && !this.__hostRole)
+      return;
+    const role = this._wantedHostRole();
+    this.__hostRole = role;
+    if (role)
+      this.setAttribute("role", role);
+    else
+      this.removeAttribute("role");
+  }
+  _wantedHostRole() {
+    if (this.constructor.ownedRoles.includes(this.itemRole))
+      return "none";
+    const container = this.parentElement && this.parentElement.closest("[role]");
+    return container && container.getAttribute("role") === "list" ? "listitem" : "";
+  }
+  _staticMarkup() {
+    return `<div class="${this._classes()}"${this._style()}>
+      ${this._adornment("prepend")}${this._contentMarkup()}${this._adornment("append")}
+    </div>`;
   }
   _mediaMarkup(side) {
     const avatar = side === "prepend" ? this.prependAvatar : this.appendAvatar;
@@ -6519,6 +6743,9 @@ class WListItem extends WElement {
         </span>`;
   }
   _template() {
+    this._syncHostRole();
+    if (this.itemRole === "none")
+      return this._staticMarkup();
     const tag = this.href && !this.disabled ? "a" : "button";
     const attrs = this._controlAttrs(tag);
     const tabAttr = this._attrs({ tabindex: this.tabindex, "aria-posinset": this.itemIndex });
@@ -6529,7 +6756,7 @@ class WListItem extends WElement {
   }
   _events() {
     const control = this._q(".w-list-item");
-    if (!control || this.disabled)
+    if (!control || this.disabled || this.itemRole === "none")
       return;
     if (this.hasAttribute("ripple"))
       this._attachRipple(control);
@@ -6904,6 +7131,8 @@ class WList extends WElement {
         el.setAttribute("active-class", this.activeClass);
       const active = this._isItemActive(el, selected, activated);
       el.active = active;
+      if (typeof el._syncHostRole === "function")
+        el._syncHostRole();
       this._syncItemControl(el, active);
     });
     this._syncNavigation();
@@ -7181,13 +7410,17 @@ class WTable extends WElement {
     const top = this._hasSlotted("top") ? '<div class="w-table-top"><slot name="top"></slot></div>' : "";
     const bottom = this._hasSlotted("bottom") ? '<div class="w-table-bottom"><slot name="bottom"></slot></div>' : "";
     return `${top}<div class="${wrap.join(" ")}"${style}>
-      <div class="w-table-grid" role="table"><slot></slot></div>
+      <div class="w-table-grid"${this._gridRole()}><slot></slot></div>
     </div>${bottom}`;
+  }
+  _gridRole() {
+    return this.querySelector("table") ? "" : ' role="table"';
   }
   _events() {
     const table = this.querySelector("table");
     const grid = this._q(".w-table-grid");
     if (table) {
+      grid?.removeAttribute("role");
       table.classList.add("w-table");
       table.classList.remove("w-table--responsive-auto", "w-table--responsive-stack");
       if (this.responsive !== "scroll")
@@ -7278,7 +7511,9 @@ class WAlert extends WElement {
     "border",
     "border-color",
     "model-value",
-    "hidden"
+    "hidden",
+    "live",
+    "icon-set"
   ];
   static contextualTypes = ["info", "success", "warning", "error"];
   static styleVariants = ["flat", "tonal", "outlined", "text", "plain", "elevated"];
@@ -7353,9 +7588,8 @@ class WAlert extends WElement {
       return this._inactiveMarkup();
     const type = this.contextualType;
     const borderSide = this.borderSide;
-    const live = type === "error" ? "assertive" : "polite";
     const styles = this.iconSize ? ` style="--w-alert-icon-size: ${this._esc(this.iconSize)}"` : "";
-    let html = `<div class="${this._classes(type, borderSide)}" role="alert" aria-live="${live}"${styles}>`;
+    let html = `<div class="${this._classes(type, borderSide)}"${this._liveAttrs(type)}${styles}>`;
     if (borderSide)
       html += '<div class="w-alert-border" aria-hidden="true"></div>';
     html += this._renderPrepend();
@@ -7366,6 +7600,14 @@ class WAlert extends WElement {
     html += this._renderClose();
     html += "</div>";
     return html;
+  }
+  _liveAttrs(type) {
+    const live = this._attr("live", "assertive");
+    if (live === "off")
+      return "";
+    if (live === "polite")
+      return ' role="status" aria-live="polite"';
+    return ` role="alert" aria-live="${type === "error" ? "assertive" : "polite"}"`;
   }
   _inactiveMarkup() {
     return `<div class="w-alert w-alert--hidden" hidden aria-hidden="true">
@@ -7442,7 +7684,8 @@ class WAlert extends WElement {
     if (icon != null) {
       if (["false", "0", "none", "off"].includes(String(icon).toLowerCase()))
         return "";
-      return `<span class="w-alert-icon-text">${this._esc(icon)}</span>`;
+      const iconSet = this.getAttribute("icon-set") || "";
+      return icons_default.resolve(iconSet ? `${iconSet}:${icon}` : icon, { iconClass: "w-alert-icon-text" });
     }
     const icons = {
       info: '<svg class="w-alert-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
@@ -7585,6 +7828,10 @@ class WDialog extends WElement {
   static attrs = [
     "open",
     "title",
+    "heading",
+    "heading-level",
+    "sheet",
+    "aria-describedby",
     "fullscreen",
     "scrollable",
     "persistent",
@@ -7623,7 +7870,20 @@ class WDialog extends WElement {
     v ? this.show() : this.close("programmatic");
   }
   get dialogTitle() {
-    return this._attr("title", "");
+    return this._attr("heading", "");
+  }
+  get title() {
+    return this.dialogTitle;
+  }
+  set title(value) {
+    this.setAttribute("heading", value == null ? "" : String(value));
+  }
+  get headingLevel() {
+    const level = Number(this.getAttribute("heading-level"));
+    return Number.isInteger(level) && level >= 1 && level <= 6 ? level : 3;
+  }
+  get sheet() {
+    return this._enabled("sheet", false);
   }
   get fullscreen() {
     return this._bool("fullscreen");
@@ -7711,16 +7971,18 @@ class WDialog extends WElement {
     if (!this._id)
       this._id = "w-dialog-" + Math.random().toString(36).slice(2, 8);
     const titleId = this._id + "-title";
+    const bodyId = this._id + "-body";
+    const level = this.headingLevel;
     const style = this._dialogStyle();
     return `${this._activatorMarkup()}
       ${this._overlayMarkup()}
-      <div class="${this._wrapperClasses()}" id="${this._id}" w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${this._labelledBy(titleId)}${this._wrapperStyle()}>
+      <div class="${this._wrapperClasses()}" id="${this._id}" w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${this._labelledBy(titleId)}${this._describedBy(bodyId)}${this._wrapperStyle()}>
         <div class="${this._dialogClasses()}" tabindex="-1"${style}>
           <div class="w-dialog-header">
-            <h3 class="w-dialog-title" id="${titleId}">${this._titleContent()}</h3>
+            <h${level} class="w-dialog-title" id="${titleId}">${this._titleContent()}</h${level}>
             ${this._closeMarkup()}
           </div>
-          <div class="w-dialog-body" role="document"><slot></slot></div>
+          <div class="w-dialog-body" id="${bodyId}" role="document"><slot></slot></div>
           <div class="w-dialog-footer"><slot name="footer"></slot></div>
         </div>
       </div>`;
@@ -7743,7 +8005,8 @@ class WDialog extends WElement {
       "w-dialog-wrapper--absolute": this.absolute,
       "w-dialog-wrapper--contained": this.contained,
       "w-dialog-wrapper--anchored": this.target,
-      "w-dialog-wrapper--stick": this.stickToTarget
+      "w-dialog-wrapper--stick": this.stickToTarget,
+      "w-dialog-wrapper--sheet-mobile": this.sheet
     }) + this._transitionClass();
   }
   _transitionClass() {
@@ -7765,6 +8028,26 @@ class WDialog extends WElement {
     const hasTitle = this.dialogTitle || this._hasSlot("title");
     return hasTitle ? ` aria-labelledby="${titleId}"` : "";
   }
+  _describedBy(bodyId) {
+    const own = this.getAttribute("aria-describedby");
+    if (own !== null)
+      return own.trim() ? ` aria-describedby="${this._esc(own.trim())}"` : "";
+    return this._hasBodyContent() ? ` aria-describedby="${bodyId}"` : "";
+  }
+  _hasBodyContent() {
+    return this._bodyNodes().some((node) => this._isMeaningful(node));
+  }
+  _bodyNodes() {
+    const slot = this._q(".w-dialog-body > slot");
+    if (slot)
+      return Array.from(slot.childNodes);
+    return Array.from(this.childNodes).filter((node) => !node.getAttribute?.("slot"));
+  }
+  _isMeaningful(node) {
+    if (node.nodeType === Node.ELEMENT_NODE)
+      return true;
+    return node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== "";
+  }
   _titleContent() {
     const titleAttr = this.dialogTitle;
     return titleAttr ? this._esc(titleAttr) + '<slot name="title" hidden></slot>' : '<slot name="title"></slot>';
@@ -7776,7 +8059,22 @@ class WDialog extends WElement {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>`;
   }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "title" && newValue !== null) {
+      this._adoptTitle();
+      return;
+    }
+    super.attributeChangedCallback(name, oldValue, newValue);
+  }
+  _adoptTitle() {
+    const title = this.getAttribute("title");
+    if (title === null)
+      return;
+    this._silentSet("title", null);
+    this.setAttribute("heading", title);
+  }
   connectedCallback() {
+    this._adoptTitle();
     super.connectedCallback();
     if (!this._keyHandler) {
       this._keyHandler = (event) => this._onDocumentKeydown(event);
@@ -8119,6 +8417,7 @@ class WAvatar extends WElement {
     "badge-floating",
     "badge-dot",
     "status",
+    "status-label",
     "start",
     "end",
     "rounded",
@@ -8136,6 +8435,14 @@ class WAvatar extends WElement {
   };
   static sizes = ["x-small", "small", "default", "large", "x-large"];
   static variants = ["flat", "tonal", "outlined", "text", "plain", "elevated"];
+  static statuses = {
+    online: { color: "success", label: "Online" },
+    away: { color: "warning", label: "Away" },
+    idle: { color: "warning", label: "Idle" },
+    busy: { color: "error", label: "Busy" },
+    dnd: { color: "error", label: "Do not disturb" },
+    offline: { color: "secondary", label: "Offline" }
+  };
   static colors = ["primary", "secondary", "tertiary", "success", "warning", "error", "danger", "info"];
   static badgeLocations = {
     "top-end": "top-end",
@@ -8187,6 +8494,9 @@ class WAvatar extends WElement {
   get status() {
     return this._attr("status", "");
   }
+  get statusLabel() {
+    return this._attr("status-label", this._statusInfo()?.label || this.status);
+  }
   get start() {
     return this._bool("start");
   }
@@ -8212,7 +8522,7 @@ class WAvatar extends WElement {
     ].filter(Boolean).join(" ");
     const style = customSize ? ` style="--w-avatar-size: ${customSize}"` : "";
     const content = this._contentTemplate();
-    const avatar = `<span class="${classes}" role="img" aria-label="${this._esc(this.alt)}"${style}>${content}<span class="w-avatar-underlay" aria-hidden="true"></span></span>`;
+    const avatar = `<span class="${classes}" role="img" aria-label="${this._esc(this._accessibleName())}"${style}>${content}<span class="w-avatar-underlay" aria-hidden="true"></span></span>`;
     if (!this._hasBadge())
       return avatar;
     return `<span class="w-avatar-wrap${this._badgeFloatingClass()}">${avatar}${this._badgeTemplate()}</span>`;
@@ -8229,12 +8539,29 @@ class WAvatar extends WElement {
       return `<span class="w-avatar-text">${this._esc(this.text)}</span>${preserveDefaultSlot}`;
     return "<slot></slot>";
   }
+  _accessibleName() {
+    return this._isStatusDot() ? this.alt + ", " + this.statusLabel : this.alt;
+  }
+  _statusInfo() {
+    return this.constructor.statuses[String(this.status).toLowerCase()] || null;
+  }
+  _isStatusDot() {
+    return !!this.status && !this.badgeContent && !this._hasSlot("badge");
+  }
   _badgeTemplate() {
     const location2 = this._badgeLocation();
     const dot = this._bool("badge-dot") || !this.badgeContent && !this._hasSlot("badge");
     const dotClass = dot ? " w-avatar-badge--dot" : "";
     const content = this._hasSlot("badge") ? '<slot name="badge"></slot>' : this._esc(this.badgeContent);
-    return `<span class="w-avatar-badge w-avatar-badge--${location2} w-avatar-badge--${this.badgeColor}${dotClass}" aria-label="${this._esc(this.badgeContent || this.badgeColor + " badge")}">${content}</span>`;
+    return `<span class="w-avatar-badge w-avatar-badge--${location2} w-avatar-badge--${this.badgeColor}${dotClass}${this._statusClass()}"${this._badgeLabel()}>${content}</span>`;
+  }
+  _statusClass() {
+    return this._statusInfo() ? " w-avatar-badge--status-" + String(this.status).toLowerCase() : "";
+  }
+  _badgeLabel() {
+    if (this._isStatusDot())
+      return ' aria-hidden="true"';
+    return ` aria-label="${this._esc(this.badgeContent || this.badgeColor + " badge")}"`;
   }
   _hasBadge() {
     return this.hasAttribute("badge") || this.badgeContent || this.hasAttribute("badge-color") || this.status || this._hasSlot("badge");
@@ -8249,13 +8576,7 @@ class WAvatar extends WElement {
     const badge = this.badge;
     if (badge && badge !== "" && badge !== "true")
       return badge;
-    if (this.status === "online")
-      return "success";
-    if (this.status === "away")
-      return "warning";
-    if (this.status === "busy")
-      return "error";
-    return "primary";
+    return this._statusInfo()?.color || "primary";
   }
   _sizeClass() {
     const normalized = this._normalizedSize();
@@ -8315,7 +8636,7 @@ if (!customElements.get("w-avatar")) {
 
 // src/components/avatar-group.js
 class WAvatarGroup extends WElement {
-  static attrs = ["border", "reverse", "size", "gap", "hoverable", "items", "limit", "overflow-text", "vertical"];
+  static attrs = ["border", "reverse", "size", "gap", "hoverable", "items", "limit", "overflow-text", "vertical", "label", "aria-label", "aria-labelledby"];
   get items() {
     if (this._itemsValue !== undefined)
       return this._itemsValue;
@@ -8333,7 +8654,7 @@ class WAvatarGroup extends WElement {
     const style = this._groupStyle();
     const generated = visible.map((item) => this._avatar(item)).join("");
     const overflow = remaining ? this._overflow(remaining) : "";
-    return `<div class="w-avatar-group${this._classes()}" role="group"${style}>${generated}<slot></slot>${overflow}</div>`;
+    return `<div class="w-avatar-group${this._classes()}" role="group"${this._groupName()}${style}>${generated}<slot></slot>${overflow}</div>`;
   }
   _classes() {
     return this._cls({
@@ -8377,6 +8698,10 @@ class WAvatarGroup extends WElement {
       this._render();
       this._applyCommonProps();
     }
+  }
+  _groupName() {
+    const label = this.getAttribute("aria-label") || this.getAttribute("label");
+    return this._attrs({ "aria-labelledby": this.getAttribute("aria-labelledby") || false, "aria-label": label || false });
   }
 }
 if (!customElements.get("w-avatar-group"))
@@ -8931,21 +9256,27 @@ class WCommand extends WElement {
       return `<div class="w-command-subheader">${this._esc(item.title || item.text || "")}</div>`;
     return "";
   }
+  static itemFields = [
+    ["value", ["value"]],
+    ["subtitle", ["subtitle"]],
+    ["snippet", ["snippet"]],
+    ["icon", ["icon", "prepend-icon", "prependIcon"]],
+    ["prepend-avatar", ["prepend-avatar", "prependAvatar", "avatar"]],
+    ["tag", ["tag"]],
+    ["tag-color", ["tag-color", "tagColor"]],
+    ["shortcut", ["shortcut", "hotkey"]]
+  ];
   _itemAttrs(item) {
-    const icon = item.icon || item["prepend-icon"] || item.prependIcon;
-    const shortcut = item.shortcut || item.hotkey;
-    const attrs = [];
-    if (item.value != null)
-      attrs.push(`value="${this._esc(item.value)}"`);
-    if (item.subtitle)
-      attrs.push(`subtitle="${this._esc(item.subtitle)}"`);
-    if (icon)
-      attrs.push(`icon="${this._esc(icon)}"`);
-    if (shortcut)
-      attrs.push(`shortcut="${this._esc(shortcut)}"`);
-    if (item.disabled)
-      attrs.push("disabled");
-    return attrs.join(" ");
+    const attrs = WCommand.itemFields.map(([name, keys]) => this._itemAttr(name, this._firstField(item, keys)));
+    attrs.push(item.disabled ? "disabled" : "");
+    return attrs.filter(Boolean).join(" ");
+  }
+  _firstField(item, keys) {
+    const key = keys.find((name) => item[name] != null && item[name] !== "");
+    return key ? item[key] : null;
+  }
+  _itemAttr(name, value) {
+    return value == null ? "" : `${name}="${this._esc(value)}"`;
   }
   _renderItem(item) {
     if (!item || typeof item !== "object")
@@ -9132,7 +9463,21 @@ if (!customElements.get("w-command")) {
 
 // src/components/command-item.js
 class WCommandItem extends WElement {
-  static attrs = ["value", "subtitle", "icon", "prepend-icon", "shortcut", "disabled"];
+  static attrs = [
+    "value",
+    "subtitle",
+    "snippet",
+    "icon",
+    "prepend-icon",
+    "prepend-avatar",
+    "avatar",
+    "tag",
+    "tag-color",
+    "shortcut",
+    "disabled"
+  ];
+  static tagColors = ["primary", "secondary", "tertiary", "success", "warning", "error", "info"];
+  static count = 0;
   set value(v) {
     wSetValue(this, v);
   }
@@ -9142,8 +9487,20 @@ class WCommandItem extends WElement {
   get subtitle() {
     return this._attr("subtitle", "");
   }
+  get snippet() {
+    return this._attr("snippet", "");
+  }
   get icon() {
     return this._attr("icon", "") || this._attr("prepend-icon", "");
+  }
+  get avatar() {
+    return this._attr("prepend-avatar", "") || this._attr("avatar", "");
+  }
+  get tag() {
+    return this._attr("tag", "");
+  }
+  get tagColor() {
+    return this._tagColor(this._attr("tag-color", ""));
   }
   get shortcut() {
     return this._attr("shortcut", "");
@@ -9155,18 +9512,72 @@ class WCommandItem extends WElement {
     this.toggleAttribute("disabled", !!value);
   }
   _template() {
-    const icon = this.icon ? `<span class="w-command-item-icon" aria-hidden="true">${this._esc(this.icon)}</span>` : "";
-    const subtitle = this.subtitle ? `<span class="w-command-item-subtitle">${this._esc(this.subtitle)}</span>` : "";
-    const shortcut = this.shortcut ? `<kbd class="w-kbd">${this._esc(this.shortcut)}</kbd>` : "";
-    const dis = this.disabled ? ' disabled aria-disabled="true"' : "";
-    return `<button class="w-command-item" role="option" type="button" value="${this._esc(this.value)}"${dis}>
-      ${icon}
+    return this._rowMarkup({
+      value: this.value,
+      title: "<slot></slot>",
+      subtitle: this.subtitle,
+      snippet: this.snippet,
+      icon: this.icon,
+      avatar: this.avatar,
+      tag: this.tag,
+      tagColor: this.tagColor,
+      shortcut: this.shortcut,
+      disabled: this.disabled
+    });
+  }
+  _rowMarkup(fields) {
+    const id = this._rowId();
+    const disabled = fields.disabled ? ' disabled aria-disabled="true"' : "";
+    return `<button class="w-command-item" role="option" type="button" value="${this._esc(fields.value)}" aria-labelledby="${id}-title"${this._describedBy(fields, id)}${disabled}>
+      ${this._slotMarkup("prepend", id)}
+      ${this._leadingMarkup(fields)}
       <span class="w-command-item-content">
-        <span class="w-command-item-title"><slot></slot></span>
-        ${subtitle}
+        <span class="w-command-item-title" id="${id}-title">${fields.title}</span>
+        ${this._lineMarkup(fields.subtitle, "w-command-item-subtitle", id + "-subtitle")}
+        ${this._lineMarkup(fields.snippet, "w-command-item-subtitle w-command-item-snippet", id + "-snippet")}
       </span>
-      ${shortcut}
+      ${this._lineMarkup(fields.tag, "w-badge w-badge-" + fields.tagColor + " w-command-item-tag", id + "-tag")}
+      ${this._slotMarkup("append", id)}
+      ${this._lineMarkup(fields.shortcut, "w-kbd", id + "-shortcut", "kbd")}
     </button>`;
+  }
+  _rowId() {
+    if (!this._uid)
+      this._uid = "w-command-item-" + ++WCommandItem.count;
+    return this._uid;
+  }
+  _describedBy(fields, id) {
+    const parts = [
+      fields.subtitle && id + "-subtitle",
+      fields.snippet && id + "-snippet",
+      fields.tag && id + "-tag",
+      this._hasSlotted("append") && id + "-append",
+      fields.shortcut && id + "-shortcut"
+    ].filter(Boolean);
+    return parts.length ? ` aria-describedby="${parts.join(" ")}"` : "";
+  }
+  _leadingMarkup(fields) {
+    if (fields.avatar) {
+      return `<span class="w-command-item-avatar" aria-hidden="true"><w-avatar image="${this._esc(fields.avatar)}" size="small"></w-avatar></span>`;
+    }
+    return fields.icon ? `<span class="w-command-item-icon" aria-hidden="true">${this._esc(fields.icon)}</span>` : "";
+  }
+  _lineMarkup(text, className, id, tag = "span") {
+    if (!text)
+      return "";
+    return `<${tag} class="${className}" id="${id}">${this._esc(text)}</${tag}>`;
+  }
+  _slotMarkup(name, id) {
+    if (!this._hasSlotted(name))
+      return "";
+    return `<span class="w-command-item-${name}" id="${id}-${name}"><slot name="${name}"></slot></span>`;
+  }
+  _hasSlotted(name) {
+    const nodes = Array.from(this.querySelectorAll('[slot="' + name + '"]'));
+    return nodes.some((node) => node.parentElement.closest(this.localName) === this);
+  }
+  _tagColor(value) {
+    return this.constructor.tagColors.includes(value) ? value : "primary";
   }
 }
 if (!customElements.get("w-command-item")) {
@@ -9301,17 +9712,22 @@ class WCommandPaletteItem extends WCommandItem {
     const item = this.item;
     if (!item || !Object.keys(item).length)
       return super._template();
-    const title = item.title || item.value || "";
-    const subtitle = item.subtitle ? `<span class="w-command-item-subtitle">${this._esc(item.subtitle)}</span>` : "";
-    const leading = this._leading(item);
-    const hotkey = item.hotkey ? `<kbd class="w-kbd">${this._esc(item.hotkey)}</kbd>` : "";
-    return `<button class="w-command-item" role="option" type="button" value="${this._esc(item.value ?? title)}"${item.disabled ? ' disabled aria-disabled="true"' : ""}>${leading}<span class="w-command-item-content"><span class="w-command-item-title">${this._esc(title)}</span>${subtitle}</span>${hotkey}</button>`;
+    return this._rowMarkup(this._itemFields(item));
   }
-  _leading(item) {
-    if (item.prependAvatar)
-      return `<w-avatar image="${this._esc(item.prependAvatar)}" size="small"></w-avatar>`;
-    const icon = item.prependIcon || item.icon;
-    return icon ? `<span class="w-command-item-icon" aria-hidden="true">${this._esc(icon)}</span>` : "";
+  _itemFields(item) {
+    const title = item.title || item.value || "";
+    return {
+      value: item.value ?? title,
+      title: this._esc(title),
+      subtitle: item.subtitle,
+      snippet: item.snippet,
+      icon: item.prependIcon || item.icon,
+      avatar: item.prependAvatar || item.avatar,
+      tag: item.tag,
+      tagColor: this._tagColor(item.tagColor),
+      shortcut: item.hotkey,
+      disabled: item.disabled
+    };
   }
   _refresh() {
     if (this._rendered)
@@ -9980,7 +10396,9 @@ if (!customElements.get("w-popover")) {
 
 // src/components/hover-card.js
 class WHoverCard extends WElement {
-  static attrs = ["open", "side", "inline"];
+  static attrs = ["open", "side", "inline", "interactive"];
+  static focusable = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  static closeDelay = 150;
   get open() {
     return this._bool("open");
   }
@@ -9990,7 +10408,12 @@ class WHoverCard extends WElement {
   get inline() {
     return this._bool("inline");
   }
+  get interactive() {
+    return this._bool("interactive") || this._contentHasFocusable();
+  }
   _template() {
+    if (!this._id)
+      this._id = "w-hover-card-" + Math.random().toString(36).slice(2, 8);
     const classes = [
       "w-hover-card",
       `w-hover-card--${this.side}`,
@@ -9998,34 +10421,134 @@ class WHoverCard extends WElement {
       this.inline ? "w-hover-card--inline" : ""
     ].filter(Boolean).map((name) => this._esc(name)).join(" ");
     return `<span class="${classes}">
-      <span class="w-hover-card-trigger" tabindex="0"><slot></slot></span>
-      <span class="w-hover-card-content" role="tooltip"${this._tooltipName()}><slot name="content"></slot></span>
+      <span class="w-hover-card-trigger" id="${this._id}-trigger" tabindex="0"><slot></slot></span>
+      <span class="w-hover-card-content" id="${this._id}-content"${this._contentRole()}><slot name="content"></slot></span>
     </span>`;
+  }
+  _contentRole() {
+    if (!this.interactive)
+      return ' role="tooltip"' + this._tooltipName();
+    const closed = this.open ? "" : " inert";
+    return ` role="dialog" aria-modal="false"${this._dialogName()}${closed}`;
   }
   _tooltipName() {
     const name = this.getAttribute("aria-label");
     return name ? ` aria-label="${this._esc(name)}"` : "";
   }
-  _events() {
-    const trigger = this._q(".w-hover-card-trigger");
-    if (!trigger)
+  _dialogName() {
+    const name = this.getAttribute("aria-label");
+    return name ? ` aria-label="${this._esc(name)}"` : ` aria-labelledby="${this._id}-trigger"`;
+  }
+  _contentHasFocusable() {
+    const selector = this.constructor.focusable;
+    return !!this.querySelector(`[slot="content"]:is(${selector}), [slot="content"] :is(${selector})`);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.__wDocumentEvents)
       return;
-    trigger.addEventListener("mouseenter", () => this._setOpen(true));
-    trigger.addEventListener("mouseleave", () => this._setOpen(false));
-    trigger.addEventListener("focusin", () => this._setOpen(true));
-    trigger.addEventListener("focusout", () => this._setOpen(false));
-    if (!this.__wHoverCardFocusEvents) {
-      this.__wHoverCardFocusEvents = true;
-      this.addEventListener("focusin", () => this._setOpen(true));
-      this.addEventListener("focusout", () => this._setOpen(false));
-    }
+    this.__wDocumentEvents = {
+      keydown: (event) => this._onDocumentKeydown(event),
+      pointerdown: (event) => this._onDocumentPointer(event)
+    };
+    document.addEventListener("keydown", this.__wDocumentEvents.keydown);
+    document.addEventListener("pointerdown", this.__wDocumentEvents.pointerdown);
+  }
+  disconnectedCallback() {
+    clearTimeout(this.__wCloseTimer);
+    if (!this.__wDocumentEvents)
+      return;
+    document.removeEventListener("keydown", this.__wDocumentEvents.keydown);
+    document.removeEventListener("pointerdown", this.__wDocumentEvents.pointerdown);
+    this.__wDocumentEvents = null;
+  }
+  _events() {
+    this.__wControl = this.interactive ? this._wireTrigger() : null;
+    if (this.__wHoverCardEvents)
+      return;
+    this.__wHoverCardEvents = true;
+    this.addEventListener("mouseenter", () => this._onPointerEnter());
+    this.addEventListener("mouseleave", () => this._onPointerLeave());
+    this.addEventListener("focusin", () => this._onFocusIn());
+    this.addEventListener("focusout", (event) => this._onFocusOut(event));
+    this.addEventListener("click", (event) => this._onClick(event));
+  }
+  _wireTrigger() {
+    const trigger = this._trigger();
+    const control = trigger.querySelector(this.constructor.focusable) || trigger;
+    this._setTriggerRole(trigger, control);
+    control.setAttribute("aria-haspopup", "dialog");
+    control.setAttribute("aria-controls", this._id + "-content");
+    control.setAttribute("aria-expanded", String(this.open));
+    return control;
+  }
+  _setTriggerRole(trigger, control) {
+    if (control === trigger)
+      trigger.setAttribute("role", "button");
+    else
+      trigger.removeAttribute("tabindex");
+  }
+  _trigger() {
+    return this._q(":scope > .w-hover-card > .w-hover-card-trigger");
+  }
+  _content() {
+    return this._q(":scope > .w-hover-card > .w-hover-card-content");
+  }
+  _onPointerEnter() {
+    clearTimeout(this.__wCloseTimer);
+    this._setOpen(true);
+  }
+  _onPointerLeave() {
+    clearTimeout(this.__wCloseTimer);
+    this.__wCloseTimer = setTimeout(() => this._closeUnlessFocused(), this.constructor.closeDelay);
+  }
+  _closeUnlessFocused() {
+    if (this.contains(document.activeElement))
+      return;
+    this._setOpen(false);
+  }
+  _onFocusIn() {
+    if (this.__wQuietFocus)
+      return;
+    this._setOpen(true);
+  }
+  _onFocusOut(event) {
+    if (this.contains(event.relatedTarget))
+      return;
+    this._setOpen(false);
+  }
+  _onClick(event) {
+    if (!this.__wControl)
+      return;
+    if (this._trigger()?.contains(event.target))
+      this._setOpen(true);
+  }
+  _onDocumentPointer(event) {
+    if (!this.open || this.contains(event.target))
+      return;
+    this._setOpen(false);
+  }
+  _onDocumentKeydown(event) {
+    if (event.key !== "Escape" || !this.open)
+      return;
+    const focusInCard = !!this._content()?.contains(document.activeElement);
+    this._setOpen(false);
+    if (focusInCard)
+      this._returnFocus();
+  }
+  _returnFocus() {
+    this.__wQuietFocus = true;
+    (this.__wControl || this._trigger())?.focus();
+    this.__wQuietFocus = false;
   }
   _setOpen(open) {
     if (open === this.open)
       return;
-    this._silentSet("open", open ? "" : null);
-    this._render();
-    this._events();
+    this._silentSet("open", open);
+    this._q(":scope > .w-hover-card")?.classList.toggle("open", open);
+    this.__wControl?.setAttribute("aria-expanded", String(open));
+    if (this.__wControl)
+      this._content()?.toggleAttribute("inert", !open);
   }
 }
 if (!customElements.get("w-hover-card")) {
@@ -11577,7 +12100,8 @@ if (!customElements.get("w-data-table-row")) {
 
 // src/components/banner.js
 class WBanner extends WElement {
-  static attrs = ["text", "icon", "avatar", "lines", "sticky", "mobile", "stacked", "color", "bg-color", "mobile-breakpoint"];
+  static attrs = ["text", "icon", "avatar", "lines", "sticky", "mobile", "stacked", "color", "bg-color", "mobile-breakpoint", "label", "live", "icon-set"];
+  static liveRoles = { polite: "status", assertive: "alert" };
   static lines = ["one", "two", "three"];
   static tokens = ["primary", "secondary", "tertiary", "success", "warning", "error", "info", "surface"];
   get text() {
@@ -11618,12 +12142,23 @@ class WBanner extends WElement {
     } else if (this.avatar) {
       prepend = `<div class="w-banner__prepend"><span class="w-avatar w-banner__avatar"><img src="${this._esc(this.avatar)}" alt=""></span></div>`;
     } else if (this.icon) {
-      prepend = `<div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">${this._esc(this.icon)}</span></div>`;
+      prepend = `<div class="w-banner__prepend"><span class="w-banner__icon" aria-hidden="true">${this._iconMarkup()}</span></div>`;
     }
     const textInner = this._hasSlot("text") ? '<slot name="text"></slot>' : this.text ? this._esc(this.text) : "<slot></slot>";
     const content = `<div class="w-banner__content"><div class="w-banner-text">${textInner}</div></div>`;
     const actions = this._hasSlot("actions") ? '<div class="w-banner-actions"><slot name="actions"></slot></div>' : "";
-    return `<div class="${classes}" role="region" aria-label="Banner"${this._surfaceStyle()}>${prepend}${content}${actions}</div>`;
+    return `<div class="${classes}" ${this._roleAttrs()}${this._surfaceStyle()}>${prepend}${content}${actions}</div>`;
+  }
+  _roleAttrs() {
+    const role = this.constructor.liveRoles[this._attr("live", "")];
+    const label = this._esc(this._attr("label", "Banner"));
+    if (role)
+      return ` role="${role}"${this.hasAttribute("label") ? ` aria-label="${label}"` : ""}`;
+    return ` role="region" aria-label="${label}"`;
+  }
+  _iconMarkup() {
+    const iconSet = this.getAttribute("icon-set") || "";
+    return icons_default.resolve(iconSet ? `${iconSet}:${this.icon}` : this.icon, { iconClass: "w-icon" });
   }
   _surfaceStyle() {
     const styles = [];
@@ -11682,7 +12217,7 @@ if (!customElements.get("w-banner-text")) {
 
 // src/components/bottom-nav-item.js
 class WBottomNavItem extends WElement {
-  static attrs = ["value", "href", "icon", "label", "active", "disabled", "color"];
+  static attrs = ["value", "href", "icon", "icon-set", "label", "active", "disabled", "color"];
   set value(v) {
     wSetValue(this, v);
   }
@@ -11731,9 +12266,16 @@ class WBottomNavItem extends WElement {
       styles.push("--w-bottom-nav-item-color: var(--w-" + this.color + ");");
     const styleAttr = styles.length ? ' style="' + styles.join(" ") + '"' : "";
     return `<${tag} class="${classes.join(" ")}"${href}${disabled}${ariaCurrent}${styleAttr}>
-      ${this.icon ? `<span class="w-bottom-nav-item__icon" aria-hidden="true">${this._esc(this.icon)}</span>` : ""}
+      ${this._iconMarkup()}
       <span class="w-bottom-nav-item__label">${this._esc(this.label)}<slot></slot></span>
     </${tag}>`;
+  }
+  _iconMarkup() {
+    if (!this.icon)
+      return "";
+    const iconSet = this.getAttribute("icon-set") || "";
+    const name = iconSet ? `${iconSet}:${this.icon}` : this.icon;
+    return icons_default.resolve(name, { iconClass: "w-bottom-nav-item__icon" });
   }
   _events() {
     const el = this._q(".w-bottom-nav-item");
@@ -12189,7 +12731,7 @@ if (!customElements.get("w-btn-group"))
 
 // src/components/btn-toggle.js
 class WBtnToggle extends WElement {
-  static attrs = ["value", "multiple", "mandatory", "max", "selected-class", "disabled", "divided", "variant", "color", "density", "direction"];
+  static attrs = ["value", "multiple", "mandatory", "max", "selected-class", "disabled", "divided", "variant", "color", "density", "direction", "label", "aria-label", "aria-labelledby"];
   set value(v) {
     wSetValue(this, v);
   }
@@ -12235,7 +12777,7 @@ class WBtnToggle extends WElement {
       classes.push("w-btn-group--divided");
     if (this.vertical)
       classes.push("w-btn-group--vertical");
-    return `<div class="${classes.join(" ")}" role="group" aria-disabled="${this.disabled ? "true" : "false"}"><slot></slot></div>`;
+    return `<div class="${classes.join(" ")}" role="group"${this._groupName()} aria-disabled="${this.disabled ? "true" : "false"}"><slot></slot></div>`;
   }
   _events() {
     this._decorate();
@@ -12323,6 +12865,10 @@ class WBtnToggle extends WElement {
   }
   _btnValue(btn) {
     return btn.getAttribute("value") || btn.textContent.trim();
+  }
+  _groupName() {
+    const label = this.getAttribute("aria-label") || this.getAttribute("label");
+    return this._attrs({ "aria-labelledby": this.getAttribute("aria-labelledby") || false, "aria-label": label || false });
   }
 }
 if (!customElements.get("w-btn-toggle"))
@@ -14197,7 +14743,10 @@ class WChipGroup extends WElement {
     "scroll-to-active",
     "content-class",
     "mobile",
-    "mobile-breakpoint"
+    "mobile-breakpoint",
+    "label",
+    "aria-label",
+    "aria-labelledby"
   ];
   set value(v) {
     wSetValue(this, v);
@@ -14296,7 +14845,7 @@ class WChipGroup extends WElement {
     });
   }
   _template() {
-    const group = `<div class="${this._groupClass()}" role="group" aria-disabled="${this.disabled ? "true" : "false"}"><slot></slot></div>`;
+    const group = `<div class="${this._groupClass()}" role="group"${this._groupName()} aria-disabled="${this.disabled ? "true" : "false"}"><slot></slot></div>`;
     if (!this.showArrows)
       return group;
     return `<div class="w-chip-group-shell${this.vertical ? " w-chip-group-shell--vertical" : ""}">` + this._arrow("prev") + group + this._arrow("next") + `</div>`;
@@ -14394,7 +14943,7 @@ class WChipGroup extends WElement {
       chip._silentSet?.("selected", isSelected ? "" : null);
       chip.querySelector(".w-chip")?.classList.toggle(this.selectedClass, isSelected);
       chip.querySelector(".w-chip")?.classList.toggle("w-chip--selected", isSelected);
-      chip.querySelector(".w-chip")?.setAttribute("aria-pressed", isSelected ? "true" : "false");
+      chip._syncPressed?.(isSelected);
       if (this.disabled)
         chip.setAttribute("disabled", "");
     });
@@ -14407,6 +14956,10 @@ class WChipGroup extends WElement {
   }
   _chipValue(chip) {
     return chip.getAttribute("value") || chip.textContent.trim();
+  }
+  _groupName() {
+    const label = this.getAttribute("aria-label") || this.getAttribute("label");
+    return this._attrs({ "aria-labelledby": this.getAttribute("aria-labelledby") || false, "aria-label": label || false });
   }
 }
 if (!customElements.get("w-chip-group"))
@@ -19310,7 +19863,7 @@ if (!customElements.get("w-divider"))
 var W_EMPTY_DEFAULT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>`;
 
 class WEmpty extends WElement {
-  static attrs = ["headline", "title", "text", "subtitle", "icon", "image", "size", "color", "bg-color", "justify", "action-text", "href", "text-width"];
+  static attrs = ["headline", "title", "text", "subtitle", "icon", "image", "size", "color", "bg-color", "justify", "action-text", "href", "text-width", "heading-level", "icon-set"];
   static justify = ["start", "center", "end"];
   static tokens = ["primary", "secondary", "tertiary", "success", "warning", "error", "info", "surface"];
   get headline() {
@@ -19360,7 +19913,7 @@ class WEmpty extends WElement {
     if (this.image)
       return `<div class="w-empty-media"><img class="w-empty-image" src="${this._esc(this.image)}" alt=""></div>`;
     if (this.icon)
-      return `<div class="w-empty-media w-empty-icon" aria-hidden="true">${this._esc(this.icon)}</div>`;
+      return `<div class="w-empty-media w-empty-icon" aria-hidden="true">${this._iconMarkup()}</div>`;
     if (this._hasDefaultSlot())
       return '<div class="w-empty-media"><slot></slot></div>';
     return `<div class="w-empty-media" aria-hidden="true">${W_EMPTY_DEFAULT_ICON}</div>`;
@@ -19379,14 +19932,29 @@ class WEmpty extends WElement {
       return "";
     let html = '<div class="w-empty-content">';
     if (this._hasSlot("title"))
-      html += '<p class="w-empty-title"><slot name="title"></slot></p>';
+      html += `<p class="w-empty-title"${this._titleRole()}><slot name="title"></slot></p>`;
     else if (this.title)
-      html += `<p class="w-empty-title">${this._esc(this.title)}</p>`;
+      html += `<p class="w-empty-title"${this._titleRole()}>${this._esc(this.title)}</p>`;
     if (this._hasSlot("text"))
       html += '<p class="w-empty-subtitle"><slot name="text"></slot></p>';
     else if (this.text)
       html += `<p class="w-empty-subtitle">${this._esc(this.text)}</p>`;
     return html + "</div>";
+  }
+  _iconMarkup() {
+    const iconSet = this.getAttribute("icon-set") || "";
+    return icons_default.resolve(iconSet ? `${iconSet}:${this.icon}` : this.icon, { iconClass: "w-icon" });
+  }
+  _titleRole() {
+    const level = this._attr("heading-level", "2");
+    if (level === "none" || this._slottedHeading())
+      return "";
+    const value = Math.min(6, Math.max(1, parseInt(level, 10) || 2));
+    return ` role="heading" aria-level="${value}"`;
+  }
+  _slottedHeading() {
+    const title = this.querySelector('[slot="title"]');
+    return !!title && /^H[1-6]$/.test(title.tagName);
   }
   _actions() {
     if (this._hasSlot("actions"))
@@ -21587,7 +22155,12 @@ class WHotkey extends WElement {
   }
   _def(token) {
     const key = token.toLowerCase();
-    return this.keyMap[key] || KEYS[key];
+    return this.keyMap[key] || KEYS[key] || this._modDef(key);
+  }
+  _modDef(key) {
+    if (key !== "mod")
+      return;
+    return this.platform === "mac" ? KEYS.cmd : KEYS.ctrl;
   }
   get platform() {
     const p = this._attr("platform", "");
@@ -22592,7 +23165,8 @@ class WMenu extends WElement {
     "close-on-back",
     "retain-focus",
     "capture-focus",
-    "disable-initial-focus"
+    "disable-initial-focus",
+    "activator"
   ];
   constructor() {
     super();
@@ -22607,6 +23181,7 @@ class WMenu extends WElement {
   }
   disconnectedCallback() {
     this._removeGlobalListeners();
+    this._unbindExternal();
     if (this.__wPopstate)
       window.removeEventListener("popstate", this.__wPopstate);
     this.__wPopstate = null;
@@ -22702,14 +23277,21 @@ class WMenu extends WElement {
   get disableInitialFocus() {
     return this._bool("disable-initial-focus");
   }
+  get activator() {
+    return this._attr("activator", "");
+  }
   _template() {
-    const hasActivator = !!this.querySelector('[slot="activator"]');
-    const activator = hasActivator ? `<span class="w-menu-activator" role="button" tabindex="${this.disabled ? "-1" : "0"}" aria-haspopup="menu" aria-expanded="${this.open ? "true" : "false"}" aria-controls="${this._esc(this.menuId)}"><slot name="activator"></slot></span>` : `<button class="w-btn w-btn-outlined w-menu-activator" type="button" aria-haspopup="menu" aria-expanded="${this.open ? "true" : "false"}" aria-controls="${this._esc(this.menuId)}"${this.disabled ? " disabled" : ""}>${this._esc(this.label)}</button>`;
     return `<div class="${this._rootClasses()}"${this._rootStyle()}>
-      ${activator}
+      ${this._activatorMarkup()}
       ${this._scrimMarkup()}
       <div id="${this._esc(this.menuId)}" class="${this._esc(this._contentClasses())}" role="menu"${this._contentStyle()}><slot></slot></div>
     </div>`;
+  }
+  _activatorMarkup() {
+    if (this.activator)
+      return '<slot name="activator" hidden></slot>';
+    const hasActivator = !!this.querySelector('[slot="activator"]');
+    return hasActivator ? `<span class="w-menu-activator" role="button" tabindex="${this.disabled ? "-1" : "0"}" aria-haspopup="menu" aria-expanded="${this.open ? "true" : "false"}" aria-controls="${this._esc(this.menuId)}"><slot name="activator"></slot></span>` : `<button class="w-btn w-btn-outlined w-menu-activator" type="button" aria-haspopup="menu" aria-expanded="${this.open ? "true" : "false"}" aria-controls="${this._esc(this.menuId)}"${this.disabled ? " disabled" : ""}>${this._esc(this.label)}</button>`;
   }
   _rootClasses() {
     return [
@@ -22719,7 +23301,7 @@ class WMenu extends WElement {
       "w-menu--" + this._classToken(this.location)
     ].filter(Boolean).join(" ") + this._cls({
       "w-menu--contained": this.contained,
-      "w-menu--anchored": this.target,
+      "w-menu--anchored": this.target || this.activator,
       "w-menu--stick": this.stickToTarget,
       "w-menu--offset": this.offset
     }) + this._transitionClass();
@@ -22774,20 +23356,12 @@ class WMenu extends WElement {
     return this._styleAttr(styles);
   }
   _events() {
-    const activator = this._q(".w-menu-activator");
+    if (this.activator)
+      this._bindExternal();
     const content = this._q(".w-menu-content");
-    if (!activator || !content || this.disabled)
+    if (!content || this.disabled)
       return;
-    activator.addEventListener("click", (event) => this._onActivatorClick(event));
-    activator.addEventListener("keydown", (event) => this._onActivatorKeydown(event));
-    activator.addEventListener("focusin", () => {
-      if (this.openOnFocus)
-        this._scheduleOpen(true, this.openDelay);
-    });
-    activator.addEventListener("mouseenter", () => {
-      if (this.openDelay > 0 || this.submenu || this.openOnHover)
-        this._scheduleOpen(true, this.openDelay);
-    });
+    this._bindInternal();
     this.addEventListener("mouseleave", () => {
       if (this.closeDelay > 0 || this.submenu || this.openOnHover)
         this._scheduleOpen(false, this.closeDelay);
@@ -22801,6 +23375,72 @@ class WMenu extends WElement {
     if (this.open)
       this._applyAnchor();
   }
+  _bindActivator(activator, signal) {
+    const options = signal ? { signal } : undefined;
+    activator.addEventListener("click", (event) => this._onActivatorClick(event), options);
+    activator.addEventListener("keydown", (event) => this._onActivatorKeydown(event), options);
+    activator.addEventListener("focusin", () => {
+      if (this.openOnFocus)
+        this._scheduleOpen(true, this.openDelay);
+    }, options);
+    activator.addEventListener("mouseenter", () => {
+      if (this.openDelay > 0 || this.submenu || this.openOnHover)
+        this._scheduleOpen(true, this.openDelay);
+    }, options);
+  }
+  _bindInternal() {
+    const activator = this._q(".w-menu-activator");
+    if (activator)
+      this._bindActivator(activator);
+  }
+  _bindExternal() {
+    const element = this._externalActivator();
+    if (!element)
+      return this._retryExternal();
+    this._syncExternalAria(element);
+    if (this.__wExternal === element)
+      return;
+    this._unbindExternal();
+    this.__wExternal = element;
+    this.__wExternalAbort = new AbortController;
+    this._bindActivator(element, this.__wExternalAbort.signal);
+  }
+  _retryExternal() {
+    if (this.__wExternalRetry)
+      return;
+    this.__wExternalRetry = true;
+    this._whenReady(() => this.isConnected && this._bindExternal());
+  }
+  _whenReady(callback) {
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", callback, { once: true });
+    else
+      requestAnimationFrame(callback);
+  }
+  _unbindExternal() {
+    this.__wExternalAbort?.abort();
+    this.__wExternalAbort = null;
+    this.__wExternal = null;
+  }
+  _syncExternalAria(element) {
+    if (!element.hasAttribute("aria-haspopup"))
+      element.setAttribute("aria-haspopup", "menu");
+    element.setAttribute("aria-expanded", this.open ? "true" : "false");
+    element.setAttribute("aria-controls", this.menuId);
+  }
+  _externalActivator() {
+    const value = this.activator;
+    if (!value)
+      return null;
+    if (value === "parent")
+      return this.parentElement;
+    return document.getElementById(value) || this._targetElement(value);
+  }
+  _activatorEl() {
+    if (this.activator)
+      return this._externalActivator();
+    return this._q(".w-menu-activator");
+  }
   _onActivatorClick(event) {
     event.stopPropagation();
     if (!this.openOnClick)
@@ -22809,8 +23449,10 @@ class WMenu extends WElement {
   }
   _onContentClick(event) {
     const item = event.target instanceof Element ? event.target.closest('button, a, [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"]') : null;
-    if (item && this.closeOnContentClick)
-      this._setOpen(false);
+    if (!item || !this.closeOnContentClick)
+      return;
+    this._setOpen(false);
+    this._activatorEl()?.focus();
   }
   _dismiss() {
     if (!this.open)
@@ -22848,7 +23490,7 @@ class WMenu extends WElement {
     if (event.key === "Escape") {
       event.preventDefault();
       this._setOpen(false);
-      this._q(".w-menu-activator")?.focus();
+      this._activatorEl()?.focus();
       return;
     }
     if (event.key === "Tab") {
@@ -22858,7 +23500,7 @@ class WMenu extends WElement {
     if (this.submenu && event.key === "ArrowLeft") {
       event.preventDefault();
       this._setOpen(false);
-      this._q(".w-menu-activator")?.focus();
+      this._activatorEl()?.focus();
       return;
     }
     const direction = event.key === "ArrowDown" ? "next" : event.key === "ArrowUp" ? "prev" : event.key === "Home" ? "first" : event.key === "End" ? "last" : "";
@@ -22913,6 +23555,8 @@ class WMenu extends WElement {
       if (!this.open)
         return;
       if (this.contains(event.target))
+        return;
+      if (this.__wExternal?.contains(event.target))
         return;
       this._dismiss();
     };
@@ -22987,7 +23631,7 @@ class WMenu extends WElement {
   _targetRect() {
     const target = this.target;
     if (!target)
-      return null;
+      return this.__wExternal?.getBoundingClientRect() || null;
     const point = this._targetPoint(target);
     if (point)
       return { left: point.x, bottom: point.y };
@@ -24195,7 +24839,6 @@ class WOtp extends WElement {
       type: this.type === "password" || this.masked ? "password" : "text",
       inputmode: this.type === "number" ? "numeric" : "text",
       autocomplete: "one-time-code",
-      maxlength: "1",
       value: char,
       placeholder: this.placeholder,
       disabled: this.disabled,
@@ -24225,10 +24868,7 @@ class WOtp extends WElement {
       input.addEventListener("focus", () => input.select());
       input.addEventListener("input", (event) => {
         event.stopPropagation();
-        input.value = this._filter(input.value).slice(-1);
-        this._sync(inputs);
-        if (input.value && inputs[index + 1])
-          inputs[index + 1].focus();
+        this._fillFrom(inputs, index, this._enteredText(event, input));
       });
       input.addEventListener("keydown", (event) => {
         if (event.key === "Backspace" && !input.value && inputs[index - 1]) {
@@ -24244,12 +24884,8 @@ class WOtp extends WElement {
       input.addEventListener("paste", (event) => {
         event.preventDefault();
         const text = this._filter(event.clipboardData && event.clipboardData.getData("text") || "");
-        const chars = text.split("");
-        for (let i = index, j = 0;i < inputs.length && j < chars.length; i += 1, j += 1) {
-          inputs[i].value = chars[j];
-        }
-        this._sync(inputs);
-        inputs[Math.min(index + chars.length, inputs.length - 1)].focus();
+        if (text)
+          this._fillFrom(inputs, index, text);
       });
     });
   }
@@ -24267,6 +24903,28 @@ class WOtp extends WElement {
       return;
     this.__autofocused = true;
     inputs[0].focus();
+  }
+  _enteredText(event, input) {
+    const typed = event.inputType === "insertText" ? this._filter(event.data || "") : "";
+    return typed || this._filter(input.value);
+  }
+  _fillFrom(inputs, index, text) {
+    if (text.length <= 1) {
+      this._fillOne(inputs, index, text);
+      return;
+    }
+    const chars = text.split("").slice(0, inputs.length - index);
+    chars.forEach((char, offset) => {
+      inputs[index + offset].value = char;
+    });
+    this._sync(inputs);
+    inputs[Math.min(index + chars.length, inputs.length - 1)].focus();
+  }
+  _fillOne(inputs, index, char) {
+    inputs[index].value = char;
+    this._sync(inputs);
+    if (char && inputs[index + 1])
+      inputs[index + 1].focus();
   }
   _sync(inputs) {
     const value = inputs.map((el) => el.value).join("");
@@ -25630,7 +26288,7 @@ var SKELETON_LIST = {
 };
 
 class WSkeleton extends WElement {
-  static attrs = ["type", "boilerplate", "loading", "color", "width", "height", "variant", "lines"];
+  static attrs = ["type", "boilerplate", "loading", "color", "width", "height", "variant", "lines", "announce", "loading-text"];
   static tokens = ["primary", "secondary", "tertiary", "success", "warning", "error", "info"];
   get type() {
     return this._attr("type", "");
@@ -25652,7 +26310,19 @@ class WSkeleton extends WElement {
       styles.push("--w-skeleton-color: " + color);
     const style = styles.length ? ` style="${styles.join("; ")}"` : "";
     const cls = "w-skeleton-loader" + (this._bool("boilerplate") ? " w-skeleton--boilerplate" : "");
-    return `<div class="${cls}" aria-busy="true" aria-live="polite"${style}>${bones}</div>`;
+    return `<div class="${cls}" aria-hidden="true"${style}>${bones}</div>${this._statusMarkup()}`;
+  }
+  _statusMarkup() {
+    return this._bool("announce") ? '<span class="w-sr-only" role="status"></span>' : "";
+  }
+  _events() {
+    const status = this._q(':scope > [role="status"]');
+    if (!status)
+      return;
+    const text = this._attr("loading-text", "Loading...");
+    setTimeout(() => {
+      status.textContent = text;
+    }, 0);
   }
   _resolveList(list) {
     return String(list).split(",").map((t) => this._resolveToken(t.trim())).join("");
@@ -25718,12 +26388,6 @@ customElements.define("w-skeleton", WSkeleton);
 
 // src/components/skeleton-loader.js
 class WSkeletonLoader extends customElements.get("w-skeleton") {
-  static attrs = ["loading-text"];
-  _events() {
-    const root = this._q(".w-skeleton-loader");
-    if (root)
-      root.setAttribute("aria-label", this._attr("loading-text", "Loading..."));
-  }
 }
 if (!customElements.get("w-skeleton-loader")) {
   customElements.define("w-skeleton-loader", WSkeletonLoader);
@@ -25998,6 +26662,8 @@ class WSnackbar extends WElement {
     "opacity",
     "z-index",
     "prepend-icon",
+    "icon-set",
+    "live",
     "prepend-avatar",
     "queue-index",
     "queue-gap",
@@ -26070,7 +26736,7 @@ class WSnackbar extends WElement {
     const activator = this._activatorMarkup();
     if (!this.open)
       return activator ? activator + '<span hidden><slot></slot><slot name="actions"></slot></span>' : "";
-    let html = `${activator}<div class="${this._esc(this._barClass())}" role="status" aria-live="polite"${this._barStyle()}>`;
+    let html = `${activator}<div class="${this._esc(this._barClass())}" ${this._liveAttrs()}${this._barStyle()}>`;
     html += `<div class="w-snackbar-content">${this._prependMarkup()}${this._titleMarkup()}<span class="w-snackbar-msg">${this._messageMarkup()}</span></div>`;
     html += `<div class="w-snackbar-actions">${this._actionsMarkup()}${this._closeMarkup()}</div>`;
     html += this._timerMarkup();
@@ -26095,7 +26761,16 @@ class WSnackbar extends WElement {
       return `<span class="w-avatar w-avatar-sm w-snackbar-avatar" role="img" aria-label="Avatar"><img class="w-avatar-image" src="${this._esc(avatar)}" alt=""></span>`;
     }
     const icon = this._attr("prepend-icon", "");
-    return icon ? `<span class="w-snackbar-icon" aria-hidden="true">${this._esc(icon)}</span>` : "";
+    return icon ? `<span class="w-snackbar-icon" aria-hidden="true">${this._iconMarkup(icon)}</span>` : "";
+  }
+  _iconMarkup(icon) {
+    const iconSet = this.getAttribute("icon-set") || "";
+    return icons_default.resolve(iconSet ? `${iconSet}:${icon}` : icon, { iconClass: "w-icon" });
+  }
+  _liveAttrs() {
+    if (this._attr("live", "polite") === "assertive")
+      return ' role="alert" aria-live="assertive"';
+    return ' role="status" aria-live="polite"';
   }
   _actionsMarkup() {
     if (this._hasSlot("actions"))
@@ -27938,8 +28613,14 @@ class WTab extends WElement {
     "hide-slider",
     "slider-color",
     "slider-transition",
-    "slider-transition-duration"
+    "slider-transition-duration",
+    "nav",
+    "aria-label",
+    "aria-labelledby",
+    "aria-describedby",
+    "aria-controls"
   ];
+  static forwardedAria = ["aria-label", "aria-labelledby", "aria-describedby", "aria-controls"];
   set value(v) {
     wSetValue(this, v);
   }
@@ -28026,22 +28707,29 @@ class WTab extends WElement {
     return this._iconMarkup(this.prependIcon, "w-icon w-tab-leading-icon") + `<span class="w-tab__content">${label}<slot></slot></span>` + this._iconMarkup(this._attr("append-icon", ""), "w-icon w-tab-append-icon");
   }
   _template() {
-    const cls = this._classes();
-    const selected = this.active ? "true" : "false";
-    const style = this._styleAttr();
-    if (this.href && !this.disabled) {
-      return `<a class="${cls}"${style} href="${this._esc(this.href)}" role="tab" aria-selected="${selected}">
+    const tag = this._isLink() ? "a" : "button";
+    const attrs = this._attrs(this._controlAttrs());
+    return `<${tag} class="${this._classes()}"${this._styleAttr()}${attrs}>
       ${this._content()}
-    </a>`;
-    }
-    const dis = this.disabled ? ' disabled aria-disabled="true"' : "";
-    return `<button class="${cls}"${style}${dis} type="button" role="tab" aria-selected="${selected}">
-      ${this._content()}
-    </button>`;
+    </${tag}>`;
+  }
+  _isLink() {
+    return !!this.href && !this.disabled;
+  }
+  _controlAttrs() {
+    const own = this._isLink() ? { href: this.href } : { type: "button", disabled: this.disabled, "aria-disabled": this.disabled && "true" };
+    return Object.assign(own, this._roleAttrs(), this._ariaAttrs(WTab.forwardedAria));
+  }
+  _roleAttrs() {
+    const current = this._isLink() && this.active ? "page" : "";
+    if (this._bool("nav"))
+      return { "aria-current": current };
+    return { role: "tab", "aria-selected": this.active ? "true" : "false", "aria-current": current };
   }
   _events() {
     if (this.hasAttribute("ripple"))
       this._attachRipple(this._q("button, a"));
+    this.closest("w-tabs")?._syncRoving?.();
   }
 }
 customElements.define("w-tab", WTab);
@@ -28080,7 +28768,10 @@ class WTabs extends WElement {
     "mobile-breakpoint",
     "scroll-to-active",
     "slider-transition",
-    "slider-transition-duration"
+    "slider-transition-duration",
+    "nav",
+    "aria-label",
+    "aria-labelledby"
   ];
   get value() {
     return this._attr("value", "");
@@ -28123,6 +28814,9 @@ class WTabs extends WElement {
   }
   get multiple() {
     return this.hasAttribute("multiple");
+  }
+  get nav() {
+    return this.hasAttribute("nav");
   }
   get max() {
     return this.hasAttribute("max") ? wNumberAttr(this, "max", Infinity) : Infinity;
@@ -28283,12 +28977,21 @@ class WTabs extends WElement {
   }
   _template() {
     const slider = this._hasSlider ? '<span class="w-tabs-slider" aria-hidden="true"></span>' : "";
-    const orientation = this._vertical ? ' aria-orientation="vertical"' : "";
-    const multi = this.multiple ? ' aria-multiselectable="true"' : "";
-    const stripEl = `<div class="${this._stripClasses()}"${this._stripStyle()} role="tablist"${orientation}${multi}>` + `${this._itemsMarkup()}<slot></slot>${slider}</div>`;
+    const tag = this.nav ? "nav" : "div";
+    const stripEl = `<${tag} class="${this._stripClasses()}"${this._stripStyle()}${this._stripRoleAttrs()}>` + `${this._itemsMarkup()}<slot></slot>${slider}</${tag}>`;
     if (!this.showArrows || this.mobile)
       return stripEl;
     return this._shellTemplate(stripEl);
+  }
+  _stripRoleAttrs() {
+    const name = this._attrs(this._ariaAttrs(["aria-label", "aria-labelledby"]));
+    if (this.nav)
+      return name;
+    return this._attrs({
+      role: "tablist",
+      "aria-orientation": this._vertical && "vertical",
+      "aria-multiselectable": this.multiple && "true"
+    }) + name;
   }
   _events() {
     const container = this._q(".w-tabs");
@@ -28303,23 +29006,8 @@ class WTabs extends WElement {
         return;
       this._activateTab(tabEl);
     });
-    container.addEventListener("keydown", (e) => {
-      const nextKey = this._vertical ? "ArrowDown" : "ArrowRight";
-      const prevKey = this._vertical ? "ArrowUp" : "ArrowLeft";
-      let move;
-      if (e.key === nextKey)
-        move = 1;
-      else if (e.key === prevKey)
-        move = -1;
-      else if (e.key === "Home")
-        move = "home";
-      else if (e.key === "End")
-        move = "end";
-      else
-        return;
-      e.preventDefault();
-      this._moveFocus(move);
-    });
+    container.addEventListener("keydown", (e) => this._onKeydown(e));
+    container.addEventListener("focusout", (e) => this._onFocusOut(container, e));
     this._qAll("[data-tabs-scroll]").forEach((button) => {
       button.addEventListener("click", () => this._scrollByPage(Number(button.getAttribute("data-tabs-scroll"))));
     });
@@ -28340,27 +29028,65 @@ class WTabs extends WElement {
   _getTabElements() {
     return Array.from(this.querySelectorAll("w-tab"));
   }
+  _onKeydown(event) {
+    const move = this._keyMove(event.key);
+    if (this.nav || move == null)
+      return;
+    event.preventDefault();
+    this._moveFocus(move);
+  }
+  _keyMove(key) {
+    const moves = this._vertical ? { ArrowDown: 1, ArrowUp: -1, Home: "home", End: "end" } : { ArrowRight: 1, ArrowLeft: -1, Home: "home", End: "end" };
+    return moves[key];
+  }
   _moveFocus(move) {
     const tabs = this._getTabElements().filter((t) => !t.disabled);
     if (!tabs.length)
       return;
-    const activeIndex = tabs.findIndex((t) => t.active);
-    let nextIndex;
+    const nextTab = tabs[this._targetIndex(tabs, move)];
+    if (!this.multiple && !nextTab.active)
+      this._activateTab(nextTab);
+    this._focusTab(nextTab);
+  }
+  _targetIndex(tabs, move) {
     if (move === "home")
-      nextIndex = 0;
-    else if (move === "end")
-      nextIndex = tabs.length - 1;
-    else {
-      const start = activeIndex < 0 ? 0 : activeIndex;
-      nextIndex = (start + move + tabs.length) % tabs.length;
-    }
-    const nextTab = tabs[nextIndex];
-    if (!nextTab)
+      return 0;
+    if (move === "end")
+      return tabs.length - 1;
+    const start = Math.max(0, this._currentIndex(tabs));
+    return (start + move + tabs.length) % tabs.length;
+  }
+  _currentIndex(tabs) {
+    const focused = tabs.indexOf(document.activeElement?.closest?.("w-tab"));
+    return focused >= 0 ? focused : tabs.findIndex((t) => t.active);
+  }
+  _focusTab(tab) {
+    this._focusedTab = tab;
+    this._syncRoving();
+    tab.querySelector(".w-tab")?.focus();
+  }
+  _onFocusOut(container, event) {
+    if (container.contains(event.relatedTarget))
       return;
-    this._activateTab(nextTab);
-    const focusTarget = nextTab.querySelector(".w-tab");
-    if (focusTarget)
-      focusTarget.focus();
+    this._focusedTab = null;
+    this._syncRoving();
+  }
+  _syncRoving() {
+    if (this.nav)
+      return;
+    const tabs = this._getTabElements();
+    const stop = this._tabStop(tabs.filter((t) => !t.disabled));
+    tabs.forEach((tab) => this._setTabStop(tab, tab === stop));
+  }
+  _tabStop(enabled) {
+    if (enabled.includes(this._focusedTab))
+      return this._focusedTab;
+    return enabled.find((t) => t.active) || enabled[0];
+  }
+  _setTabStop(tab, isStop) {
+    const control = tab.querySelector(".w-tab");
+    if (control)
+      control.tabIndex = isStop ? 0 : -1;
   }
   _selectedValues() {
     return this.multiple ? wValueList(this.value) : [this.value];
@@ -28368,7 +29094,7 @@ class WTabs extends WElement {
   _classNames(value) {
     return String(value || "").split(/\s+/).filter(Boolean);
   }
-  static tabProps = ["inset", "spaced", "direction"];
+  static tabProps = ["inset", "spaced", "direction", "nav"];
   _mirrorProps(tab) {
     WTabs.tabProps.forEach((name) => {
       const value = this.getAttribute(name);
@@ -28390,6 +29116,7 @@ class WTabs extends WElement {
       contentClasses.forEach((name) => tab.classList.add(name));
       this._mirrorProps(tab);
     });
+    this._syncRoving();
   }
   _activateTab(tabEl) {
     if (!tabEl || tabEl.disabled)

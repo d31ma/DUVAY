@@ -1,0 +1,97 @@
+/* DuVay — Material (Android) skin
+ *
+ * Applied with `w-os="material"` on <html>, orthogonal to `w-theme`.
+ * Takes Material 3 Expressive's motion physics, tonal elevation and label
+ * tracking — not its shape scale.
+ *
+ * What a skin may change: font family, motion, elevation, chrome heights, the
+ * switch's geometry, the focus ring, scrollbars, and per-component structure.
+ *
+ * What it may not: colour, control size, the radius scale, and the type scale.
+ * Those are brand tokens — they are what keeps an app recognisably the same
+ * product on every platform, and `bun run tokens:check` fails a skin that
+ * overrides them.
+ */
+
+[w-os="android"],
+[w-os="material"] {
+  /* Switch — set as inherited variables so this skin still wins
+   * inside a page wearing a different one. */
+  --w-skin-switch-track-w: 52px;
+  --w-skin-switch-track-h: 32px;
+  --w-skin-switch-thumb: 24px;
+  --w-skin-switch-pad: 4px;
+
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --w-font-family: Roboto, 'Roboto Flex', 'Noto Sans', system-ui, sans-serif;
+  --w-font-family-heading: Roboto, 'Roboto Flex', system-ui, sans-serif;
+  --w-font-family-mono: 'Roboto Mono', ui-monospace, monospace;
+  --w-letter-spacing-normal: 0.00625em;
+  --w-line-height-normal: 1.43;
+
+  --w-topbar-height: 64px;
+  --w-mobile-nav-height: 80px;       /* M3 navigation bar */
+
+  /* ── Elevation — M3 levels 1/3/5 ──────────────────────────────────── */
+  --w-shadow-sm: 0 1px 2px var(--w-shadow-color), 0 1px 3px 1px var(--w-shadow-color);
+  --w-shadow-md: 0 4px 8px 3px var(--w-shadow-color), 0 1px 3px var(--w-shadow-color);
+  --w-shadow-lg: 0 8px 12px 6px var(--w-shadow-color), 0 4px 4px var(--w-shadow-color);
+
+  /* ── Motion — M3 Expressive emphasised easing ─────────────────────── */
+  --w-motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --w-motion-ease-enter:    cubic-bezier(0.05, 0.7, 0.1, 1);
+  --w-motion-ease-exit:     cubic-bezier(0.3, 0, 0.8, 0.15);
+  --w-motion-duration-fast: 200ms;
+  --w-motion-duration:      300ms;
+  --w-motion-duration-slow: 500ms;
+  --w-transition-fast:   200ms cubic-bezier(0.2, 0, 0, 1);
+  --w-transition-normal: 300ms cubic-bezier(0.2, 0, 0, 1);
+  --w-transition-slow:   500ms cubic-bezier(0.2, 0, 0, 1);
+
+  /* Focus — M3's ring is thicker and sits closer to the control. */
+  --w-focus-ring-width: 3px;
+  --w-focus-ring-color: var(--w-accent);
+
+}
+
+/* M3's label tracking, without M3's shape: the radius scale is a brand token
+ * and stays identical across skins. */
+[w-os="android"] .w-btn,
+[w-os="material"] .w-btn {
+  font-weight: var(--w-font-weight-medium);
+  letter-spacing: 0.00714em;
+}
+
+
+[w-os="android"] .w-switch-track,
+[w-os="material"] .w-switch-track { border-radius: var(--w-radius-pill); }
+[w-os="android"] .w-switch-thumb,
+[w-os="material"] .w-switch-thumb { border-radius: 50%; }
+
+/* Dialogs are large-radius tonal containers, actions right-aligned. */
+[w-os="android"] .w-dialog,
+[w-os="material"] .w-dialog {
+  border-radius: var(--w-radius-xl);
+  /* background-color, so an author-supplied image survives the skin. */
+  background-color: var(--w-surface-container-high);
+}
+[w-os="android"] .w-dialog-footer,
+[w-os="material"] .w-dialog-footer { justify-content: flex-end; }
+
+/* Bottom sheets carry the M3 drag handle affordance. */
+/* :not(--fullscreen) because a sheet that fills the screen has no top
+   corners to round. The skin selector and the base fullscreen rule are
+   both (0,2,0), so without this the later-loaded skin won on source
+   order and rounded a fullscreen sheet. */
+[w-os="android"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen),
+[w-os="material"] .w-bottom-sheet:not(.w-bottom-sheet--fullscreen) {
+  border-radius: var(--w-radius-xl) var(--w-radius-xl) 0 0;
+  padding-bottom: max(var(--w-space-4), env(safe-area-inset-bottom));
+}
+
+/* Text fields are filled containers with a flat bottom edge. */
+[w-os="android"] .w-field,
+[w-os="material"] .w-field {
+  border-radius: var(--w-radius-sm) var(--w-radius-sm) 0 0;
+}
+

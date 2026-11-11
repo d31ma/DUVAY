@@ -1,0 +1,40 @@
+/* DuVay — Ripple directive
+ *
+ * Visual press feedback for `w-ripple`. The behavior layer (duvay-directives.js)
+ * adds `.w-ripple-host` to the element and appends a `.w-ripple-ink` span at the
+ * pointer position; the span removes itself on animationend. Web components add
+ * the same markup via their opt-in `ripple` attribute.
+ *
+ * Tokens: --w-motion-duration-slow, --w-motion-ease-standard, --w-primary.
+ * Affects: any element carrying w-ripple, plus components with ripple enabled.
+ */
+
+.w-ripple-host {
+  position: relative;
+  overflow: hidden;
+}
+
+.w-ripple-ink {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  opacity: var(--w-ripple-opacity, 0.16);
+  background: currentColor;
+  animation: w-ripple-expand var(--w-motion-duration-slow) var(--w-motion-ease-standard) forwards;
+}
+
+.w-ripple-host[w-ripple-color="primary"] .w-ripple-ink { color: var(--w-primary); }
+.w-ripple-host[w-ripple-color="secondary"] .w-ripple-ink { color: var(--w-secondary); }
+.w-ripple-host[w-ripple-color="surface"] .w-ripple-ink { color: var(--w-on-surface); }
+
+@keyframes w-ripple-expand {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-ripple-ink { animation-duration: 1ms; }
+}

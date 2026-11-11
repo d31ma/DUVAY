@@ -1,0 +1,53 @@
+/* DuVay — Infinite Scroll component styles. */
+@import "../core.css";
+
+/* ── Infinite Scroll ──────────────────────────────────────────────────────── */
+.w-infinite-scroll {
+  min-height: 1px;
+  overflow: auto;
+}
+
+.w-infinite-scroll--horizontal {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.w-infinite-scroll--horizontal .w-infinite-scroll-content {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.w-infinite-scroll-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-space-2);
+  padding: var(--w-space-4);
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-infinite-scroll--horizontal .w-infinite-scroll-trigger {
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: var(--w-space-2) var(--w-space-4);
+}
+
+.w-infinite-scroll-trigger:empty { padding: 0; min-height: 1px; }
+
+.w-infinite-scroll-spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid color-mix(in srgb, var(--w-infinite-color, var(--w-primary)) 30%, transparent);
+  border-top-color: var(--w-infinite-color, var(--w-primary));
+  border-radius: 50%;
+  animation: w-spin 0.7s linear infinite;
+}
+
+.w-infinite-scroll-error { color: var(--w-error); }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-infinite-scroll-spinner { animation-duration: 1.6s; }
+}

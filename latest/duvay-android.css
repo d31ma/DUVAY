@@ -5741,6 +5741,31 @@ w-app-bar .w-app-bar--collapse-end {
   transform: none;
 }
 
+/* sheet="mobile": below the small breakpoint (--w-bp-sm, 600px) the dialog
+   docks to the bottom edge like <w-bottom-sheet>, with the same radius,
+   shadow and slide-up motion. It stays a modal dialog. The doubled class
+   outranks the phone padding that footers.css sets later. */
+@media (max-width: 599.98px) {
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile > .w-dialog {
+    width: 100%;
+    max-width: none;
+    max-height: 80dvh;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    border-bottom: 0;
+    border-radius: var(--w-radius-lg) var(--w-radius-lg) 0 0;
+    transform: translateY(100%);
+  }
+
+  .w-dialog-wrapper.w-dialog-wrapper--sheet-mobile.open > .w-dialog {
+    transform: translateY(0);
+  }
+}
+
 w-dialog > .w-overlay.w-overlay--scrim {
   background: color-mix(
     in srgb,
@@ -7929,6 +7954,14 @@ w-navigation-drawer .w-navigation-drawer--image {
   min-width: 0;
 }
 
+/* Web component: the <w-bottom-nav-item> host is the flex item, so it takes
+   the equal share and lets its inner button fill it. */
+.w-bottom-navigation--grow w-bottom-nav-item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 /* Density variants */
 .w-bottom-navigation--comfortable {
   min-height: calc(var(--w-bottom-nav-height, 56px) - 8px);
@@ -9150,6 +9183,29 @@ w-card-title:last-child > .w-card-title {
 .w-avatar-badge--success { background: var(--w-success); color: var(--w-on-success); }
 .w-avatar-badge--error,
 .w-avatar-badge--danger { background: var(--w-error); color: var(--w-on-error); }
+
+/* Presence shapes, so colour is never the only cue (WCAG 1.4.1):
+   idle and offline are rings, dnd carries a bar. */
+.w-avatar-badge--status-idle,
+.w-avatar-badge--status-offline {
+  background: var(--w-surface);
+}
+
+.w-avatar-badge--status-idle {
+  box-shadow: inset 0 0 0 0.1875rem var(--w-warning), var(--w-shadow-sm);
+}
+
+.w-avatar-badge--status-offline {
+  box-shadow: inset 0 0 0 0.1875rem var(--w-text-subtle), var(--w-shadow-sm);
+}
+
+.w-avatar-badge--status-dnd::after {
+  content: "";
+  width: 55%;
+  height: 0.125rem;
+  border-radius: var(--w-radius-pill);
+  background: var(--w-on-error);
+}
 
 /* Avatar initials fallback */
 .w-avatar[w-initials]::before {
@@ -17702,7 +17758,8 @@ w-rating {
   outline-offset: 2px;
 }
 
-.w-btn:disabled {
+.w-btn:disabled,
+.w-btn[aria-disabled="true"] {
   opacity: 0.38;
   cursor: not-allowed;
 }
@@ -21040,6 +21097,59 @@ w-text-field.w-common-loading::after { content: none; }
 .w-chip__close:hover {
   background: color-mix(in srgb, currentColor 12%, transparent);
   opacity: 1;
+}
+
+/* The close control is a real <button>; a chip that also acts holds a
+   .w-chip__action sibling. Both drop the native button chrome. */
+button.w-chip__close,
+.w-chip__action {
+  margin-block: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.w-chip__action {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  text-decoration: none;
+}
+
+.w-chip__action:focus-visible,
+.w-chip__close:focus-visible {
+  outline: 2px solid var(--w-focus-ring);
+  outline-offset: 2px;
+}
+
+.w-chip--static {
+  cursor: default;
+}
+
+button.w-chip__close:disabled {
+  cursor: default;
+}
+
+/* WCAG 2.5.8: the 1rem close glyph keeps its look, but its hit area grows by
+   --w-space-1 on every side to the 24px minimum target. It sits above the
+   action sibling so the extra area belongs to the close button. */
+button.w-chip__close {
+  position: relative;
+  z-index: 2;
+}
+
+button.w-chip__close::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--w-space-1));
+  border-radius: inherit;
 }
 
 .w-chip--rounded { border-radius: var(--w-radius); }

@@ -1,0 +1,498 @@
+/* DuVay — Color Pickers component styles. */
+@import "../core.css";
+
+/* ── Color Picker ─────────────────────────────────────────────────────────── */
+.w-color-picker {
+  display: grid;
+  gap: var(--w-space-4);
+  width: min(22rem, 100%);
+  padding: var(--w-space-4);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-lg);
+  background: var(--w-surface);
+  color: var(--w-text);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-color-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+}
+
+.w-color-picker-title {
+  font-size: var(--w-font-md);
+  font-weight: var(--w-font-weight-medium);
+  color: var(--w-text);
+}
+
+.w-color-picker-divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--w-border);
+}
+
+.w-color-picker-preview-row {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-3);
+}
+
+.w-color-picker-preview-row > .w-color-preview {
+  flex: none;
+}
+
+.w-color-preview {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius-md);
+  background:
+    linear-gradient(45deg, color-mix(in srgb, var(--w-text) 10%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--w-text) 10%, transparent) 75%),
+    linear-gradient(45deg, color-mix(in srgb, var(--w-text) 10%, transparent) 25%, transparent 25% 75%, color-mix(in srgb, var(--w-text) 10%, transparent) 75%);
+  background-position: 0 0, 0.5rem 0.5rem;
+  background-size: 1rem 1rem;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-surface) 56%, transparent);
+}
+
+.w-color-picker-edit {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-color-picker-input-label {
+  display: block;
+  margin-top: var(--w-space-1);
+  color: var(--w-text-muted);
+  font-size: var(--w-font-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.w-color-picker-mode,
+.w-color-picker-eye-dropper {
+  flex: none;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container);
+  color: var(--w-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.w-color-picker-mode {
+  min-height: 2.75rem;
+  padding: 0 var(--w-space-2);
+  font-size: var(--w-font-xs);
+  text-transform: uppercase;
+}
+
+.w-color-picker-eye-dropper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+}
+
+.w-color-picker-mode:focus-visible,
+.w-color-picker-eye-dropper:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-color-picker-mode:disabled,
+.w-color-picker-eye-dropper:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.w-color-picker-input {
+  width: 100%;
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-3);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface-container);
+  color: var(--w-text);
+  font: inherit;
+  font-family: var(--w-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  text-transform: uppercase;
+}
+
+.w-color-picker-input:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-color-picker-value {
+  width: max-content;
+  padding: var(--w-space-1) var(--w-space-2);
+  border-radius: var(--w-radius-sm);
+  background: var(--w-surface-container);
+  color: var(--w-text-muted);
+  font-size: var(--w-font-xs);
+}
+
+.w-color-picker-canvas {
+  position: relative;
+  height: var(--w-color-picker-canvas-height, 12rem);
+  border-radius: var(--w-radius-md);
+  background:
+    linear-gradient(to top, #000, transparent),
+    linear-gradient(to right, #fff, transparent),
+    var(--w-color-picker-hue-color, var(--w-primary));
+  cursor: crosshair;
+  touch-action: none;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-text) 22%, transparent);
+}
+
+.w-color-picker-canvas:focus-visible,
+.w-color-picker-slider:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 3px;
+}
+
+.w-color-picker-canvas-thumb,
+.w-color-picker-slider-thumb {
+  position: absolute;
+  z-index: 1;
+  width: var(--w-color-picker-dot-size, 1rem);
+  height: var(--w-color-picker-dot-size, 1rem);
+  border: 2px solid white;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.42), var(--w-shadow-sm);
+  pointer-events: none;
+}
+
+.w-color-picker-canvas-thumb {
+  transform: translate(-50%, -50%);
+}
+
+.w-color-picker-slider {
+  position: relative;
+  height: 0.875rem;
+  border-radius: var(--w-radius-pill);
+  cursor: pointer;
+  touch-action: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--w-text) 20%, transparent);
+}
+
+.w-color-picker-slider-thumb {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.w-color-picker-hue {
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+}
+
+.w-color-picker-alpha {
+  background:
+    linear-gradient(to right, transparent, var(--w-color-picker-current, var(--w-primary))),
+    repeating-conic-gradient(color-mix(in srgb, var(--w-text) 12%, transparent) 0 25%, transparent 0 50%) 0 / 0.75rem 0.75rem;
+}
+
+.w-color-picker-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
+  gap: var(--w-space-2);
+}
+
+.w-color-swatch {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: var(--w-color, var(--w-primary));
+  cursor: pointer;
+  transition: transform var(--w-transition-fast), box-shadow var(--w-transition-fast);
+  outline-offset: 2px;
+}
+
+.w-color-swatch:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--w-color, var(--w-primary)) 30%, transparent);
+}
+
+.w-color-swatch.selected {
+  border-color: var(--w-text);
+  box-shadow: 0 0 0 2px var(--w-surface), 0 0 0 4px var(--w-color, var(--w-primary));
+}
+
+.w-color-swatch:focus-visible {
+  outline: 2px solid var(--w-primary);
+}
+
+.w-color-swatch:disabled,
+.w-color-picker--readonly .w-color-swatch {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.w-color-picker--swatches-only {
+  width: max-content;
+  max-width: 100%;
+}
+
+/* `swatches-max-height` turns the swatch grid into its own scroll area; the
+   padding keeps the hover ring from being clipped by the new scroll box. */
+.w-color-picker--scroll-swatches .w-color-picker-swatches {
+  max-height: var(--w-color-picker-swatches-max-height);
+  padding: var(--w-space-1);
+  overflow-y: auto;
+}
+
+/* `landscape` puts the canvas column beside the controls column. */
+.w-color-picker--landscape {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  width: min(34rem, 100%);
+}
+
+/* ── Color Input ──────────────────────────────────────────────────────────── */
+.w-color-input-title {
+  color: var(--w-text);
+  font-size: var(--w-font-sm);
+  font-weight: var(--w-font-weight-medium);
+}
+
+.w-color-input-row {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--w-space-2);
+}
+
+.w-color-input--center-affix .w-color-input-row,
+.w-color-input--center-affix .w-color-input-control {
+  align-items: center;
+}
+
+.w-color-input--reverse .w-color-input-row {
+  flex-direction: row-reverse;
+}
+
+.w-color-input-control {
+  display: flex;
+  align-items: center;
+  flex: 1 1 12rem;
+  gap: var(--w-space-2);
+  min-width: 0;
+}
+
+.w-color-input-control .w-input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-color-input-prepend,
+.w-color-input-append,
+.w-color-input-prepend-inner,
+.w-color-input-append-inner,
+.w-color-input-pip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-color-input-affix {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+}
+
+.w-color-input-icon {
+  color: var(--w-color-input-icon-color, var(--w-text-subtle));
+  opacity: 0.74;
+}
+
+/* `glow` lifts the prepend/append icons to full opacity while focused. */
+.w-color-input--glow:focus-within .w-color-input-icon {
+  color: var(--w-color-input-icon-color, var(--w-primary));
+  opacity: 1;
+}
+
+/* Pip — the colour trigger that fronts the native <input type="color">. */
+.w-color-input-pip {
+  border-radius: var(--w-radius);
+}
+
+.w-color-input-pip--colored {
+  box-shadow: 0 0 0 2px var(--w-color, var(--w-primary));
+}
+
+.w-color-input-pip--outlined {
+  box-shadow: inset 0 0 0 1px var(--w-border);
+}
+
+.w-color-input-pip--tonal {
+  background: color-mix(in srgb, var(--w-color, var(--w-primary)) 18%, transparent);
+}
+
+.w-color-input-pip--elevated {
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-color-input-pip--plain {
+  opacity: 0.68;
+}
+
+.w-color-input-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-radius-pill);
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-color-input:hover .w-color-input-clear,
+.w-color-input:focus-within .w-color-input-clear,
+.w-color-input--persistent-clear .w-color-input-clear {
+  opacity: 1;
+}
+
+.w-color-input-clear:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .w-color-input-clear {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* Variants mirror the text-field surfaces. */
+.w-color-input--filled .w-input {
+  border-color: transparent;
+  background: var(--w-surface-container-high);
+}
+
+.w-color-input--underlined .w-input {
+  border-width: 0 0 1px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.w-color-input--plain .w-input {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.w-color-input--solo .w-input,
+.w-color-input--solo-filled .w-input {
+  border-color: transparent;
+  background: var(--w-surface-container);
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-color-input--solo-inverted .w-input {
+  border-color: transparent;
+  background: var(--w-surface-container-highest);
+}
+
+.w-color-input--flat .w-input {
+  box-shadow: none;
+}
+
+.w-color-input--active .w-input {
+  border-color: var(--w-primary);
+}
+
+.w-color-input--dirty .w-label {
+  color: var(--w-text);
+}
+
+/* Placeholder stays out of the way until focus unless it is persistent or the
+   field is single-line (where the label collapses into the placeholder). */
+.w-color-input .w-input::placeholder {
+  color: transparent;
+}
+
+.w-color-input:focus-within .w-input::placeholder,
+.w-color-input--persistent-placeholder .w-input::placeholder,
+.w-color-input--single-line .w-input::placeholder {
+  color: var(--w-text-very-subtle);
+}
+
+.w-color-input--hide-spin-buttons .w-input {
+  appearance: textfield;
+}
+
+.w-color-input--hide-spin-buttons .w-input::-webkit-outer-spin-button,
+.w-color-input--hide-spin-buttons .w-input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.w-color-input-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+}
+
+.w-color-input--indent-details .w-color-input-details {
+  padding-inline: var(--w-space-3);
+}
+
+.w-color-input-messages,
+.w-color-input-counter {
+  color: var(--w-text-very-subtle);
+  font-size: var(--w-font-xs);
+}
+
+.w-color-input-messages--error {
+  color: var(--w-error);
+}
+
+.w-color-input-messages--hint,
+.w-color-input-counter {
+  visibility: hidden;
+}
+
+.w-color-input:focus-within .w-color-input-messages--hint,
+.w-color-input--persistent-hint .w-color-input-messages--hint,
+.w-color-input:focus-within .w-color-input-counter,
+.w-color-input--persistent-counter .w-color-input-counter {
+  visibility: visible;
+}
+
+.w-color-input.w-field-error .w-label {
+  color: var(--w-error);
+}
+
+.w-color-input-picker {
+  display: grid;
+  justify-items: start;
+  gap: var(--w-space-2);
+}
+
+.w-color-input-actions {
+  display: flex;
+  gap: var(--w-space-2);
+}

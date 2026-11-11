@@ -1,0 +1,113 @@
+/* DuVay — Layout Responsive component styles. */
+@import "../core.css";
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+/* Compact screens: the application sidebar becomes an off-canvas drawer. */
+@media (max-width: 1024px) {
+  .w-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .w-sidebar {
+    position: fixed;
+    top: var(--w-topbar-height);
+    bottom: 0;
+    left: 0;
+    z-index: calc(var(--w-z-overlay) + 1);
+    display: block;
+    width: var(--w-drawer-compact-width);
+    padding-bottom: max(var(--w-space-lg), env(safe-area-inset-bottom));
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition:
+      transform var(--w-motion-duration) var(--w-motion-ease-standard),
+      visibility 0s linear var(--w-motion-duration);
+  }
+
+  .w-sidebar.open {
+    visibility: visible;
+    transform: translateX(0);
+    transition-delay: 0s;
+  }
+
+  .w-sidebar-overlay {
+    position: fixed;
+    top: var(--w-topbar-height);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--w-z-overlay);
+    background: var(--w-scrim);
+  }
+
+  body.w-sidebar-open {
+    overflow: hidden;
+  }
+}
+
+/* Tablet: sidebar collapses, layout fills screen. */
+@media (min-width: 761px) and (max-width: 1024px) {
+  .w-split { grid-template-columns: minmax(280px, 330px) minmax(0, 1fr); }
+}
+
+/* Mobile: single-column, bottom nav appears. */
+@media (max-width: 760px) {
+  .w-shell {
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
+
+  .w-body {
+    display: block;
+    min-height: 0;
+    height: 100%;
+  }
+
+  .w-main {
+    height: calc(100dvh - 52px);
+    padding-bottom: calc(var(--w-mobile-nav-height) + env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  .w-topbar {
+    padding: 0 var(--w-space-md);
+  }
+
+  .w-split {
+    display: block;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .w-split-list {
+    width: 100%;
+    height: 100%;
+    border-right: 0;
+  }
+
+  .w-split-detail { display: none; }
+
+  .w-split.show-detail .w-split-list { display: none; }
+  .w-split.show-detail .w-split-detail {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .w-centered {
+    align-items: center;
+    justify-items: center;
+    padding: var(--w-space-lg) max(var(--w-space-lg), env(safe-area-inset-right)) calc(var(--w-space-lg) + env(safe-area-inset-bottom)) max(var(--w-space-lg), env(safe-area-inset-left));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-sidebar {
+    transition: none;
+  }
+}
+
+/* PWA standalone: account for device safe areas. */
+@media (display-mode: standalone) and (max-width: 760px) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+}

@@ -1,0 +1,21 @@
+/* DuVay — Provider component styles.
+ * Theme / locale / defaults providers are behavioral wrappers: renderless and
+ * transparent to layout by default so they never disturb their content. The
+ * theme provider can opt into painting its themed surface with `with-background`. */
+@import "../core.css";
+
+w-theme-provider,
+w-locale-provider,
+w-defaults-provider,
+.w-theme-provider,
+.w-locale-provider,
+.w-defaults-provider {
+  display: contents;
+}
+
+/* with-background: render a real box painted with the scoped theme's surface. */
+.w-theme-provider--with-background {
+  display: block;
+  background: var(--w-surface);
+  color: var(--w-text);
+}

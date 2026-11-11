@@ -1,0 +1,440 @@
+/* DuVay — Autocompletes component styles. */
+@import "../core.css";
+
+/* ── Autocomplete ────────────────────────────────────────────────────────── */
+.w-autocomplete {
+  position: relative;
+  display: block;
+}
+
+.w-autocomplete-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--w-space-1);
+  min-height: var(--w-size-md);
+  padding: 0 var(--w-space-md);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  color: var(--w-text);
+  transition: border-color var(--w-transition-fast), box-shadow var(--w-transition-fast);
+}
+
+.w-autocomplete-wrap:focus-within {
+  border-color: var(--w-primary);
+  box-shadow: 0 0 0 1px var(--w-primary);
+}
+
+.w-field-error .w-autocomplete-wrap {
+  border-color: var(--w-error);
+}
+
+.w-field-error .w-autocomplete-wrap:focus-within {
+  border-color: var(--w-error);
+  box-shadow: 0 0 0 1px var(--w-error);
+}
+
+.w-autocomplete-wrap:has(.w-input:disabled),
+.w-autocomplete-wrap:has(.w-input[readonly]) {
+  background: var(--w-surface-container-low);
+  cursor: not-allowed;
+}
+
+.w-autocomplete-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-1);
+}
+
+.w-autocomplete-chips:empty {
+  display: none;
+}
+
+.w-autocomplete-chip {
+  /* Inherits .w-chip styles */
+}
+
+.w-autocomplete-input {
+  /* flex-basis:0 (not auto) so the input grows into the leftover space rather
+   * than inheriting .w-input's width:100% and wrapping the clear button. */
+  flex: 1 1 0;
+  width: auto;
+  min-width: 3rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.w-autocomplete-input:focus {
+  box-shadow: none;
+}
+
+.w-autocomplete-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  font-size: var(--w-font-sm);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.w-autocomplete-clear:hover {
+  background: var(--w-hover);
+  color: var(--w-text);
+}
+
+.w-autocomplete-wrap.w-autocomplete-loading::after {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--w-border);
+  border-top-color: var(--w-primary);
+  border-radius: 50%;
+  animation: w-spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+.w-autocomplete-loading .w-autocomplete-clear {
+  display: none;
+}
+
+.w-autocomplete-list {
+  position: absolute;
+  top: calc(100% + var(--w-space-1));
+  left: 0;
+  right: 0;
+  z-index: var(--w-z-dropdown);
+  max-height: 20rem;
+  overflow: auto;
+  padding: var(--w-space-1);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-autocomplete-list[hidden] {
+  display: none;
+}
+
+.w-autocomplete-empty {
+  padding: var(--w-space-md) var(--w-space-3);
+  text-align: center;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+}
+
+.w-autocomplete-empty[hidden] {
+  display: none;
+}
+
+.w-autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+  width: 100%;
+  min-height: var(--w-touch-min);
+  padding: var(--w-space-2) var(--w-space-3);
+  border: 0;
+  border-radius: var(--w-radius);
+  background: transparent;
+  color: var(--w-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--w-font-sm);
+  text-align: left;
+  transition: background var(--w-transition-fast), color var(--w-transition-fast);
+}
+
+.w-autocomplete-item:hover:not(:disabled),
+.w-autocomplete-item:focus-visible,
+.w-autocomplete-item.active {
+  background: var(--w-hover);
+}
+
+.w-autocomplete-item[aria-selected='true'] {
+  background: var(--w-selected);
+  color: var(--w-selected-text);
+}
+
+.w-autocomplete-item[aria-selected='true'] .w-autocomplete-item-subtitle {
+  color: inherit;
+  opacity: 0.8;
+}
+
+.w-autocomplete-item:disabled {
+  opacity: var(--w-text-disabled-opacity);
+  cursor: not-allowed;
+}
+
+.w-autocomplete-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+
+.w-autocomplete-item-title,
+.w-autocomplete-item-subtitle {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-autocomplete-item-subtitle {
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+}
+
+/* ── Outer icons (prepend / append) ──────────────────────────────────────── */
+.w-autocomplete-outer {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-2);
+}
+
+.w-autocomplete-outer > .w-autocomplete {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.w-autocomplete-prepend,
+.w-autocomplete-append,
+.w-autocomplete-prepend-inner,
+.w-autocomplete-append-inner {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--w-autocomplete-icon-color, var(--w-text-subtle));
+  opacity: var(--w-text-medium-emphasis-opacity);
+  transition: opacity var(--w-transition-fast);
+}
+
+/* glow: icons go full opacity and pick up the accent while focused. The
+ * modifier classes sit on both the control and its outer row, so a single
+ * :focus-within rule covers the inner and the outside icons. */
+.w-autocomplete--glow:focus-within .w-autocomplete-prepend,
+.w-autocomplete--glow:focus-within .w-autocomplete-append,
+.w-autocomplete--glow:focus-within .w-autocomplete-prepend-inner,
+.w-autocomplete--glow:focus-within .w-autocomplete-append-inner {
+  opacity: 1;
+  color: var(--w-autocomplete-icon-color, var(--w-primary));
+}
+
+/* ── Affixes (prefix / suffix) ───────────────────────────────────────────── */
+.w-autocomplete-affix {
+  flex-shrink: 0;
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-sm);
+  white-space: nowrap;
+}
+
+/* center-affix vertically centres the inner adornments and the label. */
+.w-autocomplete--center-affix .w-autocomplete-wrap {
+  align-items: center;
+}
+
+.w-autocomplete--center-affix .w-autocomplete-affix,
+.w-autocomplete--center-affix .w-autocomplete-prepend-inner,
+.w-autocomplete--center-affix .w-autocomplete-append-inner {
+  align-self: center;
+}
+
+/* ── Menu toggle button ──────────────────────────────────────────────────── */
+.w-autocomplete-menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--w-text-subtle);
+  cursor: pointer;
+  transition: transform var(--w-transition-fast);
+}
+
+.w-autocomplete-menu-icon:focus-visible {
+  outline: 2px solid var(--w-primary);
+  outline-offset: 2px;
+}
+
+.w-autocomplete[open] .w-autocomplete-menu-icon {
+  transform: rotate(180deg);
+}
+
+/* ── Clear button visibility ─────────────────────────────────────────────── */
+/* By default the clear affordance only surfaces on hover / focus;
+ * persistent-clear pins it open whenever the field is dirty. */
+.w-autocomplete-clear {
+  opacity: 0;
+  transition: opacity var(--w-transition-fast);
+}
+
+.w-autocomplete-wrap:hover .w-autocomplete-clear,
+.w-autocomplete-wrap:focus-within .w-autocomplete-clear,
+.w-autocomplete--persistent-clear .w-autocomplete-clear {
+  opacity: 1;
+}
+
+/* ── Placeholder ─────────────────────────────────────────────────────────── */
+.w-autocomplete--persistent-placeholder .w-autocomplete-input::placeholder {
+  opacity: 1;
+  color: var(--w-text-subtle);
+}
+
+/* single-line: the label collapses into the placeholder, nothing floats. */
+.w-autocomplete--single-line .w-autocomplete-input::placeholder {
+  color: var(--w-text-subtle);
+}
+
+/* reverse flips the writing direction of the search text. */
+.w-autocomplete--reverse .w-autocomplete-input {
+  direction: rtl;
+  text-align: end;
+}
+
+/* active keeps the control highlighted regardless of focus. */
+.w-autocomplete--active .w-autocomplete-wrap {
+  border-color: var(--w-primary);
+}
+
+/* hide-spin-buttons matters when type="number" is used. */
+.w-autocomplete--hide-spin-buttons .w-autocomplete-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.w-autocomplete--hide-spin-buttons .w-autocomplete-input::-webkit-outer-spin-button,
+.w-autocomplete--hide-spin-buttons .w-autocomplete-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ── Details row: messages + counter ─────────────────────────────────────── */
+.w-autocomplete-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--w-space-2);
+  margin-top: var(--w-space-1);
+  font-size: var(--w-font-xs);
+  color: var(--w-text-subtle);
+}
+
+.w-autocomplete--indent-details .w-autocomplete-details {
+  padding-inline: var(--w-space-md);
+}
+
+.w-autocomplete-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+}
+
+.w-autocomplete-messages--error {
+  color: var(--w-error);
+}
+
+.w-autocomplete-counter {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  visibility: hidden;
+}
+
+.w-field:focus-within .w-autocomplete-counter,
+.w-field:has(.w-autocomplete--persistent-counter) .w-autocomplete-counter {
+  visibility: visible;
+}
+
+/* persistent-hint keeps the helper text next to the error text. */
+.w-field-hint--persistent {
+  color: var(--w-text-subtle);
+}
+
+/* ── Variants ────────────────────────────────────────────────────────────── */
+.w-autocomplete--plain .w-autocomplete-wrap,
+.w-autocomplete--underlined .w-autocomplete-wrap {
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.w-autocomplete--plain .w-autocomplete-wrap:focus-within,
+.w-autocomplete--underlined .w-autocomplete-wrap:focus-within {
+  box-shadow: none;
+}
+
+.w-autocomplete--underlined .w-autocomplete-wrap {
+  border-bottom: 1px solid var(--w-border);
+}
+
+.w-autocomplete--underlined .w-autocomplete-wrap:focus-within {
+  border-bottom-color: var(--w-primary);
+  box-shadow: 0 1px 0 0 var(--w-primary);
+}
+
+.w-autocomplete--filled .w-autocomplete-wrap {
+  border-color: transparent;
+  border-bottom-color: var(--w-border);
+  border-radius: var(--w-radius) var(--w-radius) 0 0;
+  background: var(--w-surface-container);
+}
+
+.w-autocomplete--filled .w-autocomplete-wrap:focus-within {
+  border-bottom-color: var(--w-primary);
+  box-shadow: none;
+}
+
+.w-autocomplete--solo .w-autocomplete-wrap,
+.w-autocomplete--solo-filled .w-autocomplete-wrap,
+.w-autocomplete--solo-inverted .w-autocomplete-wrap {
+  border-color: transparent;
+  box-shadow: var(--w-shadow-sm);
+}
+
+.w-autocomplete--solo-filled .w-autocomplete-wrap {
+  background: var(--w-surface-container-high);
+}
+
+.w-autocomplete--solo-inverted .w-autocomplete-wrap {
+  background: var(--w-inverse-surface);
+  color: var(--w-inverse-on-surface);
+}
+
+.w-autocomplete--solo-inverted .w-autocomplete-input {
+  color: inherit;
+}
+
+/* flat removes the elevation the solo variants carry. */
+.w-autocomplete--flat .w-autocomplete-wrap,
+.w-autocomplete--flat .w-autocomplete-wrap:focus-within {
+  box-shadow: none;
+}
+
+/* item-color tints the selected options in the dropdown. Scoped past the
+ * shared `.w-autocomplete-list .w-autocomplete-item` rule in selects.css, whose
+ * `--w-select-item-color` stays the fallback. */
+.w-autocomplete .w-autocomplete-list .w-autocomplete-item[aria-selected='true'] {
+  color: var(--w-autocomplete-item-color, var(--w-select-item-color, var(--w-selected-text)));
+}
+
+/* Sizes */
+.w-autocomplete-wrap:has(.w-input--xs) { min-height: var(--w-size-xs); }
+.w-autocomplete-wrap:has(.w-input--sm) { min-height: var(--w-size-sm); }
+.w-autocomplete-wrap:has(.w-input--lg) { min-height: var(--w-size-lg); }
+.w-autocomplete-wrap:has(.w-input--xl) { min-height: var(--w-size-xl); }

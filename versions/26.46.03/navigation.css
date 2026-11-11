@@ -1,0 +1,12 @@
+/* DuVay — Navigation component index. */
+@import "./components/sidebars.css";
+@import "./components/menus.css";
+@import "./components/dropdowns.css";
+@import "./components/tabs.css";
+@import "./components/filter-strips.css";
+@import "./components/speed-dials.css";
+@import "./components/pagination.css";
+@import "./components/navigation-drawers.css";
+@import "./components/breadcrumbs.css";
+@import "./components/bottom-navigation.css";
+@import "./components/back-to-top.css";

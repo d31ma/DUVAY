@@ -1,0 +1,21 @@
+/* DuVay — Detail Content component styles. */
+@import "../core.css";
+
+/* ── Detail / content area ──────────────────────────────────────────────── */
+.w-detail {
+  padding: 1.75rem 2.25rem;
+}
+
+.w-detail-header {
+  padding: 1.75rem 2.25rem 1.25rem;
+  border-bottom: 1px solid var(--w-border);
+  background: var(--w-surface);
+}
+
+.w-detail-body {
+  padding: 1.75rem 2.25rem;
+  flex: 1;
+  line-height: 1.75;
+  font-size: var(--w-font-md);
+  max-width: 76ch;
+}

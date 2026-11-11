@@ -1,0 +1,51 @@
+/* DuVay — Settings Panels component styles. */
+@import "../core.css";
+
+/* ── Settings panel ─────────────────────────────────────────────────────── */
+/* Wide centered panel with a max-width — ideal for settings or forms. */
+.w-panel {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+  overflow-y: auto;
+  padding: var(--w-space-2xl);
+  box-sizing: border-box;
+}
+
+.w-panel * { min-width: 0; }
+
+.w-panel-section {
+  margin-bottom: var(--w-space-2xl);
+}
+
+.w-panel-section-title {
+  margin: 0 0 var(--w-space-md);
+  color: var(--w-text-subtle);
+  font-size: var(--w-font-xs);
+  font-weight: var(--w-font-weight-bold);
+  letter-spacing: var(--w-letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.w-settings-card {
+  overflow: hidden;
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-radius);
+  background: var(--w-surface);
+  box-shadow: var(--w-shadow-md);
+}
+
+.w-settings-row {
+  display: flex;
+  align-items: center;
+  gap: var(--w-space-md);
+  min-height: 56px;
+  padding: var(--w-space-md) var(--w-space-lg);
+  border-bottom: 1px solid var(--w-border);
+  font-size: var(--w-font-base);
+}
+
+.w-settings-row:last-child {
+  border-bottom: 0;
+}
+
+.w-settings-row > * { min-width: 0; }
