@@ -417,3 +417,23 @@ test('w-menu activator follows a changed trigger and releases the old one', asyn
   await page.locator('#second').click();
   await expect(page.locator('#menu .w-menu')).toHaveClass(/open/);
 });
+
+test('w-menu binds an activator that is added after the menu', async ({ mount, page }) => {
+  await mount('<p>Start</p>');
+  await page.evaluate(() => {
+    const root = document.querySelector('#root');
+    const menu = document.createElement('w-menu');
+    menu.setAttribute('activator', '#late');
+    menu.innerHTML = '<w-list><w-list-item title="Archive"></w-list-item></w-list>';
+    const button = document.createElement('button');
+    button.id = 'late';
+    button.type = 'button';
+    button.textContent = 'More';
+    requestAnimationFrame(() => root.append(button));
+    root.append(menu);
+  });
+
+  await expect(page.locator('#late')).toHaveAttribute('aria-haspopup', 'menu');
+  await page.locator('#late').click();
+  await expect(page.locator('#late')).toHaveAttribute('aria-expanded', 'true');
+});

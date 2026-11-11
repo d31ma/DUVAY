@@ -254,9 +254,12 @@ export class WMenu extends WElement {
   _retryExternal() {
     if (this.__wExternalRetry) return;
     this.__wExternalRetry = true;
-    const retry = () => this.isConnected && this._bindExternal();
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', retry, { once: true });
-    else requestAnimationFrame(retry);
+    this._whenReady(() => this.isConnected && this._bindExternal());
+  }
+
+  _whenReady(callback) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', callback, { once: true });
+    else requestAnimationFrame(callback);
   }
 
   _unbindExternal() {
