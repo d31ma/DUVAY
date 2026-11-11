@@ -20614,6 +20614,48 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-current",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-current option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-expanded",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-expanded option."
+        ],
+        [
+          "aria-haspopup",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-haspopup option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -20720,6 +20762,12 @@ export const GENERATED_API_DATA = {
           "string",
           "—",
           "Designates the component as anchor and applies the **href** attribute."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
         ],
         [
           "id",
@@ -20852,6 +20900,12 @@ export const GENERATED_API_DATA = {
           "string | number",
           "—",
           "Sets the height, padding and the font size of the component. Accepts only predefined options: **x-small**, **small**, **default**, **large**, and **x-large**."
+        ],
+        [
+          "static",
+          "string | number | boolean",
+          "—",
+          "Sets the static option."
         ],
         [
           "style",
@@ -46629,6 +46683,12 @@ export const GENERATED_API_DATA = {
       "tag": "w-menu",
       "attributes": [
         [
+          "activator",
+          "Element | (string & {}) | 'parent' | ComponentPublicInstance",
+          "—",
+          "Explicitly sets the overlay's activator."
+        ],
+        [
           "active-color",
           "boolean | string",
           "—",
@@ -60027,6 +60087,30 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -60169,6 +60253,12 @@ export const GENERATED_API_DATA = {
           "string | number",
           "—",
           "Sets the minimum width for the component."
+        ],
+        [
+          "nav",
+          "string | number | boolean",
+          "—",
+          "Sets the nav option."
         ],
         [
           "position",
@@ -60324,6 +60414,18 @@ export const GENERATED_API_DATA = {
           "'title' | 'end' | 'start' | 'center'",
           "—",
           "Aligns the tabs to the `start`, `center`, or `end` of container. Also accepts `title` to align with the `v-toolbar-title` component."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",
@@ -60516,6 +60618,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Allows one to select multiple items."
+        ],
+        [
+          "nav",
+          "string | number | boolean",
+          "—",
+          "Sets the nav option."
         ],
         [
           "next-icon",

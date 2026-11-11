@@ -37,6 +37,15 @@
  *   scroll-to-active - keep the active tab visible when the strip resizes
  *   slider-transition          - shift | grow | fade
  *   slider-transition-duration - ms number or any CSS duration
+ *   nav            - the strip is a <nav> of links (APG: tabs that navigate are
+ *                    links): no tab roles, no arrow keys, aria-current="page"
+ *                    on the active link tab
+ *   aria-label / aria-labelledby - name of the tablist (or nav)
+ *
+ * Keyboard (APG tabs pattern): only the active tab is in the Tab order;
+ * Arrow keys (Up/Down when vertical), Home and End move focus. A single-select
+ * strip activates the focused tab; a `multiple` strip only moves focus, and
+ * Enter or Space toggles the focused tab.
  *
  * Events:
  *   change - fires when the active tab changes (detail: { value })
@@ -72,6 +81,7 @@ class WTabs extends WElement {
     'selected-class', 'content-class', 'inset', 'inset-padding', 'inset-radius',
     'spaced', 'mobile', 'mobile-breakpoint', 'scroll-to-active',
     'slider-transition', 'slider-transition-duration',
+    'nav', 'aria-label', 'aria-labelledby',
   ];
 
   get value()  { return this._attr('value', ''); }
@@ -89,6 +99,7 @@ class WTabs extends WElement {
   get nextIcon() { return this._attr('next-icon', ''); }
 
   get multiple() { return this.hasAttribute('multiple'); }
+  get nav() { return this.hasAttribute('nav'); }
   get max() { return this.hasAttribute('max') ? wNumberAttr(this, 'max', Infinity) : Infinity; }
   // Mandatory is the DuVay default (a tab strip with nothing selected is a
   // dead end); `mandatory="false"` opts into click-to-deselect.
@@ -244,15 +255,26 @@ class WTabs extends WElement {
 
   _template() {
     const slider = this._hasSlider ? '<span class="w-tabs-slider" aria-hidden="true"></span>' : '';
-    const orientation = this._vertical ? ' aria-orientation="vertical"' : '';
-    const multi = this.multiple ? ' aria-multiselectable="true"' : '';
-    const stripEl = `<div class="${this._stripClasses()}"${this._stripStyle()} role="tablist"${orientation}${multi}>`
-      + `${this._itemsMarkup()}<slot></slot>${slider}</div>`;
+    const tag = this.nav ? 'nav' : 'div';
+    const stripEl = `<${tag} class="${this._stripClasses()}"${this._stripStyle()}${this._stripRoleAttrs()}>`
+      + `${this._itemsMarkup()}<slot></slot>${slider}</${tag}>`;
 
     // Mobile mode drops the pagination arrows in favour of native scrolling.
     if (!this.showArrows || this.mobile) return stripEl;
 
     return this._shellTemplate(stripEl);
+  }
+
+  // A `nav` strip is a navigation landmark of links; otherwise a tablist.
+  // The host's accessible name moves to the strip either way.
+  _stripRoleAttrs() {
+    const name = this._attrs(this._ariaAttrs(['aria-label', 'aria-labelledby']));
+    if (this.nav) return name;
+    return this._attrs({
+      role: 'tablist',
+      'aria-orientation': this._vertical && 'vertical',
+      'aria-multiselectable': this.multiple && 'true',
+    }) + name;
   }
 
   _events() {
@@ -269,19 +291,9 @@ class WTabs extends WElement {
       // Link tabs keep their default navigation.
     });
 
-    // Keyboard navigation (orientation-aware).
-    container.addEventListener('keydown', (e) => {
-      const nextKey = this._vertical ? 'ArrowDown' : 'ArrowRight';
-      const prevKey = this._vertical ? 'ArrowUp' : 'ArrowLeft';
-      let move;
-      if (e.key === nextKey) move = 1;
-      else if (e.key === prevKey) move = -1;
-      else if (e.key === 'Home') move = 'home';
-      else if (e.key === 'End') move = 'end';
-      else return;
-      e.preventDefault();
-      this._moveFocus(move);
-    });
+    // Keyboard navigation (orientation-aware) with a roving tab stop.
+    container.addEventListener('keydown', (e) => this._onKeydown(e));
+    container.addEventListener('focusout', (e) => this._onFocusOut(container, e));
 
     // Overflow pagination arrows.
     this._qAll('[data-tabs-scroll]').forEach((button) => {
@@ -307,22 +319,71 @@ class WTabs extends WElement {
     return Array.from(this.querySelectorAll('w-tab'));
   }
 
+  _onKeydown(event) {
+    const move = this._keyMove(event.key);
+    if (this.nav || move == null) return;
+    event.preventDefault();
+    this._moveFocus(move);
+  }
+
+  _keyMove(key) {
+    const moves = this._vertical
+      ? { ArrowDown: 1, ArrowUp: -1, Home: 'home', End: 'end' }
+      : { ArrowRight: 1, ArrowLeft: -1, Home: 'home', End: 'end' };
+    return moves[key];
+  }
+
+  // Single-select strips follow focus (automatic activation); `multiple`
+  // strips only move focus, so arrows never change the selection.
   _moveFocus(move) {
     const tabs = this._getTabElements().filter((t) => !t.disabled);
     if (!tabs.length) return;
-    const activeIndex = tabs.findIndex((t) => t.active);
-    let nextIndex;
-    if (move === 'home') nextIndex = 0;
-    else if (move === 'end') nextIndex = tabs.length - 1;
-    else {
-      const start = activeIndex < 0 ? 0 : activeIndex;
-      nextIndex = (start + move + tabs.length) % tabs.length;
-    }
-    const nextTab = tabs[nextIndex];
-    if (!nextTab) return;
-    this._activateTab(nextTab);
-    const focusTarget = nextTab.querySelector('.w-tab');
-    if (focusTarget) focusTarget.focus();
+    const nextTab = tabs[this._targetIndex(tabs, move)];
+    if (!this.multiple && !nextTab.active) this._activateTab(nextTab);
+    this._focusTab(nextTab);
+  }
+
+  _targetIndex(tabs, move) {
+    if (move === 'home') return 0;
+    if (move === 'end') return tabs.length - 1;
+    const start = Math.max(0, this._currentIndex(tabs));
+    return (start + move + tabs.length) % tabs.length;
+  }
+
+  _currentIndex(tabs) {
+    const focused = tabs.indexOf(document.activeElement?.closest?.('w-tab'));
+    return focused >= 0 ? focused : tabs.findIndex((t) => t.active);
+  }
+
+  _focusTab(tab) {
+    this._focusedTab = tab;
+    this._syncRoving();
+    tab.querySelector('.w-tab')?.focus();
+  }
+
+  // When focus leaves the strip, the tab stop returns to the active tab.
+  _onFocusOut(container, event) {
+    if (container.contains(event.relatedTarget)) return;
+    this._focusedTab = null;
+    this._syncRoving();
+  }
+
+  // Roving tabindex (APG tabs pattern): exactly one tab is in the Tab order.
+  _syncRoving() {
+    if (this.nav) return;
+    const tabs = this._getTabElements();
+    const stop = this._tabStop(tabs.filter((t) => !t.disabled));
+    tabs.forEach((tab) => this._setTabStop(tab, tab === stop));
+  }
+
+  _tabStop(enabled) {
+    if (enabled.includes(this._focusedTab)) return this._focusedTab;
+    return enabled.find((t) => t.active) || enabled[0];
+  }
+
+  _setTabStop(tab, isStop) {
+    const control = tab.querySelector('.w-tab');
+    if (control) control.tabIndex = isStop ? 0 : -1;
   }
 
   // Single-select keeps `value` a plain string; `multiple` widens it to a
@@ -337,7 +398,7 @@ class WTabs extends WElement {
 
   // Presentation attributes the strip owns on behalf of its tabs. An attribute
   // written on a tab directly always wins.
-  static tabProps = ['inset', 'spaced', 'direction'];
+  static tabProps = ['inset', 'spaced', 'direction', 'nav'];
 
   _mirrorProps(tab) {
     WTabs.tabProps.forEach((name) => {
@@ -358,6 +419,7 @@ class WTabs extends WElement {
       contentClasses.forEach((name) => tab.classList.add(name));
       this._mirrorProps(tab);
     });
+    this._syncRoving();
   }
 
   _activateTab(tabEl) {

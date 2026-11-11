@@ -187,7 +187,7 @@ export class WChipGroup extends WElement {
       chip._silentSet?.('selected', isSelected ? '' : null);
       chip.querySelector('.w-chip')?.classList.toggle(this.selectedClass, isSelected);
       chip.querySelector('.w-chip')?.classList.toggle('w-chip--selected', isSelected);
-      chip.querySelector('.w-chip')?.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      chip._syncPressed?.(isSelected);
       if (this.disabled) chip.setAttribute('disabled', '');
     });
   }

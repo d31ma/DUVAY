@@ -29,6 +29,9 @@
     "error"
   ],
   "props": {
+    "activator": {
+      "type": "string"
+    },
     "active-color": {
       "type": "string"
     },
@@ -201,8 +204,8 @@
     }
   ],
   "slots": [
-    "activator",
-    "default"
+    "default",
+    "activator"
   ],
   "source": "src/components/menu.js",
   "inheritsFrom": [

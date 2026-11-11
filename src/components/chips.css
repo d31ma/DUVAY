@@ -239,6 +239,44 @@
   opacity: 1;
 }
 
+/* The close control is a real <button>; a chip that also acts holds a
+   .w-chip__action sibling. Both drop the native button chrome. */
+button.w-chip__close,
+.w-chip__action {
+  margin-block: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.w-chip__action {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  text-decoration: none;
+}
+
+.w-chip__action:focus-visible,
+.w-chip__close:focus-visible {
+  outline: 2px solid var(--w-focus-ring);
+  outline-offset: 2px;
+}
+
+.w-chip--static {
+  cursor: default;
+}
+
+button.w-chip__close:disabled {
+  cursor: default;
+}
+
 .w-chip--rounded { border-radius: var(--w-radius); }
 .w-chip--rounded-0,
 .w-chip--rounded-none { border-radius: 0; }

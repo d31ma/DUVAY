@@ -22,6 +22,12 @@
  *   inset          - the active indicator takes the full tab height
  *   spaced         - start | end | both; pushes prepend/append to the edges
  *   selected-class - extra class applied while this tab is active
+ *   nav            - render a plain link (no tab role); set by <w-tabs nav>
+ *
+ * Forwarded ARIA — authored on the host, rendered on the inner control:
+ *   aria-label, aria-labelledby, aria-describedby, aria-controls (the id of
+ *   the panel this tab shows). A link tab gets aria-current="page" while
+ *   active. Inside <w-tabs> only the active tab is in the Tab order.
  *
  * Slider attributes — read by the parent <w-tabs> while this tab is active,
  * so a single tab can restyle the shared indicator:
@@ -48,7 +54,11 @@ class WTab extends WElement {
     'fixed', 'slim', 'size', 'variant', 'prepend-icon', 'append-icon', 'icon',
     'icon-set', 'direction', 'inset', 'spaced', 'selected-class',
     'hide-slider', 'slider-color', 'slider-transition', 'slider-transition-duration',
+    'nav', 'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-controls',
   ];
+
+  // Host ARIA rendered on the inner tab control, which carries the role.
+  static forwardedAria = ['aria-label', 'aria-labelledby', 'aria-describedby', 'aria-controls'];
 
   set value(v) { wSetValue(this, v); }
   get value()    { return this._attr('value', ''); }
@@ -113,27 +123,40 @@ class WTab extends WElement {
       + this._iconMarkup(this._attr('append-icon', ''), 'w-icon w-tab-append-icon');
   }
 
+  // Link tabs render an anchor so they participate in normal navigation.
+  // A disabled link is downgraded to a disabled button.
   _template() {
-    const cls = this._classes();
-    const selected = this.active ? 'true' : 'false';
-    const style = this._styleAttr();
-
-    // Link tabs render an anchor so they participate in normal navigation.
-    // A disabled link is downgraded to a disabled button.
-    if (this.href && !this.disabled) {
-      return `<a class="${cls}"${style} href="${this._esc(this.href)}" role="tab" aria-selected="${selected}">
+    const tag = this._isLink() ? 'a' : 'button';
+    const attrs = this._attrs(this._controlAttrs());
+    return `<${tag} class="${this._classes()}"${this._styleAttr()}${attrs}>
       ${this._content()}
-    </a>`;
-    }
-
-    const dis = this.disabled ? ' disabled aria-disabled="true"' : '';
-    return `<button class="${cls}"${style}${dis} type="button" role="tab" aria-selected="${selected}">
-      ${this._content()}
-    </button>`;
+    </${tag}>`;
   }
 
+  _isLink() {
+    return !!this.href && !this.disabled;
+  }
+
+  _controlAttrs() {
+    const own = this._isLink()
+      ? { href: this.href }
+      : { type: 'button', disabled: this.disabled, 'aria-disabled': this.disabled && 'true' };
+    return Object.assign(own, this._roleAttrs(), this._ariaAttrs(WTab.forwardedAria));
+  }
+
+  // In a `nav` strip the tab is a plain link; otherwise it is a tab. A link
+  // tab marks the page it points to with aria-current while it is active.
+  _roleAttrs() {
+    const current = this._isLink() && this.active ? 'page' : '';
+    if (this._bool('nav')) return { 'aria-current': current };
+    return { role: 'tab', 'aria-selected': this.active ? 'true' : 'false', 'aria-current': current };
+  }
+
+  // A re-render resets the control's tabindex, so the parent strip puts its
+  // roving tab stop back.
   _events() {
     if (this.hasAttribute('ripple')) this._attachRipple(this._q('button, a'));
+    this.closest('w-tabs')?._syncRoving?.();
   }
 }
 

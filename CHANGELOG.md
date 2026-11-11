@@ -58,6 +58,28 @@
   field's hint / error row), `aria-controls` and `aria-details` to the
   native control.
 
+- `<w-chip static>` renders a display-only chip: a `<span>` with no button
+  role, no `aria-pressed` and no selection toggle.
+- `<w-chip>` forwards host `aria-label`, `aria-labelledby`,
+  `aria-describedby`, `aria-haspopup`, `aria-expanded`, `aria-controls` and
+  `aria-current` to its inner button or link. With `aria-haspopup` the chip is
+  a plain popup trigger (no `aria-pressed`, no toggle). `aria-expanded` and
+  the others update in place, so focus stays on the chip.
+- `<w-chip icon-set>`; `prepend-icon`, `append-icon`, `filter-icon` and
+  `close-icon` resolve through `WIcons` like `<w-btn>` (the default text set
+  renders the same markup as before).
+- `<w-tabs nav>` renders the strip as a `<nav>` of links (no tab roles, no
+  arrow keys), as the APG advises for tabs that navigate. `<w-tabs>` passes
+  host `aria-label` / `aria-labelledby` to the tablist (or nav).
+- `<w-tab>` forwards host `aria-controls`, `aria-label`, `aria-labelledby` and
+  `aria-describedby` to the tab control, so tabs can point at their panels.
+- `<w-menu activator="id | selector | parent">` uses an existing element as
+  the trigger: no built-in trigger is rendered, the element gets click and
+  keyboard handling plus `aria-haspopup`, `aria-expanded` and
+  `aria-controls`, the surface anchors to it (unless `target` is set), and
+  focus returns to it when the menu closes from inside. Without `activator`
+  the menu behaves as before.
+
 ### Fixed
 
 - `w-alert` `icon`, `w-banner` `icon`, `w-snackbar` `prepend-icon` and
@@ -112,6 +134,23 @@
 - `w-text-field` long values: the single-line `<input>` cannot wrap. The
   header docs now point to `<w-textarea rows="1" auto-grow>` for values that
   must wrap; no new attribute was added.
+
+- `<w-chip closable|removable>`: the close control is a real
+  `<button type="button">` named by `close-label`, reachable with Tab
+  (WCAG 2.1.1). When the chip also acts (toggle, link, popup), the pill is a
+  `<span class="w-chip">` holding two sibling controls, `.w-chip__action` and
+  `.w-chip__close`, so no control is nested in another (WCAG 4.1.2). Code
+  that reads `aria-pressed` from `.w-chip` on a closable chip should read it
+  from `.w-chip__action`.
+- `<w-chip>`: Enter and Space work through the native button click; on a link
+  chip Enter now follows the link and Space no longer toggles selection.
+- `<w-tabs>`: roving tabindex (APG tabs pattern). Only the active tab (or the
+  first enabled one) is in the Tab order; arrows, Home and End move focus
+  from the focused tab. In a `multiple` strip arrows only move focus and no
+  longer change the selection; with `mandatory="false"` an arrow onto the
+  active tab no longer deselects it.
+- `<w-tab href>` gets `aria-current="page"` while active.
+
 
 ## 26.35.01-1 - 2026-08-24
 

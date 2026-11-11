@@ -339,3 +339,81 @@ test('w-menu close-on-back closes when the browser goes back', async ({ mount, p
   await page.evaluate(() => history.back());
   await expect.poll(() => page.locator('#menu').getAttribute('open')).toBe(null);
 });
+
+test('w-menu activator wires an external trigger with ARIA, keyboard, and focus return', async ({ mount, page }) => {
+  await mount(`
+    <button id="trigger" type="button">Ana Lopez</button>
+    <w-menu id="menu" activator="trigger">
+      <button class="w-menu-item" role="menuitem">Copy address</button>
+      <button class="w-menu-item" role="menuitem">Remove</button>
+    </w-menu>
+  `);
+  await recordEvents(page, '#menu', ['toggle', 'close']);
+  const trigger = page.locator('#trigger');
+
+  await expect(page.locator('#menu .w-menu-activator')).toHaveCount(0);
+  await expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  const contentId = await page.locator('#menu .w-menu-content').getAttribute('id');
+  await expect(trigger).toHaveAttribute('aria-controls', contentId);
+
+  await trigger.click();
+  await expect(page.locator('#menu .w-menu')).toHaveClass(/open/);
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+
+  // The trigger lives outside the menu, so clicking it again toggles closed
+  // instead of being treated as an outside click.
+  await trigger.click();
+  await expect(page.locator('#menu .w-menu')).not.toHaveClass(/open/);
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('menuitem', { name: 'Copy address' })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#menu .w-menu')).not.toHaveClass(/open/);
+  await expect(trigger).toBeFocused();
+
+  await page.keyboard.press('ArrowDown');
+  await page.getByRole('menuitem', { name: 'Remove' }).click();
+  await expect(page.locator('#menu .w-menu')).not.toHaveClass(/open/);
+  await expect(trigger).toBeFocused();
+
+  const events = await readEvents(page, '#menu');
+  expect(events.filter((event) => event.type === 'close')).toHaveLength(3);
+});
+
+test('w-menu activator anchors the surface to the trigger and accepts a selector or parent', async ({ mount, page }) => {
+  await mount(`
+    <button id="far" type="button" style="position: absolute; left: 160px; top: 240px; height: 30px">Far</button>
+    <w-menu id="selector" activator="#far">
+      <button class="w-menu-item" role="menuitem">One</button>
+    </w-menu>
+    <div id="holder"><button type="button" class="holder-btn">Holder</button>
+      <w-menu id="parent" activator="parent"><button class="w-menu-item" role="menuitem">Two</button></w-menu>
+    </div>
+  `);
+  await page.locator('#far').click();
+  const content = page.locator('#selector .w-menu-content');
+  await expect(content).toHaveCSS('position', 'fixed');
+  const box = await content.boundingBox();
+  expect(Math.round(box.x)).toBe(160);
+  expect(Math.round(box.y)).toBe(270);
+
+  await expect(page.locator('#holder')).toHaveAttribute('aria-haspopup', 'menu');
+  await expect(page.locator('#holder')).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('w-menu activator follows a changed trigger and releases the old one', async ({ mount, page }) => {
+  await mount(`
+    <button id="first" type="button">First</button>
+    <button id="second" type="button">Second</button>
+    <w-menu id="menu" activator="first"><button class="w-menu-item" role="menuitem">Item</button></w-menu>
+  `);
+  await page.locator('#menu').evaluate((el) => el.setAttribute('activator', 'second'));
+  await expect(page.locator('#second')).toHaveAttribute('aria-expanded', 'false');
+  await page.locator('#first').click();
+  await expect(page.locator('#menu .w-menu')).not.toHaveClass(/open/);
+  await page.locator('#second').click();
+  await expect(page.locator('#menu .w-menu')).toHaveClass(/open/);
+});

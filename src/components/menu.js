@@ -18,6 +18,16 @@
  *   close-on-back        - browser Back closes instead of navigating
  *   retain-focus / capture-focus - keep Tab inside the menu
  *   disable-initial-focus - skip the automatic focus move on open
+ *
+ * External trigger:
+ *   activator            - an element id, a CSS selector, or `parent`. The menu
+ *                          then renders no trigger of its own: it wires click
+ *                          and keyboard on that element, keeps aria-haspopup,
+ *                          aria-expanded and aria-controls on it, anchors the
+ *                          surface to it (unless `target` is set) and returns
+ *                          focus to it when the menu closes from inside.
+ *                          Without `activator`, the menu renders its own
+ *                          trigger (`label` or slot="activator") as before.
  */
 
 export class WMenu extends WElement {
@@ -53,6 +63,7 @@ export class WMenu extends WElement {
     'retain-focus',
     'capture-focus',
     'disable-initial-focus',
+    'activator',
   ];
 
   constructor() {
@@ -70,6 +81,7 @@ export class WMenu extends WElement {
 
   disconnectedCallback() {
     this._removeGlobalListeners();
+    this._unbindExternal();
     if (this.__wPopstate) window.removeEventListener('popstate', this.__wPopstate);
     this.__wPopstate = null;
     this._clearTimers();
@@ -109,18 +121,22 @@ export class WMenu extends WElement {
   // Opt-in for <w-menu>: by default Tab moves out of the menu and closes it.
   get retainFocus() { return this._enabled('retain-focus', this._enabled('capture-focus', false)); }
   get disableInitialFocus() { return this._bool('disable-initial-focus'); }
+  get activator() { return this._attr('activator', ''); }
 
   _template() {
-    const hasActivator = !!this.querySelector('[slot="activator"]');
-    const activator = hasActivator
-      ? `<span class="w-menu-activator" role="button" tabindex="${this.disabled ? '-1' : '0'}" aria-haspopup="menu" aria-expanded="${this.open ? 'true' : 'false'}" aria-controls="${this._esc(this.menuId)}"><slot name="activator"></slot></span>`
-      : `<button class="w-btn w-btn-outlined w-menu-activator" type="button" aria-haspopup="menu" aria-expanded="${this.open ? 'true' : 'false'}" aria-controls="${this._esc(this.menuId)}"${this.disabled ? ' disabled' : ''}>${this._esc(this.label)}</button>`;
-
     return `<div class="${this._rootClasses()}"${this._rootStyle()}>
-      ${activator}
+      ${this._activatorMarkup()}
       ${this._scrimMarkup()}
       <div id="${this._esc(this.menuId)}" class="${this._esc(this._contentClasses())}" role="menu"${this._contentStyle()}><slot></slot></div>
     </div>`;
+  }
+
+  _activatorMarkup() {
+    if (this.activator) return '<slot name="activator" hidden></slot>';
+    const hasActivator = !!this.querySelector('[slot="activator"]');
+    return hasActivator
+      ? `<span class="w-menu-activator" role="button" tabindex="${this.disabled ? '-1' : '0'}" aria-haspopup="menu" aria-expanded="${this.open ? 'true' : 'false'}" aria-controls="${this._esc(this.menuId)}"><slot name="activator"></slot></span>`
+      : `<button class="w-btn w-btn-outlined w-menu-activator" type="button" aria-haspopup="menu" aria-expanded="${this.open ? 'true' : 'false'}" aria-controls="${this._esc(this.menuId)}"${this.disabled ? ' disabled' : ''}>${this._esc(this.label)}</button>`;
   }
 
   _rootClasses() {
@@ -131,7 +147,7 @@ export class WMenu extends WElement {
       'w-menu--' + this._classToken(this.location),
     ].filter(Boolean).join(' ') + this._cls({
       'w-menu--contained': this.contained,
-      'w-menu--anchored': this.target,
+      'w-menu--anchored': this.target || this.activator,
       'w-menu--stick': this.stickToTarget,
       'w-menu--offset': this.offset,
     }) + this._transitionClass();
@@ -185,18 +201,11 @@ export class WMenu extends WElement {
   }
 
   _events() {
-    const activator = this._q('.w-menu-activator');
+    if (this.activator) this._bindExternal();
     const content = this._q('.w-menu-content');
-    if (!activator || !content || this.disabled) return;
+    if (!content || this.disabled) return;
 
-    activator.addEventListener('click', (event) => this._onActivatorClick(event));
-    activator.addEventListener('keydown', (event) => this._onActivatorKeydown(event));
-    activator.addEventListener('focusin', () => {
-      if (this.openOnFocus) this._scheduleOpen(true, this.openDelay);
-    });
-    activator.addEventListener('mouseenter', () => {
-      if (this.openDelay > 0 || this.submenu || this.openOnHover) this._scheduleOpen(true, this.openDelay);
-    });
+    this._bindInternal();
     this.addEventListener('mouseleave', () => {
       if (this.closeDelay > 0 || this.submenu || this.openOnHover) this._scheduleOpen(false, this.closeDelay);
     });
@@ -211,6 +220,69 @@ export class WMenu extends WElement {
     if (this.open) this._applyAnchor();
   }
 
+  _bindActivator(activator, signal) {
+    const options = signal ? { signal } : undefined;
+    activator.addEventListener('click', (event) => this._onActivatorClick(event), options);
+    activator.addEventListener('keydown', (event) => this._onActivatorKeydown(event), options);
+    activator.addEventListener('focusin', () => {
+      if (this.openOnFocus) this._scheduleOpen(true, this.openDelay);
+    }, options);
+    activator.addEventListener('mouseenter', () => {
+      if (this.openDelay > 0 || this.submenu || this.openOnHover) this._scheduleOpen(true, this.openDelay);
+    }, options);
+  }
+
+  _bindInternal() {
+    const activator = this._q('.w-menu-activator');
+    if (activator) this._bindActivator(activator);
+  }
+
+  // The external trigger lives outside the menu, so its listeners are bound
+  // once per element (not per render) and its ARIA state is synced each render.
+  _bindExternal() {
+    const element = this._externalActivator();
+    if (!element) return this._retryExternal();
+    this._syncExternalAria(element);
+    if (this.__wExternal === element) return;
+    this._unbindExternal();
+    this.__wExternal = element;
+    this.__wExternalAbort = new AbortController();
+    this._bindActivator(element, this.__wExternalAbort.signal);
+  }
+
+  // The trigger may come later in the document than the menu.
+  _retryExternal() {
+    if (this.__wExternalRetry) return;
+    this.__wExternalRetry = true;
+    const retry = () => this.isConnected && this._bindExternal();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', retry, { once: true });
+    else requestAnimationFrame(retry);
+  }
+
+  _unbindExternal() {
+    this.__wExternalAbort?.abort();
+    this.__wExternalAbort = null;
+    this.__wExternal = null;
+  }
+
+  _syncExternalAria(element) {
+    if (!element.hasAttribute('aria-haspopup')) element.setAttribute('aria-haspopup', 'menu');
+    element.setAttribute('aria-expanded', this.open ? 'true' : 'false');
+    element.setAttribute('aria-controls', this.menuId);
+  }
+
+  _externalActivator() {
+    const value = this.activator;
+    if (!value) return null;
+    if (value === 'parent') return this.parentElement;
+    return document.getElementById(value) || this._targetElement(value);
+  }
+
+  _activatorEl() {
+    if (this.activator) return this._externalActivator();
+    return this._q('.w-menu-activator');
+  }
+
   _onActivatorClick(event) {
     event.stopPropagation();
     if (!this.openOnClick) return;
@@ -219,7 +291,9 @@ export class WMenu extends WElement {
 
   _onContentClick(event) {
     const item = event.target instanceof Element ? event.target.closest('button, a, [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"]') : null;
-    if (item && this.closeOnContentClick) this._setOpen(false);
+    if (!item || !this.closeOnContentClick) return;
+    this._setOpen(false);
+    this._activatorEl()?.focus();
   }
 
   // Persistent menus refuse dismissal and bounce instead, unless the bounce is
@@ -260,7 +334,7 @@ export class WMenu extends WElement {
     if (event.key === 'Escape') {
       event.preventDefault();
       this._setOpen(false);
-      this._q('.w-menu-activator')?.focus();
+      this._activatorEl()?.focus();
       return;
     }
     if (event.key === 'Tab') {
@@ -270,7 +344,7 @@ export class WMenu extends WElement {
     if (this.submenu && event.key === 'ArrowLeft') {
       event.preventDefault();
       this._setOpen(false);
-      this._q('.w-menu-activator')?.focus();
+      this._activatorEl()?.focus();
       return;
     }
     const direction = event.key === 'ArrowDown' ? 'next' : event.key === 'ArrowUp' ? 'prev' : event.key === 'Home' ? 'first' : event.key === 'End' ? 'last' : '';
@@ -320,6 +394,7 @@ export class WMenu extends WElement {
     this.__wDocumentPointerdown = (event) => {
       if (!this.open) return;
       if (this.contains(event.target)) return;
+      if (this.__wExternal?.contains(event.target)) return;
       this._dismiss();
     };
     this.__wDocumentKeydown = (event) => {
@@ -392,7 +467,7 @@ export class WMenu extends WElement {
 
   _targetRect() {
     const target = this.target;
-    if (!target) return null;
+    if (!target) return this.__wExternal?.getBoundingClientRect() || null;
     const point = this._targetPoint(target);
     if (point) return { left: point.x, bottom: point.y };
     const element = this._targetElement(target);
