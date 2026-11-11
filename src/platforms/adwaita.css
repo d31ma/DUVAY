@@ -99,3 +99,8 @@
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--w-text) 30%, transparent) transparent;
 }
+
+/* Storage meter — GtkLevelBar in an AdwActionRow: a regular-weight row
+ * title over the pill trough (the base bar already matches). */
+[w-os="linux"] .w-storage-meter-label,
+[w-os="adwaita"] .w-storage-meter-label { font-weight: var(--w-font-weight-normal); }

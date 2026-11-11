@@ -2,6 +2,8 @@
   <h1>Storage meter</h1>
   <p><code>w-storage-meter</code> shows how much space an app&#8217;s offline copy uses on the device. Give it <code>value</code> and <code>max</code> in bytes; it shows a label, a bar in the linear progress style, and &#8220;312 MB of 1 GB used&#8221;. From <code>warn-at</code> (default 0.8) it says &#8220;Almost full&#8221; with an icon and the warning colour; from <code>full-at</code> (default 0.95) it says &#8220;Full&#8221; with the error colour. The words are always shown, so the state never depends on colour alone. It is part of the <a href="https://github.com/d31ma/DUVAY/blob/develop/docs/offline-states.md">offline states</a>.</p>
 
+  <p>Use the OS tabs above each example to compare the skins: iOS and macOS show &#8220;X of Y used&#8221; beside the label over a taller bar, as their Settings storage rows do; Android shows it under the label over a thin bar; Windows draws a thin bar on a 1px rail, like a WinUI ProgressBar; Linux keeps the pill trough of a GTK LevelBar.</p>
+
   <h2>Levels</h2>
   <demo-compare>
     <div slot="css">

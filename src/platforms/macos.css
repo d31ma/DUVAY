@@ -96,3 +96,22 @@
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--w-text) 28%, transparent) transparent;
 }
+
+/* Storage meter — System Settings > Storage: the volume name and
+ * "X of Y used" on one line over a tall bar with small corners. */
+[w-os="macos"] .w-storage-meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "label value" "bar bar" "state state";
+  align-items: baseline;
+}
+[w-os="macos"] .w-storage-meter-head { display: contents; }
+[w-os="macos"] .w-storage-meter-label { grid-area: label; font-weight: var(--w-font-weight-semibold); }
+[w-os="macos"] .w-storage-meter-value { grid-area: value; text-align: end; }
+[w-os="macos"] .w-storage-meter-state { grid-area: state; justify-self: start; }
+[w-os="macos"] .w-storage-meter-track {
+  grid-area: bar;
+  --w-progress-height: var(--w-space-4);
+  border-radius: var(--w-radius);
+}
+[w-os="macos"] .w-storage-meter-track .w-storage-meter-bar { border-radius: 0; }

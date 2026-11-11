@@ -112,3 +112,22 @@
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
+
+/* Storage meter — the Settings storage row: the label and "X of Y used"
+ * share a line, a taller bar with small corners, the state words below. */
+[w-os="ios"] .w-storage-meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "label value" "bar bar" "state state";
+  align-items: baseline;
+}
+[w-os="ios"] .w-storage-meter-head { display: contents; }
+[w-os="ios"] .w-storage-meter-label { grid-area: label; font-weight: var(--w-font-weight-normal); }
+[w-os="ios"] .w-storage-meter-value { grid-area: value; text-align: end; }
+[w-os="ios"] .w-storage-meter-state { grid-area: state; justify-self: start; }
+[w-os="ios"] .w-storage-meter-track {
+  grid-area: bar;
+  --w-progress-height: var(--w-space-3);
+  border-radius: var(--w-radius-md);
+}
+[w-os="ios"] .w-storage-meter-track .w-storage-meter-bar { border-radius: 0; }

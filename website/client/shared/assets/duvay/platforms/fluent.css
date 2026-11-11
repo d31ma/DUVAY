@@ -85,3 +85,27 @@
   scrollbar-width: auto;
   scrollbar-color: color-mix(in srgb, var(--w-text) 35%, transparent) transparent;
 }
+
+/* Storage meter — WinUI ProgressBar: a thin indicator riding on a 1px
+ * rail, with the drive name and "X of Y used" on one line. */
+[w-os="windows"] .w-storage-meter,
+[w-os="fluent"] .w-storage-meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "label value" "bar bar" "state state";
+  align-items: baseline;
+}
+[w-os="windows"] .w-storage-meter-head,
+[w-os="fluent"] .w-storage-meter-head { display: contents; }
+[w-os="windows"] .w-storage-meter-label,
+[w-os="fluent"] .w-storage-meter-label { grid-area: label; font-weight: var(--w-font-weight-normal); }
+[w-os="windows"] .w-storage-meter-value,
+[w-os="fluent"] .w-storage-meter-value { grid-area: value; text-align: end; }
+[w-os="windows"] .w-storage-meter-state,
+[w-os="fluent"] .w-storage-meter-state { grid-area: state; justify-self: start; }
+[w-os="windows"] .w-storage-meter-track,
+[w-os="fluent"] .w-storage-meter-track {
+  grid-area: bar;
+  --w-progress-height: var(--w-space-1);
+  background: linear-gradient(var(--w-outline), var(--w-outline)) center / 100% 1px no-repeat;
+}

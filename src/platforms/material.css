@@ -95,3 +95,15 @@
   border-radius: var(--w-radius-sm) var(--w-radius-sm) 0 0;
 }
 
+
+/* Storage meter — the Settings storage summary: title, then the used
+ * text, then a thin M3 linear progress indicator. */
+[w-os="android"] .w-storage-meter-label,
+[w-os="material"] .w-storage-meter-label { font-weight: var(--w-font-weight-normal); }
+[w-os="android"] .w-storage-meter-value,
+[w-os="material"] .w-storage-meter-value { order: 1; }
+[w-os="android"] .w-storage-meter-track,
+[w-os="material"] .w-storage-meter-track {
+  order: 2;
+  --w-progress-height: var(--w-space-1);
+}

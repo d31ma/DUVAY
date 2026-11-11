@@ -20,6 +20,10 @@
   Almost full", is not live and takes no focus. Every text can be replaced
   (`value-text`, `warn-text`, `full-text`). Styles in
   `components/storage-meters.css`; docs page `/docs/storage-meter`.
+  Each OS skin lays it out like the platform's own storage row: iOS and
+  macOS put "X of Y used" beside the label over a taller bar, Android puts
+  it under the label over a thin bar, Windows draws a thin bar on a 1px
+  rail, and Linux uses a regular-weight row title.
 
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The
