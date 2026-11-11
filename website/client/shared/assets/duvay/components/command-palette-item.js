@@ -1,4 +1,13 @@
-/* <w-command-palette-item> — structured command palette row. */
+/* <w-command-palette-item> — structured command palette row.
+ *
+ * Attributes:
+ *   item  - JSON object (or the `item` property): { title, value, subtitle, snippet,
+ *           prependIcon|icon, prependAvatar|avatar, tag, tagColor, hotkey, disabled }
+ *   index - position in the parent list
+ *
+ * Renders the same row as <w-command-item>; the option's accessible name is
+ * the title, and subtitle/snippet/tag/hotkey are its description.
+ */
 
 import { WCommandItem } from './command-item.js';
 
@@ -14,17 +23,23 @@ export class WCommandPaletteItem extends WCommandItem {
   _template() {
     const item = this.item;
     if (!item || !Object.keys(item).length) return super._template();
-    const title = item.title || item.value || '';
-    const subtitle = item.subtitle ? `<span class="w-command-item-subtitle">${this._esc(item.subtitle)}</span>` : '';
-    const leading = this._leading(item);
-    const hotkey = item.hotkey ? `<kbd class="w-kbd">${this._esc(item.hotkey)}</kbd>` : '';
-    return `<button class="w-command-item" role="option" type="button" value="${this._esc(item.value ?? title)}"${item.disabled ? ' disabled aria-disabled="true"' : ''}>${leading}<span class="w-command-item-content"><span class="w-command-item-title">${this._esc(title)}</span>${subtitle}</span>${hotkey}</button>`;
+    return this._rowMarkup(this._itemFields(item));
   }
 
-  _leading(item) {
-    if (item.prependAvatar) return `<w-avatar image="${this._esc(item.prependAvatar)}" size="small"></w-avatar>`;
-    const icon = item.prependIcon || item.icon;
-    return icon ? `<span class="w-command-item-icon" aria-hidden="true">${this._esc(icon)}</span>` : '';
+  _itemFields(item) {
+    const title = item.title || item.value || '';
+    return {
+      value: item.value ?? title,
+      title: this._esc(title),
+      subtitle: item.subtitle,
+      snippet: item.snippet,
+      icon: item.prependIcon || item.icon,
+      avatar: item.prependAvatar || item.avatar,
+      tag: item.tag,
+      tagColor: this._tagColor(item.tagColor),
+      shortcut: item.hotkey,
+      disabled: item.disabled,
+    };
   }
 
   _refresh() { if (this._rendered) this._render(); }

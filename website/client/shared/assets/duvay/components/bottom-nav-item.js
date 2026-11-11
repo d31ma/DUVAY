@@ -1,9 +1,12 @@
+import WIcons from '../icons.js';
 import { wSetValue } from './utils.js';
 /* <w-bottom-nav-item> — DuVay component module
  *
  * Attributes:
  *   value    - unique identifier for this item (required for active management)
- *   icon     - icon content (text or SVG)
+ *   icon     - icon name, resolved through WIcons (default `text` set prints it as text;
+ *              `set:name` or `icon-set` picks a registered set)
+ *   icon-set - WIcons set for `icon` (e.g. mdi); empty uses the default set
  *   label    - text label
  *   href     - URL for link behavior
  *   active   - boolean; marks as active
@@ -12,7 +15,7 @@ import { wSetValue } from './utils.js';
  */
 
 export class WBottomNavItem extends WElement {
-  static attrs = ['value', 'href', 'icon', 'label', 'active', 'disabled', 'color'];
+  static attrs = ['value', 'href', 'icon', 'icon-set', 'label', 'active', 'disabled', 'color'];
 
   set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
@@ -43,9 +46,16 @@ export class WBottomNavItem extends WElement {
     const styleAttr = styles.length ? ' style="' + styles.join(' ') + '"' : '';
 
     return `<${tag} class="${classes.join(' ')}"${href}${disabled}${ariaCurrent}${styleAttr}>
-      ${this.icon ? `<span class="w-bottom-nav-item__icon" aria-hidden="true">${this._esc(this.icon)}</span>` : ''}
+      ${this._iconMarkup()}
       <span class="w-bottom-nav-item__label">${this._esc(this.label)}<slot></slot></span>
     </${tag}>`;
+  }
+
+  _iconMarkup() {
+    if (!this.icon) return '';
+    const iconSet = this.getAttribute('icon-set') || '';
+    const name = iconSet ? `${iconSet}:${this.icon}` : this.icon;
+    return WIcons.resolve(name, { iconClass: 'w-bottom-nav-item__icon' });
   }
 
   _events() {

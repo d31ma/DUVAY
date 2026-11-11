@@ -295,3 +295,11 @@ test('w-switch center-affix, indent-details, and hide-spin-buttons become classe
   await expect(sw).toHaveClass(/w-switch--indent-details/);
   await expect(sw).toHaveClass(/w-switch--hide-spin-buttons/);
 });
+
+test('w-switch is announced as a switch, except while indeterminate', async ({ mount, page }) => {
+  await mount('<w-switch id="on" label="Wi-Fi" checked></w-switch><w-switch id="mixed" label="Some" indeterminate></w-switch>');
+
+  await expect(page.getByRole('switch', { name: 'Wi-Fi' })).toBeChecked();
+  await expect(page.locator('#mixed input')).not.toHaveAttribute('role', /./);
+  await expect(page.locator('#mixed input')).toHaveAttribute('aria-checked', 'mixed');
+});

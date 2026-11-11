@@ -6,7 +6,8 @@
  * Attributes:
  *   keys          - the combination. Join simultaneous keys with "+", and
  *                   separate sequential steps with "-".
- *                   e.g. "cmd+k", "ctrl+shift+p", "ctrl+k-ctrl+s" (… then …)
+ *                   e.g. "cmd+k", "ctrl+shift+p", "ctrl+k-ctrl+s" (… then …).
+ *                   "mod" is Command on a Mac and Control elsewhere.
  *   platform      - "mac" | "pc"; auto-detected from the browser when omitted
  *   display-mode  - "icon" (default, platform-aware) | "symbol" (always glyphs)
  *                   | "text" (always words, e.g. "Control")
@@ -113,7 +114,14 @@ export class WHotkey extends WElement {
 
   _def(token) {
     const key = token.toLowerCase();
-    return this.keyMap[key] || KEYS[key];
+    return this.keyMap[key] || KEYS[key] || this._modDef(key);
+  }
+
+  // `mod` is the platform's main shortcut modifier: Command on a Mac,
+  // Control everywhere else.
+  _modDef(key) {
+    if (key !== 'mod') return undefined;
+    return this.platform === 'mac' ? KEYS.cmd : KEYS.ctrl;
   }
 
   get platform() {

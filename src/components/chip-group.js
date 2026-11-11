@@ -1,6 +1,7 @@
 /* <w-chip-group> — selectable chip group (DuVay equivalent of Vuetify v-chip-group)
  *
  * Attributes:
+ *   label / aria-label / aria-labelledby - accessible name of the group
  *   value / multiple / mandatory / max / disabled / selected-class
  *   column / filter / variant / color
  *   direction         - horizontal (default) | vertical
@@ -19,7 +20,7 @@ const W_CHIP_BREAKPOINTS = { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920, xxl: 2
 export class WChipGroup extends WElement {
   static attrs = ['value', 'multiple', 'mandatory', 'max', 'disabled', 'selected-class', 'column', 'filter', 'variant', 'color',
     'direction', 'show-arrows', 'prev-icon', 'next-icon', 'center-active', 'scroll-to-active',
-    'content-class', 'mobile', 'mobile-breakpoint'];
+    'content-class', 'mobile', 'mobile-breakpoint', 'label', 'aria-label', 'aria-labelledby'];
 
   set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
@@ -80,7 +81,7 @@ export class WChipGroup extends WElement {
   }
 
   _template() {
-    const group = `<div class="${this._groupClass()}" role="group" aria-disabled="${this.disabled ? 'true' : 'false'}"><slot></slot></div>`;
+    const group = `<div class="${this._groupClass()}" role="group"${this._groupName()} aria-disabled="${this.disabled ? 'true' : 'false'}"><slot></slot></div>`;
     if (!this.showArrows) return group;
     return `<div class="w-chip-group-shell${this.vertical ? ' w-chip-group-shell--vertical' : ''}">`
       + this._arrow('prev') + group + this._arrow('next')
@@ -186,7 +187,7 @@ export class WChipGroup extends WElement {
       chip._silentSet?.('selected', isSelected ? '' : null);
       chip.querySelector('.w-chip')?.classList.toggle(this.selectedClass, isSelected);
       chip.querySelector('.w-chip')?.classList.toggle('w-chip--selected', isSelected);
-      chip.querySelector('.w-chip')?.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      chip._syncPressed?.(isSelected);
       if (this.disabled) chip.setAttribute('disabled', '');
     });
   }
@@ -204,6 +205,13 @@ export class WChipGroup extends WElement {
 
   _chipValue(chip) {
     return chip.getAttribute('value') || chip.textContent.trim();
+  }
+
+  // The group's accessible name: a host `aria-labelledby`, else `aria-label`
+  // or `label`. WCAG 1.3.1 / 4.1.2: a group of controls needs a name.
+  _groupName() {
+    const label = this.getAttribute('aria-label') || this.getAttribute('label');
+    return this._attrs({ 'aria-labelledby': this.getAttribute('aria-labelledby') || false, 'aria-label': label || false });
   }
 }
 

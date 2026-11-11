@@ -179,3 +179,50 @@ test('w-card subcomponents share a consistent padded content rhythm', async ({ m
   await expect(text).toHaveCSS('padding-right', '20px');
   await expect(actions).toHaveCSS('padding-left', '20px');
 });
+
+test('w-card keeps plain children visible across repeated re-renders', async ({ mount, page }) => {
+  await mount(`
+    <w-card id="card" title="Plan">
+      <p id="plain">Plain paragraph</p>
+      <w-btn id="inner-btn">Open</w-btn>
+      Loose text
+    </w-card>
+  `);
+  const card = page.locator('#card');
+  await expect(page.locator('#plain')).toBeVisible();
+
+  await card.evaluate((el) => el.setAttribute('variant', 'outlined'));
+  await card.evaluate((el) => el.setAttribute('title', 'Plan B'));
+  await card.evaluate((el) => el.setAttribute('loading', ''));
+  await card.evaluate((el) => el.removeAttribute('loading'));
+
+  await expect(page.locator('#card .w-card')).toHaveClass(/w-card--variant-outlined/);
+  await expect(page.locator('#plain')).toBeVisible();
+  await expect(page.locator('#inner-btn')).toBeVisible();
+  await expect(page.locator('#card .w-card-body')).toContainText('Loose text');
+  await expect(page.locator('#card slot[hidden]:not([name])')).toHaveCount(0);
+});
+
+test('w-card keeps plain children that follow prepend media across re-renders', async ({ mount, page }) => {
+  await mount(`
+    <w-card id="card" title="Plan">
+      <w-avatar slot="prepend" text="AB"></w-avatar>
+      <p id="plain">Plain paragraph</p>
+    </w-card>
+  `);
+  const card = page.locator('#card');
+  await card.evaluate((el) => el.setAttribute('variant', 'tonal'));
+  await card.evaluate((el) => el.setAttribute('variant', 'outlined'));
+  await expect(page.locator('#plain')).toBeVisible();
+});
+
+test('w-card ignores slot names that belong to nested components', async ({ mount, page }) => {
+  await mount(`
+    <w-card id="card">
+      <w-card-item title="Nested"><w-avatar slot="prepend" text="NB"></w-avatar></w-card-item>
+    </w-card>
+  `);
+  await page.locator('#card').evaluate((el) => el.setAttribute('variant', 'tonal'));
+  await expect(page.locator('#card > .w-card > .w-card__content > .w-card-item')).toHaveCount(0);
+  await expect(page.locator('#card w-card-item w-avatar')).toBeVisible();
+});

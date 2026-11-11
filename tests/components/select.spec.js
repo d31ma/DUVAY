@@ -540,3 +540,12 @@ test('w-select hide-details removes the details row and indent-details insets it
   await expect(page.locator('#s .w-field-hint')).toHaveCount(0);
   expect(await page.locator('#i .w-field-details').evaluate((el) => getComputedStyle(el).paddingLeft)).toBe('12px');
 });
+
+test('w-select keeps a host aria-labelledby as its accessible name', async ({ mount, page }) => {
+  await mount('<span id="lbl">Reply from</span><w-select id="select" aria-labelledby="lbl" items=\'["a@x.test","b@x.test"]\' value="a@x.test"></w-select>');
+
+  const combo = page.locator('#select [role="combobox"]');
+  await expect(combo).toHaveAttribute('aria-labelledby', 'lbl');
+  await expect(combo).not.toHaveAttribute('aria-label', /./);
+  await expect(page.getByRole('combobox', { name: 'Reply from' })).toHaveCount(1);
+});

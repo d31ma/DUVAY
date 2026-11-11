@@ -238,7 +238,7 @@
     },
     "type": {
       "type": "enum",
-      "description": "\"checkbox\" (default) | \"radio\" for the backing input"
+      "description": "\"checkbox\" (default) | \"radio\" for the backing input; a checkbox-backed switch has role=\"switch\" (except while indeterminate, which the switch role cannot express)"
     },
     "validate-on": {
       "type": "enum",

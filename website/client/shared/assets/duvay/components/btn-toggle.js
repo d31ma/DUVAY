@@ -4,6 +4,7 @@
  * which ones are selected, marking them with `active`.
  *
  * Attributes:
+ *   label / aria-label / aria-labelledby - accessible name of the group
  *   value           - selected value (single), or comma-separated list (multiple)
  *   multiple        - allow more than one selection
  *   mandatory       - true: keep at least one selected; "force": also select the first initially
@@ -24,7 +25,7 @@
  */
 import { wNumberAttr, wSetValue, wValueList } from './utils.js';
 export class WBtnToggle extends WElement {
-  static attrs = ['value', 'multiple', 'mandatory', 'max', 'selected-class', 'disabled', 'divided', 'variant', 'color', 'density', 'direction'];
+  static attrs = ['value', 'multiple', 'mandatory', 'max', 'selected-class', 'disabled', 'divided', 'variant', 'color', 'density', 'direction', 'label', 'aria-label', 'aria-labelledby'];
 
   set value(v) { wSetValue(this, v); }
   get value() { return this._attr('value', ''); }
@@ -47,7 +48,7 @@ export class WBtnToggle extends WElement {
     const classes = ['w-btn-group', 'w-btn-toggle'];
     if (this.divided) classes.push('w-btn-group--divided');
     if (this.vertical) classes.push('w-btn-group--vertical');
-    return `<div class="${classes.join(' ')}" role="group" aria-disabled="${this.disabled ? 'true' : 'false'}"><slot></slot></div>`;
+    return `<div class="${classes.join(' ')}" role="group"${this._groupName()} aria-disabled="${this.disabled ? 'true' : 'false'}"><slot></slot></div>`;
   }
 
   _events() {
@@ -133,6 +134,13 @@ export class WBtnToggle extends WElement {
   _btns() { return Array.from(this.querySelectorAll('w-btn')); }
 
   _btnValue(btn) { return btn.getAttribute('value') || btn.textContent.trim(); }
+
+  // The group's accessible name: a host `aria-labelledby`, else `aria-label`
+  // or `label`. WCAG 1.3.1 / 4.1.2: a group of controls needs a name.
+  _groupName() {
+    const label = this.getAttribute('aria-label') || this.getAttribute('label');
+    return this._attrs({ 'aria-labelledby': this.getAttribute('aria-labelledby') || false, 'aria-label': label || false });
+  }
 }
 
 if (!customElements.get('w-btn-toggle')) customElements.define('w-btn-toggle', WBtnToggle);

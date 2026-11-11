@@ -36,6 +36,10 @@
       "type": "enum",
       "description": "`start` (default) | `center` | `end`"
     },
+    "aria": {
+      "type": "string",
+      "description": "label / aria-labelledby - name of the tablist (or nav)"
+    },
     "base-color": {
       "type": "string"
     },
@@ -147,6 +151,10 @@
       "type": "boolean",
       "default": false,
       "description": "boolean; allow several tabs to be active at once. `value` then reads/writes a JSON array and `change` carries one."
+    },
+    "nav": {
+      "type": "string",
+      "description": "the strip is a <nav> of links (APG: tabs that navigate are links): no tab roles, no arrow keys, aria-current=\"page\" on the active link tab"
     },
     "next-icon": {
       "type": "string"

@@ -250,3 +250,11 @@ test('w-list return-object hands the source item back on change', async ({ mount
     },
   ]);
 });
+
+test('w-list items are listitems inside a list and an author role is kept', async ({ mount, page }) => {
+  await mount('<w-list id="list"><w-list-item title="Inbox"></w-list-item><w-list-item role="presentation" title="Kept"></w-list-item></w-list>');
+
+  await expect(page.locator('#list w-list-item').first()).toHaveAttribute('role', 'listitem');
+  await expect(page.locator('#list w-list-item').nth(1)).toHaveAttribute('role', 'presentation');
+  await expect(page.getByRole('list').getByRole('listitem')).toHaveCount(1);
+});

@@ -104,9 +104,17 @@
     "hover-elevation": {
       "type": "number"
     },
+    "icon-set": {
+      "type": "string",
+      "description": "icon registry set used to resolve `prepend-icon` (see WIcons)"
+    },
     "inline": {
       "type": "string",
       "description": "render in normal flow instead of fixed to the viewport"
+    },
+    "live": {
+      "type": "enum",
+      "description": "polite (default, role=\"status\") | assertive (role=\"alert\", for errors that need immediate attention)"
     },
     "loading": {
       "type": "boolean",
@@ -175,7 +183,7 @@
     },
     "prepend-icon": {
       "type": "string",
-      "description": "leading icon glyph"
+      "description": "leading icon, resolved through the icon registry"
     },
     "queue-gap": {
       "type": "string",

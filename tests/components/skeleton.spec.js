@@ -33,3 +33,25 @@ test('w-skeleton-loader alias supports the legacy variant/lines API', async ({ m
   await mount('<w-skeleton-loader id="s" lines="3"></w-skeleton-loader>');
   await expect(page.locator('#s .w-skeleton-text')).toHaveCount(3);
 });
+
+test('w-skeleton-loader bones are hidden decoration, not live regions', async ({ mount, page }) => {
+  await mount(`
+    <w-skeleton-loader id="a" type="card"></w-skeleton-loader>
+    <w-skeleton id="b" type="text"></w-skeleton>
+  `);
+
+  await expect(page.locator('#a .w-skeleton-loader')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#b .w-skeleton-loader')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#a [aria-live], #b [aria-live], #a [role="status"], #b [role="status"]')).toHaveCount(0);
+});
+
+test('w-skeleton-loader announce adds one status message with loading-text', async ({ mount, page }) => {
+  await mount(`
+    <w-skeleton-loader id="default" type="text" announce></w-skeleton-loader>
+    <w-skeleton-loader id="custom" type="text" announce loading-text="Loading messages"></w-skeleton-loader>
+  `);
+
+  await expect(page.locator('#default [role="status"]')).toHaveCount(1);
+  await expect(page.locator('#default [role="status"]')).toHaveText('Loading...');
+  await expect(page.locator('#custom [role="status"]')).toHaveText('Loading messages');
+});

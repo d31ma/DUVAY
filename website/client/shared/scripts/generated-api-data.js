@@ -113,6 +113,12 @@ export const GENERATED_API_DATA = {
           "Apply a specific icon using the [v-icon](/components/icons/) component."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "icon-size",
           "string | number",
           "—",
@@ -129,6 +135,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",
@@ -658,6 +670,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -728,6 +746,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the inline option."
+        ],
+        [
+          "interactive",
+          "string | number | boolean",
+          "—",
+          "Sets the interactive option."
         ],
         [
           "loading",
@@ -1430,6 +1454,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -1616,6 +1646,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "boolean | { class: string; keys: string[] }",
           "—",
@@ -1676,6 +1712,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -1692,6 +1734,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -10843,6 +10891,24 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -12166,6 +12232,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -12256,6 +12352,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -12332,6 +12434,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",
@@ -12627,6 +12735,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "auto-grow",
           "boolean",
           "—",
@@ -12723,6 +12861,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -12799,6 +12943,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",
@@ -13599,6 +13749,12 @@ export const GENERATED_API_DATA = {
           "Sets the status option."
         ],
         [
+          "status-label",
+          "string | number | boolean",
+          "—",
+          "Sets the status-label option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -13658,6 +13814,18 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the active-color option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",
@@ -13742,6 +13910,12 @@ export const GENERATED_API_DATA = {
           "(string | Record<string, any>)[]",
           "—",
           "An array of strings or objects used for automatically generating children components."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "limit",
@@ -14232,16 +14406,34 @@ export const GENERATED_API_DATA = {
           "Apply a specific icon using the [v-icon](/components/icons/) component."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "id",
           "string | number | boolean",
           "—",
           "Sets the id option."
         ],
         [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
+        ],
+        [
           "lines",
           "'one' | 'two' | 'three'",
           "—",
           "The amount of visible lines of text before it truncates."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",
@@ -14986,6 +15178,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the icon option."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
         ],
         [
           "id",
@@ -16475,6 +16673,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -16655,6 +16859,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "boolean | { class: string; keys: string[] }",
           "—",
@@ -16715,6 +16925,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -16731,6 +16947,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -16967,6 +17189,18 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -17043,6 +17277,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "loading",
@@ -20374,6 +20614,48 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-current",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-current option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-expanded",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-expanded option."
+        ],
+        [
+          "aria-haspopup",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-haspopup option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -20480,6 +20762,12 @@ export const GENERATED_API_DATA = {
           "string",
           "—",
           "Designates the component as anchor and applies the **href** attribute."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
         ],
         [
           "id",
@@ -20614,6 +20902,12 @@ export const GENERATED_API_DATA = {
           "Sets the height, padding and the font size of the component. Accepts only predefined options: **x-small**, **small**, **default**, **large**, and **x-large**."
         ],
         [
+          "static",
+          "string | number | boolean",
+          "—",
+          "Sets the static option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -20685,6 +20979,18 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the active-color option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",
@@ -20781,6 +21087,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the id option."
+        ],
+        [
+          "label",
+          "string | number | boolean",
+          "—",
+          "Sets the label option."
         ],
         [
           "loading",
@@ -23520,6 +23832,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the avatar option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -23634,6 +23952,12 @@ export const GENERATED_API_DATA = {
           "Sets the position option."
         ],
         [
+          "prepend-avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the prepend-avatar option."
+        ],
+        [
           "prepend-icon",
           "string | number | boolean",
           "—",
@@ -23664,6 +23988,12 @@ export const GENERATED_API_DATA = {
           "Sets the shortcut option."
         ],
         [
+          "snippet",
+          "string | number | boolean",
+          "—",
+          "Sets the snippet option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -23680,6 +24010,18 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the tabindex option."
+        ],
+        [
+          "tag",
+          "string | number | boolean",
+          "—",
+          "Sets the tag option."
+        ],
+        [
+          "tag-color",
+          "string | number | boolean",
+          "—",
+          "Sets the tag-color option."
         ],
         [
           "theme",
@@ -25386,6 +25728,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the avatar option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -25512,6 +25860,12 @@ export const GENERATED_API_DATA = {
           "Sets the position option."
         ],
         [
+          "prepend-avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the prepend-avatar option."
+        ],
+        [
           "prepend-icon",
           "string | number | boolean",
           "—",
@@ -25542,6 +25896,12 @@ export const GENERATED_API_DATA = {
           "Sets the shortcut option."
         ],
         [
+          "snippet",
+          "string | number | boolean",
+          "—",
+          "Sets the snippet option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -25558,6 +25918,18 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the tabindex option."
+        ],
+        [
+          "tag",
+          "string | number | boolean",
+          "—",
+          "Sets the tag option."
+        ],
+        [
+          "tag-color",
+          "string | number | boolean",
+          "—",
+          "Sets the tag-color option."
         ],
         [
           "theme",
@@ -33914,6 +34286,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -34008,6 +34386,18 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Changes layout for fullscreen display."
+        ],
+        [
+          "heading",
+          "string | number | boolean",
+          "—",
+          "Sets the heading option."
+        ],
+        [
+          "heading-level",
+          "string | number | boolean",
+          "—",
+          "Sets the heading-level option."
         ],
         [
           "height",
@@ -34170,6 +34560,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "When set to true, expects a `v-card` and a `v-card-text` component with a designated height. For more information, check out the [scrollable example](/components/dialogs#scrollable)."
+        ],
+        [
+          "sheet",
+          "string | number | boolean",
+          "—",
+          "Sets the sheet option."
         ],
         [
           "stick-to-target",
@@ -34972,6 +35368,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "heading-level",
+          "string | number | boolean",
+          "—",
+          "Sets the heading-level option."
+        ],
+        [
           "headline",
           "string | number | boolean",
           "—",
@@ -35000,6 +35402,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the icon option."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
         ],
         [
           "id",
@@ -40444,6 +40852,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -40908,6 +41322,12 @@ export const GENERATED_API_DATA = {
           "Sets the aria-describedby option."
         ],
         [
+          "aria-disabled",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-disabled option."
+        ],
+        [
           "aria-expanded",
           "string | number | boolean",
           "—",
@@ -41124,6 +41544,12 @@ export const GENERATED_API_DATA = {
           "Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard."
         ],
         [
+          "rel",
+          "string | number | boolean",
+          "—",
+          "Sets the rel option."
+        ],
+        [
           "ripple",
           "string | number | boolean",
           "—",
@@ -41196,6 +41622,12 @@ export const GENERATED_API_DATA = {
           "Sets the tabindex option."
         ],
         [
+          "target",
+          "string | number | boolean",
+          "—",
+          "Sets the target option."
+        ],
+        [
           "text",
           "string | number | boolean",
           "—",
@@ -41212,6 +41644,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Removes any applied **border-radius** from the component."
+        ],
+        [
+          "type",
+          "string | number | boolean",
+          "—",
+          "Sets the type option."
         ],
         [
           "value",
@@ -44021,6 +44459,12 @@ export const GENERATED_API_DATA = {
           "The index of the item within the list. Used internally for keyboard navigation and selection."
         ],
         [
+          "item-role",
+          "string | number | boolean",
+          "—",
+          "Sets the item-role option."
+        ],
+        [
           "lines",
           "false | 'one' | 'two' | 'three'",
           "—",
@@ -45728,6 +46172,36 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component in the **append-inner** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-details",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-details option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "autocomplete",
           "string",
           "—",
@@ -45818,6 +46292,12 @@ export const GENERATED_API_DATA = {
           "Sets the elevation option."
         ],
         [
+          "enterkeyhint",
+          "string | number | boolean",
+          "—",
+          "Sets the enterkeyhint option."
+        ],
+        [
           "error",
           "boolean",
           "—",
@@ -45894,6 +46374,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Adds / removes inline padding in inputs details. Useful when trying to align different variants of fields and selection controls."
+        ],
+        [
+          "inputmode",
+          "string | number | boolean",
+          "—",
+          "Sets the inputmode option."
         ],
         [
           "label",
@@ -46196,6 +46682,12 @@ export const GENERATED_API_DATA = {
     {
       "tag": "w-menu",
       "attributes": [
+        [
+          "activator",
+          "Element | (string & {}) | 'parent' | ComponentPublicInstance",
+          "—",
+          "Explicitly sets the overlay's activator."
+        ],
         [
           "active-color",
           "boolean | string",
@@ -49155,6 +49647,12 @@ export const GENERATED_API_DATA = {
           "Controls duration and easing of the expand/collapse and hover effect. Defaults to `easeInOutCubic` over 400ms."
         ],
         [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -49442,6 +49940,12 @@ export const GENERATED_API_DATA = {
           "| boolean | { duration: number easing: | 'linear' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQua",
           "—",
           "Controls duration and easing of the expand/collapse and hover effect. Defaults to `easeInOutCubic` over 400ms."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
         ],
         [
           "base-color",
@@ -53534,6 +54038,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "announce",
+          "string | number | boolean",
+          "—",
+          "Sets the announce option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -53616,6 +54126,12 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the loading option."
+        ],
+        [
+          "loading-text",
+          "boolean | string",
+          "—",
+          "Sets the loading-text option."
         ],
         [
           "location",
@@ -53801,12 +54317,6 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Applies a loading animation with a on-hover loading cursor. A value of **false** will only work when there is content in the `default` slot."
-        ],
-        [
-          "loading-text",
-          "string",
-          "—",
-          "aria-label for the element in a loading state."
         ],
         [
           "location",
@@ -55742,6 +56252,12 @@ export const GENERATED_API_DATA = {
           "Sets the hover-elevation option."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "id",
           "string | number | boolean",
           "—",
@@ -55752,6 +56268,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the inline option."
+        ],
+        [
+          "live",
+          "string | number | boolean",
+          "—",
+          "Sets the live option."
         ],
         [
           "loading",
@@ -59565,6 +60087,30 @@ export const GENERATED_API_DATA = {
           "Creates a [v-icon](/api/v-icon/) component after default content in the **append** slot."
         ],
         [
+          "aria-controls",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-controls option."
+        ],
+        [
+          "aria-describedby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-describedby option."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
+        ],
+        [
           "base-color",
           "string",
           "—",
@@ -59707,6 +60253,12 @@ export const GENERATED_API_DATA = {
           "string | number",
           "—",
           "Sets the minimum width for the component."
+        ],
+        [
+          "nav",
+          "string | number | boolean",
+          "—",
+          "Sets the nav option."
         ],
         [
           "position",
@@ -59862,6 +60414,18 @@ export const GENERATED_API_DATA = {
           "'title' | 'end' | 'start' | 'center'",
           "—",
           "Aligns the tabs to the `start`, `center`, or `end` of container. Also accepts `title` to align with the `v-toolbar-title` component."
+        ],
+        [
+          "aria-label",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-label option."
+        ],
+        [
+          "aria-labelledby",
+          "string | number | boolean",
+          "—",
+          "Sets the aria-labelledby option."
         ],
         [
           "base-color",
@@ -60054,6 +60618,12 @@ export const GENERATED_API_DATA = {
           "boolean",
           "—",
           "Allows one to select multiple items."
+        ],
+        [
+          "nav",
+          "string | number | boolean",
+          "—",
+          "Sets the nav option."
         ],
         [
           "next-icon",

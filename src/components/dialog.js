@@ -2,7 +2,17 @@
  *
  * Attributes:
  *   open             - visible state
- *   title            - generated header title
+ *   heading          - generated header title (preferred name)
+ *   title            - same as `heading`. The value moves to `heading` and the
+ *                      host `title` attribute is removed, so the browser shows
+ *                      no tooltip over the whole dialog. `el.title` still reads
+ *                      and writes the heading.
+ *   heading-level    - 1-6, the title's heading level (default 3)
+ *   aria-describedby - ids that describe the dialog; an empty value turns the
+ *                      description off. Without it the dialog is described by
+ *                      its body when the body has content.
+ *   sheet            - `mobile`: below the small breakpoint (600px) the dialog
+ *                      becomes a bottom sheet; it stays a modal dialog
  *   fullscreen       - fills the viewport
  *   scrollable       - keeps header/footer fixed while body scrolls
  *   persistent       - outside/Escape animate instead of closing
@@ -43,6 +53,10 @@ class WDialog extends WElement {
   static attrs = [
     'open',
     'title',
+    'heading',
+    'heading-level',
+    'sheet',
+    'aria-describedby',
     'fullscreen',
     'scrollable',
     'persistent',
@@ -77,9 +91,16 @@ class WDialog extends WElement {
 
   get open()  { return this._bool('open'); }
   set open(v) { v ? this.show() : this.close('programmatic'); }
-  // Use `dialogTitle` to avoid shadowing HTMLElement.title, which the browser
-  // surfaces as the native tooltip.
-  get dialogTitle() { return this._attr('title', ''); }
+  // The heading lives in `heading`, never in the host `title` attribute, which
+  // the browser would show as a tooltip over the whole dialog.
+  get dialogTitle() { return this._attr('heading', ''); }
+  get title() { return this.dialogTitle; }
+  set title(value) { this.setAttribute('heading', value == null ? '' : String(value)); }
+  get headingLevel() {
+    const level = Number(this.getAttribute('heading-level'));
+    return Number.isInteger(level) && level >= 1 && level <= 6 ? level : 3;
+  }
+  get sheet() { return this._enabled('sheet', false); }
   get fullscreen() { return this._bool('fullscreen'); }
   get scrollable() { return this._bool('scrollable'); }
   get persistent() { return this._bool('persistent'); }
@@ -116,17 +137,19 @@ class WDialog extends WElement {
   _template() {
     if (!this._id) this._id = 'w-dialog-' + Math.random().toString(36).slice(2, 8);
     const titleId = this._id + '-title';
+    const bodyId = this._id + '-body';
+    const level = this.headingLevel;
     const style = this._dialogStyle();
 
     return `${this._activatorMarkup()}
       ${this._overlayMarkup()}
-      <div class="${this._wrapperClasses()}" id="${this._id}" w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${this._labelledBy(titleId)}${this._wrapperStyle()}>
+      <div class="${this._wrapperClasses()}" id="${this._id}" w-dialog role="dialog" aria-modal="true" aria-hidden="${!this.open}"${this._labelledBy(titleId)}${this._describedBy(bodyId)}${this._wrapperStyle()}>
         <div class="${this._dialogClasses()}" tabindex="-1"${style}>
           <div class="w-dialog-header">
-            <h3 class="w-dialog-title" id="${titleId}">${this._titleContent()}</h3>
+            <h${level} class="w-dialog-title" id="${titleId}">${this._titleContent()}</h${level}>
             ${this._closeMarkup()}
           </div>
-          <div class="w-dialog-body" role="document"><slot></slot></div>
+          <div class="w-dialog-body" id="${bodyId}" role="document"><slot></slot></div>
           <div class="w-dialog-footer"><slot name="footer"></slot></div>
         </div>
       </div>`;
@@ -155,6 +178,7 @@ class WDialog extends WElement {
       'w-dialog-wrapper--contained': this.contained,
       'w-dialog-wrapper--anchored': this.target,
       'w-dialog-wrapper--stick': this.stickToTarget,
+      'w-dialog-wrapper--sheet-mobile': this.sheet,
     }) + this._transitionClass();
   }
 
@@ -180,6 +204,29 @@ class WDialog extends WElement {
     return hasTitle ? ` aria-labelledby="${titleId}"` : '';
   }
 
+  // A host `aria-describedby` wins (empty turns the description off);
+  // otherwise the body describes the dialog when it has content.
+  _describedBy(bodyId) {
+    const own = this.getAttribute('aria-describedby');
+    if (own !== null) return own.trim() ? ` aria-describedby="${this._esc(own.trim())}"` : '';
+    return this._hasBodyContent() ? ` aria-describedby="${bodyId}"` : '';
+  }
+
+  _hasBodyContent() {
+    return this._bodyNodes().some((node) => this._isMeaningful(node));
+  }
+
+  _bodyNodes() {
+    const slot = this._q('.w-dialog-body > slot');
+    if (slot) return Array.from(slot.childNodes);
+    return Array.from(this.childNodes).filter((node) => !node.getAttribute?.('slot'));
+  }
+
+  _isMeaningful(node) {
+    if (node.nodeType === Node.ELEMENT_NODE) return true;
+    return node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '';
+  }
+
   _titleContent() {
     const titleAttr = this.dialogTitle;
     return titleAttr ? this._esc(titleAttr) + '<slot name="title" hidden></slot>' : '<slot name="title"></slot>';
@@ -192,7 +239,24 @@ class WDialog extends WElement {
             </button>`;
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'title' && newValue !== null) {
+      this._adoptTitle();
+      return;
+    }
+    super.attributeChangedCallback(name, oldValue, newValue);
+  }
+
+  // Move a host `title` into `heading` so no native tooltip covers the dialog.
+  _adoptTitle() {
+    const title = this.getAttribute('title');
+    if (title === null) return;
+    this._silentSet('title', null);
+    this.setAttribute('heading', title);
+  }
+
   connectedCallback() {
+    this._adoptTitle();
     super.connectedCallback();
     if (!this._keyHandler) {
       this._keyHandler = (event) => this._onDocumentKeydown(event);

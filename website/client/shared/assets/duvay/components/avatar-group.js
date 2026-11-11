@@ -1,9 +1,13 @@
-/* <w-avatar-group> — overlapping or spaced collection of avatars. */
+/* <w-avatar-group> — overlapping or spaced collection of avatars.
+ *
+ * Attributes (besides the layout ones below):
+ *   label / aria-label / aria-labelledby - accessible name of the group
+ */
 
 import { wParseRecords } from './utils.js';
 
 export class WAvatarGroup extends WElement {
-  static attrs = ['border', 'reverse', 'size', 'gap', 'hoverable', 'items', 'limit', 'overflow-text', 'vertical'];
+  static attrs = ['border', 'reverse', 'size', 'gap', 'hoverable', 'items', 'limit', 'overflow-text', 'vertical', 'label', 'aria-label', 'aria-labelledby'];
 
   get items() {
     if (this._itemsValue !== undefined) return this._itemsValue;
@@ -19,7 +23,7 @@ export class WAvatarGroup extends WElement {
     const style = this._groupStyle();
     const generated = visible.map((item) => this._avatar(item)).join('');
     const overflow = remaining ? this._overflow(remaining) : '';
-    return `<div class="w-avatar-group${this._classes()}" role="group"${style}>${generated}<slot></slot>${overflow}</div>`;
+    return `<div class="w-avatar-group${this._classes()}" role="group"${this._groupName()}${style}>${generated}<slot></slot>${overflow}</div>`;
   }
 
   _classes() {
@@ -62,6 +66,13 @@ export class WAvatarGroup extends WElement {
   }
 
   _refresh() { if (this._rendered) { this._render(); this._applyCommonProps(); } }
+
+  // The group's accessible name: a host `aria-labelledby`, else `aria-label`
+  // or `label`. WCAG 1.3.1 / 4.1.2: a group of controls needs a name.
+  _groupName() {
+    const label = this.getAttribute('aria-label') || this.getAttribute('label');
+    return this._attrs({ 'aria-labelledby': this.getAttribute('aria-labelledby') || false, 'aria-label': label || false });
+  }
 }
 
 if (!customElements.get('w-avatar-group')) customElements.define('w-avatar-group', WAvatarGroup);

@@ -1,5 +1,161 @@
 # Changelog
 
+## 26.46.03 - 2026-11-11
+
+### Added
+
+- `w-hotkey` `mod` key: Command (⌘) on a Mac and Control (Ctrl) elsewhere,
+  so one `keys="mod+k"` fits every platform.
+- `w-alert` `live="polite"` (role="status") and `live="off"` (a static notice
+  with no live role), so notices already on the page do not interrupt screen
+  readers. The default stays role="alert".
+- `w-snackbar` `live="assertive"` (role="alert") for errors; the default stays
+  role="status".
+- `w-banner` `label` (the region's accessible name, default "Banner") and
+  `live="polite" | "assertive"` (role="status" / role="alert" instead of a
+  region).
+- `w-select` passes a host `aria-labelledby`, `aria-label` and
+  `aria-describedby` to its combobox; `aria-labelledby` wins over every
+  generated name, so a visible label stays the name.
+- `w-list-item` `item-role`: `button` (a plain action, never aria-pressed),
+  `menuitem`, `menuitemradio`, `menuitemcheckbox` (`active` is aria-checked),
+  `option`, and `none` (a static, non-interactive row).
+- `w-btn-toggle`, `w-chip-group` and `w-avatar-group` take an accessible name
+  from `label`, `aria-label` or `aria-labelledby`.
+- `w-empty-state` / `w-empty` `heading-level` (1-6, default 2, or `none`).
+- `icon-set` on `w-alert`, `w-banner`, `w-snackbar` and `w-empty-state`.
+- `w-dialog`: `heading` (preferred name for the title), `heading-level`
+  (1-6, default 3) and `sheet="mobile"`, which turns the dialog into a bottom
+  sheet below 600px while it stays a modal dialog with the same focus trap.
+  The dialog is described by its body when the body has content; a host
+  `aria-describedby` overrides that (empty turns it off).
+- `w-hover-card`: interactive mode (`interactive`, or automatic when the
+  content holds a focusable element). The content is a named non-modal
+  dialog; it opens on hover, focus or click, and the trigger gets
+  `aria-haspopup="dialog"`, `aria-expanded` and `aria-controls`. The closed
+  card is inert.
+- `w-avatar`: presence states `idle`, `dnd` (do not disturb) and `offline`,
+  and `status-label`. Idle and offline show as rings and dnd as a dot with a
+  bar (token-based CSS in `avatars.css`), so colour is not the only cue.
+- `w-skeleton` / `w-skeleton-loader`: opt-in `announce` adds one polite
+  status message (`loading-text`, default "Loading...").
+
+- `w-command-item` rich rows: `prepend-avatar` (alias `avatar`), `tag` with
+  `tag-color`, a `snippet` line, and `prepend`/`append` slots. The same fields
+  work in `w-command`'s `items` JSON (`prependAvatar`, `tag`, `tagColor`,
+  `snippet`) and in `w-command-palette-item`. Search also matches the snippet
+  and tag; `filter-keys` accepts `snippet` and `tag`.
+- `w-bottom-nav-item` `icon-set`; `icon` now resolves through `WIcons`
+  (`set:name` works). The default `text` set renders exactly as before.
+- `w-btn` takes `type` (button | submit | reset) for the inner `<button>`;
+  unset keeps the native default. An authored `type` also wins over the
+  `type="button"` default of `w-icon-btn` and `w-app-bar-nav-icon`.
+- `w-btn` link form takes `target` and `rel`; `target="_blank"` always adds
+  `noopener`.
+- `w-btn` forwards `aria-disabled`. `aria-disabled="true"` (without
+  `disabled`) is a focusable disabled state: the button stays in the tab
+  order but clicks, Enter, Space, form submit and link navigation are blocked.
+- `w-text-field` (and `w-textarea`) forward `inputmode`, `enterkeyhint`,
+  `aria-label`, `aria-labelledby`, `aria-describedby` (joined with the
+  field's hint / error row), `aria-controls` and `aria-details` to the
+  native control.
+
+- `<w-chip static>` renders a display-only chip: a `<span>` with no button
+  role, no `aria-pressed` and no selection toggle.
+- `<w-chip>` forwards host `aria-label`, `aria-labelledby`,
+  `aria-describedby`, `aria-haspopup`, `aria-expanded`, `aria-controls` and
+  `aria-current` to its inner button or link. With `aria-haspopup` the chip is
+  a plain popup trigger (no `aria-pressed`, no toggle). `aria-expanded` and
+  the others update in place, so focus stays on the chip.
+- `<w-chip icon-set>`; `prepend-icon`, `append-icon`, `filter-icon` and
+  `close-icon` resolve through `WIcons` like `<w-btn>` (the default text set
+  renders the same markup as before).
+- `<w-tabs nav>` renders the strip as a `<nav>` of links (no tab roles, no
+  arrow keys), as the APG advises for tabs that navigate. `<w-tabs>` passes
+  host `aria-label` / `aria-labelledby` to the tablist (or nav).
+- `<w-tab>` forwards host `aria-controls`, `aria-label`, `aria-labelledby` and
+  `aria-describedby` to the tab control, so tabs can point at their panels.
+- `<w-menu activator="id | selector | parent">` uses an existing element as
+  the trigger: no built-in trigger is rendered, the element gets click and
+  keyboard handling plus `aria-haspopup`, `aria-expanded` and
+  `aria-controls`, the surface anchors to it (unless `target` is set), and
+  focus returns to it when the menu closes from inside. Without `activator`
+  the menu behaves as before.
+
+### Fixed
+
+- WCAG 2.5.8: the `w-chip` close button keeps its 1rem look but has a 24px
+  hit area, so it meets the minimum target size.
+- `w-alert` `icon`, `w-banner` `icon`, `w-snackbar` `prepend-icon` and
+  `w-empty-state` `icon` resolve through the icon registry (`WIcons`) like
+  `w-btn` does, instead of printing the name as text. With the default `text`
+  set the output is unchanged.
+- WCAG 1.3.1: `w-list-item` gets role="listitem" inside a `w-list` with
+  role="list", so the list's items are announced. A host role the author set
+  is kept.
+- WCAG 1.3.1: the `w-empty-state` title is a heading (role="heading",
+  aria-level 2 by default) instead of a plain paragraph. A slotted heading
+  element keeps its own level.
+- WCAG 4.1.2: `w-switch` is announced as a switch (role="switch") instead of a
+  checkbox. An indeterminate switch stays a checkbox, because the switch role
+  has no mixed state.
+- `w-command-item` options are now named by their title only
+  (`aria-labelledby`); subtitle, snippet, tag, append content and shortcut
+  become the option's description (`aria-describedby`) instead of being read
+  as part of its name.
+- `w-bottom-navigation` `grow` now gives the items equal widths that fill the
+  bar; before, it only sized the inner buttons.
+- `w-card` keeps plain children visible after re-renders when a nested
+  component (for example a `slot="prepend"` `w-avatar`) renders its own
+  `<slot>`; before, the children moved into a hidden slot and the card showed
+  empty. `slot="..."` on content inside a nested `w-*` component no longer
+  counts as a card slot.
+- `w-dialog`: a host `title` no longer shows a browser tooltip over the whole
+  dialog. The value moves to `heading`; `title` and `el.title` still work.
+- `w-hover-card`: Escape closes the card (focus returns to the trigger when
+  it was in the card), and moving the pointer onto the card keeps it open
+  (WCAG 1.4.13).
+- `w-table`: a native `<table>` is no longer wrapped in a second
+  `role="table"`; there is exactly one table in the accessibility tree.
+- `w-skeleton` / `w-skeleton-loader`: the bones are no longer a live region
+  (`aria-live`/`aria-busy` removed) and are `aria-hidden`, so many loaders no
+  longer make many announcements. The page should own one loading status;
+  use `announce` on one loader when needed.
+- `w-avatar`: a status dot is no longer labelled "warning badge". The
+  presence ("Online", "Away", ...) is part of the avatar's accessible name
+  ("Ana Lee, Online") and the dot is hidden from assistive technology.
+- `w-text-field` clear button is now keyboard reachable (WCAG 2.1.1): it is
+  in the tab order and named "Clear <label>". It is disabled, and so out of
+  the tab order, while the field is empty or read-only.
+- `w-otp` / `w-otp-input` spread a whole code that autofill, a password
+  manager or the `one-time-code` suggestion writes into one box across the
+  boxes, and emit the usual `input` and `change` events. The boxes no longer
+  set `maxlength="1"`, which made browsers cut such a code to one character;
+  a typed key still replaces the box's character.
+
+### Changed
+
+- `w-text-field` long values: the single-line `<input>` cannot wrap. The
+  header docs now point to `<w-textarea rows="1" auto-grow>` for values that
+  must wrap; no new attribute was added.
+
+- `<w-chip closable|removable>`: the close control is a real
+  `<button type="button">` named by `close-label`, reachable with Tab
+  (WCAG 2.1.1). When the chip also acts (toggle, link, popup), the pill is a
+  `<span class="w-chip">` holding two sibling controls, `.w-chip__action` and
+  `.w-chip__close`, so no control is nested in another (WCAG 4.1.2). Code
+  that reads `aria-pressed` from `.w-chip` on a closable chip should read it
+  from `.w-chip__action`.
+- `<w-chip>`: Enter and Space work through the native button click; on a link
+  chip Enter now follows the link and Space no longer toggles selection.
+- `<w-tabs>`: roving tabindex (APG tabs pattern). Only the active tab (or the
+  first enabled one) is in the Tab order; arrows, Home and End move focus
+  from the focused tab. In a `multiple` strip arrows only move focus and no
+  longer change the selection; with `mandatory="false"` an arrow onto the
+  active tab no longer deselects it.
+- `<w-tab href>` gets `aria-current="page"` while active.
+
+
 ## 26.35.01-1 - 2026-08-24
 
 Documentation-site-only release; the framework is unchanged from 26.35.01.

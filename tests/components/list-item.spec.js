@@ -123,3 +123,19 @@ test('w-list-item-subtitle applies the opacity attribute', async ({ mount, page 
   await expect(page.locator('#faded .w-list-item-subtitle')).toHaveCSS('opacity', '0.4');
   await expect(page.locator('#plain .w-list-item-subtitle')).toHaveCSS('opacity', '1');
 });
+
+test('w-list-item item-role gives plain buttons, menu rows and static rows', async ({ mount, page }) => {
+  await mount(`<div role="menu" aria-label="Sort">
+      <w-list-item id="radio" item-role="menuitemradio" title="Newest" active></w-list-item>
+      <w-list-item id="radio2" item-role="menuitemradio" title="Oldest"></w-list-item>
+    </div>
+    <w-list-item id="plain" item-role="button" title="Archive" active></w-list-item>
+    <w-list-item id="static" item-role="none" title="Read only"></w-list-item>`);
+
+  await expect(page.getByRole('menuitemradio', { name: 'Newest' })).toHaveAttribute('aria-checked', 'true');
+  await expect(page.getByRole('menuitemradio', { name: 'Oldest' })).toHaveAttribute('aria-checked', 'false');
+  await expect(page.locator('#radio')).toHaveAttribute('role', 'none');
+  await expect(page.locator('#plain button')).not.toHaveAttribute('aria-pressed', /./);
+  await expect(page.locator('#static button, #static a')).toHaveCount(0);
+  await expect(page.locator('#static .w-list-item')).toContainText('Read only');
+});

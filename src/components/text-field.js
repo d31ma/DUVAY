@@ -20,7 +20,8 @@
  *   size            - xs | sm | lg | xl (omit for the default)
  *   color           - token color for the focus accent (e.g. "success")
  *   prefix, suffix  - static text inside the control, before / after the input
- *   clearable       - show a clear (×) button when non-empty
+ *   clearable       - show a clear (×) button when non-empty; it is a real
+ *                     button in the tab order, named "Clear <label>"
  *   counter         - show a character counter; bare it pairs with maxlength,
  *                     or pass an explicit maximum (counter="50")
  *   loading         - show an indeterminate bar along the bottom edge
@@ -32,6 +33,17 @@
  *   hide-details    - suppress the details row (`auto` keeps it when non-empty)
  *   disabled, readonly, autofocus
  *   required, pattern, minlength, maxlength, min, max, step
+ *   inputmode       - virtual keyboard hint (numeric, decimal, tel, email, …)
+ *   enterkeyhint    - label for the virtual keyboard's Enter key
+ *
+ * Forwarded ARIA — authored on the host, rendered on the inner control:
+ *   aria-label (wins over the label-derived name), aria-labelledby,
+ *   aria-describedby (joined with the field's own hint / error row),
+ *   aria-controls, aria-details.
+ *
+ * Long values: the control is a single-line <input>, which cannot wrap. For a
+ * value that must wrap, use <w-textarea rows="1" auto-grow>: it takes every
+ * attribute here and grows line by line.
  *
  * Field surface (mirrors <v-text-field> / <v-field> / <v-input>):
  *   flat            - drop the elevation of the solo variant
@@ -92,8 +104,11 @@ export class WTextField extends WElement {
     'hide-spin-buttons', 'persistent-placeholder', 'persistent-counter',
     'persistent-clear', 'prepend-icon', 'append-icon', 'clear-icon', 'icon-color',
     'autocomplete', 'messages', 'error-messages', 'max-errors', 'validate-on',
-    'validation-value',
+    'validation-value', 'inputmode', 'enterkeyhint',
+    'aria-label', 'aria-labelledby', 'aria-describedby', 'aria-controls', 'aria-details',
   ];
+
+  static forwardedAria = ['aria-labelledby', 'aria-controls', 'aria-details'];
 
   get type()        { return this._attr('type', 'text'); }
   get label()       { return this._attr('label', ''); }
@@ -197,9 +212,12 @@ export class WTextField extends WElement {
       disabled: this.disabled,
       readonly: this.readonly,
       autofocus: this._bool('autofocus'),
-      'aria-label': this._ariaLabel(),
+      inputmode: this.getAttribute('inputmode'),
+      enterkeyhint: this.getAttribute('enterkeyhint'),
+      'aria-label': this.getAttribute('aria-label') || this._ariaLabel(),
       'aria-invalid': this._hasError() && 'true',
       'aria-describedby': this._describedBy(),
+      ...this._ariaAttrs(WTextField.forwardedAria),
     };
   }
 
@@ -214,8 +232,10 @@ export class WTextField extends WElement {
     return `${this.name || 'field'}-${this._uid()}`;
   }
 
+  // The author's own description ids come first, then the details row.
   _describedBy() {
-    return this._detailsHtml() ? this._detailsId() : '';
+    const own = this.getAttribute('aria-describedby') || '';
+    return [own, this._detailsHtml() ? this._detailsId() : ''].filter(Boolean).join(' ');
   }
 
   /* ── Icons and affixes ────────────────────────────────────────────────── */
@@ -251,7 +271,18 @@ export class WTextField extends WElement {
   _clearHtml() {
     if (!this.clearable) return '';
     const glyph = this.clearIcon ? this._icon(this.clearIcon) : '&times;';
-    return `<button type="button" class="w-text-field-clear" tabindex="-1" aria-label="Clear">${glyph}</button>`;
+    const attrs = this._attrs({ 'aria-label': this._clearName(), disabled: this._clearDisabled() });
+    return `<button type="button" class="w-text-field-clear"${attrs}>${glyph}</button>`;
+  }
+
+  _clearName() {
+    return this.label ? `Clear ${this.label}` : 'Clear';
+  }
+
+  // Disabled while there is nothing to clear, so the invisible button is not
+  // an empty stop in the tab order; a read-only value cannot be cleared.
+  _clearDisabled() {
+    return this.readonly || this._controlValue() === '';
   }
 
   _loaderHtml() {
@@ -521,7 +552,13 @@ export class WTextField extends WElement {
   _sync() {
     const root = this._q('.w-text-field');
     if (root) root.classList.toggle('w-text-field--has-value', this._isDirty());
+    this._syncClear();
     this._syncDetails();
+  }
+
+  _syncClear() {
+    const clearButton = this._q('.w-text-field-clear');
+    if (clearButton) clearButton.disabled = this._clearDisabled();
   }
 
   _syncDetails() {

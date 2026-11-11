@@ -66,6 +66,7 @@ export const API_DATA = {
     attributes: [
       ['for', 'element id', '—', 'Id of the navigation drawer to toggle.'],
       ['aria-label', 'string', 'Open navigation', 'Accessible label while the drawer is closed.'],
+      ['type / target / rel / aria-disabled', 'string', '—', 'Inherited from w-btn: button type, link target and relation (noopener added for _blank), and the focusable disabled state.'],
     ],
   }],
 
@@ -127,6 +128,9 @@ export const API_DATA = {
         ['aria-label', 'string', '—', 'Accessible label, required for icon-only buttons.'],
         ['aria-pressed', 'true | false | mixed', '—', 'Toggle state, forwarded to the rendered button. Omitted from the link form, where it is not valid.'],
         ['aria-expanded / aria-controls / aria-haspopup / aria-current / aria-labelledby / aria-describedby', 'string', '—', 'ARIA authored on the host is forwarded to the rendered control, which is what the accessibility tree exposes.'],
+        ['type', 'button | submit | reset', '—', 'Type of the rendered button. Unset keeps the native default (submit inside a form).'],
+        ['target / rel', 'string', '—', 'Link target and relation for the href form. target="_blank" always adds noopener to rel.'],
+        ['aria-disabled', 'true | false', '—', 'aria-disabled="true" keeps the button focusable and announced but blocks clicks, Enter, Space, form submit and navigation.'],
       ],
       events: [
         ['focus', '—', 'Fired when the control gains focus.'],
@@ -140,6 +144,9 @@ export const API_DATA = {
     {
       tag: 'w-btn-toggle',
       attributes: [
+        ['label', 'string', '—', 'Accessible name of the group.'],
+        ['aria-label', 'string', '—', 'Accessible name of the group (same as label).'],
+        ['aria-labelledby', 'id list', '—', 'Ids of visible text that names the group; wins over label.'],
         ['value', 'string', '—', 'Selected value, or a comma-separated list when multiple.'],
         ['multiple', 'boolean', 'false', 'Allow more than one button to be selected.'],
         ['mandatory', 'boolean | "force"', 'false', 'Keep at least one selected; "force" also selects the first initially.'],
@@ -239,7 +246,7 @@ export const API_DATA = {
         ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
         ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry, rendered inside the control.'],
         ['icon-set', 'string', '—', 'Icon set prefix for the icon attributes.'],
-        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
         ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
         ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
         ['hint', 'string', '—', 'Helper text below the control.'],
@@ -288,7 +295,7 @@ export const API_DATA = {
         ['color', 'string', 'primary', 'Token color for the focus accent.'],
         ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
         ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry.'],
-        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+        ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
         ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
         ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
         ['hint / persistent-hint', 'string / boolean', '—', 'Helper text below the control.'],
@@ -311,6 +318,9 @@ export const API_DATA = {
     {
       tag: 'w-select',
       attributes: [
+        ['aria-labelledby', 'id list', '—', 'Names the combobox by visible text; wins over every generated name.'],
+        ['aria-label', 'string', '—', 'Accessible name of the combobox.'],
+        ['aria-describedby', 'id list', '—', 'Ids of text that describes the combobox.'],
         ['value', 'string', '—', 'Selected option value.'],
         ['name', 'string', '—', 'Form field name.'],
         ['label / hint / error', 'string', '—', 'Field label, helper text, and error state.'],
@@ -496,10 +506,22 @@ export const API_DATA = {
       tag: 'w-command-item',
       attributes: [
         ['value', 'string', '—', 'Searchable item value.'],
+        ['subtitle', 'string', '—', 'Secondary line under the title (part of the description).'],
+        ['snippet', 'string', '—', 'Extra secondary line, e.g. a matched text snippet (part of the description).'],
+        ['icon', 'string', '—', 'Leading icon glyph (alias prepend-icon).'],
+        ['prepend-icon', 'string', '—', 'Leading icon glyph.'],
+        ['prepend-avatar', 'string', '—', 'Leading avatar image URL (alias avatar); wins over icon.'],
+        ['avatar', 'string', '—', 'Alias for prepend-avatar.'],
+        ['tag', 'string', '—', 'Badge text shown after the content (part of the description).'],
+        ['tag-color', 'string', 'primary', 'Badge color: primary, secondary, tertiary, success, warning, error or info.'],
         ['shortcut', 'string', '—', 'Optional shortcut shown at the end.'],
         ['disabled', 'boolean', 'false', 'Disables the item.'],
       ],
-      slots: [['default', 'Command item label.']],
+      slots: [
+        ['default', 'Command item label; the option\'s accessible name.'],
+        ['prepend', 'Custom leading content.'],
+        ['append', 'Custom trailing content (part of the description).'],
+      ],
     },
     {
       tag: 'w-item',
@@ -582,7 +604,7 @@ export const API_DATA = {
     },
     {
       tag: 'w-hover-card',
-      attributes: [['open', 'boolean', 'false', 'Shows the hover card.'], ['side', 'top | bottom-start', 'top', 'Card placement.'], ['inline', 'boolean', 'false', 'Renders open content in document flow.']],
+      attributes: [['open', 'boolean', 'false', 'Shows the hover card.'], ['side', 'top | bottom-start', 'top', 'Card placement.'], ['inline', 'boolean', 'false', 'Renders open content in document flow.'], ['interactive', 'boolean', 'auto', 'Content is a non-modal dialog that can hold buttons and links; on automatically when the content holds a focusable element. Opens on hover, focus or click; Escape closes and returns focus to the trigger.']],
       slots: [['default', 'Hover/focus trigger.'], ['content', 'Hover card content.']],
     },
     {
@@ -668,6 +690,11 @@ export const API_DATA = {
       ['variant', 'filled | outlined', '—', 'Visual chip style.'],
       ['color', 'primary | success | danger | warning', '—', 'Semantic colour modifier.'],
       ['removable', 'boolean', 'false', 'Shows a trailing remove affordance.'],
+      ['static', 'boolean', 'false', 'Display-only chip: a span with no button role and no selection toggle.'],
+      ['icon-set', 'string', '—', 'WIcons set for prepend-icon, append-icon, filter-icon and close-icon.'],
+      ['aria-label / aria-labelledby / aria-describedby', 'string', '—', 'Accessible name and description, forwarded to the inner button or link.'],
+      ['aria-haspopup', 'string', '—', 'Makes the chip a plain popup trigger (no aria-pressed, no toggle); forwarded.'],
+      ['aria-expanded / aria-controls / aria-current', 'string', '—', 'Popup and page state, forwarded and updated in place.'],
     ],
     events: [
       ['change', '{ selected, value }', 'Fired when the chip is toggled.'],
@@ -763,6 +790,7 @@ export const API_DATA = {
     {
       tag: 'w-list-item',
       attributes: [
+        ['item-role', 'button | menuitem | menuitemradio | menuitemcheckbox | option | none', '—', 'What the row is when it is not a link; none is a static row.'],
         ['title', 'string', '—', 'Primary item text.'],
         ['subtitle', 'string', '—', 'Secondary item text.'],
         ['value', 'string', 'title', 'Value emitted in selection events.'],
@@ -988,7 +1016,8 @@ export const API_DATA = {
       tag: 'w-bottom-nav-item',
       attributes: [
         ['value', 'string', '—', 'Identifier used for active management.'],
-        ['icon', 'string', '—', 'Icon glyph shown above the label.'],
+        ['icon', 'string', '—', 'Icon name shown above the label, resolved through WIcons (set:name works).'],
+        ['icon-set', 'string', '—', 'WIcons set for icon; empty uses the default text set.'],
         ['label', 'string', '—', 'Item label text.'],
         ['href', 'string', '—', 'Renders the item as a link.'],
         ['active', 'boolean', 'false', 'Marks the item active.'],
@@ -1193,6 +1222,9 @@ export const API_DATA = {
     {
       tag: 'w-chip-group',
       attributes: [
+        ['label', 'string', '—', 'Accessible name of the group.'],
+        ['aria-label', 'string', '—', 'Accessible name of the group (same as label).'],
+        ['aria-labelledby', 'id list', '—', 'Ids of visible text that names the group; wins over label.'],
         ['value', 'string', '—', 'Selected value, or a comma list when multiple.'],
         ['multiple', 'boolean', 'false', 'Allow several chips selected.'],
         ['mandatory', 'boolean', 'false', 'Keep at least one chip selected.'],
@@ -1716,7 +1748,8 @@ export const API_DATA = {
       ['alt', 'string', '—', 'Alt text / accessible label.'],
       ['size', 'sm | lg', '—', 'Avatar size; omit for the default.'],
       ['initials', 'string', '—', 'Initials shown when no image source is provided.'],
-      ['status', 'online | away | busy', '—', 'Optional status indicator.'],
+      ['status', 'online | away | idle | busy | dnd | offline', '—', 'Presence dot. The presence is added to the avatar name ("Ana, Online"); idle/offline are rings and dnd has a bar.'],
+      ['status-label', 'string', 'from status', 'Overrides the spoken presence, e.g. "In a call".'],
     ],
     slots: [['default', 'Initials shown when no src is provided.']],
   }],
@@ -1725,6 +1758,8 @@ export const API_DATA = {
     {
       tag: 'w-alert',
       attributes: [
+        ['live', 'assertive | polite | off', 'assertive', 'role="alert", role="status", or a static notice with no live role.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['variant', 'info | success | warning | error', 'info', 'Semantic style and icon.'],
         ['title', 'string', '—', 'Bold title above the body.'],
         ['dismissible', 'boolean', 'false', 'Shows a dismiss button.'],
@@ -1767,6 +1802,8 @@ export const API_DATA = {
         ['disabled', 'boolean', 'false', 'Disable the whole tab bar.'],
         ['show-arrows', 'boolean', 'false', 'Show scroll arrows when tabs overflow.'],
         ['prev-icon / next-icon', 'string', '—', 'Custom overflow arrow glyphs.'],
+        ['nav', 'boolean', 'false', 'Render a nav landmark of links (no tab roles); the active link gets aria-current="page".'],
+        ['aria-label / aria-labelledby', 'string', '—', 'Accessible name of the tablist (or nav).'],
       ],
       events: [['change', '{ value }', 'Fired when the active tab changes.']],
       slots: [['default', 'A set of w-tab elements.']],
@@ -1778,7 +1815,10 @@ export const API_DATA = {
         ['active', 'boolean', 'false', 'Whether this tab is selected.'],
         ['disabled', 'boolean', 'false', 'Disables the tab.'],
         ['stacked', 'boolean', 'false', 'Stack the icon above the label.'],
-        ['href', 'string', '—', 'Render the tab as a link.'],
+        ['href', 'string', '—', 'Render the tab as a link; it gets aria-current="page" while active.'],
+        ['nav', 'boolean', 'false', 'Render a plain link with no tab role (set by w-tabs nav).'],
+        ['aria-controls', 'string', '—', 'Id of the panel this tab shows; forwarded to the tab.'],
+        ['aria-label / aria-labelledby / aria-describedby', 'string', '—', 'Forwarded to the inner tab control.'],
       ],
       slots: [['default', 'Tab label content.']],
     },
@@ -1817,6 +1857,9 @@ export const API_DATA = {
     {
       tag: 'w-banner',
       attributes: [
+        ['label', 'string', 'Banner', 'Accessible name of the banner region.'],
+        ['live', 'polite | assertive', '—', 'Announce as role="status" or role="alert" instead of a region.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['text', 'string', '—', 'Banner message (or use the default / text slot).'],
         ['icon', 'string', '—', 'Leading icon text / glyph.'],
         ['avatar', 'string', '—', 'Leading avatar image URL (overrides icon).'],
@@ -1856,6 +1899,8 @@ export const API_DATA = {
         ['height', 'string | number', '—', 'CSS height of the loader root.'],
         ['variant', 'text | avatar | block', 'text', 'Legacy placeholder shape.'],
         ['lines', 'number', '1', 'Legacy text line count.'],
+        ['announce', 'boolean', 'false', 'Adds one polite role="status" message. The bones are aria-hidden and never a live region; the page should own one loading status.'],
+        ['loading-text', 'string', 'Loading...', 'Status message used with announce.'],
       ],
       slots: [['default', 'Real content; shown instead of the skeleton when not loading.']],
     },
@@ -1913,6 +1958,8 @@ export const API_DATA = {
     {
       tag: 'w-empty',
       attributes: [
+        ['heading-level', '1-6 | none', '2', 'Heading level of the title; none keeps a paragraph.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['headline', 'string', '—', 'Large display text shown above the media.'],
         ['title', 'string', '—', 'Bold title.'],
         ['text', 'string', '—', 'Body description (alias: subtitle).'],
@@ -1945,6 +1992,8 @@ export const API_DATA = {
   '/docs/snackbar': [{
     tag: 'w-snackbar',
     attributes: [
+        ['live', 'polite | assertive', 'polite', 'role="status", or role="alert" for errors.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve prepend-icon.'],
       ['text', 'string', '—', 'Message text (alias: message; or use the default slot).'],
       ['action', 'string', '—', 'Single action button label; omit for none.'],
       ['open', 'boolean', 'false', 'Whether the snackbar is visible (alias: model-value).'],
@@ -1970,7 +2019,11 @@ export const API_DATA = {
     tag: 'w-dialog',
     attributes: [
       ['open', 'boolean', 'false', 'Whether the dialog is visible.'],
-      ['title', 'string', '—', 'Header title.'],
+      ['title', 'string', '—', 'Header title. Moved to heading, so the host shows no browser tooltip.'],
+      ['heading', 'string', '—', 'Header title (preferred name).'],
+      ['heading-level', '1-6', '3', 'Heading level of the title.'],
+      ['aria-describedby', 'id list', 'body', 'Ids that describe the dialog; empty turns it off. Defaults to the body when it has content.'],
+      ['sheet', 'mobile', '—', 'Below 600px the dialog becomes a bottom sheet; it stays a modal dialog.'],
     ],
     events: [['close', '—', 'Fired when the dialog is dismissed.']],
     slots: [['default', 'Dialog body content.'], ['footer', 'Footer actions, usually buttons.']],
@@ -2338,6 +2391,8 @@ export const API_DATA = {
   '/docs/text-fields': [{
     tag: 'w-text-field',
     attributes: [
+      ['inputmode / enterkeyhint', 'string', '—', 'Virtual keyboard hints, forwarded to the native control.'],
+      ['aria-label / aria-labelledby / aria-describedby / aria-controls / aria-details', 'string', '—', 'ARIA authored on the host is forwarded to the native control; aria-describedby is joined with the hint / error row.'],
       ['type', 'string', 'text', 'Any native input type.'],
       ['value', 'string', '—', 'Current value (reflected; also a property).'],
       ['label', 'string', '—', 'Floating label.'],
@@ -2349,7 +2404,7 @@ export const API_DATA = {
       ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
       ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry, rendered inside the control.'],
       ['icon-set', 'string', '—', 'Icon set prefix for the icon attributes.'],
-      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
       ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
       ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
       ['hint', 'string', '—', 'Helper text below the control.'],
@@ -2376,6 +2431,8 @@ export const API_DATA = {
   '/docs/textareas': [{
     tag: 'w-textarea',
     attributes: [
+      ['inputmode / enterkeyhint', 'string', '—', 'Virtual keyboard hints, forwarded to the native control.'],
+      ['aria-label / aria-labelledby / aria-describedby / aria-controls / aria-details', 'string', '—', 'ARIA authored on the host is forwarded to the native control; aria-describedby is joined with the hint / error row.'],
       ['value', 'string', '—', 'Current value (reflected; also a property).'],
       ['label', 'string', '—', 'Floating label.'],
       ['placeholder', 'string', '—', 'Placeholder text.'],
@@ -2389,7 +2446,7 @@ export const API_DATA = {
       ['color', 'string', 'primary', 'Token color for the focus accent.'],
       ['prefix / suffix', 'string', '—', 'Static text inside the control.'],
       ['prepend-inner-icon / append-inner-icon', 'string', '—', 'Icon names resolved through the icon registry.'],
-      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty.'],
+      ['clearable', 'boolean', 'false', 'Show a clear (×) button when non-empty. It is in the tab order and named "Clear <label>".'],
       ['counter', 'boolean', 'false', 'Show a character counter; pairs with maxlength.'],
       ['loading', 'boolean', 'false', 'Show an indeterminate bar along the bottom edge.'],
       ['hint / persistent-hint', 'string / boolean', '—', 'Helper text below the control.'],

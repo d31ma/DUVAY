@@ -98,6 +98,9 @@
     "href": {
       "type": "string"
     },
+    "icon-set": {
+      "type": "string"
+    },
     "label": {
       "type": "string"
     },
@@ -161,6 +164,9 @@
     },
     "size": {
       "type": "number"
+    },
+    "static": {
+      "type": "string"
     },
     "target": {
       "type": "string"

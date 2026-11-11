@@ -80,6 +80,9 @@
     "index": {
       "type": "string"
     },
+    "item-role": {
+      "type": "string"
+    },
     "lines": {
       "type": "string"
     },

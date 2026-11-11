@@ -112,3 +112,8 @@ test('w-chip-group center-active and scroll-to-active bring the selection into v
   await page.locator('#s').evaluate((el) => el.setAttribute('value', 'h'));
   await expect.poll(() => page.locator('#s .w-chip-group').evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);
 });
+
+test('w-chip-group group takes an accessible name from aria-labelledby', async ({ mount, page }) => {
+  await mount('<span id="f">Filters</span><w-chip-group aria-labelledby="f"><w-chip>Unread</w-chip></w-chip-group>');
+  await expect(page.getByRole('group', { name: 'Filters' })).toHaveCount(1);
+});

@@ -83,6 +83,14 @@
       "type": "string",
       "description": "fills the viewport"
     },
+    "heading": {
+      "type": "string",
+      "description": "generated header title (preferred name)"
+    },
+    "heading-level": {
+      "type": "string",
+      "description": "1-6, the title's heading level (default 3)"
+    },
     "height": {
       "type": "string"
     },
@@ -170,6 +178,10 @@
       "type": "string",
       "description": "keeps header/footer fixed while body scrolls"
     },
+    "sheet": {
+      "type": "string",
+      "description": "`mobile`: below the small breakpoint (600px) the dialog becomes a bottom sheet; it stays a modal dialog"
+    },
     "stick-to-target": {
       "type": "string"
     },
@@ -185,7 +197,7 @@
     },
     "title": {
       "type": "string",
-      "description": "generated header title"
+      "description": "same as `heading`. The value moves to `heading` and the host `title` attribute is removed, so the browser shows no tooltip over the whole dialog. `el.title` still reads and writes the heading."
     },
     "transition": {
       "type": "string"

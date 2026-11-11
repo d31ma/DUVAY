@@ -44,9 +44,9 @@ test('w-chip toggles selected state and supports filter plus closable hidden sta
   await mount('<w-chip id="chip" value="qa" filter closable close-label="Remove chip">QA</w-chip>');
   await recordEvents(page, '#chip', ['change', 'close']);
 
-  await page.locator('#chip .w-chip').click();
+  await page.locator('#chip .w-chip__action').click();
   await expect(page.locator('#chip .w-chip')).toHaveClass(/selected/);
-  await expect(page.locator('#chip .w-chip')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#chip .w-chip__action')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#chip .w-chip__filter')).toBeVisible();
 
   let events = await readEvents(page, '#chip');
@@ -109,24 +109,25 @@ test('w-chip-group syncs single, multiple, mandatory, and disabled selection', a
 test('w-chip toggles from the keyboard and closes when the close affordance is activated', async ({ mount, page }) => {
   await mount('<w-chip id="chip" value="qa" filter closable>QA</w-chip>');
   await recordEvents(page, '#chip', ['change', 'close']);
-  const chip = page.locator('#chip .w-chip');
+  const action = page.locator('#chip .w-chip__action');
+  const pill = page.locator('#chip .w-chip');
 
   // Keys the chip does not own are ignored.
-  await chip.focus();
+  await action.focus();
   await page.keyboard.press('a');
-  await expect(chip).toHaveAttribute('aria-pressed', 'false');
+  await expect(action).toHaveAttribute('aria-pressed', 'false');
 
-  await chip.focus();
+  await action.focus();
   await page.keyboard.press('Enter');
-  await expect(chip).toHaveAttribute('aria-pressed', 'true');
-  await expect(chip).toHaveClass(/selected/);
+  await expect(action).toHaveAttribute('aria-pressed', 'true');
+  await expect(pill).toHaveClass(/selected/);
 
-  await chip.focus();
+  await action.focus();
   await page.keyboard.press(' ');
-  await expect(chip).toHaveAttribute('aria-pressed', 'false');
-  await expect(chip).not.toHaveClass(/selected/);
+  await expect(action).toHaveAttribute('aria-pressed', 'false');
+  await expect(pill).not.toHaveClass(/selected/);
 
-  // Enter on the close affordance closes instead of toggling selection.
+  // Enter on the close button closes instead of toggling selection.
   await page.locator('#chip .w-chip__close').focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#chip .w-chip')).toHaveCount(0);
@@ -135,6 +136,126 @@ test('w-chip toggles from the keyboard and closes when the close affordance is a
   const events = await readEvents(page, '#chip');
   expect(events.map((event) => event.type)).toEqual(['change', 'change', 'close']);
   expect(events.at(-1).detail).toEqual({ value: 'qa' });
+});
+
+test('w-chip close is a separate button that Tab reaches, never nested in the action', async ({ mount, page }) => {
+  await mount(`
+    <button id="before">Before</button>
+    <w-chip id="chip" value="ana" closable close-label="Remove Ana">Ana</w-chip>
+  `);
+  await recordEvents(page, '#chip', ['change', 'close']);
+
+  await expect(page.locator('#chip .w-chip')).toHaveJSProperty('localName', 'span');
+  await expect(page.locator('#chip .w-chip__action .w-chip__close')).toHaveCount(0);
+  await expect(page.locator('#chip button button, #chip a button')).toHaveCount(0);
+
+  await page.locator('#before').focus();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Ana', exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  const close = page.getByRole('button', { name: 'Remove Ana' });
+  await expect(close).toBeFocused();
+  await expect(close).toHaveAttribute('type', 'button');
+
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#chip')).toHaveAttribute('hidden', '');
+  const events = await readEvents(page, '#chip');
+  expect(events.map((event) => event.type)).toEqual(['close']);
+});
+
+test('w-chip disabled closable chip disables its close button', async ({ mount, page }) => {
+  await mount('<w-chip id="chip" closable disabled>Off</w-chip>');
+  await expect(page.locator('#chip .w-chip__close')).toBeDisabled();
+  await expect(page.locator('#chip .w-chip__action')).toBeDisabled();
+});
+
+test('w-chip static renders a non-interactive label that never toggles', async ({ mount, page }) => {
+  await mount(`
+    <button id="before">Before</button>
+    <w-chip id="chip" static value="draft" text="Draft"></w-chip>
+    <button id="after">After</button>
+  `);
+  await recordEvents(page, '#chip', ['change']);
+  const chip = page.locator('#chip .w-chip');
+
+  await expect(chip).toHaveJSProperty('localName', 'span');
+  await expect(chip).toHaveClass(/w-chip--static/);
+  await expect(chip).not.toHaveAttribute('aria-pressed', /.*/);
+  await expect(chip).not.toHaveAttribute('role', /.*/);
+  await expect(page.locator('#chip .w-chip__overlay')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Draft' })).toHaveCount(0);
+
+  await chip.click();
+  await expect(page.locator('#chip')).not.toHaveAttribute('selected', /.*/);
+  await page.locator('#before').focus();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#after')).toBeFocused();
+  expect(await readEvents(page, '#chip')).toEqual([]);
+});
+
+test('w-chip static closable keeps one reachable close button', async ({ mount, page }) => {
+  await mount('<w-chip id="chip" static removable close-label="Remove draft">Draft</w-chip>');
+  await expect(page.locator('#chip .w-chip__action')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Remove draft' }).focus();
+  await page.keyboard.press(' ');
+  await expect(page.locator('#chip')).toHaveCount(0);
+});
+
+test('w-chip forwards host aria to the inner button and acts as a popup trigger', async ({ mount, page }) => {
+  await mount(`
+    <w-chip id="chip" value="ana" aria-label="Ana Lopez, options" aria-haspopup="menu"
+      aria-expanded="false" aria-controls="ana-menu" aria-describedby="hint" closable close-label="Remove Ana">Ana</w-chip>
+    <p id="hint">Recipient</p>
+  `);
+  await recordEvents(page, '#chip', ['change']);
+  const trigger = page.getByRole('button', { name: 'Ana Lopez, options' });
+
+  await expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+  await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  await expect(trigger).toHaveAttribute('aria-controls', 'ana-menu');
+  await expect(trigger).toHaveAttribute('aria-describedby', 'hint');
+  await expect(trigger).not.toHaveAttribute('aria-pressed', /.*/);
+
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#chip')).not.toHaveAttribute('selected', /.*/);
+  expect(await readEvents(page, '#chip')).toEqual([]);
+
+  // The host state is patched in place, so focus stays on the trigger.
+  await page.locator('#chip').evaluate((el) => el.setAttribute('aria-expanded', 'true'));
+  await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  await expect(trigger).toBeFocused();
+  await page.locator('#chip').evaluate((el) => el.removeAttribute('aria-expanded'));
+  await expect(trigger).not.toHaveAttribute('aria-expanded', /.*/);
+});
+
+test('w-chip link forwards aria-current and does not toggle on Space', async ({ mount, page }) => {
+  await mount('<w-chip id="chip" href="#here" aria-current="page">Here</w-chip>');
+  const link = page.getByRole('link', { name: 'Here' });
+  await expect(link).toHaveAttribute('aria-current', 'page');
+  await expect(link).not.toHaveAttribute('aria-pressed', /.*/);
+  await link.focus();
+  await page.keyboard.press(' ');
+  await expect(page.locator('#chip')).not.toHaveAttribute('selected', /.*/);
+});
+
+test('w-chip icons resolve through WIcons and honour icon-set', async ({ mount, page }) => {
+  await page.evaluate(() => {
+    window.WIcons.set('chip-test', { type: 'class', prefix: 'chip-test-' });
+  });
+  await mount(`
+    <w-chip id="text" prepend-icon="#" append-icon="+">Text set</w-chip>
+    <w-chip id="classed" icon-set="chip-test" prepend-icon="mail" closable close-icon="x">Class set</w-chip>
+  `);
+
+  await expect(page.locator('#text .w-chip__prepend .w-chip__icon')).toHaveText('#');
+  await expect(page.locator('#text .w-chip__prepend .w-chip__icon')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#text .w-chip__append .w-chip__icon')).toHaveText('+');
+
+  const icon = page.locator('#classed .w-chip__prepend .w-chip__icon');
+  await expect(icon).toHaveClass(/chip-test- mail/);
+  await expect(icon).toHaveText('');
+  await expect(page.locator('#classed .w-chip__close .w-chip__icon')).toHaveClass(/chip-test- x/);
 });
 
 test('w-chip space on the close affordance removes a removable chip', async ({ mount, page }) => {

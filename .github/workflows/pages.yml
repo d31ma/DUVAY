@@ -32,7 +32,7 @@ jobs:
           github.event.workflow_run.head_branch == 'main'
         )
       }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
       contents: write
@@ -230,7 +230,7 @@ jobs:
   deploy:
     name: Deploy asset site
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       pages: write

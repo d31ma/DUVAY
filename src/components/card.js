@@ -21,6 +21,9 @@
  *
  * Slots:
  *   default, image, item, prepend, title, subtitle, append, text, actions, header, footer, loader
+ *   Plain default children (not w-card-* parts) render in .w-card-body and stay
+ *   there across any number of re-renders; slot="..." on content nested inside
+ *   another w-* component belongs to that component, not to the card.
  */
 
 class WCard extends WElement {
@@ -252,7 +255,8 @@ class WCard extends WElement {
   }
 
   _hasSlot(name) {
-    return !!this.querySelector('[slot="' + name + '"]');
+    const nodes = Array.from(this.querySelectorAll('[slot="' + name + '"]'));
+    return nodes.some((node) => this._ownerComponent(node) === this);
   }
 
   _hasDefaultSlot() {
@@ -269,11 +273,26 @@ class WCard extends WElement {
   }
 
   _defaultNodes() {
-    const currentSlot = this.querySelector('slot:not([name])');
+    const currentSlot = this._ownDefaultSlot();
     if (currentSlot) return Array.from(currentSlot.childNodes);
     return Array.from(this.childNodes).filter((node) => {
       return !(node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('slot'));
     });
+  }
+
+  // A nested component (e.g. a prepend w-avatar) renders its own unnamed
+  // <slot>; only the card's own default slot holds the authored children.
+  _ownDefaultSlot() {
+    const slots = Array.from(this.querySelectorAll('slot:not([name])'));
+    return slots.find((slot) => this._ownerComponent(slot) === this) || null;
+  }
+
+  _ownerComponent(node) {
+    let parent = node.parentElement;
+    while (parent && parent !== this && parent.tagName.toLowerCase().indexOf('w-') !== 0) {
+      parent = parent.parentElement;
+    }
+    return parent;
   }
 
   _hasMeaningfulNode(node) {

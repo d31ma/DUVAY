@@ -208,3 +208,12 @@ test('w-snackbar close-on-back dismisses when the browser goes back', async ({ m
   await page.evaluate(() => history.back());
   await expect(page.locator('#s')).not.toHaveAttribute('open', '');
 });
+
+test('w-snackbar live="assertive" is an alert and prepend-icon uses the registry', async ({ mount, page }) => {
+  await page.evaluate(() => window.WIcons.set('mdi', { type: 'class', prefix: 'mdi' }));
+  await mount('<w-snackbar id="error" open timeout="-1" live="assertive" prepend-icon="mdi:alert" text="Send failed"></w-snackbar><w-snackbar id="info" open timeout="-1" text="Sent"></w-snackbar>');
+
+  await expect(page.locator('#error [role="alert"]')).toHaveAttribute('aria-live', 'assertive');
+  await expect(page.locator('#error .w-snackbar-icon .mdi.alert')).toHaveCount(1);
+  await expect(page.locator('#info [role="status"]')).toHaveAttribute('aria-live', 'polite');
+});

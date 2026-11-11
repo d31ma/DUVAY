@@ -2,8 +2,11 @@ import { wSetValue } from './utils.js';
 /* <w-otp> — one-time-code input, mirroring Vuetify's <v-otp-input>.
  *
  * Renders one box per character for verification codes. Supports paste-to-fill
- * (a full code pasted into any box distributes across the row), arrow-key
- * navigation, select-on-focus for quick overwrite, and digit/password typing.
+ * (a full code pasted into any box distributes across the row), autofill (a
+ * whole code that a password manager or the one-time-code suggestion writes
+ * into one box spreads the same way, with the usual input and change events),
+ * arrow-key navigation, select-on-focus for quick overwrite, and digit/password
+ * typing.
  *
  * Attributes:
  *   length       - number of boxes (default 6)
@@ -96,7 +99,6 @@ export class WOtp extends WElement {
       type: this.type === 'password' || this.masked ? 'password' : 'text',
       inputmode: this.type === 'number' ? 'numeric' : 'text',
       autocomplete: 'one-time-code',
-      maxlength: '1',
       value: char,
       placeholder: this.placeholder,
       disabled: this.disabled,
@@ -132,9 +134,7 @@ export class WOtp extends WElement {
 
       input.addEventListener('input', (event) => {
         event.stopPropagation();
-        input.value = this._filter(input.value).slice(-1);
-        this._sync(inputs);
-        if (input.value && inputs[index + 1]) inputs[index + 1].focus();
+        this._fillFrom(inputs, index, this._enteredText(event, input));
       });
 
       input.addEventListener('keydown', (event) => {
@@ -153,12 +153,7 @@ export class WOtp extends WElement {
       input.addEventListener('paste', (event) => {
         event.preventDefault();
         const text = this._filter((event.clipboardData && event.clipboardData.getData('text')) || '');
-        const chars = text.split('');
-        for (let i = index, j = 0; i < inputs.length && j < chars.length; i += 1, j += 1) {
-          inputs[i].value = chars[j];
-        }
-        this._sync(inputs);
-        inputs[Math.min(index + chars.length, inputs.length - 1)].focus();
+        if (text) this._fillFrom(inputs, index, text);
       });
     });
   }
@@ -178,6 +173,33 @@ export class WOtp extends WElement {
     if (!this._bool('autofocus') || this.__autofocused || !inputs.length) return;
     this.__autofocused = true;
     inputs[0].focus();
+  }
+
+  // A typed key counts as the one character it inserted, so it overwrites the
+  // box wherever the caret was. Anything else (autofill, a password manager,
+  // a dropped or replaced value) is read from the box as a whole.
+  _enteredText(event, input) {
+    const typed = event.inputType === 'insertText' ? this._filter(event.data || '') : '';
+    return typed || this._filter(input.value);
+  }
+
+  // One character stays in its box; a longer text spreads across this box and
+  // the ones after it, then focus moves to the box after the last character.
+  _fillFrom(inputs, index, text) {
+    if (text.length <= 1) {
+      this._fillOne(inputs, index, text);
+      return;
+    }
+    const chars = text.split('').slice(0, inputs.length - index);
+    chars.forEach((char, offset) => { inputs[index + offset].value = char; });
+    this._sync(inputs);
+    inputs[Math.min(index + chars.length, inputs.length - 1)].focus();
+  }
+
+  _fillOne(inputs, index, char) {
+    inputs[index].value = char;
+    this._sync(inputs);
+    if (char && inputs[index + 1]) inputs[index + 1].focus();
   }
 
   _sync(inputs) {

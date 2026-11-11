@@ -343,3 +343,77 @@ test('w-dialog retain-focus and capture-focus can release the Tab trap', async (
   await page.keyboard.press('Tab');
   await expect(page.locator('#later')).toBeFocused();
 });
+
+test('w-dialog moves title to heading, so the host shows no tooltip, and keeps it across re-renders', async ({ mount, page }) => {
+  await mount(`<w-dialog id="dialog" title="Confirm" open hide-close>Delete the file?</w-dialog>`);
+
+  const host = page.locator('#dialog');
+  await expect(page.locator('#dialog .w-dialog-title')).toHaveText('Confirm');
+  await expect(host).not.toHaveAttribute('title', /.*/);
+  await expect(host).toHaveAttribute('heading', 'Confirm');
+  expect(await host.evaluate((el) => el.title)).toBe('Confirm');
+
+  await host.evaluate((el) => el.setAttribute('width', '400'));
+  await expect(page.locator('#dialog .w-dialog-title')).toHaveText('Confirm');
+
+  await host.evaluate((el) => { el.title = 'Renamed'; });
+  await expect(page.locator('#dialog .w-dialog-title')).toHaveText('Renamed');
+  await host.evaluate((el) => el.setAttribute('title', 'Again'));
+  await expect(page.locator('#dialog .w-dialog-title')).toHaveText('Again');
+  await expect(host).not.toHaveAttribute('title', /.*/);
+  await expect(page.locator('#dialog [role="dialog"]')).toHaveAccessibleName('Again');
+});
+
+test('w-dialog heading-level sets the title level and defaults to 3', async ({ mount, page }) => {
+  await mount(`
+    <w-dialog id="plain" heading="Plain" open hide-close>Body</w-dialog>
+    <w-dialog id="two" heading="Two" heading-level="2" hide-close>Body</w-dialog>
+    <w-dialog id="bad" heading="Bad" heading-level="9" hide-close>Body</w-dialog>
+  `);
+
+  await expect(page.locator('#plain h3.w-dialog-title')).toHaveText('Plain');
+  await expect(page.locator('#two h2.w-dialog-title')).toHaveText('Two');
+  await expect(page.locator('#bad h3.w-dialog-title')).toHaveText('Bad');
+});
+
+test('w-dialog is described by its body, or by the host aria-describedby', async ({ mount, page }) => {
+  await mount(`
+    <p id="note">Outside note</p>
+    <w-dialog id="body" heading="Body" open hide-close>Delete the file?</w-dialog>
+    <w-dialog id="own" heading="Own" aria-describedby="note" hide-close>Body</w-dialog>
+    <w-dialog id="off" heading="Off" aria-describedby="" hide-close>Body</w-dialog>
+    <w-dialog id="empty" heading="Empty" hide-close></w-dialog>
+  `);
+
+  await expect(page.locator('#body [role="dialog"]')).toHaveAccessibleDescription('Delete the file?');
+  await expect(page.locator('#own [role="dialog"]')).toHaveAttribute('aria-describedby', 'note');
+  await expect(page.locator('#off [role="dialog"]')).not.toHaveAttribute('aria-describedby', /.*/);
+  await expect(page.locator('#empty [role="dialog"]')).not.toHaveAttribute('aria-describedby', /.*/);
+});
+
+test('w-dialog sheet="mobile" docks to the bottom on phones and stays a modal dialog', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await mount(`
+    <button id="before">Before</button>
+    <w-dialog id="dialog" heading="Sheet" sheet="mobile" open>
+      <button id="inside">Inside</button>
+    </w-dialog>
+  `);
+
+  const wrapper = page.locator('#dialog .w-dialog-wrapper');
+  await expect(wrapper).toHaveClass(/w-dialog-wrapper--sheet-mobile/);
+  await expect(wrapper).toHaveAttribute('role', 'dialog');
+  await expect(wrapper).toHaveAttribute('aria-modal', 'true');
+  await expect.poll(() => page.locator('#dialog .w-dialog').evaluate((el) => {
+    const box = el.getBoundingClientRect();
+    return [Math.round(box.width), Math.round(box.bottom)];
+  })).toEqual([390, 800]);
+
+  await page.locator('#inside').focus();
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Tab');
+  await expect.poll(() => page.evaluate(() => document.activeElement.closest('w-dialog')?.id)).toBe('dialog');
+
+  await page.setViewportSize({ width: 1024, height: 800 });
+  await expect.poll(() => page.locator('#dialog .w-dialog').evaluate((el) => Math.round(el.getBoundingClientRect().width))).toBe(512);
+});

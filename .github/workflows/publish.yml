@@ -26,7 +26,7 @@ concurrency:
 jobs:
   preflight:
     name: Validate release source
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     outputs:
       source_sha: ${{ steps.release.outputs.source_sha }}
@@ -110,7 +110,7 @@ jobs:
     name: Tooling unit tests
     if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
 
     steps:
@@ -143,7 +143,7 @@ jobs:
     name: Component tests (${{ matrix.shard }}/4)
     if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -180,7 +180,7 @@ jobs:
     name: Build documentation
     if: needs.preflight.outputs.should_publish == 'true'
     needs: preflight
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
 
     steps:
@@ -229,7 +229,7 @@ jobs:
   tag:
     name: Tag published source
     needs: [preflight, quality, test, docs]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write
@@ -271,7 +271,7 @@ jobs:
   github-release:
     name: Create or repair GitHub release
     needs: [preflight, tag]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write

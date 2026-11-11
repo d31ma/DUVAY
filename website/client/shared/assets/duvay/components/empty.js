@@ -14,6 +14,10 @@
  *   action-text  - label for a built-in action button
  *   href         - turns the action button into a link
  *   text-width   - max width (CSS length / number) of the title + text block
+ *   heading-level - 1-6 (default 2): the title is a heading at this level;
+ *                  "none" keeps it a plain paragraph. A slotted title that is
+ *                  already a heading element keeps its own level.
+ *   icon-set     - icon registry set used to resolve `icon` (see WIcons)
  *
  * Slots:
  *   media   - custom icon / illustration (also the default slot)
@@ -27,9 +31,11 @@
 
 const W_EMPTY_DEFAULT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg>`;
 
+import WIcons from '../icons.js';
+
 class WEmpty extends WElement {
 
-  static attrs = ['headline', 'title', 'text', 'subtitle', 'icon', 'image', 'size', 'color', 'bg-color', 'justify', 'action-text', 'href', 'text-width'];
+  static attrs = ['headline', 'title', 'text', 'subtitle', 'icon', 'image', 'size', 'color', 'bg-color', 'justify', 'action-text', 'href', 'text-width', 'heading-level', 'icon-set'];
   static justify = ['start', 'center', 'end'];
   static tokens = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info', 'surface'];
 
@@ -62,7 +68,7 @@ class WEmpty extends WElement {
   _media() {
     if (this._hasSlot('media')) return '<div class="w-empty-media"><slot name="media"></slot></div>';
     if (this.image) return `<div class="w-empty-media"><img class="w-empty-image" src="${this._esc(this.image)}" alt=""></div>`;
-    if (this.icon) return `<div class="w-empty-media w-empty-icon" aria-hidden="true">${this._esc(this.icon)}</div>`;
+    if (this.icon) return `<div class="w-empty-media w-empty-icon" aria-hidden="true">${this._iconMarkup()}</div>`;
     if (this._hasDefaultSlot()) return '<div class="w-empty-media"><slot></slot></div>';
     return `<div class="w-empty-media" aria-hidden="true">${W_EMPTY_DEFAULT_ICON}</div>`;
   }
@@ -78,11 +84,28 @@ class WEmpty extends WElement {
     const hasText = this._hasSlot('text') || this.text;
     if (!hasTitle && !hasText) return '';
     let html = '<div class="w-empty-content">';
-    if (this._hasSlot('title')) html += '<p class="w-empty-title"><slot name="title"></slot></p>';
-    else if (this.title) html += `<p class="w-empty-title">${this._esc(this.title)}</p>`;
+    if (this._hasSlot('title')) html += `<p class="w-empty-title"${this._titleRole()}><slot name="title"></slot></p>`;
+    else if (this.title) html += `<p class="w-empty-title"${this._titleRole()}>${this._esc(this.title)}</p>`;
     if (this._hasSlot('text')) html += '<p class="w-empty-subtitle"><slot name="text"></slot></p>';
     else if (this.text) html += `<p class="w-empty-subtitle">${this._esc(this.text)}</p>`;
     return html + '</div>';
+  }
+
+  _iconMarkup() {
+    const iconSet = this.getAttribute('icon-set') || '';
+    return WIcons.resolve(iconSet ? `${iconSet}:${this.icon}` : this.icon, { iconClass: 'w-icon' });
+  }
+
+  _titleRole() {
+    const level = this._attr('heading-level', '2');
+    if (level === 'none' || this._slottedHeading()) return '';
+    const value = Math.min(6, Math.max(1, parseInt(level, 10) || 2));
+    return ` role="heading" aria-level="${value}"`;
+  }
+
+  _slottedHeading() {
+    const title = this.querySelector('[slot="title"]');
+    return !!title && /^H[1-6]$/.test(title.tagName);
   }
 
   _actions() {

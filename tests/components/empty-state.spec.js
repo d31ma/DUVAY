@@ -31,3 +31,18 @@ test('w-empty-state is an alias with the same behaviour and legacy subtitle', as
   await expect(page.locator('#e .w-empty-title')).toHaveText('None');
   await expect(page.locator('#e .w-empty-subtitle')).toHaveText('Empty inbox');
 });
+
+test('w-empty-state title is a heading and icon uses the registry', async ({ mount, page }) => {
+  await page.evaluate(() => window.WIcons.set('mdi', { type: 'class', prefix: 'mdi' }));
+  await mount(`<w-empty-state id="a" title="No mail" icon="mdi:inbox"></w-empty-state>
+    <w-empty-state id="b" title="Level three" heading-level="3"></w-empty-state>
+    <w-empty-state id="c" title="Plain" heading-level="none"></w-empty-state>
+    <w-empty-state id="d"><h4 slot="title">Own heading</h4></w-empty-state>`);
+
+  await expect(page.getByRole('heading', { name: 'No mail', level: 2 })).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Level three', level: 3 })).toHaveCount(1);
+  await expect(page.locator('#c .w-empty-title')).not.toHaveAttribute('role', /./);
+  await expect(page.locator('#d .w-empty-title')).not.toHaveAttribute('role', /./);
+  await expect(page.getByRole('heading', { name: 'Own heading', level: 4 })).toHaveCount(1);
+  await expect(page.locator('#a .w-empty-icon .mdi.inbox')).toHaveCount(1);
+});

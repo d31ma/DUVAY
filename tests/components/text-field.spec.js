@@ -330,3 +330,76 @@ test('w-text-field focus() moves focus into the control', async ({ mount, page }
   await page.locator('#tf').evaluate((el) => el.focus());
   await expect(page.locator('#tf .w-text-field-input')).toBeFocused();
 });
+
+test('w-text-field passes inputmode and enterkeyhint to the input', async ({ mount, page }) => {
+  await mount('<w-text-field id="tf" label="Amount" inputmode="decimal" enterkeyhint="done"></w-text-field>');
+  const input = page.locator('#tf input');
+
+  await expect(input).toHaveAttribute('inputmode', 'decimal');
+  await expect(input).toHaveAttribute('enterkeyhint', 'done');
+});
+
+test('w-text-field joins a host aria-describedby with its own details row', async ({ mount, page }) => {
+  await mount(`<p id="note">Shown on the invoice.</p>
+    <w-text-field id="plain" label="Reference" aria-describedby="note"></w-text-field>
+    <w-text-field id="hinted" label="Reference" hint="Up to 20 characters" aria-describedby="note"></w-text-field>`);
+
+  await expect(page.locator('#plain input')).toHaveAttribute('aria-describedby', 'note');
+  const detailsId = await page.locator('#hinted .w-text-field-details').getAttribute('id');
+  await expect(page.locator('#hinted input')).toHaveAttribute('aria-describedby', `note ${detailsId}`);
+  await expect(page.locator('#hinted input')).toHaveAccessibleDescription('Shown on the invoice. Up to 20 characters');
+});
+
+test('w-text-field forwards host aria naming to the input', async ({ mount, page }) => {
+  await mount(`<span id="heading">Billing</span>
+    <w-text-field id="named" label="Amount" aria-label="Amount in euros"></w-text-field>
+    <w-text-field id="labelled" aria-labelledby="heading" aria-controls="heading"></w-text-field>`);
+
+  await expect(page.locator('#named input')).toHaveAccessibleName('Amount in euros');
+  await expect(page.locator('#labelled input')).toHaveAccessibleName('Billing');
+  await expect(page.locator('#labelled input')).toHaveAttribute('aria-controls', 'heading');
+});
+
+test('w-text-field clear button is reachable by keyboard and named after the label', async ({ mount, page }) => {
+  await mount('<w-text-field id="tf" label="Search" value="cats" clearable></w-text-field>');
+  await recordEvents(page, '#tf', ['clear']);
+  const clearButton = page.locator('#tf .w-text-field-clear');
+
+  await expect(clearButton).not.toHaveAttribute('tabindex', /.*/);
+  await expect(clearButton).toHaveAccessibleName('Clear Search');
+  await page.locator('#tf input').focus();
+  await page.keyboard.press('Tab');
+  await expect(clearButton).toBeFocused();
+  await page.keyboard.press('Enter');
+
+  await expect(page.locator('#tf input')).toHaveValue('');
+  await expect(page.locator('#tf input')).toBeFocused();
+  await expect(clearButton).toBeDisabled();
+  expect(await readEvents(page, '#tf')).toEqual([{ type: 'clear', detail: { name: '' } }]);
+});
+
+test('w-text-field clear button leaves the tab order while there is nothing to clear', async ({ mount, page }) => {
+  await mount('<w-text-field id="tf" label="Search" clearable></w-text-field>');
+  const clearButton = page.locator('#tf .w-text-field-clear');
+
+  await expect(clearButton).toBeDisabled();
+  await page.locator('#tf input').fill('dogs');
+
+  await expect(clearButton).toBeEnabled();
+});
+
+test('w-text-field read-only value has no active clear button', async ({ mount, page }) => {
+  await mount('<w-text-field id="tf" label="Search" value="cats" clearable readonly></w-text-field>');
+
+  await expect(page.locator('#tf .w-text-field-clear')).toBeDisabled();
+});
+
+test('w-textarea rows="1" auto-grow wraps a long value that w-text-field cannot', async ({ mount, page }) => {
+  await mount(`<div style="width: 12rem"><w-textarea id="ta" label="Subject" rows="1" auto-grow
+    value="A long subject line that has to wrap onto more than one line"></w-textarea></div>`);
+  const control = page.locator('#ta textarea');
+
+  await expect(control).toHaveAttribute('rows', '1');
+  expect(await control.evaluate((area) => area.scrollHeight <= area.clientHeight + 1)).toBe(true);
+  expect(await control.evaluate((area) => area.clientHeight > parseFloat(getComputedStyle(area).lineHeight) * 1.5)).toBe(true);
+});

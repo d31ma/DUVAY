@@ -13,7 +13,15 @@
  *   badge-content   - text inside the badge
  *   badge-location  - top-end | top-start | bottom-end | bottom-start
  *   badge-floating  - offset badge outside the avatar edge
- *   status          - online | away | busy legacy status indicator
+ *   status          - presence dot: online | away | idle | busy | dnd (do not
+ *                     disturb) | offline. The dot has its own shape per state
+ *                     (idle and offline are rings, dnd has a bar), so colour is
+ *                     not the only cue.
+ *   status-label    - overrides the spoken presence ("Online", "Away", ...)
+ *
+ * Accessible name: the avatar is role="img" named by `alt`. With `status`
+ * the presence is added ("Ana Lee, Online") and the dot itself is hidden
+ * from assistive technology, so it is announced once.
  *   start/end       - inline spacing helpers
  *
  * Slots:
@@ -40,6 +48,7 @@ class WAvatar extends WElement {
     'badge-floating',
     'badge-dot',
     'status',
+    'status-label',
     'start',
     'end',
     'rounded',
@@ -59,6 +68,14 @@ class WAvatar extends WElement {
 
   static sizes = ['x-small', 'small', 'default', 'large', 'x-large'];
   static variants = ['flat', 'tonal', 'outlined', 'text', 'plain', 'elevated'];
+  static statuses = {
+    online: { color: 'success', label: 'Online' },
+    away: { color: 'warning', label: 'Away' },
+    idle: { color: 'warning', label: 'Idle' },
+    busy: { color: 'error', label: 'Busy' },
+    dnd: { color: 'error', label: 'Do not disturb' },
+    offline: { color: 'secondary', label: 'Offline' },
+  };
   static colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'danger', 'info'];
   static badgeLocations = {
     'top-end': 'top-end',
@@ -87,6 +104,7 @@ class WAvatar extends WElement {
   get badgeContent() { return this._attr('badge-content', ''); }
   get badgeLocation(){ return this._attr('badge-location', 'top-end'); }
   get status()       { return this._attr('status', ''); }
+  get statusLabel()  { return this._attr('status-label', this._statusInfo()?.label || this.status); }
   get start()        { return this._bool('start'); }
   get end()          { return this._bool('end'); }
 
@@ -109,7 +127,7 @@ class WAvatar extends WElement {
     ].filter(Boolean).join(' ');
     const style = customSize ? ` style="--w-avatar-size: ${customSize}"` : '';
     const content = this._contentTemplate();
-    const avatar = `<span class="${classes}" role="img" aria-label="${this._esc(this.alt)}"${style}>${content}<span class="w-avatar-underlay" aria-hidden="true"></span></span>`;
+    const avatar = `<span class="${classes}" role="img" aria-label="${this._esc(this._accessibleName())}"${style}>${content}<span class="w-avatar-underlay" aria-hidden="true"></span></span>`;
 
     if (!this._hasBadge()) return avatar;
 
@@ -125,13 +143,36 @@ class WAvatar extends WElement {
     return '<slot></slot>';
   }
 
+  _accessibleName() {
+    return this._isStatusDot() ? this.alt + ', ' + this.statusLabel : this.alt;
+  }
+
+  _statusInfo() {
+    return this.constructor.statuses[String(this.status).toLowerCase()] || null;
+  }
+
+  // A presence dot: `status` with no badge text or badge slot of its own.
+  _isStatusDot() {
+    return !!this.status && !this.badgeContent && !this._hasSlot('badge');
+  }
+
   _badgeTemplate() {
     const location = this._badgeLocation();
     const dot = this._bool('badge-dot') || (!this.badgeContent && !this._hasSlot('badge'));
     const dotClass = dot ? ' w-avatar-badge--dot' : '';
     const content = this._hasSlot('badge') ? '<slot name="badge"></slot>' : this._esc(this.badgeContent);
 
-    return `<span class="w-avatar-badge w-avatar-badge--${location} w-avatar-badge--${this.badgeColor}${dotClass}" aria-label="${this._esc(this.badgeContent || this.badgeColor + ' badge')}">${content}</span>`;
+    return `<span class="w-avatar-badge w-avatar-badge--${location} w-avatar-badge--${this.badgeColor}${dotClass}${this._statusClass()}"${this._badgeLabel()}>${content}</span>`;
+  }
+
+  _statusClass() {
+    return this._statusInfo() ? ' w-avatar-badge--status-' + String(this.status).toLowerCase() : '';
+  }
+
+  // The presence is already part of the avatar's name, so its dot is hidden.
+  _badgeLabel() {
+    if (this._isStatusDot()) return ' aria-hidden="true"';
+    return ` aria-label="${this._esc(this.badgeContent || this.badgeColor + ' badge')}"`;
   }
 
   _hasBadge() {
@@ -149,10 +190,7 @@ class WAvatar extends WElement {
   _badgeAttrColor() {
     const badge = this.badge;
     if (badge && badge !== '' && badge !== 'true') return badge;
-    if (this.status === 'online') return 'success';
-    if (this.status === 'away') return 'warning';
-    if (this.status === 'busy') return 'error';
-    return 'primary';
+    return this._statusInfo()?.color || 'primary';
   }
 
   _sizeClass() {

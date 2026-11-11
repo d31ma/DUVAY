@@ -10,6 +10,15 @@
  *   height      - CSS height of the loader root
  *
  *   variant / lines - legacy API (text | avatar | block + line count)
+ *   announce    - opt-in: adds one polite status message (`loading-text`)
+ *   loading-text - the status message (default "Loading...")
+ *
+ * Accessibility:
+ *   The bones are decoration, so they are aria-hidden and are not a live
+ *   region: ten loaders on a page must not make ten announcements. The page
+ *   should own one "Loading..." status (for example `aria-busy` on the region
+ *   being filled plus one role="status" message). Use `announce` on a single
+ *   loader when it is the only thing that can say so.
  *
  * Slots:
  *   default - real content; shown instead of the skeleton when not loading
@@ -54,7 +63,7 @@ const SKELETON_LIST = {
 
 class WSkeleton extends WElement {
 
-  static attrs = ['type', 'boilerplate', 'loading', 'color', 'width', 'height', 'variant', 'lines'];
+  static attrs = ['type', 'boilerplate', 'loading', 'color', 'width', 'height', 'variant', 'lines', 'announce', 'loading-text'];
   static tokens = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info'];
 
   get type()  { return this._attr('type', ''); }
@@ -77,7 +86,20 @@ class WSkeleton extends WElement {
     const style = styles.length ? ` style="${styles.join('; ')}"` : '';
 
     const cls = 'w-skeleton-loader' + (this._bool('boilerplate') ? ' w-skeleton--boilerplate' : '');
-    return `<div class="${cls}" aria-busy="true" aria-live="polite"${style}>${bones}</div>`;
+    return `<div class="${cls}" aria-hidden="true"${style}>${bones}</div>${this._statusMarkup()}`;
+  }
+
+  /* The status starts empty and gets its text after render: a live region
+   * that already holds its text when inserted is not reliably announced. */
+  _statusMarkup() {
+    return this._bool('announce') ? '<span class="w-sr-only" role="status"></span>' : '';
+  }
+
+  _events() {
+    const status = this._q(':scope > [role="status"]');
+    if (!status) return;
+    const text = this._attr('loading-text', 'Loading...');
+    setTimeout(() => { status.textContent = text; }, 0);
   }
 
   /* ── Bone resolution ──────────────────────────────────────────────────── */

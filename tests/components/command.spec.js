@@ -113,3 +113,83 @@ test('w-command restricts matching to filter-keys', async ({ mount, page }) => {
   await page.locator('#cmd .w-command-input').fill('zulu');
   await expect(page.locator('#cmd .w-command-empty')).toBeVisible();
 });
+
+test('w-command-item renders avatar, tag and snippet while the option name stays its title', async ({ mount, page }) => {
+  await mount(`
+    <w-command id="cmd">
+      <w-command-item value="ada" prepend-avatar="data:image/gif;base64,R0lGODlhAQABAAAAACw=" subtitle="Engineer" snippet="...wrote the first program..." tag="New" tag-color="success" shortcut="A">Ada Lovelace</w-command-item>
+      <w-command-item value="plain">Plain item</w-command-item>
+    </w-command>
+  `);
+  const option = page.locator('#cmd w-command-item[value="ada"] .w-command-item');
+  await expect(option).toHaveAccessibleName('Ada Lovelace');
+  await expect(option).toHaveAccessibleDescription('Engineer ...wrote the first program... New A');
+  await expect(option.locator('.w-command-item-avatar')).toHaveAttribute('aria-hidden', 'true');
+  await expect(option.locator('.w-command-item-avatar w-avatar')).toHaveAttribute('image', /^data:image/);
+  await expect(option.locator('.w-command-item-tag')).toHaveClass(/w-badge-success/);
+  await expect(option.locator('.w-command-item-snippet')).toBeVisible();
+
+  const plain = page.locator('#cmd w-command-item[value="plain"] .w-command-item');
+  await expect(plain).toHaveAccessibleName('Plain item');
+  await expect(plain).not.toHaveAttribute('aria-describedby', /.+/);
+});
+
+test('w-command-item prepend and append slots render and survive a re-render', async ({ mount, page }) => {
+  await mount(`
+    <w-command id="cmd">
+      <w-command-item id="row" value="doc">
+        <span slot="prepend" id="lead">#</span>
+        Design doc
+        <span slot="append" id="trail">Shared</span>
+      </w-command-item>
+    </w-command>
+  `);
+  const option = page.locator('#row .w-command-item');
+  await expect(option.locator('.w-command-item-prepend #lead')).toBeVisible();
+  await expect(option.locator('.w-command-item-append #trail')).toBeVisible();
+  await expect(option).toHaveAccessibleName('Design doc');
+  await expect(option).toHaveAccessibleDescription('Shared');
+
+  await page.locator('#row').evaluate((el) => el.setAttribute('tag', 'Draft'));
+  await expect(page.locator('#row .w-command-item-append #trail')).toBeVisible();
+  await expect(page.locator('#row .w-command-item')).toHaveAccessibleDescription('Draft Shared');
+});
+
+test('w-command items array renders rich rows and filters on the snippet', async ({ mount, page }) => {
+  await mount(`
+    <w-command id="cmd"
+      items='[{"title":"Inbox","value":"inbox","prependAvatar":"data:image/gif;base64,R0lGODlhAQABAAAAACw=","tag":"3","snippet":"Lunch on Friday?"},{"title":"Archive","value":"archive","snippet":"Old invoices"}]'></w-command>
+  `);
+  const inbox = page.locator('#cmd w-command-item[value="inbox"]');
+  await expect(inbox).toHaveAttribute('prepend-avatar', /^data:image/);
+  await expect(inbox.locator('.w-command-item')).toHaveAccessibleName('Inbox');
+  await expect(inbox.locator('.w-command-item-tag')).toHaveText('3');
+
+  await page.locator('#cmd .w-command-input').fill('invoices');
+  await expect(inbox).toBeHidden();
+  await expect(page.locator('#cmd w-command-item[value="archive"]')).toBeVisible();
+});
+
+test('w-command filter-keys can target the snippet', async ({ mount, page }) => {
+  await mount(`
+    <w-command id="cmd" filter-keys="title,snippet">
+      <w-command-item value="a" snippet="quarterly report">Alpha</w-command-item>
+      <w-command-item value="b" subtitle="quarterly">Beta</w-command-item>
+    </w-command>
+  `);
+  await page.locator('#cmd .w-command-input').fill('quarterly');
+  await expect(page.locator('#cmd w-command-item[value="a"]')).toBeVisible();
+  await expect(page.locator('#cmd w-command-item[value="b"]')).toBeHidden();
+});
+
+test('w-command-palette-item renders rich JSON rows with a title-only name', async ({ mount, page }) => {
+  await mount(`
+    <div role="listbox" aria-label="Results">
+      <w-command-palette-item id="row" item='{"title":"Settings","value":"settings","subtitle":"App","snippet":"Theme and fonts","tag":"Beta","tagColor":"warning","hotkey":"S"}'></w-command-palette-item>
+    </div>
+  `);
+  const option = page.locator('#row .w-command-item');
+  await expect(option).toHaveAccessibleName('Settings');
+  await expect(option).toHaveAccessibleDescription('App Theme and fonts Beta S');
+  await expect(option.locator('.w-command-item-tag')).toHaveClass(/w-badge-warning/);
+});

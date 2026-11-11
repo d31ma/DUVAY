@@ -241,3 +241,111 @@ test('w-tabs scroll-to-active keeps the active tab in view', async ({ mount, pag
     page.locator('#tabs .w-tabs').evaluate((el) => el.scrollLeft)
   )).toBeGreaterThan(0);
 });
+
+test('w-tabs keeps one roving tab stop and arrows, Home, End move focus', async ({ mount, page }) => {
+  await mount(`
+    <button id="before">Before</button>
+    <w-tabs id="tabs" value="b" aria-label="Mail folders">
+      <w-tab value="a">A</w-tab>
+      <w-tab value="b">B</w-tab>
+      <w-tab value="c" disabled>C</w-tab>
+      <w-tab value="d">D</w-tab>
+    </w-tabs>
+    <button id="after">After</button>
+  `);
+  await expect(page.getByRole('tablist', { name: 'Mail folders' })).toBeVisible();
+  const tab = (name) => page.getByRole('tab', { name, exact: true });
+  await expect(tab('B')).toHaveAttribute('tabindex', '0');
+  await expect(tab('A')).toHaveAttribute('tabindex', '-1');
+  await expect(tab('D')).toHaveAttribute('tabindex', '-1');
+
+  await page.locator('#before').focus();
+  await page.keyboard.press('Tab');
+  await expect(tab('B')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#after')).toBeFocused();
+
+  await tab('B').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(tab('D')).toBeFocused();
+  await expect(page.locator('#tabs')).toHaveAttribute('value', 'd');
+  await expect(tab('D')).toHaveAttribute('tabindex', '0');
+  await expect(tab('B')).toHaveAttribute('tabindex', '-1');
+  await page.keyboard.press('ArrowRight');
+  await expect(tab('A')).toBeFocused();
+  await page.keyboard.press('End');
+  await expect(tab('D')).toBeFocused();
+  await page.keyboard.press('Home');
+  await expect(tab('A')).toBeFocused();
+  await expect(page.locator('#tabs')).toHaveAttribute('value', 'a');
+});
+
+test('w-tabs with nothing selected puts the first enabled tab in the Tab order', async ({ mount, page }) => {
+  await mount(`
+    <w-tabs id="tabs" mandatory="false">
+      <w-tab value="a" disabled>A</w-tab>
+      <w-tab value="b">B</w-tab>
+    </w-tabs>
+  `);
+  await expect(page.getByRole('tab', { name: 'B' })).toHaveAttribute('tabindex', '0');
+});
+
+test('w-tabs multiple moves focus with arrows without changing the selection', async ({ mount, page }) => {
+  await mount(`
+    <button id="before">Before</button>
+    <w-tabs id="tabs" multiple value='["a"]'>
+      <w-tab value="a">A</w-tab>
+      <w-tab value="b">B</w-tab>
+    </w-tabs>
+    <button id="after">After</button>
+  `);
+  const tabB = page.getByRole('tab', { name: 'B' });
+  await page.getByRole('tab', { name: 'A' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(tabB).toBeFocused();
+  await expect(tabB).toHaveAttribute('tabindex', '0');
+  await expect(page.locator('#tabs')).toHaveAttribute('value', '["a"]');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#tabs')).toHaveAttribute('value', '["a","b"]');
+
+  // Leaving the strip returns the tab stop to the first active tab.
+  await page.locator('#after').focus();
+  await expect(page.getByRole('tab', { name: 'A' })).toHaveAttribute('tabindex', '0');
+  await expect(tabB).toHaveAttribute('tabindex', '-1');
+});
+
+test('w-tab forwards aria-controls so a panel can point back with aria-labelledby', async ({ mount, page }) => {
+  await mount(`
+    <w-tabs value="inbox">
+      <w-tab id="tab-inbox" value="inbox" aria-controls="panel-inbox">Inbox</w-tab>
+      <w-tab id="tab-sent" value="sent" aria-controls="panel-sent">Sent</w-tab>
+    </w-tabs>
+    <div id="panel-inbox" role="tabpanel" aria-labelledby="tab-inbox">Inbox list</div>
+  `);
+  await expect(page.getByRole('tab', { name: 'Inbox' })).toHaveAttribute('aria-controls', 'panel-inbox');
+  await expect(page.getByRole('tab', { name: 'Sent' })).toHaveAttribute('aria-controls', 'panel-sent');
+  await expect(page.getByRole('tabpanel', { name: 'Inbox' })).toHaveText('Inbox list');
+});
+
+test('w-tabs link tabs mark the current page and nav renders links in a landmark', async ({ mount, page }) => {
+  await mount(`
+    <w-tabs id="tabs" value="inbox">
+      <w-tab value="inbox" href="#inbox">Inbox</w-tab>
+      <w-tab value="sent" href="#sent">Sent</w-tab>
+    </w-tabs>
+    <w-tabs id="nav" nav value="mail" aria-label="Sections">
+      <w-tab value="mail" href="#mail">Mail</w-tab>
+      <w-tab value="people" href="#people">People</w-tab>
+    </w-tabs>
+  `);
+  await expect(page.getByRole('tab', { name: 'Inbox' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('tab', { name: 'Sent' })).not.toHaveAttribute('aria-current', /.*/);
+
+  const nav = page.getByRole('navigation', { name: 'Sections' });
+  await expect(nav).toBeVisible();
+  await expect(page.locator('#nav [role="tablist"], #nav [role="tab"]')).toHaveCount(0);
+  await expect(nav.getByRole('link', { name: 'Mail' })).toHaveAttribute('aria-current', 'page');
+  await expect(nav.getByRole('link', { name: 'People' })).not.toHaveAttribute('aria-current', /.*/);
+  await expect(nav.getByRole('link', { name: 'People' })).not.toHaveAttribute('tabindex', /.*/);
+  await expect(nav.getByRole('link', { name: 'Mail' })).not.toHaveAttribute('aria-selected', /.*/);
+});

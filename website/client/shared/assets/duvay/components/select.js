@@ -52,6 +52,9 @@
  *   transition          - fade | scale | slide-y | slide-x menu transition
  *   no-auto-scroll      - do not scroll the active item into view
  *   open-text/close-text - aria-label + title while the menu is open / closed
+ *   aria-labelledby / aria-label / aria-describedby - passed to the combobox;
+ *                  aria-labelledby (e.g. the id of a visible label) wins over
+ *                  every generated name
  *   items               - options as CSV or a JSON array (alternative to <w-option>)
  *   item-title/item-value - keys read from object items
  *   return-object       - `change` reports the item object instead of its value
@@ -221,7 +224,7 @@ class WSelect extends WElement {
     'menu', 'menu-icon', 'menu-elevation', 'item-color', 'transition', 'no-auto-scroll',
     'open-text', 'close-text', 'items', 'item-title', 'item-value', 'return-object',
     'search', 'no-filter', 'filter-keys', 'filter-mode', 'hide-selected',
-    'no-data-text', 'hide-no-data'];
+    'no-data-text', 'hide-no-data', 'aria-label', 'aria-labelledby', 'aria-describedby'];
 
   // Keys that open a closed listbox.
   static openKeys = ['Enter', ' ', 'ArrowDown'];
@@ -380,9 +383,9 @@ class WSelect extends WElement {
     const menuText = this._menuText(open);
     const state = this._attrs({
       'aria-disabled': this.disabled ? 'true' : '',
-      'aria-label': menuText || this.label || this.placeholderText || 'Select option',
+      'aria-label': this._accessibleLabel(menuText),
       title: menuText,
-    });
+    }) + this._attrs(this._ariaAttrs(['aria-labelledby', 'aria-describedby']));
 
     return `<div class="w-select w-select-field${classes}" role="combobox" tabindex="${this.disabled ? -1 : 0}"`
       + ` aria-haspopup="listbox" aria-expanded="${open ? 'true' : 'false'}" aria-controls="${listId}"`
@@ -395,6 +398,13 @@ class WSelect extends WElement {
       + this._menuIconHtml()
       + wIconHtml(this, 'append-inner-icon', 'w-field-append-inner')
       + `</div>`;
+  }
+
+  // A host `aria-labelledby` names the combobox by its visible label, so it
+  // wins over every generated name; a host `aria-label` wins over the rest.
+  _accessibleLabel(menuText) {
+    if (this.getAttribute('aria-labelledby')) return '';
+    return this.getAttribute('aria-label') || menuText || this.label || this.placeholderText || 'Select option';
   }
 
   _menuText(open) {
@@ -762,7 +772,7 @@ class WSelect extends WElement {
   _applyMenuText(trigger, open) {
     const text = this._menuText(open);
     if (!text) return;
-    trigger.setAttribute('aria-label', text);
+    if (!this.getAttribute('aria-labelledby')) trigger.setAttribute('aria-label', text);
     trigger.setAttribute('title', text);
   }
 
