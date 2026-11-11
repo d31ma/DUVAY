@@ -116,3 +116,16 @@
 [w-os="material"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
 [w-os="android"] .w-send-status--failed .w-send-status-text,
 [w-os="material"] .w-send-status--failed .w-send-status-text { font-weight: var(--w-font-weight-medium); }
+
+/* Sync status as an M3 banner: taller, medium-weight headline. */
+[w-os="android"] .w-sync-status--bar,
+[w-os="material"] .w-sync-status--bar {
+  min-height: 3.5rem;
+  padding-block: var(--w-space-3);
+  column-gap: var(--w-space-4);
+}
+[w-os="android"] .w-sync-status__state,
+[w-os="material"] .w-sync-status__state {
+  font-weight: var(--w-font-weight-medium);
+  letter-spacing: 0.00714em;
+}

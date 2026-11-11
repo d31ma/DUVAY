@@ -1892,6 +1892,35 @@ export const API_DATA = {
     },
   ],
 
+  '/docs/sync-status': [
+    {
+      tag: 'w-sync-status',
+      attributes: [
+        ['state', 'online | syncing | offline | locked', 'online', 'The connection and copy state.'],
+        ['updated-at', 'ISO 8601 time', '—', 'Last successful sync. Shown with updated-text; left out when empty.'],
+        ['pending', 'number', '0', 'Items waiting to send. Shown with pending-text; left out at 0.'],
+        ['attention', 'number', '0', 'Items that need the user. Shown with attention-text; left out at 0.'],
+        ['variant', 'bar | chip', 'bar', 'A full-width bar, or a small pill for headers.'],
+        ['sticky', 'boolean', 'false', 'Pins the bar to the top of its scroll container.'],
+        ['show-online', 'boolean', 'false', 'Also shows the bar when online with nothing waiting.'],
+        ['icon', 'string | false', 'built-in', 'Replaces the built-in icon; false hides it.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
+        ['offline-text', 'string', 'Offline', 'Words for the offline state.'],
+        ['syncing-text', 'string', 'Updating…', 'Words for the syncing state.'],
+        ['online-text', 'string', 'Up to date', 'Words for the online state.'],
+        ['locked-text', 'string', 'Locked. Sign in to open the copy on this device.', 'Words for the locked state; also announced.'],
+        ['updated-text', 'string with {time}', 'updated {time}', 'Text for the time of the last sync.'],
+        ['pending-text', 'string with {count}', '{count} waiting to send', 'Text for the waiting count.'],
+        ['attention-text', 'string with {count}', 'Needs your attention: {count}', 'Text for the attention count.'],
+        ['back-online-text', 'string', 'Back online', 'Announced when the state leaves offline or locked for online or syncing.'],
+      ],
+      slots: [
+        ['actions', 'The app\'s buttons, for example Sign in or Show.'],
+        ['prepend', 'A custom icon (overrides icon).'],
+      ],
+    },
+  ],
+
   '/docs/skeleton-loaders': [
     {
       tag: 'w-skeleton',

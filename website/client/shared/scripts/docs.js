@@ -253,6 +253,7 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Snackbars', path: '/docs/snackbar', keywords: 'snackbar toast notification action undo' },
       { type: 'item', title: 'Snackbar Queue', path: '/docs/components/snackbar-queue', keywords: 'snackbar queue toast notifications stack' },
       { type: 'item', title: 'Storage meter', path: '/docs/storage-meter', keywords: 'storage meter space used quota disk offline device bytes almost full' },
+      { type: 'item', title: 'Sync status', path: '/docs/sync-status', keywords: 'sync status offline online locked updating waiting to send attention bar chip connection' },
       { type: 'item', title: 'Timelines', path: '/docs/timelines', keywords: 'timeline item dot line history activity events alternating' },
       { type: 'separator' },
       { type: 'subhead', title: 'Images & icons' },

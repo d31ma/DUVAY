@@ -178,6 +178,7 @@ import './components/stepper.js';
 import './components/stepper-vertical.js';
 import './components/stepper-window.js';
 import './components/stepper-window-item.js';
+import './components/sync-status.js';
 import './components/system-bar.js';
 import './components/tab.js';
 import './components/tabs.js';

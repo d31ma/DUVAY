@@ -60594,6 +60594,283 @@ export const GENERATED_API_DATA = {
       ]
     }
   ],
+  "/docs/sync-status": [
+    {
+      "tag": "w-sync-status",
+      "attributes": [
+        [
+          "active-color",
+          "boolean | string",
+          "—",
+          "Sets the active-color option."
+        ],
+        [
+          "attention",
+          "string | number | boolean",
+          "—",
+          "Sets the attention option."
+        ],
+        [
+          "attention-text",
+          "string | number | boolean",
+          "—",
+          "Sets the attention-text option."
+        ],
+        [
+          "back-online-text",
+          "string | number | boolean",
+          "—",
+          "Sets the back-online-text option."
+        ],
+        [
+          "base-color",
+          "string | number | boolean",
+          "—",
+          "Sets the base-color option."
+        ],
+        [
+          "bg-color",
+          "string | number | boolean",
+          "—",
+          "Sets the bg-color option."
+        ],
+        [
+          "border",
+          "boolean | string",
+          "—",
+          "Sets the border option."
+        ],
+        [
+          "class",
+          "string | number | boolean",
+          "—",
+          "Sets the class option."
+        ],
+        [
+          "color",
+          "string | number | boolean",
+          "—",
+          "Sets the color option."
+        ],
+        [
+          "density",
+          "string | number | boolean",
+          "—",
+          "Sets the density option."
+        ],
+        [
+          "disabled",
+          "boolean | string",
+          "—",
+          "Sets the disabled option."
+        ],
+        [
+          "elevation",
+          "string | number | boolean",
+          "—",
+          "Sets the elevation option."
+        ],
+        [
+          "height",
+          "string | number | boolean",
+          "—",
+          "Sets the height option."
+        ],
+        [
+          "hover-elevation",
+          "boolean | string",
+          "—",
+          "Sets the hover-elevation option."
+        ],
+        [
+          "icon",
+          "string | number | boolean",
+          "—",
+          "Sets the icon option."
+        ],
+        [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
+          "id",
+          "string | number | boolean",
+          "—",
+          "Sets the id option."
+        ],
+        [
+          "loading",
+          "boolean | string",
+          "—",
+          "Sets the loading option."
+        ],
+        [
+          "location",
+          "string | number | boolean",
+          "—",
+          "Sets the location option."
+        ],
+        [
+          "locked-text",
+          "string | number | boolean",
+          "—",
+          "Sets the locked-text option."
+        ],
+        [
+          "max-height",
+          "string | number | boolean",
+          "—",
+          "Sets the max-height option."
+        ],
+        [
+          "max-width",
+          "string | number | boolean",
+          "—",
+          "Sets the max-width option."
+        ],
+        [
+          "min-height",
+          "string | number | boolean",
+          "—",
+          "Sets the min-height option."
+        ],
+        [
+          "min-width",
+          "string | number | boolean",
+          "—",
+          "Sets the min-width option."
+        ],
+        [
+          "offline-text",
+          "string | number | boolean",
+          "—",
+          "Sets the offline-text option."
+        ],
+        [
+          "online-text",
+          "string | number | boolean",
+          "—",
+          "Sets the online-text option."
+        ],
+        [
+          "pending",
+          "string | number | boolean",
+          "—",
+          "Sets the pending option."
+        ],
+        [
+          "pending-text",
+          "string | number | boolean",
+          "—",
+          "Sets the pending-text option."
+        ],
+        [
+          "position",
+          "string | number | boolean",
+          "—",
+          "Sets the position option."
+        ],
+        [
+          "readonly",
+          "boolean | string",
+          "—",
+          "Sets the readonly option."
+        ],
+        [
+          "role",
+          "string | number | boolean",
+          "—",
+          "Sets the role option."
+        ],
+        [
+          "rounded",
+          "boolean | string",
+          "—",
+          "Sets the rounded option."
+        ],
+        [
+          "show-online",
+          "string | number | boolean",
+          "—",
+          "Sets the show-online option."
+        ],
+        [
+          "state",
+          "string | number | boolean",
+          "—",
+          "Sets the state option."
+        ],
+        [
+          "sticky",
+          "string | number | boolean",
+          "—",
+          "Sets the sticky option."
+        ],
+        [
+          "style",
+          "string | number | boolean",
+          "—",
+          "Sets the style option."
+        ],
+        [
+          "syncing-text",
+          "string | number | boolean",
+          "—",
+          "Sets the syncing-text option."
+        ],
+        [
+          "tabindex",
+          "string | number | boolean",
+          "—",
+          "Sets the tabindex option."
+        ],
+        [
+          "theme",
+          "string | number | boolean",
+          "—",
+          "Sets the theme option."
+        ],
+        [
+          "tile",
+          "boolean | string",
+          "—",
+          "Sets the tile option."
+        ],
+        [
+          "updated-at",
+          "string | number | boolean",
+          "—",
+          "Sets the updated-at option."
+        ],
+        [
+          "updated-text",
+          "string | number | boolean",
+          "—",
+          "Sets the updated-text option."
+        ],
+        [
+          "variant",
+          "string | number | boolean",
+          "—",
+          "Sets the variant option."
+        ],
+        [
+          "w-theme",
+          "string | number | boolean",
+          "—",
+          "Sets the w-theme option."
+        ],
+        [
+          "width",
+          "string | number | boolean",
+          "—",
+          "Sets the width option."
+        ]
+      ]
+    }
+  ],
   "/docs/tabs": [
     {
       "tag": "w-tab",

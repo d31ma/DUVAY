@@ -109,3 +109,15 @@
  * trailing edge as an AdwActionRow suffix. */
 [w-os="linux"] .w-send-status-actions,
 [w-os="adwaita"] .w-send-status-actions { margin-inline-start: auto; }
+
+/* Sync status as an AdwBanner: centred bold title, pill chip. */
+[w-os="linux"] .w-sync-status--bar,
+[w-os="adwaita"] .w-sync-status--bar { flex-wrap: nowrap; }
+[w-os="linux"] .w-sync-status--bar .w-sync-status__icon,
+[w-os="adwaita"] .w-sync-status--bar .w-sync-status__icon { margin-inline-start: auto; }
+[w-os="linux"] .w-sync-status--bar .w-sync-status__text,
+[w-os="adwaita"] .w-sync-status--bar .w-sync-status__text { flex: 0 1 auto; justify-content: center; text-align: center; margin-inline-end: auto; }
+[w-os="linux"] .w-sync-status__state,
+[w-os="adwaita"] .w-sync-status__state { font-weight: var(--w-font-weight-bold); }
+[w-os="linux"] .w-sync-status--chip,
+[w-os="adwaita"] .w-sync-status--chip { border-radius: var(--w-radius-pill); }

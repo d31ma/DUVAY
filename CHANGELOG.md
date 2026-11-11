@@ -35,6 +35,15 @@
   the subtitle, and a list item with an `id` gives its title the id
   `<id>-title`, so a row's buttons can use `aria-describedby` to say what
   they act on.
+- `w-sync-status` (offline states, slice S1): a bar or chip that shows
+  whether the app is online, syncing, offline or locked, with the time of
+  the last sync and the waiting and attention counts. It is hidden when
+  online with nothing waiting (`show-online` keeps it), every text can be
+  replaced, and its own hidden polite status line announces only state
+  changes, one message per 2 seconds. Docs: `/docs/sync-status`.
+  Each OS skin follows the platform's own status surface: iOS and Linux
+  centre the text like a toolbar status line and an AdwBanner, Android is
+  an M3 banner, macOS a lighter status line, Windows a bordered InfoBar.
 
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The

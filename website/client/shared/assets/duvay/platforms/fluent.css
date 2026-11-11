@@ -118,3 +118,14 @@
 [w-os="fluent"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
 [w-os="windows"] .w-send-status-actions,
 [w-os="fluent"] .w-send-status-actions { margin-inline-start: auto; }
+
+/* Sync status as an InfoBar: a bordered, rounded box. */
+[w-os="windows"] .w-sync-status--bar,
+[w-os="fluent"] .w-sync-status--bar {
+  min-height: 3rem;
+  padding: var(--w-space-3) var(--w-space-4);
+  border: 1px solid var(--w-outline);
+  border-radius: var(--w-radius-md);
+}
+[w-os="windows"] .w-sync-status--chip,
+[w-os="fluent"] .w-sync-status--chip { border-radius: var(--w-radius-md); }

@@ -135,3 +135,9 @@
 /* Send status — Messages style: a filled "!" badge beside "Not sent". */
 [w-os="ios"] .w-send-status--failed .w-send-status-svg circle { fill: currentColor; }
 [w-os="ios"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
+
+/* Sync status reads like a toolbar status line: centred, capsule chip. */
+[w-os="ios"] .w-sync-status--bar { flex-wrap: nowrap; border-bottom-width: 0.5px; }
+[w-os="ios"] .w-sync-status--bar .w-sync-status__icon { margin-inline-start: auto; }
+[w-os="ios"] .w-sync-status--bar .w-sync-status__text { flex: 0 1 auto; justify-content: center; text-align: center; margin-inline-end: auto; }
+[w-os="ios"] .w-sync-status--chip { border-radius: var(--w-radius-pill); }

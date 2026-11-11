@@ -119,3 +119,7 @@
 /* Send status — the filled exclamation badge Messages uses on macOS. */
 [w-os="macos"] .w-send-status--failed .w-send-status-svg circle { fill: currentColor; }
 [w-os="macos"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
+
+/* Sync status as a window status line: lighter text, hairline edge. */
+[w-os="macos"] .w-sync-status--bar { border-bottom-width: 0.5px; }
+[w-os="macos"] .w-sync-status__state { font-weight: var(--w-font-weight-medium); }
