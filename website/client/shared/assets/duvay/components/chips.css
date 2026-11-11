@@ -277,6 +277,21 @@ button.w-chip__close:disabled {
   cursor: default;
 }
 
+/* WCAG 2.5.8: the 1rem close glyph keeps its look, but its hit area grows by
+   --w-space-1 on every side to the 24px minimum target. It sits above the
+   action sibling so the extra area belongs to the close button. */
+button.w-chip__close {
+  position: relative;
+  z-index: 2;
+}
+
+button.w-chip__close::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--w-space-1));
+  border-radius: inherit;
+}
+
 .w-chip--rounded { border-radius: var(--w-radius); }
 .w-chip--rounded-0,
 .w-chip--rounded-none { border-radius: 0; }

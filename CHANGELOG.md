@@ -4,6 +4,8 @@
 
 ### Added
 
+- `w-hotkey` `mod` key: Command (⌘) on a Mac and Control (Ctrl) elsewhere,
+  so one `keys="mod+k"` fits every platform.
 - `w-alert` `live="polite"` (role="status") and `live="off"` (a static notice
   with no live role), so notices already on the page do not interrupt screen
   readers. The default stays role="alert".
@@ -82,6 +84,8 @@
 
 ### Fixed
 
+- WCAG 2.5.8: the `w-chip` close button keeps its 1rem look but has a 24px
+  hit area, so it meets the minimum target size.
 - `w-alert` `icon`, `w-banner` `icon`, `w-snackbar` `prepend-icon` and
   `w-empty-state` `icon` resolve through the icon registry (`WIcons`) like
   `w-btn` does, instead of printing the name as text. With the default `text`
