@@ -42,6 +42,7 @@ globalThis.WElement ??= class extends globalThis.HTMLElement {};
 const cal = await import('../src/components/calendar-utils.js');
 const utils = await import('../src/components/utils.js');
 const { WMaskInput } = await import('../src/components/mask-input.js');
+const { WOfflineText } = await import('../src/components/offline-text.js');
 
 /* ── Serialization ───────────────────────────────────────────────────── */
 
@@ -196,6 +197,45 @@ const SUITES = [
       ],
     },
   },
+  {
+    file: 'offline.json',
+    description:
+      'Decisions behind the offline-state text (w-sync-status, w-send-status, '
+      + 'w-storage-meter): which time style to show, and how to split a byte count '
+      + 'into a value and a unit. Each platform formats the final words with its own '
+      + 'locale formatter. Source of truth: src/components/offline-text.js; spec: '
+      + 'docs/offline-states.md.',
+    fns: {
+      // Days are counted by local calendar day, not by 24-hour periods.
+      timeStyle: [
+        [D('2026-11-11T08:12:00'), D('2026-11-11T10:00:00')],
+        [D('2026-11-11T00:00:00'), D('2026-11-11T23:59:00')],
+        [D('2026-11-10T23:59:00'), D('2026-11-11T00:01:00')],
+        [D('2026-11-05T08:12:00'), D('2026-11-11T10:00:00')],
+        [D('2026-11-04T08:12:00'), D('2026-11-11T10:00:00')],
+        [D('2026-11-12T08:12:00'), D('2026-11-11T10:00:00')],
+        [D('2026-01-01T08:12:00'), D('2026-11-11T10:00:00')],
+        [D('2025-12-31T23:00:00'), D('2026-01-01T09:00:00')],
+        [D('2025-12-20T08:12:00'), D('2026-01-01T09:00:00')],
+        [D('2026-03-30T12:00:00'), D('2026-03-28T12:00:00')],
+        [{ $date: 'invalid' }, D('2026-11-11T10:00:00')],
+      ],
+      // Decimal units, kilobyte at least; one decimal only below 10.
+      byteParts: [
+        [0], [1], [500], [999], [1000], [1500], [9999], [10000], [999999],
+        [1000000], [312000000], [1000000000], [1234000000], [9960000000],
+        [5000000000000000], [-5],
+      ],
+      fill: [
+        ['{count} waiting to send', { count: 3 }],
+        ['Needs your attention: {count}', { count: 0 }],
+        ['updated {time}', { time: '08:12' }],
+        ['{count} not sent {other}', { count: 2 }],
+        ['no placeholders', {}],
+        ['{count}', {}],
+      ],
+    },
+  },
 ];
 
 /* ── Callable resolution ─────────────────────────────────────────────── */
@@ -214,6 +254,7 @@ function resolve(suiteFile, name) {
     if (name === 'applyMask') return (mask, value) => WMaskInput.prototype._applyMask.call(maskHost(mask), value);
     if (name === 'unmask') return (mask, value) => WMaskInput.prototype._unmask.call(maskHost(mask), value);
   }
+  if (suiteFile === 'offline.json') return WOfflineText[name]?.bind(WOfflineText);
   return cal[name] ?? utils[name];
 }
 

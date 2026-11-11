@@ -4,6 +4,15 @@
 
 ### Added
 
+- Offline states (Mesail request D1): the spec `docs/offline-states.md` for
+  `w-sync-status`, `w-send-status`, `w-storage-meter` and the "Needs your
+  attention" list pattern on the web and all four native platforms. This
+  first slice adds the two helpers they share: `WOfflineText`
+  (`src/components/offline-text.js`: time style, byte units, text
+  templates) and `WLiveAnnouncer` (`src/components/live-announcer.js`: one
+  polite message line per page that groups a burst of changes into one
+  announcement), and the conformance suite `spec/fixtures/offline.json`.
+
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The
   default stays "Bottom navigation".
