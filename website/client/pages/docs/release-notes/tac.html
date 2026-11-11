@@ -2,6 +2,32 @@
   <h1>Release notes</h1>
   <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
 
+  <h2>26.46.03</h2>
+  <p><em>Released 2026-11-11</em> — accessibility and API fixes for the web components, from gaps found while building Mesail. No breaking changes; every new option keeps the old behaviour unless the old behaviour failed WCAG AA. The full list is in the CHANGELOG.</p>
+
+  <h3>Accessibility</h3>
+  <ul>
+    <li>Roles: <code>w-switch</code> is a switch, <code>w-list-item</code> is a listitem inside a list, the <code>w-empty-state</code> title is a heading, <code>w-table</code> no longer nests two tables, and <code>w-skeleton-loader</code> is no longer a live region (opt in with <code>announce</code>).</li>
+    <li>Live regions: <code>live</code> on <code>w-alert</code>, <code>w-snackbar</code> and <code>w-banner</code> chooses between role="alert", role="status" and a static notice.</li>
+    <li>Names: <code>w-select</code>, <code>w-text-field</code>, <code>w-btn</code>, <code>w-chip</code>, <code>w-tabs</code> and the three group elements pass the author's <code>aria-*</code> on to the element with the role.</li>
+    <li>Keyboard: the <code>w-chip</code> close and the <code>w-text-field</code> clear buttons are real, reachable buttons (the chip close has a 24px target); <code>w-tabs</code> uses a roving tabindex; <code>w-menu</code> can open from an external <code>activator</code>; <code>w-hover-card</code> has an interactive dialog mode.</li>
+    <li><code>w-avatar</code> presence is part of the avatar's name, with new <code>idle</code>, <code>dnd</code> and <code>offline</code> states that do not rely on colour alone.</li>
+  </ul>
+
+  <h3>API additions</h3>
+  <ul>
+    <li><code>w-btn</code> <code>type</code>, <code>target</code>, <code>rel</code> and a focusable <code>aria-disabled</code> state; <code>w-text-field</code> <code>inputmode</code> and <code>enterkeyhint</code>; <code>w-otp-input</code> accepts a whole code from autofill or paste.</li>
+    <li><code>w-dialog</code> <code>heading</code>, <code>heading-level</code> and <code>sheet="mobile"</code>; <code>w-list-item</code> <code>item-role</code>; <code>w-chip</code> <code>static</code>; <code>w-tabs</code> <code>nav</code>; rich <code>w-command-item</code> rows (avatar, tag, snippet).</li>
+    <li>Icon attributes on alert, banner, snackbar, empty state, chip and bottom-navigation items resolve through the icon registry (<code>icon-set</code>); <code>w-hotkey</code> has a <code>mod</code> key.</li>
+  </ul>
+
+  <h3>Behaviour changes</h3>
+  <ul>
+    <li><code>w-dialog</code> moves its <code>title</code> attribute into <code>heading</code> so the browser shows no tooltip; read <code>el.title</code> or <code>heading</code> instead of <code>getAttribute('title')</code>.</li>
+    <li>A closable <code>w-chip</code> renders its action and close as sibling buttons, so <code>aria-pressed</code> sits on <code>.w-chip__action</code>.</li>
+    <li>A <code>w-command-item</code>'s accessible name is its title only; the subtitle, snippet, tag and shortcut are its description.</li>
+  </ul>
+
   <h2>26.35.01-1</h2>
   <p><em>Released 2026-08-24</em> — documentation-site-only; the framework is unchanged.</p>
   <ul>
