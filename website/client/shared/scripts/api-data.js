@@ -502,10 +502,22 @@ export const API_DATA = {
       tag: 'w-command-item',
       attributes: [
         ['value', 'string', '—', 'Searchable item value.'],
+        ['subtitle', 'string', '—', 'Secondary line under the title (part of the description).'],
+        ['snippet', 'string', '—', 'Extra secondary line, e.g. a matched text snippet (part of the description).'],
+        ['icon', 'string', '—', 'Leading icon glyph (alias prepend-icon).'],
+        ['prepend-icon', 'string', '—', 'Leading icon glyph.'],
+        ['prepend-avatar', 'string', '—', 'Leading avatar image URL (alias avatar); wins over icon.'],
+        ['avatar', 'string', '—', 'Alias for prepend-avatar.'],
+        ['tag', 'string', '—', 'Badge text shown after the content (part of the description).'],
+        ['tag-color', 'string', 'primary', 'Badge color: primary, secondary, tertiary, success, warning, error or info.'],
         ['shortcut', 'string', '—', 'Optional shortcut shown at the end.'],
         ['disabled', 'boolean', 'false', 'Disables the item.'],
       ],
-      slots: [['default', 'Command item label.']],
+      slots: [
+        ['default', 'Command item label; the option\'s accessible name.'],
+        ['prepend', 'Custom leading content.'],
+        ['append', 'Custom trailing content (part of the description).'],
+      ],
     },
     {
       tag: 'w-item',
@@ -995,7 +1007,8 @@ export const API_DATA = {
       tag: 'w-bottom-nav-item',
       attributes: [
         ['value', 'string', '—', 'Identifier used for active management.'],
-        ['icon', 'string', '—', 'Icon glyph shown above the label.'],
+        ['icon', 'string', '—', 'Icon name shown above the label, resolved through WIcons (set:name works).'],
+        ['icon-set', 'string', '—', 'WIcons set for icon; empty uses the default text set.'],
         ['label', 'string', '—', 'Item label text.'],
         ['href', 'string', '—', 'Renders the item as a link.'],
         ['active', 'boolean', 'false', 'Marks the item active.'],

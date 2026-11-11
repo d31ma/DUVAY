@@ -23,6 +23,14 @@
 - `w-empty-state` / `w-empty` `heading-level` (1-6, default 2, or `none`).
 - `icon-set` on `w-alert`, `w-banner`, `w-snackbar` and `w-empty-state`.
 
+- `w-command-item` rich rows: `prepend-avatar` (alias `avatar`), `tag` with
+  `tag-color`, a `snippet` line, and `prepend`/`append` slots. The same fields
+  work in `w-command`'s `items` JSON (`prependAvatar`, `tag`, `tagColor`,
+  `snippet`) and in `w-command-palette-item`. Search also matches the snippet
+  and tag; `filter-keys` accepts `snippet` and `tag`.
+- `w-bottom-nav-item` `icon-set`; `icon` now resolves through `WIcons`
+  (`set:name` works). The default `text` set renders exactly as before.
+
 ### Fixed
 
 - `w-alert` `icon`, `w-banner` `icon`, `w-snackbar` `prepend-icon` and
@@ -38,6 +46,18 @@
 - WCAG 4.1.2: `w-switch` is announced as a switch (role="switch") instead of a
   checkbox. An indeterminate switch stays a checkbox, because the switch role
   has no mixed state.
+
+- `w-command-item` options are now named by their title only
+  (`aria-labelledby`); subtitle, snippet, tag, append content and shortcut
+  become the option's description (`aria-describedby`) instead of being read
+  as part of its name.
+- `w-bottom-navigation` `grow` now gives the items equal widths that fill the
+  bar; before, it only sized the inner buttons.
+- `w-card` keeps plain children visible after re-renders when a nested
+  component (for example a `slot="prepend"` `w-avatar`) renders its own
+  `<slot>`; before, the children moved into a hidden slot and the card showed
+  empty. `slot="..."` on content inside a nested `w-*` component no longer
+  counts as a card slot.
 
 ## 26.35.01-1 - 2026-08-24
 

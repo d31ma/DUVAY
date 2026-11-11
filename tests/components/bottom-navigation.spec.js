@@ -255,3 +255,49 @@ test('w-bottom-navigation selected-class marks the selected item hosts', async (
   await expect(page.locator('#b')).toHaveClass(/\bis-current\b/);
   await expect(page.locator('#a')).not.toHaveClass(/\bis-current\b/);
 });
+
+test('w-bottom-nav-item renders icon through WIcons and honours icon-set', async ({ mount, page }) => {
+  await page.evaluate(() => window.WIcons.set('glyph', { type: 'class', prefix: 'glyph' }));
+  await mount(`
+    <w-bottom-navigation>
+      <w-bottom-nav-item id="text" value="a" icon="🏠" label="Home"></w-bottom-nav-item>
+      <w-bottom-nav-item id="set" value="b" icon="search" icon-set="glyph" label="Search"></w-bottom-nav-item>
+      <w-bottom-nav-item id="prefixed" value="c" icon="glyph:star" label="Star"></w-bottom-nav-item>
+    </w-bottom-navigation>
+  `);
+  const textIcon = page.locator('#text .w-bottom-nav-item__icon');
+  await expect(textIcon).toHaveText('🏠');
+  await expect(textIcon).toHaveAttribute('aria-hidden', 'true');
+  const setIcon = page.locator('#set .w-bottom-nav-item__icon');
+  await expect(setIcon).toHaveClass('w-bottom-nav-item__icon glyph search');
+  await expect(setIcon).toHaveText('');
+  await expect(page.locator('#prefixed .w-bottom-nav-item__icon')).toHaveClass('w-bottom-nav-item__icon glyph star');
+  await expect(page.locator('#set .w-bottom-nav-item')).toHaveAccessibleName('Search');
+});
+
+test('w-bottom-navigation grow gives items equal widths that fill the bar', async ({ mount, page }) => {
+  await mount(`
+    <div style="width: 600px">
+      <w-bottom-navigation id="nav" grow>
+        <w-bottom-nav-item value="a" label="A"></w-bottom-nav-item>
+        <w-bottom-nav-item value="b" label="A much longer label"></w-bottom-nav-item>
+        <w-bottom-nav-item value="c" label="C"></w-bottom-nav-item>
+      </w-bottom-navigation>
+    </div>
+  `);
+  const sizes = await page.locator('#nav').evaluate((host) => {
+    const bar = host.querySelector('.w-bottom-navigation');
+    const style = getComputedStyle(bar);
+    const inner = bar.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    const items = Array.from(host.querySelectorAll('w-bottom-nav-item')).map((item) => ({
+      host: item.getBoundingClientRect().width,
+      button: item.querySelector('.w-bottom-nav-item').getBoundingClientRect().width,
+    }));
+    return { inner, items };
+  });
+  const total = sizes.items.reduce((sum, item) => sum + item.host, 0);
+  expect(Math.abs(total - sizes.inner)).toBeLessThan(2);
+  expect(Math.abs(sizes.items[0].host - sizes.items[1].host)).toBeLessThan(1);
+  expect(Math.abs(sizes.items[1].host - sizes.items[2].host)).toBeLessThan(1);
+  expect(Math.abs(sizes.items[0].button - sizes.items[0].host)).toBeLessThan(1);
+});

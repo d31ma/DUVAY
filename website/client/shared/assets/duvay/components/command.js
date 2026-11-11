@@ -9,9 +9,15 @@
  *                  "ctrl+k", "ctrl+shift+p" ("mod" = meta on macOS, ctrl elsewhere)
  *   open         - boolean; overlay visibility (overlay mode only)
  *   filter-keys  - comma list restricting which fields the search matches
- *                  (title, subtitle, value); defaults to all visible text
+ *                  (title, subtitle, snippet, tag, value); defaults to all
+ *                  visible text (title, subtitle, snippet, tag, shortcut) and value
  *
- * Item objects: { title|text, value, subtitle, icon|prepend-icon, shortcut|hotkey, disabled }
+ * Item objects: { title|text, value, subtitle, snippet, icon|prepend-icon,
+ *                 prepend-avatar|prependAvatar|avatar, tag, tag-color|tagColor,
+ *                 shortcut|hotkey, disabled }
+ * Rich rows: avatar/icon, tag badge and snippet line render on <w-command-item>
+ * (also usable as attributes and prepend/append slots on declared items). The
+ * option's accessible name stays its title; the rest is its description.
  * Group rows:   { type: "subheader", title }  ·  { type: "divider" }
  *
  * With `hotkey` (or `open`) the palette renders as a centered overlay opened by
@@ -101,16 +107,31 @@ export class WCommand extends WElement {
     return '';
   }
 
+  // [attribute, item keys in priority order] for rows rendered from `items`.
+  static itemFields = [
+    ['value', ['value']],
+    ['subtitle', ['subtitle']],
+    ['snippet', ['snippet']],
+    ['icon', ['icon', 'prepend-icon', 'prependIcon']],
+    ['prepend-avatar', ['prepend-avatar', 'prependAvatar', 'avatar']],
+    ['tag', ['tag']],
+    ['tag-color', ['tag-color', 'tagColor']],
+    ['shortcut', ['shortcut', 'hotkey']],
+  ];
+
   _itemAttrs(item) {
-    const icon = item.icon || item['prepend-icon'] || item.prependIcon;
-    const shortcut = item.shortcut || item.hotkey;
-    const attrs = [];
-    if (item.value != null) attrs.push(`value="${this._esc(item.value)}"`);
-    if (item.subtitle) attrs.push(`subtitle="${this._esc(item.subtitle)}"`);
-    if (icon) attrs.push(`icon="${this._esc(icon)}"`);
-    if (shortcut) attrs.push(`shortcut="${this._esc(shortcut)}"`);
-    if (item.disabled) attrs.push('disabled');
-    return attrs.join(' ');
+    const attrs = WCommand.itemFields.map(([name, keys]) => this._itemAttr(name, this._firstField(item, keys)));
+    attrs.push(item.disabled ? 'disabled' : '');
+    return attrs.filter(Boolean).join(' ');
+  }
+
+  _firstField(item, keys) {
+    const key = keys.find((name) => item[name] != null && item[name] !== '');
+    return key ? item[key] : null;
+  }
+
+  _itemAttr(name, value) {
+    return value == null ? '' : `${name}="${this._esc(value)}"`;
   }
 
   _renderItem(item) {

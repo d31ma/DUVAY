@@ -15060,6 +15060,12 @@ export const GENERATED_API_DATA = {
           "Sets the icon option."
         ],
         [
+          "icon-set",
+          "string | number | boolean",
+          "—",
+          "Sets the icon-set option."
+        ],
+        [
           "id",
           "string | number | boolean",
           "—",
@@ -23628,6 +23634,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the avatar option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -23742,6 +23754,12 @@ export const GENERATED_API_DATA = {
           "Sets the position option."
         ],
         [
+          "prepend-avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the prepend-avatar option."
+        ],
+        [
           "prepend-icon",
           "string | number | boolean",
           "—",
@@ -23772,6 +23790,12 @@ export const GENERATED_API_DATA = {
           "Sets the shortcut option."
         ],
         [
+          "snippet",
+          "string | number | boolean",
+          "—",
+          "Sets the snippet option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -23788,6 +23812,18 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the tabindex option."
+        ],
+        [
+          "tag",
+          "string | number | boolean",
+          "—",
+          "Sets the tag option."
+        ],
+        [
+          "tag-color",
+          "string | number | boolean",
+          "—",
+          "Sets the tag-color option."
         ],
         [
           "theme",
@@ -25494,6 +25530,12 @@ export const GENERATED_API_DATA = {
           "Sets the active-color option."
         ],
         [
+          "avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the avatar option."
+        ],
+        [
           "base-color",
           "string | number | boolean",
           "—",
@@ -25620,6 +25662,12 @@ export const GENERATED_API_DATA = {
           "Sets the position option."
         ],
         [
+          "prepend-avatar",
+          "string | number | boolean",
+          "—",
+          "Sets the prepend-avatar option."
+        ],
+        [
           "prepend-icon",
           "string | number | boolean",
           "—",
@@ -25650,6 +25698,12 @@ export const GENERATED_API_DATA = {
           "Sets the shortcut option."
         ],
         [
+          "snippet",
+          "string | number | boolean",
+          "—",
+          "Sets the snippet option."
+        ],
+        [
           "style",
           "string | number | boolean",
           "—",
@@ -25666,6 +25720,18 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the tabindex option."
+        ],
+        [
+          "tag",
+          "string | number | boolean",
+          "—",
+          "Sets the tag option."
+        ],
+        [
+          "tag-color",
+          "string | number | boolean",
+          "—",
+          "Sets the tag-color option."
         ],
         [
           "theme",

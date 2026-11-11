@@ -42,6 +42,14 @@
   min-width: 0;
 }
 
+/* Web component: the <w-bottom-nav-item> host is the flex item, so it takes
+   the equal share and lets its inner button fill it. */
+.w-bottom-navigation--grow w-bottom-nav-item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 /* Density variants */
 .w-bottom-navigation--comfortable {
   min-height: calc(var(--w-bottom-nav-height, 56px) - 8px);
