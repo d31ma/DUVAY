@@ -297,7 +297,9 @@ bun run docs:build  # static export to website/dist/
 ```
 
 After any change to `src/`, run `bun run build` so the docs site picks it up.
-Release operators should follow [RELEASING.md](RELEASING.md).
+Branch from `develop` and merge changes back into `develop`; `main` only
+receives release pull requests. Release operators should follow
+[RELEASING.md](RELEASING.md).
 
 ## License
 

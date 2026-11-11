@@ -5,6 +5,15 @@ is the ISO weekday, both derived from UTC. A second release on the same UTC
 date appends `-1` (then `-2`, and so on): `26.35.01-1`. A release commit must
 be merged to `main` before publishing.
 
+## Branches
+
+- `develop` is the integration branch. Each feature or fix is made on its own
+  `feat/<name>` or `fix/<name>` branch from `origin/develop`, checked locally,
+  and fast-forwarded into `develop`. A push to `develop` starts no workflow.
+- `main` holds released code only. A release pull request into `main` comes
+  from `develop` or from a `release/<version>` branch cut from `develop`.
+- `release/*` branches are kept after merge for audit and backports.
+
 ## Before merge
 
 - Set the release version in `package.json` and replace the `Unreleased`
