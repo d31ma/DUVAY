@@ -109,3 +109,12 @@
   --w-progress-height: var(--w-space-1);
   background: linear-gradient(var(--w-outline), var(--w-outline)) center / 100% 1px no-repeat;
 }
+
+/* Send status — Fluent's filled status icon, with the row's buttons at the
+ * trailing edge like a list item's suffix commands. */
+[w-os="windows"] .w-send-status--failed .w-send-status-svg circle,
+[w-os="fluent"] .w-send-status--failed .w-send-status-svg circle { fill: currentColor; }
+[w-os="windows"] .w-send-status--failed .w-send-status-svg line,
+[w-os="fluent"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
+[w-os="windows"] .w-send-status-actions,
+[w-os="fluent"] .w-send-status-actions { margin-inline-start: auto; }

@@ -107,3 +107,12 @@
   order: 2;
   --w-progress-height: var(--w-space-1);
 }
+
+/* Send status — Material's filled error icon and medium-weight label, as in
+ * "Not sent. Tap to retry". */
+[w-os="android"] .w-send-status--failed .w-send-status-svg circle,
+[w-os="material"] .w-send-status--failed .w-send-status-svg circle { fill: currentColor; }
+[w-os="android"] .w-send-status--failed .w-send-status-svg line,
+[w-os="material"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }
+[w-os="android"] .w-send-status--failed .w-send-status-text,
+[w-os="material"] .w-send-status--failed .w-send-status-text { font-weight: var(--w-font-weight-medium); }

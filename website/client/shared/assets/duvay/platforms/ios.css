@@ -131,3 +131,7 @@
   border-radius: var(--w-radius-md);
 }
 [w-os="ios"] .w-storage-meter-track .w-storage-meter-bar { border-radius: 0; }
+
+/* Send status — Messages style: a filled "!" badge beside "Not sent". */
+[w-os="ios"] .w-send-status--failed .w-send-status-svg circle { fill: currentColor; }
+[w-os="ios"] .w-send-status--failed .w-send-status-svg line { stroke: var(--w-on-error); }

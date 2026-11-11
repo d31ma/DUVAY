@@ -1974,6 +1974,27 @@ export const API_DATA = {
       ],
     },
   ],
+
+  '/docs/send-status': [
+    {
+      tag: 'w-send-status',
+      attributes: [
+        ['state', 'waiting | sending | failed | sent', '—', 'The send state; empty shows nothing.'],
+        ['reason', 'string', '—', 'Shown after the failed text.'],
+        ['written-at', 'ISO 8601 time', '—', 'With sent, shows "Written offline at {time}"; sent without it shows nothing.'],
+        ['announce', 'on | off', 'on', 'off stops the failure announcement.'],
+        ['icon', 'string | false', 'built-in icon', 'Replaces the icon; false hides it.'],
+        ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
+        ['waiting-text', 'string', 'Waiting to send', 'Text of the waiting state.'],
+        ['sending-text', 'string', 'Sending…', 'Text of the sending state.'],
+        ['failed-text', 'string', 'Not sent', 'Text of the failed state.'],
+        ['written-text', 'string with {time}', 'Written offline at {time}', 'Text of the sent state.'],
+        ['failed-announce-text', 'string with {count}', '{count} not sent. Needs your attention.', 'Polite announcement when rows change to failed, grouped over 1 second.'],
+      ],
+      slots: [['actions', 'The app\'s buttons, for example Retry and Discard.']],
+    },
+  ],
+
   '/docs/empty-states': [
     {
       tag: 'w-empty',
@@ -2613,6 +2634,7 @@ Object.assign(API_DATA, {
     ...apiBlocks('/docs/storage-meter', ['w-storage-meter']),
     ...apiBlocks('/docs/alerts', ['w-alert', 'w-alert-title']),
     ...apiBlocks('/docs/snackbar', ['w-snackbar']),
+    ...apiBlocks('/docs/send-status', ['w-send-status']),
   ],
 });
 

@@ -24,6 +24,17 @@
   macOS put "X of Y used" beside the label over a taller bar, Android puts
   it under the label over a thin bar, Windows draws a thin bar on a 1px
   rail, and Linux uses a regular-weight row title.
+- `w-send-status` (offline states, slice S2): the send state of one message
+  or row written on the device, `waiting`, `sending`, `failed` or `sent`,
+  with an icon and words, the failure `reason` and an `actions` slot. Rows
+  that change to `failed` are announced politely through `WLiveAnnouncer`,
+  grouped over 1 second ("20 not sent. Needs your attention.");
+  `announce="off"` stops it. Docs page `/docs/send-status` with the "Needs
+  your attention" list pattern and a working demo.
+- `w-list-item item-role="none"` with a title shows its default content under
+  the subtitle, and a list item with an `id` gives its title the id
+  `<id>-title`, so a row's buttons can use `aria-describedby` to say what
+  they act on.
 
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The

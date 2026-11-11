@@ -26,13 +26,18 @@ import { wSetValue } from './utils.js';
  *                  (radio/checkbox rows report `active` as aria-checked; put
  *                  them in an element with role="menu" or "group");
  *                  option - a listbox row (`active` is aria-selected);
- *                  none - a static, non-interactive row
+ *                  none - a static, non-interactive row; with a title
+ *                  it also shows its default content under the subtitle
+ *
+ * When the host has an id, the title gets the id "<host id>-title", so a
+ * button in the row can name what it acts on with aria-describedby.
  *
  * Inside a list (role="list") the host gets role="listitem", so the list's
  * structure is announced. An author-set host `role` is never replaced.
  *
  * Slots:
- *   default - custom item content when title is omitted
+ *   default - custom item content when title is omitted; in a static row
+ *             (item-role="none") also extra content under the subtitle
  *   prepend - custom leading content
  *   append  - custom trailing content
  *
@@ -203,9 +208,18 @@ class WListItem extends WElement {
   _contentMarkup() {
     if (!this.itemTitle && !this.subtitle) return '<span class="w-list-item-content"><slot></slot></span>';
     return `<span class="w-list-item-content">
-          ${this.itemTitle ? `<span class="w-list-item-title">${this._esc(this.itemTitle)}</span>` : ''}
+          ${this.itemTitle ? `<span class="w-list-item-title"${this._titleId()}>${this._esc(this.itemTitle)}</span>` : ''}
           ${this.subtitle ? `<span class="w-list-item-subtitle">${this._esc(this.subtitle)}</span>` : ''}
+          ${this._detailsSlot()}
         </span>`;
+  }
+
+  _detailsSlot() {
+    return this.itemRole === 'none' ? '<slot></slot>' : '';
+  }
+
+  _titleId() {
+    return this.id ? ` id="${this._esc(this.id)}-title"` : '';
   }
 
   _template() {

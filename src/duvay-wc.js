@@ -118,6 +118,7 @@ import './components/defaults-provider.js';
 import './components/divider.js';
 import './components/empty.js';
 import './components/empty-state.js';
+import './components/send-status.js';
 import './components/expansion-panel.js';
 import './components/expansion-panel-title.js';
 import './components/expansion-panel-text.js';

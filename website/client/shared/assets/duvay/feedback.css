@@ -2,6 +2,7 @@
 @import "./components/badges.css";
 @import "./components/toasts.css";
 @import "./components/empty-states.css";
+@import "./components/send-statuses.css";
 @import "./components/spinners.css";
 @import "./components/skeleton-loaders.css";
 @import "./components/error-states.css";

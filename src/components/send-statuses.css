@@ -1,0 +1,95 @@
+/* DuVay — Send status (w-send-status) styles. See docs/offline-states.md.
+ *
+ * A small inline line: an icon, the state's words, the failure reason and
+ * the app's buttons. Colours come from the theme tokens only:
+ *   waiting, sending, sent - --w-text-muted
+ *   failed                 - --w-error, the reason in --w-text
+ * With reduced motion the spinner is replaced by a still arrow icon. */
+@import "../core.css";
+
+w-send-status {
+  display: block;
+}
+
+.w-send-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-xs) var(--w-space-sm);
+  min-width: 0;
+  color: var(--w-text-muted);
+  font-size: var(--w-font-sm);
+  line-height: 1.5;
+}
+
+.w-send-status--failed {
+  color: var(--w-error);
+}
+
+.w-send-status-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+}
+
+.w-send-status-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.w-send-status-spinner {
+  box-sizing: border-box;
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: w-send-status-spin 0.8s linear infinite;
+}
+
+.w-send-status-still {
+  display: none;
+}
+
+.w-send-status-text,
+.w-send-status-detail {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.w-send-status-separator {
+  margin-inline-end: var(--w-space-sm);
+}
+
+.w-send-status-reason {
+  color: var(--w-text);
+}
+
+.w-send-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--w-space-xs);
+}
+
+.w-send-status-actions:has(> slot:empty) {
+  display: none;
+}
+
+@keyframes w-send-status-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-send-status-spinner {
+    display: none;
+    animation: none;
+  }
+
+  .w-send-status-still {
+    display: block;
+  }
+}

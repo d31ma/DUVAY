@@ -1,0 +1,119 @@
+<doc-layout>
+  <h1>Send status</h1>
+  <p><code>w-send-status</code> shows the state of one message or list row that was written on the device and still has to reach the server: <code>waiting</code>, <code>sending</code>, <code>failed</code> or <code>sent</code>. Every state shows an icon and words, never colour alone. The element never takes focus; buttons in its <code>actions</code> slot keep their normal tab order. The state is called "waiting", not "queued", because a mail app may already use "Queued" for its server's mail queue.</p>
+
+  <h2>States</h2>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-row ga-4" style="flex-direction:column;align-items:flex-start">
+        <span class="w-send-status w-send-status--waiting">
+          <span class="w-send-status-icon" aria-hidden="true"><svg class="w-send-status-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
+          <span class="w-send-status-text">Waiting to send</span>
+        </span>
+        <span class="w-send-status w-send-status--sending">
+          <span class="w-send-status-icon" aria-hidden="true"><span class="w-send-status-spinner"></span><svg class="w-send-status-svg w-send-status-still" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span>
+          <span class="w-send-status-text">Sending…</span>
+        </span>
+        <span class="w-send-status w-send-status--failed">
+          <span class="w-send-status-icon" aria-hidden="true"><svg class="w-send-status-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="12.5"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <span class="w-send-status-text">Not sent</span>
+          <span class="w-send-status-detail"><span class="w-send-status-separator" aria-hidden="true">·</span><span class="w-send-status-reason">Mailbox full.</span></span>
+        </span>
+        <span class="w-send-status w-send-status--sent">
+          <span class="w-send-status-icon" aria-hidden="true"><svg class="w-send-status-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9.5"/></svg></span>
+          <span class="w-send-status-text">Written offline at 08:12</span>
+        </span>
+      </div>
+    </div>
+    <div slot="wc">
+      <div class="w-row ga-4" style="flex-direction:column;align-items:flex-start">
+        <w-send-status state="waiting"></w-send-status>
+        <w-send-status state="sending"></w-send-status>
+        <w-send-status state="failed" reason="Mailbox full."></w-send-status>
+        <w-send-status state="sent" written-at="2026-11-11T08:12:00"></w-send-status>
+      </div>
+    </div>
+  </demo-compare>
+  <p>An empty <code>state</code> shows nothing, and <code>sent</code> without <code>written-at</code> shows nothing, so a row that was never offline stays quiet. With reduced motion the spinner is replaced by a still arrow icon.</p>
+
+  <h2>Actions</h2>
+  <p>Put the app's buttons in the <code>actions</code> slot. They wrap under the words on a narrow screen.</p>
+  <demo-compare>
+    <div slot="css">
+      <span class="w-send-status w-send-status--failed">
+        <span class="w-send-status-icon" aria-hidden="true"><svg class="w-send-status-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="12.5"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+        <span class="w-send-status-text">Not sent</span>
+        <span class="w-send-status-detail"><span class="w-send-status-separator" aria-hidden="true">·</span><span class="w-send-status-reason">The server refused the message.</span></span>
+        <span class="w-send-status-actions">
+          <button class="w-btn w-btn-tonal w-btn--sm" type="button">Retry</button>
+          <button class="w-btn w-btn-text w-btn--sm" type="button">Discard</button>
+        </span>
+      </span>
+    </div>
+    <div slot="wc">
+      <w-send-status state="failed" reason="The server refused the message.">
+        <w-btn slot="actions" size="small" variant="tonal">Retry</w-btn>
+        <w-btn slot="actions" size="small" variant="text">Discard</w-btn>
+      </w-send-status>
+    </div>
+  </demo-compare>
+
+  <h2>What a screen reader hears</h2>
+  <p>The words are read with their row; the element is not a live region. When a row changes to <code>failed</code>, the element counts it through the page's shared polite announcer (<code>WLiveAnnouncer</code>, key <code>w-send-status</code>, 1 second). Twenty rows failing at once make one announcement: "20 not sent. Needs your attention." <code>waiting</code>, <code>sending</code> and <code>sent</code> are never announced, and a row that is first shown already failed is not announced. Set <code>announce="off"</code> on a row that must not count.</p>
+
+  <h2>Translated text</h2>
+  <p>Every text has an English default and an attribute to replace it. <code>{time}</code> is filled with the written time in the language of the closest <code>lang</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <span class="w-send-status w-send-status--waiting" lang="de">
+        <span class="w-send-status-icon" aria-hidden="true"><svg class="w-send-status-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
+        <span class="w-send-status-text">Wartet auf das Senden</span>
+      </span>
+    </div>
+    <div slot="wc">
+      <div lang="de">
+        <w-send-status state="waiting" waiting-text="Wartet auf das Senden"></w-send-status>
+        <w-send-status state="sent" written-at="2026-11-11T08:12:00" written-text="Offline geschrieben um {time}"></w-send-status>
+      </div>
+    </div>
+  </demo-compare>
+
+  <h2>"Needs your attention" list</h2>
+  <p>A list of the items the server refused is a pattern of existing parts, not a new element:</p>
+  <ul>
+    <li><code>w-list</code> with <code>aria-label="Needs your attention"</code>.</li>
+    <li>One <code>w-list-item item-role="none"</code> per refused item, with an <code>id</code>. <code>title</code> is the first words of the item, <code>subtitle</code> is where it belongs (for example the conversation). A static row shows its default content under the subtitle.</li>
+    <li>In that content, a <code>w-send-status state="failed"</code> with the <code>reason</code>, and the action buttons in its <code>actions</code> slot.</li>
+    <li>Each button says what it acts on: the visible word ("Retry") plus <code>aria-describedby="&lt;row id&gt;-title"</code>. A list item with an <code>id</code> gives its title the id <code>&lt;row id&gt;-title</code>.</li>
+    <li>When the list is empty, a <code>w-empty-state</code> with the title "Nothing needs your attention".</li>
+  </ul>
+  <p>Try it: Retry sends the item again and it leaves the list; Discard removes it; "Fail again" refuses every item again at once.</p>
+  <demo-compare>
+    <div slot="wc">
+      <div data-attention-demo>
+        <w-btn variant="outlined" size="small" data-attention-reset>Fail again</w-btn>
+        <w-list aria-label="Needs your attention" data-attention-list>
+          <w-list-item id="attention-1" item-role="none" title="Lunch on Friday?" subtitle="Chat with Ana">
+            <w-send-status state="failed" reason="The server refused the message.">
+              <w-btn slot="actions" size="small" variant="tonal" aria-describedby="attention-1-title" data-attention-retry>Retry</w-btn>
+              <w-btn slot="actions" size="small" variant="text" aria-describedby="attention-1-title" data-attention-discard>Discard</w-btn>
+            </w-send-status>
+          </w-list-item>
+          <w-list-item id="attention-2" item-role="none" title="Quarterly report" subtitle="Mail to Finance">
+            <w-send-status state="failed" reason="Attachment too large.">
+              <w-btn slot="actions" size="small" variant="tonal" aria-describedby="attention-2-title" data-attention-retry>Retry</w-btn>
+              <w-btn slot="actions" size="small" variant="text" aria-describedby="attention-2-title" data-attention-discard>Discard</w-btn>
+            </w-send-status>
+          </w-list-item>
+          <w-list-item id="attention-3" item-role="none" title="Moved the meeting to 3 pm" subtitle="Calendar: Team sync">
+            <w-send-status state="failed" reason="You no longer have access to this calendar.">
+              <w-btn slot="actions" size="small" variant="text" aria-describedby="attention-3-title" data-attention-discard>Discard</w-btn>
+            </w-send-status>
+          </w-list-item>
+        </w-list>
+        <w-empty-state title="Nothing needs your attention" text="Everything you wrote on this device has been sent." data-attention-empty hidden></w-empty-state>
+      </div>
+    </div>
+  </demo-compare>
+  <p>Under each OS tab the failed icon and the buttons follow that platform: a filled "!" badge on iOS, macOS, Android and Windows, symbolic outline icons on Linux, and the buttons at the row's trailing edge on Windows and Linux. Colours, sizes and text stay the same on every skin.</p>
+</doc-layout>

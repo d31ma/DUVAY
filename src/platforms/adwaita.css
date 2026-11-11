@@ -104,3 +104,8 @@
  * title over the pill trough (the base bar already matches). */
 [w-os="linux"] .w-storage-meter-label,
 [w-os="adwaita"] .w-storage-meter-label { font-weight: var(--w-font-weight-normal); }
+
+/* Send status — symbolic (outline) icons stay; the row's buttons sit at the
+ * trailing edge as an AdwActionRow suffix. */
+[w-os="linux"] .w-send-status-actions,
+[w-os="adwaita"] .w-send-status-actions { margin-inline-start: auto; }

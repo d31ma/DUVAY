@@ -248,6 +248,7 @@ const HE_DOC_SECTIONS = [
       { type: 'item', title: 'Progress linear', path: '/docs/progress-linear', keywords: 'progress linear bar buffer indeterminate stream striped reverse loading' },
       { type: 'item', title: 'Progress', path: '/docs/components/progress' },
       { type: 'item', title: 'Ratings', path: '/docs/ratings', keywords: 'rating stars score review length readonly' },
+      { type: 'item', title: 'Send status', path: '/docs/send-status', keywords: 'send status offline waiting sending failed not sent written retry needs your attention outbox' },
       { type: 'item', title: 'Skeleton loaders', path: '/docs/skeleton-loaders', keywords: 'skeleton loader placeholder shimmer bone type card list-item article loading' },
       { type: 'item', title: 'Snackbars', path: '/docs/snackbar', keywords: 'snackbar toast notification action undo' },
       { type: 'item', title: 'Snackbar Queue', path: '/docs/components/snackbar-queue', keywords: 'snackbar queue toast notifications stack' },
