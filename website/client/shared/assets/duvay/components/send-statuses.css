@@ -54,6 +54,7 @@ w-send-status {
   display: none;
 }
 
+.w-send-status-lead,
 .w-send-status-text,
 .w-send-status-detail {
   min-width: 0;
@@ -62,6 +63,10 @@ w-send-status {
 
 .w-send-status-separator {
   margin-inline-end: var(--w-space-sm);
+}
+
+.w-send-status-lead > .w-send-status-separator {
+  margin-inline: var(--w-space-sm) 0;
 }
 
 .w-send-status-reason {

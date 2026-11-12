@@ -150,7 +150,9 @@ server's mail queue.
 
 What the user sees: a small inline line. `waiting`: a clock icon, muted
 text. `sending`: a spinner (a still icon with reduced motion). `failed`: an
-error icon and error-coloured text, then the reason. `sent` with
+error icon and error-coloured text, a "·" separator, then the reason. When
+the reason does not fit, it moves to the next line and the separator stays
+at the end of the failed text, so no line starts with "·". `sent` with
 `written-at`: a muted note.
 
 What a screen reader hears: the text is read with its row; it is not a live
@@ -186,14 +188,18 @@ almost full"). It is not live and not focusable.
 No new element. Built from existing parts:
 
 - `w-list` with an `aria-label` ("Needs your attention").
-- One `w-list-item item-role="none"` per refused item: `title` = the first
-  words of the item, `subtitle` = where it belongs (for example the
-  conversation), and in the default or `append` content a
-  `w-send-status state="failed" reason="…"` plus the action buttons.
+- One `w-list-item item-role="none" wrap no-prepend-space` per refused
+  item: `title` = the first words of the item, `subtitle` = where it
+  belongs (for example the conversation), and in the default or `append`
+  content a `w-send-status state="failed" reason="…"` plus the action
+  buttons. `wrap` shows the whole title on more lines instead of cutting
+  it; `no-prepend-space` lets the text start at the row padding, because
+  these rows have no icon.
 - Each button's name says what it acts on: the visible word ("Retry") plus
   `aria-describedby` pointing to the item's title.
 - When the list is empty: `w-empty-state` with the title "Nothing needs your
-  attention".
+  attention". The title is a real heading element (`<h2>` by default; set
+  `heading-level` to fit the page).
 
 The docs page shows a working example, and a test covers it. A gap found in
 `w-list-item` is fixed in the same slice, without a change to its Core

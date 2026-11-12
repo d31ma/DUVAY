@@ -19,6 +19,11 @@ import { wSetValue } from './utils.js';
  *   active-class - extra class when active
  *   active       - selected state
  *   disabled     - disables interaction
+ *   wrap         - the title and subtitle wrap onto more lines instead of
+ *                  being cut with an ellipsis (default: one line each)
+ *   no-prepend-space - with no prepend content, drop the empty leading
+ *                  column so the text starts at the row padding (default:
+ *                  the column stays, so rows with and without icons line up)
  *   item-role    - what the row is, when it is not a link:
  *                  (absent) a button that reports `active` as aria-pressed;
  *                  button - a plain action button, never a toggle;
@@ -76,6 +81,8 @@ class WListItem extends WElement {
     'prepend-gap',
     'index',
     'item-role',
+    'wrap',
+    'no-prepend-space',
   ];
 
   static checkedRoles = ['menuitemradio', 'menuitemcheckbox'];
@@ -108,6 +115,8 @@ class WListItem extends WElement {
   get active() { return this._bool('active'); }
   set active(v) { v ? this.setAttribute('active', '') : this.removeAttribute('active'); }
   get disabled() { return this._bool('disabled'); }
+  get wrap() { return this._bool('wrap'); }
+  get noPrependSpace() { return this._bool('no-prepend-space'); }
 
   set disabled(value) { this.toggleAttribute('disabled', !!value); }
   // `active` carries the caller's own active-class list alongside the marker.
@@ -132,6 +141,8 @@ class WListItem extends WElement {
         'w-list-item--slim': this.slim,
         'w-list-item--rounded': this.rounded,
         'w-list-item--border': this.border,
+        'w-list-item--wrap': this.wrap,
+        'w-list-item--no-prepend-space': this._dropsPrependSpace(),
       })
       + (this.elevation ? ' w-list-item--elevation-' + this._classToken(this.elevation) : '');
   }
@@ -198,11 +209,23 @@ class WListItem extends WElement {
 
   // Without media or slotted content the adornment stays as an empty spacer.
   _adornment(side) {
-    const media = this._mediaMarkup(side);
-    if (media || this.querySelector(`[slot="${side}"]`)) {
-      return `<span class="w-list-item-${side}">${media}<slot name="${side}"></slot></span>`;
+    if (this._hasAdornment(side)) {
+      return `<span class="w-list-item-${side}">${this._mediaMarkup(side)}<slot name="${side}"></slot></span>`;
     }
+    return this._emptyAdornment(side);
+  }
+
+  _hasAdornment(side) {
+    return Boolean(this._mediaMarkup(side) || this.querySelector(`[slot="${side}"]`));
+  }
+
+  _emptyAdornment(side) {
+    if (side === 'prepend' && this.noPrependSpace) return '';
     return `<span class="w-list-item-${side}" aria-hidden="true"></span>`;
+  }
+
+  _dropsPrependSpace() {
+    return this.noPrependSpace && !this._hasAdornment('prepend');
   }
 
   _contentMarkup() {

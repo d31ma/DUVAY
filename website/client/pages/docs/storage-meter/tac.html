@@ -13,7 +13,7 @@
           <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 31.2%"></div></div>
           <div class="w-storage-meter-value">312 MB of 1 GB used</div>
         </div>
-        <div class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-warn" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="850000000" aria-valuetext="850 MB of 1 GB used, Almost full">
+        <div class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-warn" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="850000000" aria-valuetext="850 MB of 1 GB used, almost full">
           <div class="w-storage-meter-head">
             <span class="w-storage-meter-label" id="css-meter-warn">Space used on this device</span>
             <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Almost full</span>
@@ -21,7 +21,7 @@
           <div class="w-progress w-progress--rounded w-storage-meter-track"><div class="w-progress-bar w-storage-meter-bar" style="inline-size: 85%"></div></div>
           <div class="w-storage-meter-value">850 MB of 1 GB used</div>
         </div>
-        <div class="w-storage-meter w-storage-meter--full" role="meter" aria-labelledby="css-meter-full" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="1000000000" aria-valuetext="1.2 GB of 1 GB used, Full">
+        <div class="w-storage-meter w-storage-meter--full" role="meter" aria-labelledby="css-meter-full" aria-valuemin="0" aria-valuemax="1000000000" aria-valuenow="1000000000" aria-valuetext="1.2 GB of 1 GB used, full">
           <div class="w-storage-meter-head">
             <span class="w-storage-meter-label" id="css-meter-full">Space used on this device</span>
             <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Full</span>
@@ -84,7 +84,7 @@
   <p>Every text can be replaced. <code>value-text</code> takes <code>{used}</code> and <code>{max}</code>; byte sizes follow the closest <code>lang</code>.</p>
   <demo-compare>
     <div slot="css">
-      <div lang="de" class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-de" aria-valuemin="0" aria-valuemax="12000000000" aria-valuenow="10500000000" aria-valuetext="11 GB von 12 GB belegt, Fast voll">
+      <div lang="de" class="w-storage-meter w-storage-meter--warn" role="meter" aria-labelledby="css-meter-de" aria-valuemin="0" aria-valuemax="12000000000" aria-valuenow="10500000000" aria-valuetext="11 GB von 12 GB belegt, fast voll">
         <div class="w-storage-meter-head">
           <span class="w-storage-meter-label" id="css-meter-de">Belegter Speicher</span>
           <span class="w-storage-meter-state"><svg class="w-storage-meter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Fast voll</span>
@@ -102,7 +102,7 @@
 
   <h2>Accessibility</h2>
   <ul>
-    <li>The rendered element has <code>role="meter"</code> with <code>aria-valuemin</code>, <code>aria-valuemax</code>, <code>aria-valuenow</code> (in bytes, never above <code>max</code>) and <code>aria-valuetext</code>, for example &#8220;850 MB of 1 GB used, Almost full&#8221;. Its name is the visible <code>label</code>.</li>
+    <li>The rendered element has <code>role="meter"</code> with <code>aria-valuemin</code>, <code>aria-valuemax</code>, <code>aria-valuenow</code> (in bytes, never above <code>max</code>) and <code>aria-valuetext</code>, for example &#8220;850 MB of 1 GB used, almost full&#8221;. The state words follow the comma in lower case, as in a sentence; a first word in all capitals (such as &#8220;SSD&#8221;) is kept as written. Its name is the visible <code>label</code>.</li>
     <li>It is not a live region and takes no focus. Changes are read when the user reaches the meter.</li>
     <li>&#8220;Almost full&#8221; and &#8220;Full&#8221; are shown in words with an icon. The bar keeps 3:1 against its track, and the text 4.5:1, in the light, dark and high-contrast themes on every skin.</li>
   </ul>

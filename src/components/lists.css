@@ -206,6 +206,18 @@
   white-space: nowrap;
 }
 
+.w-list-item--wrap .w-list-item-title,
+.w-list-item--wrap .w-list-item-subtitle {
+  overflow: visible;
+  overflow-wrap: anywhere;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.w-list-item--no-prepend-space {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .w-list-item.active .w-list-item-subtitle,
 .w-list-item[aria-current="page"] .w-list-item-subtitle {
   color: color-mix(in srgb, currentColor 78%, transparent);

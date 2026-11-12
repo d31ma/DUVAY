@@ -139,3 +139,74 @@ test('w-list-item item-role gives plain buttons, menu rows and static rows', asy
   await expect(page.locator('#static button, #static a')).toHaveCount(0);
   await expect(page.locator('#static .w-list-item')).toContainText('Read only');
 });
+
+const LONG_TITLE = 'Here are the two logo options we talked about on Monday, with the colours from the brand guide';
+const LONG_SUBTITLE = 'Chat with Ana Silva and the design team at example.com';
+
+async function titleBox(page, selector) {
+  return page.locator(`${selector} .w-list-item-title`).evaluate((element) => ({
+    cut: element.scrollWidth > element.clientWidth,
+    lines: Math.round(element.getBoundingClientRect().height / Number.parseFloat(getComputedStyle(element).lineHeight)),
+  }));
+}
+
+test('w-list-item keeps a one-line title by default and wrap shows all of it', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await mount(`<w-list aria-label="Rows">
+      <w-list-item id="cut" item-role="none" title="${LONG_TITLE}" subtitle="${LONG_SUBTITLE}"></w-list-item>
+      <w-list-item id="whole" item-role="none" wrap title="${LONG_TITLE}" subtitle="${LONG_SUBTITLE}"></w-list-item>
+    </w-list>`);
+
+  expect(await titleBox(page, '#cut')).toEqual({ cut: true, lines: 1 });
+  const whole = await titleBox(page, '#whole');
+  expect([whole.cut, whole.lines > 1]).toEqual([false, true]);
+  const subtitle = await page.locator('#whole .w-list-item-subtitle').evaluate((element) => element.scrollWidth > element.clientWidth);
+  expect(subtitle).toBe(false);
+  await expect(page.locator('#whole .w-list-item')).toHaveClass(/w-list-item--wrap/);
+});
+
+test('w-list-item wrap also works on an interactive row', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await mount(`<w-list-item id="whole" wrap title="${LONG_TITLE}"></w-list-item>`);
+  const whole = await titleBox(page, '#whole');
+  expect([whole.cut, whole.lines > 1]).toEqual([false, true]);
+  await expect(page.getByRole('button', { name: LONG_TITLE })).toBeVisible();
+});
+
+async function textStart(page, selector) {
+  return page.locator(selector).evaluate((host) => {
+    const row = host.querySelector('.w-list-item');
+    const content = host.querySelector('.w-list-item-content');
+    return Math.round(content.getBoundingClientRect().left - row.getBoundingClientRect().left);
+  });
+}
+
+test('w-list-item no-prepend-space drops the empty leading space when nothing is prepended', async ({ mount, page }) => {
+  await mount(`<div style="width: 400px"><w-list aria-label="Rows">
+      <w-list-item id="spacer" title="Keeps the space"></w-list-item>
+      <w-list-item id="flush" no-prepend-space title="Starts at the padding"></w-list-item>
+      <w-list-item id="icon" no-prepend-space prepend-icon="@" title="Has an icon"></w-list-item>
+      <w-list-item id="slotted" no-prepend-space title="Has slotted content"><span slot="prepend">#</span></w-list-item>
+      <w-list-item id="static" no-prepend-space item-role="none" title="Static row"></w-list-item>
+    </w-list></div>`);
+
+  const padding = await page.locator('#flush .w-list-item').evaluate((row) => Math.round(Number.parseFloat(getComputedStyle(row).paddingInlineStart)));
+  expect(await textStart(page, '#flush')).toBe(padding);
+  expect(await textStart(page, '#static')).toBe(padding);
+  expect(await textStart(page, '#spacer')).toBeGreaterThan(padding + 24);
+  await expect(page.locator('#flush .w-list-item-prepend')).toHaveCount(0);
+  await expect(page.locator('#icon .w-list-item-prepend')).toHaveText('@');
+  await expect(page.locator('#slotted .w-list-item-prepend')).toContainText('#');
+  expect(await textStart(page, '#icon')).toBe(await textStart(page, '#spacer'));
+});
+
+test('w-list-item no-prepend-space starts at the right padding in right-to-left layout', async ({ mount, page }) => {
+  await mount('<div dir="rtl" style="width: 400px"><w-list aria-label="Rows"><w-list-item id="flush" no-prepend-space title="שלום"></w-list-item></w-list></div>');
+  const gap = await page.locator('#flush').evaluate((host) => {
+    const row = host.querySelector('.w-list-item');
+    const content = host.querySelector('.w-list-item-content');
+    return Math.round(row.getBoundingClientRect().right - content.getBoundingClientRect().right);
+  });
+  const padding = await page.locator('#flush .w-list-item').evaluate((row) => Math.round(Number.parseFloat(getComputedStyle(row).paddingInlineStart)));
+  expect(gap).toBe(padding);
+});

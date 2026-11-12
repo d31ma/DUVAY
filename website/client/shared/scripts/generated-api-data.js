@@ -44579,6 +44579,12 @@ export const GENERATED_API_DATA = {
           "Reduces the width v-list-item takes up as well as adding a border radius."
         ],
         [
+          "no-prepend-space",
+          "string | number | boolean",
+          "—",
+          "Sets the no-prepend-space option."
+        ],
+        [
           "position",
           "string | number | boolean",
           "—",
@@ -44709,6 +44715,12 @@ export const GENERATED_API_DATA = {
           "string | number",
           "—",
           "Sets the width for the component."
+        ],
+        [
+          "wrap",
+          "string | number | boolean",
+          "—",
+          "Sets the wrap option."
         ]
       ]
     },

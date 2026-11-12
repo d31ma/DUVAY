@@ -793,6 +793,8 @@ export const API_DATA = {
       tag: 'w-list-item',
       attributes: [
         ['item-role', 'button | menuitem | menuitemradio | menuitemcheckbox | option | none', '—', 'What the row is when it is not a link; none is a static row.'],
+        ['wrap', 'boolean', 'false', 'The title and subtitle wrap onto more lines instead of being cut with an ellipsis.'],
+        ['no-prepend-space', 'boolean', 'false', 'With no prepend content, drops the empty leading column so the text starts at the row padding.'],
         ['title', 'string', '—', 'Primary item text.'],
         ['subtitle', 'string', '—', 'Secondary item text.'],
         ['value', 'string', 'title', 'Value emitted in selection events.'],
@@ -2028,7 +2030,7 @@ export const API_DATA = {
     {
       tag: 'w-empty',
       attributes: [
-        ['heading-level', '1-6 | none', '2', 'Heading level of the title; none keeps a paragraph.'],
+        ['heading-level', '1-6 | none', '2', 'The title is a real heading element at this level (h2 by default); none keeps a paragraph.'],
         ['icon-set', 'string', '—', 'Icon registry set used to resolve icon.'],
         ['headline', 'string', '—', 'Large display text shown above the media.'],
         ['title', 'string', '—', 'Bold title.'],

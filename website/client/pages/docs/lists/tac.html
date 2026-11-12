@@ -217,6 +217,27 @@
     </div>
   </demo-compare>
 
+  <h2>Long titles and rows without icons</h2>
+  <p>A title and subtitle stay on one line by default and are cut with an ellipsis. Add <code>wrap</code> (class <code>w-list-item--wrap</code>) to show all the words on more lines. A row keeps an empty leading column by default, so rows with and without icons line up. When no row in the list has prepend content, add <code>no-prepend-space</code> so the text starts at the row padding. With CSS classes, add <code>w-list-item--no-prepend-space</code> and leave out the empty <code>w-list-item-prepend</code> element.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-list" role="list" aria-label="Refused items">
+        <div class="w-list-item w-list-item--wrap w-list-item--no-prepend-space" role="listitem">
+          <span class="w-list-item-content">
+            <span class="w-list-item-title">Here are the two logo options we talked about on Monday, with the colours from the brand guide</span>
+            <span class="w-list-item-subtitle">Chat with Ana Silva and the design team</span>
+          </span>
+          <span class="w-list-item-append" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-list aria-label="Refused items">
+        <w-list-item item-role="none" wrap no-prepend-space title="Here are the two logo options we talked about on Monday, with the colours from the brand guide" subtitle="Chat with Ana Silva and the design team"></w-list-item>
+      </w-list>
+    </div>
+  </demo-compare>
+
   <h2>Tree view</h2>
   <p><code>w-treeview</code> renders hierarchical, collapsible data. Pass a flat <code>items</code> array of <code>&gt;</code>-delimited paths and DuVay builds the tree, or compose <code>w-treeview-item</code> children directly. Add <code>open-all</code> to expand every branch; toggle buttons are keyboard-focusable and report <code>aria-expanded</code>.</p>
   <demo-compare>

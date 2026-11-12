@@ -9,13 +9,13 @@ const ANNOUNCE_WAIT_MS = 1600;
 
 const ATTENTION_LIST = `
   <w-list id="attention" aria-label="Needs your attention">
-    <w-list-item id="row-1" item-role="none" title="Lunch on Friday?" subtitle="Chat with Ana">
+    <w-list-item id="row-1" item-role="none" wrap no-prepend-space title="Lunch on Friday?" subtitle="Chat with Ana">
       <w-send-status state="failed" reason="The server refused the message.">
         <w-btn slot="actions" id="retry-1" size="small" variant="tonal" aria-describedby="row-1-title">Retry</w-btn>
         <w-btn slot="actions" id="discard-1" size="small" variant="text" aria-describedby="row-1-title">Discard</w-btn>
       </w-send-status>
     </w-list-item>
-    <w-list-item id="row-2" item-role="none" title="Quarterly report" subtitle="Mail to Finance">
+    <w-list-item id="row-2" item-role="none" wrap no-prepend-space title="Quarterly report" subtitle="Mail to Finance">
       <w-send-status state="failed" reason="Attachment too large.">
         <w-btn slot="actions" id="retry-2" size="small" variant="tonal" aria-describedby="row-2-title">Retry</w-btn>
         <w-btn slot="actions" id="discard-2" size="small" variant="text" aria-describedby="row-2-title">Discard</w-btn>
@@ -293,7 +293,7 @@ test('the "Needs your attention" list tabs through the buttons in reading order'
 
 test('the "Needs your attention" empty state uses w-empty-state', async ({ mount, page }) => {
   await mount('<w-empty-state id="empty" title="Nothing needs your attention"></w-empty-state>');
-  await expect(page.locator('#empty')).toContainText('Nothing needs your attention');
+  await expect(page.locator('#empty h2')).toHaveText('Nothing needs your attention');
 });
 
 test('w-list-item gives its title the id "<host id>-title"', async ({ mount, page }) => {
@@ -336,4 +336,66 @@ test('the docs demo removes rows, shows the empty state and fails them again', a
   await expect(page.locator('[data-attention-empty]')).toBeHidden();
   await expect(page.locator('w-send-status[state="failed"]')).toHaveCount(3);
   expect(await readAnnouncements(page)).toEqual(['3 not sent. Needs your attention.']);
+});
+
+async function lineReport(page, selector) {
+  return page.locator(selector).evaluate((host) => {
+    const middle = (element) => {
+      const box = element.getClientRects()[0];
+      return box.top + box.height / 2;
+    };
+    const text = host.querySelector('.w-send-status-text');
+    const separator = host.querySelector('.w-send-status-separator');
+    const reason = host.querySelector('.w-send-status-reason');
+    const lineHeight = Number.parseFloat(getComputedStyle(text).lineHeight);
+    return {
+      separatorOnTextLine: Math.abs(middle(separator) - middle(text)) < lineHeight / 2,
+      reasonOnTextLine: Math.abs(middle(reason) - middle(text)) < lineHeight / 2,
+      separatorAfterText: getComputedStyle(host).direction === 'rtl'
+        ? separator.getBoundingClientRect().right <= text.getBoundingClientRect().left + 1
+        : separator.getBoundingClientRect().left >= text.getBoundingClientRect().right - 1,
+    };
+  });
+}
+
+test('w-send-status keeps the separator with the failed text when the reason wraps', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await mount(`<div style="width: 220px"><w-send-status id="s" state="failed" reason="Bo Lee is no longer in example.com"></w-send-status></div>`);
+  expect(await lineReport(page, '#s')).toEqual({ separatorOnTextLine: true, reasonOnTextLine: false, separatorAfterText: true });
+});
+
+test('w-send-status keeps the separator with the failed text in right-to-left layout', async ({ mount, page }) => {
+  await mount(`<div dir="rtl" style="width: 220px"><w-send-status id="s" state="failed" failed-text="לא נשלח" reason="בו לי כבר לא נמצא ב-example.com"></w-send-status></div>`);
+  expect(await lineReport(page, '#s')).toEqual({ separatorOnTextLine: true, reasonOnTextLine: false, separatorAfterText: true });
+});
+
+test('w-send-status keeps the reason on one line with the text when there is room', async ({ mount, page }) => {
+  await mount('<w-send-status id="s" state="failed" reason="Mailbox full."></w-send-status>');
+  expect(await lineReport(page, '#s')).toEqual({ separatorOnTextLine: true, reasonOnTextLine: true, separatorAfterText: true });
+  await expect(page.locator('#s .w-send-status-separator')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('#s .w-send-status-text')).toHaveText('Not sent');
+});
+
+test('the "Needs your attention" rows show the whole title and start at the row padding', async ({ mount, page }) => {
+  await page.setViewportSize({ width: 360, height: 640 });
+  await mount(ATTENTION_LIST.replace('title="Lunch on Friday?"', 'title="Here are the two logo options we talked about on Monday, with the brand colours"'));
+  const row = await page.locator('#row-1').evaluate((host) => {
+    const control = host.querySelector('.w-list-item');
+    const title = host.querySelector('.w-list-item-title');
+    return {
+      cut: title.scrollWidth > title.clientWidth,
+      start: Math.round(title.getBoundingClientRect().left - control.getBoundingClientRect().left),
+      padding: Math.round(Number.parseFloat(getComputedStyle(control).paddingInlineStart)),
+    };
+  });
+  expect([row.cut, row.start]).toEqual([false, row.padding]);
+});
+
+test('the docs attention demo wraps its titles and drops the empty leading space', async ({ mount, page }) => {
+  const source = readFileSync(new URL('../../website/client/pages/docs/send-status/tac.html', import.meta.url), 'utf8');
+  const start = source.indexOf('<div data-attention-demo>');
+  const end = source.indexOf('</demo-compare>', start);
+  await mount(source.slice(start, end));
+  await expect(page.locator('w-list-item[wrap][no-prepend-space]')).toHaveCount(3);
+  await expect(page.locator('[data-attention-empty] h2')).toHaveText('Nothing needs your attention');
 });

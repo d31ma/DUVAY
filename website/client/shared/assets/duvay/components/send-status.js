@@ -81,7 +81,7 @@ export class WSendStatus extends WElement {
     const state = this._shownState();
     return `<span class="w-send-status w-send-status--${state || 'none'}"${this._hiddenAttribute(state)}>`
       + this._iconMarkup(state)
-      + `<span class="w-send-status-text">${this._esc(this._stateText(state))}</span>`
+      + this._leadMarkup(state)
       + this._reasonMarkup(state)
       + '<span class="w-send-status-actions"><slot name="actions"></slot></span>'
       + '</span>';
@@ -148,11 +148,29 @@ export class WSendStatus extends WElement {
   }
 
   /** @param {string} state @returns {string} */
+  _leadMarkup(state) {
+    return `<span class="w-send-status-lead"><span class="w-send-status-text">${this._esc(this._stateText(state))}</span>`
+      + this._separatorMarkup(state)
+      + '</span>';
+  }
+
+  /** @param {string} state @returns {string} */
+  _separatorMarkup(state) {
+    if (!this._shownReason(state)) return '';
+    return '<span class="w-send-status-separator" aria-hidden="true">·</span>';
+  }
+
+  /** @param {string} state @returns {string} */
   _reasonMarkup(state) {
-    const reason = this._attr('reason', '');
-    if (state !== WSendStatus.failedState || !reason) return '';
-    return '<span class="w-send-status-detail"><span class="w-send-status-separator" aria-hidden="true">·</span>'
-      + `<span class="w-send-status-reason">${this._esc(reason)}</span></span>`;
+    const reason = this._shownReason(state);
+    if (!reason) return '';
+    return `<span class="w-send-status-detail"><span class="w-send-status-reason">${this._esc(reason)}</span></span>`;
+  }
+
+  /** @param {string} state @returns {string} */
+  _shownReason(state) {
+    if (state !== WSendStatus.failedState) return '';
+    return this._attr('reason', '');
   }
 
   /** @param {boolean} wasRendered @param {string} name @param {string | null} oldValue @param {string | null} newValue @returns {void} */

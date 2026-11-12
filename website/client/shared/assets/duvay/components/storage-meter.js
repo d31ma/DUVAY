@@ -16,7 +16,9 @@
  *   full-text  - default "Full"
  *
  * The rendered element has role="meter" with aria-valuemin, aria-valuemax,
- * aria-valuenow and aria-valuetext ("312 MB of 1 GB used, Almost full").
+ * aria-valuenow and aria-valuetext ("312 MB of 1 GB used, almost full"):
+ * the state words follow the comma in lower case, unless their first word
+ * is all capitals (such as "SSD").
  * It is not a live region and takes no focus. A value above max fills the
  * bar and counts as full. Byte sizes follow the closest [lang].
  */
@@ -133,7 +135,17 @@ export class WStorageMeter extends WElement {
   }
 
   _spokenText(valueText, stateText) {
-    return stateText ? valueText + WStorageMeter.spokenJoin + stateText : valueText;
+    return stateText ? valueText + WStorageMeter.spokenJoin + this._spokenState(stateText) : valueText;
+  }
+
+  _spokenState(stateText) {
+    if (WStorageMeter.startsWithCapitals(stateText)) return stateText;
+    return stateText.charAt(0).toLocaleLowerCase(WOfflineText.locale(this)) + stateText.slice(1);
+  }
+
+  static startsWithCapitals(text) {
+    const word = text.split(/\s/, 1)[0];
+    return word.length > 1 && word === word.toLocaleUpperCase();
   }
 }
 

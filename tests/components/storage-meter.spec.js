@@ -132,7 +132,7 @@ test('w-storage-meter shows "Almost full" in words and the warning colour from w
   const parts = await visibleParts(page, '#warn');
   const meter = await meterAttributes(page, '#warn');
   await expect(page.locator('#warn .w-storage-meter')).toHaveClass(/w-storage-meter--warn/);
-  expect([parts.state, parts.hasIcon, meter.text]).toEqual(['Almost full', true, '850 MB of 1 GB used, Almost full']);
+  expect([parts.state, parts.hasIcon, meter.text]).toEqual(['Almost full', true, '850 MB of 1 GB used, almost full']);
 });
 
 test('w-storage-meter shows "Full" in words and the error colour from full-at', async ({ mount, page }) => {
@@ -140,7 +140,7 @@ test('w-storage-meter shows "Full" in words and the error colour from full-at', 
   const parts = await visibleParts(page, '#full');
   const meter = await meterAttributes(page, '#full');
   await expect(page.locator('#full .w-storage-meter')).toHaveClass(/w-storage-meter--full/);
-  expect([parts.state, parts.hasIcon, meter.text]).toEqual(['Full', true, '980 MB of 1 GB used, Full']);
+  expect([parts.state, parts.hasIcon, meter.text]).toEqual(['Full', true, '980 MB of 1 GB used, full']);
 });
 
 test('w-storage-meter shows no state words below warn-at', async ({ mount, page }) => {
@@ -182,7 +182,7 @@ test('w-storage-meter fills the bar and counts as full when value is above max',
   await mount(`<w-storage-meter value="${1200 * MEGABYTE}" max="${GIGABYTE}"></w-storage-meter>`);
   const parts = await visibleParts(page, 'w-storage-meter');
   const meter = await meterAttributes(page, 'w-storage-meter');
-  expect([parts.fill, parts.state, meter.now, meter.max, meter.text]).toEqual(['100%', 'Full', String(GIGABYTE), String(GIGABYTE), '1.2 GB of 1 GB used, Full']);
+  expect([parts.fill, parts.state, meter.now, meter.max, meter.text]).toEqual(['100%', 'Full', String(GIGABYTE), String(GIGABYTE), '1.2 GB of 1 GB used, full']);
 });
 
 test('w-storage-meter with max 0 shows the value without a bar fill', async ({ mount, page }) => {
@@ -203,7 +203,7 @@ test('w-storage-meter updates when value changes, without a live region', async 
   await page.locator('w-storage-meter').evaluate((host) => { host.value = 960000000; });
   const meter = await meterAttributes(page, 'w-storage-meter');
   const liveRegions = await page.locator('w-storage-meter [aria-live], w-storage-meter [role="status"]').count();
-  expect([meter.text, liveRegions]).toEqual(['960 MB of 1 GB used, Full', 0]);
+  expect([meter.text, liveRegions]).toEqual(['960 MB of 1 GB used, full', 0]);
 });
 
 test('w-storage-meter keeps the same label id across renders', async ({ mount, page }) => {
@@ -274,4 +274,14 @@ test('w-storage-meter fills the width of its container', async ({ mount, page })
   await mount(`<div style="inline-size: 600px"><w-storage-meter value="1" max="10"></w-storage-meter></div>`);
   const width = await page.locator('w-storage-meter .w-storage-meter-track').evaluate((track) => Math.round(track.getBoundingClientRect().width));
   expect(width).toBe(600);
+});
+
+test('w-storage-meter reads the state words in lower case after the comma', async ({ mount, page }) => {
+  await mount(`
+    <div lang="de"><w-storage-meter id="de" value="${850 * MEGABYTE}" max="${GIGABYTE}" value-text="{used} von {max} belegt" warn-text="Fast voll"></w-storage-meter></div>
+    <w-storage-meter id="acronym" value="${990 * MEGABYTE}" max="${GIGABYTE}" full-text="SSD full"></w-storage-meter>`);
+  const german = await meterAttributes(page, '#de');
+  const acronym = await meterAttributes(page, '#acronym');
+  expect([(await visibleParts(page, '#de')).state, german.text.replace(/\s/g, ' ')]).toEqual(['Fast voll', '850 MB von 1 GB belegt, fast voll']);
+  expect(acronym.text).toBe('990 MB of 1 GB used, SSD full');
 });

@@ -1,6 +1,6 @@
 <doc-layout>
   <h1>Empty states</h1>
-  <p><code>w-empty-state</code> (alias <code>w-empty</code>) communicates that there is nothing to show. It supports a leading <code>icon</code> or <code>image</code>, a large <code>headline</code>, <code>title</code>/<code>text</code>, an <code>action-text</code> button, <code>color</code>/<code>bg-color</code>, and <code>justify</code> alignment.</p>
+  <p><code>w-empty-state</code> (alias <code>w-empty</code>) communicates that there is nothing to show. It supports a leading <code>icon</code> or <code>image</code>, a large <code>headline</code>, <code>title</code>/<code>text</code>, an <code>action-text</code> button, <code>color</code>/<code>bg-color</code>, and <code>justify</code> alignment. The <code>title</code> renders as a real heading element, <code>&lt;h2&gt;</code> by default; set <code>heading-level</code> (1 to 6) to fit the page, or <code>none</code> for a plain paragraph. A slotted <code>title</code> that is already a heading keeps its own level.</p>
 
   <h2>Basic</h2>
   <demo-compare>
@@ -8,7 +8,7 @@
       <div class="w-empty w-empty--center">
         <div class="w-empty-media w-empty-icon">📭</div>
         <div class="w-empty-content">
-          <p class="w-empty-title">No messages</p>
+          <h2 class="w-empty-title">No messages</h2>
           <p class="w-empty-subtitle">Your inbox is empty.</p>
         </div>
         <div class="w-empty-actions"><button class="w-btn w-btn--tonal">Refresh</button></div>

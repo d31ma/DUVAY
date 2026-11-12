@@ -14,9 +14,10 @@
  *   action-text  - label for a built-in action button
  *   href         - turns the action button into a link
  *   text-width   - max width (CSS length / number) of the title + text block
- *   heading-level - 1-6 (default 2): the title is a heading at this level;
- *                  "none" keeps it a plain paragraph. A slotted title that is
- *                  already a heading element keeps its own level.
+ *   heading-level - 1-6 (default 2): the title is a real heading element
+ *                  (<h2> by default) at this level; "none" keeps it a plain
+ *                  paragraph. A slotted title that is already a heading
+ *                  element keeps its own level.
  *   icon-set     - icon registry set used to resolve `icon` (see WIcons)
  *
  * Slots:
@@ -84,8 +85,8 @@ class WEmpty extends WElement {
     const hasText = this._hasSlot('text') || this.text;
     if (!hasTitle && !hasText) return '';
     let html = '<div class="w-empty-content">';
-    if (this._hasSlot('title')) html += `<p class="w-empty-title"${this._titleRole()}><slot name="title"></slot></p>`;
-    else if (this.title) html += `<p class="w-empty-title"${this._titleRole()}>${this._esc(this.title)}</p>`;
+    if (this._hasSlot('title')) html += this._titleMarkup('<slot name="title"></slot>');
+    else if (this.title) html += this._titleMarkup(this._esc(this.title));
     if (this._hasSlot('text')) html += '<p class="w-empty-subtitle"><slot name="text"></slot></p>';
     else if (this.text) html += `<p class="w-empty-subtitle">${this._esc(this.text)}</p>`;
     return html + '</div>';
@@ -96,11 +97,15 @@ class WEmpty extends WElement {
     return WIcons.resolve(iconSet ? `${iconSet}:${this.icon}` : this.icon, { iconClass: 'w-icon' });
   }
 
-  _titleRole() {
+  _titleMarkup(content) {
+    const tag = this._titleTag();
+    return `<${tag} class="w-empty-title">${content}</${tag}>`;
+  }
+
+  _titleTag() {
     const level = this._attr('heading-level', '2');
-    if (level === 'none' || this._slottedHeading()) return '';
-    const value = Math.min(6, Math.max(1, parseInt(level, 10) || 2));
-    return ` role="heading" aria-level="${value}"`;
+    if (level === 'none' || this._slottedHeading()) return 'p';
+    return 'h' + Math.min(6, Math.max(1, parseInt(level, 10) || 2));
   }
 
   _slottedHeading() {

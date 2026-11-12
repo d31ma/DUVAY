@@ -58,6 +58,31 @@
 
 ### Fixed
 
+- Offline states follow-up (Mesail trial of `develop` d68028d, items 10 to
+  14). No breaking change; every new attribute is optional.
+  - `w-send-status`: on a narrow row the "·" separator stays at the end of
+    the "Not sent" line when the reason wraps, instead of starting the new
+    line. The separator now sits in a new `w-send-status-lead` wrapper with
+    the state words; old CSS-class markup (separator inside
+    `w-send-status-detail`) still renders as before.
+  - `w-list-item wrap` (class `w-list-item--wrap`): the title and subtitle
+    wrap onto more lines instead of being cut with an ellipsis. One line
+    stays the default.
+  - `w-list-item no-prepend-space` (class `w-list-item--no-prepend-space`):
+    a row with no prepend content drops the empty leading column, so the
+    text starts at the row padding. The column stays by default, because
+    lists and list groups use it to line up rows with and without icons.
+    The "Needs your attention" pattern and its demo use both attributes.
+  - `w-empty-state` / `w-empty`: the `title` attribute (and a slotted title
+    that is not a heading) renders a real heading element, `<h2>` by
+    default or `<h1>` to `<h6>` from `heading-level`, instead of a `<p>`
+    with `role="heading"`. It looks the same. `heading-level="none"` still
+    gives a paragraph.
+  - `w-storage-meter`: `aria-valuetext` reads the state words in lower case
+    after the comma, as the spec says ("850 MB of 1 GB used, almost full").
+    A first word in all capitals (such as "SSD") is kept. The visible words
+    are unchanged.
+
 - `w-dialog` returns focus however it opened. A dialog opened by setting
   `open`, or inserted with `open` already set, now remembers the control that
   held focus, and gives focus back on Escape, the X, a `w-dialog-close`
