@@ -1,6 +1,7 @@
 /* DuVay — Sync status styles (w-sync-status, docs/offline-states.md section 3).
  * A full-width bar or a small chip: icon, state words, the time of the last
- * sync and the counts, then the app's actions. */
+ * sync and the counts, then the app's actions, and a thin progress line while
+ * syncing or sending. */
 @import "../core.css";
 
 w-sync-status {
@@ -10,6 +11,7 @@ w-sync-status {
 .w-sync-status {
   --w-sync-status-bg: var(--w-surface-container);
   --w-sync-status-fg: var(--w-text);
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -100,11 +102,15 @@ w-sync-status {
 
 .w-sync-status__text {
   display: flex;
-  flex: 1 1 12rem;
+  flex: 1 1 0;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 var(--w-space-2);
   min-width: 0;
+}
+
+.w-sync-status--bar .w-sync-status__text {
+  min-width: min(8rem, 100%);
 }
 
 .w-sync-status--chip .w-sync-status__text {
@@ -121,4 +127,34 @@ w-sync-status {
   align-items: center;
   gap: var(--w-space-2);
   margin-inline-start: auto;
+}
+
+.w-sync-status__progress {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 0.125rem;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.w-sync-status__progress-bar {
+  display: block;
+  height: 100%;
+  background-color: var(--w-primary);
+  transition: inline-size var(--w-motion-duration-slow) var(--w-motion-ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-sync-status__progress-bar {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .w-sync-status__progress-bar {
+    forced-color-adjust: none;
+    background-color: CanvasText;
+  }
 }

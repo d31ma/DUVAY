@@ -12,6 +12,9 @@
  *   tally(key, template, delayMs?) - counts calls with the same key inside
  *                                   `delayMs` (default 1000), then says
  *                                   `template` with {count} filled in once.
+ *                                   `template` may be a function that takes
+ *                                   the count and returns the template, for
+ *                                   plural forms.
  *   cancel(key)                   - drops a waiting message
  *
  * The window starts at the first call and is never extended, so a steady
@@ -35,11 +38,12 @@ export class WLiveAnnouncer {
     entry.render = () => String(text ?? '');
   }
 
-  /** @param {string} key @param {string} template @param {number} [delayMs] @returns {void} */
+  /** @param {string} key @param {string | ((count: number) => string)} template @param {number} [delayMs] @returns {void} */
   static tally(key, template, delayMs = WLiveAnnouncer.tallyDelayMs) {
     const entry = WLiveAnnouncer.entryFor(key, delayMs);
+    const templateFor = typeof template === 'function' ? template : () => template;
     entry.count += 1;
-    entry.render = () => WOfflineText.fill(template, { count: entry.count });
+    entry.render = () => WOfflineText.fill(templateFor(entry.count), { count: entry.count });
   }
 
   /** @param {string} key @returns {void} */

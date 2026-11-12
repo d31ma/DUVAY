@@ -44,6 +44,37 @@
   Each OS skin follows the platform's own status surface: iOS and Linux
   centre the text like a toolbar status line and an AdwBanner, Android is
   an M3 banner, macOS a lighter status line, Windows a bordered InfoBar.
+- Offline states, follow-up from Mesail's trial of `develop` (all new
+  attributes are optional; nothing changes for an app that sets none):
+  - `w-sync-status` `state="sending"`: "Sending… · 3 of 4" from the new
+    `sent` count and `pending` (`sending-text`, `queue-text` with
+    `{current}` and `{total}`).
+  - `w-sync-status` `state="sent"`: "Up to date · 4 sent", announced once
+    ("Up to date. 4 sent.", `sent-announce-text`), hidden after
+    `sent-timeout` ms (default 4000; 0 keeps it). With `attention` it shows
+    "Needs your attention: 1 · 3 others sent" (`others-sent-text`) and
+    stays. An empty state text such as `online-text=""` leaves the state
+    words out.
+  - Plural forms for every count text: `<name>-text-zero`, `-one`, `-two`,
+    `-few`, `-many`, `-other`, chosen with `Intl.PluralRules` for the
+    closest `lang` (then `-other`, then the plain text). On
+    `w-sync-status`: pending, attention, queue, sent, others-sent and
+    sent-announce; on `w-send-status`: failed-announce. `w-storage-meter`
+    has no count texts. `WLiveAnnouncer.tally()` takes a template function.
+  - `w-sync-status` `syncing-updated-text` ("Getting changes since
+    {time}") and `progress` (0 to 1): a 2 px line along the bottom while
+    syncing or sending, still with reduced motion.
+  - `w-sync-status` `offline-announce-text` and `locked-announce-text` with
+    `{time}`: what is heard can differ from what is seen.
+  - `hour-cycle` (`h11`, `h12`, `h23`, `h24`) on `w-sync-status` and
+    `w-send-status`; without it the closest `lang` decides.
+  - `w-sync-status` keeps one button in `actions` on the line of the text
+    on a phone (375 px), on every OS skin; wider actions move under it.
+    The bar stays non-interactive: the docs show a "Details" button in
+    `actions` for apps that open a sync panel.
+  - `WOfflineText`: `textNames`, `queueParts`, `hourCycle` (with vectors in
+    `spec/fixtures/offline.json`), `number`, `countText`,
+    `pluralAttributes`, and an `hourCycle` argument to `time`.
 
 - `w-bottom-navigation` takes its landmark name from `label`, `aria-label` or
   `aria-labelledby` on the host and puts it on the rendered `<nav>`. The

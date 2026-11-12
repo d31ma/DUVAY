@@ -1,6 +1,6 @@
 <doc-layout>
   <h1>Sync status</h1>
-  <p><code>w-sync-status</code> tells the user whether the app is online and how fresh the copy of the data on this device is, for example &#8220;Offline · updated 08:12 · 3 waiting to send&#8221;. It is one of the offline states pieces (<code>docs/offline-states.md</code>). Set <code>state</code> to <code>online</code>, <code>syncing</code>, <code>offline</code> or <code>locked</code>, and give it <code>updated-at</code>, <code>pending</code> and <code>attention</code>. Every state shows an icon and words, never colour alone.</p>
+  <p><code>w-sync-status</code> tells the user whether the app is online and how fresh the copy of the data on this device is, for example &#8220;Offline · updated 08:12 · 3 waiting to send&#8221;. It is one of the offline states pieces (<code>docs/offline-states.md</code>). Set <code>state</code> to <code>online</code>, <code>syncing</code>, <code>offline</code>, <code>locked</code>, <code>sending</code> or <code>sent</code>, and give it <code>updated-at</code>, <code>pending</code>, <code>attention</code> and <code>sent</code>. Every state shows an icon and words, never colour alone.</p>
 
   <h2>States</h2>
   <p>When the state is <code>online</code> and nothing waits, the bar is hidden. Add <code>show-online</code> to keep it visible with &#8220;Up to date&#8221;.</p>
@@ -27,6 +27,61 @@
     </div>
   </demo-compare>
 
+  <h2>Catching up</h2>
+  <p>While <code>syncing</code>, <code>syncing-updated-text</code> replaces the time text, for example &#8220;Getting changes since 08:12&#8221;. <code>progress</code> (0 to 1) draws a 2 px line along the bottom of the bar while <code>syncing</code> or <code>sending</code>. The line is hidden from screen readers, and it does not move with reduced motion.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-sync-status w-sync-status--bar w-sync-status--syncing">
+        <span class="w-sync-status__icon" aria-hidden="true"><svg class="w-sync-status__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg></span>
+        <span class="w-sync-status__text">
+          <span class="w-sync-status__state">Updating</span>
+          <span class="w-sync-status__separator" aria-hidden="true">·</span>
+          <span class="w-sync-status__part">Getting changes since 08:12</span>
+        </span>
+        <span class="w-sync-status__progress" aria-hidden="true"><span class="w-sync-status__progress-bar" style="inline-size: 40%"></span></span>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-sync-status state="syncing" updated-at="2026-11-11T08:12:00" progress="0.4" syncing-text="Updating" syncing-updated-text="Getting changes since {time}"></w-sync-status>
+    </div>
+  </demo-compare>
+
+  <h2>Sending the queue</h2>
+  <p>While the app sends what was written offline, set <code>state="sending"</code>, <code>sent</code> to the items sent so far and <code>pending</code> to the items still waiting (the one being sent counts as waiting). The bar shows &#8220;Sending… · 3 of 4&#8221; in place of the waiting count. <code>queue-text</code> changes the words; it takes <code>{current}</code> and <code>{total}</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-sync-status w-sync-status--bar w-sync-status--sending">
+        <span class="w-sync-status__icon" aria-hidden="true"><svg class="w-sync-status__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span>
+        <span class="w-sync-status__text">
+          <span class="w-sync-status__state">Sending…</span>
+          <span class="w-sync-status__separator" aria-hidden="true">·</span>
+          <span class="w-sync-status__part">3 of 4</span>
+        </span>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-sync-status state="sending" sent="2" pending="2"></w-sync-status>
+    </div>
+  </demo-compare>
+
+  <h2>All sent</h2>
+  <p>When the queue is empty, set <code>state="sent"</code> with the count in <code>sent</code>. The bar shows &#8220;Up to date · 4 sent&#8221;, screen readers hear &#8220;Up to date. 4 sent.&#8221; once, and the bar hides itself after <code>sent-timeout</code> milliseconds (4000; <code>0</code> keeps it). With <code>show-online</code> it then shows &#8220;Up to date&#8221;. Start the next round with another state. The demo keeps the summary with <code>sent-timeout="0"</code>.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-sync-status w-sync-status--bar w-sync-status--sent">
+        <span class="w-sync-status__icon" aria-hidden="true"><svg class="w-sync-status__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <span class="w-sync-status__text">
+          <span class="w-sync-status__state">Up to date</span>
+          <span class="w-sync-status__separator" aria-hidden="true">·</span>
+          <span class="w-sync-status__part">4 sent</span>
+        </span>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-sync-status state="sent" sent="4" sent-timeout="0"></w-sync-status>
+    </div>
+  </demo-compare>
+
   <h2>Chip</h2>
   <p><code>variant="chip"</code> is a small pill for an app bar or a header.</p>
   <demo-compare>
@@ -43,7 +98,7 @@
   </demo-compare>
 
   <h2>Items that need the user</h2>
-  <p><code>attention</code> counts the items the server refused. Put the app&#8217;s own button in the <code>actions</code> slot; the element has no events.</p>
+  <p><code>attention</code> counts the items the server refused. Put the app&#8217;s own button in the <code>actions</code> slot; the element has no events. In the <code>sent</code> state the bar also counts the others, &#8220;3 others sent&#8221; (<code>others-sent-text</code>), and it does not hide while <code>attention</code> is above 0. An empty <code>online-text</code> leaves the state words out, so the attention text leads.</p>
   <demo-compare>
     <div slot="css">
       <div class="w-sync-status w-sync-status--bar w-sync-status--online">
@@ -60,11 +115,38 @@
       <w-sync-status state="online" attention="2">
         <w-btn slot="actions" variant="text">Show</w-btn>
       </w-sync-status>
+      <w-sync-status state="sent" sent="3" attention="1" online-text="" attention-text-one="{count} item needs your attention" attention-text-other="{count} items need your attention">
+        <w-btn slot="actions" variant="text" size="small">Review</w-btn>
+      </w-sync-status>
+    </div>
+  </demo-compare>
+
+  <h2>A &#8220;Details&#8221; button</h2>
+  <p>The bar itself is never a button and has no link mode, so it never takes focus. To open a sync panel or a settings page from the bar, put a <code>Details</code> button in <code>actions</code>, and give it <code>aria-haspopup="dialog"</code> when it opens a dialog. On a phone one button stays on the line of the text and the text wraps beside it; wider actions move under the text.</p>
+  <demo-compare>
+    <div slot="css">
+      <div class="w-sync-status w-sync-status--bar w-sync-status--offline">
+        <span class="w-sync-status__icon" aria-hidden="true"><svg class="w-sync-status__svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.6 17A5 5 0 0 0 18 10h-1.3A8 8 0 0 0 9.7 4M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3"/><path d="M1 1l22 22"/></svg></span>
+        <span class="w-sync-status__text">
+          <span class="w-sync-status__state">Offline</span>
+          <span class="w-sync-status__separator" aria-hidden="true">·</span>
+          <span class="w-sync-status__part">updated 08:12</span>
+          <span class="w-sync-status__separator" aria-hidden="true">·</span>
+          <span class="w-sync-status__part">4 waiting to send</span>
+        </span>
+        <span class="w-sync-status__actions"><button class="w-btn w-btn--text w-btn--sm" aria-haspopup="dialog">Details</button></span>
+      </div>
+    </div>
+    <div slot="wc">
+      <w-sync-status state="offline" updated-at="2026-11-11T08:12:00" pending="4">
+        <w-btn slot="actions" variant="text" size="small" aria-haspopup="dialog">Details</w-btn>
+      </w-sync-status>
     </div>
   </demo-compare>
 
   <h2>Translated text</h2>
-  <p>Every text has an attribute. <code>{time}</code> and <code>{count}</code> are filled in. Times and numbers follow the closest <code>lang</code>.</p>
+  <p>Every text has an attribute. <code>{time}</code> and <code>{count}</code> are filled in. Times and numbers follow the closest <code>lang</code> (on the element or a parent), then the page&#8217;s <code>lang</code>. <code>hour-cycle="h23"</code> or <code>"h12"</code> chooses 24 or 12 hours; without it the language decides (<code>en</code> shows &#8220;08:12 AM&#8221;, <code>en-GB</code> &#8220;08:12&#8221;).</p>
+  <p>Every text with a count has plural forms: add <code>-zero</code>, <code>-one</code>, <code>-two</code>, <code>-few</code>, <code>-many</code> or <code>-other</code> to its name, for example <code>pending-text-one</code> and <code>pending-text-other</code>. The form is chosen with <code>Intl.PluralRules</code> for the element&#8217;s language. A missing form falls back to <code>-other</code>, then to the plain text, then to the English default. The count texts are <code>pending-text</code>, <code>attention-text</code>, <code>queue-text</code> (by <code>{total}</code>), <code>sent-text</code>, <code>others-sent-text</code> and <code>sent-announce-text</code>.</p>
   <demo-compare>
     <div slot="css">
       <div lang="de" class="w-sync-status w-sync-status--bar w-sync-status--offline">
@@ -80,16 +162,19 @@
       <div lang="de">
         <w-sync-status state="offline" pending="1234" offline-text="Offline" updated-text="aktualisiert {time}" pending-text="{count} warten auf Versand" back-online-text="Wieder online"></w-sync-status>
       </div>
+      <w-sync-status state="offline" pending="1" updated-at="2026-11-11T20:05:00" hour-cycle="h23" pending-text-one="{count} item waits" pending-text-other="{count} items wait"></w-sync-status>
+      <w-sync-status state="offline" pending="3" updated-at="2026-11-11T20:05:00" hour-cycle="h23" pending-text-one="{count} item waits" pending-text-other="{count} items wait"></w-sync-status>
     </div>
   </demo-compare>
 
   <h2>Accessibility</h2>
   <ul>
     <li>The visible text is not a live region, so changes to the time and the counts are never announced.</li>
-    <li>The element owns one hidden <code>role="status"</code> line. It speaks, politely, only when <code>state</code> changes: the offline text, the locked text, or &#8220;Back online&#8221; when the state leaves <code>offline</code> or <code>locked</code>. <code>syncing</code> is not announced.</li>
+    <li>The element owns one hidden <code>role="status"</code> line. It speaks, politely, only when <code>state</code> changes: the offline text, the locked text, &#8220;Back online&#8221; when the state leaves <code>offline</code> or <code>locked</code>, and &#8220;Up to date. 4 sent.&#8221; once when it turns <code>sent</code>. <code>syncing</code> and <code>sending</code> are not announced, and neither is the end of the sent summary.</li>
+    <li>What is heard can differ from what is seen: <code>offline-announce-text</code> and <code>locked-announce-text</code> take <code>{time}</code>, for example <code>offline-announce-text="Offline. Showing the copy on this device, updated {time}."</code>. Without <code>updated-at</code>, a text with <code>{time}</code> falls back to the state words. <code>sent-announce-text</code> takes <code>{count}</code> and plural forms; <code>back-online-text</code> is already only heard.</li>
     <li>Changes within 2 seconds make one announcement, or none if the state ends where it started. Nothing is announced on first display.</li>
     <li>The element never takes focus. Buttons in <code>actions</code> keep their normal tab order.</li>
-    <li>With reduced motion, a still icon replaces the spinner. The layout mirrors for right-to-left languages.</li>
+    <li>With reduced motion, a still icon replaces the spinner and the progress line jumps instead of moving. The layout mirrors for right-to-left languages.</li>
     <li>Use one <code>w-sync-status</code> per page for a state: two elements would announce the same change twice.</li>
   </ul>
 </doc-layout>

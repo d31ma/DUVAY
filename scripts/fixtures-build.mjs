@@ -201,8 +201,9 @@ const SUITES = [
     file: 'offline.json',
     description:
       'Decisions behind the offline-state text (w-sync-status, w-send-status, '
-      + 'w-storage-meter): which time style to show, and how to split a byte count '
-      + 'into a value and a unit. Each platform formats the final words with its own '
+      + 'w-storage-meter): which time style to show, how to split a byte count '
+      + 'into a value and a unit, which attributes hold a count text and its plural '
+      + 'forms, the queue progress and the hour cycle. Each platform formats the final words with its own '
       + 'locale formatter. Source of truth: src/components/offline-text.js; spec: '
       + 'docs/offline-states.md.',
     fns: {
@@ -233,6 +234,18 @@ const SUITES = [
         ['{count} not sent {other}', { count: 2 }],
         ['no placeholders', {}],
         ['{count}', {}],
+        ['{current} of {total}', { current: 3, total: 4 }],
+      ],
+      // The attributes a count text is looked up in, first match wins.
+      textNames: [
+        ['pending', 'one'], ['pending', 'few'], ['attention', 'other'], ['failed-announce', 'many'],
+      ],
+      // While sending: the item being sent counts as waiting.
+      queueParts: [
+        [0, 4], [2, 2], [3, 1], [4, 0], [0, 0], [-3, 2], [1.9, 2.5],
+      ],
+      hourCycle: [
+        ['h11'], ['h12'], ['h23'], ['h24'], [''], ['24'], ['H23'], [null],
       ],
     },
   },

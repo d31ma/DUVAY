@@ -54001,6 +54001,12 @@ export const GENERATED_API_DATA = {
           "Sets the height option."
         ],
         [
+          "hour-cycle",
+          "string | number | boolean",
+          "—",
+          "Sets the hour-cycle option."
+        ],
+        [
           "hover-elevation",
           "boolean | string",
           "—",
@@ -60689,6 +60695,12 @@ export const GENERATED_API_DATA = {
           "Sets the height option."
         ],
         [
+          "hour-cycle",
+          "string | number | boolean",
+          "—",
+          "Sets the hour-cycle option."
+        ],
+        [
           "hover-elevation",
           "boolean | string",
           "—",
@@ -60725,6 +60737,12 @@ export const GENERATED_API_DATA = {
           "Sets the location option."
         ],
         [
+          "locked-announce-text",
+          "string | number | boolean",
+          "—",
+          "Sets the locked-announce-text option."
+        ],
+        [
           "locked-text",
           "string | number | boolean",
           "—",
@@ -60755,6 +60773,12 @@ export const GENERATED_API_DATA = {
           "Sets the min-width option."
         ],
         [
+          "offline-announce-text",
+          "string | number | boolean",
+          "—",
+          "Sets the offline-announce-text option."
+        ],
+        [
           "offline-text",
           "string | number | boolean",
           "—",
@@ -60765,6 +60789,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the online-text option."
+        ],
+        [
+          "others-sent-text",
+          "string | number | boolean",
+          "—",
+          "Sets the others-sent-text option."
         ],
         [
           "pending",
@@ -60785,6 +60815,18 @@ export const GENERATED_API_DATA = {
           "Sets the position option."
         ],
         [
+          "progress",
+          "string | number | boolean",
+          "—",
+          "Sets the progress option."
+        ],
+        [
+          "queue-text",
+          "string | number | boolean",
+          "—",
+          "Sets the queue-text option."
+        ],
+        [
           "readonly",
           "boolean | string",
           "—",
@@ -60801,6 +60843,36 @@ export const GENERATED_API_DATA = {
           "boolean | string",
           "—",
           "Sets the rounded option."
+        ],
+        [
+          "sending-text",
+          "string | number | boolean",
+          "—",
+          "Sets the sending-text option."
+        ],
+        [
+          "sent",
+          "string | number | boolean",
+          "—",
+          "Sets the sent option."
+        ],
+        [
+          "sent-announce-text",
+          "string | number | boolean",
+          "—",
+          "Sets the sent-announce-text option."
+        ],
+        [
+          "sent-text",
+          "string | number | boolean",
+          "—",
+          "Sets the sent-text option."
+        ],
+        [
+          "sent-timeout",
+          "string | number | boolean",
+          "—",
+          "Sets the sent-timeout option."
         ],
         [
           "show-online",
@@ -60831,6 +60903,12 @@ export const GENERATED_API_DATA = {
           "string | number | boolean",
           "—",
           "Sets the syncing-text option."
+        ],
+        [
+          "syncing-updated-text",
+          "string | number | boolean",
+          "—",
+          "Sets the syncing-updated-text option."
         ],
         [
           "tabindex",

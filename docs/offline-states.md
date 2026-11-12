@@ -27,9 +27,14 @@ Nothing that exists changes. No breaking change.
    keep their normal tab order, and their touch targets stay 44 by 44 px on
    touch screens.
 4. Every visible text has an English default and can be replaced, so an app
-   can translate it. Placeholders are `{time}` and `{count}`.
-5. Times follow the user's language and its 12 or 24 hour habit. Layout
-   mirrors for right-to-left languages.
+   can translate it. Placeholders are `{time}` and `{count}` (and `{current}`
+   and `{total}` in the queue text). Every text with a count also has plural
+   forms (see "Plural forms" below). An empty state text leaves the state
+   words out.
+5. Times follow the user's language and its 12 or 24 hour habit; an app can
+   choose with `hour-cycle` (`h11`, `h12`, `h23`, `h24`). The language is the
+   closest `lang` (on the element or a parent), then the page's `lang`.
+   Layout mirrors for right-to-left languages.
 6. With reduced motion, nothing spins: a still icon replaces the spinner.
 7. Announcements are polite, never interrupting. Nothing announces on
    first display. A burst of changes makes one announcement, not many.
@@ -56,9 +61,28 @@ own date and number formatter.
   count counts as 0. Shown as "0 kB", "1.5 kB", "312 MB", "1.2 GB".
 - `fill(template, values)` replaces `{name}` with the value; unknown names
   stay as they are.
-- Web only: `time(iso, locale, now?)`, `bytes(count, locale)`,
-  `locale(element)` (the closest `lang`, then the page's `lang`, then `en`).
-  Hours are shown with two digits.
+- `textNames(name, category)` gives the attribute names to look up for a
+  count text, in order: `<name>-text-<category>`, `<name>-text-other`,
+  `<name>-text`. The first one set wins, else the built-in default.
+- `queueParts(sent, pending)` gives `{ current: sent + 1, total: sent +
+  pending }` while something waits ("3 of 4"), else nothing.
+- `hourCycle(value)` keeps `h11`, `h12`, `h23` or `h24`, and gives "" (the
+  locale's habit) for anything else.
+- Web only: `time(iso, locale, now?, hourCycle?)`, `bytes(count, locale)`,
+  `number(count, locale)`, `countText(element, name, count, fallback)`,
+  `pluralAttributes(names)`, `locale(element)` (the closest `lang`, then the
+  page's `lang`, then `en`). Hours are shown with two digits.
+
+### Plural forms
+Each text with `{count}` (or a total) can have one attribute per plural
+category of the user's language: `<name>-text-zero`, `-one`, `-two`, `-few`,
+`-many`, `-other`. The category comes from `Intl.PluralRules` for the
+element's language (native platforms use their own plural rules). The lookup
+order is `textNames()` above, so an app may set only `-one` and `-other`, or
+only the plain `<name>-text` as before. The English defaults have no plural
+forms, so nothing changes for an app that sets none. Example: `attention-
+text-one="{count} item needs your attention"` and `attention-text-other=
+"{count} items need your attention"`.
 
 ### Announcer (`WLiveAnnouncer`)
 One shared, visually hidden polite message line per page
@@ -68,7 +92,9 @@ aria-atomic="true" class="w-sr-only">`), added on first use.
 - `announce(key, text, delayMs = 0)`: says `text` once after `delayMs`;
   later calls with the same key inside that time replace the text.
 - `tally(key, template, delayMs = 1000)`: counts calls with the same key
-  inside the time, then says the template with `{count}` once.
+  inside the time, then says the template with `{count}` once. `template`
+  may also be a function that takes the count and returns the template, for
+  plural forms.
 - `cancel(key)`: drops a waiting message.
 - The time window starts at the first call and is never made longer, so a
   steady stream of changes still speaks once per window. Messages of several
@@ -87,43 +113,87 @@ Attributes:
 
 | Attribute | Values | Default | Meaning |
 | --- | --- | --- | --- |
-| `state` | `online`, `syncing`, `offline`, `locked` | `online` | The connection and copy state |
+| `state` | `online`, `syncing`, `offline`, `locked`, `sending`, `sent` | `online` | The connection and copy state |
 | `updated-at` | ISO 8601 time | none | Last successful sync |
-| `pending` | whole number | `0` | Items waiting to send |
+| `pending` | whole number | `0` | Items waiting to send (with `sending`: the item being sent counts as waiting) |
 | `attention` | whole number | `0` | Items that need the user |
+| `sent` | whole number | `0` | Items sent in this round: "3 of 4" with `sending`, "4 sent" with `sent` |
+| `progress` | 0 to 1 | none | A thin line along the bottom of the bar while `syncing` or `sending` |
+| `sent-timeout` | milliseconds | `4000` | How long the `sent` summary stays; `0` keeps it |
+| `hour-cycle` | `h11`, `h12`, `h23`, `h24` | the locale's habit | 12 or 24 hours for `{time}` |
 | `variant` | `bar`, `chip` | `bar` | Full-width bar, or a small pill for headers |
 | `sticky` | boolean | off | Pins the bar to the top of its scroll container |
 | `show-online` | boolean | off | Also shows the bar when online with nothing waiting |
 | `icon`, `icon-set` | icon name; `false` hides it | built-in icon | Replaces the icon |
 | `offline-text` | text | `Offline` | |
 | `syncing-text` | text | `Updating…` | |
-| `online-text` | text | `Up to date` | |
+| `sending-text` | text | `Sending…` | |
+| `online-text` | text | `Up to date` | Also the words of `sent` |
 | `locked-text` | text | `Locked. Sign in to open the copy on this device.` | |
 | `updated-text` | text with `{time}` | `updated {time}` | Left out when `updated-at` is empty |
-| `pending-text` | text with `{count}` | `{count} waiting to send` | Left out when `pending` is 0 |
+| `syncing-updated-text` | text with `{time}` | the `updated-text` | The time text while `syncing`, for example `Getting changes since {time}` |
+| `pending-text` | text with `{count}` | `{count} waiting to send` | Left out when `pending` is 0, and while `sending` |
 | `attention-text` | text with `{count}` | `Needs your attention: {count}` | Left out when `attention` is 0 |
-| `back-online-text` | text | `Back online` | Announced when the state leaves `offline` or `locked` for `online` or `syncing` |
+| `queue-text` | text with `{current}`, `{total}` | `{current} of {total}` | While `sending`; the plural form follows `{total}`; left out when `pending` is 0 |
+| `sent-text` | text with `{count}` | `{count} sent` | In `sent` with no attention; left out when `sent` is 0 |
+| `others-sent-text` | text with `{count}` | `{count} others sent` | In `sent` when `attention` is above 0 |
+| `offline-announce-text` | text with `{time}` | the `offline-text` | Announced when the state turns `offline` |
+| `locked-announce-text` | text with `{time}` | the `locked-text` | Announced when the state turns `locked` |
+| `sent-announce-text` | text with `{count}` | `Up to date. {count} sent.` | Announced when the state turns `sent` with `sent` above 0 |
+| `back-online-text` | text | `Back online` | Announced when the state leaves `offline` or `locked` for `online`, `syncing` or `sending` |
+
+Every count text (`pending`, `attention`, `queue`, `sent`, `others-sent`,
+`sent-announce`) also takes the plural forms `<name>-text-zero` to
+`<name>-text-other` (section 2, "Plural forms"). An announce text with
+`{time}` falls back to the state words when `updated-at` is empty.
 
 Slots: `actions` (the app's buttons, for example "Sign in" or "Show"),
 `prepend` (a custom icon).
 
-Events: none. The app's own buttons carry the actions.
+Events: none. The app's own buttons carry the actions. The bar itself is
+never a button and has no link mode: an app that opens a sync panel from
+the bar puts a "Details" button in `actions` (the docs page shows it). On a
+narrow screen one button stays on the line of the text, and the text wraps
+beside it; wider actions move under the text.
+
+The order of the parts: state words, the time, the queue ("3 of 4", only
+while `sending`), the waiting count (not while `sending`), the attention
+count, the sent count (only in `sent`).
+
+A round of sending, as an app sets it:
+1. `state="sending" sent="0" pending="4"`: "Sending… · 1 of 4".
+2. after each item: `sent` up by one, `pending` down by one: "Sending… · 3 of
+   4".
+3. `state="sent" sent="4" pending="0"`: "Up to date · 4 sent", announced
+   once as "Up to date. 4 sent.", hidden after `sent-timeout`. With
+   `show-online` it then shows "Up to date". With `attention` above 0 it
+   shows "Up to date · Needs your attention: 1 · 3 others sent" and stays
+   until `attention` is 0. The next round starts with another state.
 
 What the user sees:
 - `offline`: a cloud-off icon on the neutral surface.
-- `syncing`: a small spinner; a still icon with reduced motion.
+- `syncing`: a small spinner; a still icon with reduced motion. With
+  `progress`, a 2 px line in the primary colour along the bottom; it moves
+  only without reduced motion.
+- `sending`: a small spinner (a still arrow icon with reduced motion), then
+  "3 of 4". With `progress`, the same line as `syncing`.
 - `locked`: a lock icon on the warning container colour.
 - `online`: hidden while `pending` and `attention` are 0, unless
   `show-online` is set; then a check icon and "Up to date".
+- `sent`: a check icon, "Up to date · 4 sent", for `sent-timeout`, then as
+  `online`.
 
 What a screen reader hears:
 - The visible text is not a live region, so updates to the time and the
   counts are never announced.
 - The element owns one hidden `role="status"` line. It speaks only when
-  `state` changes: "Offline", "Back online", the locked text. Changes within
-  2 seconds collapse into the last one, so a network that goes on and off
-  five times in 2 seconds makes one announcement, or none if it ends where
-  it started. `syncing` itself is not announced.
+  `state` changes: "Offline" (or `offline-announce-text`), "Back online",
+  the locked text (or `locked-announce-text`), "Up to date. 4 sent." (once,
+  when the state turns `sent`). Changes within 2 seconds collapse into the
+  last one, so a network that goes on and off five times in 2 seconds makes
+  one announcement, or none if it ends where it started. `syncing` and
+  `sending` themselves are not announced, and neither are the queue
+  progress, the counts, the time or the end of the `sent` summary.
 - Never `role="alert"`.
 
 ## 4. Send status (`w-send-status`, slice S2)
@@ -141,7 +211,8 @@ Shows the state of one message or list row that was written on the device.
 | `sending-text` | text | `Sending…` | |
 | `failed-text` | text | `Not sent` | |
 | `written-text` | text with `{time}` | `Written offline at {time}` | |
-| `failed-announce-text` | text with `{count}` | `{count} not sent. Needs your attention.` | |
+| `failed-announce-text` | text with `{count}` | `{count} not sent. Needs your attention.` | Also `failed-announce-text-zero` to `-other` (plural forms) |
+| `hour-cycle` | `h11`, `h12`, `h23`, `h24` | the locale's habit | 12 or 24 hours for the written time |
 
 Slots: `actions` (for example Edit, Retry, Send by email, Discard).
 
@@ -178,6 +249,9 @@ A row first shown already failed is not announced.
 What the user sees: the label, a bar (DuVay's linear progress style), and
 "312 MB of 1 GB used". A value above `max` fills the bar and counts as full.
 For several domains, show one meter per domain row.
+
+`w-storage-meter` has no count texts: `{used}` and `{max}` are byte sizes,
+and `Intl.NumberFormat` writes their units in the right form.
 
 What a screen reader hears: `role="meter"` with `aria-valuemin`,
 `aria-valuemax`, `aria-valuenow` and `aria-valuetext` ("312 MB of 1 GB used,

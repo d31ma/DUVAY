@@ -16,6 +16,10 @@
  *   failed-text          - default "Not sent"
  *   written-text         - default "Written offline at {time}"
  *   failed-announce-text - default "{count} not sent. Needs your attention."
+ *   failed-announce-text-zero|one|two|few|many|other - plural forms, chosen
+ *                          with Intl.PluralRules for the closest [lang]
+ *   hour-cycle           - h11 | h12 | h23 | h24 for the written time
+ *                          (default: the locale's habit)
  *
  * Slots:
  *   actions - the app's buttons (for example Edit, Retry, Discard)
@@ -33,6 +37,7 @@ import { WOfflineText } from './offline-text.js';
 import { WLiveAnnouncer } from './live-announcer.js';
 
 export class WSendStatus extends WElement {
+  static countTexts = ['failed-announce'];
   static attrs = [
     'state',
     'reason',
@@ -45,6 +50,8 @@ export class WSendStatus extends WElement {
     'failed-text',
     'written-text',
     'failed-announce-text',
+    'hour-cycle',
+    ...WOfflineText.pluralAttributes(WSendStatus.countTexts),
   ];
 
   static states = ['waiting', 'sending', 'failed', 'sent'];
@@ -118,7 +125,7 @@ export class WSendStatus extends WElement {
 
   /** @returns {string} */
   _writtenTime() {
-    return WOfflineText.time(this._attr('written-at', ''), WOfflineText.locale(this));
+    return WOfflineText.time(this._attr('written-at', ''), WOfflineText.locale(this), new Date(), this._attr('hour-cycle', ''));
   }
 
   /** @param {string} time @returns {string} */
@@ -176,7 +183,8 @@ export class WSendStatus extends WElement {
   /** @param {boolean} wasRendered @param {string} name @param {string | null} oldValue @param {string | null} newValue @returns {void} */
   _announceFailure(wasRendered, name, oldValue, newValue) {
     if (!this._isNewFailure(wasRendered, name, oldValue, newValue)) return;
-    WLiveAnnouncer.tally(WSendStatus.announcerKey, this._text('failed-announce-text'), WSendStatus.announceDelayMs);
+    const templateFor = (count) => WOfflineText.countText(this, 'failed-announce', count, WSendStatus.defaultTexts['failed-announce-text']);
+    WLiveAnnouncer.tally(WSendStatus.announcerKey, templateFor, WSendStatus.announceDelayMs);
   }
 
   /** @param {boolean} wasRendered @param {string} name @param {string | null} oldValue @param {string | null} newValue @returns {boolean} */

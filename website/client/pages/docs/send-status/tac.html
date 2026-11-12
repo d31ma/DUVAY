@@ -63,6 +63,7 @@
 
   <h2>Translated text</h2>
   <p>Every text has an English default and an attribute to replace it. <code>{time}</code> is filled with the written time in the language of the closest <code>lang</code>.</p>
+  <p><code>hour-cycle="h23"</code> or <code>"h12"</code> chooses 24 or 12 hours for the written time; without it the language decides. The announcement has plural forms: <code>failed-announce-text-one</code>, <code>-other</code> (and <code>-zero</code>, <code>-two</code>, <code>-few</code>, <code>-many</code> for languages that need them), chosen with <code>Intl.PluralRules</code> for the total count, for example <code>failed-announce-text-one="{count} item not sent."</code> and <code>failed-announce-text-other="{count} items not sent."</code>. A missing form falls back to <code>-other</code>, then to <code>failed-announce-text</code>.</p>
   <demo-compare>
     <div slot="css">
       <span class="w-send-status w-send-status--waiting" lang="de">
