@@ -128,6 +128,14 @@
 
 ### Fixed
 
+- Accessibility (DUVAY-4a): a `w-fab` no longer puts a second button inside
+  its button. When a copy of an already rendered element connects (a saved
+  `outerHTML`, `cloneNode`, a server snapshot), every DuVay element now
+  takes its authored content from the copy's slots and drops the old render.
+  Before, the old `<button>` went into the new one's slot, and axe reported
+  `nested-interactive` on every fab of `/docs/floating-action-buttons`. The
+  docs "Show code" view also showed rendered internals for 298 of the 567
+  web-component demos whose slots are empty; it now shows the authored tag.
 - Security (item 10): DuVay no longer runs text attributes that start with
   "on" as code. Before, `online-text` on `w-sync-status`, and any other
   `on...` attribute the browser did not know, was compiled with

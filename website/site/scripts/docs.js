@@ -790,7 +790,7 @@ function authored(node, indent = '') {
       return true;
     });
     kids = ownSlots.flatMap(s => [...s.childNodes]);
-    if (!meaningfulNodes(kids).length) kids = [...node.childNodes].filter(n => n.tagName?.toLowerCase() !== 'slot');
+    if (!ownSlots.length && !node._rendered) kids = [...node.childNodes];
   } else {
     kids = [...node.childNodes];
   }

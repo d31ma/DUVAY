@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:">
+    <title>DuVay docs test page</title>
+    <link rel="stylesheet" href="/website/site/styles/app.css">
+    <script>
+      window.__cspViolations = [];
+      document.addEventListener('securitypolicyviolation', (event) => {
+        window.__cspViolations.push(`${event.violatedDirective} ${event.blockedURI}`);
+      });
+    </script>
+    <script type="module" src="/src/duvay-wc.js"></script>
+  </head>
+  <body>
+    <div class="docs-shell">
+      <aside id="docs-sidebar" class="docs-sidebar" data-docs-sidebar aria-label="Documentation navigation"></aside>
+      <main class="docs-main">
+        <div class="docs-page-actions" w-page-actions></div>
+        <article class="docs-page" w-page></article>
+        <nav class="docs-pager" w-pager aria-label="Pagination"></nav>
+      </main>
+      <aside class="docs-toc" w-toc aria-label="On this page"></aside>
+    </div>
+  </body>
+</html>

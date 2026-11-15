@@ -183,15 +183,17 @@ class WElement extends HTMLElement {
 
     // Save original children for Light-DOM slot distribution. On re-render,
     // the host's top-level children are generated wrappers; the authored
-    // children live inside the current <slot> nodes.
-    const currentSlots = this._rendered ? Array.from(this.querySelectorAll('slot')).filter((slot) => {
+    // children live inside the current <slot> nodes. A copy of an already
+    // rendered element (cloneNode, saved outerHTML) has the same shape on its
+    // first render, so its slots are read too and the old wrapper is dropped.
+    const currentSlots = Array.from(this.querySelectorAll('slot')).filter((slot) => {
       var parent = slot.parentElement;
       while (parent && parent !== this) {
         if (parent.tagName && parent.tagName.toLowerCase().indexOf('w-') === 0) return false;
         parent = parent.parentElement;
       }
       return true;
-    }) : [];
+    });
     if (currentSlots.length) {
       currentSlots.forEach(function (slot) {
         var name = slot.getAttribute('name');
