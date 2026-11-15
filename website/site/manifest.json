@@ -1,0 +1,63 @@
+{
+  "name": "DuVay",
+  "short_name": "DuVay",
+  "description": "A zero-dependency CSS framework with design tokens, theming, and accessible web components.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/shared/assets/duvay-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "tac": {
+    "origin": "https://duvay.del.ma",
+    "budgets": {
+      "script": 320
+    },
+    "blockingScripts": [
+      "/shared/scripts/SiteDefaults.js"
+    ],
+    "scripts": [
+      "/shared/assets/duvay/duvay.min.js",
+      "/shared/assets/duvay/duvay-wc.min.js",
+      "/shared/assets/duvay/duvay-directives.min.js",
+      "/shared/assets/duvay/duvay-docs.min.js"
+    ],
+    "styles": [
+      "/shared/assets/duvay/duvay-docs.min.css"
+    ],
+    "metadata": {
+      "defaults": {
+        "title": "DuVay Documentation",
+        "description": "DuVay documentation: design tokens, themes, platform skins and accessible web components.",
+        "siteName": "DuVay",
+        "lang": "en"
+      },
+      "routes": {
+        "/": {
+          "title": "DuVay — CSS Framework + Web Components",
+          "description": "Design tokens, responsive utilities, themes and accessible components in one zero-dependency framework.",
+          "canonical": "/"
+        },
+        "/docs/checkboxes": {
+          "title": "Checkboxes — DuVay Documentation"
+        },
+        "/docs/command": {
+          "title": "Command — DuVay Documentation"
+        },
+        "/docs/dialog": {
+          "title": "Dialog & Overlay — DuVay Documentation"
+        },
+        "/docs/send-status": {
+          "title": "Send status — DuVay Documentation"
+        },
+        "/docs/tabs": {
+          "title": "Tabs — DuVay Documentation"
+        }
+      }
+    }
+  }
+}

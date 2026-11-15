@@ -82,6 +82,13 @@ async function downloadVerifiedBinary(asset) {
   return path;
 }
 
+export function localBinary(environment = process.env) {
+  const path = environment.DUVAY_TY;
+  if (!path) return null;
+  console.error(`Using the local Tachyon binary from DUVAY_TY: ${path}`);
+  return resolve(path);
+}
+
 async function main(args) {
   verifyReleaseMapping();
   if (args[0] === '--verify-mapping') {
@@ -89,7 +96,7 @@ async function main(args) {
     return;
   }
 
-  const binary = await downloadVerifiedBinary(releaseAsset());
+  const binary = localBinary() ?? await downloadVerifiedBinary(releaseAsset());
   const child = Bun.spawn([binary, ...args], {
     cwd: websiteRoot,
     env: {

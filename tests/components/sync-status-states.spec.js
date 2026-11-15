@@ -325,7 +325,7 @@ for (const theme of THEMES) {
 }
 
 async function mountDocsDemos(mount) {
-  const source = readFileSync(new URL('../../website/client/pages/docs/sync-status/tac.html', import.meta.url), 'utf8');
+  const source = readFileSync(new URL('../../website/client/components/docs/sync-status/tac.html', import.meta.url), 'utf8');
   const demos = [...source.matchAll(/<div slot="wc">([\s\S]*?)<\/div>\s*<\/demo-compare>/g)].map((match) => match[1]);
   await mount(demos.join(''));
 }

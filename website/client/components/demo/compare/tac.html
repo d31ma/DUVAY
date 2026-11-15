@@ -1,8 +1,9 @@
 <!-- Fallback markup only.
      docs.js enhances every <demo-compare> at runtime: it reads the authored
      [slot] children, renders one live preview and both source flavours, so this
-     template is what shows before that runs.
-     Named slots were removed in Tachyon 26.33 (TY1302). -->
+     template is what shows before that runs. -->
 <div class="demo-compare">
+  <slot name="css" />
+  <slot name="wc" />
   <slot />
 </div>

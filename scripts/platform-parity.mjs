@@ -197,11 +197,11 @@ ${componentRows}
 `;
 }
 
-const PAGE = join(ROOT, 'website', 'client', 'pages', 'docs', 'platform-parity', 'tac.html');
-const JSON_OUT = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay', 'parity.json');
+const PAGE = join(ROOT, 'website', 'client', 'components', 'docs', 'platform-parity', 'tac.html');
+const JSON_OUT = join(ROOT, 'website', 'client', 'shared', 'data', 'parity.json');
 
 if (process.argv.includes('--json') || process.argv.includes('--emit') || process.argv.includes('--check')) {
-  const out = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay');
+  const out = dirname(JSON_OUT);
   await mkdir(out, { recursive: true });
   const tier1Rows = matrix.filter((r) => r.tier === 1);
   // The docs page has to render the *claim* alongside the count, or a reader
@@ -228,8 +228,8 @@ if (process.argv.includes('--json') || process.argv.includes('--emit') || proces
   const page = renderPage();
 
   const artefacts = [
-    ['website/client/shared/assets/duvay/parity.json', JSON_OUT, json],
-    ['website/client/pages/docs/platform-parity/tac.html', PAGE, page],
+    ['website/client/shared/data/parity.json', JSON_OUT, json],
+    ['website/client/components/docs/platform-parity/tac.html', PAGE, page],
   ];
 
   if (process.argv.includes('--check')) {

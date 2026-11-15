@@ -4,7 +4,7 @@ import { expect, test } from '../setup/playwright.js';
 const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
 
 test('homepage composition dogfoods DuVay components and utilities', async () => {
-  const markup = await readFile(projectFile('website/client/pages/tac.html'), 'utf8');
+  const markup = await readFile(projectFile('website/client/components/site/home/tac.html'), 'utf8');
 
   expect(markup).not.toContain('landing-');
   expect(markup).toContain('<w-app>');

@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import {
+  localBinary,
   releaseAsset,
   TACHYON_ASSETS,
   TACHYON_RELEASE,
@@ -29,5 +30,10 @@ describe('pinned Tachyon runner', () => {
     expect(() => releaseAsset('win32', 'arm64')).toThrow(
       'Tachyon 26.33.02 has no release binary for win32-arm64',
     );
+  });
+
+  test('uses a local binary only when DUVAY_TY names one', () => {
+    expect(localBinary({})).toBeNull();
+    expect(localBinary({ DUVAY_TY: '/opt/tachyon/ty' })).toBe('/opt/tachyon/ty');
   });
 });

@@ -18,8 +18,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const PAGES_DIR = join(ROOT, 'website', 'client', 'pages', 'docs');
-const DOCS_JS = join(ROOT, 'website', 'client', 'shared', 'scripts', 'docs.js');
-const GENERATED = join(ROOT, 'website', 'client', 'shared', 'scripts', 'generated-api-data.js');
+const DOCS_JS = join(ROOT, 'website', 'site', 'scripts', 'docs.js');
+const GENERATED = join(ROOT, 'website', 'site', 'scripts', 'generated-api-data.js');
 
 /** Every `tac.html` under pages/docs, as the route it becomes. */
 async function authoredRoutes(dir = PAGES_DIR, prefix = '/docs') {

@@ -87,6 +87,45 @@
   element that gets focus on close. Without it, or when no element has that
   id, focus returns to the control that held it on open. (#18)
 
+### Changed
+
+- Docs site: moved to the Tac contract of current TACHYON (ADR 0052). The
+  site no longer builds with `tac.config.js`, `tachyon.json` or a page script
+  that builds the page head; current TACHYON refuses all three (`TY1364`).
+  - `client/manifest.json` is the only Tac configuration. It is build output:
+    `website/scripts/SiteAssets.mjs` writes it from `website/site/manifest.json`
+    before every `serve`, `bundle` and `preview`. Page titles and the site
+    description are `tac.metadata`; the icon is a manifest icon.
+  - The framework and the site's own code ship as five pinned files in
+    `/shared/assets/duvay/` (`duvay.min.js`, `duvay-wc.min.js`,
+    `duvay-directives.min.js`, `duvay-docs.min.js`, `duvay-docs.min.css`),
+    declared in `tac.scripts`/`tac.styles` with their SHA-256 in
+    `tac.scriptSources`/`tac.styleSources`. The raw copy of `src/` under
+    `client/shared/assets/duvay/` is gone, and `bun run build` no longer
+    mirrors `src/` or `dist/` into the website.
+  - The site's scripts and stylesheet moved to `website/site/`. The saved theme
+    and skin are applied before the first paint by the blocking script
+    `client/shared/scripts/SiteDefaults.js` (`tac.blockingScripts`).
+  - A Tac page now holds only component tags, so each page's markup moved to
+    `client/components/docs/<page>/` (the home page to `site/home`). Page demo
+    scripts moved into `website/site/scripts/page-demos.js` and are wired by
+    data attributes.
+  - Current Tac renders every component on the page, twice at start-up, and
+    each render drops what `docs.js` added inside components (demo blocks,
+    sidebar, catalog). `docs.js` now runs again after each Tac render
+    (`<html data-tachyon-rendered>`) and checks for its own output instead of
+    marks on elements that Tac keeps.
+  - The `/docs/v-model` redirect page is written after the build by
+    `website/scripts/SiteRedirects.mjs` (the `postBundle` hook is gone).
+  - `DUVAY_TY=/path/to/ty` runs the site with a local TACHYON binary.
+  - The route script budget is 320 KB (Brotli); every route loads 271 KB today.
+  - Accessibility findings that the new build checks (`TY1336`) are fixed in
+    the demo markup: names for unlabeled inputs, sliders, carousel and window
+    dots and calendar time slots, and `role="presentation"` on decorative
+    images.
+  - The CSS-only gradient sparkline example shows one color: TACHYON does not
+    accept SVG `<stop>` in Tac markup yet (`TY1402`).
+
 ### Fixed
 
 - Offline states follow-up (Mesail trial of `develop` d68028d, items 10 to

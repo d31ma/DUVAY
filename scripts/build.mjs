@@ -2,11 +2,10 @@
 // DuVay — build script
 //
 // 1. Resolves CSS imports into dist/duvay.css (the published bundle).
-// 2. Mirrors src/ into website/client/shared/assets/duvay/ so the docs site
-//    always renders against the live framework.
-// 3. Produces the distributable artifacts in dist/ — full + minified CSS,
-//    behaviour layer, and a single-file web-component bundle — and mirrors
-//    them into the docs site so the Download page can serve them.
+// 2. Produces the distributable artifacts in dist/ — full + minified CSS,
+//    behaviour layer, and a single-file web-component bundle. The docs site
+//    bundles its own copies from src/ (website/scripts/SiteAssets.mjs), so
+//    nothing is mirrored into website/ any more.
 //
 // Run from the repo root:  bun run build
 
@@ -20,11 +19,7 @@ const SRC = join(ROOT, 'src');
 const CSS_ENTRY = join(SRC, 'duvay.css');
 const CORE_ENTRY = join(SRC, 'core.css');
 const MOTION = join(SRC, 'components', 'duvay-motion.js');
-const WEB_ASSETS = join(ROOT, 'website', 'client', 'shared', 'assets', 'duvay');
 const DIST = join(ROOT, 'dist');
-const WEB_DIST = join(WEB_ASSETS, 'dist');
-const VERSION = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8')).version;
-const WEB_VERSIONED_DIST = join(WEB_ASSETS, 'versions', VERSION, 'dist');
 
 const CSS_INDEXES = [
   'core.css',
@@ -94,45 +89,6 @@ async function copyCssEntrypoints() {
   }
 }
 
-async function copyTree(from, to) {
-  await mkdir(to, { recursive: true });
-  for (const entry of await readdir(from)) {
-    if (entry === 'node_modules' || entry === 'dist' || entry.startsWith('.')) continue;
-    const src = join(from, entry);
-    const dst = join(to, entry);
-    const info = await stat(src);
-    if (info.isDirectory()) {
-      await copyTree(src, dst);
-    } else if (info.isFile()) {
-      await copyFile(src, dst);
-    }
-  }
-}
-
-async function syncWebAssets() {
-  // Preserve previously-built versioned releases so the site can host
-  // every CalVer it has ever been built with.
-  let preserved = null;
-  const versionsDir = join(WEB_ASSETS, 'versions');
-  try {
-    await stat(versionsDir);
-    preserved = join(ROOT, '.duvay-versions-tmp');
-    await rm(preserved, { recursive: true, force: true });
-    await $`mv ${versionsDir} ${preserved}`.quiet();
-  } catch (_) {}
-
-  await rm(WEB_ASSETS, { recursive: true, force: true });
-  await mkdir(WEB_ASSETS, { recursive: true });
-
-  if (preserved) {
-    const restored = versionsDir;
-    await $`mv ${preserved} ${restored}`.quiet();
-  }
-
-  await copyTree(SRC, WEB_ASSETS);
-  console.log(`✓ synced ${relative(ROOT, SRC)} → ${relative(ROOT, WEB_ASSETS)}`);
-}
-
 async function fileSize(path) {
   return (await stat(path)).size;
 }
@@ -188,20 +144,11 @@ async function buildDist() {
   for (const f of built) sizes[f] = await fileSize(join(DIST, f));
   await writeFile(join(DIST, 'sizes.json'), JSON.stringify(sizes, null, 2) + '\n');
 
-  // Mirror into the docs site so the Download page can link them directly.
-  await rm(WEB_DIST, { recursive: true, force: true });
-  await copyTree(DIST, WEB_DIST);
-
-  // Also keep a permanent CalVer copy so users can pin to a specific release.
-  await rm(WEB_VERSIONED_DIST, { recursive: true, force: true });
-  await copyTree(DIST, WEB_VERSIONED_DIST);
-
   const files = await distFiles();
   console.log(`✓ built ${relative(ROOT, DIST)}/ (${files.length} files)`);
   for (const f of files) {
     console.log(`    ${f.padEnd(15)} ${(await fileSize(join(DIST, f)) / 1024).toFixed(1).padStart(6)} KB`);
   }
-  console.log(`✓ versioned release ${VERSION} mirrored → ${relative(ROOT, WEB_VERSIONED_DIST)}`);
 }
 
 // tokens/ is the source of truth — regenerate src/tokens.css and src/themes.css
@@ -213,15 +160,10 @@ await $`bun ${join(ROOT, 'scripts', 'tokens-build.mjs')}`;
 // components and that is real CSS, not token data.
 await $`bun ${join(ROOT, 'scripts', 'tokens-platform.mjs')}`.quiet();
 
-await syncWebAssets();
 await buildDist();
 
 // The parity matrix and its docs page are generated from spec/ for the same
 // reason: a hand-maintained copy would drift, and this is the artefact that
 // tells readers which platforms are actually supported.
-//
-// After syncWebAssets, not before: parity.json lands inside the assets
-// directory that sync deletes and repopulates from src/, so emitting earlier
-// would write it and then immediately throw it away.
 await $`bun ${join(ROOT, 'scripts', 'platform-parity.mjs')} --emit`.quiet();
 console.log('✓ parity matrix + docs page generated');

@@ -1,8 +1,0 @@
-{
-  "application": {
-    "name": "DuVay",
-    "id": "ma.del.duvay.website",
-    "version": "26.34.03",
-    "entry_route": "/"
-  }
-}

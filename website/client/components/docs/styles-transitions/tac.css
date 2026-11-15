@@ -1,0 +1,2 @@
+.token-demo { transition: box-shadow var(--w-transition-normal); }
+.token-demo:hover { box-shadow: var(--w-shadow-md); }

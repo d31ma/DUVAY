@@ -1,0 +1,2 @@
+.hover-fade { opacity: 1; transition: opacity var(--w-transition-fast); }
+.hover-fade:hover { opacity: 0.5; }

@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "bun scripts/ty.mjs serve",
-    "bundle": "bun scripts/ty.mjs bundle",
-    "preview": "bun scripts/ty.mjs preview --watch",
-    "test:ty": "bun test scripts/ty.test.mjs"
+    "assets": "bun scripts/SiteAssets.mjs",
+    "serve": "bun scripts/SiteAssets.mjs && bun scripts/ty.mjs serve",
+    "bundle": "bun scripts/SiteAssets.mjs && bun scripts/ty.mjs bundle && bun scripts/SiteRedirects.mjs",
+    "preview": "bun scripts/SiteAssets.mjs && bun scripts/ty.mjs preview --watch",
+    "test:ty": "bun test scripts/ty.test.mjs scripts/SiteRedirects.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

@@ -2,3 +2,10 @@ node_modules
 dist
 .env
 .DS_Store
+# Generated before every Tac build by scripts/SiteAssets.mjs (ADR 0052:
+# the manifest pins each bundle's SHA-256, so both are build output).
+client/manifest.json
+client/shared/assets/duvay/
+client/shared/data/sizes.json
+# Types that ty writes on every build.
+.tachyon/

@@ -1,0 +1,2 @@
+.hover-lift { transition: box-shadow var(--w-transition-normal); }
+.hover-lift:hover { box-shadow: var(--w-shadow-md); }

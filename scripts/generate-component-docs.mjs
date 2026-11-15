@@ -7,13 +7,14 @@
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { API_DATA } from '../website/client/shared/scripts/api-data.js';
-import { GENERATED_PAGE_INDEX as PRIOR_GENERATED_PAGE_INDEX } from '../website/client/shared/scripts/generated-api-data.js';
+import { API_DATA } from '../website/site/scripts/api-data.js';
+import { GENERATED_PAGE_INDEX as PRIOR_GENERATED_PAGE_INDEX } from '../website/site/scripts/generated-api-data.js';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const componentDir = join(root, 'src/components');
-const outputFile = join(root, 'website/client/shared/scripts/generated-api-data.js');
+const outputFile = join(root, 'website/site/scripts/generated-api-data.js');
 const pagesDir = join(root, 'website/client/pages');
+const componentsDir = join(root, 'website/client/components');
 const metadata = JSON.parse(await readFile(join(root, 'scripts/data/vuetify-attributes.json'), 'utf8'));
 const COMMON = [
   'active-color', 'base-color', 'bg-color', 'border', 'class', 'color', 'density',
@@ -160,11 +161,17 @@ function title(tag) {
   return tag.slice(2).split('-').map((word) => word[0].toUpperCase() + word.slice(1)).join(' ');
 }
 
+// A Tac page holds only component tags (TACHYON ADR 0029), so the page places
+// <docs-<slug> /> and the markup lives in client/components/docs/<slug>/.
 async function ensurePage(route, tag) {
   const file = join(pagesDir, route.replace(/^\//, ''), 'tac.html');
   try { await stat(file); return; } catch {}
+  const slug = route.replace(/^\/docs\//, '').replaceAll('/', '-');
+  const component = join(componentsDir, 'docs', slug, 'tac.html');
   await mkdir(dirname(file), { recursive: true });
+  await mkdir(dirname(component), { recursive: true });
   const label = title(tag);
   const html = `<h1>${label}</h1>\n<p><code>&lt;${tag}&gt;</code> is part of DuVay's Vuetify-compatible Light-DOM component set.</p>\n\n<h2>Example</h2>\n<demo-compare>\n  <div slot="css"><div class="${tag}">${label}</div></div>\n  <div slot="wc"><${tag}>${label}</${tag}></div>\n</demo-compare>\n`;
-  await writeFile(file, html);
+  await writeFile(component, html);
+  await writeFile(file, `<docs-${slug} />\n`);
 }

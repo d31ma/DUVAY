@@ -315,24 +315,23 @@ test('w-list-item interactive row still drops default content when titled', asyn
 });
 
 test('the docs demo removes rows, shows the empty state and fails them again', async ({ mount, page }) => {
-  const source = readFileSync(new URL('../../website/client/pages/docs/send-status/tac.html', import.meta.url), 'utf8');
+  const source = readFileSync(new URL('../../website/client/components/docs/send-status/tac.html', import.meta.url), 'utf8');
   const start = source.indexOf('<div data-attention-demo>');
   const end = source.indexOf('</demo-compare>', start);
   await mount(source.slice(start, end));
   await page.evaluate(async () => {
-    const { default: SendStatusPage } = await import('/website/client/pages/docs/send-status/tac.js');
-    new SendStatusPage().onMount();
+    await import('/website/site/scripts/page-demos.js');
   });
   await recordAnnouncements(page);
   await page.locator('#attention-1 [data-attention-discard] button').click();
   await page.locator('#attention-2 [data-attention-retry] button').click();
   await expect(page.locator('#attention-2 w-send-status')).toHaveAttribute('state', 'sending');
   await page.locator('#attention-3 [data-attention-discard] button').click();
-  await expect(page.locator('w-list-item')).toHaveCount(0);
+  await expect(page.locator('w-list-item:not([hidden])')).toHaveCount(0);
   await expect(page.locator('[data-attention-empty]')).toBeVisible();
   await expect(page.locator('[data-attention-list]')).toBeHidden();
   await page.locator('[data-attention-reset] button').click();
-  await expect(page.locator('w-list-item')).toHaveCount(3);
+  await expect(page.locator('w-list-item:not([hidden])')).toHaveCount(3);
   await expect(page.locator('[data-attention-empty]')).toBeHidden();
   await expect(page.locator('w-send-status[state="failed"]')).toHaveCount(3);
   expect(await readAnnouncements(page)).toEqual(['3 not sent. Needs your attention.']);
@@ -392,7 +391,7 @@ test('the "Needs your attention" rows show the whole title and start at the row 
 });
 
 test('the docs attention demo wraps its titles and drops the empty leading space', async ({ mount, page }) => {
-  const source = readFileSync(new URL('../../website/client/pages/docs/send-status/tac.html', import.meta.url), 'utf8');
+  const source = readFileSync(new URL('../../website/client/components/docs/send-status/tac.html', import.meta.url), 'utf8');
   const start = source.indexOf('<div data-attention-demo>');
   const end = source.indexOf('</demo-compare>', start);
   await mount(source.slice(start, end));

@@ -5,7 +5,7 @@ const projectFile = (path) => new URL(`../../${path}`, import.meta.url);
 
 const sidebarSource = async () => {
   const source = await readFile(
-    projectFile('website/client/shared/scripts/docs.js'),
+    projectFile('website/site/scripts/docs.js'),
     'utf8',
   );
   const sidebarStart = source.indexOf('const HE_DOC_SECTIONS');

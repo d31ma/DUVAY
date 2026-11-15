@@ -1,0 +1,178 @@
+<doc-layout>
+  <h1>Release notes</h1>
+  <p>DuVay releases follow CalVer (<code>YY.WW.DD</code>). The full history lives in the repository <a href="https://github.com/d31ma/DUVAY/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG</a> and on <a href="https://github.com/d31ma/DUVAY/releases" target="_blank" rel="noopener">GitHub Releases</a>. Breaking changes are always called out under a <strong>Breaking</strong> heading; see the <a href="/docs/upgrade-guide">upgrade guide</a> for migration steps.</p>
+
+  <h2>26.46.03</h2>
+  <p><em>Released 2026-11-11</em> — accessibility and API fixes for the web components, from gaps found while building Mesail. No breaking changes; every new option keeps the old behaviour unless the old behaviour failed WCAG AA. The full list is in the CHANGELOG.</p>
+
+  <h3>Accessibility</h3>
+  <ul>
+    <li>Roles: <code>w-switch</code> is a switch, <code>w-list-item</code> is a listitem inside a list, the <code>w-empty-state</code> title is a heading, <code>w-table</code> no longer nests two tables, and <code>w-skeleton-loader</code> is no longer a live region (opt in with <code>announce</code>).</li>
+    <li>Live regions: <code>live</code> on <code>w-alert</code>, <code>w-snackbar</code> and <code>w-banner</code> chooses between role="alert", role="status" and a static notice.</li>
+    <li>Names: <code>w-select</code>, <code>w-text-field</code>, <code>w-btn</code>, <code>w-chip</code>, <code>w-tabs</code> and the three group elements pass the author's <code>aria-*</code> on to the element with the role.</li>
+    <li>Keyboard: the <code>w-chip</code> close and the <code>w-text-field</code> clear buttons are real, reachable buttons (the chip close has a 24px target); <code>w-tabs</code> uses a roving tabindex; <code>w-menu</code> can open from an external <code>activator</code>; <code>w-hover-card</code> has an interactive dialog mode.</li>
+    <li><code>w-avatar</code> presence is part of the avatar's name, with new <code>idle</code>, <code>dnd</code> and <code>offline</code> states that do not rely on colour alone.</li>
+  </ul>
+
+  <h3>API additions</h3>
+  <ul>
+    <li><code>w-btn</code> <code>type</code>, <code>target</code>, <code>rel</code> and a focusable <code>aria-disabled</code> state; <code>w-text-field</code> <code>inputmode</code> and <code>enterkeyhint</code>; <code>w-otp-input</code> accepts a whole code from autofill or paste.</li>
+    <li><code>w-dialog</code> <code>heading</code>, <code>heading-level</code> and <code>sheet="mobile"</code>; <code>w-list-item</code> <code>item-role</code>; <code>w-chip</code> <code>static</code>; <code>w-tabs</code> <code>nav</code>; rich <code>w-command-item</code> rows (avatar, tag, snippet).</li>
+    <li>Icon attributes on alert, banner, snackbar, empty state, chip and bottom-navigation items resolve through the icon registry (<code>icon-set</code>); <code>w-hotkey</code> has a <code>mod</code> key.</li>
+  </ul>
+
+  <h3>Behaviour changes</h3>
+  <ul>
+    <li><code>w-dialog</code> moves its <code>title</code> attribute into <code>heading</code> so the browser shows no tooltip; read <code>el.title</code> or <code>heading</code> instead of <code>getAttribute('title')</code>.</li>
+    <li>A closable <code>w-chip</code> renders its action and close as sibling buttons, so <code>aria-pressed</code> sits on <code>.w-chip__action</code>.</li>
+    <li>A <code>w-command-item</code>'s accessible name is its title only; the subtitle, snippet, tag and shortcut are its description.</li>
+  </ul>
+
+  <h2>26.35.01-1</h2>
+  <p><em>Released 2026-08-24</em> — documentation-site-only; the framework is unchanged.</p>
+  <ul>
+    <li>The site ships a viewport meta tag, so phones render at device width instead of scaling the page down. Pinch-zoom stays available.</li>
+    <li>The app bar keeps its single 56px row on narrow screens, restoring the sticky offsets computed from the header height.</li>
+    <li>The platform-skin tab strip scrolls horizontally instead of wrapping, and keyboard-cycling scrolls the selected tab into view.</li>
+  </ul>
+
+  <h2>26.35.01</h2>
+  <p><em>Released 2026-08-24</em></p>
+
+  <h3>Cross-platform</h3>
+  <ul>
+    <li>Every component in the Core contract is now implemented on all five platforms — <strong>46/46</strong> on web, Apple, Android, Windows and Linux. The 21 Tier 2 components landed in batches across all four native platforms together, so none raced ahead. See <a href="/docs/platform-parity">Platform parity</a>.</li>
+    <li>Each native component wraps the primitive that platform already provides rather than redrawing it: <code>AdwStatusPage</code> for the GNOME empty state, <code>NavigationSplitView</code> on Apple for its adaptive sidebar, Material's <code>ModalBottomSheet</code> for its scrim and dismissal actions, and <code>NumberBox</code> composed on Windows because the WinUI type is sealed.</li>
+    <li>A new <a href="/docs/platform-parity">Platform parity</a> page, generated from <code>spec/</code>, showing which components each platform implements and — separately — whether that platform may be advertised as supported.</li>
+    <li>Every platform gained a snapshot suite. A publishable status now additionally requires a signed verification record, so a port cannot be advertised as supported without one.</li>
+  </ul>
+
+  <h3>Accessibility</h3>
+  <ul>
+    <li>A new <a href="/docs/features/accessibility">Accessibility</a> page describing what DuVay guarantees and how each guarantee is enforced.</li>
+    <li><code>bun run test:a11y</code> runs axe over every registered element against WCAG 2.0/2.1/2.2 A and AA, once per platform skin. All six runs produce identical results, which is the token architecture holding rather than a coincidence.</li>
+    <li>Fifteen accessibility defects fixed. The most consequential: <code>.w-sr-only</code> was only defined inside the time picker, so <code>w-heatmap</code> and <code>w-video</code> rendered screen-reader-only text <strong>visibly</strong>. It is now a documented global utility.</li>
+    <li><code>w-pie</code>, <code>w-pie-segment</code>, <code>w-hotkey</code> and <code>w-hover-card</code> now forward <code>aria-label</code> to the element carrying the ARIA role, so they can be given an accessible name at all.</li>
+    <li><code>w-file-upload</code>'s dropzone is a <code>group</code> rather than a <code>button</code> when it contains a browse button, since a button may not contain focusable children; its file input is now named.</li>
+    <li><code>w-calendar</code> moved <code>aria-selected</code> from the day button to the <code>gridcell</code>, where it is valid.</li>
+    <li>Date-picker day cells and range-slider thumbs now meet the WCAG 2.5.8 24×24 minimum; <code>w-virtual-scroll</code> is keyboard-reachable.</li>
+  </ul>
+
+  <h3>Tokens</h3>
+  <ul>
+    <li>New <code>--w-on-scrim</code>: the foreground for content over <code>--w-scrim</code>. Video controls previously used <code>--w-on-primary</code>, which inverts with the palette and rendered at 1.37:1 in dark mode.</li>
+    <li>The five platform skins are now generated from <code>tokens/platform/**</code>, so skin values are part of the token pipeline rather than hand-authored CSS.</li>
+    <li>A component level completes the primitive → semantic → component ontology.</li>
+    <li>Windows gains <code>Tokens.xaml</code>, a ResourceDictionary of themed brushes, so XAML markup can reach the palette through <code>{StaticResource}</code>.</li>
+  </ul>
+
+  <h3>Fixed</h3>
+  <ul>
+    <li><code>inset</code> on a switch could <em>shrink</em> the track on Material and Fluent, whose tracks already enclose the thumb. It now only ever grows.</li>
+    <li>The iOS and macOS skins used the <code>background</code> shorthand on toolbars, which silently wiped <code>.w-toolbar--image</code>.</li>
+    <li>The iOS and Material skins rounded the top corners of <em>fullscreen</em> bottom sheets.</li>
+  </ul>
+
+  <h2>26.34.07</h2>
+  <p><em>Released 2026-08-23</em></p>
+
+  <h3>Highlights</h3>
+  <ul>
+    <li>Five platform skins selected with <code>w-os</code> on <code>&lt;html&gt;</code> — <code>ios</code>, <code>android</code>/<code>material</code>, <code>macos</code>, <code>windows</code>/<code>fluent</code>, <code>linux</code>/<code>adwaita</code> — each as its own entrypoint (<code>duvay-&lt;os&gt;.css</code>) or layered from <code>platforms/</code>. Auto-detected from the user agent; an explicit attribute always wins. See <a href="/docs/platform-skins">Platform skins</a>.</li>
+    <li><code>w-density</code> rescales control geometry orthogonally to theme and skin; compact stays above the WCAG 2.5.8 AA touch-target minimum.</li>
+    <li>The design tokens are now DTCG JSON under <code>tokens/</code>, generating <code>tokens.css</code> and <code>themes.css</code>, with automated contrast and skin-rule gates.</li>
+    <li>Every component gains property setters (<code>value</code>, <code>disabled</code>, <code>checked</code>, …), so frameworks that bind by property work without adapters.</li>
+    <li>Native Tier 1 libraries — SwiftUI, Jetpack Compose, WinUI 3, GTK4/libadwaita — pass a shared 116-vector conformance suite; the parity matrix only advertises human-verified support.</li>
+  </ul>
+
+  <h2>26.34.03</h2>
+  <p><em>Released 2026-08-19</em></p>
+
+  <h3>Highlights</h3>
+  <ul>
+    <li>Restores the non-zero corner radius scale, so components render with rounded corners again instead of square ones.</li>
+    <li><code>w-btn</code> forwards authored ARIA state — <code>aria-pressed</code>, <code>aria-expanded</code>, <code>aria-controls</code>, <code>aria-haspopup</code>, <code>aria-current</code>, <code>aria-labelledby</code>, <code>aria-describedby</code> — to the rendered control, which is the element assistive technology exposes. <code>aria-pressed</code> is withheld from the link form, where it is not valid.</li>
+    <li>The progress components forward <code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> onto the element carrying <code>role="progressbar"</code>, so the indicator is no longer unnamed.</li>
+    <li>Adds a <a href="/docs/tailwind">Using with Tailwind</a> guide covering namespace safety and the cascade layer import that keeps Tailwind utilities winning.</li>
+  </ul>
+
+  <h2>26.31.06</h2>
+  <p><em>Released 2026-08-01</em></p>
+
+  <h3>Highlights</h3>
+  <ul>
+    <li>Completes component-name coverage against the pinned Vuetify 4.1.7 inventory, including avatar groups, command palettes, range and month pickers, heatmaps, highlights, mask inputs, pie charts, unified progress, and video controls.</li>
+    <li>Adds a generated API inventory and fallback docs pages for every registered DuVay web component and every declared attribute.</li>
+    <li>Adds browser behavior tests for the new components and corrects the source scanner so parity and API documentation only count attributes implemented by the component being inspected.</li>
+    <li>Improves command-palette semantics, preserves keyboard focus while video controls update, keeps new visualizations contained on narrow screens, and hardens inline color inputs.</li>
+  </ul>
+
+  <h2>26.31.02</h2>
+  <p><em>Released 2026-07-27</em></p>
+
+  <h3>Breaking</h3>
+  <ul>
+    <li>DuVay is no longer published to any package registry. There is no <code>npm install</code> path — use the hosted GitHub Pages URLs, or vendor the files. Bare imports such as <code>@import "@d31ma/duvay-css/core.css"</code> move to <code>@import "https://d31ma.github.io/DUVAY/latest/core.css"</code>.</li>
+  </ul>
+
+  <h2>26.31.01</h2>
+  <p><em>Released 2026-07-27</em></p>
+
+  <h3>Breaking</h3>
+  <ul>
+    <li>The npm package is now <code>@d31ma/duvay-css</code>. Update installs and package imports from <code>duvay-css</code>; hosted GitHub Pages URLs are unchanged. <em>(Superseded by 26.31.02.)</em></li>
+  </ul>
+
+  <h3>Highlights</h3>
+  <ul>
+    <li>Expanded Light DOM component behavior and API references across application, navigation, overlay, form, data-display, date and time, upload, and motion components.</li>
+    <li>Migrated the docs to the Tachyon <code>website/client/</code> layout and expanded component, feature, style, directive, accessibility, installation, and upgrade coverage.</li>
+    <li>Added common web-component sizing, hover elevation, and scoped-theme attributes.</li>
+    <li>Raised compact text to a 12px default floor and standardized coarse-pointer controls on a 44px minimum touch target.</li>
+    <li>Hardened rendered text and attributes plus high-risk button, FAB, upload, icon-adapter, and inline-style inputs.</li>
+    <li>Made documentation builds reproducible with a pinned, checksum-verified Tachyon binary.</li>
+    <li>Made registry publication, tagging, GitHub releases, and immutable Pages assets operate on one verified source commit.</li>
+  </ul>
+
+  <h2>26.27.06</h2>
+  <p><em>Released 2026-07-04</em></p>
+
+  <h3>Added</h3>
+  <ul>
+    <li>New documentation pages under Getting started: Wireframes, Unit testing, Upgrade guide, and Release notes.</li>
+  </ul>
+
+  <h3>Changed</h3>
+  <ul>
+    <li>The documentation sidebar's Getting started section now lists: Installation, Frequently asked questions, Wireframes, Unit testing, Browser support, Upgrade guide, Release notes, Contributing.</li>
+    <li>The documentation site chrome now uses DuVay web components consistently for its header and sidebar controls.</li>
+  </ul>
+
+  <h3>Fixed</h3>
+  <ul>
+    <li>Multi-line code samples across the documentation now render with preserved line breaks.</li>
+    <li>The sidebar Installation item stays highlighted when it is the current page.</li>
+  </ul>
+
+  <h2>26.27.04</h2>
+  <p><em>Released 2026-07-02</em></p>
+
+  <h3>Breaking</h3>
+  <ul>
+    <li>Replaced every DuVay-owned <code>data&#45;w-*</code> attribute with the consistent <code>w-*</code> prefix across CSS, web components, motion helpers, documentation, examples, tests, and generated distribution assets. Applications using CSS-class components must rename hooks such as <code>data&#45;w-theme</code> to <code>w-theme</code> and <code>data&#45;w-dialog-open</code> to <code>w-dialog-open</code>.</li>
+  </ul>
+
+  <h3>Changed</h3>
+  <ul>
+    <li>Added uniform, responsive API references across component documentation.</li>
+    <li>Gave Bottom sheets, Icon buttons, Sheets, and Toolbars dedicated documentation routes instead of forwarding their sidebar entries to unrelated page anchors.</li>
+  </ul>
+
+  <h3>Added</h3>
+  <ul>
+    <li>Added regression coverage that prevents legacy attribute prefixes, missing component API references, and broken sidebar destinations from returning.</li>
+  </ul>
+
+  <h2>26.24.12</h2>
+  <p><em>Initial published release.</em> Zero-dependency CSS framework with design tokens, light / dark / auto / high-contrast themes, the CSS-class component library, the Light DOM web component layer, and the documentation site.</p>
+</doc-layout>
