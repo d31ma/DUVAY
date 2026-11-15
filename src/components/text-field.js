@@ -162,8 +162,10 @@ export class WTextField extends WElement {
   get clearIcon()   { return this._attr('clear-icon', ''); }
   get iconColor()   { return this._attr('icon-color', ''); }
   get autocompleteHint() { return this._attr('autocomplete', ''); }
-  get messages()      { return wValueList(this._attr('messages', '')); }
-  get errorMessages() { return wValueList(this._attr('error-messages', '')); }
+  get messages()      { return wValueList(this._dataAttr('messages', '')); }
+  set messages(value) { this._setData('messages', value); }
+  get errorMessages() { return wValueList(this._dataAttr('error-messages', '')); }
+  set errorMessages(value) { this._setData('error-messages', value); }
   get maxErrors()     { return Number(this._attr('max-errors', '1')) || 1; }
   get validateOn()    { return this._attr('validate-on', 'input'); }
 

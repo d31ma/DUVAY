@@ -51,7 +51,9 @@ export class WDataTableRow extends WElement {
   static attrs = ['headers', 'item', 'active', 'index', 'show-select', 'select-row-label',
     'show-expand', 'expanded', 'expand-icon', 'collapse-icon', 'mobile', 'mobile-breakpoint'];
 
-  get headers() { return wValueList(this._attr('headers', '')); }
+  get headers() { return wValueList(this._dataAttr('headers', '')); }
+
+  set headers(value) { this._setData('headers', value); }
   get item() {
     const raw = this._attr('item', '');
     if (!raw) return [];

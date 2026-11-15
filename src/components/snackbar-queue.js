@@ -46,7 +46,9 @@ export class WSnackbarQueue extends WElement {
     'gap', 'total-visible', 'display-strategy',
   ];
 
-  get messages() { return wRows(this._attr('messages', '')); }
+  get messages() { return wRows(this._dataAttr('messages', '')); }
+  set messages(value) { this._setData('messages', value); }
+
   get duration() { return this.hasAttribute('timeout') ? wNumberAttr(this, 'timeout', 5000) : wNumberAttr(this, 'duration', 5000); }
   get totalVisible() { return wOverlayNumber(this, 'total-visible', 0); }
   get collapsed() { return wOverlayFlag(this, 'collapsed', false); }

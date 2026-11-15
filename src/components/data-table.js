@@ -144,7 +144,8 @@ export class WDataTable extends WElement {
 
   set selected(v) { this.setAttribute('selected', Array.isArray(v) ? v.join(',') : v ?? ''); }
   get selected() { return wValueList(this._attr('selected', '')).map(String); }
-  get expanded() { return wValueList(this._attr('expanded', '')).map(String); }
+  get expanded() { return wValueList(this._dataAttr('expanded', '')).map(String); }
+  set expanded(value) { this._setData('expanded', value); }
 
   /* ── presentation options ───────────────────────────────────────────────── */
 
@@ -263,7 +264,8 @@ export class WDataTable extends WElement {
   }
 
   get noFilter() { return this._bool('no-filter'); }
-  get filterKeys() { return wValueList(this._attr('filter-keys', '')); }
+  get filterKeys() { return wValueList(this._dataAttr('filter-keys', '')); }
+  set filterKeys(value) { this._setData('filter-keys', value); }
   get filterMode() {
     const value = this._attr('filter-mode', 'some');
     return ['every', 'some', 'union', 'intersection'].includes(value) ? value : 'some';
@@ -337,9 +339,10 @@ export class WDataTable extends WElement {
   get openAll() { return this._bool('open-all'); }
 
   get opened() {
-    if (this.hasAttribute('opened')) return wValueList(this._attr('opened', '')).map(String);
+    if (this._hasData('opened')) return wValueList(this._dataAttr('opened', '')).map(String);
     return this.openAll ? this._groups(this._filtered()).map((g) => g.id) : [];
   }
+  set opened(value) { this._setData('opened', value); }
 
   _groupOpen(id) { return this.opened.includes(id); }
 

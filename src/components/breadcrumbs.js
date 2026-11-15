@@ -37,7 +37,8 @@ export class WBreadcrumbs extends WElement {
   static attrs = ['items', 'divider', 'icon', 'color', 'active-color', 'bg-color', 'density', 'rounded', 'disabled', 'active-class'];
 
   get items() {
-    const raw = this.getAttribute('items');
+    const raw = this._dataAttr('items', null);
+    if (Array.isArray(raw)) return raw;
     if (!raw) return null;
     try {
       const parsed = JSON.parse(raw);
@@ -46,6 +47,7 @@ export class WBreadcrumbs extends WElement {
       return null;
     }
   }
+  set items(value) { this._setData('items', value); }
   get divider() { return this._attr('divider', '/'); }
   get icon() { return this._attr('icon', ''); }
   get rounded() { return this.hasAttribute('rounded'); }
@@ -79,7 +81,13 @@ export class WBreadcrumbs extends WElement {
     return `<nav class="${cls.join(' ')}" aria-label="Breadcrumb">${prepend}${body}</nav>`;
   }
 
-  _crumb(item, isLast) {
+  // A string (or null) item from the items property is shown as plain text.
+  _crumbRecord(entry) {
+    return entry && typeof entry === 'object' ? entry : { title: String(entry ?? '') };
+  }
+
+  _crumb(entry, isLast) {
+    const item = this._crumbRecord(entry);
     const label = item.title != null ? item.title : (item.text != null ? item.text : '');
     const icon = item.icon
       ? `<span class="w-breadcrumb-icon" aria-hidden="true">${this._esc(item.icon)}</span>`

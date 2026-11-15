@@ -123,10 +123,13 @@ export class WSliderBase extends WElement {
     return v === 'always' ? 'always' : true;
   }
 
+  // A `|` list as the attribute, or an array as the property.
   get tickLabels() {
-    const v = this.getAttribute('tick-labels');
-    return v === null ? null : v.split('|');
+    const v = this._dataAttr('tick-labels', null);
+    if (v === null) return null;
+    return Array.isArray(v) ? v.map((label) => String(label ?? '')) : String(v).split('|');
   }
+  set tickLabels(value) { this._setData('tick-labels', value); }
 
   // A bare word reads as a design token; anything else as a literal CSS colour.
   _token(value) {
@@ -226,8 +229,10 @@ export class WSliderBase extends WElement {
   get hint()           { return this._attr('hint', ''); }
   get persistentHint() { return this._bool('persistent-hint'); }
   get error()          { return this._bool('error'); }
-  get messages()       { return wValueList(this._attr('messages', '')); }
-  get errorMessages()  { return wValueList(this._attr('error-messages', '')); }
+  get messages()       { return wValueList(this._dataAttr('messages', '')); }
+  set messages(value) { this._setData('messages', value); }
+  get errorMessages()  { return wValueList(this._dataAttr('error-messages', '')); }
+  set errorMessages(value) { this._setData('error-messages', value); }
   get maxErrors()      { return Number(this._attr('max-errors', '1')) || 1; }
   get validateOn()     { return this._attr('validate-on', 'eager'); }
 

@@ -248,6 +248,39 @@ class WElement extends HTMLElement {
     return false;
   }
 
+  /* Data properties. List or object data can be given as an attribute (a
+   * string: `values="1,2,3"` or JSON) or as a property (`el.values = [1, 2, 3]`),
+   * which is what Tac's `:values` binding and other frameworks do.
+   *
+   * Rule: the property wins. Once a property is set, the attribute of the same
+   * name is ignored until the property is set to null or undefined, which
+   * clears it and makes the attribute count again. Each assignment re-renders,
+   * so a page updates by giving a NEW array; changes made inside an array that
+   * was already given are not observed.
+   */
+  _hasDataProperty(name) {
+    return !!this._dataValues?.has(name);
+  }
+
+  _hasData(name) {
+    return this._hasDataProperty(name) || this.hasAttribute(name);
+  }
+
+  _dataAttr(name, fallback) {
+    if (this._dataValues?.has(name)) return this._dataValues.get(name);
+    return this._attr(name, fallback);
+  }
+
+  _setData(name, value) {
+    if (!this._dataValues) this._dataValues = new Map();
+    if (value == null) this._dataValues.delete(name);
+    else this._dataValues.set(name, value);
+    if (!this._rendered) return;
+    this._render();
+    if (typeof this._events === 'function') this._events();
+    this._applyCommonProps();
+  }
+
   // Emit a standards-named DOM event with optional component metadata.
   // `bubbles: true, composed: true` is the cross-framework contract — Vue
   // (@evt), Angular ((evt)), Svelte (on:evt), Solid/Lit/React 19 (onEvt) and

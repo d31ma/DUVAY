@@ -30,10 +30,10 @@ export class DocsPage {
   /**
    * @param {import('@playwright/test').Page} page
    * @param {{ url: (path: string) => string }} server
-   * @param {{ name: string, os: string, theme: string }} options
+   * @param {{ name: string, os: string, theme: string, route?: string }} options
    * @returns {Promise<void>}
    */
-  static async open(page, server, { name, os, theme }) {
+  static async open(page, server, { name, os, theme, route = `/docs/${name}` }) {
     await DocsPage.serveSiteAssets(page);
     await page.addInitScript((value) => localStorage.setItem('w-theme', value), theme);
     await page.goto(server.url('/tests/fixtures/docs-page.html'));
@@ -43,7 +43,7 @@ export class DocsPage {
       history.replaceState(null, '', route);
       document.querySelector('[w-page]').innerHTML = html;
       await import('/website/site/scripts/docs.js');
-    }, { html: DocsPage.content(name), route: `/docs/${name}`, skin: os });
+    }, { html: DocsPage.content(name), route, skin: os });
     await page.waitForSelector('[w-api] table');
     await page.waitForTimeout(100);
   }

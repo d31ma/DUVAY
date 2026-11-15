@@ -13,7 +13,8 @@ export class WMessages extends WElement {
 
   get error() { return this._bool('error'); }
   get active() { return wBoolAttr(this, 'active', true); }
-  get messages() { return wValueList(this._attr('messages', '')); }
+  get messages() { return wValueList(this._dataAttr('messages', '')); }
+  set messages(value) { this._setData('messages', value); }
   get transition() { return this._attr('transition', ''); }
 
   // `transition="none"` / `"false"` opts out; any other name selects the

@@ -33,13 +33,17 @@ export class WDataTableRows extends WElement {
     'group-by', 'opened', 'group-expand-icon', 'group-collapse-icon', 'expand-transition',
     'expand-icon', 'collapse-icon', 'show-select', 'show-expand', 'mobile', 'mobile-breakpoint'];
 
-  get headers() { return wValueList(this._attr('headers', '')); }
-  get items() { return wParseRecords(this._attr('items', ''), this.headers); }
+  get headers() { return wValueList(this._dataAttr('headers', '')); }
+
+  set headers(value) { this._setData('headers', value); }
+  get items() { return wParseRecords(this._dataAttr('items', ''), this.headers); }
+  set items(value) { this._setData('items', value); }
   get noDataText() { return this._attr('no-data-text', 'No data available'); }
   get loadingText() { return this._attr('loading-text', 'Loading items…'); }
   get hideNoData() { return this._bool('hide-no-data'); }
   get groupBy() { return wValueList(this._attr('group-by', ''))[0] || ''; }
-  get opened() { return wValueList(this._attr('opened', '')); }
+  get opened() { return wValueList(this._dataAttr('opened', '')); }
+  set opened(value) { this._setData('opened', value); }
   get groupExpandIcon() { return this._attr('group-expand-icon', '▸'); }
   get groupCollapseIcon() { return this._attr('group-collapse-icon', '▾'); }
   get mobile() { return wMobileMode(this); }
@@ -90,7 +94,7 @@ export class WDataTableRows extends WElement {
   // No `opened` attribute at all means every group starts open; once the user
   // toggles one, the attribute lists exactly which groups are open.
   _isOpen(name) {
-    return this.hasAttribute('opened') ? this.opened.includes(name) : true;
+    return this._hasData('opened') ? this.opened.includes(name) : true;
   }
 
   _groupHtml(name) {

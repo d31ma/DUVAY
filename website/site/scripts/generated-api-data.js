@@ -67724,3 +67724,114 @@ export const GENERATED_PAGE_INDEX = [
     "keywords": "w-virtual-scroll-item component api attributes"
   }
 ];
+
+export const GENERATED_DATA_PROPERTIES = {
+  "w-autocomplete": [
+    "error-messages",
+    "filter-keys",
+    "items",
+    "messages"
+  ],
+  "w-breadcrumbs": [
+    "items"
+  ],
+  "w-chart": [
+    "values"
+  ],
+  "w-checkbox": [
+    "error-messages",
+    "messages"
+  ],
+  "w-color-picker": [
+    "modes"
+  ],
+  "w-command": [
+    "items"
+  ],
+  "w-data-table": [
+    "expanded",
+    "filter-keys",
+    "opened"
+  ],
+  "w-data-table-headers": [
+    "headers"
+  ],
+  "w-data-table-row": [
+    "headers"
+  ],
+  "w-data-table-rows": [
+    "headers",
+    "items",
+    "opened"
+  ],
+  "w-date-picker": [
+    "weekdays"
+  ],
+  "w-file-upload-list": [
+    "files",
+    "items"
+  ],
+  "w-input": [
+    "error-messages",
+    "messages"
+  ],
+  "w-list": [
+    "opened"
+  ],
+  "w-locale-provider": [
+    "messages"
+  ],
+  "w-messages": [
+    "messages"
+  ],
+  "w-number-input": [
+    "error-messages",
+    "messages"
+  ],
+  "w-radio-group": [
+    "error-messages",
+    "messages"
+  ],
+  "w-select": [
+    "items"
+  ],
+  "w-slider": [
+    "error-messages",
+    "messages",
+    "tick-labels"
+  ],
+  "w-snackbar-queue": [
+    "messages"
+  ],
+  "w-sparkline": [
+    "gradient",
+    "labels",
+    "values"
+  ],
+  "w-stepper": [
+    "items"
+  ],
+  "w-switch": [
+    "error-messages",
+    "messages"
+  ],
+  "w-tabs": [
+    "items"
+  ],
+  "w-text-field": [
+    "error-messages",
+    "messages"
+  ],
+  "w-time-picker-clock": [
+    "allowed-values"
+  ],
+  "w-treeview": [
+    "filter-keys"
+  ],
+  "w-validation": [
+    "error-messages"
+  ],
+  "w-virtual-scroll": [
+    "items"
+  ]
+};

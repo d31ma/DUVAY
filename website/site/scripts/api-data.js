@@ -1,4 +1,4 @@
-import { GENERATED_API_DATA } from './generated-api-data.js';
+import { GENERATED_API_DATA, GENERATED_DATA_PROPERTIES } from './generated-api-data.js';
 
 /* DuVay docs — Web Component API reference data.
  *
@@ -647,7 +647,7 @@ export const API_DATA = {
     },
     {
       tag: 'w-chart',
-      attributes: [['title', 'string', 'Chart', 'Chart caption.'], ['values', 'array<number>', '[24,42,36,58,50,72]', 'Bar values. Legacy comma strings still parse.'], ['label', 'string', '—', 'Accessible chart label override.']],
+      attributes: [['title', 'string', 'Chart', 'Chart caption.'], ['values', 'JSON array | comma list', '[24,42,36,58,50,72]', 'Bar values from 0 to 100. Also the values property (number[]).'], ['label', 'string', '—', 'Accessible chart label override.']],
       slots: [['default', 'Optional chart details.']],
     },
   ],
@@ -1499,17 +1499,17 @@ export const API_DATA = {
     {
       tag: 'w-sparkline',
       attributes: [
-        ['values', 'comma list | JSON array', '—', 'Numbers to plot.'],
+        ['values', 'comma list | JSON array', '—', 'Numbers to plot. Also the values property (number[]).'],
         ['type', 'trend | bar', 'trend', 'Line chart or bar chart.'],
         ['fill', 'boolean', 'false', 'Shade the area under a trend line.'],
         ['smooth', 'boolean | number', 'false', 'Round trend corners (number sets tension).'],
         ['color', 'string', 'primary', 'Token name or CSS color for the stroke / bars.'],
-        ['gradient', 'comma list of colors', '—', 'Gradient stroke / bars (overrides color).'],
+        ['gradient', 'comma list of colors', '—', 'Gradient stroke / bars (overrides color). Also the gradient property (string[]).'],
         ['gradient-direction', 'left | right | top | bottom', 'left', 'Gradient axis.'],
         ['line-width', 'number', '4', 'Trend stroke width.'],
         ['padding', 'number', '4', 'Inset around the plot (viewBox units).'],
         ['min / max', 'number', '—', 'Clamp the value range (defaults to data extent).'],
-        ['labels', 'comma list', '—', 'Captions drawn under each point / bar.'],
+        ['labels', 'comma list', '—', 'Captions drawn under each point / bar. Also the labels property (string[]).'],
         ['show-labels', 'boolean', 'false', 'Draw the values themselves as labels.'],
         ['label-size', 'number', '6', 'Label font size (viewBox units).'],
         ['auto-draw', 'boolean', 'false', 'Animate the trend drawing on load.'],
@@ -2698,3 +2698,47 @@ for (const [route, generatedBlocks] of Object.entries(GENERATED_API_DATA)) {
     authored.attributes = [...(authored.attributes || []), ...(generated.attributes || []).filter((row) => !names.has(row[0]))];
   }
 }
+
+/* Data properties (DUVAY-6). List and object data can be given as the
+ * attribute (a string) or as a property (an array or object), which is what a
+ * framework binding such as Tac's `:values` does. The generator finds them in
+ * the component source; each block gets a Properties table. */
+class DataPropertyDocs {
+  static numberLists = new Set(['values', 'allowed-values', 'weekdays']);
+
+  static records = new Set(['items', 'files']);
+
+  static objects = new Set(['w-locale-provider:messages']);
+
+  static camel(attribute) {
+    return attribute.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  }
+
+  static type(tag, attribute) {
+    if (DataPropertyDocs.objects.has(`${tag}:${attribute}`)) return 'object';
+    if (DataPropertyDocs.numberLists.has(attribute)) return 'number[]';
+    if (DataPropertyDocs.records.has(attribute)) return '(string | object)[]';
+    return 'string[]';
+  }
+
+  static row(tag, attribute) {
+    const kind = DataPropertyDocs.type(tag, attribute) === 'object' ? 'an object' : 'an array';
+    return [
+      DataPropertyDocs.camel(attribute),
+      DataPropertyDocs.type(tag, attribute),
+      attribute,
+      `The same data as ${kind}, e.g. from a framework binding. The property wins over the attribute; set it to null to use the attribute again. Give a new value to update.`,
+    ];
+  }
+
+  static apply(apiData) {
+    for (const blocks of Object.values(apiData)) {
+      for (const block of blocks) {
+        const attributes = GENERATED_DATA_PROPERTIES[block.tag];
+        if (attributes) block.properties = attributes.map((attribute) => DataPropertyDocs.row(block.tag, attribute));
+      }
+    }
+  }
+}
+
+DataPropertyDocs.apply(API_DATA);

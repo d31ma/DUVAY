@@ -293,12 +293,15 @@ class WSelect extends WElement {
     if (this.isConnected && this._observer) this._observeOptions();
   }
 
+  get items() { return wParseRecords(this._dataAttr('items', null)); }
+  set items(value) { this._setData('items', value); }
+
   _readOptions() {
     const authored = Array.from(this.querySelectorAll('w-option'));
     if (authored.length) {
       this._wOptions = authored.map((opt) => this._authoredOption(opt));
-    } else if (this.hasAttribute('items')) {
-      this._wOptions = wParseRecords(this.getAttribute('items')).map((record) => this._recordOption(record));
+    } else if (this._hasData('items')) {
+      this._wOptions = wParseRecords(this._dataAttr('items', null)).map((record) => this._recordOption(record));
     }
     return this._wOptions || [];
   }

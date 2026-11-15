@@ -123,11 +123,12 @@ export class WDatePicker extends WElement {
   }
 
   get weekdays() {
-    const raw = this.getAttribute('weekdays');
+    const raw = this._dataAttr('weekdays', null);
     if (raw == null) return null;
     const list = [...new Set(wNumberList(raw, []).filter((day) => Number.isInteger(day) && day >= 0 && day <= 6))];
     return list.length ? list : null;
   }
+  set weekdays(value) { this._setData('weekdays', value); }
 
   get events() {
     if (this._eventsInput !== undefined) return this._eventsInput;

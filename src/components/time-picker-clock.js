@@ -42,7 +42,8 @@ export class WTimePickerClock extends WElement {
   get value() { return wNumberAttr(this, 'value', this.min); }
   get locked() { return this.hasAttribute('disabled') || this.hasAttribute('readonly'); }
 
-  get allowedValues() { return wNumberList(this.getAttribute('allowed-values'), []); }
+  get allowedValues() { return wNumberList(this._dataAttr('allowed-values', null), []); }
+  set allowedValues(value) { this._setData('allowed-values', value); }
 
   _allowed(value) {
     const list = this.allowedValues;

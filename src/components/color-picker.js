@@ -175,7 +175,8 @@ export class WColorPicker extends WElement {
   get divided() { return this._bool('divided'); }
   get landscape() { return this._bool('landscape'); }
   get mode() { return this._attr('mode', this.showAlpha ? 'hexa' : 'hex'); }
-  get modes() { return wValueList(this.getAttribute('modes')); }
+  get modes() { return wValueList(this._dataAttr('modes', null)); }
+  set modes(value) { this._setData('modes', value); }
   get alpha() {
     if (this.hasAttribute('alpha')) {
       const fromAttr = Number(this.getAttribute('alpha'));

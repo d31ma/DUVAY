@@ -104,7 +104,8 @@ class WTabs extends WElement {
   // Mandatory is the DuVay default (a tab strip with nothing selected is a
   // dead end); `mandatory="false"` opts into click-to-deselect.
   get mandatory() { return this._attr('mandatory', 'force') !== 'false'; }
-  get items() { return wParseRecords(this._attr('items', '')); }
+  get items() { return wParseRecords(this._dataAttr('items', '')); }
+  set items(value) { this._setData('items', value); }
   get inset() { return this.hasAttribute('inset'); }
   get spaced() { return this._attr('spaced', ''); }
   get selectedClass() { return this._attr('selected-class', ''); }

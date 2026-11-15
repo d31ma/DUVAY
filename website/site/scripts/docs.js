@@ -1433,6 +1433,7 @@ function enhanceApiReference() {
     <section class="api-component">
       <h3 id="api-${b.tag}"><code>&lt;${b.tag}&gt;</code></h3>
       ${apiTable('Attributes', ['Attribute', 'Type', 'Default', 'Description'], b.attributes)}
+      ${apiTable('Properties', ['Property', 'Type', 'Attribute', 'Description'], b.properties)}
       ${apiTable('Events', ['Event', 'Detail', 'Description'], b.events)}
       ${apiTable('Slots', ['Slot', 'Description'], b.slots)}
       ${apiTable('Methods', ['Method', 'Description'], b.methods)}
@@ -1532,6 +1533,7 @@ function enhanceApiExplorer() {
       <section class="api-component">
         <h3 id="api-${b.tag}"><code>&lt;${b.tag}&gt;</code></h3>
         ${apiTable('Attributes', ['Attribute', 'Type', 'Default', 'Description'], b.attributes)}
+        ${apiTable('Properties', ['Property', 'Type', 'Attribute', 'Description'], b.properties)}
         ${apiTable('Events', ['Event', 'Detail', 'Description'], b.events)}
         ${apiTable('Slots', ['Slot', 'Description'], b.slots)}
         ${apiTable('Methods', ['Method', 'Description'], b.methods)}

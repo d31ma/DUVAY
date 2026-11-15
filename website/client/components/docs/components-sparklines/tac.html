@@ -1,6 +1,6 @@
 <doc-layout>
   <h1>Sparklines</h1>
-  <p><code>w-sparkline</code> draws a small inline trend line or bar chart from a list of <code>values</code>. It supports fills, smoothing, gradients, custom line width, labels, min/max clamping, and an auto-draw animation. Pass numbers via <code>values</code> (comma list or JSON array).</p>
+  <p><code>w-sparkline</code> draws a small inline trend line or bar chart from a list of <code>values</code>. It supports fills, smoothing, gradients, custom line width, labels, min/max clamping, and an auto-draw animation. Pass numbers via the <code>values</code> attribute (comma list or JSON array), or set the <code>values</code> property to an array.</p>
 
   <h2>Trend &amp; bar</h2>
   <p>Set <code>type</code> to <code>trend</code> (default line) or <code>bar</code>.</p>
@@ -15,6 +15,13 @@
       </div>
     </div>
   </demo-compare>
+
+  <h2>Values as a property</h2>
+  <p>A page that holds its numbers in JavaScript can set the <code>values</code> <em>property</em> to an array instead of writing the attribute as a string. Framework bindings, such as Tac's <code>:values</code>, do this. Give a new array to redraw: changes made inside an array that was already given are not seen. The property wins over the attribute; set it to <code>null</code> to use the attribute again. Items that are not numbers are ignored with one console warning, and an empty array draws an empty chart. <code>labels</code> and <code>gradient</code> take arrays the same way.</p>
+  <pre class="code-block"><code>const spark = document.querySelector('w-sparkline');
+  spark.values = [3, 8, 5, 10];
+  spark.values = [...spark.values, 12];
+  spark.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];</code></pre>
 
   <h2>Standalone tooltip</h2>
   <p><code>w-sparkline-tooltip</code> positions an active value at viewport coordinates. Set <code>index</code> to show it, <code>target</code> to a JSON <code>[x,y]</code> pair, and tune <code>location</code>, <code>offset</code>, and <code>content-class</code>. Remove <code>index</code> (or set it to <code>null</code>) to hide it. Its default slot overrides the displayed <code>value</code>.</p>

@@ -131,7 +131,8 @@ export class WAutocomplete extends WElement {
 
   /* Search / filtering */
   get search() { return this._attr('search', ''); }
-  get filterKeys() { return wValueList(this._attr('filter-keys', '')); }
+  get filterKeys() { return wValueList(this._dataAttr('filter-keys', '')); }
+  set filterKeys(value) { this._setData('filter-keys', value); }
   get filterMode() { return this._attr('filter-mode', 'some'); }
   get clearOnSelect() { return wBoolAttr(this, 'clear-on-select', true); }
   get returnObject() { return this._bool('return-object'); }
@@ -170,8 +171,10 @@ export class WAutocomplete extends WElement {
   get iconColor() { return this._attr('icon-color', ''); }
   get autofocus() { return this._bool('autofocus'); }
   get autocompleteHint() { return this._attr('autocomplete', 'off'); }
-  get messages() { return wValueList(this._attr('messages', '')); }
-  get errorMessages() { return wValueList(this._attr('error-messages', '')); }
+  get messages() { return wValueList(this._dataAttr('messages', '')); }
+  set messages(value) { this._setData('messages', value); }
+  get errorMessages() { return wValueList(this._dataAttr('error-messages', '')); }
+  set errorMessages(value) { this._setData('error-messages', value); }
   get maxErrors() { return Number(this._attr('max-errors', '1')) || 1; }
   get validateOn() { return this._attr('validate-on', 'eager'); }
 
@@ -565,8 +568,11 @@ export class WAutocomplete extends WElement {
 
   /* Items */
 
+  get items() { return wParseRecords(this._dataAttr('items', null)); }
+  set items(value) { this._setData('items', value); }
+
   _parseItems() {
-    const raw = this.getAttribute('items');
+    const raw = this._dataAttr('items', null);
     const parsed = wParseRecords(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed.map((item) => this._normalizeItem(item));

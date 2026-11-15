@@ -127,7 +127,8 @@ export class WTreeview extends WElement {
   get expandIcon() { return this._attr('expand-icon', '›'); }
   get loadingIcon() { return this._attr('loading-icon', '⟳'); }
   get search() { return this._attr('search', ''); }
-  get filterKeys() { return this._readValues(this._attr('filter-keys', '')); }
+  get filterKeys() { return this._readValues(this._dataAttr('filter-keys', '')); }
+  set filterKeys(value) { this._setData('filter-keys', value); }
 
   get filterMode() {
     const value = this._attr('filter-mode', 'some');
@@ -712,6 +713,7 @@ export class WTreeview extends WElement {
   }
 
   _readValues(value) {
+    if (Array.isArray(value)) return value.map(String);
     if (!value) return [];
     const text = String(value).trim();
     if (!text) return [];

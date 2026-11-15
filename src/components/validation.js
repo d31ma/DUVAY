@@ -33,7 +33,8 @@ export class WValidation extends WElement {
 
   get label() { return this._attr('label', ''); }
   get name() { return this._attr('name', ''); }
-  get errorMessages() { return wValueList(this._attr('error-messages', '')); }
+  get errorMessages() { return wValueList(this._dataAttr('error-messages', '')); }
+  set errorMessages(value) { this._setData('error-messages', value); }
   get maxErrors() { return Number(this._attr('max-errors', '1')) || 1; }
   get validateOn() { return this._attr('validate-on', 'input'); }
 

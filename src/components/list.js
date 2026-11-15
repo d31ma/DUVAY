@@ -116,7 +116,8 @@ class WList extends WElement {
     return this._bool('multiple');
   }
 
-  get opened() { return this._readValues(this._attr('opened', '')); }
+  get opened() { return this._readValues(this._dataAttr('opened', '')); }
+  set opened(value) { this._setData('opened', value); }
   get selectedValue() { return this._readValue(this._attr('selected', '')); }
   get activatedValue() { return this._readValue(this._attr('activated', '')); }
 
@@ -366,7 +367,7 @@ class WList extends WElement {
   }
 
   _syncOpenedGroups() {
-    if (!this.hasAttribute('opened')) return;
+    if (!this._hasData('opened')) return;
     const opened = new Set(this.opened);
     this.querySelectorAll('w-list-group').forEach((group) => {
       const value = group.getAttribute('value') || group.getAttribute('title') || '';
@@ -456,6 +457,7 @@ class WList extends WElement {
   }
 
   _readValues(value) {
+    if (Array.isArray(value)) return value.map(String);
     if (!value) return [];
     const text = String(value).trim();
     if (!text) return [];

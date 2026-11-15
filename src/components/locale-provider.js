@@ -18,13 +18,16 @@ export class WLocaleProvider extends WElement {
   get fallbackLocale() { return this._attr('fallback-locale', ''); }
   get rtl() { return this._bool('rtl'); }
   get messages() {
+    const raw = this._dataAttr('messages', '{}');
+    if (raw && typeof raw === 'object') return raw;
     try {
-      const value = JSON.parse(this._attr('messages', '{}'));
+      const value = JSON.parse(raw);
       return value && typeof value === 'object' ? value : {};
     } catch (_) {
       return {};
     }
   }
+  set messages(value) { this._setData('messages', value); }
 
   // Descendants can resolve provider-owned messages without a framework
   // runtime: `element.closest('w-locale-provider').translate('actions.save')`.

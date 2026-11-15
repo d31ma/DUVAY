@@ -111,4 +111,6 @@
       <w-chart title="Weekly activity" values="[36,62,48,88]"></w-chart>
     </div>
   </demo-compare>
+  <p><code>w-chart</code> also takes its <code>values</code> as a <em>property</em>: an array of numbers from 0 to 100, as a framework binding such as Tac's <code>:values</code> gives it. Give a new array to redraw. The property wins over the attribute; set it to <code>null</code> to use the attribute again. Items that are not numbers are ignored with one console warning, and an empty array draws no bars.</p>
+  <pre class="code-block"><code>document.querySelector('w-chart').values = [36, 62, 48, 88];</code></pre>
 </doc-layout>

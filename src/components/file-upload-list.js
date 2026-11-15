@@ -63,7 +63,11 @@ export class WFileUploadList extends WElement {
   get _navigationIndex() { return parseInt(this._attr('navigation-index', '0'), 10) || 0; }
   get _skipCollapsed() { return this._attr('items-registration', 'render') === 'props'; }
   get _uid() { return this.__uid || (this.__uid = `w-fu-list-${++listUid}`); }
-  get _generated() { return this.hasAttribute('files') || this.hasAttribute('items'); }
+  get _generated() { return this._hasData('files') || this._hasData('items'); }
+  get files() { return wParseRecords(this._dataAttr('files', null) ?? []); }
+  set files(value) { this._setData('files', value); }
+  get items() { return wParseRecords(this._dataAttr('items', null) ?? []); }
+  set items(value) { this._setData('items', value); }
 
   _token(value) {
     return String(value).trim().toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
@@ -72,7 +76,7 @@ export class WFileUploadList extends WElement {
   /* ── Items ─────────────────────────────────────────────────────────────── */
 
   _entries() {
-    const raw = this._attr('files', null) ?? this._attr('items', '');
+    const raw = this._dataAttr('files', null) ?? this._dataAttr('items', '');
     return wParseRecords(raw).map((record, index) => this._entry(record, index));
   }
 

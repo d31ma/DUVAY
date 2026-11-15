@@ -1,21 +1,27 @@
 /* <w-sparkline> — inline trend/bar chart, mirroring Vuetify's <v-sparkline>.
  *
  * Attributes:
- *   values              - comma list / JSON array of numbers
+ *   values              - comma list / JSON array of numbers. Also a property:
+ *                         `el.values = [1, 2, 3]`. The property wins over the
+ *                         attribute; set it to null to use the attribute again.
+ *                         Items that are not numbers are ignored with a warning,
+ *                         and an empty array draws an empty chart.
  *   type                - "trend" (line, default) | "bar"
  *   fill                - fill the area under a trend line
  *   smooth              - round trend corners (boolean, or a number for tension)
  *   smooth-mode         - "default" (corner rounding) | "monotone" (curve passes
  *                         through every data point)
  *   color               - token name or CSS color for the stroke / bars
- *   gradient            - comma list of colors for a gradient (overrides color)
+ *   gradient            - comma list of colors for a gradient (overrides color).
+ *                         Also a property: `el.gradient = ['primary', 'error']`
  *   gradient-direction  - "left" (default) | "right" | "top" | "bottom"
  *   line-width          - trend stroke width / bar corner thickness (default 4)
  *   padding             - inset around the plot in viewBox units (default 4)
  *   inset               - run the plot edge to edge, ignoring horizontal padding
  *   auto-line-width     - bars expand to fill their slot instead of leaving a gap
  *   min, max            - clamp the value range (defaults to data extent)
- *   labels              - comma list of labels drawn under each point/bar
+ *   labels              - comma list of labels drawn under each point/bar. Also
+ *                         a property: `el.labels = ['Mon', 'Tue']`
  *   show-labels         - draw the values themselves as labels
  *   label-size          - label font size in viewBox units (default 6)
  *   show-markers        - draw a circle at each data point
@@ -35,7 +41,7 @@
  * Not implemented: the tooltip's `titleFormat` / `class` options, which take a
  * JavaScript function and a Vue class binding.
  */
-import { wBoolAttr, wNumberList } from './utils.js';
+import { wBoolAttr, wNumberList, wNumberProperty, wValueList } from './utils.js';
 
 let sparkUid = 0;
 
@@ -63,7 +69,8 @@ export class WSparkline extends WElement {
     'inset', 'auto-line-width', 'auto-draw-easing', 'smooth-mode',
     'show-markers', 'marker-size', 'marker-stroke', 'animation', 'interactive', 'tooltip'];
 
-  get values() { return wNumberList(this._attr('values', '')); }
+  get values() { return wNumberList(this._dataAttr('values', '')); }
+  set values(value) { this._setData('values', wNumberProperty(this, 'values', value)); }
   get type() { return this._attr('type', 'trend'); }
   get isBar() { return this.type === 'bar'; }
   get fill() { return wBoolAttr(this, 'fill'); }
@@ -74,13 +81,15 @@ export class WSparkline extends WElement {
   }
   get smoothMode() { return this._attr('smooth-mode', 'default'); }
   get color() { return this._attr('color', ''); }
-  get gradient() { return this._attr('gradient', '').split(',').map((c) => c.trim()).filter(Boolean); }
+  get gradient() { return wValueList(this._dataAttr('gradient', '')); }
+  set gradient(value) { this._setData('gradient', value); }
   get gradientDirection() { return this._attr('gradient-direction', 'left'); }
   get lineWidth() { return this._number('line-width', 4); }
   get padding() { return this._number('padding', 4); }
   get inset() { return wBoolAttr(this, 'inset'); }
   get autoLineWidth() { return wBoolAttr(this, 'auto-line-width'); }
-  get labels() { return this._attr('labels', '').split(',').map((l) => l.trim()).filter(Boolean); }
+  get labels() { return wValueList(this._dataAttr('labels', '')); }
+  set labels(value) { this._setData('labels', value); }
   get showLabels() { return wBoolAttr(this, 'show-labels'); }
   get labelSize() { return this._number('label-size', 6); }
   get showMarkers() { return wBoolAttr(this, 'show-markers'); }
@@ -143,9 +152,12 @@ export class WSparkline extends WElement {
     });
   }
 
+  // Sample data shows only when no values were given at all. Data given as a
+  // property is drawn as it is, so an empty array draws an empty chart.
   _plotValues() {
     const values = this.values;
-    return values.length ? values : [3, 6, 4, 8, 5, 9];
+    if (values.length || this._hasDataProperty('values')) return values;
+    return [3, 6, 4, 8, 5, 9];
   }
 
   // `inset` drops the horizontal padding so the plot runs edge to edge.
@@ -337,6 +349,7 @@ export class WSparkline extends WElement {
   // The active point is reflected on the svg (for styling and tests) and folded
   // into the accessible name, so keyboard users hear what they moved to.
   _setActive(index) {
+    if (index >= this._plotValues().length) index = -1;
     if (index === this._active) return;
     this._active = index;
     const svg = this._q('svg');

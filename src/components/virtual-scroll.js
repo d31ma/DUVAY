@@ -33,8 +33,12 @@ export class WVirtualScroll extends WElement {
   static attrs = ['height', 'items', 'item-height', 'item-title', 'item-key',
     'overscan', 'renderless'];
 
+  get items() { return this.itemList; }
+  set items(value) { this._setData('items', value); }
+
   get itemList() {
-    const raw = this._attr('items', '');
+    const raw = this._dataAttr('items', '');
+    if (Array.isArray(raw)) return raw;
     const parsed = this._parseStructured(raw);
     return Array.isArray(parsed) ? parsed : wParseRecords(raw);
   }

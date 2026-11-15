@@ -31,7 +31,9 @@ export class WDataTableHeaders extends WElement {
     'initial-sort-order', 'sort-icon', 'sort-asc-icon', 'sort-desc-icon', 'fixed-header',
     'sticky', 'show-select', 'select-all-label', 'mobile', 'mobile-breakpoint'];
 
-  get headers() { return wValueList(this._attr('headers', '')); }
+  get headers() { return wValueList(this._dataAttr('headers', '')); }
+
+  set headers(value) { this._setData('headers', value); }
   get sortBy() { return this._attr('sort-by', ''); }
   get sortDesc() {
     const first = wValueList(this._attr('sort-desc', ''))[0];

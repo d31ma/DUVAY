@@ -56,7 +56,8 @@ export class WStepper extends WElement {
   get multiple() { return this._bool('multiple'); }
   get max() { return wNumberAttr(this, 'max', 0); }
   get hideActions() { return this._bool('hide-actions'); }
-  get items() { return wParseRecords(this._attr('items', '')); }
+  get items() { return wParseRecords(this._dataAttr('items', '')); }
+  set items(value) { this._setData('items', value); }
 
   get mobile() {
     if (this._bool('mobile')) return true;

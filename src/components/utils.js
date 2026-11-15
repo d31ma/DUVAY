@@ -85,6 +85,28 @@ export function wNumberList(value, fallback = []) {
   return values.length ? values : fallback;
 }
 
+/* Clean a number list given as a property. A string passes through unchanged
+   (it is read like the attribute). An array keeps only its finite numbers
+   (numeric strings count); any other value becomes an empty list. Bad input
+   never throws: it logs one warning naming the element and the property. */
+export function wNumberProperty(host, name, value) {
+  if (value == null || typeof value === 'string') return value;
+  if (!Array.isArray(value)) {
+    console.warn(`DuVay: <${host.localName}> ${name} expects an array of numbers; got ${typeof value}. Showing no data.`);
+    return [];
+  }
+  const numbers = value.filter(wIsNumberItem).map(Number);
+  const ignored = value.length - numbers.length;
+  if (ignored) console.warn(`DuVay: <${host.localName}> ${name} ignored ${ignored} item(s) that are not numbers.`);
+  return numbers;
+}
+
+function wIsNumberItem(item) {
+  if (typeof item === 'number') return Number.isFinite(item);
+  if (typeof item !== 'string' || !item.trim()) return false;
+  return Number.isFinite(Number(item));
+}
+
 export function wRows(value) {
   if (Array.isArray(value)) {
     return value.map((item) => {

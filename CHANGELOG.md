@@ -128,6 +128,40 @@
 
 ### Fixed
 
+- Data properties (DUVAY-6): list and object data can now be set as a
+  property as well as an attribute. Before, `w-sparkline` and `w-chart` had a
+  `values` getter with no setter, so `el.values = [...]` (what Tac's `:values`
+  binding does) threw a TypeError and the chart never updated.
+  - **Rule:** the property wins over the attribute of the same name. Setting
+    the property to `null` or `undefined` clears it, and the attribute counts
+    again. Each assignment re-renders, so give a NEW array to update; changes
+    made inside an array that was already given are not observed.
+  - **`w-sparkline` `values` and `w-chart` `values`:** take an array of
+    numbers. Items that are not numbers are ignored with one console warning,
+    a value that is not an array or a string shows no data with one warning,
+    and nothing throws. An empty array now draws an empty chart instead of
+    the sample data. `w-chart`'s `values` getter now returns the numbers
+    (an array), like `w-sparkline`'s, instead of the raw attribute string.
+  - **Also settable now:** `w-sparkline` `labels`, `gradient`; `items` on
+    `w-tabs`, `w-stepper`, `w-breadcrumbs`, `w-command`, `w-select`,
+    `w-autocomplete`, `w-virtual-scroll`, `w-file-upload-list` (and its
+    `files`), `w-data-table-rows`; `messages` and `errorMessages` on
+    `w-input`, `w-text-field`, `w-number-input`, `w-switch`, `w-checkbox`,
+    `w-radio-group`, `w-slider`, `w-autocomplete`; `w-messages` `messages`;
+    `w-validation` `errorMessages`; `w-snackbar-queue` `messages`;
+    `w-locale-provider` `messages` (an object); `filterKeys` on `w-data-table`,
+    `w-autocomplete`, `w-treeview`; `opened` on `w-data-table`, `w-list`,
+    `w-data-table-rows`; `w-data-table` `expanded`; `headers` on
+    `w-data-table-headers`, `w-data-table-row`, `w-data-table-rows`;
+    `w-color-picker` `modes`; `w-time-picker-clock` `allowedValues`;
+    `w-date-picker` `weekdays`; `w-slider` `tickLabels`.
+  - `w-breadcrumbs` no longer fails to render when an item is a string or
+    `null`; the item is shown as text.
+  - The shared helpers are `_setData`, `_dataAttr` and `_hasData` in
+    `WElement` (`src/components/base.js`) and `wNumberProperty` in
+    `src/components/utils.js`. Each docs page's API reference has a new
+    "Properties" table, generated from the component source
+    (`GENERATED_DATA_PROPERTIES`). Tests: `tests/components/data-properties.spec.js`.
 - Accessibility (DUVAY-4a): a `w-fab` no longer puts a second button inside
   its button. When a copy of an already rendered element connects (a saved
   `outerHTML`, `cloneNode`, a server snapshot), every DuVay element now

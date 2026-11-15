@@ -44,8 +44,12 @@ export class WCommand extends WElement {
     return this.__listId;
   }
 
+  get items() { return this._items() || []; }
+  set items(value) { this._setData('items', value); }
+
   _items() {
-    const raw = this.getAttribute('items');
+    const raw = this._dataAttr('items', null);
+    if (Array.isArray(raw)) return raw;
     if (!raw) return null;
     try { const parsed = JSON.parse(raw); return Array.isArray(parsed) ? parsed : null; }
     catch (_) { return null; }
