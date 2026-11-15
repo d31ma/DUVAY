@@ -128,6 +128,16 @@
 
 ### Fixed
 
+- Security (item 10): DuVay no longer runs text attributes that start with
+  "on" as code. Before, `online-text` on `w-sync-status`, and any other
+  `on...` attribute the browser did not know, was compiled with
+  `new Function`. Under a strict Content Security Policy this threw and broke
+  the page (`/docs/sync-status`), and a plain text value could run as script.
+  Now only `@event` and `on<event>` for DuVay's own event names (such as
+  `onsave`, listed in `WElement.inlineEvents`) are handlers. A handler the
+  policy blocks is skipped with a console warning and never breaks render.
+  `onupdate-selected` is no longer a handler; use `@update-selected` or
+  `@update:selected`.
 - `w-table` (Platform's job queue page, item 9): rows added after the first
   render, for example by live updates, now get their `data-label`, so a
   stacked table (`responsive="stack"`, or `auto` on a narrow screen) no

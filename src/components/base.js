@@ -103,11 +103,23 @@ class WElement extends HTMLElement {
   // bound once on the host so they survive re-renders (events bubble up from
   // inner controls). Two equivalent forms are supported:
   //   @event="…"   — always wired here (e.g. @input, @save, @update:selected)
-  //   onevent="…"  — wired here ONLY for the framework's custom events. Standard
-  //                  events (onclick, oninput, onload, … all GlobalEventHandlers)
-  //                  are already wired by the browser and fire on dispatched
-  //                  CustomEvents, so we skip them to avoid double execution.
-  // ponytail: inline-handler eval, identical trust model to native on* attributes.
+  //   onevent="…"  — wired here ONLY when `event` is one of the framework's own
+  //                  event names (inlineEvents below) that the browser does not
+  //                  handle natively. Standard events (onclick, oninput, onload,
+  //                  … all GlobalEventHandlers) are already wired by the browser
+  //                  and fire on dispatched CustomEvents, so we skip them to
+  //                  avoid double execution.
+  // Every other attribute that starts with "on" is plain data and is never run
+  // as code: `online-text`, `on-call`, `onfoo-bar`, `once`. A handler that
+  // cannot be compiled (a Content Security Policy without 'unsafe-eval', or a
+  // syntax error) is skipped with a console warning and never breaks render.
+  static inlineEvents = new Set([
+    'blur', 'cancel', 'change', 'clear', 'click', 'close', 'error', 'first',
+    'focus', 'input', 'invalid', 'last', 'load', 'moved', 'next', 'prev',
+    'rejected', 'remove', 'save', 'scroll', 'submit', 'timeupdate', 'toggle',
+    'update',
+  ]);
+
   _bindShorthandEvents() {
     // Yield `@event` to a host template framework that owns that syntax and
     // leaves the attribute on the live DOM (e.g. Tac). It binds the handler
@@ -117,20 +129,28 @@ class WElement extends HTMLElement {
     // `on<event>` is never claimed by these frameworks, so it stays universal.
     const frameworkOwnsAt = typeof window !== 'undefined' && !!window.Tac;
     Array.from(this.attributes).forEach((attr) => {
-      const name = attr.name;
-      let type;
-      if (name[0] === '@') {
-        if (frameworkOwnsAt) return;
-        type = name.slice(1);
-      } else if (name.length > 2 && name.startsWith('on') && !(name in this)) {
-        // `on<custom>` for an event the browser doesn't natively handle.
-        type = name.slice(2);
-      } else {
-        return;
-      }
-      const handler = new Function('event', attr.value);
+      const type = this._inlineEventType(attr.name, frameworkOwnsAt);
+      if (!type) return;
+      const handler = this._compileInlineHandler(attr);
+      if (!handler) return;
       this.addEventListener(type, (event) => handler.call(this, event));
     });
+  }
+
+  _inlineEventType(name, frameworkOwnsAt) {
+    if (name[0] === '@') return frameworkOwnsAt ? null : name.slice(1);
+    if (!name.startsWith('on') || name in this) return null;
+    const type = name.slice(2);
+    return WElement.inlineEvents.has(type) ? type : null;
+  }
+
+  _compileInlineHandler(attr) {
+    try {
+      return new Function('event', attr.value);
+    } catch (error) {
+      console.warn(`DuVay: <${this.localName}> ${attr.name} handler was not run: ${error.message}`);
+      return null;
+    }
   }
 
   attributeChangedCallback(name, oldVal, newVal) {
@@ -231,8 +251,9 @@ class WElement extends HTMLElement {
   // (@evt), Angular ((evt)), Svelte (on:evt), Solid/Lit/React 19 (onEvt) and
   // vanilla addEventListener all bind to it. For Vue-style colon names
   // (update:selected) we ALSO dispatch a colon-free alias (update-selected) so
-  // Angular / Svelte / plain `on*` — which can't bind a name with a colon — work
-  // too.
+  // Angular / Svelte — which can't bind a name with a colon — work too. Plain
+  // HTML binds either name with `@update:selected` / `@update-selected`; an
+  // `on…` attribute with a colon or hyphen is never treated as a handler.
   _emit(name, detail) {
     const fire = (n) => this.dispatchEvent(new CustomEvent(n, { detail, bubbles: true, composed: true }));
     fire(name);
