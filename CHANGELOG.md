@@ -128,6 +128,10 @@
 
 ### Fixed
 
+- The docs site bundle job now uses TACHYON 26.46.02 (it pinned 26.33.02).
+  The old release could not build the site's new layout (the Tac contract
+  of TACHYON ADR 0052), so the release bundle would have failed. The five
+  pinned `ty` checksums match the release's `SHA256SUMS`.
 - Offline states follow-up (Mesail trial of `develop` d68028d, items 10 to
   14). No breaking change; every new attribute is optional.
   - `w-send-status`: on a narrow row the "·" separator stays at the end of

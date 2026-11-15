@@ -9,8 +9,8 @@ import {
 } from './ty.mjs';
 
 describe('pinned Tachyon runner', () => {
-  test('maps every published v26.33.02 binary to an exact checksum', () => {
-    expect(TACHYON_VERSION).toBe('26.33.02');
+  test('maps every published v26.46.02 binary to an exact checksum', () => {
+    expect(TACHYON_VERSION).toBe('26.46.02');
     expect(verifyReleaseMapping()).toBe(true);
     expect(Object.keys(TACHYON_ASSETS).sort()).toEqual([
       'darwin-arm64',
@@ -24,11 +24,11 @@ describe('pinned Tachyon runner', () => {
   test('builds the official release URL and rejects unsupported runners', () => {
     expect(releaseAsset('linux', 'x64')).toEqual({
       name: 'ty-linux-x64',
-      sha256: 'c662da31be584364b1d0554df232336a047b90ba66ab9bde9c87e248bb184616',
+      sha256: '125423c88dac3e888cc442c807f1beffc10ff8e5db2ac4cd70b331ecda5ea1fd',
       url: `${TACHYON_RELEASE}/ty-linux-x64`,
     });
     expect(() => releaseAsset('win32', 'arm64')).toThrow(
-      'Tachyon 26.33.02 has no release binary for win32-arm64',
+      'Tachyon 26.46.02 has no release binary for win32-arm64',
     );
   });
 
