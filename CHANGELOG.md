@@ -136,6 +136,12 @@
   `nested-interactive` on every fab of `/docs/floating-action-buttons`. The
   docs "Show code" view also showed rendered internals for 298 of the 567
   web-component demos whose slots are empty; it now shows the authored tag.
+- Accessibility (DUVAY-4b): `w-timeline-item`'s time label now passes WCAG
+  AA contrast. It used `--w-text-very-subtle` (about 3.5:1 in the light
+  theme); the new token `--w-timeline-opposite-color` defaults to
+  `--w-text-subtle`, which `tokens-check` gates at 4.5:1 in every theme.
+  The nested listitems axe found on `/docs/timelines` came from the copied
+  render fixed in DUVAY-4a; a copied timeline now keeps one listitem per item.
 - Security (item 10): DuVay no longer runs text attributes that start with
   "on" as code. Before, `online-text` on `w-sync-status`, and any other
   `on...` attribute the browser did not know, was compiled with

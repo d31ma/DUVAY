@@ -11,6 +11,10 @@
   --w-timeline-line-color: var(--w-divider);
   --w-timeline-dot-color: var(--w-primary);
   --w-timeline-icon-color: currentColor;
+  /* --w-timeline-opposite-color: the time label beside each item. Body-size
+   * text, so it needs AA (4.5:1); --w-text-subtle is gated at that ratio in
+   * every theme by tokens-check, --w-text-very-subtle is not. */
+  --w-timeline-opposite-color: var(--w-text-subtle);
   --w-timeline-line-inset: 0px;
   display: block;
   position: relative;
@@ -81,7 +85,7 @@
   justify-self: end;
   padding-top: 0.125rem;
   font-size: var(--w-font-xs);
-  color: var(--w-text-very-subtle);
+  color: var(--w-timeline-opposite-color, var(--w-text-subtle));
   line-height: 1.4;
   text-align: right;
 }
