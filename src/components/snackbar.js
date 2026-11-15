@@ -229,11 +229,10 @@ class WSnackbar extends WElement {
     const token = String(raw).trim().toLowerCase();
     if (!token) return [];
     if (!this.constructor.tokens.includes(token)) return [`--w-snackbar-bg: ${this._esc(raw)}`];
-    const name = token === 'info' ? 'primary' : token;
     return [
-      `--w-snackbar-bg: var(--w-${name}-container)`,
-      `--w-snackbar-fg: var(--w-on-${name}-container)`,
-      `--w-snackbar-action: var(--w-${name})`,
+      `--w-snackbar-bg: var(--w-${token}-container)`,
+      `--w-snackbar-fg: var(--w-on-${token}-container)`,
+      `--w-snackbar-action: var(--w-${token})`,
     ];
   }
 
@@ -278,8 +277,7 @@ class WSnackbar extends WElement {
     const key = String(raw).trim().toLowerCase();
     if (!key || key === 'true') return '';
     const named = this.constructor.tokens.includes(key);
-    const token = key === 'info' ? 'primary' : key;
-    return `;background:${this._esc(named ? `var(--w-${token})` : raw)}`;
+    return `;background:${this._esc(named ? `var(--w-${key})` : raw)}`;
   }
 
   _scheduleDismiss() {

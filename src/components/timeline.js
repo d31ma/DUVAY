@@ -25,7 +25,7 @@ const TIMELINE_SIZES = { 'x-small': '0.5rem', small: '0.75rem', default: '0.875r
 function wTimelineColor(value) {
   const t = String(value || '').trim().toLowerCase();
   if (!t) return '';
-  return TIMELINE_TOKENS.includes(t) ? `var(--w-${t === 'info' ? 'primary' : t})` : value;
+  return TIMELINE_TOKENS.includes(t) ? `var(--w-${t})` : value;
 }
 
 function wTimelineSize(value) {

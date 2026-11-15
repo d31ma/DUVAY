@@ -4,7 +4,7 @@
  *   variant       - filled | tonal | outlined | text | ghost | plain | elevated |
  *                   icon | danger | primary-text ("flat" aliases filled)
  *   size          - xs | sm | lg | xl, or x-small | small | default | large | x-large
- *   color         - primary | success | danger | warning
+ *   color         - primary | success | danger | warning | info
  *   href          - if set, renders an <a> tag instead of <button>
  *   type          - button | submit | reset, put on the inner <button>. Unset
  *                   keeps the native default (submit inside a form)

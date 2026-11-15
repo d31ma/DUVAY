@@ -92,6 +92,12 @@
   color: var(--w-on-success);
   border-color: var(--w-success);
 }
+
+.w-footer--color-info {
+  background: var(--w-info);
+  color: var(--w-on-info);
+  border-color: var(--w-info);
+}
 .w-footer--color-warning {
   background: var(--w-warning);
   color: var(--w-on-warning);

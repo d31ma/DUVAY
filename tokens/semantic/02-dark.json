@@ -418,6 +418,51 @@
       }
     }
   },
+  "info": {
+    "$value": "#64b5f6",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 20,
+        "before": [
+          "",
+          "  /* Info: neutral, non-urgent status (w-alert type=\"info\", w-chip,",
+          "   * w-sparkline and every other component with color=\"info\"). */"
+        ]
+      }
+    }
+  },
+  "on-info": {
+    "$value": "#0a2540",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "info-container": {
+    "$value": "#0d3c6e",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10
+      }
+    }
+  },
+  "on-info-container": {
+    "$value": "#e3f2fd",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
   "warning": {
     "$value": "#ffb86b",
     "$type": "color",

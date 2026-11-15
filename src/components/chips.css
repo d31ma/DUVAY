@@ -111,6 +111,10 @@
   color: var(--w-on-success);
 }
 
+.w-chip-filled.w-chip-info {
+  color: var(--w-on-info);
+}
+
 .w-chip-filled.w-chip-warning {
   color: var(--w-on-warning);
 }
@@ -155,6 +159,12 @@
   --w-chip-bg: var(--w-success-container);
   --w-chip-fg: var(--w-success);
   --w-chip-accent: var(--w-success);
+}
+
+.w-chip-info {
+  --w-chip-bg: var(--w-info-container);
+  --w-chip-fg: var(--w-info);
+  --w-chip-accent: var(--w-info);
 }
 
 .w-chip-error,

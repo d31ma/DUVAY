@@ -4,7 +4,7 @@
  *   type          - success | info | warning | error
  *   variant       - flat | tonal | outlined | text | plain | elevated
  *                   Legacy contextual values still work: info | success | warning | error.
- *   color         - primary | secondary | tertiary | success | warning | error | danger
+ *   color         - primary | secondary | tertiary | success | warning | error | danger | info
  *   title         - title text
  *   text          - body text
  *   closable      - if set, shows a close button
@@ -265,7 +265,6 @@ class WAlert extends WElement {
   _normalizeColor(value) {
     const token = String(value || '').toLowerCase();
     if (token === 'danger') return 'error';
-    if (token === 'info') return 'primary';
     return this.constructor.colorTokens.includes(token) ? token : 'primary';
   }
 

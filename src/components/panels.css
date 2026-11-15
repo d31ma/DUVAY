@@ -55,6 +55,16 @@
   background: color-mix(in srgb, var(--w-success) 12%, transparent);
 }
 
+.w-panel-box-info {
+  border-color: var(--w-info);
+  background: var(--w-info-container);
+  color: var(--w-on-secondary-container);
+}
+
+.w-panel-box-info .w-panel-box-header {
+  background: color-mix(in srgb, var(--w-info) 12%, transparent);
+}
+
 .w-panel-box-warning {
   border-color: var(--w-warning);
   background: var(--w-warning-container);

@@ -283,8 +283,7 @@ class WPagination extends WElement {
     const token = String(value || '').toLowerCase();
     if (!token) return '';
     if (token === 'danger') return 'error';
-    if (token === 'info') return 'primary';
-    const valid = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error'];
+    const valid = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'error', 'info'];
     return valid.includes(token) ? token : 'primary';
   }
 

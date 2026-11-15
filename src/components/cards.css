@@ -125,6 +125,7 @@
 .w-card__loader-bar--tertiary,
 .w-card__loader-bar--warning { background: var(--w-warning); }
 .w-card__loader-bar--success { background: var(--w-success); }
+.w-card__loader-bar--info { background: var(--w-info); }
 .w-card__loader-bar--error,
 .w-card__loader-bar--danger { background: var(--w-error); }
 
@@ -289,6 +290,12 @@ w-card-title:last-child > .w-card-title {
   --w-card-bg: var(--w-success-container);
   --w-card-fg: var(--w-on-success-container);
   --w-card-accent: var(--w-success);
+}
+
+.w-card--color-info {
+  --w-card-bg: var(--w-info-container);
+  --w-card-fg: var(--w-on-info-container);
+  --w-card-accent: var(--w-info);
 }
 
 .w-card--color-warning {

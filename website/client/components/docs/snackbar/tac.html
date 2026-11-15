@@ -31,12 +31,17 @@
           <div class="w-snackbar-content"><span class="w-snackbar-msg">Profile updated successfully.</span></div>
           <div class="w-snackbar-actions"><button class="w-snackbar-action" type="button">Dismiss</button></div>
         </div>
+        <div class="w-snackbar w-snackbar--inline open" style="--w-snackbar-bg:var(--w-info-container);--w-snackbar-fg:var(--w-on-info-container);--w-snackbar-action:var(--w-info)">
+          <div class="w-snackbar-content"><span class="w-snackbar-msg">A new version is available.</span></div>
+          <div class="w-snackbar-actions"><button class="w-snackbar-action" type="button">Dismiss</button></div>
+        </div>
       </div>
     </div>
     <div slot="wc">
       <div class="w-col ga-3">
         <w-snackbar message="Item deleted" action="Undo" timeout="-1" open="open" inline="inline"></w-snackbar>
         <w-snackbar text="Profile updated successfully." action="Dismiss" color="success" timeout="-1" open="open" inline="inline"></w-snackbar>
+        <w-snackbar text="A new version is available." action="Dismiss" color="info" timeout="-1" open="open" inline="inline"></w-snackbar>
       </div>
     </div>
   </demo-compare>

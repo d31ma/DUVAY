@@ -3,7 +3,7 @@
  * A thin status bar for app-level indicators (time, battery, wifi, notifications).
  *
  * Attributes:
- *   color      - primary | secondary | success | warning | error | surface | CSS color
+ *   color      - primary | secondary | success | warning | error | info | surface | CSS color
  *   height     - number (px) or CSS length (e.g. 32, 2rem)
  *   window     - boolean; taller 32px variant (default false → 24px)
  *   rounded    - boolean or size: sm | md | lg | xl | pill
@@ -75,7 +75,7 @@ class WSystemBar extends WElement {
     const color = this.color;
     if (!color) return '';
     const token = color.toLowerCase().trim();
-    const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'surface'];
+    const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'info', 'surface'];
     if (semantic.includes(token)) return `w-system-bar--color-${token}`;
     return '';
   }
@@ -92,7 +92,7 @@ class WSystemBar extends WElement {
     const color = this.color;
     if (color) {
       const token = color.toLowerCase().trim();
-      const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'surface'];
+      const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'info', 'surface'];
       if (!semantic.includes(token)) {
         styles.push(`--w-system-bar-bg: ${color}`);
         styles.push(`--w-system-bar-color: #ffffff`);

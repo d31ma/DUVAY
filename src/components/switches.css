@@ -126,6 +126,7 @@
 /* ── Color variants (track + thumb when on) ───────────────────────────────── */
 .w-switch--primary { --w-switch-accent: var(--w-primary); --w-switch-on-accent: var(--w-on-primary); }
 .w-switch--success { --w-switch-accent: var(--w-success); --w-switch-on-accent: var(--w-on-success); }
+.w-switch--info { --w-switch-accent: var(--w-info); --w-switch-on-accent: var(--w-on-info); }
 .w-switch--warning { --w-switch-accent: var(--w-warning); --w-switch-on-accent: var(--w-on-warning); }
 .w-switch--error   { --w-switch-accent: var(--w-error);   --w-switch-on-accent: var(--w-on-error); }
 

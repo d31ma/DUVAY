@@ -150,8 +150,7 @@ class WEmpty extends WElement {
     if (!t) return null;
     if (t === 'surface') return { solid: 'var(--w-surface)', bg: 'var(--w-surface)', fg: 'var(--w-text)' };
     if (!this.constructor.tokens.includes(t)) return { solid: value };
-    const n = t === 'info' ? 'primary' : t;
-    return { solid: `var(--w-${n})`, bg: `var(--w-${n}-container)`, fg: `var(--w-on-${n}-container)` };
+    return { solid: `var(--w-${t})`, bg: `var(--w-${t}-container)`, fg: `var(--w-on-${t}-container)` };
   }
 
   _cssLength(value) {

@@ -76,9 +76,10 @@
         "primary",
         "success",
         "danger",
-        "warning"
+        "warning",
+        "info"
       ],
-      "description": "primary | success | danger | warning",
+      "description": "primary | success | danger | warning | info",
       "property": "color"
     },
     "density": {

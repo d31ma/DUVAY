@@ -74,6 +74,14 @@
             <SolidColorBrush x:Key="DuVaySuccessContainerBrush" Color="{StaticResource DuVaySuccessContainerColor}" />
             <Color x:Key="DuVayOnSuccessContainerColor">#FF1B5E20</Color>
             <SolidColorBrush x:Key="DuVayOnSuccessContainerBrush" Color="{StaticResource DuVayOnSuccessContainerColor}" />
+            <Color x:Key="DuVayInfoColor">#FF1565C0</Color>
+            <SolidColorBrush x:Key="DuVayInfoBrush" Color="{StaticResource DuVayInfoColor}" />
+            <Color x:Key="DuVayOnInfoColor">#FFFFFFFF</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoBrush" Color="{StaticResource DuVayOnInfoColor}" />
+            <Color x:Key="DuVayInfoContainerColor">#FFE3F2FD</Color>
+            <SolidColorBrush x:Key="DuVayInfoContainerBrush" Color="{StaticResource DuVayInfoContainerColor}" />
+            <Color x:Key="DuVayOnInfoContainerColor">#FF0D47A1</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoContainerBrush" Color="{StaticResource DuVayOnInfoContainerColor}" />
             <Color x:Key="DuVayWarningColor">#FFC47800</Color>
             <SolidColorBrush x:Key="DuVayWarningBrush" Color="{StaticResource DuVayWarningColor}" />
             <Color x:Key="DuVayOnWarningColor">#FF2A1800</Color>
@@ -178,6 +186,14 @@
             <SolidColorBrush x:Key="DuVaySuccessContainerBrush" Color="{StaticResource DuVaySuccessContainerColor}" />
             <Color x:Key="DuVayOnSuccessContainerColor">#FFE8F5E9</Color>
             <SolidColorBrush x:Key="DuVayOnSuccessContainerBrush" Color="{StaticResource DuVayOnSuccessContainerColor}" />
+            <Color x:Key="DuVayInfoColor">#FF64B5F6</Color>
+            <SolidColorBrush x:Key="DuVayInfoBrush" Color="{StaticResource DuVayInfoColor}" />
+            <Color x:Key="DuVayOnInfoColor">#FF0A2540</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoBrush" Color="{StaticResource DuVayOnInfoColor}" />
+            <Color x:Key="DuVayInfoContainerColor">#FF0D3C6E</Color>
+            <SolidColorBrush x:Key="DuVayInfoContainerBrush" Color="{StaticResource DuVayInfoContainerColor}" />
+            <Color x:Key="DuVayOnInfoContainerColor">#FFE3F2FD</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoContainerBrush" Color="{StaticResource DuVayOnInfoContainerColor}" />
             <Color x:Key="DuVayWarningColor">#FFFFB86B</Color>
             <SolidColorBrush x:Key="DuVayWarningBrush" Color="{StaticResource DuVayWarningColor}" />
             <Color x:Key="DuVayOnWarningColor">#FF3D2200</Color>
@@ -282,6 +298,14 @@
             <SolidColorBrush x:Key="DuVaySuccessContainerBrush" Color="{StaticResource DuVaySuccessContainerColor}" />
             <Color x:Key="DuVayOnSuccessContainerColor">#FF052807</Color>
             <SolidColorBrush x:Key="DuVayOnSuccessContainerBrush" Color="{StaticResource DuVayOnSuccessContainerColor}" />
+            <Color x:Key="DuVayInfoColor">#FF0B3D7A</Color>
+            <SolidColorBrush x:Key="DuVayInfoBrush" Color="{StaticResource DuVayInfoColor}" />
+            <Color x:Key="DuVayOnInfoColor">#FFFFFFFF</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoBrush" Color="{StaticResource DuVayOnInfoColor}" />
+            <Color x:Key="DuVayInfoContainerColor">#FFCFE4FA</Color>
+            <SolidColorBrush x:Key="DuVayInfoContainerBrush" Color="{StaticResource DuVayInfoContainerColor}" />
+            <Color x:Key="DuVayOnInfoContainerColor">#FF04213F</Color>
+            <SolidColorBrush x:Key="DuVayOnInfoContainerBrush" Color="{StaticResource DuVayOnInfoContainerColor}" />
             <Color x:Key="DuVayWarningColor">#FF6E3F00</Color>
             <SolidColorBrush x:Key="DuVayWarningBrush" Color="{StaticResource DuVayWarningColor}" />
             <Color x:Key="DuVayOnWarningColor">#FFFFFFFF</Color>

@@ -196,6 +196,14 @@
 .w-btn-filled.w-btn-success:hover:not(:disabled) {
   background: color-mix(in srgb, var(--w-success) 88%, black);
 }
+.w-btn-filled.w-btn-info {
+  background: var(--w-info);
+  color: var(--w-on-info);
+  border-color: var(--w-info);
+}
+.w-btn-filled.w-btn-info:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-info) 88%, black);
+}
 
 .w-btn-filled.w-btn-danger {
   background: var(--w-error);
@@ -231,6 +239,13 @@
 .w-btn-outlined.w-btn-success:hover:not(:disabled) {
   background: color-mix(in srgb, var(--w-success) 10%, transparent);
 }
+.w-btn-outlined.w-btn-info {
+  border-color: var(--w-info);
+  color: var(--w-info);
+}
+.w-btn-outlined.w-btn-info:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-info) 10%, transparent);
+}
 
 .w-btn-outlined.w-btn-danger {
   border-color: var(--w-error);
@@ -265,6 +280,14 @@
 .w-btn-text.w-btn-success:hover:not(:disabled),
 .w-btn-ghost.w-btn-success:hover:not(:disabled) {
   background: color-mix(in srgb, var(--w-success) 10%, transparent);
+}
+.w-btn-text.w-btn-info,
+.w-btn-ghost.w-btn-info {
+  color: var(--w-info);
+}
+.w-btn-text.w-btn-info:hover:not(:disabled),
+.w-btn-ghost.w-btn-info:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--w-info) 10%, transparent);
 }
 
 .w-btn-text.w-btn-danger,
@@ -376,6 +399,10 @@ w-btn[loading].w-common-loading::after {
 
 .w-btn-filled.w-btn-success {
   --w-loading-color: var(--w-on-success);
+}
+
+.w-btn-filled.w-btn-info {
+  --w-loading-color: var(--w-on-info);
 }
 
 .w-btn-filled.w-btn-danger {

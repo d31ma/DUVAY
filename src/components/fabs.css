@@ -276,6 +276,12 @@
   --w-fab-color: var(--w-on-success-container);
   --w-fab-hover-bg: color-mix(in srgb, var(--w-success-container) 82%, var(--w-success));
 }
+
+.w-fab--color-info {
+  --w-fab-bg: var(--w-info-container);
+  --w-fab-color: var(--w-on-info-container);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-info-container) 82%, var(--w-info));
+}
 .w-fab--color-warning {
   --w-fab-bg: var(--w-warning-container);
   --w-fab-color: var(--w-on-warning-container);
@@ -308,6 +314,12 @@
   --w-fab-color: var(--w-on-success);
   --w-fab-hover-bg: color-mix(in srgb, var(--w-success) 88%, var(--w-on-success));
 }
+
+.w-fab--variant-flat.w-fab--color-info {
+  --w-fab-bg: var(--w-info);
+  --w-fab-color: var(--w-on-info);
+  --w-fab-hover-bg: color-mix(in srgb, var(--w-info) 88%, var(--w-on-info));
+}
 .w-fab--variant-flat.w-fab--color-warning {
   --w-fab-bg: var(--w-warning);
   --w-fab-color: var(--w-on-warning);
@@ -331,6 +343,11 @@
 .w-fab--variant-outlined.w-fab--color-success,
 .w-fab--variant-text.w-fab--color-success {
   --w-fab-color: var(--w-success);
+}
+
+.w-fab--variant-outlined.w-fab--color-info,
+.w-fab--variant-text.w-fab--color-info {
+  --w-fab-color: var(--w-info);
 }
 .w-fab--variant-outlined.w-fab--color-warning,
 .w-fab--variant-text.w-fab--color-warning {

@@ -45,7 +45,7 @@
     },
     "color": {
       "type": "enum",
-      "description": "'primary' | 'error' | 'success' | 'warning'"
+      "description": "'primary' | 'error' | 'success' | 'warning' | 'info'"
     },
     "disabled": {
       "type": "boolean",

@@ -311,6 +311,11 @@
   --w-checkbox-on-accent: var(--w-on-success);
 }
 
+.w-checkbox--info {
+  --w-checkbox-accent: var(--w-info);
+  --w-checkbox-on-accent: var(--w-on-info);
+}
+
 .w-checkbox--warning {
   --w-checkbox-accent: var(--w-warning);
   --w-checkbox-on-accent: var(--w-on-warning);

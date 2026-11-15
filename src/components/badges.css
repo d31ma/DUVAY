@@ -141,8 +141,8 @@
 }
 
 .w-badge-info {
-  --w-badge-bg: var(--w-primary);
-  --w-badge-fg: var(--w-on-primary);
+  --w-badge-bg: var(--w-info);
+  --w-badge-fg: var(--w-on-info);
 }
 
 .w-badge-filled {
@@ -197,6 +197,7 @@
 .w-badge-text-tertiary,
 .w-badge-text-warning { color: var(--w-warning); }
 .w-badge-text-success { color: var(--w-success); }
+.w-badge-text-info { color: var(--w-info); }
 .w-badge-text-error,
 .w-badge-text-danger { color: var(--w-error); }
 

@@ -35,6 +35,10 @@
 @define-color duvay_light_on_success #ffffff;
 @define-color duvay_light_success_container #e8f5e9;
 @define-color duvay_light_on_success_container #1b5e20;
+@define-color duvay_light_info #1565c0;
+@define-color duvay_light_on_info #ffffff;
+@define-color duvay_light_info_container #e3f2fd;
+@define-color duvay_light_on_info_container #0d47a1;
 @define-color duvay_light_warning #c47800;
 @define-color duvay_light_on_warning #2a1800;
 @define-color duvay_light_warning_container #f4e4c7;
@@ -88,6 +92,10 @@
 @define-color duvay_dark_on_success #0b2e0e;
 @define-color duvay_dark_success_container #1b5e20;
 @define-color duvay_dark_on_success_container #e8f5e9;
+@define-color duvay_dark_info #64b5f6;
+@define-color duvay_dark_on_info #0a2540;
+@define-color duvay_dark_info_container #0d3c6e;
+@define-color duvay_dark_on_info_container #e3f2fd;
 @define-color duvay_dark_warning #ffb86b;
 @define-color duvay_dark_on_warning #3d2200;
 @define-color duvay_dark_warning_container #5a4630;
@@ -141,6 +149,10 @@
 @define-color duvay_auto_on_success #0b2e0e;
 @define-color duvay_auto_success_container #1b5e20;
 @define-color duvay_auto_on_success_container #e8f5e9;
+@define-color duvay_auto_info #64b5f6;
+@define-color duvay_auto_on_info #0a2540;
+@define-color duvay_auto_info_container #0d3c6e;
+@define-color duvay_auto_on_info_container #e3f2fd;
 @define-color duvay_auto_warning #ffb86b;
 @define-color duvay_auto_on_warning #3d2200;
 @define-color duvay_auto_warning_container #5a4630;
@@ -191,6 +203,10 @@
 @define-color duvay_high_contrast_on_success #ffffff;
 @define-color duvay_high_contrast_success_container #c6ecc8;
 @define-color duvay_high_contrast_on_success_container #052807;
+@define-color duvay_high_contrast_info #0b3d7a;
+@define-color duvay_high_contrast_on_info #ffffff;
+@define-color duvay_high_contrast_info_container #cfe4fa;
+@define-color duvay_high_contrast_on_info_container #04213f;
 @define-color duvay_high_contrast_warning #6e3f00;
 @define-color duvay_high_contrast_on_warning #ffffff;
 @define-color duvay_high_contrast_warning_container #ffd9a8;

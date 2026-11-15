@@ -7,9 +7,9 @@
  *   icon            - icon text/glyph fallback
  *   size            - x-small | small | default | large | x-large | xs | sm | md | lg | xl | CSS length
  *   variant         - flat | tonal | outlined | text | plain | elevated
- *   color           - primary | secondary | tertiary | success | warning | error | danger
+ *   color           - primary | secondary | tertiary | success | warning | error | danger | info
  *   badge           - true, color name, or status dot color
- *   badge-color     - primary | success | warning | error | danger
+ *   badge-color     - primary | success | warning | error | danger | info
  *   badge-content   - text inside the badge
  *   badge-location  - top-end | top-start | bottom-end | bottom-start
  *   badge-floating  - offset badge outside the avatar edge
@@ -224,7 +224,6 @@ class WAvatar extends WElement {
   _normalizeColor(value) {
     const token = String(value || '').toLowerCase();
     if (token === 'danger') return 'error';
-    if (token === 'info') return 'primary';
     return this.constructor.colors.includes(token) ? token : 'primary';
   }
 

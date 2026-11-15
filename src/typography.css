@@ -265,6 +265,7 @@
 .text-primary       { color: var(--w-primary); }
 .text-error         { color: var(--w-error); }
 .text-success       { color: var(--w-success); }
+.text-info          { color: var(--w-info); }
 .text-high-emphasis   { color: var(--w-text); opacity: var(--w-text-high-emphasis-opacity); }
 .text-medium-emphasis { color: var(--w-text); opacity: var(--w-text-medium-emphasis-opacity); }
 .text-disabled        { color: var(--w-text); opacity: var(--w-text-disabled-opacity); }

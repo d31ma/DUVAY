@@ -10,7 +10,7 @@
  *   name     - form field name (required for grouping)
  *   value    - form value when selected
  *   label    - if set, wraps in a label
- *   color    - 'primary' | 'error' | 'success' | 'warning'
+ *   color    - 'primary' | 'error' | 'success' | 'warning' | 'info'
  *   size     - 'xs' | 'sm' | 'md' | 'lg'
  *   type     - override the native control type ('checkbox' renders a box)
  *   error, inline, ripple, multiple, true-value, false-value,

@@ -342,6 +342,8 @@
 .text-tertiary :where(.w-icon, .w-label, .w-breadcrumb, .w-list-item-title) { color: var(--w-tertiary); }
 .text-success,
 .text-success :where(.w-icon, .w-label, .w-breadcrumb, .w-list-item-title) { color: var(--w-success); }
+.text-info,
+.text-info :where(.w-icon, .w-label, .w-breadcrumb, .w-list-item-title) { color: var(--w-info); }
 .text-warning,
 .text-warning :where(.w-icon, .w-label, .w-breadcrumb, .w-list-item-title) { color: var(--w-warning); }
 .text-error,
@@ -368,6 +370,11 @@
 .bg-success :where(.w-card, .w-sheet, .w-alert, .w-app-bar, .w-toolbar, .w-bottom-navigation) {
   background: var(--w-success-container);
   color: var(--w-success);
+}
+.bg-info,
+.bg-info :where(.w-card, .w-sheet, .w-alert, .w-app-bar, .w-toolbar, .w-bottom-navigation) {
+  background: var(--w-info-container);
+  color: var(--w-on-info-container);
 }
 .bg-warning,
 .bg-warning :where(.w-card, .w-sheet, .w-alert, .w-app-bar, .w-toolbar, .w-bottom-navigation) {

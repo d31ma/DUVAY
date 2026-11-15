@@ -8,7 +8,7 @@
  *   name           - form field name
  *   value          - native form value when checked
  *   label          - label text (alternative to default slot)
- *   color          - 'primary' | 'error' | 'success' | 'warning'
+ *   color          - 'primary' | 'error' | 'success' | 'warning' | 'info'
  *   size           - 'xs' | 'sm' | 'md' | 'lg'
  *   hint           - helper text rendered below the label
  *   error          - error text; a bare attribute just flags the error state

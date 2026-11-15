@@ -8,7 +8,7 @@
  *   label        - text label; triggers extended mode ("text" is the alias)
  *   extended     - force the extended (pill + label) shape
  *   size         - x-small | small | default | large | x-large
- *   color        - primary | secondary | success | warning | error | surface | …
+ *   color        - primary | secondary | success | warning | error | info | surface | …
  *   variant      - elevated | flat | tonal | outlined | text | plain
  *   flat         - drop the shadow without changing the variant
  *   rounded      - pill | circle | sm | md | lg | xl | 0 | true

@@ -60,7 +60,7 @@ const TOKEN_COLORS = {
   warning: 'warning',
   danger: 'error',
   error: 'error',
-  info: 'primary',
+  info: 'info',
   muted: 'text-subtle',
   text: 'text',
   divider: 'divider',

@@ -14,7 +14,7 @@
  *   disabled           - disables link/click affordance
  *   flat               - alias for variant="flat"
  *   variant            - elevated | flat | tonal | outlined | text | plain
- *   color              - primary | secondary | tertiary | success | warning | error | danger
+ *   color              - primary | secondary | tertiary | success | warning | error | danger | info
  *   loading            - true or color token for top loader
  *   ripple             - press-ripple visual on a clickable card
  *   header/footer      - legacy generated header/footer support
@@ -250,7 +250,6 @@ class WCard extends WElement {
     const token = String(value || '').toLowerCase();
     if (!token) return '';
     if (token === 'danger') return 'error';
-    if (token === 'info') return 'primary';
     return this.constructor.colors.includes(token) ? token : 'primary';
   }
 

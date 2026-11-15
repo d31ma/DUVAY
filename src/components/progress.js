@@ -249,7 +249,7 @@ export class WProgress extends WElement {
     const t = String(value || '').trim().toLowerCase();
     if (!t) return '';
     if (t === 'surface') return 'var(--w-surface-container-high)';
-    if (this.constructor.tokens.includes(t)) return `var(--w-${t === 'info' ? 'primary' : t})`;
+    if (this.constructor.tokens.includes(t)) return `var(--w-${t})`;
     return wSafeColor(value);
   }
 

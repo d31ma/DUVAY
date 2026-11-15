@@ -109,9 +109,8 @@ class WBanner extends WElement {
     const t = String(value || '').trim().toLowerCase();
     if (!t) return null;
     if (t === 'surface') return { bg: 'var(--w-surface)', fg: 'var(--w-text)' };
-    const name = t === 'info' ? 'primary' : t;
     if (!this.constructor.tokens.includes(t)) return null;
-    return { bg: `var(--w-${name}-container)`, fg: `var(--w-on-${name}-container)` };
+    return { bg: `var(--w-${t}-container)`, fg: `var(--w-on-${t}-container)` };
   }
 
   _hasSlot(name) { return !!this.querySelector('[slot="' + name + '"]'); }

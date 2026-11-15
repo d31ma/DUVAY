@@ -433,6 +433,51 @@
       }
     }
   },
+  "info": {
+    "$value": "#1565c0",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 20,
+        "before": [
+          "",
+          "  /* Info: neutral, non-urgent status (w-alert type=\"info\", w-chip,",
+          "   * w-sparkline and every other component with color=\"info\"). */"
+        ]
+      }
+    }
+  },
+  "on-info": {
+    "$value": "#ffffff",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 17
+      }
+    }
+  },
+  "info-container": {
+    "$value": "#e3f2fd",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 10
+      }
+    }
+  },
+  "on-info-container": {
+    "$value": "#0d47a1",
+    "$type": "color",
+    "$extensions": {
+      "duvay": {
+        "indent": "  ",
+        "pad": 7
+      }
+    }
+  },
   "warning": {
     "$value": "#c47800",
     "$type": "color",

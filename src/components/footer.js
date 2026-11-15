@@ -3,7 +3,7 @@
  * A footer for app-level content, links, and actions.
  *
  * Attributes:
- *   color      - primary | secondary | success | warning | error | surface | CSS color
+ *   color      - primary | secondary | success | warning | error | info | surface | CSS color
  *   height     - number (px) or CSS length (e.g. 64, 3rem)
  *   border     - boolean; adds border on all sides
  *   elevation  - number 0-5
@@ -78,7 +78,7 @@ class WFooter extends WElement {
     const color = this.color;
     if (!color) return '';
     const token = color.toLowerCase().trim();
-    const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'surface'];
+    const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'info', 'surface'];
     if (semantic.includes(token)) return `w-footer--color-${token}`;
     return '';
   }
@@ -95,7 +95,7 @@ class WFooter extends WElement {
     const color = this.color;
     if (color) {
       const token = color.toLowerCase().trim();
-      const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'surface'];
+      const semantic = ['primary', 'secondary', 'success', 'warning', 'error', 'info', 'surface'];
       if (!semantic.includes(token)) {
         styles.push(`--w-footer-bg: ${color}`);
         styles.push(`--w-footer-color: #ffffff`);

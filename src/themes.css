@@ -70,6 +70,13 @@
   --w-success-container:       #e8f5e9;
   --w-on-success-container:    #1b5e20;
 
+  /* Info: neutral, non-urgent status (w-alert type="info", w-chip,
+   * w-sparkline and every other component with color="info"). */
+  --w-info:                    #1565c0;
+  --w-on-info:                 #ffffff;
+  --w-info-container:          #e3f2fd;
+  --w-on-info-container:       #0d47a1;
+
   --w-warning:                 #c47800;
   --w-on-warning:              #2a1800;
   --w-warning-container:       #f4e4c7;
@@ -154,6 +161,13 @@
   --w-on-success:              #0b2e0e;
   --w-success-container:       #1b5e20;
   --w-on-success-container:    #e8f5e9;
+
+  /* Info: neutral, non-urgent status (w-alert type="info", w-chip,
+   * w-sparkline and every other component with color="info"). */
+  --w-info:                    #64b5f6;
+  --w-on-info:                 #0a2540;
+  --w-info-container:          #0d3c6e;
+  --w-on-info-container:       #e3f2fd;
 
   --w-warning:                 #ffb86b;
   --w-on-warning:              #3d2200;
@@ -242,6 +256,13 @@
     --w-success-container:       #1b5e20;
     --w-on-success-container:    #e8f5e9;
 
+    /* Info: neutral, non-urgent status (w-alert type="info", w-chip,
+     * w-sparkline and every other component with color="info"). */
+    --w-info:                    #64b5f6;
+    --w-on-info:                 #0a2540;
+    --w-info-container:          #0d3c6e;
+    --w-on-info-container:       #e3f2fd;
+
     --w-warning:                 #ffb86b;
     --w-on-warning:              #3d2200;
     --w-warning-container:       #5a4630;
@@ -324,6 +345,13 @@
   --w-on-success:              #ffffff;
   --w-success-container:       #c6ecc8;
   --w-on-success-container:    #052807;
+
+  /* Info: neutral, non-urgent status (w-alert type="info", w-chip,
+   * w-sparkline and every other component with color="info"). */
+  --w-info:                    #0b3d7a;
+  --w-on-info:                 #ffffff;
+  --w-info-container:          #cfe4fa;
+  --w-on-info-container:       #04213f;
 
   --w-warning:                 #6e3f00;
   --w-on-warning:              #ffffff;

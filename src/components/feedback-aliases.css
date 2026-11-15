@@ -55,7 +55,7 @@
 .w-badge-danger,
 .w-badge-error { --w-badge-bg: var(--w-error); --w-badge-fg: var(--w-on-error); }
 .w-badge-warning { --w-badge-bg: var(--w-warning); --w-badge-fg: var(--w-on-warning); }
-.w-badge-info { --w-badge-bg: var(--w-primary); --w-badge-fg: var(--w-on-primary); }
+.w-badge-info { --w-badge-bg: var(--w-info); --w-badge-fg: var(--w-on-info); }
 
 /* Empty state helpers */
 .w-empty-icon { font-size: 2rem; margin-bottom: var(--w-space-md); }

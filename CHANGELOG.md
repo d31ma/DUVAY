@@ -128,6 +128,27 @@
 
 ### Fixed
 
+- Info colour (Platform's job queue page, items 1 to 6). `color="info"`
+  drew black in `w-sparkline`, because DuVay had no info colour. Every
+  theme (light, dark, auto, high-contrast) now has `--w-info`,
+  `--w-on-info`, `--w-info-container` and `--w-on-info-container`, also in
+  the native token files. They pass WCAG AA: 4.5:1 for info text on the
+  surfaces and for each label pair, which also covers the 3:1 needed by the
+  sparkline line. "info" is now its own colour, not primary, in
+  `w-alert` (`type`, `color`, `border-color`), `w-avatar` (`color`,
+  `badge-color`), `w-badge`, `w-banner`, `w-btn`, `w-card`, `w-checkbox`,
+  `w-radio`, `w-switch`, `w-chip`, `w-empty`, `w-fab`, `w-footer`,
+  `w-system-bar`, `w-icon`, `w-img`, `w-pagination`, `w-progress-linear`,
+  `w-progress-circular`, `w-rating`, `w-skeleton`, `w-snackbar`,
+  `w-timeline` and `w-sparkline`. New classes: `.text-info`, `.bg-info`,
+  `.w-btn-info`, `.w-chip-info`, `.w-badge-text-info`, `.w-alert--color-info`,
+  `.w-card--color-info`, `.w-avatar--color-info`, `.w-fab--color-info`,
+  `.w-footer--color-info`, `.w-system-bar--color-info`, `.w-message-info`,
+  `.w-panel-box-info`, `.w-checkbox--info`, `.w-switch--info` and the
+  pagination and loader variants. Visible change: an info alert, badge or
+  snackbar is now blue instead of the primary colour. The native components
+  still draw their info status with primary; they can switch to the new
+  native tokens later.
 - The docs site bundle job now uses TACHYON 26.46.02 (it pinned 26.33.02).
   The old release could not build the site's new layout (the Tac contract
   of TACHYON ADR 0052), so the release bundle would have failed. The five

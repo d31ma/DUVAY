@@ -49,6 +49,15 @@
   background: color-mix(in srgb, var(--w-success) 12%, transparent);
   border-bottom-color: color-mix(in srgb, var(--w-success) 24%, transparent);
 }
+.w-message-info {
+  border-left-color: var(--w-info);
+  background: var(--w-info-container);
+  color: var(--w-on-info-container);
+}
+.w-message-info .w-message-header {
+  background: color-mix(in srgb, var(--w-info) 12%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--w-info) 24%, transparent);
+}
 
 .w-message-warning {
   border-left-color: var(--w-warning);

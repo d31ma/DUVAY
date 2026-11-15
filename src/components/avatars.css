@@ -114,6 +114,12 @@
   --w-avatar-accent: var(--w-success);
 }
 
+.w-avatar--color-info {
+  --w-avatar-bg: var(--w-info-container);
+  --w-avatar-fg: var(--w-on-info-container);
+  --w-avatar-accent: var(--w-info);
+}
+
 .w-avatar--color-warning {
   --w-avatar-bg: var(--w-warning-container);
   --w-avatar-fg: var(--w-on-warning-container);
@@ -345,6 +351,7 @@
 .w-avatar-badge--tertiary,
 .w-avatar-badge--warning { background: var(--w-warning); color: var(--w-on-warning); }
 .w-avatar-badge--success { background: var(--w-success); color: var(--w-on-success); }
+.w-avatar-badge--info { background: var(--w-info); color: var(--w-on-info); }
 .w-avatar-badge--error,
 .w-avatar-badge--danger { background: var(--w-error); color: var(--w-on-error); }
 

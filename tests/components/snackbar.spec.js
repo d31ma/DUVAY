@@ -50,7 +50,7 @@ test('w-snackbar timer bar resolves boolean, token, and custom colors', async ({
   await expect(page.locator('#plain .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms');
   await expect(page.locator('#bool .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms');
   await expect(page.locator('#token .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms;background:var(--w-success)');
-  await expect(page.locator('#info .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms;background:var(--w-primary)');
+  await expect(page.locator('#info .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms;background:var(--w-info)');
   await expect(page.locator('#custom .w-snackbar-timer')).toHaveAttribute('style', 'animation-duration:20000ms;background:#ff8800');
 });
 

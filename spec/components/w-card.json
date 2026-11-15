@@ -59,9 +59,10 @@
         "success",
         "warning",
         "error",
-        "danger"
+        "danger",
+        "info"
       ],
-      "description": "primary | secondary | tertiary | success | warning | error | danger"
+      "description": "primary | secondary | tertiary | success | warning | error | danger | info"
     },
     "density": {
       "type": "string"

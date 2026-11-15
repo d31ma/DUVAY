@@ -67,7 +67,7 @@ export class WIcon extends WElement {
   _color() {
     const raw = String(this._attr('color', '')).toLowerCase();
     if (!raw) return '';
-    const map = { danger: 'error', info: 'primary' };
+    const map = { danger: 'error' };
     if (this.constructor.colors.includes(raw)) return `var(--w-${map[raw] || raw})`;
     return this.getAttribute('color');
   }

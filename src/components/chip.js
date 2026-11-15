@@ -380,7 +380,6 @@ class WChip extends WElement {
     const token = String(value || '').toLowerCase();
     if (!token) return '';
     if (token === 'danger') return 'error';
-    if (token === 'info') return 'primary';
     return this.constructor.colors.includes(token) ? token : 'primary';
   }
 

@@ -20,7 +20,7 @@
  *   true-value / false-value - values for the on / off states
  *   true-icon / false-icon / indeterminate-icon - icon shown inside the thumb
  *   label          - label text (alternative to default slot)
- *   color          - 'primary' | 'error' | 'success' | 'warning'
+ *   color          - 'primary' | 'error' | 'success' | 'warning' | 'info'
  *   thumb-color    - token colour (or CSS colour) for the thumb
  *   size           - 'xs' | 'sm' | 'md' | 'lg'
  *   direction      - 'horizontal' (default) | 'vertical'

@@ -123,12 +123,16 @@ public enum DuVayTokens {
         public let errorContainer: Color
         public let highlightColor: Color
         public let hover: Color
+        public let info: Color
+        public let infoContainer: Color
         public let inverseOnSurface: Color
         public let inversePrimary: Color
         public let inverseSurface: Color
         public let onAccent: Color
         public let onError: Color
         public let onErrorContainer: Color
+        public let onInfo: Color
+        public let onInfoContainer: Color
         public let onPrimary: Color
         public let onPrimaryContainer: Color
         public let onScrim: Color
@@ -177,12 +181,16 @@ public enum DuVayTokens {
         errorContainer: Color(.sRGB, red: 0.9765, green: 0.8706, blue: 0.8627, opacity: 1),
         highlightColor: Color(.sRGB, red: 0.7686, green: 0.4706, blue: 0, opacity: 1),
         hover: Color(.sRGB, red: 0.9176, green: 0.9451, blue: 0.9373, opacity: 1),
+        info: Color(.sRGB, red: 0.0824, green: 0.3961, blue: 0.7529, opacity: 1),
+        infoContainer: Color(.sRGB, red: 0.8902, green: 0.949, blue: 0.9922, opacity: 1),
         inverseOnSurface: Color(.sRGB, red: 0.9569, green: 0.9373, blue: 0.9569, opacity: 1),
         inversePrimary: Color(.sRGB, red: 0.5137, green: 0.8039, blue: 0.8902, opacity: 1),
         inverseSurface: Color(.sRGB, red: 0.1922, green: 0.1882, blue: 0.2, opacity: 1),
         onAccent: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onError: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onErrorContainer: Color(.sRGB, red: 0.2549, green: 0.0549, blue: 0.0431, opacity: 1),
+        onInfo: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
+        onInfoContainer: Color(.sRGB, red: 0.051, green: 0.2784, blue: 0.6314, opacity: 1),
         onPrimary: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.0275, green: 0.2078, blue: 0.2667, opacity: 1),
         onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
@@ -231,12 +239,16 @@ public enum DuVayTokens {
         errorContainer: Color(.sRGB, red: 0.549, green: 0.1137, blue: 0.0941, opacity: 1),
         highlightColor: Color(.sRGB, red: 1, green: 0.7216, blue: 0.4196, opacity: 1),
         hover: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0.05),
+        info: Color(.sRGB, red: 0.3922, green: 0.7098, blue: 0.9647, opacity: 1),
+        infoContainer: Color(.sRGB, red: 0.051, green: 0.2353, blue: 0.4314, opacity: 1),
         inverseOnSurface: Color(.sRGB, red: 0.1922, green: 0.1882, blue: 0.2, opacity: 1),
         inversePrimary: Color(.sRGB, red: 0.1216, green: 0.4353, blue: 0.5451, opacity: 1),
         inverseSurface: Color(.sRGB, red: 0.9569, green: 0.9373, blue: 0.9569, opacity: 1),
         onAccent: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onError: Color(.sRGB, red: 0.2549, green: 0.0549, blue: 0.0431, opacity: 1),
         onErrorContainer: Color(.sRGB, red: 0.9765, green: 0.8706, blue: 0.8627, opacity: 1),
+        onInfo: Color(.sRGB, red: 0.0392, green: 0.1451, blue: 0.251, opacity: 1),
+        onInfoContainer: Color(.sRGB, red: 0.8902, green: 0.949, blue: 0.9922, opacity: 1),
         onPrimary: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.9098, green: 0.9725, blue: 0.9882, opacity: 1),
         onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
@@ -285,12 +297,16 @@ public enum DuVayTokens {
         errorContainer: Color(.sRGB, red: 0.549, green: 0.1137, blue: 0.0941, opacity: 1),
         highlightColor: Color(.sRGB, red: 1, green: 0.7216, blue: 0.4196, opacity: 1),
         hover: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0.05),
+        info: Color(.sRGB, red: 0.3922, green: 0.7098, blue: 0.9647, opacity: 1),
+        infoContainer: Color(.sRGB, red: 0.051, green: 0.2353, blue: 0.4314, opacity: 1),
         inverseOnSurface: Color(.sRGB, red: 0.1922, green: 0.1882, blue: 0.2, opacity: 1),
         inversePrimary: Color(.sRGB, red: 0.1216, green: 0.4353, blue: 0.5451, opacity: 1),
         inverseSurface: Color(.sRGB, red: 0.9569, green: 0.9373, blue: 0.9569, opacity: 1),
         onAccent: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onError: Color(.sRGB, red: 0.2549, green: 0.0549, blue: 0.0431, opacity: 1),
         onErrorContainer: Color(.sRGB, red: 0.9765, green: 0.8706, blue: 0.8627, opacity: 1),
+        onInfo: Color(.sRGB, red: 0.0392, green: 0.1451, blue: 0.251, opacity: 1),
+        onInfoContainer: Color(.sRGB, red: 0.8902, green: 0.949, blue: 0.9922, opacity: 1),
         onPrimary: Color(.sRGB, red: 0.0314, green: 0.1961, blue: 0.2471, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0.9098, green: 0.9725, blue: 0.9882, opacity: 1),
         onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
@@ -339,12 +355,16 @@ public enum DuVayTokens {
         errorContainer: Color(.sRGB, red: 1, green: 0.8353, blue: 0.8235, opacity: 1),
         highlightColor: Color(.sRGB, red: 0.4314, green: 0.2471, blue: 0, opacity: 1),
         hover: Color(.sRGB, red: 0.8314, green: 0.8902, blue: 0.9098, opacity: 1),
+        info: Color(.sRGB, red: 0.0431, green: 0.2392, blue: 0.4784, opacity: 1),
+        infoContainer: Color(.sRGB, red: 0.8118, green: 0.8941, blue: 0.9804, opacity: 1),
         inverseOnSurface: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         inversePrimary: Color(.sRGB, red: 0.5137, green: 0.8039, blue: 0.8902, opacity: 1),
         inverseSurface: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 1),
         onAccent: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onError: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onErrorContainer: Color(.sRGB, red: 0.1725, green: 0, blue: 0.0039, opacity: 1),
+        onInfo: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
+        onInfoContainer: Color(.sRGB, red: 0.0157, green: 0.1294, blue: 0.2471, opacity: 1),
         onPrimary: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),
         onPrimaryContainer: Color(.sRGB, red: 0, green: 0.0941, blue: 0.1255, opacity: 1),
         onScrim: Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 1),

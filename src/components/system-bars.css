@@ -80,6 +80,11 @@
   background: var(--w-success);
   color: var(--w-on-success);
 }
+
+.w-system-bar--color-info {
+  background: var(--w-info);
+  color: var(--w-on-info);
+}
 .w-system-bar--color-warning {
   background: var(--w-warning);
   color: var(--w-on-warning);

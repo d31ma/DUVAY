@@ -253,6 +253,12 @@
   color: var(--w-on-success);
   border-color: var(--w-success);
 }
+
+.w-page-item--active-color-info.active {
+  background: var(--w-info);
+  color: var(--w-on-info);
+  border-color: var(--w-info);
+}
 .w-page-item--active-color-warning.active {
   background: var(--w-warning);
   color: var(--w-on-warning);
@@ -276,6 +282,10 @@
 }
 .w-page-item--color-success:hover:not(.active) {
   color: var(--w-success);
+}
+
+.w-page-item--color-info:hover:not(.active) {
+  color: var(--w-info);
 }
 .w-page-item--color-warning:hover:not(.active) {
   color: var(--w-warning);

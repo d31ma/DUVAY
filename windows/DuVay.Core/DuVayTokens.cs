@@ -131,12 +131,16 @@ public sealed class DuVayPalette
     public required DuVayColor ErrorContainer { get; init; }
     public required DuVayColor HighlightColor { get; init; }
     public required DuVayColor Hover { get; init; }
+    public required DuVayColor Info { get; init; }
+    public required DuVayColor InfoContainer { get; init; }
     public required DuVayColor InverseOnSurface { get; init; }
     public required DuVayColor InversePrimary { get; init; }
     public required DuVayColor InverseSurface { get; init; }
     public required DuVayColor OnAccent { get; init; }
     public required DuVayColor OnError { get; init; }
     public required DuVayColor OnErrorContainer { get; init; }
+    public required DuVayColor OnInfo { get; init; }
+    public required DuVayColor OnInfoContainer { get; init; }
     public required DuVayColor OnPrimary { get; init; }
     public required DuVayColor OnPrimaryContainer { get; init; }
     public required DuVayColor OnScrim { get; init; }
@@ -185,12 +189,16 @@ public sealed class DuVayPalette
         ErrorContainer = new(249, 222, 220, 1),
         HighlightColor = new(196, 120, 0, 1),
         Hover = new(234, 241, 239, 1),
+        Info = new(21, 101, 192, 1),
+        InfoContainer = new(227, 242, 253, 1),
         InverseOnSurface = new(244, 239, 244, 1),
         InversePrimary = new(131, 205, 227, 1),
         InverseSurface = new(49, 48, 51, 1),
         OnAccent = new(255, 255, 255, 1),
         OnError = new(255, 255, 255, 1),
         OnErrorContainer = new(65, 14, 11, 1),
+        OnInfo = new(255, 255, 255, 1),
+        OnInfoContainer = new(13, 71, 161, 1),
         OnPrimary = new(255, 255, 255, 1),
         OnPrimaryContainer = new(7, 53, 68, 1),
         OnScrim = new(255, 255, 255, 1),
@@ -240,12 +248,16 @@ public sealed class DuVayPalette
         ErrorContainer = new(140, 29, 24, 1),
         HighlightColor = new(255, 184, 107, 1),
         Hover = new(255, 255, 255, 0.05),
+        Info = new(100, 181, 246, 1),
+        InfoContainer = new(13, 60, 110, 1),
         InverseOnSurface = new(49, 48, 51, 1),
         InversePrimary = new(31, 111, 139, 1),
         InverseSurface = new(244, 239, 244, 1),
         OnAccent = new(8, 50, 63, 1),
         OnError = new(65, 14, 11, 1),
         OnErrorContainer = new(249, 222, 220, 1),
+        OnInfo = new(10, 37, 64, 1),
+        OnInfoContainer = new(227, 242, 253, 1),
         OnPrimary = new(8, 50, 63, 1),
         OnPrimaryContainer = new(232, 248, 252, 1),
         OnScrim = new(255, 255, 255, 1),
@@ -295,12 +307,16 @@ public sealed class DuVayPalette
         ErrorContainer = new(140, 29, 24, 1),
         HighlightColor = new(255, 184, 107, 1),
         Hover = new(255, 255, 255, 0.05),
+        Info = new(100, 181, 246, 1),
+        InfoContainer = new(13, 60, 110, 1),
         InverseOnSurface = new(49, 48, 51, 1),
         InversePrimary = new(31, 111, 139, 1),
         InverseSurface = new(244, 239, 244, 1),
         OnAccent = new(8, 50, 63, 1),
         OnError = new(65, 14, 11, 1),
         OnErrorContainer = new(249, 222, 220, 1),
+        OnInfo = new(10, 37, 64, 1),
+        OnInfoContainer = new(227, 242, 253, 1),
         OnPrimary = new(8, 50, 63, 1),
         OnPrimaryContainer = new(232, 248, 252, 1),
         OnScrim = new(255, 255, 255, 1),
@@ -350,12 +366,16 @@ public sealed class DuVayPalette
         ErrorContainer = new(255, 213, 210, 1),
         HighlightColor = new(110, 63, 0, 1),
         Hover = new(212, 227, 232, 1),
+        Info = new(11, 61, 122, 1),
+        InfoContainer = new(207, 228, 250, 1),
         InverseOnSurface = new(255, 255, 255, 1),
         InversePrimary = new(131, 205, 227, 1),
         InverseSurface = new(0, 0, 0, 1),
         OnAccent = new(255, 255, 255, 1),
         OnError = new(255, 255, 255, 1),
         OnErrorContainer = new(44, 0, 1, 1),
+        OnInfo = new(255, 255, 255, 1),
+        OnInfoContainer = new(4, 33, 63, 1),
         OnPrimary = new(255, 255, 255, 1),
         OnPrimaryContainer = new(0, 24, 32, 1),
         OnScrim = new(255, 255, 255, 1),
