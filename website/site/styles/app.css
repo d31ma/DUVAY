@@ -30,6 +30,16 @@ body {
   --docs-header-height: 56px;
 }
 
+/* --docs-label-text: small uppercase labels and notes in the docs chrome
+ * (sidebar subheads and notes, API table headers, TOC title, pager, demo
+ * code labels, search groups). Text, so it needs AA (4.5:1);
+ * --w-text-subtle is gated at that ratio in every theme by tokens-check.
+ * Set again on every [w-theme] so a themed subtree resolves its own value. */
+:root,
+[w-theme] {
+  --docs-label-text: var(--w-text-subtle);
+}
+
 /* Tachyon 26.33 renders every component inside a <tachyon-component> boundary.
  * That boundary is a compiler artefact, not a layout element, but it defaults
  * to display:block — which made it the containing block for anything sticky
@@ -198,7 +208,7 @@ w-app-bar[sticky] [data-site-nav] {
   font-weight: var(--w-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--w-letter-spacing-wide);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
 }
 
 .docs-toc-list {
@@ -296,7 +306,7 @@ w-app-bar[sticky] [data-site-nav] {
   font-size: var(--w-font-xs);
   text-transform: uppercase;
   letter-spacing: var(--w-letter-spacing-wide);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
 }
 
 .docs-pager-title {
@@ -777,7 +787,7 @@ w-bottom-sheet[data-docs-sheet-demo] .w-bottom-sheet {
   font-weight: var(--w-font-weight-bold);
   text-transform: uppercase;
   letter-spacing: var(--w-letter-spacing-wide);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
 }
 
 .demo-code .code-block {
@@ -868,13 +878,13 @@ w-bottom-sheet[data-docs-sheet-demo] .w-bottom-sheet {
 
 .cmdk-result-group {
   font-size: var(--w-font-xs);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
 }
 
 .cmdk-empty {
   padding: var(--w-space-6);
   text-align: center;
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
   font-size: var(--w-font-sm);
 }
 
@@ -980,7 +990,7 @@ table.api-table:not(.api-table-wrap table) {
   font-weight: var(--w-font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: var(--w-letter-spacing-wide);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
   background: var(--w-surface-container-low);
 }
 
@@ -1047,7 +1057,7 @@ table.api-table:not(.api-table-wrap table) {
     content: attr(data-label);
     display: block;
     margin-bottom: var(--w-space-1);
-    color: var(--w-text-very-subtle);
+    color: var(--docs-label-text);
     font-size: var(--w-font-xs);
     font-weight: var(--w-font-weight-semibold);
     line-height: 1.2;
@@ -1190,7 +1200,7 @@ table.api-table:not(.api-table-wrap table) {
 .docs-sidebar-subhead {
   margin: var(--w-space-4) 0 var(--w-space-1);
   padding: 0 var(--w-space-3);
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
   font-size: var(--w-font-xs);
   font-weight: var(--w-font-weight-bold);
   letter-spacing: var(--w-letter-spacing-wide);
@@ -1207,7 +1217,7 @@ table.api-table:not(.api-table-wrap table) {
 .docs-sidebar-note {
   display: block;
   margin-top: 0.1rem;
-  color: var(--w-text-very-subtle);
+  color: var(--docs-label-text);
   font-size: var(--w-font-xs);
   font-weight: var(--w-font-weight-normal);
   line-height: 1.25;

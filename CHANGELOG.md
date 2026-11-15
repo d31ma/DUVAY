@@ -142,6 +142,11 @@
   `--w-text-subtle`, which `tokens-check` gates at 4.5:1 in every theme.
   The nested listitems axe found on `/docs/timelines` came from the copied
   render fixed in DUVAY-4a; a copied timeline now keeps one listitem per item.
+- Docs site (DUVAY-4c): the sidebar subheads and notes, the API table
+  headers, the "On this page" title, the pager labels, the demo code labels
+  and the search group labels now pass WCAG AA contrast. They share the new
+  site token `--docs-label-text` (`--w-text-subtle`) instead of
+  `--w-text-very-subtle`. No skin changes a colour.
 - Security (item 10): DuVay no longer runs text attributes that start with
   "on" as code. Before, `online-text` on `w-sync-status`, and any other
   `on...` attribute the browser did not know, was compiled with
