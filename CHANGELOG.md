@@ -128,6 +128,13 @@
 
 ### Fixed
 
+- `w-table` (Platform's job queue page, item 9): rows added after the first
+  render, for example by live updates, now get their `data-label`, so a
+  stacked table (`responsive="stack"`, or `auto` on a narrow screen) no
+  longer shows empty labels. This works for a native `<table>` and for
+  `w-row` / `w-col` grids. Labels also follow later changes to the header
+  text, and a `data-label` you set yourself is always kept. `w-data-table`
+  was not affected: it writes the label into every row it renders.
 - Info colour (Platform's job queue page, items 1 to 6). `color="info"`
   drew black in `w-sparkline`, because DuVay had no info colour. Every
   theme (light, dark, auto, high-contrast) now has `--w-info`,

@@ -90,3 +90,124 @@ test('w-table exposes exactly one table for a native table and for a grid', asyn
   await page.locator('#native').evaluate((el) => el.setAttribute('striped', ''));
   await expect(page.locator('#native').getByRole('table')).toHaveCount(1);
 });
+
+async function cellLabels(page, selector) {
+  return page.locator(selector).evaluateAll((cells) => cells.map((cell) => {
+    const before = getComputedStyle(cell, '::before');
+    return { label: cell.getAttribute('data-label'), before: before.content, display: before.display };
+  }));
+}
+
+function visibleLabels(labels) {
+  return labels.map((label) => ({ label, before: `"${label}"`, display: 'block' }));
+}
+
+const nativeTable = (attrs) => `
+  <w-table id="table" ${attrs}>
+    <table>
+      <thead><tr><th>Name</th><th>Status</th><th>Owner</th></tr></thead>
+      <tbody><tr><td>Design system</td><td>Live</td><td>Avery</td></tr></tbody>
+    </table>
+  </w-table>
+`;
+
+const gridTable = (attrs) => `
+  <w-table id="table" grid ${attrs}>
+    <w-row header><w-col>Name</w-col><w-col>Status</w-col></w-row>
+    <w-row><w-col>Billing</w-col><w-col>Review</w-col></w-row>
+  </w-table>
+`;
+
+async function appendNativeRows(page) {
+  await page.locator('#table tbody').evaluate((body) => {
+    body.insertAdjacentHTML('beforeend', '<tr><td>Docs</td><td>Draft</td><td>Kai</td></tr>');
+    const row = document.createElement('tr');
+    row.innerHTML = '<td>Tokens</td><td data-label="State">Review</td><td>Lee</td>';
+    body.appendChild(row);
+  });
+}
+
+async function appendGridRows(page) {
+  await page.locator('#table .w-table-grid > slot').evaluate((slot) => {
+    slot.insertAdjacentHTML('beforeend', '<w-row><w-col>Search</w-col><w-col>Live</w-col></w-row>');
+    const row = document.createElement('w-row');
+    row.innerHTML = '<w-col data-label="Area">Audit</w-col><w-col>Blocked</w-col>';
+    slot.appendChild(row);
+  });
+}
+
+const NATIVE_NEW_CELLS = '#table tbody tr:nth-child(n+2) td';
+const GRID_NEW_CELLS = '#table w-row:nth-child(n+3) w-col';
+
+for (const [mode, width] of [['stack', 1280], ['auto', 360]]) {
+  test(`w-table labels native rows added after render (responsive ${mode}, ${width}px)`, async ({ mount, page }) => {
+    await page.setViewportSize({ width, height: 720 });
+    await mount(nativeTable(`responsive="${mode}"`));
+    await expect(page.locator('#table tbody td').first()).toHaveAttribute('data-label', 'Name');
+
+    await appendNativeRows(page);
+
+    await expect.poll(() => cellLabels(page, NATIVE_NEW_CELLS)).toEqual(
+      visibleLabels(['Name', 'Status', 'Owner', 'Name', 'State', 'Owner']),
+    );
+    await expect(page.locator('#table thead')).toBeHidden();
+  });
+
+  test(`w-table labels grid rows added after render (responsive ${mode}, ${width}px)`, async ({ mount, page }) => {
+    await page.setViewportSize({ width, height: 720 });
+    await mount(gridTable(`responsive="${mode}"`));
+    await expect(page.locator('#table w-row:not([header]) w-col').first()).toHaveAttribute('data-label', 'Name');
+
+    await appendGridRows(page);
+
+    await expect.poll(() => cellLabels(page, GRID_NEW_CELLS)).toEqual(
+      visibleLabels(['Name', 'Status', 'Area', 'Status']),
+    );
+    await expect(page.locator('#table w-row').nth(2)).toHaveAttribute('role', 'row');
+    await expect(page.locator('#table w-row').nth(2).locator('w-col').first()).toHaveAttribute('role', 'cell');
+  });
+}
+
+test('w-table follows header text changes but keeps author labels', async ({ mount, page }) => {
+  await mount(nativeTable('responsive="stack"'));
+  await appendNativeRows(page);
+  await expect(page.locator('#table tbody tr').nth(2).locator('td').nth(1)).toHaveAttribute('data-label', 'State');
+
+  await page.locator('#table thead th').nth(1).evaluate((cell) => { cell.textContent = 'Phase'; });
+
+  await expect.poll(() => page.locator('#table tbody td').evaluateAll((cells) => cells.map((cell) => cell.getAttribute('data-label'))))
+    .toEqual(['Name', 'Phase', 'Owner', 'Name', 'Phase', 'Owner', 'Name', 'State', 'Owner']);
+});
+
+test('w-table follows grid header text changes but keeps author labels', async ({ mount, page }) => {
+  await mount(gridTable('responsive="stack"'));
+  await appendGridRows(page);
+  await expect(page.locator('#table w-row').nth(3).locator('w-col').first()).toHaveAttribute('data-label', 'Area');
+
+  await page.locator('#table w-row[header] w-col').first().evaluate((cell) => { cell.textContent = 'Team'; });
+
+  await expect.poll(() => page.locator('#table w-row:not([header]) w-col').evaluateAll((cells) => cells.map((cell) => cell.getAttribute('data-label'))))
+    .toEqual(['Team', 'Status', 'Team', 'Status', 'Area', 'Status']);
+});
+
+test('w-table keeps labelling new rows after a re-render and after being moved', async ({ mount, page }) => {
+  await mount(nativeTable('responsive="stack"'));
+
+  await page.locator('#table').evaluate((element) => element.setAttribute('striped', ''));
+  await expect(page.locator('#table table')).toHaveClass(/w-table--striped/);
+  await appendNativeRows(page);
+  await expect.poll(() => cellLabels(page, NATIVE_NEW_CELLS)).toEqual(
+    visibleLabels(['Name', 'Status', 'Owner', 'Name', 'State', 'Owner']),
+  );
+
+  await page.locator('#table').evaluate((element) => {
+    const parent = element.parentElement;
+    element.remove();
+    element.querySelector('tbody').insertAdjacentHTML('beforeend', '<tr><td>Offline</td><td>Added</td><td>Mo</td></tr>');
+    parent.appendChild(element);
+  });
+  await expect(page.locator('#table tbody tr').nth(3).locator('td').nth(2)).toHaveAttribute('data-label', 'Owner');
+
+  await page.locator('#table tbody').evaluate((body) => body.insertAdjacentHTML('beforeend', '<tr><td>Later</td><td>Added</td><td>Jo</td></tr>'));
+  await expect(page.locator('#table tbody tr').nth(4).locator('td').nth(1)).toHaveAttribute('data-label', 'Status');
+});

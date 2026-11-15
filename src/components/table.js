@@ -24,6 +24,10 @@
 
 class WTable extends WElement {
 
+  static ROW = 'w-row, .w-grid-row';
+  static HEADER_ROW = 'w-row[header], .w-grid-row[header], .w-table-header';
+  static CELL = 'w-col, .w-grid-col, [class*="w-grid-col-"]';
+
   static attrs = [
     'density', 'striped', 'hover', 'gridlines', 'grid', 'responsive',
     'fixed-header', 'fixed-footer', 'height',
@@ -90,7 +94,7 @@ class WTable extends WElement {
       ['dense', 'comfortable'].forEach((density) => {
         table.classList.toggle('w-table--' + density, this.density === density || (density === 'dense' && this.density === 'compact'));
       });
-      this._labelNativeCells(table);
+      this._labelCells();
       return;
     }
 
@@ -104,41 +108,161 @@ class WTable extends WElement {
     grid.classList.toggle('w-table-grid--dense', this.density === 'compact' || this.density === 'dense');
     grid.classList.toggle('w-table-grid--comfortable', this.density === 'comfortable');
 
-    this.querySelectorAll('w-row, .w-grid-row').forEach((row) => {
-      row.setAttribute('role', 'row');
-      if (row.hasAttribute('header')) row.classList.add('w-table-header');
-    });
+    this.querySelectorAll(WTable.ROW).forEach((row) => this._decorateGridRow(row));
+    this._labelCells();
+  }
 
-    this.querySelectorAll('w-col, .w-grid-col, [class*="w-grid-col-"]').forEach((cell) => {
-      const row = cell.closest('w-row, .w-grid-row');
-      cell.setAttribute('role', row && (row.classList.contains('w-table-header') || row.hasAttribute('header')) ? 'columnheader' : 'cell');
+  connectedCallback() {
+    super.connectedCallback();
+    // A re-attached table skips the render, so label rows that changed while
+    // it was detached and watch for new ones again.
+    if (this._rendered) this._labelCells();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback?.();
+    this._unwatchCells();
+  }
+
+  // Labels every body cell, then watches the table for rows added later (live
+  // updates) and for header text changes.
+  _labelCells() {
+    const table = this.querySelector('table');
+    const grid = this._q('.w-table-grid');
+    if (table) this._labelNativeCells(table);
+    else if (grid) this._labelGridCells(grid);
+    this._watchCells(grid);
+  }
+
+  _watchCells(grid) {
+    this._unwatchCells();
+    if (!grid || typeof MutationObserver !== 'function') return;
+    this._cellObserver = new MutationObserver((records) => this._onCellsChanged(records));
+    this._cellObserver.observe(grid, { childList: true, subtree: true, characterData: true });
+  }
+
+  _unwatchCells() {
+    if (!this._cellObserver) return;
+    this._cellObserver.disconnect();
+    this._cellObserver = null;
+  }
+
+  _onCellsChanged(records) {
+    const table = this.querySelector('table');
+    const header = table ? 'thead' : WTable.HEADER_ROW;
+    if (records.some((record) => this._touchesHeader(record, header))) {
+      this._labelCells();
+      return;
+    }
+    const rows = new Set();
+    records.forEach((record) => record.addedNodes.forEach((node) => this._rowsOf(node, table).forEach((row) => rows.add(row))));
+    if (table) rows.forEach((row) => this._labelNativeRow(row, this._nativeLabels(table)));
+    else this._labelNewGridRows(rows);
+  }
+
+  _touchesHeader(record, header) {
+    const target = this._elementOf(record.target);
+    if (target && target.closest(header)) return true;
+    return [...record.addedNodes, ...record.removedNodes].some((node) => (
+      node.nodeType === Node.ELEMENT_NODE && (node.matches(header) || !!node.querySelector(header))
+    ));
+  }
+
+  _elementOf(node) {
+    return node.nodeType === Node.ELEMENT_NODE ? node : node.parentElement;
+  }
+
+  // The body rows an added node belongs to or contains.
+  _rowsOf(node, table) {
+    if (node.nodeType !== Node.ELEMENT_NODE) return [];
+    const selector = table ? 'tr' : WTable.ROW;
+    const row = node.closest(selector);
+    const rows = row ? [row] : Array.from(node.querySelectorAll(selector));
+    return rows.filter((candidate) => (table ? this._isNativeBodyRow(candidate, table) : this._isGridRow(candidate)));
+  }
+
+  _isNativeBodyRow(row, table) {
+    return !!row.parentElement && row.parentElement.tagName === 'TBODY' && row.closest('table') === table;
+  }
+
+  _isGridRow(row) {
+    return !!row.parentElement && row.parentElement.closest(WTable.ROW + ', w-table') === this;
+  }
+
+  _decorateGridRow(row) {
+    row.setAttribute('role', 'row');
+    if (row.hasAttribute('header')) row.classList.add('w-table-header');
+    row.querySelectorAll(WTable.CELL).forEach((cell) => {
+      const owner = cell.closest(WTable.ROW);
+      cell.setAttribute('role', owner && (owner.classList.contains('w-table-header') || owner.hasAttribute('header')) ? 'columnheader' : 'cell');
     });
-    this._labelGridCells(grid);
+  }
+
+  _labelNewGridRows(rows) {
+    const labels = this._gridLabels(this._gridRows(this._q('.w-table-grid')));
+    rows.forEach((row) => {
+      this._decorateGridRow(row);
+      if (labels.length && !this._isHeaderRow(row)) this._labelRow(this._gridCells(row), labels);
+    });
+  }
+
+  _nativeLabels(table) {
+    return Array.from(table.querySelectorAll('thead th')).map((cell) => cell.textContent.trim());
   }
 
   _labelNativeCells(table) {
-    const labels = Array.from(table.querySelectorAll('thead th')).map((cell) => cell.textContent.trim());
+    const labels = this._nativeLabels(table);
     if (!labels.length) return;
-    table.querySelectorAll('tbody tr').forEach((row) => {
-      Array.from(row.cells).forEach((cell, index) => {
-        if (!cell.hasAttribute('data-label') && labels[index]) cell.setAttribute('data-label', labels[index]);
-      });
-    });
+    table.querySelectorAll('tbody tr').forEach((row) => this._labelNativeRow(row, labels));
+  }
+
+  _labelNativeRow(row, labels) {
+    if (labels.length) this._labelRow(Array.from(row.cells), labels);
+  }
+
+  _gridRows(grid) {
+    if (!grid) return [];
+    return this._children(grid).filter((row) => row.matches(WTable.ROW));
+  }
+
+  _gridLabels(rows) {
+    const header = rows.find((row) => this._isHeaderRow(row));
+    return header ? this._gridCells(header).map((cell) => cell.textContent.trim()) : [];
+  }
+
+  _isHeaderRow(row) {
+    return row.hasAttribute('header') || row.classList.contains('w-table-header');
+  }
+
+  // A rendered w-row keeps its cells inside its own <slot>.
+  _gridCells(row) {
+    return this._children(row);
+  }
+
+  _children(element) {
+    const slot = element.querySelector(':scope > slot');
+    return Array.from(slot ? slot.children : element.children);
   }
 
   _labelGridCells(grid) {
-    const slot = grid.querySelector(':scope > slot');
-    const rows = Array.from(slot ? slot.children : grid.children)
-      .filter((row) => row.matches('w-row, .w-grid-row'));
-    const header = rows.find((row) => row.hasAttribute('header') || row.classList.contains('w-table-header'));
-    if (!header) return;
+    const rows = this._gridRows(grid);
+    const labels = this._gridLabels(rows);
+    if (!labels.length) return;
+    rows.filter((row) => !this._isHeaderRow(row)).forEach((row) => this._labelRow(this._gridCells(row), labels));
+  }
 
-    const labels = Array.from(header.children).map((cell) => cell.textContent.trim());
-    rows.filter((row) => row !== header).forEach((row) => {
-      Array.from(row.children).forEach((cell, index) => {
-        if (!cell.hasAttribute('data-label') && labels[index]) cell.setAttribute('data-label', labels[index]);
-      });
-    });
+  _labelRow(cells, labels) {
+    cells.forEach((cell, index) => this._labelCell(cell, labels[index] || ''));
+  }
+
+  // An author-set data-label always wins. A label this component set is
+  // remembered on the cell, so it follows later header text changes.
+  _labelCell(cell, label) {
+    const current = cell.getAttribute('data-label');
+    if (current !== null && current !== cell._wTableLabel) return;
+    if (label) cell.setAttribute('data-label', label);
+    else cell.removeAttribute('data-label');
+    cell._wTableLabel = label;
   }
 }
 
