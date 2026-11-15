@@ -10,7 +10,19 @@
  *   static props        — { attrName: propertyName } for camelCase reflection
  *   _template()         — must return an HTML string (use `<slot>` for children)
  *   _events()           — optional, bind event listeners after render
+ *
+ * A re-render keeps what the user is doing (DUVAY-8). A text attribute
+ * (hint, error, label, ...), `disabled` or `readonly` is patched in place by
+ * WRenderPatch, keeping the same inner nodes; after `disabled` / `readonly`
+ * `_events()` runs again through WListenerLedger. Any other re-render
+ * restores focus, caret, selection, typed values and the active option
+ * through WRenderState. A component with an active option model exposes
+ * `_activate(option)`.
  */
+
+import { WListenerLedger } from './listener-ledger.js';
+import { WRenderPatch } from './render-patch.js';
+import { WRenderState } from './render-state.js';
 
 class WElement extends HTMLElement {
   static attrs = [
@@ -93,7 +105,7 @@ class WElement extends HTMLElement {
 
       this._render();
       this._rendered = true;
-      if (typeof this._events === 'function') this._events();
+      this._bindEvents(false);
       this._applyCommonProps();
       this._bindShorthandEvents();
     });
@@ -170,14 +182,66 @@ class WElement extends HTMLElement {
       this[prop] = newVal;
     }
 
-    this._render();
-    if (typeof this._events === 'function') this._events();
+    this._rerenderFor(name);
+  }
+
+  // Re-render after an attribute or data property changed, unless the change
+  // could be patched in place (text around the control, disabled, readonly).
+  _rerenderFor(name) {
+    if (!this._patchInPlace(name)) {
+      this._renderKeepingValues();
+      this._bindEvents(false);
+    }
     this._applyCommonProps();
+  }
+
+  // `_events()` after a render. After an in-place patch of a state attribute
+  // (disabled, readonly) it runs again on the same nodes, and WListenerLedger
+  // skips the listeners those nodes already have.
+  _bindEvents(skipRepeats) {
+    if (typeof this._events !== 'function') return;
+    WListenerLedger.run(this, skipRepeats, () => this._events());
+  }
+
+  _patchInPlace(name) {
+    if (!WRenderPatch.applies(name) || this._wTemplate === undefined) return false;
+    const html = this._template();
+    const state = new WRenderState(this, true);
+    try {
+      if (!WRenderPatch.apply(this, this._wTemplate, html)) return false;
+      this._wTemplate = html;
+      if (WRenderPatch.changesState(name)) this._bindEvents(true);
+      state.restore();
+    } finally {
+      state.release();
+    }
+    return true;
+  }
+
+  // Typed values come back only after a re-render caused from outside (an
+  // attribute or data property). A component's own `_render()` call may be
+  // meant to reset a control to its committed value.
+  _renderKeepingValues() {
+    this._wKeepValues = true;
+    try {
+      this._render();
+    } finally {
+      this._wKeepValues = false;
+    }
   }
 
   _render() {
     if (typeof this._template !== 'function') return;
+    const state = new WRenderState(this, !!this._wKeepValues);
+    try {
+      this._replaceContent();
+      state.restore();
+    } finally {
+      state.release();
+    }
+  }
 
+  _replaceContent() {
     const defaultChildren = [];
     const namedChildren = {};
 
@@ -212,7 +276,8 @@ class WElement extends HTMLElement {
       });
     }
 
-    this.innerHTML = this._template();
+    this._wTemplate = this._template();
+    this.innerHTML = this._wTemplate;
 
     // Distribute saved children into <slot> elements
     var slots = this.querySelectorAll('slot');
@@ -276,9 +341,7 @@ class WElement extends HTMLElement {
     if (value == null) this._dataValues.delete(name);
     else this._dataValues.set(name, value);
     if (!this._rendered) return;
-    this._render();
-    if (typeof this._events === 'function') this._events();
-    this._applyCommonProps();
+    this._rerenderFor(name);
   }
 
   // Emit a standards-named DOM event with optional component metadata.

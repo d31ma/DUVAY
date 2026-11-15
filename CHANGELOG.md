@@ -128,6 +128,55 @@
 
 ### Fixed
 
+- Focus, caret and typed text are kept when an attribute changes (DUVAY-8).
+  Before, every observed attribute re-rendered the element and rebuilt its
+  inner control. So when live form validation set `error` (or `hint`,
+  `label`, `placeholder`) while the user typed, focus fell to the page, the
+  caret was lost, `w-input` dropped the typed text, and an open `w-select`
+  lost its focus. This was also in 26.46.03. The fix is in the base class
+  (`src/components/base.js`), so it holds for every component:
+  - **These attributes are patched in place, keeping the same nodes:**
+    `hint`, `error`, `label`, `placeholder`, `messages`, `error-messages`,
+    `counter`, `persistent-hint`, `disabled` and `readonly` (as attributes,
+    or `messages` / `errorMessages` as properties). The old and new
+    templates are compared and only the text, attributes and classes that
+    differ are changed on the live nodes (`src/components/render-patch.js`).
+    When a row is added or removed (a message line), only that plain-text
+    row is inserted or removed. When the control gets a new wrapper (a bare
+    `w-input` that gets its first label or error), the new wrapper is built
+    and the same control node is moved into it. The element and its inner
+    control stay the same nodes, so focus, caret, selection, value, an open
+    list and its active option all stay.
+  - After a patched `disabled` or `readonly`, `_events()` runs again, because
+    many components bind no listeners while disabled. A new helper,
+    `src/components/listener-ledger.js`, notes the listeners `_events()`
+    adds to inner nodes and skips the ones a node already has, so nothing
+    fires twice.
+  - **Every other re-render restores the user's state**
+    (`src/components/render-state.js`): focus, the caret and selection
+    (with its direction), the scroll position, typed values and checked
+    states of inputs and textareas, and the active option. A typed value
+    is kept only when the new template has the same default value, so a new
+    `value` attribute still replaces it. The blur and focus events caused by
+    the swap are stopped at the element, so `validate-on="blur"` and page
+    listeners do not see a fake blur.
+  - A control that becomes `disabled` loses focus, as a native control
+    does, and does not get it back when it is enabled again; it stays the
+    same node and keeps its value and checked state.
+  - `w-list-group-activator` no longer nests its old button inside itself
+    when it re-renders, and `w-slide-group` renders `aria-disabled` on its
+    group when disabled (both showed up once these elements were patched).
+  - No `eval` or inline handlers are added; it works under a strict
+    Content Security Policy.
+  - Tests: `tests/components/keep-focus.spec.js` covers `w-input`,
+    `w-text-field`, `w-textarea`, `w-select`, `w-autocomplete`,
+    `w-number-input`, `w-switch` and `w-checkbox` on all six skins in light
+    and dark mode, checking after each of three updates that the element and
+    its inner control are the same nodes, with the DUVAY-7 repro as a
+    regression test and an axe scan after the changes. A second test checks,
+    for every registered element, that the patched markup equals a fresh
+    render. When Tac replaces the element itself, that part is fixed in
+    TACHYON (TAC-RND2).
 - Data properties (DUVAY-6): list and object data can now be set as a
   property as well as an attribute. Before, `w-sparkline` and `w-chart` had a
   `values` getter with no setter, so `el.values = [...]` (what Tac's `:values`

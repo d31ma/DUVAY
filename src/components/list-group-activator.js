@@ -14,8 +14,15 @@ export class WListGroupActivator extends WElement {
   get disabled() { return this._bool('disabled'); }
 
   set disabled(value) { this.toggleAttribute('disabled', !!value); }
+  // Decided once, before the first render: after it, the host's children are
+  // the rendered button, not authored content.
+  _hasCustomContent() {
+    if (this._customContent === undefined) this._customContent = this.childNodes.length > 0;
+    return this._customContent;
+  }
+
   _template() {
-    const hasCustomContent = this.childNodes.length > 0;
+    const hasCustomContent = this._hasCustomContent();
     const content = hasCustomContent
       ? '<slot></slot>'
       : `${this.prependIcon ? `<span class="w-list-item-prepend">${this._esc(this.prependIcon)}</span>` : '<span class="w-list-item-prepend" aria-hidden="true"></span>'}

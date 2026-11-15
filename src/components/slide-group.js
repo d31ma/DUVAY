@@ -103,7 +103,7 @@ export class WSlideGroup extends WItemGroup {
   _template() {
     return `<div class="${this._shellClasses()}">
       ${this._arrow('prev', 'Previous items', this.prevIcon)}
-      <div class="${this._contentClasses()}" role="group" tabindex="0"><slot></slot></div>
+      <div class="${this._contentClasses()}" role="group" tabindex="0"${this.disabled ? ' aria-disabled="true"' : ''}><slot></slot></div>
       ${this._arrow('next', 'Next items', this.nextIcon)}
     </div>`;
   }
