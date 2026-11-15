@@ -147,6 +147,13 @@
   and the search group labels now pass WCAG AA contrast. They share the new
   site token `--docs-label-text` (`--w-text-subtle`) instead of
   `--w-text-very-subtle`. No skin changes a colour.
+- Docs site (DUVAY-4d): `/docs/chips` and `/docs/avatars` showed broken
+  images, because they loaded photos from pravatar.cc and the site Content
+  Security Policy allows only `img-src 'self' data:`. They now use five
+  local sample portraits in `/shared/assets/avatars/`; the policy is
+  unchanged. A test lists the pages that still load outside images
+  (`app-bars`, `aspect-ratios`, `components-carousels`, `images`,
+  `parallax`) and fails if a new one appears.
 - Security (item 10): DuVay no longer runs text attributes that start with
   "on" as code. Before, `online-text` on `w-sync-status`, and any other
   `on...` attribute the browser did not know, was compiled with
