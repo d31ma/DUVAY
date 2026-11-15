@@ -162,6 +162,14 @@
     `src/components/utils.js`. Each docs page's API reference has a new
     "Properties" table, generated from the component source
     (`GENERATED_DATA_PROPERTIES`). Tests: `tests/components/data-properties.spec.js`.
+- `w-table` stack mode on phones (DUVAY-6): a `<w-table responsive="stack">`,
+  or `responsive="auto"` at a narrow width, around a native `<table>` kept
+  the wrapper's 560px minimum width, so the stacked rows still scrolled
+  sideways on a phone. The wrapper now gets its responsive class around a
+  native table too, so stacked rows fit the screen. `responsive="scroll"`
+  keeps the 560px minimum width and scrolls inside its wrapper. Tests:
+  `tests/components/table-stack.spec.js` (375px and 400px, all 6 skins, axe
+  on the tables docs page).
 - Accessibility (DUVAY-4a): a `w-fab` no longer puts a second button inside
   its button. When a copy of an already rendered element connects (a saved
   `outerHTML`, `cloneNode`, a server snapshot), every DuVay element now

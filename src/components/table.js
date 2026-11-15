@@ -78,6 +78,7 @@ class WTable extends WElement {
   _events() {
     const table = this.querySelector('table');
     const grid = this._q('.w-table-grid');
+    this._markGridResponsive(grid);
 
     if (table) {
       grid?.removeAttribute('role');
@@ -99,8 +100,6 @@ class WTable extends WElement {
     }
 
     if (!grid) return;
-    grid.classList.remove('w-table-grid--responsive-auto', 'w-table-grid--responsive-stack');
-    if (this.responsive !== 'scroll') grid.classList.add('w-table-grid--responsive-' + this.responsive);
     grid.classList.remove('w-table-grid--striped', 'w-table-grid--striped-odd');
     if (this.striped === 'even') grid.classList.add('w-table-grid--striped');
     else if (this.striped === 'odd') grid.classList.add('w-table-grid--striped-odd');
@@ -110,6 +109,15 @@ class WTable extends WElement {
 
     this.querySelectorAll(WTable.ROW).forEach((row) => this._decorateGridRow(row));
     this._labelCells();
+  }
+
+  // The grid wrapper holds the 560px minimum width that "scroll" mode keeps.
+  // "stack" and "auto" (at a narrow width) drop it, around a native <table>
+  // as well as a w-row grid, so stacked rows fit a phone screen.
+  _markGridResponsive(grid) {
+    if (!grid) return;
+    grid.classList.remove('w-table-grid--responsive-auto', 'w-table-grid--responsive-stack');
+    if (this.responsive !== 'scroll') grid.classList.add('w-table-grid--responsive-' + this.responsive);
   }
 
   connectedCallback() {
