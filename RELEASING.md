@@ -42,13 +42,13 @@ to prevent an accidental publish.
 ## Documentation site
 
 Production (`duvay.del.ma`) is an Amplify Hosting app managed in `d31ma/PaaS`
-(`infra/duvay/amplify`). Staging (`staging.duvay.del.ma`) is hosted on Floci on
+(`infra/duvay/amplify`). Staging (`staging.duvay.del.ma`) is hosted in the K3s pilot on
 kestrel and is reachable only on the tailnet and the CITADEL LAN.
 
 `Publish` builds the site once. It attaches `duvay-site-<version>.zip` (with
 `site-version.json` at its root) and its `.sha256` to the GitHub release, and
 attests the zip. kestrel's pull deployer then deploys that zip to staging,
-probes it, and sets the commit status `site-staging/floci` on the release
+probes it, and sets the commit status `site-staging/k3s` on the release
 commit, with the description `<version> <first 12 hex of the zip SHA-256>`.
 
 When `Publish` succeeds on a release commit, `Site Deploy` checks the zip's

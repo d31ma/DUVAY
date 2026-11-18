@@ -56,7 +56,7 @@ function fakeTools(responses = {}) {
   };
 }
 
-function status(state, description, context = 'site-staging/floci') {
+function status(state, description, context = 'site-staging/k3s') {
   return { context, state, description };
 }
 
@@ -136,11 +136,16 @@ describe('SiteDeploy.waitForStaging', () => {
     expect(new SiteDeploy(fakeTools().tools).stagingDescription('26.46.01', SHA256)).toBe('26.46.01 99682b0a0ca3');
   });
 
-  test('passes on the newest site-staging/floci success for this zip', async () => {
+  test('passes on the newest site-staging/k3s success for this zip', async () => {
     const fake = fakeTools({ statusRounds: [[status('success', '26.46.01 99682b0a0ca3'), status('pending', '26.46.01 99682b0a0ca3')]] });
     await new SiteDeploy(fake.tools).waitForStaging(GATE);
-    expect(fake.logs.at(-1)).toBe('site-staging/floci passed on abc123: 26.46.01 99682b0a0ca3');
+    expect(fake.logs.at(-1)).toBe('site-staging/k3s passed on abc123: 26.46.01 99682b0a0ca3');
     expect(fake.sleeps).toEqual([]);
+  });
+
+  test('ignores the retired site-staging/floci status', async () => {
+    const fake = fakeTools({ statusRounds: Array(SiteDeploy.STAGING_ATTEMPTS).fill([status('success', '26.46.01 99682b0a0ca3', 'site-staging/floci')]) });
+    await expect(new SiteDeploy(fake.tools).waitForStaging(GATE)).rejects.toThrow('No site-staging/k3s success');
   });
 
   test('reads the statuses with the workflow token', async () => {
@@ -166,7 +171,7 @@ describe('SiteDeploy.waitForStaging', () => {
 
   test('stops at once when staging reports a failure', async () => {
     const fake = fakeTools({ statusRounds: [[status('failure', '26.46.01 99682b0a0ca3')]] });
-    await expect(new SiteDeploy(fake.tools).waitForStaging(GATE)).rejects.toThrow('Staging on Floci reported failure');
+    await expect(new SiteDeploy(fake.tools).waitForStaging(GATE)).rejects.toThrow('Staging on K3s reported failure');
     expect(fake.sleeps).toEqual([]);
   });
 
@@ -177,7 +182,7 @@ describe('SiteDeploy.waitForStaging', () => {
 
   test('fails closed after 20 minutes without a matching success', async () => {
     const fake = fakeTools({ statusRounds: Array(SiteDeploy.STAGING_ATTEMPTS).fill([status('pending', '26.46.01 99682b0a0ca3')]) });
-    await expect(new SiteDeploy(fake.tools).waitForStaging(GATE)).rejects.toThrow('No site-staging/floci success "26.46.01 99682b0a0ca3" on abc123 in time');
+    await expect(new SiteDeploy(fake.tools).waitForStaging(GATE)).rejects.toThrow('No site-staging/k3s success "26.46.01 99682b0a0ca3" on abc123 in time');
     expect(fake.sleeps.reduce((total, seconds) => total + seconds, 0)).toBe(1200);
   });
 
