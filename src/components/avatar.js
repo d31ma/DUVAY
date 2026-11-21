@@ -172,7 +172,15 @@ class WAvatar extends WElement {
   // The presence is already part of the avatar's name, so its dot is hidden.
   _badgeLabel() {
     if (this._isStatusDot()) return ' aria-hidden="true"';
-    return ` aria-label="${this._esc(this.badgeContent || this.badgeColor + ' badge')}"`;
+    return `${this._badgeRole()} aria-label="${this._esc(this.badgeContent || this.badgeColor + ' badge')}"`;
+  }
+
+  _badgeRole() {
+    return this._hasBadgeText() ? '' : ' role="img"';
+  }
+
+  _hasBadgeText() {
+    return !!this.badgeContent || this._hasSlot('badge');
   }
 
   _hasBadge() {

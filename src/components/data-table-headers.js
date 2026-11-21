@@ -24,6 +24,7 @@
  */
 import { wBoolAttr, wValueList } from './utils.js';
 import { wMobileMode, wWatchMobile } from './data-table-row.js';
+import { WTableContext } from './table-context.js';
 import './grid.js';
 
 export class WDataTableHeaders extends WElement {
@@ -69,7 +70,7 @@ export class WDataTableHeaders extends WElement {
     })}"`;
     if (!this.headers.length) return `<w-row header no-gutters${rowAttrs}><slot></slot></w-row>`;
     const cols = Math.max(1, Math.floor(12 / this.headers.length));
-    return `<w-row header no-gutters${rowAttrs}>${this._selectAllHtml()}`
+    return `<w-row header no-gutters role="row"${rowAttrs}>${this._selectAllHtml()}`
       + this.headers.map((header) => this._headerHtml(header, cols)).join('')
       + `</w-row>`;
   }
@@ -107,6 +108,7 @@ export class WDataTableHeaders extends WElement {
 
   _events() {
     wWatchMobile(this);
+    this._ensureTable();
     this._qAll('[data-sort]').forEach((button) => button.addEventListener('click', () => {
       this._toggleSort(button.getAttribute('data-sort'));
     }));
@@ -117,6 +119,10 @@ export class WDataTableHeaders extends WElement {
   }
 
   _rerender() { this._render(); this._events(); }
+
+  _ensureTable() {
+    if (this.headers.length) WTableContext.ensure(this);
+  }
 
   _toggleSort(key) {
     const sorts = this.sorts;

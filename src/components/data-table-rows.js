@@ -27,6 +27,7 @@
  */
 import { wParseRecords, wRecordValue, wValueList } from './utils.js';
 import { wMobileMode, wWatchMobile } from './data-table-row.js';
+import { WTableContext } from './table-context.js';
 
 export class WDataTableRows extends WElement {
   static attrs = ['headers', 'items', 'no-data-text', 'loading-text', 'hide-no-data',
@@ -117,12 +118,17 @@ export class WDataTableRows extends WElement {
 
   _events() {
     wWatchMobile(this);
+    this._ensureTable();
     this._qAll('[data-group]').forEach((button) => button.addEventListener('click', () => {
       this._toggleGroup(button.getAttribute('data-group'));
     }));
   }
 
   _rerender() { this._render(); this._events(); }
+
+  _ensureTable() {
+    if (this._q('w-data-table-row')) WTableContext.ensure(this);
+  }
 
   _toggleGroup(name) {
     const names = this._groupNames();

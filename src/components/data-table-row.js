@@ -19,6 +19,7 @@
  *   update:expanded  - { index, expanded }
  */
 import { wBoolAttr, wFields, wNumberAttr, wRecordValue, wValueList } from './utils.js';
+import { WTableContext } from './table-context.js';
 import './grid.js';
 
 /* Stacked-layout helpers, shared with <w-data-table-rows> and
@@ -84,7 +85,7 @@ export class WDataTableRow extends WElement {
     const rowAttrs = this._rowAttrs();
     if (!this.headers.length) return `<w-row no-gutters${rowAttrs}><slot></slot></w-row>`;
     const cols = Math.max(1, Math.floor(12 / this.headers.length));
-    return `<w-row no-gutters${rowAttrs}>${this._leadHtml()}`
+    return `<w-row no-gutters role="row"${rowAttrs}>${this._leadHtml()}`
       + this.headers.map((header, index) => this._cellHtml(header, index, cols)).join('')
       + `</w-row>`;
   }
@@ -118,6 +119,7 @@ export class WDataTableRow extends WElement {
 
   _events() {
     wWatchMobile(this);
+    this._ensureTable();
     this._q('[data-select]')?.addEventListener('change', (event) => {
       event.stopPropagation();
       this._setSelected(event.target.checked);
@@ -126,6 +128,10 @@ export class WDataTableRow extends WElement {
   }
 
   _rerender() { this._render(); this._events(); }
+
+  _ensureTable() {
+    if (this.headers.length) WTableContext.ensure(this);
+  }
 
   _setSelected(selected) {
     this._silentSet('active', selected);
