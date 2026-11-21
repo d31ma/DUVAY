@@ -30,6 +30,8 @@
  *                          trigger (`label` or slot="activator") as before.
  */
 
+import { WFocusTarget } from './focus-target.js';
+
 export class WMenu extends WElement {
   static attrs = [
     'id',
@@ -296,7 +298,7 @@ export class WMenu extends WElement {
     const item = event.target instanceof Element ? event.target.closest('button, a, [role="menuitem"], [role="menuitemcheckbox"], [role="menuitemradio"]') : null;
     if (!item || !this.closeOnContentClick) return;
     this._setOpen(false);
-    this._activatorEl()?.focus();
+    WFocusTarget.focus(this._activatorEl());
   }
 
   // Persistent menus refuse dismissal and bounce instead, unless the bounce is
@@ -337,7 +339,7 @@ export class WMenu extends WElement {
     if (event.key === 'Escape') {
       event.preventDefault();
       this._setOpen(false);
-      this._activatorEl()?.focus();
+      WFocusTarget.focus(this._activatorEl());
       return;
     }
     if (event.key === 'Tab') {
@@ -347,7 +349,7 @@ export class WMenu extends WElement {
     if (this.submenu && event.key === 'ArrowLeft') {
       event.preventDefault();
       this._setOpen(false);
-      this._activatorEl()?.focus();
+      WFocusTarget.focus(this._activatorEl());
       return;
     }
     const direction = event.key === 'ArrowDown' ? 'next' : event.key === 'ArrowUp' ? 'prev' : event.key === 'Home' ? 'first' : event.key === 'End' ? 'last' : '';
@@ -373,7 +375,7 @@ export class WMenu extends WElement {
 
   _leaveOnTab(event) {
     this._setOpen(false);
-    this._activatorEl()?.focus();
+    WFocusTarget.focus(this._activatorEl());
     if (event.shiftKey) event.preventDefault();
   }
 

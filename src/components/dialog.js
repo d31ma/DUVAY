@@ -59,6 +59,8 @@
  *   toggle, close
  */
 
+import { WFocusTarget } from './focus-target.js';
+
 class WDialog extends WElement {
 
   static attrs = [
@@ -542,7 +544,7 @@ class WDialog extends WElement {
   _restoreFocus() {
     const target = this._returnTarget();
     this._opener = null;
-    target?.focus({ preventScroll: true });
+    WFocusTarget.focus(target, { preventScroll: true });
   }
 
   // Focus the closed dialog took with it (now on <body>, or still inside the

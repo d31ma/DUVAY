@@ -29,6 +29,8 @@
  *   change - an item was chosen (detail: { value })
  */
 
+import { WFocusTarget } from './focus-target.js';
+
 let commandUid = 0;
 
 export class WCommand extends WElement {
@@ -271,8 +273,8 @@ export class WCommand extends WElement {
     if (open) {
       this._lastFocus = document.activeElement;
       if (input) { input.value = ''; this._filter(); input.focus(); }
-    } else if (this._lastFocus && typeof this._lastFocus.focus === 'function') {
-      this._lastFocus.focus();
+    } else {
+      WFocusTarget.focus(this._lastFocus);
     }
   }
 

@@ -137,6 +137,8 @@ for (const activator of ACTIVATORS) {
         <span slot="content"><button id="follow">Follow</button></span>
       </w-hover-card>`);
 
+    await expect(page.locator('#more button')).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(page.locator('#card .w-hover-card-trigger')).not.toHaveAttribute('tabindex', /.*/);
     await page.locator('#more button').focus();
     await page.keyboard.press('Tab');
     await expectFocusOn(page, '#follow');
@@ -147,8 +149,8 @@ for (const activator of ACTIVATORS) {
 
   test(`w-command and w-command-palette give focus back to the button inside a ${activator.name}`, async ({ mount, page }) => {
     await mount(`${activator.markup}
-      <w-command id="cmd"><w-command-item value="profile">Profile</w-command-item></w-command>
-      <w-command-palette id="palette" items='[{"title":"Settings","value":"settings"}]'></w-command-palette>`);
+      <w-command id="cmd" hotkey="mod+k"><w-command-item value="profile">Profile</w-command-item></w-command>
+      <w-command-palette id="palette" hotkey="mod+j" items='[{"title":"Settings","value":"settings"}]'></w-command-palette>`);
 
     for (const id of ['#cmd', '#palette']) {
       await page.locator('#more button').focus();

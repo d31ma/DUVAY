@@ -1,6 +1,7 @@
 /* <w-command-palette> — Vuetify-compatible command palette facade. */
 
 import { WCommand } from './command.js';
+import { WFocusTarget } from './focus-target.js';
 
 export class WCommandPalette extends WCommand {
   static attrs = [
@@ -45,8 +46,8 @@ export class WCommandPalette extends WCommand {
     if (this._open) {
       this._lastFocus = document.activeElement;
       input?.focus();
-    } else if (this._lastFocus && typeof this._lastFocus.focus === 'function') {
-      this._lastFocus.focus();
+    } else {
+      WFocusTarget.focus(this._lastFocus);
     }
   }
 

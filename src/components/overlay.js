@@ -32,6 +32,8 @@
  * they need so a prop means the same thing on every surface.
  */
 
+import { WFocusTarget } from './focus-target.js';
+
 const W_OVERLAY_OFF = ['false', '0', 'off', 'none'];
 
 /* Vuetify-style boolean prop: a bare attribute is true, an explicit falsy
@@ -469,7 +471,7 @@ export class WOverlay extends WElement {
   _leaveFocus() {
     const target = this._returnTarget();
     this.__wReturnFocus = null;
-    if (target && this._focusWasLost()) target.focus({ preventScroll: true });
+    if (this._focusWasLost()) WFocusTarget.focus(target, { preventScroll: true });
   }
 
   // Lost means on <body>, or still inside this element's old render; focus

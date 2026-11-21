@@ -24,6 +24,8 @@
  *   content - the card
  */
 
+import { WFocusTarget } from './focus-target.js';
+
 export class WHoverCard extends WElement {
   static attrs = ['open', 'side', 'inline', 'interactive'];
   static focusable = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -93,7 +95,7 @@ export class WHoverCard extends WElement {
   }
 
   _events() {
-    this.__wControl = this.interactive ? this._wireTrigger() : null;
+    queueMicrotask(() => this._wireControl());
     if (this.__wHoverCardEvents) return;
     this.__wHoverCardEvents = true;
     this.addEventListener('mouseenter', () => this._onPointerEnter());
@@ -101,6 +103,13 @@ export class WHoverCard extends WElement {
     this.addEventListener('focusin', () => this._onFocusIn());
     this.addEventListener('focusout', (event) => this._onFocusOut(event));
     this.addEventListener('click', (event) => this._onClick(event));
+  }
+
+  /* Wired after the slotted children upgrade, so a <w-btn> or <w-icon-btn>
+   * trigger already has its inner <button> (DUVAY-12). */
+  _wireControl() {
+    if (!this.isConnected) return;
+    this.__wControl = this.interactive ? this._wireTrigger() : null;
   }
 
   /* The ARIA goes on the element that takes focus: a slotted button or link
@@ -172,7 +181,7 @@ export class WHoverCard extends WElement {
 
   _returnFocus() {
     this.__wQuietFocus = true;
-    (this.__wControl || this._trigger())?.focus();
+    WFocusTarget.focus(this.__wControl || this._trigger());
     this.__wQuietFocus = false;
   }
 
