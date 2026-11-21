@@ -489,3 +489,24 @@ test('w-autocomplete exposes accessible combobox attributes', async ({ mount, pa
   await expect(input).toHaveAttribute('aria-expanded', 'true');
   await expect(page.locator(`#${controls}`)).toHaveAttribute('role', 'listbox');
 });
+
+test('w-autocomplete binds its chip close listener once, however often it re-renders', async ({ mount, page }) => {
+  await mount(`<w-autocomplete id="ac" items="[Red,Green,Blue]" value="Red,Blue" multiple chips closable-chips name="colors"></w-autocomplete>`);
+  await page.locator('#ac').evaluate((host) => {
+    host.__closeListeners = 0;
+    const add = host.addEventListener;
+    host.addEventListener = function countingAdd(type, ...rest) {
+      if (type === 'close') host.__closeListeners += 1;
+      return add.call(this, type, ...rest);
+    };
+  });
+  for (const items of ['[Red,Green,Blue,Black]', '[Red,Green,Blue,White]', '[Red,Green,Blue]']) {
+    await page.locator('#ac').evaluate((host, value) => host.setAttribute('items', value), items);
+  }
+  await expect(page.locator('#ac w-chip')).toHaveCount(2);
+  expect(await page.locator('#ac').evaluate((host) => host.__closeListeners)).toBe(0);
+
+  await page.locator('#ac w-chip[text="Red"] .w-chip__close').click();
+  await expect(page.locator('#ac input[type="hidden"]')).toHaveValue('Blue');
+  await expect(page.locator('#ac w-chip')).toHaveCount(1);
+});

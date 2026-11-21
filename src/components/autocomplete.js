@@ -530,17 +530,26 @@ export class WAutocomplete extends WElement {
     // Keep focus in the input when interacting with the list.
     list.addEventListener('mousedown', (event) => event.preventDefault());
 
-    // Remove a value when a chip is closed.
-    this.addEventListener('close', (event) => {
-      const chip = event.target.closest?.('w-chip');
-      if (!chip || !this.contains(chip)) return;
-      event.stopPropagation();
-      this._removeValue(chip.getAttribute('value') || '');
-    });
+    this._bindChipClose();
     this._bindFieldSurface();
     if (this.hasAttribute('open')) this._applyOpen();
     this._syncValue();
     this._syncClear();
+  }
+
+  // Remove a value when a chip is closed. The listener sits on the host, which
+  // every re-render keeps, so it is added once.
+  _bindChipClose() {
+    if (this.__chipCloseBound) return;
+    this.__chipCloseBound = true;
+    this.addEventListener('close', (event) => this._onChipClose(event));
+  }
+
+  _onChipClose(event) {
+    const chip = event.target.closest?.('w-chip');
+    if (!chip || !this.contains(chip)) return;
+    event.stopPropagation();
+    this._removeValue(chip.getAttribute('value') || '');
   }
 
   // Wiring for the Vuetify field surface: counter/validation bookkeeping, the
