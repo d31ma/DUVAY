@@ -128,6 +128,20 @@
 
 ### Fixed
 
+- Focus goes back to a control, not to the page (DUVAY-12): when a
+  component gave focus back to a DuVay wrapper such as `<w-btn>` or
+  `<w-icon-btn>`, it focused the wrapper host. The host cannot take focus,
+  so focus fell to `<body>` and a keyboard user lost their place (WCAG
+  2.4.3). This hit a `w-menu` whose `activator` names a wrapper (Escape,
+  Shift+Tab, an item click), and a `return-focus` that names one. Now one
+  shared helper, `WFocusTarget` (`src/components/focus-target.js`), picks
+  the element itself when it can take focus, else its first tabbable
+  descendant, else its nearest tabbable ancestor (a click on the icon
+  inside a button). `w-menu`, `w-dialog`, `w-overlay`, `w-bottom-sheet`,
+  `w-hover-card`, `w-command` and `w-command-palette` use it.
+  `w-hover-card` now wires its trigger after the slotted children are
+  ready, so a `<w-btn>` trigger gets the ARIA and the focus, and the
+  wrapper span leaves the Tab order.
 - Closed menus leave the Tab order (DUVAY-11): a closed `w-menu`,
   `w-dropdown-menu`, `w-menubar-item` or `w-context-menu` kept its items in
   the Tab order and in the accessibility tree, only made see-through
