@@ -16,7 +16,7 @@ export class WContextMenu extends WElement {
     const y = Number.isFinite(this._menuY) ? this._menuY : 0;
     return `<div class="w-context-menu">
       <div class="w-context-menu-target"><slot></slot></div>
-      <div class="w-menu-content w-context-menu-content${this.open ? ' open' : ''}" role="menu" aria-label="${this._esc(this.label)}" style="--w-menu-x: ${x}px; --w-menu-y: ${y}px;">
+      <div class="w-menu-content w-context-menu-content${this.open ? ' open' : ''}" role="menu"${this.open ? '' : ' inert'} aria-label="${this._esc(this.label)}" style="--w-menu-x: ${x}px; --w-menu-y: ${y}px;">
         <slot name="content"></slot>
       </div>
     </div>`;

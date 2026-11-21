@@ -128,6 +128,21 @@
 
 ### Fixed
 
+- Closed menus leave the Tab order (DUVAY-11): a closed `w-menu`,
+  `w-dropdown-menu`, `w-menubar-item` or `w-context-menu` kept its items in
+  the Tab order and in the accessibility tree, only made see-through
+  (WCAG 2.4.3, 2.4.7). Now:
+  - closed `.w-menu-content` has `visibility: hidden`. The change waits for
+    the fade-out, so the close animation stays. This also covers menus built
+    with CSS classes only (`.w-menu.open > .w-menu-content`).
+  - the components also set `inert` on the closed surface, so the items
+    leave at once, before the fade-out ends.
+  - the open rules now match only the menu's own surface (`>`), so a closed
+    submenu inside an open menu stays hidden.
+  - Tab from an open `w-menu` or `w-dropdown-menu` closes it and goes to the
+    next control after the activator; Shift+Tab closes it and returns to
+    the activator.
+  - Escape inside a `w-menubar-item` menu returns focus to its trigger.
 - Accessibility fixes (DUVAY-9):
   - `--w-text-very-subtle` in the light theme is now `#5d6a70` (was
     `#7b878c`, about 3.1:1). It reaches at least 4.65:1 on every surface

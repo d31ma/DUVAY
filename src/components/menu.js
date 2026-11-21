@@ -127,7 +127,7 @@ export class WMenu extends WElement {
     return `<div class="${this._rootClasses()}"${this._rootStyle()}>
       ${this._activatorMarkup()}
       ${this._scrimMarkup()}
-      <div id="${this._esc(this.menuId)}" class="${this._esc(this._contentClasses())}" role="menu"${this._contentStyle()}><slot></slot></div>
+      <div id="${this._esc(this.menuId)}" class="${this._esc(this._contentClasses())}" role="menu"${this.open ? '' : ' inert'}${this._contentStyle()}><slot></slot></div>
     </div>`;
   }
 
@@ -360,7 +360,7 @@ export class WMenu extends WElement {
   // With it, Tab cycles inside the surface.
   _onTab(event) {
     if (!this.retainFocus) {
-      this._setOpen(false);
+      this._leaveOnTab(event);
       return;
     }
     const items = this._items();
@@ -369,6 +369,12 @@ export class WMenu extends WElement {
     if (document.activeElement !== edge) return;
     event.preventDefault();
     this._focusItem(event.shiftKey ? 'last' : 'first');
+  }
+
+  _leaveOnTab(event) {
+    this._setOpen(false);
+    this._activatorEl()?.focus();
+    if (event.shiftKey) event.preventDefault();
   }
 
   _focusItem(direction) {

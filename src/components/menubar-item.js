@@ -25,7 +25,7 @@ export class WMenubarItem extends WElement {
 
     return `<span class="${classes}">
       <button class="w-menubar-trigger" role="menuitem" type="button" aria-haspopup="menu" aria-expanded="${this.open}">${this._esc(this.label)}</button>
-      <span class="w-menu-content w-menubar-content" role="menu"><slot></slot></span>
+      <span class="w-menu-content w-menubar-content" role="menu"${this.open ? '' : ' inert'}><slot></slot></span>
     </span>`;
   }
 
@@ -59,7 +59,7 @@ export class WMenubarItem extends WElement {
         if (event.key !== 'Escape') return;
         event.preventDefault();
         this._setOpen(false);
-        trigger.focus();
+        this._q('.w-menubar-trigger')?.focus();
       });
     });
 

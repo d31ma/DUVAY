@@ -47,7 +47,7 @@ export class WDropdownMenu extends WElement {
 
     return `<span class="${classes}">
       ${trigger}
-      <span class="w-menu-content w-dropdown-menu-content" role="menu"><slot></slot></span>
+      <span class="w-menu-content w-dropdown-menu-content" role="menu"${this.open ? '' : ' inert'}><slot></slot></span>
     </span>`;
   }
 
@@ -108,7 +108,7 @@ export class WDropdownMenu extends WElement {
       return;
     }
     if (event.key === 'Tab') {
-      this._setOpen(false);
+      this._leaveOnTab(event);
       return;
     }
     if (this.submenu && event.key === 'ArrowLeft') {
@@ -121,6 +121,12 @@ export class WDropdownMenu extends WElement {
     if (!direction) return;
     event.preventDefault();
     this._focusItem(direction);
+  }
+
+  _leaveOnTab(event) {
+    this._setOpen(false);
+    this._q('.w-dropdown-menu-trigger')?.focus();
+    if (event.shiftKey) event.preventDefault();
   }
 
   _focusItem(direction) {
