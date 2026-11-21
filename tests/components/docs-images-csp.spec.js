@@ -8,7 +8,16 @@ const EXTERNAL_IMAGE = /(?:src|image|lazy-src|poster|prepend-avatar|append-avata
 /* Pages whose demos still load images from another host, which the site CSP
  * (img-src 'self' data:) blocks. This list may only shrink: a page that no
  * longer needs to be here fails the stale check below. */
-const KNOWN = ['app-bars', 'aspect-ratios', 'components-carousels', 'images', 'parallax'];
+const KNOWN = [];
+
+/* Pages that loaded outside images until DUVAY-9 and now use local ones. */
+const LOCAL_IMAGE_PAGES = [
+  { name: 'app-bars' },
+  { name: 'aspect-ratios' },
+  { name: 'components-carousels', route: '/docs/components/carousels' },
+  { name: 'images' },
+  { name: 'parallax' },
+];
 
 function pagesWithExternalImages() {
   return readdirSync(DocsPage.componentsUrl).filter((name) => {
@@ -52,3 +61,20 @@ test('the avatars docs page shows its images under the site CSP', async ({ page,
   expect(await DocsPage.cspViolations(page)).toEqual([]);
   expect(await Axe.violations(page, '[w-page] .demo-preview', ['image-alt', 'role-img-alt'])).toEqual([]);
 });
+
+for (const { name, route } of LOCAL_IMAGE_PAGES) {
+  test(`the ${name} docs page shows its images under the site CSP`, async ({ page, componentServer, duvayOs }) => {
+    test.setTimeout(60000);
+    await DocsPage.open(page, componentServer, { name, route, os: duvayOs, theme: 'light' });
+    await Axe.inject(page);
+
+    const sources = await page.locator('[w-page] [src], [w-page] [image], [w-page] [lazy-src]').evaluateAll(
+      (elements) => elements.flatMap((element) => ['src', 'image', 'lazy-src'].map((name) => element.getAttribute(name)))
+        .filter((value) => value && /^https?:/.test(value)),
+    );
+    expect(sources).toEqual([]);
+    const images = await loadedImages(page);
+    expect(images.filter((entry) => entry.endsWith(' false'))).toEqual([]);
+    expect(await DocsPage.cspViolations(page)).toEqual([]);
+  });
+}

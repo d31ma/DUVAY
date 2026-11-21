@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">Meadow (loading)</title>
+  <desc id="description">A blurred preview of the meadow image.</desc>
+  <rect width="1200" height="400" fill="#b9dcef"/>
+  <rect y="400" width="1200" height="400" fill="#9cc77a"/>
+</svg>

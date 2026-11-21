@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">Lake</title>
+  <desc id="description">A calm blue lake with a small island and a reflected sky.</desc>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ccde8"/><stop offset="1" stop-color="#e9f3f7"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 400 300 300 600 380 900 290 1200 380v40H0Z" fill="#6f8f9a"/>
+  <rect y="420" width="1200" height="380" fill="#3f86b5"/>
+  <path d="M480 470c60-40 180-40 240 0Z" fill="#3e6b46"/>
+  <path d="M0 520h1200M0 600h1200M0 690h1200" stroke="#8cc3e3" stroke-width="6" opacity=".5"/>
+</svg>

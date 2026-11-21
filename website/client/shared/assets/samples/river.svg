@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">River</title>
+  <desc id="description">A river winds through green hills under a pale sky.</desc>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe3f2"/><stop offset="1" stop-color="#eef6ef"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 420 220 330 430 400 650 300 880 380 1200 310v490H0Z" fill="#7fae7a"/>
+  <path d="M0 520 260 450 520 520 760 440 1000 500 1200 450v350H0Z" fill="#4f8a55"/>
+  <path d="M560 800c40-120 180-170 120-260-40-60 60-90 140-110-110 10-230 40-200 120 40 90-140 140-180 250Z" fill="#5aa7d6"/>
+</svg>

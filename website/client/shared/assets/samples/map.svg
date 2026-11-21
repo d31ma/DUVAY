@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">Map of the selected area</title>
+  <desc id="description">A simple street map with a river, a park and a marked place.</desc>
+  <rect width="1200" height="800" fill="#eef0e6"/>
+  <rect x="120" y="120" width="320" height="240" rx="16" fill="#c9e3b8"/>
+  <path d="M0 620c240-80 420 40 660-40s360-60 540 0v40c-180-60-300-40-540 40S240 620 0 700Z" fill="#a9d1ec"/>
+  <path d="M0 450h1200M600 0v800M0 250h1200M900 0v800M300 0v800" stroke="#ffffff" stroke-width="22"/>
+  <path d="M780 330c0-60 90-60 90 0 0 50-45 100-45 100s-45-50-45-100Z" fill="#c8443c"/>
+  <circle cx="825" cy="330" r="16" fill="#ffffff"/>
+</svg>

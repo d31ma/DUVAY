@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">Meadow</title>
+  <desc id="description">A wide meadow with yellow flowers under a bright sky.</desc>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ec5ea"/><stop offset="1" stop-color="#e6f2f6"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="950" cy="170" r="70" fill="#fff4c2"/>
+  <path d="M0 470c300-60 600-60 1200 0v330H0Z" fill="#8cbf5f"/>
+  <g fill="#f2d24b"><circle cx="200" cy="600" r="12"/><circle cx="380" cy="660" r="12"/><circle cx="560" cy="580" r="12"/><circle cx="760" cy="700" r="12"/><circle cx="960" cy="620" r="12"/><circle cx="1100" cy="720" r="12"/></g>
+</svg>

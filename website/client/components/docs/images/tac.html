@@ -7,12 +7,12 @@
   <demo-compare>
     <div slot="css">
       <div class="w-img w-img--rounded" style="aspect-ratio: 16 / 9; max-width: 480px; background-color: var(--w-surface-container-low)">
-        <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1003/800/450" alt="Deer" />
+        <img class="w-img__img w-img__img--cover" src="/shared/assets/samples/forest.svg" alt="Forest" />
         <div class="w-img__content"></div>
       </div>
     </div>
     <div slot="wc">
-      <w-img src="https://picsum.photos/id/1003/800/450" alt="Deer" cover aspect-ratio="16 / 9" max-width="480" rounded="rounded"></w-img>
+      <w-img src="/shared/assets/samples/forest.svg" alt="Forest" cover aspect-ratio="16 / 9" max-width="480" rounded="rounded"></w-img>
     </div>
   </demo-compare>
 
@@ -21,13 +21,13 @@
   <demo-compare>
     <div slot="css">
       <div class="w-img w-img--rounded" style="aspect-ratio: 16 / 9; max-width: 480px">
-        <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1011/800/450" alt="Lake" />
+        <img class="w-img__img w-img__img--cover" src="/shared/assets/samples/lake.svg" alt="Lake" />
         <div class="w-img__gradient" style="background-image: linear-gradient(to top, rgba(0,0,0,.7), transparent)"></div>
         <div class="w-img__content" style="display:flex; align-items:flex-end; padding: var(--w-space-4); color:#fff; font-weight:600">Lakeside</div>
       </div>
     </div>
     <div slot="wc">
-      <w-img src="https://picsum.photos/id/1011/800/450" alt="Lake" cover aspect-ratio="16 / 9" max-width="480" rounded="rounded" gradient="to top, rgba(0,0,0,.7), transparent">
+      <w-img src="/shared/assets/samples/lake.svg" alt="Lake" cover aspect-ratio="16 / 9" max-width="480" rounded="rounded" gradient="to top, rgba(0,0,0,.7), transparent">
         <div style="display:flex; align-items:flex-end; height:100%; padding: var(--w-space-4); color:#fff; font-weight:600">Lakeside</div>
       </w-img>
     </div>
@@ -38,13 +38,13 @@
   <demo-compare>
     <div slot="css">
       <div class="w-img w-img--rounded" style="aspect-ratio: 4 / 3; max-width: 320px">
-        <div class="w-img__placeholder w-img__placeholder--lazy" style="background-image: url('https://picsum.photos/id/1024/16/12')"></div>
-        <img class="w-img__img w-img__img--cover" src="https://picsum.photos/id/1024/640/480" alt="Bear" />
+        <div class="w-img__placeholder w-img__placeholder--lazy" style="background-image: url('/shared/assets/samples/meadow-placeholder.svg')"></div>
+        <img class="w-img__img w-img__img--cover" src="/shared/assets/samples/meadow.svg" alt="Meadow" />
         <div class="w-img__content"></div>
       </div>
     </div>
     <div slot="wc">
-      <w-img src="https://picsum.photos/id/1024/640/480" lazy-src="https://picsum.photos/id/1024/16/12" alt="Bear" cover aspect-ratio="4 / 3" max-width="320" rounded="rounded"></w-img>
+      <w-img src="/shared/assets/samples/meadow.svg" lazy-src="/shared/assets/samples/meadow-placeholder.svg" alt="Meadow" cover aspect-ratio="4 / 3" max-width="320" rounded="rounded"></w-img>
     </div>
   </demo-compare>
 </doc-layout>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="title description">
+  <title id="title">Forest</title>
+  <desc id="description">Rows of pine trees on a hillside in morning light.</desc>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e7b8"/><stop offset="1" stop-color="#cfe4cf"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 520 400 420 800 480 1200 400v400H0Z" fill="#6c9a6a"/>
+  <g fill="#2f5a3a"><path d="m150 600 70-220 70 220Z"/><path d="m330 620 80-260 80 260Z"/><path d="m540 600 70-230 70 230Z"/><path d="m740 620 80-260 80 260Z"/><path d="m950 600 70-220 70 220Z"/></g>
+  <path d="M0 640h1200v160H0Z" fill="#244a2f"/>
+</svg>
