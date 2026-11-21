@@ -1464,7 +1464,39 @@ function enhanceApiTables() {
       table.before(wrapper);
       wrapper.appendChild(table);
     }
+    watchScrollRegion(table.parentElement);
   });
+}
+
+/* A wrapper that scrolls sideways (narrow screens) must be reachable from the
+   keyboard (axe scrollable-region-focusable): while it scrolls it is a named,
+   focusable region; when the table fits it adds no tab stop. */
+const SCROLL_REGION_ATTRIBUTES = ['tabindex', 'role', 'aria-label'];
+const watchedScrollRegions = new WeakSet();
+const scrollRegionObserver = typeof ResizeObserver === 'function'
+  ? new ResizeObserver((entries) => entries.forEach((entry) => syncScrollRegion(entry.target)))
+  : null;
+
+function watchScrollRegion(wrapper) {
+  syncScrollRegion(wrapper);
+  if (!scrollRegionObserver || watchedScrollRegions.has(wrapper)) return;
+  watchedScrollRegions.add(wrapper);
+  scrollRegionObserver.observe(wrapper);
+}
+
+function syncScrollRegion(wrapper) {
+  if (wrapper.scrollWidth <= wrapper.clientWidth + 1) {
+    SCROLL_REGION_ATTRIBUTES.forEach((name) => wrapper.removeAttribute(name));
+    return;
+  }
+  wrapper.setAttribute('tabindex', '0');
+  wrapper.setAttribute('role', 'region');
+  wrapper.setAttribute('aria-label', scrollRegionLabel(wrapper));
+}
+
+function scrollRegionLabel(wrapper) {
+  const table = wrapper.querySelector('table');
+  return table?.getAttribute('aria-label') || table?.querySelector('caption')?.textContent.trim() || 'API table';
 }
 
 /* ── All Components catalog (/docs/components) ───────────────────────────── */

@@ -93,11 +93,14 @@
  *   change           - back-compat alias of update:options
  */
 import { wBoolAttr, wClamp, wNumberAttr, wParseRecords, wRecordValue, wValueList } from './utils.js';
+import { WScrollRegion } from './scroll-region.js';
 
 // Screen widths (px) behind the named `mobile-breakpoint` values.
 const W_TABLE_BREAKPOINTS = { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920, xxl: 2560 };
 
 export class WDataTable extends WElement {
+  static SCROLL_LABEL = 'Table';
+
   static attrs = ['headers', 'items', 'item-value', 'sort-by', 'sort-desc', 'multi-sort',
     'search', 'page', 'items-per-page', 'items-per-page-options', 'show-select', 'select-strategy',
     'selected', 'show-expand', 'expanded', 'loading', 'loading-text', 'no-data-text',
@@ -634,6 +637,21 @@ export class WDataTable extends WElement {
     this._bindExpandEvents();
     this._bindGroupEvents();
     this._bindMobileQuery();
+    this._watchScroll();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    if (this._rendered) this._watchScroll();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback?.();
+    WScrollRegion.unwatch(this);
+  }
+
+  _watchScroll() {
+    WScrollRegion.watch(this, this._q('.w-table-wrap'), this.getAttribute('aria-label') || WDataTable.SCROLL_LABEL);
   }
 
   _bindSortEvents() {

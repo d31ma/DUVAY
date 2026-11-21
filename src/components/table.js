@@ -22,11 +22,15 @@
  *   bottom  - content rendered below the table (footers, pagination)
  */
 
+import { WScrollRegion } from './scroll-region.js';
+
 class WTable extends WElement {
 
   static ROW = 'w-row, .w-grid-row';
   static HEADER_ROW = 'w-row[header], .w-grid-row[header], .w-table-header';
   static CELL = 'w-col, .w-grid-col, [class*="w-grid-col-"]';
+
+  static SCROLL_LABEL = 'Table';
 
   static attrs = [
     'density', 'striped', 'hover', 'gridlines', 'grid', 'responsive',
@@ -79,6 +83,7 @@ class WTable extends WElement {
     const table = this.querySelector('table');
     const grid = this._q('.w-table-grid');
     this._markGridResponsive(grid);
+    this._watchScroll();
 
     if (table) {
       grid?.removeAttribute('role');
@@ -125,11 +130,25 @@ class WTable extends WElement {
     // A re-attached table skips the render, so label rows that changed while
     // it was detached and watch for new ones again.
     if (this._rendered) this._labelCells();
+    if (this._rendered) this._watchScroll();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback?.();
     this._unwatchCells();
+    WScrollRegion.unwatch(this);
+  }
+
+  _watchScroll() {
+    WScrollRegion.watch(this, this._q('.w-table-wrap'), this._scrollLabel());
+  }
+
+  _scrollLabel() {
+    return this.getAttribute('aria-label') || this._captionText() || WTable.SCROLL_LABEL;
+  }
+
+  _captionText() {
+    return this.querySelector('caption')?.textContent.trim() || this.querySelector('table')?.getAttribute('aria-label');
   }
 
   // Labels every body cell, then watches the table for rows added later (live
