@@ -89,15 +89,11 @@ test('a native table switched from scroll to stack drops the minimum width', asy
   expect(result.wrapScroll).toBeLessThanOrEqual(result.wrapClient);
 });
 
-/* Known violations on the tables docs page at phone width. They are on
- * develop before this change and are tracked as their own follow-up:
- * - aria-required-parent: w-row grid cells sit inside a light-DOM <slot>
- *   between the role="row" element and the role="cell" elements.
- * - scrollable-region-focusable: a "scroll" table wrapper that overflows on a
- *   phone cannot take keyboard focus.
- * This list may only shrink: a rule that stops failing fails the test, so the
- * fix must remove it here. */
-const KNOWN_DOCS_RULES = ['aria-required-parent', 'scrollable-region-focusable'];
+/* Known violations on the tables docs page at phone width. DUVAY-9 fixed the
+ * last two (aria-required-parent and scrollable-region-focusable). This list
+ * may only shrink: a rule that stops failing fails the test, so a fix must
+ * remove it here. */
+const KNOWN_DOCS_RULES = [];
 
 for (const theme of ['light', 'dark']) {
   test(`the tables docs page passes axe on a 375px phone (${theme})`, async ({ page, componentServer, duvayOs }) => {
