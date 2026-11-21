@@ -44,7 +44,7 @@
             <SolidColorBrush x:Key="DuVayTextBrush" Color="{StaticResource DuVayTextColor}" />
             <Color x:Key="DuVayTextSubtleColor">#FF526066</Color>
             <SolidColorBrush x:Key="DuVayTextSubtleBrush" Color="{StaticResource DuVayTextSubtleColor}" />
-            <Color x:Key="DuVayTextVerySubtleColor">#FF7B878C</Color>
+            <Color x:Key="DuVayTextVerySubtleColor">#FF5D6A70</Color>
             <SolidColorBrush x:Key="DuVayTextVerySubtleBrush" Color="{StaticResource DuVayTextVerySubtleColor}" />
             <Color x:Key="DuVayDividerColor">#FFD8E0DE</Color>
             <SolidColorBrush x:Key="DuVayDividerBrush" Color="{StaticResource DuVayDividerColor}" />

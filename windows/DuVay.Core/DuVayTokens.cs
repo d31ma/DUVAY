@@ -230,7 +230,7 @@ public sealed class DuVayPalette
         Text = new(24, 33, 37, 1),
         TextMuted = new(82, 96, 102, 1),
         TextSubtle = new(82, 96, 102, 1),
-        TextVerySubtle = new(123, 135, 140, 1),
+        TextVerySubtle = new(93, 106, 112, 1),
         Toolbar = new(241, 245, 244, 1),
         VideoPoster = new(0, 0, 0, 1),
         Warning = new(196, 120, 0, 1),

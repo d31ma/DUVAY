@@ -234,7 +234,7 @@
     }
   },
   "text-very-subtle": {
-    "$value": "#7b878c",
+    "$value": "#5d6a70",
     "$type": "color",
     "$extensions": {
       "duvay": {

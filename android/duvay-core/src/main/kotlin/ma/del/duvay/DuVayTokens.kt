@@ -221,7 +221,7 @@ object DuVayTokens {
         text = 0xFF182125L,
         textMuted = 0xFF526066L,
         textSubtle = 0xFF526066L,
-        textVerySubtle = 0xFF7B878CL,
+        textVerySubtle = 0xFF5D6A70L,
         toolbar = 0xFFF1F5F4L,
         videoPoster = 0xFF000000L,
         warning = 0xFFC47800L,

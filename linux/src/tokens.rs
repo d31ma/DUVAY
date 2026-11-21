@@ -225,7 +225,7 @@ pub const LIGHT: Palette = Palette {
     text: Rgba { r: 24, g: 33, b: 37, a: 1.0000 },
     text_muted: Rgba { r: 82, g: 96, b: 102, a: 1.0000 },
     text_subtle: Rgba { r: 82, g: 96, b: 102, a: 1.0000 },
-    text_very_subtle: Rgba { r: 123, g: 135, b: 140, a: 1.0000 },
+    text_very_subtle: Rgba { r: 93, g: 106, b: 112, a: 1.0000 },
     toolbar: Rgba { r: 241, g: 245, b: 244, a: 1.0000 },
     video_poster: Rgba { r: 0, g: 0, b: 0, a: 1.0000 },
     warning: Rgba { r: 196, g: 120, b: 0, a: 1.0000 },

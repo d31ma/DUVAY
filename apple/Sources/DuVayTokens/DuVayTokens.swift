@@ -222,7 +222,7 @@ public enum DuVayTokens {
         text: Color(.sRGB, red: 0.0941, green: 0.1294, blue: 0.1451, opacity: 1),
         textMuted: Color(.sRGB, red: 0.3216, green: 0.3765, blue: 0.4, opacity: 1),
         textSubtle: Color(.sRGB, red: 0.3216, green: 0.3765, blue: 0.4, opacity: 1),
-        textVerySubtle: Color(.sRGB, red: 0.4824, green: 0.5294, blue: 0.549, opacity: 1),
+        textVerySubtle: Color(.sRGB, red: 0.3647, green: 0.4157, blue: 0.4392, opacity: 1),
         toolbar: Color(.sRGB, red: 0.9451, green: 0.9608, blue: 0.9569, opacity: 1),
         videoPoster: Color(.sRGB, red: 0, green: 0, blue: 0, opacity: 1),
         warning: Color(.sRGB, red: 0.7686, green: 0.4706, blue: 0, opacity: 1),
