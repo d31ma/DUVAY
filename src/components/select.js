@@ -439,7 +439,7 @@ class WSelect extends WElement {
   }
 
   _listMarkup(options, values, listId) {
-    const items = options.map((opt) => this._itemMarkup(opt, values)).join('');
+    const items = options.map((opt, index) => this._itemMarkup(opt, values, `${listId}-option-${index}`)).join('');
     const visible = options.filter((opt) => !this._itemHidden(opt, values)).length;
     const classes = this._cls({ [wMenuElevationClass(this)]: true });
     const color = wSafeColor(this._attr('item-color', ''));
@@ -462,9 +462,9 @@ class WSelect extends WElement {
     return !wQueryMatches(this, opt.raw, [opt.label, opt.value], query);
   }
 
-  _itemMarkup(opt, values) {
+  _itemMarkup(opt, values, id) {
     const selected = values.includes(opt.value);
-    return `<button class="w-select-item" type="button" role="option" value="${this._esc(opt.value)}"`
+    return `<button class="w-select-item" type="button" role="option" id="${id}" value="${this._esc(opt.value)}"`
       + ` aria-selected="${selected ? 'true' : 'false'}"${opt.disabled ? ' disabled' : ''}`
       + `${this._itemHidden(opt, values) ? ' hidden' : ''}>`
       + `<span class="w-select-item-label">${this._esc(opt.label)}</span>`
@@ -654,7 +654,17 @@ class WSelect extends WElement {
   _activate(item) {
     this._activeEl = item || null;
     this._qAll('.w-select-item').forEach((el) => el.classList.toggle('active', el === item));
+    this._pointTriggerAt(item);
     if (item && !this._bool('no-auto-scroll')) item.scrollIntoView({ block: 'nearest' });
+  }
+
+  // WAI-ARIA combobox pattern: focus stays on the combobox, which names the
+  // active option through aria-activedescendant.
+  _pointTriggerAt(item) {
+    const trigger = this._q('.w-select-field');
+    if (!trigger) return;
+    if (item) trigger.setAttribute('aria-activedescendant', item.id);
+    else trigger.removeAttribute('aria-activedescendant');
   }
 
   _selectItem(item) {

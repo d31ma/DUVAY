@@ -128,6 +128,32 @@
 
 ### Fixed
 
+- Accessibility fixes (DUVAY-9):
+  - `--w-text-very-subtle` in the light theme is now `#5d6a70` (was
+    `#7b878c`, about 3.1:1). It reaches at least 4.65:1 on every surface
+    token (surface, containers, sidebar, toolbar, hover, selected). Dark
+    (5.37:1) and high-contrast (7.56:1) were already AA and are unchanged.
+    The native token files were regenerated.
+  - `w-avatar`: a badge with no text (a dot) has `role="img"`, so its
+    `aria-label` is allowed (axe aria-prohibited-attr).
+  - `w-data-table-headers`, `w-data-table-rows` and `w-data-table-row`:
+    their rows have `role="row"`, and when they are not already inside a
+    table, the nearest `.w-table-grid` (or the element itself) gets
+    `role="table"` (axe aria-required-parent). New helper
+    `WTableContext` (`src/components/table-context.js`).
+  - `w-table`, `w-data-table` and the docs API tables: a table wrapper that
+    scrolls is a focusable, named region (`tabindex="0"`, `role="region"`,
+    `aria-label`) while it scrolls, and has no tab stop when the table fits
+    (axe scrollable-region-focusable). New helper `WScrollRegion`
+    (`src/components/scroll-region.js`).
+  - `w-autocomplete` adds its chip `close` listener once, not on every
+    render.
+  - `w-select`: options have ids, and the combobox points
+    `aria-activedescendant` at the active option (WAI-ARIA combobox
+    pattern), so screen readers announce the option the arrow keys reach.
+  - Docs: the app-bars, aspect-ratios, carousels, images and parallax pages
+    use local sample images (`/shared/assets/samples/`) that the site CSP
+    allows; no docs page loads images from another host now.
 - Focus, caret and typed text are kept when an attribute changes (DUVAY-8).
   Before, every observed attribute re-rendered the element and rebuilt its
   inner control. So when live form validation set `error` (or `hint`,

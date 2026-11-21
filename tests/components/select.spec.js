@@ -549,3 +549,57 @@ test('w-select keeps a host aria-labelledby as its accessible name', async ({ mo
   await expect(combo).not.toHaveAttribute('aria-label', /./);
   await expect(page.getByRole('combobox', { name: 'Reply from' })).toHaveCount(1);
 });
+
+test('w-select points aria-activedescendant at the active option', async ({ mount, page }) => {
+  await mount(`
+    <w-select id="select" name="plan" label="Plan">
+      <w-option value="free">Free</w-option>
+      <w-option value="pro">Pro</w-option>
+      <w-option value="team">Team</w-option>
+    </w-select>
+    <w-select id="other" name="size" label="Size"><w-option value="s">S</w-option></w-select>
+  `);
+  const combobox = page.locator('#select [role="combobox"]');
+  const activeId = () => combobox.getAttribute('aria-activedescendant');
+
+  await expect(combobox).not.toHaveAttribute('aria-activedescendant', /.*/);
+  await combobox.focus();
+  await page.keyboard.press('ArrowDown');
+  await expect(combobox).toHaveAttribute('aria-activedescendant', /.+/);
+  await expect(page.locator(`#${await activeId()}`)).toHaveText('Free');
+
+  await page.keyboard.press('ArrowDown');
+  await expect(page.locator(`#${await activeId()}`)).toHaveText('Pro');
+  await expect(page.locator(`#${await activeId()}`)).toHaveAttribute('role', 'option');
+  await expect(page.locator(`#${await activeId()}`)).toHaveClass(/active/);
+  await expect(combobox).toBeFocused();
+
+  await page.keyboard.press('End');
+  await expect(page.locator(`#${await activeId()}`)).toHaveText('Team');
+
+  await page.keyboard.press('Escape');
+  await expect(combobox).not.toHaveAttribute('aria-activedescendant', /.*/);
+
+  const ids = await page.locator('#root [role="option"]').evaluateAll((options) => options.map((option) => option.id));
+  expect(ids.every(Boolean)).toBe(true);
+  expect(new Set(ids).size).toBe(ids.length);
+});
+
+test('w-select keeps aria-activedescendant on the same option when an attribute changes', async ({ mount, page }) => {
+  await mount(`
+    <w-select id="select" label="Plan">
+      <w-option value="free">Free</w-option>
+      <w-option value="pro">Pro</w-option>
+    </w-select>
+  `);
+  const combobox = page.locator('#select [role="combobox"]');
+  await combobox.focus();
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  const before = await combobox.getAttribute('aria-activedescendant');
+
+  await page.locator('#select').evaluate((host) => host.setAttribute('hint', 'Pick one'));
+  await expect(combobox).toBeFocused();
+  await expect(combobox).toHaveAttribute('aria-activedescendant', before);
+  await expect(page.locator(`#${before}`)).toHaveText('Pro');
+});
